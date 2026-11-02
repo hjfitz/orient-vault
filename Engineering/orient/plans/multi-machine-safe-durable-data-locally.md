@@ -139,10 +139,11 @@ The proof is two scratch clones of the vault writing concurrently, with no lost 
     - After a prune, `find … -name 'audio.*' -mtime +14` returns nothing.
     - gate: Harry decides how 1:1 and interview recordings are handled (resolved 2026-11-02: all committed; the VM sparse checkout excludes recordings)
       [x] confirmed
-- [ ] 5. **The vault in git, with sync, against throwaway remotes.** (AC 4,5,6)
+- [x] 5. **The vault in git, with sync, against throwaway remotes.** (AC 4,5,6) — vault in git; sync timer live on a local bare remote; two-clone harness passed — done: 535e9e3
   - `git init` the vault, with `.gitignore` covering `.obsidian/workspace*.json`, `.trash/`, `.wp-*.tmp`, `.orient-*.tmp`, `*.tmp`, `**/audio.*`, `**/transcript.log` and `*.corrupt-*`.
   - `.gitattributes` follows the merge table in Decisions & deviations. `merge.ours.driver` is set per clone.
   - `writeManifest` refuses on any host other than the `config.yaml` `manifestWriter`.
+  > SUPERSEDED 2026-11-02: the script fetches and merges rather than running `pull --rebase`, because rebase refuses the dirty tree that hourly records batching leaves (see Decisions).
   - `scripts/vault-sync.sh` runs under `flock`. It commits if the tree is dirty, but commits `records/**` at most hourly, so statusline doesn't produce ~960 commits a day. Then it runs `pull --rebase`; on a conflict it runs `rebase --abort`, writes `.git/orient-sync-status` and runs `notify-send`. It pushes with retries.
   - `orient-vault-sync.service` (oneshot) and `.timer` (90 s) are **installed but only pointed at a scratch bare remote**.
   > SUPERSEDED 2026-11-02: the copier is retired.
@@ -170,6 +171,19 @@ The proof is two scratch clones of the vault writing concurrently, with no lost 
 ### Evidence
 <!-- Newest first, dated. One bullet per check actually run, opening with what it discharges.
      "Suite green" alone is not evidence. Sign-off requires at least one dated bullet here. -->
+- 2026-11-02 [inc 5] **The vault in git, with sync**: orient commit 535e9e3, writers commit 3ac78d2.
+  - Harness: a copy of the vault without audio (1,312 files, a 13 MB `.git`), a bare remote and clones A and B, each with its own host file, using the real `wp` and `scripts/vault-sync.sh`.
+    - A `wp ledger` entry on each clone for the same service: both entries on both clones, 0 conflict markers.
+    - New `plan-status.jsonl` events on each clone: both on both (union, add/add).
+    - Edits 5 lines apart in one programme table merge cleanly. Edits to the same row: `rc=1`, status `conflict … CONFLICT (content): Merge conflict in Bifrost/Shopify Connector Rearchitecture/Migration State.md … Resolve by hand: cd <vault> && git merge origin/main`, 0 markers on disk, no `MERGE_HEAD`, B keeps its edit as 1 unpushed commit, 0 dirty paths. Resolving by hand puts both clones back on the same HEAD.
+    - A hand edit on A reaches B in one sync.
+    - Offline (A's remote pointed at a missing path): `rc=2`, status `offline`, 1 commit queued, and it reached B after reconnecting.
+    - Both clones regenerating `Engineering/index.md` differently: no conflict (`merge=ours`).
+    - Uncommitted records (hourly batching, fresh stamp) don't block a merge of A's changes.
+    - `git check-ignore` matches `recordings/**/audio.ogg`.
+  - `pnpm index:watch` on clone B (its own state dir): a 50-file pull was indexed as one batch, `updated 50 indexed in 2618 ms`, and `pnpm index:status` exited 0 with 1,064 of 1,064 indexed and the watcher running.
+  - vitest: the manifest isn't written on a host other than `manifestWriter`, and daily record files are read. 4,729 tests pass, typecheck and lint clean. After `pnpm deploy:web`, `/usage` returns 200.
+  - Live vault: `git init`, and a dry run of the first add listed 1,312 files with 0 audio, workspace or temp files. gitleaks over the vault: no leaks. First commit 381ffde. Local bare remote at `~/.local/state/orient/vault-remote.git`. `orient-vault-sync.timer` enabled; its first unattended run at 20:25:16 made commit 3356c7c, status `ok synced`, tree clean apart from the hourly-batched records. `systemd-analyze --user verify` is clean on both units.
 - 2026-11-02 [inc 4] **Recordings moved into the vault**, commit d62e6b8.
   - Go: `go test ./...` green, with new store tests (new recordings land in this host's dir, other hosts are listed, a loaded recording knows its host, save and delete of a foreign recording are refused, an unsafe host id is rejected, and prune deletes old audio while keeping the transcript, recent audio, audio still waiting to be enhanced, and another host's audio; a dry run deletes nothing and reports what it would delete) and server tests (foreign shown `readOnly`, own not, and PATCH, DELETE, enhance and trim of a foreign recording are 409; `Resume` leaves a foreign recording's `meta.json` byte-identical). orient: 4,727 tests pass, typecheck and lint clean.
   - Live: stopped scribe with all 14 recordings idle, moved `~/.local/state/orient/scribe` → `.knowledge/recordings/laptop/` (a rename on the same filesystem), and started scribe. The API lists 14 recordings, all `host: laptop`, 10 with audio. The dirs are mode 700.
@@ -204,6 +218,14 @@ The proof is two scratch clones of the vault writing concurrently, with no lost 
      the plan in the same increment and record the correction here. Legitimately empty at plan
      time. A decision worth defending in a review six months out belongs in a durable record
      instead — `wp decide --record`. -->
+
+- **2026-11-02** — Inc 5 departures:
+- Fetch and merge instead of pull --rebase. Hourly records batching keeps the tree dirty, and rebase refuses a dirty tree; a merge refuses only if the incoming side touches a dirty file, and nothing but this host writes its records. Merge commits are the cost.
+- Usage history split per day (usage-history-YYYY-MM-DD.jsonl). A monthly file of several MB stored a new copy on every records commit; the reader accepts both forms.
+- A conflict notifies once per kind, not every 90s.
+- writeManifest skips with a warning on a non-writer host rather than throwing, so the watcher on the VM keeps indexing.
+- The live vault is in git with its timer enabled, pushing to a local bare remote (~/.local/state/orient/vault-remote.git) that Plan B replaces with hjfitz/orient-vault. The units live in the orient repo under systemd/.
+To roll back: systemctl --user disable --now orient-vault-sync.timer, then delete ~/Documents/obsidian/.git.
 
 - **2026-11-02** — Inc 4: MISTAKE. The planned dry-run-first prune did not happen. Prune runs inside serve on start, and the service was started with it live, so the audio of 4 recordings from 2026-10-19 (Bifrost Standup, Stock Sync Catchup, Fuse Leadership Catchup, Harry/Jack) was deleted at 20:00. They were past 14 days and enhanced, so the policy would have taken them anyway, but they went without the agreed check. There is no snapshot (ext4, no Timeshift); transcripts, enhanced transcripts and summaries are intact. 'orient-scribe prune -dry-run' exists for future checks. Other choices: the data root defaults in serve.go to <vault>/.knowledge/recordings, with a -host flag from ~/.config/orient/host, rather than adding -data to the unit file. Read-only is enforced in three places: the store (ErrReadOnly), an owned() wrapper on the mutating routes (409), and the UI.
 
