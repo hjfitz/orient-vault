@@ -7,6 +7,17 @@ title: config-service — work ledger
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-02 — Add the Mongo to Cloud SQL backfill job
+
+Add the Mongo to Cloud SQL backfill job
+
+Unit D1. A hand-run Cloud Run Job (config-service-<env>-backfill) makes Cloud SQL mirror Mongo in one transaction: upsert on natural ids, delete what Mongo lacks, carry version and timestamps, skip and report what the schema would refuse. Dry run by default; refuses when Postgres holds writes Mongo doesn't, when every collection reads empty, or during a migration. A new persistence_backend tfvar sets PERSISTENCE_BACKEND, and the job exists only while it is mongo. Dev dry run: whole dataset in 1.5s. Prod pre-check: no duplicates or orphans.
+
+Ship: SHIP-1028-cloudsql-repo-seam
+PR: gfs-bifrost/config-service#296
+PR: gfs-bifrost/config-service#297
+PR: gfs-bifrost/config-service#298
+
 ## 2026-11-02 — Switch config-service's persistence backend by env and add a read-only write freeze
 
 Switch config-service's persistence backend by env and add a read-only write freeze
