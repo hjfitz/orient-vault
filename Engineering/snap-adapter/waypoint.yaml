@@ -1,0 +1,40 @@
+# snap-adapter — Waypoint index. Cheap orientation only, never documentation.
+# Keep under ~25 lines. Anything needing a sentence belongs in a doc.
+service: snap-adapter
+system: fuse
+type: backend            # backend | frontend | library | infra
+owner: fuse-team         # wider Fuse team, shared with snap-queue-polling-service (read side)
+language: TypeScript
+framework: Express
+deploy: cloud-run         # snap-adapter-{env}
+observability: datadog
+
+interfaces:
+  inbound: [http, pubsub]        # create_record + confirmation_made push subscriptions
+  outbound: [snap-fulfil-wms, config-service, redis, pubsub-release-and-failure-topics]
+
+key_paths:
+  - apps/snap-adapter/src/core                              # sales-order/purchase-order/master-data/rga/work-order services
+  - apps/snap-adapter/src/adapters/snap                     # SnapRouter, circuit breaker, entity type map
+  - apps/snap-adapter/src/http/controllers/event.controller.ts  # create + confirmation-made + config-revision handling
+  - apps/snap-adapter/src/shared                            # Semaphore + TokenBucket concurrency guards
+  - iac/projects/snap-adapter                                # terraform: 5 create_record + 8 confirmation_made subscriptions
+
+note: >
+  Sibling app to snap-queue-polling-service in the gfs-bifrost/snap-adapter monorepo
+  (same repo as its own name — no archived-repo collision, unlike the poller).
+  This is the write/ingress side: consumes canonical create_record events and writes
+  into SnapFulfil; also clears the SNAP outbound queue on confirmation_made.
+
+runtime:
+  package_manager: "pnpm@11.0.8"
+  test_runner: "vitest"
+  node: "24"
+commands:
+  root: "apps/snap-adapter/"
+  gate: ["test", "lint:fix", "build:check"]
+  missing: ["build:check:tests"]
+commands_verified: 2026-09-04
+commands_verified_sha: 95bdc57
+commands_verified_paths: [apps/snap-adapter/mise.toml, apps/snap-adapter/package.json, apps/snap-adapter/pnpm-workspace.yaml]
+onboarded: 2026-08-24

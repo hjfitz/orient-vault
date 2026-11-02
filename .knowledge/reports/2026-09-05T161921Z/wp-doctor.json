@@ -1,0 +1,416 @@
+{
+  "available": true,
+  "fingerprint": "97b894c2d631871ccb136dbbbc4950dd719a9f3d56a233006672885ef45de92e",
+  "detail": "wp doctor: 34 findings across 12 sections, exit 2",
+  "raw": {
+    "date": "2026-09-05",
+    "services": 26,
+    "fetched": false,
+    "stale_days": 7,
+    "findings": {
+      "UNCLOSED": [
+        {
+          "service": "fuse-ui",
+          "item": "plans/FUSE-1070-template-library-storage-browse-and-crud.md",
+          "detail": "PR #227 MERGED (frontmatter), plan still active",
+          "fix": "wp signoff fuse-ui --plan FUSE-1070-template-library-storage-browse-and-crud",
+          "pr": {
+            "number": "227",
+            "state": "MERGED",
+            "url": "https://github.com/gfs-bifrost/fuse-ui/pull/227",
+            "source": "frontmatter"
+          }
+        },
+        {
+          "service": "snap-adapter",
+          "item": "plans/FUSE-866-join-woc-lines-by-line-key.md",
+          "detail": "PR #204 MERGED (frontmatter), plan still active",
+          "fix": "wp signoff snap-adapter --plan FUSE-866-join-woc-lines-by-line-key",
+          "pr": {
+            "number": "204",
+            "state": "MERGED",
+            "url": "https://github.com/gfs-bifrost/snap-adapter/pull/204",
+            "source": "frontmatter"
+          }
+        },
+        {
+          "service": "snap-queue-polling-service",
+          "item": "plans/routing-metadata-to-firestore-read-side.md",
+          "detail": "PR #211 MERGED (frontmatter), plan still active",
+          "fix": "wp signoff snap-queue-polling-service --plan routing-metadata-to-firestore-read-side",
+          "pr": {
+            "number": "211",
+            "state": "MERGED",
+            "url": "https://github.com/gfs-bifrost/snap-adapter/pull/211",
+            "source": "frontmatter"
+          }
+        }
+      ],
+      "STALE-PLAN": [],
+      "PR-DRIFT": [
+        {
+          "service": "fapi",
+          "item": "plans/FUSE-1056-resolve-confirmation-webhook-target-by-connector.md",
+          "detail": "PR #121 CLOSED without merge (frontmatter)",
+          "fix": "abandon the plan (set-status abandoned), or re-open/relink the PR",
+          "pr": {
+            "number": "121",
+            "state": "CLOSED",
+            "url": "https://github.com/gfs-bifrost/fapi/pull/121",
+            "source": "frontmatter"
+          }
+        }
+      ],
+      "STALE-DOC": [
+        {
+          "service": "config-service",
+          "item": "architecture.md",
+          "detail": "1 commit(s) since 18d8c7a on code/src,iac/projects/config-service,.github/workflows",
+          "fix": "wp stale config-service; update the doc, then wp verify config-service architecture.md --paths code/src,iac/projects/config-service,.github/workflows",
+          "commits": 1,
+          "gating": false,
+          "subjects": [
+            "70138a7 FUSE-1122: expose connector confirmationsEnabled on the API contract (#202)"
+          ]
+        },
+        {
+          "service": "config-service",
+          "item": "interfaces.md",
+          "detail": "1 commit(s) since 18d8c7a on code/src/http/api/v1,code/openapi.yaml",
+          "fix": "wp stale config-service; update the doc, then wp verify config-service interfaces.md --paths code/src/http/api/v1,code/openapi.yaml",
+          "commits": 1,
+          "gating": false,
+          "subjects": [
+            "70138a7 FUSE-1122: expose connector confirmationsEnabled on the API contract (#202)"
+          ]
+        },
+        {
+          "service": "config-service",
+          "item": "overview.md",
+          "detail": "1 commit(s) since 18d8c7a on CLAUDE.md",
+          "fix": "wp stale config-service; update the doc, then wp verify config-service overview.md --paths CLAUDE.md",
+          "commits": 1,
+          "gating": false,
+          "subjects": [
+            "70138a7 FUSE-1122: expose connector confirmationsEnabled on the API contract (#202)"
+          ]
+        },
+        {
+          "service": "dedupe-service",
+          "item": "architecture.md",
+          "detail": "2 commit(s) since c5df15b on code/src,iac",
+          "fix": "wp stale dedupe-service; update the doc, then wp verify dedupe-service architecture.md --paths code/src,iac",
+          "commits": 2,
+          "gating": false,
+          "subjects": [
+            "36ad5ca refactor: config revision -> Nest controller (#132)",
+            "6c5c79e [Stacked: 1/2] refactor: release routes (v1 and v2) -> two Nest controllers (#125)"
+          ]
+        },
+        {
+          "service": "dedupe-service",
+          "item": "overview.md",
+          "detail": "2 commit(s) since c5df15b on code/src,CLAUDE.md",
+          "fix": "wp stale dedupe-service; update the doc, then wp verify dedupe-service overview.md --paths code/src,CLAUDE.md",
+          "commits": 2,
+          "gating": false,
+          "subjects": [
+            "36ad5ca refactor: config revision -> Nest controller (#132)",
+            "6c5c79e [Stacked: 1/2] refactor: release routes (v1 and v2) -> two Nest controllers (#125)"
+          ]
+        },
+        {
+          "service": "dedupe-service",
+          "item": "testing.md",
+          "detail": "1 commit(s) since c5df15b on code/src/__test__,code/vitest.config.ts,tests",
+          "fix": "wp stale dedupe-service; update the doc, then wp verify dedupe-service testing.md --paths code/src/__test__,code/vitest.config.ts,tests",
+          "commits": 1,
+          "gating": false,
+          "subjects": [
+            "ead5bd7 [Renovate] Update @gfs-bifrost packages to v9 (#111)"
+          ]
+        },
+        {
+          "service": "fapi",
+          "item": "architecture.md",
+          "detail": "1 commit(s) since 9af4721 on code/src,iac,portal",
+          "fix": "wp stale fapi; update the doc, then wp verify fapi architecture.md --paths code/src,iac,portal",
+          "commits": 1,
+          "gating": true,
+          "subjects": [
+            "2e533b4 fix(secops): clear image_scan, image_scan_portal + dependency_audit findings (#122)"
+          ]
+        },
+        {
+          "service": "fuse-mocker",
+          "item": "architecture.md",
+          "detail": "1 commit(s) since 7083e1c on apps,iac,.github/workflows",
+          "fix": "wp stale fuse-mocker; update the doc, then wp verify fuse-mocker architecture.md --paths apps,iac,.github/workflows",
+          "commits": 1,
+          "gating": false,
+          "subjects": [
+            "779e25f fix(secops): clear container image scan Go CVE findings (#13)"
+          ]
+        },
+        {
+          "service": "fuse-ui",
+          "item": "architecture.md",
+          "detail": "8 commit(s) since 1875a20 on code/src,iac/projects/fuse-ui,.github/workflows",
+          "fix": "wp stale fuse-ui; update the doc, then wp verify fuse-ui architecture.md --paths code/src,iac/projects/fuse-ui,.github/workflows",
+          "commits": 8,
+          "gating": true,
+          "subjects": [
+            "127049a [Stacked: 8/8] feat(template-library): mark defaults pre-set or to-be-advised, and reject invalid saves (#227)",
+            "104e3f0 [Stacked: 7/8] feat(template-library): edit a use-case template with the mapping editor (#226)",
+            "0cafafc [Stacked: 6/8] feat(template-library): add the collection detail view (#225)",
+            "85e5b90 [Stacked: 5/8] feat(template-library): create, edit and delete template collections (#224)",
+            "b3ccbc7 [Stacked: 4/8] feat(template-library): add the Templates area and library list (#223)"
+          ]
+        },
+        {
+          "service": "github-config",
+          "item": "architecture.md",
+          "detail": "1 commit(s) since 8762969 on iac,.github/workflows",
+          "fix": "wp stale github-config; update the doc, then wp verify github-config architecture.md --paths iac,.github/workflows",
+          "commits": 1,
+          "gating": false,
+          "subjects": [
+            "020b71d feat: add observability repository (#17)"
+          ]
+        },
+        {
+          "service": "pkg-node",
+          "item": "architecture.md",
+          "detail": "1 commit(s) since 9cce2ee on pkg,.github/workflows",
+          "fix": "wp stale pkg-node; update the doc, then wp verify pkg-node architecture.md --paths pkg,.github/workflows",
+          "commits": 1,
+          "gating": false,
+          "subjects": [
+            "0985686 FUSE-999: forward Meta through the Nest LoggerService bridge (#215)"
+          ]
+        },
+        {
+          "service": "pkg-node",
+          "item": "overview.md",
+          "detail": "1 commit(s) since 233af57 on README.md,CLAUDE.md",
+          "fix": "wp stale pkg-node; update the doc, then wp verify pkg-node overview.md --paths README.md,CLAUDE.md",
+          "commits": 1,
+          "gating": false,
+          "subjects": [
+            "0985686 FUSE-999: forward Meta through the Nest LoggerService bridge (#215)"
+          ]
+        },
+        {
+          "service": "shopify-connector",
+          "item": "architecture.md",
+          "detail": "5 commit(s) since 27c0993 on apps/shopify-connector/src,apps/shopify-app,iac/shopify-connector,iac/shopify-app,.github/workflows",
+          "fix": "wp stale shopify-connector; update the doc, then wp verify shopify-connector architecture.md --paths apps/shopify-connector/src,apps/shopify-app,iac/shopify-connector,iac/shopify-app,.github/workflows",
+          "commits": 5,
+          "gating": true,
+          "subjects": [
+            "d062176 fix(shopify): url-encode stock-adjustment referenceDocumentUri reference (#253)",
+            "ad09e95 fix(shopify): use app-name namespace for stock-adjustment referenceDocumentUri (#252)",
+            "e872b4a fix(secops): renew the deepmerge-ts allowlist expiry (GHSA-ggr8-5vv4-36mx) (#244)",
+            "3b6458d fix(secops): clear the browserslist and libcrypto3 gates (#240)",
+            "8c5102c fix(shopify): rebuild ShopifyStoreApi on token expiry instead of throwing BuildFailure (#241)"
+          ]
+        },
+        {
+          "service": "shopify-connector",
+          "item": "operations.md",
+          "detail": "1 commit(s) since 27c0993 on apps/shopify-connector/src/providers/observability,apps/shopify-connector/src/adapters/shopify/api,.github/workflows,iac/shopify-connector,iac/shopify-app",
+          "fix": "wp stale shopify-connector; update the doc, then wp verify shopify-connector operations.md --paths apps/shopify-connector/src/providers/observability,apps/shopify-connector/src/adapters/shopify/api,.github/workflows,iac/shopify-connector,iac/shopify-app",
+          "commits": 1,
+          "gating": true,
+          "subjects": [
+            "8c5102c fix(shopify): rebuild ShopifyStoreApi on token expiry instead of throwing BuildFailure (#241)"
+          ]
+        },
+        {
+          "service": "snap-adapter",
+          "item": "architecture.md",
+          "detail": "2 commit(s) since a002534 on apps/snap-adapter/src,iac/projects/snap-adapter,.github/workflows",
+          "fix": "wp stale snap-adapter; update the doc, then wp verify snap-adapter architecture.md --paths apps/snap-adapter/src,iac/projects/snap-adapter,.github/workflows",
+          "commits": 2,
+          "gating": true,
+          "subjects": [
+            "95bdc57 FUSE-1078: make the adapter's audit CI leg honour audit-ci.jsonc (#212)",
+            "80dcce0 FUSE-1078: provision Firestore routing-metadata store (iac only) (#207)"
+          ]
+        },
+        {
+          "service": "snap-adapter",
+          "item": "operations.md",
+          "detail": "2 commit(s) since 8a73992 on apps/snap-adapter/src/observability,.github/workflows,iac/projects/snap-adapter",
+          "fix": "wp stale snap-adapter; update the doc, then wp verify snap-adapter operations.md --paths apps/snap-adapter/src/observability,.github/workflows,iac/projects/snap-adapter",
+          "commits": 2,
+          "gating": true,
+          "subjects": [
+            "95bdc57 FUSE-1078: make the adapter's audit CI leg honour audit-ci.jsonc (#212)",
+            "80dcce0 FUSE-1078: provision Firestore routing-metadata store (iac only) (#207)"
+          ]
+        },
+        {
+          "service": "snap-adapter",
+          "item": "overview.md",
+          "detail": "1 commit(s) since a002534 on README.md,apps/snap-adapter/CLAUDE.md,apps/snap-adapter/package.json",
+          "fix": "wp stale snap-adapter; update the doc, then wp verify snap-adapter overview.md --paths README.md,apps/snap-adapter/CLAUDE.md,apps/snap-adapter/package.json",
+          "commits": 1,
+          "gating": true,
+          "subjects": [
+            "95bdc57 FUSE-1078: make the adapter's audit CI leg honour audit-ci.jsonc (#212)"
+          ]
+        },
+        {
+          "service": "snap-queue-polling-service",
+          "item": "architecture.md",
+          "detail": "4 commit(s) since a002534 on apps/snap-queue-polling-service/src,iac/env,iac/projects/snap-queue-polling-service,.github/workflows",
+          "fix": "wp stale snap-queue-polling-service; update the doc, then wp verify snap-queue-polling-service architecture.md --paths apps/snap-queue-polling-service/src,iac/env,iac/projects/snap-queue-polling-service,.github/workflows",
+          "commits": 4,
+          "gating": true,
+          "subjects": [
+            "d0c7b6a FUSE-1054: dual-publish goods-in confirmations on confirmation_ready (#220)",
+            "bbf863f FUSE-1078: resolve confirmation routing from the Firestore store, attachments as fallback (#211)",
+            "95bdc57 FUSE-1078: make the adapter's audit CI leg honour audit-ci.jsonc (#212)",
+            "80dcce0 FUSE-1078: provision Firestore routing-metadata store (iac only) (#207)"
+          ]
+        },
+        {
+          "service": "snap-queue-polling-service",
+          "item": "operations.md",
+          "detail": "3 commit(s) since a002534 on apps/snap-queue-polling-service/src/observability,apps/snap-queue-polling-service/src/core/snap/confirmations/confirmation-failure.ts,.github/workflows,iac/projects/snap-queue-polling-service",
+          "fix": "wp stale snap-queue-polling-service; update the doc, then wp verify snap-queue-polling-service operations.md --paths apps/snap-queue-polling-service/src/observability,apps/snap-queue-polling-service/src/core/snap/confirmations/confirmation-failure.ts,.github/workflows,iac/projects/snap-queue-polling-service",
+          "commits": 3,
+          "gating": true,
+          "subjects": [
+            "bbf863f FUSE-1078: resolve confirmation routing from the Firestore store, attachments as fallback (#211)",
+            "95bdc57 FUSE-1078: make the adapter's audit CI leg honour audit-ci.jsonc (#212)",
+            "80dcce0 FUSE-1078: provision Firestore routing-metadata store (iac only) (#207)"
+          ]
+        },
+        {
+          "service": "snap-queue-polling-service",
+          "item": "overview.md",
+          "detail": "2 commit(s) since a002534 on README.md,apps/snap-queue-polling-service/CLAUDE.md,apps/snap-queue-polling-service/package.json",
+          "fix": "wp stale snap-queue-polling-service; update the doc, then wp verify snap-queue-polling-service overview.md --paths README.md,apps/snap-queue-polling-service/CLAUDE.md,apps/snap-queue-polling-service/package.json",
+          "commits": 2,
+          "gating": true,
+          "subjects": [
+            "bbf863f FUSE-1078: resolve confirmation routing from the Firestore store, attachments as fallback (#211)",
+            "ba85550 FUSE-1078: move zocker to devDependencies (#208)"
+          ]
+        },
+        {
+          "service": "terraform-modules",
+          "item": "architecture.md",
+          "detail": "1 commit(s) since 71c682f on compute/cloud-run,README.md,CLAUDE.md",
+          "fix": "wp stale terraform-modules; update the doc, then wp verify terraform-modules architecture.md --paths compute/cloud-run,README.md,CLAUDE.md",
+          "commits": 1,
+          "gating": false,
+          "subjects": [
+            "10b40f9 Bring the shared Terraform modules in from terraform-framework (#2)"
+          ]
+        },
+        {
+          "service": "terraform-modules",
+          "item": "overview.md",
+          "detail": "1 commit(s) since 71c682f on README.md,CLAUDE.md",
+          "fix": "wp stale terraform-modules; update the doc, then wp verify terraform-modules overview.md --paths README.md,CLAUDE.md",
+          "commits": 1,
+          "gating": false,
+          "subjects": [
+            "10b40f9 Bring the shared Terraform modules in from terraform-framework (#2)"
+          ]
+        }
+      ],
+      "NO-SHA": [
+        {
+          "service": "fapi",
+          "item": "plans/FUSE-1056-resolve-confirmation-webhook-target-by-connector.md",
+          "detail": "4 ticked increment(s) with no sha: 1, 2, 1b, 4",
+          "fix": "wp tick fapi --plan FUSE-1056-resolve-confirmation-webhook-target-by-connector --increment <id>",
+          "count": 4
+        },
+        {
+          "service": "secops-reporting",
+          "item": "plans/vulnerability-report-issue-writer.md",
+          "detail": "6 ticked increment(s) with no sha: 1, 2, 3, 4, 5, 6",
+          "fix": "wp tick secops-reporting --plan vulnerability-report-issue-writer --increment <id>",
+          "count": 6
+        },
+        {
+          "service": "shopify-connector",
+          "item": "plans/FUSE-1057-route-confirmations-to-the-originating-shopify-c.md",
+          "detail": "4 ticked increment(s) with no sha: 1, 2, 3, 4",
+          "fix": "wp tick shopify-connector --plan FUSE-1057-route-confirmations-to-the-originating-shopify-c --increment <id>",
+          "count": 4
+        },
+        {
+          "service": "snap-adapter",
+          "item": "plans/FUSE-866-join-woc-lines-by-line-key.md",
+          "detail": "5 ticked increment(s) with no sha: 1, 2, 3, 4, 5",
+          "fix": "wp tick snap-adapter --plan FUSE-866-join-woc-lines-by-line-key --increment <id>",
+          "count": 5
+        },
+        {
+          "service": "snap-adapter",
+          "item": "plans/routing-metadata-to-firestore-write-side.md",
+          "detail": "1 ticked increment(s) with no sha: W1",
+          "fix": "wp tick snap-adapter --plan routing-metadata-to-firestore-write-side --increment <id>",
+          "count": 1
+        }
+      ],
+      "STALE-SNAPSHOT": [],
+      "NO-ANCHOR": [],
+      "ORPHAN-ANCHOR": [],
+      "BAD-YAML": [],
+      "NUMERIC-SHA": [],
+      "NOT-ONBOARDED": [],
+      "STALE-PROGRAMME": [
+        {
+          "service": "SecOps API Go",
+          "item": "Migration State.md",
+          "detail": "status in-progress, updated 2026-08-27 (9d ago)",
+          "fix": "pick it up, or set status to complete/abandoned if it is finished",
+          "updated": "2026-08-27",
+          "age_days": 9,
+          "status": "in-progress"
+        },
+        {
+          "service": "Shopify Connector Rearchitecture",
+          "item": "Migration State.md",
+          "detail": "status re-scoped-2026-08-21, updated 2026-08-24 (12d ago)",
+          "fix": "pick it up, or set status to complete/abandoned if it is finished",
+          "updated": "2026-08-24",
+          "age_days": 12,
+          "status": "re-scoped-2026-08-21"
+        },
+        {
+          "service": "Tech Services IaC Review",
+          "item": "Remediation State.md",
+          "detail": "status not-started, updated 2026-08-26 (10d ago)",
+          "fix": "pick it up, or set status to complete/abandoned if it is finished",
+          "updated": "2026-08-26",
+          "age_days": 10,
+          "status": "not-started"
+        }
+      ]
+    },
+    "counts": {
+      "UNCLOSED": 3,
+      "STALE-PLAN": 0,
+      "PR-DRIFT": 1,
+      "STALE-DOC": 22,
+      "NO-SHA": 5,
+      "STALE-SNAPSHOT": 0,
+      "NO-ANCHOR": 0,
+      "ORPHAN-ANCHOR": 0,
+      "BAD-YAML": 0,
+      "NUMERIC-SHA": 0,
+      "NOT-ONBOARDED": 0,
+      "STALE-PROGRAMME": 3
+    },
+    "warnings": [],
+    "exit": 2
+  }
+}

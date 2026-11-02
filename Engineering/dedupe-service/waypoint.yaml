@@ -1,0 +1,34 @@
+# dedupe-service — Waypoint index. Cheap orientation only, never documentation.
+service: dedupe-service
+system: fuse
+type: backend
+owner: bifrost
+language: typescript
+framework: express
+deploy: cloud-run
+observability: datadog
+
+interfaces:
+  inbound: [http, pubsub]
+  outbound: [create_record, config-service, mongodb, redis]
+
+key_paths:
+  - code/src/app.ts              # route wiring
+  - code/src/factory.ts          # DI + deduper/topic registration
+  - code/src/core                # one IDeduper per record type
+  - code/src/controllers         # event + record-admin surfaces
+  - iac/projects/dedupe-service  # subscriptions, cloud-run, redis
+
+repo_docs: CLAUDE.md   # the real reference; README.md is stale
+runtime:
+  test_runner: "vitest"
+  node: "24"
+  package_manager: "pnpm"
+commands:
+  root: "code/"
+  gate: ["test", "lint:fix", "build:check", "build:check:tests"]
+  missing: []
+commands_verified: 2026-09-04
+commands_verified_sha: 36ad5ca
+commands_verified_paths: [code/mise.toml, code/package.json, code/pnpm-workspace.yaml]
+onboarded: 2026-08-24

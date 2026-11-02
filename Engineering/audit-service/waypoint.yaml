@@ -1,0 +1,40 @@
+# audit-service — Waypoint index. Cheap orientation only, never documentation.
+# Every value is a fact, a path, or a command — never a sentence. Anything needing a sentence
+# belongs in a doc.
+service: audit-service
+system: fuse
+type: backend            # backend | frontend | library | infra
+owner: bifrost
+language: "Go 1.26.9 (module at code/)"
+framework: "chi v5 + mongo-driver v2"
+deploy: cloud-run         # private: no allUsers; dev + prod
+observability: datadog    # in-container agent (go-runtime golden image); fuse.audit.ingest
+
+interfaces:
+  inbound: [pubsub-push, http, cli]     # /events/v1/audit/{system} (OIDC push), /api/v1/systems/{system}/* (allow-listed ID tokens), cmd/import-legacy
+  outbound: [mongodb-atlas-own]         # dedicated Atlas project: Flex in dev, M10 in prod
+
+key_paths:
+  - code/internal/bootstrap/routes.go          # both route groups and their caller allow-lists
+  - code/internal/core/ingest/ingest.go        # outcome rules: only a store failure is retried
+  - code/internal/repositories/events.go       # indexes (all lead with system) and idempotent insert
+  - code/tools/auditschema                      # Zod → JSON Schema → Go envelope codegen
+  - iac/projects/audit-service/remotes.tf      # local.systems: adding a reporting system
+  - code/cmd/import-legacy                      # fuse-ui audit_log migration, human-run
+
+note: >
+  Built by the Audit Service programme (Bifrost/Audit Service/ in the vault) — read its
+  Migration State for rollout order and the fuse-ui cutover. Contract package is
+  @gfs-bifrost/audit in pkg-node.
+
+runtime:
+  toolchain: "mise: go 1.26.9, node 24, pnpm 11.0.8, terraform 1.9.0, terragrunt 0.50.8"
+  test_runner: "go test (+ make test-mongo for repositories, docker mongo:8.0)"
+commands:
+  root: "code/"
+  gate: ["make fmt-check", "make vet", "make test-race", "make lint", "make gen-check"]
+  missing: ["test", "lint:fix", "build:check", "build:check:tests"]   # Go repo: org pnpm gates don't apply
+onboarded: 2026-10-12
+commands_verified: 2026-10-12
+commands_verified_sha: ddefd56
+commands_verified_paths: [code/go.mod, mise.toml, code/Makefile]

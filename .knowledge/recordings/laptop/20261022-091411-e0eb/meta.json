@@ -1,0 +1,92 @@
+{
+  "id": "20261022-091411-e0eb",
+  "title": "Recording Thu 22 Oct 09:14",
+  "status": "done",
+  "startedAt": "2026-10-22T09:14:11.92475859+01:00",
+  "endedAt": "2026-10-22T09:31:44.075040735+01:00",
+  "sources": {
+    "me": [
+      "JLAB TALK MICROPHONE Analog Stereo"
+    ],
+    "them": [
+      "Nightly",
+      "Slack",
+      "speech-dispatcher-dummy"
+    ]
+  },
+  "call": true,
+  "speakers": {
+    "Speaker 1": "Oli W"
+  },
+  "summary": {
+    "tldr": [
+      "Harry pushed back on picking a database (Postgres/SQL) before there is a design, since the product briefing is a couple of weeks away.",
+      "Speaker 1 said the AI-generated plan was a rough exploratory deep dive, not a decision, and that nothing is committed.",
+      "Both agreed the US data-residency point is the one actionable item: the GCP region is fixed when the project is created, so it should go into the project request now.",
+      "Harry argued for the right tool for the job and showed that most of Fuse runs on separate Mongo instances. Speaker 1 said that shifts their view, since their Mongo problems may come from config rather than the technology.",
+      "They plan an informal system design session later today, once Speaker 1 is free after their call, which ends around 10."
+    ],
+    "decisions": [
+      "Treat the database choice as open: no decision until there is a design, and no design until the product briefing.",
+      "Feed the US-based GCP region requirement into the project creation request, because the region can't be changed afterwards.",
+      "Hold a system design session later today."
+    ],
+    "actions": [
+      {
+        "owner": "Speaker 1",
+        "text": "Ping Harry after about 10:00 once free from the DPD call to agree a time for the system design session.",
+        "due": "Today, after 10:00"
+      },
+      {
+        "owner": "Harry",
+        "text": "Take Speaker 1 through a system design session, covering Fuse's database-per-service setup and what happens if a single database dies.",
+        "due": "Later today"
+      },
+      {
+        "owner": "Harry",
+        "text": "Send Speaker 1 reading on database storage and retrieval (chapters 2, 3 and 5 of the book he showed).",
+        "due": ""
+      },
+      {
+        "owner": "Speaker 1",
+        "text": "Read the recommended chapters on storage and retrieval.",
+        "due": ""
+      },
+      {
+        "owner": "Harry",
+        "text": "Feed the US region requirement into the GCP project creation request, working with Ronnie.",
+        "due": ""
+      }
+    ],
+    "questions": [
+      "Which database fits the new system (Postgres/SQL, Mongo, AlloyDB or something else) once the design is known?",
+      "What data from Speaker 1's area is needed, and in what capacity, for the new build? This depends on the product briefing.",
+      "Is the carrier data still file-based, with zip-code-based downloads, or moving to API carriers? This affects whether one central source of truth is needed.",
+      "If a single central database serves everything, what happens when it fails, and how is that avoided?",
+      "Backend language: Go or TypeScript? Speaker 1 is happy with either and leans towards Go."
+    ],
+    "speakers": [
+      {
+        "label": "Harry",
+        "name": "Harry",
+        "basis": "The single voice on Harry's mic"
+      },
+      {
+        "label": "Speaker 1",
+        "name": "",
+        "basis": "Colleague on the call who owns the carrier and shipping data area. Name not given."
+      }
+    ],
+    "model": "sonnet",
+    "usd": 0.070494,
+    "durationMs": 8885,
+    "at": "2026-10-22T09:37:20.178464377+01:00"
+  },
+  "enhancement": {
+    "model": "sonnet",
+    "usd": 0.169408,
+    "durationMs": 20139,
+    "at": "2026-10-22T09:37:40.318023356+01:00",
+    "parts": 2
+  }
+}

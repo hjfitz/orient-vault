@@ -1,0 +1,43 @@
+# fuse-ui — Waypoint index. Cheap orientation only, never documentation.
+# Keep under ~25 lines. Anything needing a sentence belongs in a doc.
+service: fuse-ui
+system: fuse
+type: frontend           # backend | frontend | library | infra
+owner: fuse-team         # wider Fuse team, same pattern as the other onboarded services
+language: TypeScript
+framework: Next.js 16 (App Router, React 19, Server Components/Actions)
+deploy: cloud-run         # + GCP load balancer, per-PR preview envs
+observability: datadog
+
+interfaces:
+  inbound: [http]                # internal-only web app; own JWT-cookie session auth
+  outbound: [config-service, collector-service, replay-api, dedupe-service, mongodb-own]
+
+key_paths:
+  - code/src/app                        # Next App Router: customer/, central-admin/, user-management/
+  - code/src/app/server-functions        # .func.ts (reads) / .action.ts (writes) — the real BFF layer
+  - code/src/lib/db                      # fuse-ui's OWN Mongo: users, audit-log, template-collections — not Fuse data
+  - code/src/lib/gen                     # openapi-typescript generated clients (config/collector/replay)
+  - code/src/proxy.ts                    # the actual auth gate (Next middleware, renamed)
+  - iac/projects/fuse-ui
+
+note: >
+  No CLAUDE.md exists in this repo (unlike every other service onboarded this
+  session) — this Waypoint doc set is the first agent-maintained map of it.
+  CAUTION: local checkout on branch hjf/fuse-1000-secops-02-migrate-fuse-ui, ~5
+  weeks behind origin/main, WITH uncommitted local edits to audit-log files
+  (parked FUSE-980 work). Left untouched; read origin/main for current state.
+  Internal-only tool — Fuse staff (support/ops/eng), never an actual customer.
+
+runtime:
+  package_manager: "pnpm@11.0.8"
+  test_runner: "jest"
+  node: "24"
+commands:
+  root: "code/"
+  gate: ["test", "lint:fix"]
+  missing: ["build:check", "build:check:tests"]
+commands_verified: 2026-09-04
+commands_verified_sha: b3ccbc7
+commands_verified_paths: [code/mise.toml, code/package.json, code/pnpm-workspace.yaml]
+onboarded: 2026-08-24

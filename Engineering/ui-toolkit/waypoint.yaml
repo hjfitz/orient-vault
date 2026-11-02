@@ -1,0 +1,41 @@
+# ui-toolkit — Waypoint index. Cheap orientation only, never documentation.
+# Keep under ~25 lines. Anything needing a sentence belongs in a doc.
+service: ui-toolkit
+system: ilg-platform
+type: library            # backend | frontend | library | infra
+owner: "gfs-ecm / ui-core team (CXD tickets)"   # Fuse (Harry) is a pure consumer; Humby (Harry's team) expected to start contributing
+language: TypeScript
+framework: "React 19 + shadcn (forked) + Tailwind v4, pnpm + Turborepo"
+deploy: "n/a"             # published to GitHub Packages, no runtime of its own
+observability: none
+
+interfaces:
+  inbound: []                     # none — consumed as an npm package
+  outbound: []                     # none
+
+key_paths:
+  - packages/ui-toolkit/src/shadcn     # forked primitives — NEVER regenerate from upstream shadcn
+  - packages/ui-toolkit/src/{app-layout,core,data-table,form}   # the actual component modules
+  - packages/ui-toolkit/CLAUDE.md      # 1034 lines, authoritative for component conventions
+  - .github/workflows/release.yml      # label-driven, no manual version edits
+
+note: >
+  Extracted from a different product's monorepo (gfs-ecm/ui-core);
+  ui-core/apps/ecm-next is still the primary consumer and the reference for
+  intended component behaviour. Fuse (fuse-ui, secops-reporting) is
+  downstream, not a design stakeholder. Cloned fresh for this onboarding —
+  no local checkout existed before. Known live bug: SelectTrigger's
+  Tailwind variant order is inverted, stacking an icon above its label in
+  a closed Select — confirmed still present at 1.28.3 (current). See
+  known-context; deliberately left undocumented as a to-do this pass.
+
+runtime:
+  package_manager: "pnpm@11.5.3"
+commands:
+  root: "."
+  gate: ["test"]
+  missing: ["lint:fix", "build:check", "build:check:tests"]
+commands_verified: 2026-09-04
+commands_verified_sha: 4fbe775
+commands_verified_paths: [package.json, pnpm-workspace.yaml]
+onboarded: 2026-08-24

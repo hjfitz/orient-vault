@@ -1,0 +1,16 @@
+businessId: PURDYFIGG
+friendlyName: Purdy and Figg
+environment: production
+connectors:
+- type: shopify
+  connectorId: conn_7ce8402090194b67b0f8a1de03019397
+  storefrontId: sf_19f5a49b35fb46a5abfd941d783ea58f
+  shopifyUri: purdy-figg.myshopify.com
+  ingestPath: bulk
+backendId: be_8b721af42d3d463c8b81997d284b849b
+warehouse: BRACKMILLS2
+wms:
+- SNAP
+created: '2026-09-02'
+last_synced: '2026-09-02'
+kind: customer

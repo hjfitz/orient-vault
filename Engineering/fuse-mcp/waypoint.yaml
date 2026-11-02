@@ -1,0 +1,46 @@
+# fuse-mcp — Waypoint index. Cheap orientation only, never documentation.
+# Keep under ~25 lines. Anything needing a sentence belongs in a doc.
+service: fuse-mcp
+system: fuse
+type: backend            # backend | frontend | library | infra
+owner: fuse-team         # wider Fuse team, once the Go cutover completes
+language: "TypeScript (legacy, being retired) + Go (new, live)"
+framework: "NestJS (TS) / official modelcontextprotocol/go-sdk (Go)"
+deploy: cloud-run         # two Cloud Run services + weighted LB split during cutover
+observability: datadog
+
+interfaces:
+  inbound: [http]                 # MCP over streamable HTTP (bearer auth) + stdio
+  outbound: [config-service, dedupe-service, replay-service, collector, fapi, fuse-mocker]
+
+key_paths:
+  - internal/bootstrap                    # Go: tool/resource/prompt registration — the layer that knows everything
+  - internal/tools                        # Go: one file per module (knowledge/config/dedupe/replay/collector/fapi/mocker)
+  - internal/parity                       # the declaration+output parity harness vs mcp-baseline-ts.json
+  - data                                  # *.json knowledge base, go:embed'd — moving/renaming breaks deploy-sitrep.mjs
+  - src                                    # legacy TS/NestJS server, mid-retirement
+  - iac/projects/fuse-mcp/cloud-run-go.tf  # the Go Cloud Run service + traffic-split wiring
+
+note: >
+  Prod-only, no dev environment — a push to master deploys straight to prod, and
+  Deploy is NOT gated by code-quality/secops (same push, no `needs:`). Two stale
+  clones of this repo exist (~/code/fuse/fuse-mcp, ~/code/fuse/fuse-mcp-server) —
+  work only from the .claude/worktrees/go-mcp worktree. Deep migration context
+  lives in the Obsidian vault at Bifrost/Fuse MCP Go/ (Overview + Migration
+  State) — read that for the live Go/TS traffic split percentage, not this doc.
+
+runtime:
+  test_runner: "jest"
+  node: "24"
+  package_manager: "pnpm@10"
+  go: "1.25.14"
+  terraform: "1.9.0"
+  language: "go"
+commands:
+  root: "."
+  gate: ["make lint", "make test"]
+  missing: []
+commands_verified: 2026-09-04
+commands_verified_sha: 2633058
+commands_verified_paths: [Makefile, go.mod, mise.toml, package.json, pnpm-workspace.yaml]
+onboarded: 2026-08-24

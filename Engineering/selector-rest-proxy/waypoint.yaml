@@ -1,0 +1,40 @@
+# selector-rest-proxy — Waypoint index. Cheap orientation only, never documentation.
+# Every value is a fact, a path, or a command — never a sentence. Anything needing a sentence
+# belongs in a doc. (No line cap: the old ~25-line one was exceeded by 22 of 26 files.)
+service: selector-rest-proxy
+type: backend            # backend | frontend | library | infra
+owner: harry-fitzgerald  # Harry owns/operates; Carrier Integrations (CID tickets) ship changes into it
+github: gfs-hybrid-services/selector-rest-proxy   # no `system:` — no Waypoint system exists for this org
+language: TypeScript (Node 22, ESM)
+framework: express + openapi-backend + soap
+deploy: cloud-run        # gfs-selector-rest-proxy-prod, gfs-selector-rest-prod-uk1, europe-west2; prod only
+observability: datadog   # service gfs-selector-rest-proxy-prod (logs); serverless-init sidecar
+
+interfaces:
+  inbound: [http]        # public global LB rest-preview.selector.freightops.dev, x-api-key
+  outbound: [apiky, selector-soap]   # apiky.gfsdeliver.com/api/profile; per-tenant <tenant>.gfsdeliver.com ClientShipService.asmx
+
+key_paths:
+  - src/schemas/openapi.yaml                 # the contract; request validation runs against it
+  - src/controllers/openapi.controller.ts    # operationId -> handler wiring, security handler
+  - src/handlers/auth/apiky.handler.ts       # x-api-key -> ApiKy profile (upstream WSDL + Selector creds)
+  - src/handlers/selector                    # one handler per SOAP operation; util.ts status mapping
+  - src/selector.ts                          # SOAP client per request, auth details fallback
+  - iac/projects/gfs-selector-rest-proxy     # Cloud Run + LB + cert; auto-applied on master push
+
+note: >
+  Planned to be retired: a Fuse adapter that calls Selector directly will replace it and the
+  tenants move onto Fuse (unticketed). Tenants live in ApiKy profiles, not in this repo.
+
+runtime:
+  package_manager: "pnpm@10.6.5 (packageManager); mise pins node 22, pnpm 10"
+  test_runner: "vitest"
+commands:
+  root: "./"
+  gate: ["pnpm run test:unit", "pnpm run lint", "pnpm run build"]
+  missing: ["build:check", "build:check:tests"]   # `build` (tsc) is the typecheck CI runs; `test` = unit + smoke
+  conditional: ["pnpm run test:smoke  # hits the real Selector sandbox (sandbox.gfsdeliver.com) over the network"]
+onboarded: 2026-10-27
+commands_verified: 2026-10-27
+commands_verified_sha: 05c2bea
+commands_verified_paths: [package.json, mise.toml]

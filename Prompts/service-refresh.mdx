@@ -1,0 +1,57 @@
+---
+type: prompt-tool
+id: service-refresh
+title: Service refresh
+area: engineering
+tags: [prompt-tool, engineering]
+version: 1
+queries:
+  stale:
+    label: Documentation behind its code
+    type: waypoint
+    where: { 'meta.attention': { eq: stale } }
+    sort: [[container, asc]]
+    fields: [title, headings]
+    limit: 30
+  ledger:
+    label: Recent work, newest first
+    from: entries
+    kind: ledger
+    limit: 8
+---
+
+# Service refresh
+
+Turns the docs a service has left behind into a verify-shaped prompt: what each one still
+claims, whether the claim survived, and the exact command that re-anchors it. Untick every
+document you are not re-verifying today.
+
+<PromptBuilder
+  id="service-refresh"
+  fields={[
+    { name: 'service', label: 'Service', kind: 'text', required: true, placeholder: 'snap-adapter' },
+    { name: 'branch', label: 'Compared against', kind: 'text', placeholder: 'origin/master' },
+    { name: 'changes', label: 'What changed since the last verification', kind: 'textarea' },
+    { name: 'focus', label: 'Anything to look at first', kind: 'text' }
+  ]}
+  template={`You are re-verifying documentation against the code it describes. Use the context below and the repository itself; nothing else.
+Service: {{service}}. Today: {{today}}.
+{{#if branch}}Compared against: {{branch}}{{/if}}
+{{#if changes}}What changed since the last verification: {{changes}}{{/if}}
+{{#if focus}}Look at first: {{focus}}{{/if}}
+
+## Documentation behind its code
+{{context.stale}}
+
+## Recent work
+{{context.ledger}}
+
+## Ask
+For each document above, in this order:
+1. The claim the changed code could have invalidated — quote the heading, not the whole document.
+2. A verdict: STILL TRUE, DRIFTED, or UNKNOWABLE FROM HERE.
+3. If DRIFTED, the smallest edit that makes it true again — the replacement text itself, not a description of it.
+4. The re-anchor command, exactly: wp verify SERVICE DOC --paths a/b,c/d
+Do not verify a document you could not actually check. UNKNOWABLE FROM HERE is a real answer and it is cheaper than a confident wrong one.
+Return markdown, one short section per document, newest-changed first.`}
+/>

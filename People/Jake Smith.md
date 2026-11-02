@@ -1,0 +1,23 @@
+---
+tags: [person]
+role: SnapFulfil contact
+org: SnapFulfil
+relationship: external
+---
+# Jake Smith
+> SnapFulfil contact on the Fuse\Snap call; runs the Purdy & Figg load-test environment copy.
+
+## Open loops
+**I owe**
+- [ ] Give him a date and time for the Purdy & Figg load test on ILGSTG (ILG Pre-Production) so Snap can staff monitoring — [email](https://outlook.office365.com/owa/?ItemID=AAMkADVhYjUxODIyLWM5NTktNGJmOC1hN2FjLWFjMjllNWUzYmY4MwBGAAAAAAAEXHdKGOMeRLfpaU7ff8ChBwABLsgQpFdPTayXOZTVrraLAAAAAAEMAAABLsgQpFdPTayXOZTVrraLAAHMCWFvAAA%3D&exvsurl=1&viewmodel=ReadMessageItem)
+
+## Standing context
+- External. Copied the DB and software to ILG Pre-Production for the Purdy & Figg load test
+- ✍️
+
+## Together (newest first)
+- 2026-11-02 — Chased on 30 Oct for a date and time to test against Snap's ready staging environment; nothing sent from your side
+- 2026-10-15 — emailed that the Pre-Production copy is ready and he is waiting on your date. [[Lee Simmons]] and [[Jack Bailey]] are cc'd → [[Meetings/Fuse-Snap Call]]
+
+## Links
+- Call note → [[Meetings/Fuse-Snap Call]]

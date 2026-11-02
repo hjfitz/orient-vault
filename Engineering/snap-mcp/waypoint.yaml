@@ -1,0 +1,41 @@
+# snap-mcp — Waypoint index. Cheap orientation only, never documentation.
+# Keep under ~25 lines. Anything needing a sentence belongs in a doc.
+service: snap-mcp
+system: fuse
+type: backend            # backend | frontend | library | infra
+owner: fuse-team         # wider Fuse team, same pattern as every other service this session
+language: TypeScript
+framework: NestJS + @rekog/mcp-nest
+deploy: cloud-run         # prod-only, no dev environment
+observability: datadog
+
+interfaces:
+  inbound: [http]                # MCP over streamable HTTP (bearer auth) + stdio
+  outbound: [snap-fulfil-wms]    # SNAP connection supplied per call, never stored
+
+key_paths:
+  - src/snap/snap.tools.ts          # 5 generic + 10 rich per-entity @Tool definitions
+  - src/snap/snap-api.service.ts    # the SNAP HTTP client wrapper — read this before touching credentials
+  - src/auth/bearer-token.guard.ts  # shared static bearer token, mirrors fuse-mcp's guard
+  - iac/projects/snap-mcp
+
+note: >
+  No CLAUDE.md/AGENTS.md exists in this repo. Two clones of this same GitHub
+  repo exist locally (~/code/fuse/snap-mcp, ~/code/fuse/snap-mcp-server) —
+  same pattern as fuse-mcp — both stale (~1 month behind origin/main), no
+  worktree for current work. Read origin/main directly. Deliberately mirrors
+  fuse-mcp's structure/auth/transport pattern — read that service's docs for
+  context that generalizes across both.
+
+runtime:
+  package_manager: "pnpm@10"
+  test_runner: "jest"
+  node: "24"
+commands:
+  root: "."
+  gate: ["test", "lint:fix", "build:check"]
+  missing: ["build:check:tests"]
+commands_verified: 2026-09-04
+commands_verified_sha: 53f0482
+commands_verified_paths: [mise.toml, package.json, pnpm-workspace.yaml]
+onboarded: 2026-08-24

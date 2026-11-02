@@ -1,0 +1,41 @@
+# pkg-node — Waypoint index. Cheap orientation only, never documentation.
+# Keep under ~25 lines. Anything needing a sentence belongs in a doc.
+service: pkg-node
+system: fuse
+type: library            # backend | frontend | library | infra
+owner: fuse-team         # wider Fuse team, same pattern as every other service this session
+language: TypeScript
+framework: "pnpm workspace, no runtime framework — a published-package monorepo"
+deploy: "n/a"             # no Cloud Run, no runtime — publishes to GitHub Packages instead
+observability: none
+
+interfaces:
+  inbound: []                     # none — consumed as npm packages, not called
+  outbound: []                     # none — no external services
+
+key_paths:
+  - pkg/types                     # canonical types + Zod schemas — the fleet's single source of truth
+  - pkg/resilience                 # NEW, not yet in the root CLAUDE.md's own packages table
+  - .github/workflows/publish-package.yaml   # version-gated publish sequencing
+  - CLAUDE.md                      # exceptionally thorough — read this first, this doc set summarizes it
+
+note: >
+  A change here fans out to every Fuse service — the org's own per-package
+  Changelog (in /home/hjf/code/CLAUDE.md, "Package Changelog") is the
+  authoritative history, not this vault. Publishing is version-gated, not
+  diff-gated: forgetting a package.json version bump silently strands a
+  merged change unpublished. Local checkout was ~2.5 weeks stale on an
+  unrelated branch at onboarding time (verified 2026-08-24) — this doc set
+  reads from origin/main.
+
+runtime:
+  package_manager: "pnpm@latest"
+  node: "22"
+commands:
+  root: "."
+  gate: []
+  missing: []
+commands_verified: 2026-09-04
+commands_verified_sha: 9cce2ee
+commands_verified_paths: [mise.toml, package.json, pnpm-workspace.yaml]
+onboarded: 2026-08-24

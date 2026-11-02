@@ -1,0 +1,43 @@
+# fuse-devtools — Waypoint index. Cheap orientation only, never documentation.
+# Keep under ~25 lines. Anything needing a sentence belongs in a doc.
+service: fuse-devtools
+system: fuse
+type: backend            # backend | frontend | library | infra
+owner: "Harry Fitzgerald"   # his own initiative, not wider-Fuse-team-owned (yet)
+language: TypeScript
+framework: Express
+deploy: cloud-run           # pr-sitrep-<env>, europe-west2; private, invoked only by Cloud Scheduler (OIDC)
+observability: datadog      # in-container agent (node24-runtime), service:pr-sitrep; monitor in gfs-bifrost/observability
+
+interfaces:
+  inbound: [http, cron]           # GET /api/v1/sitrep (read-only), POST /api/v1/sitrep/run (Cloud Scheduler, 09:00 Europe/London Mon-Fri, prod only)
+  outbound: [github-api, jira-api, slack-api]
+
+key_paths:
+  - apps/pr-sitrep/src/core/classification.ts    # the two-verdict PR classification logic, ported from the pr-sitrep skill
+  - apps/pr-sitrep/src/core/scheduled-run.service.ts
+  - apps/pr-sitrep/src/config/env/config.ts        # MERGE_ENABLED/SLACK_ENABLED both default false, on purpose
+  - iac/projects/pr-sitrep                       # private Cloud Run + scheduler; secrets read by name, created by hand
+  - CLAUDE.md
+
+note: >
+  Poly-app monorepo, one app (pr-sitrep). pr-sitrep ports the pr-sitrep agent
+  skill's classification to run unattended: prod's scheduler runs it each
+  weekday and it posts the gfs-bifrost PR status to #bifrost-forge (the
+  morning digest no longer does). It authenticates as the ilg-platform-ci
+  GitHub App, merging is off and refused under app credentials, and dev
+  never posts. A failed Slack post fails the run (502).
+
+runtime:
+  package_manager: "pnpm@9.15.4"
+  test_runner: "vitest"
+  node: "24"
+  terraform: "1.9.0"
+commands:
+  root: "apps/pr-sitrep/"
+  gate: ["test", "lint:fix", "build:check", "build:check:tests"]
+  missing: []
+commands_verified: 2026-10-28
+commands_verified_sha: 5e8fcb9
+commands_verified_paths: [apps/pr-sitrep/package.json, mise.toml]
+onboarded: 2026-08-24

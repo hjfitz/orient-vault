@@ -1,0 +1,1394 @@
+{
+  "audio": "/home/hjf/.local/state/orient/scribe/20261028-130301-7a65/audio.wav",
+  "seconds": 667.5928125,
+  "config": {
+    "ModelDir": "/home/hjf/.local/share/orient-scribe/models",
+    "ASR": "parakeet",
+    "Embedding": "nemo_en_titanet_small.onnx",
+    "Threshold": 1,
+    "Speakers": 0,
+    "WindowShift": 0.1,
+    "VAD": 0.35,
+    "Threads": 4
+  },
+  "loadNs": 2750763224,
+  "call": true,
+  "echo": [
+    {
+      "channel": "me",
+      "speaker": 3,
+      "start": 384.294,
+      "end": 385.008,
+      "text": "Yeah."
+    },
+    {
+      "channel": "me",
+      "speaker": 3,
+      "start": 376.102,
+      "end": 376.464,
+      "text": "Okay."
+    },
+    {
+      "channel": "me",
+      "speaker": 3,
+      "start": 377.542,
+      "end": 378.032,
+      "text": "Okay."
+    },
+    {
+      "channel": "me",
+      "speaker": 3,
+      "start": 661.606,
+      "end": 662.032,
+      "text": "Mm-hmm."
+    }
+  ],
+  "channels": {
+    "me": {
+      "gain": 25.26167400881057,
+      "regions": [
+        {
+          "start": 376.102,
+          "end": 376.464
+        },
+        {
+          "start": 377.542,
+          "end": 378.032
+        },
+        {
+          "start": 384.294,
+          "end": 385.008
+        },
+        {
+          "start": 661.606,
+          "end": 662.032
+        }
+      ],
+      "turns": [
+        {
+          "start": 655.2703247070312,
+          "end": 655.9791259765625,
+          "speaker": 3
+        },
+        {
+          "start": 657.9534912109375,
+          "end": 658.4259643554688,
+          "speaker": 3
+        },
+        {
+          "start": 661.4297485351562,
+          "end": 661.9528198242188,
+          "speaker": 3
+        }
+      ],
+      "utterances": null,
+      "timings": {
+        "vad": 2607066727,
+        "diarization": 24155803912,
+        "asr": 399535979
+      }
+    },
+    "them": {
+      "gain": 1.6074001401541695,
+      "regions": [
+        {
+          "start": 0.134,
+          "end": 7.28
+        },
+        {
+          "start": 10.342,
+          "end": 10.768
+        },
+        {
+          "start": 17.734,
+          "end": 24.816
+        },
+        {
+          "start": 26.982,
+          "end": 50.364
+        },
+        {
+          "start": 50.758,
+          "end": 51.92
+        },
+        {
+          "start": 52.39,
+          "end": 69.68
+        },
+        {
+          "start": 70.374,
+          "end": 90.3
+        },
+        {
+          "start": 90.854,
+          "end": 114.172
+        },
+        {
+          "start": 114.438,
+          "end": 115.024
+        },
+        {
+          "start": 116.198,
+          "end": 122.32
+        },
+        {
+          "start": 124.102,
+          "end": 145.788
+        },
+        {
+          "start": 145.862,
+          "end": 151.504
+        },
+        {
+          "start": 151.942,
+          "end": 161.296
+        },
+        {
+          "start": 161.734,
+          "end": 167.248
+        },
+        {
+          "start": 167.622,
+          "end": 185.552
+        },
+        {
+          "start": 185.958,
+          "end": 186.64
+        },
+        {
+          "start": 187.046,
+          "end": 199.152
+        },
+        {
+          "start": 199.558,
+          "end": 205.968
+        },
+        {
+          "start": 206.342,
+          "end": 209.36
+        },
+        {
+          "start": 210.598,
+          "end": 218.832
+        },
+        {
+          "start": 221.094,
+          "end": 245.372
+        },
+        {
+          "start": 245.446,
+          "end": 264.4
+        },
+        {
+          "start": 265.094,
+          "end": 273.168
+        },
+        {
+          "start": 274.31,
+          "end": 277.648
+        },
+        {
+          "start": 280.198,
+          "end": 284.912
+        },
+        {
+          "start": 288.678,
+          "end": 304.816
+        },
+        {
+          "start": 305.254,
+          "end": 318.064
+        },
+        {
+          "start": 318.662,
+          "end": 324.528
+        },
+        {
+          "start": 325.03,
+          "end": 344.956
+        },
+        {
+          "start": 345.382,
+          "end": 347.888
+        },
+        {
+          "start": 351.302,
+          "end": 352.848
+        },
+        {
+          "start": 355.686,
+          "end": 366.576
+        },
+        {
+          "start": 367.046,
+          "end": 384.592
+        },
+        {
+          "start": 385.094,
+          "end": 385.648
+        },
+        {
+          "start": 386.47,
+          "end": 396.784
+        },
+        {
+          "start": 397.19,
+          "end": 409.04
+        },
+        {
+          "start": 409.638,
+          "end": 410.224
+        },
+        {
+          "start": 416.518,
+          "end": 430.832
+        },
+        {
+          "start": 431.43,
+          "end": 431.824
+        },
+        {
+          "start": 432.358,
+          "end": 449.424
+        },
+        {
+          "start": 449.958,
+          "end": 458.608
+        },
+        {
+          "start": 460.646,
+          "end": 462.16
+        },
+        {
+          "start": 462.918,
+          "end": 470.64
+        },
+        {
+          "start": 473.414,
+          "end": 476.208
+        },
+        {
+          "start": 478.278,
+          "end": 486.352
+        },
+        {
+          "start": 487.206,
+          "end": 494.352
+        },
+        {
+          "start": 496.23,
+          "end": 507.92
+        },
+        {
+          "start": 508.614,
+          "end": 521.072
+        },
+        {
+          "start": 521.446,
+          "end": 524.816
+        },
+        {
+          "start": 525.286,
+          "end": 526.32
+        },
+        {
+          "start": 527.334,
+          "end": 529.68
+        },
+        {
+          "start": 533.67,
+          "end": 534.768
+        },
+        {
+          "start": 535.27,
+          "end": 536.912
+        },
+        {
+          "start": 538.662,
+          "end": 542.16
+        },
+        {
+          "start": 543.142,
+          "end": 545.136
+        },
+        {
+          "start": 545.67,
+          "end": 549.04
+        },
+        {
+          "start": 549.446,
+          "end": 554.032
+        },
+        {
+          "start": 554.47,
+          "end": 560.464
+        },
+        {
+          "start": 561.094,
+          "end": 565.296
+        },
+        {
+          "start": 566.566,
+          "end": 570.992
+        },
+        {
+          "start": 571.43,
+          "end": 576.272
+        },
+        {
+          "start": 576.966,
+          "end": 580.016
+        },
+        {
+          "start": 580.934,
+          "end": 581.808
+        },
+        {
+          "start": 582.47,
+          "end": 593.264
+        },
+        {
+          "start": 593.734,
+          "end": 598.192
+        },
+        {
+          "start": 598.982,
+          "end": 601.456
+        },
+        {
+          "start": 602.086,
+          "end": 604.656
+        },
+        {
+          "start": 605.318,
+          "end": 609.616
+        },
+        {
+          "start": 611.334,
+          "end": 614.704
+        },
+        {
+          "start": 615.334,
+          "end": 621.2
+        },
+        {
+          "start": 621.99,
+          "end": 632.336
+        },
+        {
+          "start": 632.902,
+          "end": 636.464
+        },
+        {
+          "start": 641.318,
+          "end": 653.328
+        },
+        {
+          "start": 654.31,
+          "end": 656.592
+        },
+        {
+          "start": 657.318,
+          "end": 663.44
+        },
+        {
+          "start": 665.382,
+          "end": 665.872
+        }
+      ],
+      "turns": [
+        {
+          "start": 0.03096874989569187,
+          "end": 2.0390937328338623,
+          "speaker": 1
+        },
+        {
+          "start": 0.7565937638282776,
+          "end": 7.236593723297119,
+          "speaker": 1
+        },
+        {
+          "start": 2.0390937328338623,
+          "end": 2.4272186756134033,
+          "speaker": 1
+        },
+        {
+          "start": 5.414093971252441,
+          "end": 5.751594066619873,
+          "speaker": 1
+        },
+        {
+          "start": 10.07159423828125,
+          "end": 10.729719161987305,
+          "speaker": 1
+        },
+        {
+          "start": 17.682220458984375,
+          "end": 19.420345306396484,
+          "speaker": 1
+        },
+        {
+          "start": 19.50472068786621,
+          "end": 23.588470458984375,
+          "speaker": 3
+        },
+        {
+          "start": 23.82472038269043,
+          "end": 24.752845764160156,
+          "speaker": 1
+        },
+        {
+          "start": 27.739721298217773,
+          "end": 115.21971893310547,
+          "speaker": 1
+        },
+        {
+          "start": 116.09722137451172,
+          "end": 121.96971893310547,
+          "speaker": 1
+        },
+        {
+          "start": 124.06222534179688,
+          "end": 125.37847137451172,
+          "speaker": 1
+        },
+        {
+          "start": 125.14221954345703,
+          "end": 209.432861328125,
+          "speaker": 1
+        },
+        {
+          "start": 210.5634765625,
+          "end": 218.3934783935547,
+          "speaker": 1
+        },
+        {
+          "start": 221.0597381591797,
+          "end": 273.38909912109375,
+          "speaker": 1
+        },
+        {
+          "start": 270.85784912109375,
+          "end": 271.5328674316406,
+          "speaker": 1
+        },
+        {
+          "start": 274.1990966796875,
+          "end": 277.60784912109375,
+          "speaker": 1
+        },
+        {
+          "start": 279.042236328125,
+          "end": 284.8809814453125,
+          "speaker": 1
+        },
+        {
+          "start": 288.64410400390625,
+          "end": 317.854736328125,
+          "speaker": 1
+        },
+        {
+          "start": 318.6141052246094,
+          "end": 347.8247375488281,
+          "speaker": 1
+        },
+        {
+          "start": 329.5997314453125,
+          "end": 329.98785400390625,
+          "speaker": 1
+        },
+        {
+          "start": 351.28411865234375,
+          "end": 352.8028564453125,
+          "speaker": 3
+        },
+        {
+          "start": 355.6884765625,
+          "end": 366.6403503417969,
+          "speaker": 3
+        },
+        {
+          "start": 366.9947509765625,
+          "end": 408.9966125488281,
+          "speaker": 1
+        },
+        {
+          "start": 409.5534973144531,
+          "end": 410.2284851074219,
+          "speaker": 1
+        },
+        {
+          "start": 416.4891052246094,
+          "end": 416.8266296386719,
+          "speaker": 3
+        },
+        {
+          "start": 416.8266296386719,
+          "end": 458.5585021972656,
+          "speaker": 3
+        },
+        {
+          "start": 460.6510009765625,
+          "end": 462.01788330078125,
+          "speaker": 3
+        },
+        {
+          "start": 462.9628601074219,
+          "end": 470.573486328125,
+          "speaker": 3
+        },
+        {
+          "start": 473.1216125488281,
+          "end": 476.19287109375,
+          "speaker": 3
+        },
+        {
+          "start": 477.3741149902344,
+          "end": 486.452880859375,
+          "speaker": 3
+        },
+        {
+          "start": 487.1784973144531,
+          "end": 487.7016296386719,
+          "speaker": 3
+        },
+        {
+          "start": 487.19537353515625,
+          "end": 494.1309814453125,
+          "speaker": 3
+        },
+        {
+          "start": 494.72161865234375,
+          "end": 496.96600341796875,
+          "speaker": 3
+        },
+        {
+          "start": 496.96600341796875,
+          "end": 507.86724853515625,
+          "speaker": 3
+        },
+        {
+          "start": 508.5591125488281,
+          "end": 529.65283203125,
+          "speaker": 8
+        },
+        {
+          "start": 533.6353149414062,
+          "end": 534.7490844726562,
+          "speaker": 3
+        },
+        {
+          "start": 534.7490844726562,
+          "end": 536.9259643554688,
+          "speaker": 3
+        },
+        {
+          "start": 538.63037109375,
+          "end": 542.5284423828125,
+          "speaker": 3
+        },
+        {
+          "start": 543.0347290039062,
+          "end": 545.127197265625,
+          "speaker": 3
+        },
+        {
+          "start": 545.667236328125,
+          "end": 560.584716796875,
+          "speaker": 8
+        },
+        {
+          "start": 561.0909423828125,
+          "end": 565.2759399414062,
+          "speaker": 8
+        },
+        {
+          "start": 566.5584716796875,
+          "end": 574.1690673828125,
+          "speaker": 8
+        },
+        {
+          "start": 573.64599609375,
+          "end": 576.2446899414062,
+          "speaker": 8
+        },
+        {
+          "start": 576.9365844726562,
+          "end": 580.0415649414062,
+          "speaker": 8
+        },
+        {
+          "start": 580.8853149414062,
+          "end": 581.7965698242188,
+          "speaker": 8
+        },
+        {
+          "start": 581.7965698242188,
+          "end": 604.7128295898438,
+          "speaker": 9
+        },
+        {
+          "start": 605.2528686523438,
+          "end": 609.6234741210938,
+          "speaker": 9
+        },
+        {
+          "start": 611.3109741210938,
+          "end": 614.7028198242188,
+          "speaker": 9
+        },
+        {
+          "start": 615.3272094726562,
+          "end": 621.2672119140625,
+          "speaker": 9
+        },
+        {
+          "start": 621.9253540039062,
+          "end": 632.28662109375,
+          "speaker": 9
+        },
+        {
+          "start": 632.877197265625,
+          "end": 636.4378662109375,
+          "speaker": 9
+        },
+        {
+          "start": 640.9265747070312,
+          "end": 641.8378295898438,
+          "speaker": 3
+        },
+        {
+          "start": 641.8378295898438,
+          "end": 653.4984741210938,
+          "speaker": 3
+        },
+        {
+          "start": 654.2072143554688,
+          "end": 656.5191040039062,
+          "speaker": 3
+        },
+        {
+          "start": 657.2784423828125,
+          "end": 663.370361328125,
+          "speaker": 3
+        },
+        {
+          "start": 662.104736328125,
+          "end": 662.948486328125,
+          "speaker": 3
+        }
+      ],
+      "utterances": [
+        {
+          "channel": "them",
+          "speaker": 1,
+          "start": 0.134,
+          "end": 7.28,
+          "text": "Is it as soon as the weather's kicked in this week? The energy's just not been there. It's crazy how it works."
+        },
+        {
+          "channel": "them",
+          "speaker": 1,
+          "start": 10.342,
+          "end": 10.768,
+          "text": "Yeah."
+        },
+        {
+          "channel": "them",
+          "speaker": 1,
+          "start": 17.734,
+          "end": 19.50472068786621,
+          "text": "Do you wanna just make start, Darren?"
+        },
+        {
+          "channel": "them",
+          "speaker": 3,
+          "start": 19.50472068786621,
+          "end": 23.82472038269043,
+          "text": "Yeah, I'll drop another line and if you want to bring up your uh road map please, if that's okay."
+        },
+        {
+          "channel": "them",
+          "speaker": 1,
+          "start": 23.82472038269043,
+          "end": 24.816,
+          "text": "Yeah, of course."
+        },
+        {
+          "channel": "them",
+          "speaker": 1,
+          "start": 26.982,
+          "end": 50.364,
+          "text": "Okay. Um so from a fuse product update standpoint, quite brief this one today. It's a lot of business as usual um in terms of the plan. I think uh key call outs, flare and eccentric. Okay, I'm calling Eccentric a little bit early there, but we've seen orders go through end to end for both clients, so that's good. Um get those across line, so thanks for everyone's involvement on that and getting that."
+        },
+        {
+          "channel": "them",
+          "speaker": 1,
+          "start": 50.758,
+          "end": 51.92,
+          "text": ""
+        },
+        {
+          "channel": "them",
+          "speaker": 1,
+          "start": 52.39,
+          "end": 69.68,
+          "text": "Um on the Shopify stuff, some of the parity bits we expedited have gone live. Those were related to the Eccentric stuff, um so like the one connector per store, the ability to pull line level attributes, those kind of things are now live in production and are being used as part of Eccentric as well."
+        },
+        {
+          "channel": "them",
+          "speaker": 1,
+          "start": 70.374,
+          "end": 90.3,
+          "text": "The only other thing to call out is the snap upgrades or what we've been seeing around snap heading into peak. So the performance of snap has been degrading um mostly interrelation with some version upgrades they've been doing. Um the team have been speaking to Ryan, providing statistics and Ryan's been liaising with um"
+        },
+        {
+          "channel": "them",
+          "speaker": 1,
+          "start": 90.854,
+          "end": 114.172,
+          "text": "synergy direct, we're hopeful that they can get to the bottom of it. And the only thing to be mindful of there is that we don't lose any orders or anything along those lines, but it can delay getting the orders into the warehouse management system, which you know at the moment isn't a large time frame problem, but as peak volumes come in, especially Perdium Fig and stuff and Bratmills two, we could see a longer lead time."
+        },
+        {
+          "channel": "them",
+          "speaker": 1,
+          "start": 114.438,
+          "end": 115.024,
+          "text": "Um"
+        },
+        {
+          "channel": "them",
+          "speaker": 1,
+          "start": 116.198,
+          "end": 122.32,
+          "text": "So I'll update once I know more from Ryan. He's kind of progressing that at the moment."
+        },
+        {
+          "channel": "them",
+          "speaker": 1,
+          "start": 124.102,
+          "end": 145.788,
+          "text": "In terms of, and it helps if my screen works, in terms of what's changing, so on the support side, only kind of new thing to call out is that we're working on the raw transaction history. This will probably take just a little bit longer than we originally anticipated, and I'll talk about why on the next slide. It's related to CT and the feedback we had around work."
+        },
+        {
+          "channel": "them",
+          "speaker": 1,
+          "start": 145.862,
+          "end": 151.504,
+          "text": "orders and pick pack confirmations and just some reprioritization of work."
+        },
+        {
+          "channel": "them",
+          "speaker": 1,
+          "start": 151.942,
+          "end": 161.296,
+          "text": "On the apps and config side, all bits I've spoke about before, so line level attributes are now there. We also now have proper batch tracking on the goods in."
+        },
+        {
+          "channel": "them",
+          "speaker": 1,
+          "start": 161.734,
+          "end": 167.248,
+          "text": "as well. So that went through to prod and I haven't heard anything from customers, which is positive."
+        },
+        {
+          "channel": "them",
+          "speaker": 1,
+          "start": 167.622,
+          "end": 185.552,
+          "text": "On the onboardment side, as I said last week, returns goods is good to go now. So we can start using that across API and CSV. There is one open thing around the production date. So if that is a client specific need, then you may need to hold off. But that's just one field within the mapping."
+        },
+        {
+          "channel": "them",
+          "speaker": 1,
+          "start": 185.958,
+          "end": 186.64,
+          "text": "Um"
+        },
+        {
+          "channel": "them",
+          "speaker": 1,
+          "start": 187.046,
+          "end": 199.152,
+          "text": "We can now connect multiple connectors per Shopify store, which obviously allowed us to get Eccentric Molecules live, but also useful for clients like I believe Lisa Eldridge has a similar setup when we get round to them."
+        },
+        {
+          "channel": "them",
+          "speaker": 1,
+          "start": 199.558,
+          "end": 205.968,
+          "text": "Um should first stock sync and get stock API are in proper QA. So I know Tom has started to"
+        },
+        {
+          "channel": "them",
+          "speaker": 1,
+          "start": 206.342,
+          "end": 209.36,
+          "text": "have a early test of that, although it's early days at this point."
+        },
+        {
+          "channel": "them",
+          "speaker": 1,
+          "start": 210.598,
+          "end": 218.832,
+          "text": "And in terms of build, we're doing the stock sync for the SFTP, Charlotte Tilbury, but maybe usable for other clients in the future as well."
+        },
+        {
+          "channel": "them",
+          "speaker": 1,
+          "start": 221.094,
+          "end": 245.372,
+          "text": "In terms of the roadmap, the plan's the same. In terms of the stock by location requirement that got flagged yesterday, I have grouped that in with the Shopify Jitterbit parity work here. So that will be tackled as part of that initiative. I don't anticipate that this work will necessarily begin at the beginning of November, just because we need to reprioritise some of the feedback we got around work orders and pick packs."
+        },
+        {
+          "channel": "them",
+          "speaker": 1,
+          "start": 245.446,
+          "end": 264.4,
+          "text": "Confirmations to address those so we can get those use cases signed off. The reason for doing that is because CT uses those use cases, so we'd rather address the feedback now, get that sorted, rather than getting the same feedback as part of the CT work and then dealing with two duplicate copies of the same problem."
+        },
+        {
+          "channel": "them",
+          "speaker": 1,
+          "start": 265.094,
+          "end": 273.168,
+          "text": "Also with the raw payload stuff, you know, we've managed for the past twelve months we can manage a week or two extra. Um"
+        },
+        {
+          "channel": "them",
+          "speaker": 1,
+          "start": 274.31,
+          "end": 277.648,
+          "text": "The only thing to call out"
+        },
+        {
+          "channel": "them",
+          "speaker": 1,
+          "start": 280.198,
+          "end": 284.912,
+          "text": "I think that's it, or it was, but my brain's completely gone, so um"
+        },
+        {
+          "channel": "them",
+          "speaker": 1,
+          "start": 288.678,
+          "end": 304.816,
+          "text": "That's essentially it. So in terms of what's coming, um stock sync, stock API, QA, hopefully get that closed out by the end of this sprint. Work orders pick pack, some rework is needed, only minor things but still need to be done, so we're going to make those changes, test those and get those signed off."
+        },
+        {
+          "channel": "them",
+          "speaker": 1,
+          "start": 305.254,
+          "end": 318.064,
+          "text": "CT, we're waiting for files to start landing. I know there's a few conversations about requirements that need to happen and whatnot. But overall, it you know, the parser is there. We need to just start CCT sending files in and have a config holds up."
+        },
+        {
+          "channel": "them",
+          "speaker": 1,
+          "start": 318.662,
+          "end": 324.528,
+          "text": "SFTP stock syncs in progress, that's going well. Um Shopify Jitterbit requirements coming up."
+        },
+        {
+          "channel": "them",
+          "speaker": 1,
+          "start": 325.03,
+          "end": 344.956,
+          "text": "Um and the uh raw transaction history is obviously still on the docket for this sprint, but it will most likely spill into next sprint. And that was the that reminded me the other thing I need to add um is because capacity is thin at the moment because half the team is currently off ill. Um so that's affecting us as well. Um"
+        },
+        {
+          "channel": "them",
+          "speaker": 1,
+          "start": 345.382,
+          "end": 347.888,
+          "text": "So I'll pause there. Any questions?"
+        },
+        {
+          "channel": "them",
+          "speaker": 3,
+          "start": 351.302,
+          "end": 352.848,
+          "text": "No, I don't think so, not from me."
+        },
+        {
+          "channel": "them",
+          "speaker": 3,
+          "start": 355.686,
+          "end": 366.576,
+          "text": "I think the only thing I would say is probably on that shopify jitter bit and I appreciate you can't do it yet, but we probably just need to break that down, don't we, about once we understand what's involved, what the urgency is and what order, we sort of need some of those bits delivered."
+        },
+        {
+          "channel": "them",
+          "speaker": 1,
+          "start": 367.046,
+          "end": 384.592,
+          "text": "Yeah, I think if um it may be a conversation with Lee, but if the extracts have been reviewed now for the Shopify clients and we have a list of requirements to compare what I've got versus that list because I've got a broken down list of each individual requirement. So for example, the stock by location."
+        },
+        {
+          "channel": "them",
+          "speaker": 1,
+          "start": 385.094,
+          "end": 385.648,
+          "text": "Um"
+        },
+        {
+          "channel": "them",
+          "speaker": 1,
+          "start": 386.47,
+          "end": 396.784,
+          "text": "To insert location IDs off an order line, which was flagged as part of academically gifted, the risk order level pass-through, which a lot of our clients use."
+        },
+        {
+          "channel": "them",
+          "speaker": 1,
+          "start": 397.19,
+          "end": 409.04,
+          "text": "Um and a few other bits and bobs. Um so it'd be good to do that comparison as we go into that initiative just to make sure we've got our basis covered that we can confidently say in the new year that Shopify is fully"
+        },
+        {
+          "channel": "them",
+          "speaker": 1,
+          "start": 409.638,
+          "end": 410.224,
+          "text": "Good to go."
+        },
+        {
+          "channel": "them",
+          "speaker": 3,
+          "start": 416.518,
+          "end": 430.832,
+          "text": "Excellent, nice, good, thank you. Yeah, I think that that leads me nicely on to the uh the the customer bits, yeah, as you alluded to, Eccentric Molecules I've now got live on my side as well, you know, there there's we we know the the stock by location bit that he's doing, but actually orders are coming in, dispatches going back, so that's all good."
+        },
+        {
+          "channel": "them",
+          "speaker": 3,
+          "start": 431.43,
+          "end": 431.824,
+          "text": "Um"
+        },
+        {
+          "channel": "them",
+          "speaker": 3,
+          "start": 432.358,
+          "end": 449.424,
+          "text": "We've actually got a session on Friday just to start trying to plot out dates, etc. So I think on the back of that, to your point, Jack, we'll start having a look when we look at the Shopify customers and just, you know, see what do we need, how straightforward are they? Are there going to be bits that say they need to be March rather than January or vice versa? But yeah, hopefully."
+        },
+        {
+          "channel": "them",
+          "speaker": 3,
+          "start": 449.958,
+          "end": 458.608,
+          "text": "Next week's meeting will be able to share something that will kind of give a more detailed roadmap on what we think January through to March looks like in terms of dates for customers. We'll try and move them over."
+        },
+        {
+          "channel": "them",
+          "speaker": 3,
+          "start": 460.646,
+          "end": 462.16,
+          "text": "Awesome. That'd be good."
+        },
+        {
+          "channel": "them",
+          "speaker": 3,
+          "start": 462.918,
+          "end": 470.64,
+          "text": "Cool. Excellent. Um Tom, Hayley, QA, any call outs, any bits we're struggling with, any bits we're progressing with?"
+        },
+        {
+          "channel": "them",
+          "speaker": 3,
+          "start": 473.414,
+          "end": 476.208,
+          "text": "call out really and truly everything's moving along as it should."
+        },
+        {
+          "channel": "them",
+          "speaker": 3,
+          "start": 478.278,
+          "end": 486.352,
+          "text": "Okay, and no risk for any of the dates. I know we updated it last week, didn't we? Well, yeah, next week, wasn't it? Should have most of it done. Is that still looking okay?"
+        },
+        {
+          "channel": "them",
+          "speaker": 3,
+          "start": 487.206,
+          "end": 494.352,
+          "text": "Uh we're up to date with everything now, so there is nothing actually left with us bar the stock sink stuff which working on in the background."
+        },
+        {
+          "channel": "them",
+          "speaker": 3,
+          "start": 496.23,
+          "end": 507.92,
+          "text": "Perfect. Okay, lovely. And then um James onto customers, sister co. I know that was the one that was sort of had the eyes on it. Is that tested now? Appreciate we're probably not going to do that this side of Peak now, but"
+        },
+        {
+          "channel": "them",
+          "speaker": 8,
+          "start": 508.614,
+          "end": 521.072,
+          "text": "Um so we're still having issues with getting the orders from Fuse into Snap because it's giving us like invalid API credentials. Um I think we tried updating the password on the API user and that still failed. So I think we're"
+        },
+        {
+          "channel": "them",
+          "speaker": 8,
+          "start": 521.446,
+          "end": 524.816,
+          "text": "Now changing the well basically creating like a new host and then"
+        },
+        {
+          "channel": "them",
+          "speaker": 8,
+          "start": 525.286,
+          "end": 526.32,
+          "text": "Try that instead."
+        },
+        {
+          "channel": "them",
+          "speaker": 8,
+          "start": 527.334,
+          "end": 529.68,
+          "text": "So yeah, just having an issue with getting those in at the moment."
+        },
+        {
+          "channel": "them",
+          "speaker": 3,
+          "start": 533.67,
+          "end": 534.768,
+          "text": "No worries. Okay."
+        },
+        {
+          "channel": "them",
+          "speaker": 3,
+          "start": 535.27,
+          "end": 536.912,
+          "text": "Let's see, see how we get on with that. And"
+        },
+        {
+          "channel": "them",
+          "speaker": 3,
+          "start": 538.662,
+          "end": 542.16,
+          "text": "So is that going to be an issue with all customers or is it just"
+        },
+        {
+          "channel": "them",
+          "speaker": 3,
+          "start": 543.142,
+          "end": 545.136,
+          "text": "just on sister code that we're going to have that."
+        },
+        {
+          "channel": "them",
+          "speaker": 8,
+          "start": 545.67,
+          "end": 549.04,
+          "text": "We have seen it on other customers previously. Um"
+        },
+        {
+          "channel": "them",
+          "speaker": 8,
+          "start": 549.446,
+          "end": 554.032,
+          "text": "which we got. I think we had to create new API credentials for Snap and then"
+        },
+        {
+          "channel": "them",
+          "speaker": 8,
+          "start": 554.47,
+          "end": 560.464,
+          "text": "Put it in the back end in Fuse, and I think I did fix it. But we tried to just update the parser to see if that worked, and it didn't this time. So"
+        },
+        {
+          "channel": "them",
+          "speaker": 8,
+          "start": 561.094,
+          "end": 565.296,
+          "text": "Um yeah, it's a case of just recreating. I'm not sure why it does it because I think um"
+        },
+        {
+          "channel": "them",
+          "speaker": 8,
+          "start": 566.566,
+          "end": 570.992,
+          "text": "I think the credentials do work for Snap, but for some reason Snap returns an error. Um"
+        },
+        {
+          "channel": "them",
+          "speaker": 8,
+          "start": 571.43,
+          "end": 576.272,
+          "text": "when we put them in the back end config. So who who did the shames, the the fuse sister co stuff?"
+        },
+        {
+          "channel": "them",
+          "speaker": 8,
+          "start": 576.966,
+          "end": 580.016,
+          "text": "Uh I've spoken to Steve about it. I think Steve's working on it at the moment."
+        },
+        {
+          "channel": "them",
+          "speaker": 8,
+          "start": 580.934,
+          "end": 581.808,
+          "text": "Okay, um"
+        },
+        {
+          "channel": "them",
+          "speaker": 9,
+          "start": 582.47,
+          "end": 593.264,
+          "text": "The only way I've got, you are right. It has been sort of weirdly erroring for like no reason. You can you can literally log in with the password and it's fine. But I'm looking at the saved password now and it has like a bunch of characters in it."
+        },
+        {
+          "channel": "them",
+          "speaker": 9,
+          "start": 593.734,
+          "end": 598.192,
+          "text": "What I've been doing is when I generate them, I generate them without special characters and I just manually add"
+        },
+        {
+          "channel": "them",
+          "speaker": 9,
+          "start": 598.982,
+          "end": 601.456,
+          "text": "I know work, which is what I did for Fuse."
+        },
+        {
+          "channel": "them",
+          "speaker": 9,
+          "start": 602.086,
+          "end": 604.656,
+          "text": "iconic yesterday to get that quickly working."
+        },
+        {
+          "channel": "them",
+          "speaker": 9,
+          "start": 605.318,
+          "end": 609.616,
+          "text": "And that seems to work. I don't know s if there's a special character clash happening somewhere, but"
+        },
+        {
+          "channel": "them",
+          "speaker": 9,
+          "start": 611.334,
+          "end": 614.704,
+          "text": "Uh try and use less of them when you generate the passwords, I guess."
+        },
+        {
+          "channel": "them",
+          "speaker": 9,
+          "start": 615.334,
+          "end": 621.2,
+          "text": "Yeah, I'll try that again after the call. The other thing that James mentioned about the new host is that I think"
+        },
+        {
+          "channel": "them",
+          "speaker": 9,
+          "start": 621.99,
+          "end": 632.336,
+          "text": "The I don't know if this would make a difference to this problem, but it that it's not currently set out to fuse underscores the old way because we did it before. We changed everything, so I was just going to change that anyway, just so it matches everything else."
+        },
+        {
+          "channel": "them",
+          "speaker": 9,
+          "start": 632.902,
+          "end": 636.464,
+          "text": "Yeah, and just make sure Snap have promoted the movements for it."
+        },
+        {
+          "channel": "them",
+          "speaker": 3,
+          "start": 641.318,
+          "end": 653.328,
+          "text": "Okay, excellent. As I said, I think next week we'll spend a bit more time looking at what dates we start trying to plot in for the customers on the bathwall call on Friday, but there's another call out so we can give you all back seventeen minutes or however long it is, maybe a bit more than that, maybe nearly half an hour."
+        },
+        {
+          "channel": "them",
+          "speaker": 3,
+          "start": 654.31,
+          "end": 656.592,
+          "text": "Take all the time. Indeed, indeed."
+        },
+        {
+          "channel": "them",
+          "speaker": 3,
+          "start": 657.318,
+          "end": 663.44,
+          "text": "Cool. All right, we'll wrap it up then then. Thank you very much. Have a good rest of your day. Catch you later. Cheers, everyone. Have a good day. Catch you later."
+        },
+        {
+          "channel": "them",
+          "speaker": 3,
+          "start": 665.382,
+          "end": 665.872,
+          "text": ""
+        }
+      ],
+      "timings": {
+        "vad": 3161921153,
+        "diarization": 94021872825,
+        "asr": 65048674439
+      }
+    }
+  },
+  "lines": [
+    {
+      "who": "Speaker 1",
+      "start": 0.134,
+      "end": 7.28,
+      "text": "Is it as soon as the weather's kicked in this week? The energy's just not been there. It's crazy how it works."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 10.342,
+      "end": 10.768,
+      "text": "Yeah."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 17.734,
+      "end": 19.50472068786621,
+      "text": "Do you wanna just make start, Darren?"
+    },
+    {
+      "who": "Speaker 2",
+      "start": 19.50472068786621,
+      "end": 23.82472038269043,
+      "text": "Yeah, I'll drop another line and if you want to bring up your uh road map please, if that's okay."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 23.82472038269043,
+      "end": 24.816,
+      "text": "Yeah, of course."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 26.982,
+      "end": 50.364,
+      "text": "Okay. Um so from a fuse product update standpoint, quite brief this one today. It's a lot of business as usual um in terms of the plan. I think uh key call outs, flare and eccentric. Okay, I'm calling Eccentric a little bit early there, but we've seen orders go through end to end for both clients, so that's good. Um get those across line, so thanks for everyone's involvement on that and getting that."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 52.39,
+      "end": 122.32,
+      "text": "Um on the Shopify stuff, some of the parity bits we expedited have gone live. Those were related to the Eccentric stuff, um so like the one connector per store, the ability to pull line level attributes, those kind of things are now live in production and are being used as part of Eccentric as well. The only other thing to call out is the snap upgrades or what we've been seeing around snap heading into peak. So the performance of snap has been degrading um mostly interrelation with some version upgrades they've been doing. Um the team have been speaking to Ryan, providing statistics and Ryan's been liaising with um synergy direct, we're hopeful that they can get to the bottom of it. And the only thing to be mindful of there is that we don't lose any orders or anything along those lines, but it can delay getting the orders into the warehouse management system, which you know at the moment isn't a large time frame problem, but as peak volumes come in, especially Perdium Fig and stuff and Bratmills two, we could see a longer lead time. Um So I'll update once I know more from Ryan. He's kind of progressing that at the moment."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 124.102,
+      "end": 218.832,
+      "text": "In terms of, and it helps if my screen works, in terms of what's changing, so on the support side, only kind of new thing to call out is that we're working on the raw transaction history. This will probably take just a little bit longer than we originally anticipated, and I'll talk about why on the next slide. It's related to CT and the feedback we had around work. orders and pick pack confirmations and just some reprioritization of work. On the apps and config side, all bits I've spoke about before, so line level attributes are now there. We also now have proper batch tracking on the goods in. as well. So that went through to prod and I haven't heard anything from customers, which is positive. On the onboardment side, as I said last week, returns goods is good to go now. So we can start using that across API and CSV. There is one open thing around the production date. So if that is a client specific need, then you may need to hold off. But that's just one field within the mapping. Um We can now connect multiple connectors per Shopify store, which obviously allowed us to get Eccentric Molecules live, but also useful for clients like I believe Lisa Eldridge has a similar setup when we get round to them. Um should first stock sync and get stock API are in proper QA. So I know Tom has started to have a early test of that, although it's early days at this point. And in terms of build, we're doing the stock sync for the SFTP, Charlotte Tilbury, but maybe usable for other clients in the future as well."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 221.094,
+      "end": 277.648,
+      "text": "In terms of the roadmap, the plan's the same. In terms of the stock by location requirement that got flagged yesterday, I have grouped that in with the Shopify Jitterbit parity work here. So that will be tackled as part of that initiative. I don't anticipate that this work will necessarily begin at the beginning of November, just because we need to reprioritise some of the feedback we got around work orders and pick packs. Confirmations to address those so we can get those use cases signed off. The reason for doing that is because CT uses those use cases, so we'd rather address the feedback now, get that sorted, rather than getting the same feedback as part of the CT work and then dealing with two duplicate copies of the same problem. Also with the raw payload stuff, you know, we've managed for the past twelve months we can manage a week or two extra. Um The only thing to call out"
+    },
+    {
+      "who": "Speaker 1",
+      "start": 280.198,
+      "end": 284.912,
+      "text": "I think that's it, or it was, but my brain's completely gone, so um"
+    },
+    {
+      "who": "Speaker 1",
+      "start": 288.678,
+      "end": 347.888,
+      "text": "That's essentially it. So in terms of what's coming, um stock sync, stock API, QA, hopefully get that closed out by the end of this sprint. Work orders pick pack, some rework is needed, only minor things but still need to be done, so we're going to make those changes, test those and get those signed off. CT, we're waiting for files to start landing. I know there's a few conversations about requirements that need to happen and whatnot. But overall, it you know, the parser is there. We need to just start CCT sending files in and have a config holds up. SFTP stock syncs in progress, that's going well. Um Shopify Jitterbit requirements coming up. Um and the uh raw transaction history is obviously still on the docket for this sprint, but it will most likely spill into next sprint. And that was the that reminded me the other thing I need to add um is because capacity is thin at the moment because half the team is currently off ill. Um so that's affecting us as well. Um So I'll pause there. Any questions?"
+    },
+    {
+      "who": "Speaker 2",
+      "start": 351.302,
+      "end": 352.848,
+      "text": "No, I don't think so, not from me."
+    },
+    {
+      "who": "Speaker 2",
+      "start": 355.686,
+      "end": 366.576,
+      "text": "I think the only thing I would say is probably on that shopify jitter bit and I appreciate you can't do it yet, but we probably just need to break that down, don't we, about once we understand what's involved, what the urgency is and what order, we sort of need some of those bits delivered."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 367.046,
+      "end": 410.224,
+      "text": "Yeah, I think if um it may be a conversation with Lee, but if the extracts have been reviewed now for the Shopify clients and we have a list of requirements to compare what I've got versus that list because I've got a broken down list of each individual requirement. So for example, the stock by location. Um To insert location IDs off an order line, which was flagged as part of academically gifted, the risk order level pass-through, which a lot of our clients use. Um and a few other bits and bobs. Um so it'd be good to do that comparison as we go into that initiative just to make sure we've got our basis covered that we can confidently say in the new year that Shopify is fully Good to go."
+    },
+    {
+      "who": "Speaker 2",
+      "start": 416.518,
+      "end": 458.608,
+      "text": "Excellent, nice, good, thank you. Yeah, I think that that leads me nicely on to the uh the the customer bits, yeah, as you alluded to, Eccentric Molecules I've now got live on my side as well, you know, there there's we we know the the stock by location bit that he's doing, but actually orders are coming in, dispatches going back, so that's all good. Um We've actually got a session on Friday just to start trying to plot out dates, etc. So I think on the back of that, to your point, Jack, we'll start having a look when we look at the Shopify customers and just, you know, see what do we need, how straightforward are they? Are there going to be bits that say they need to be March rather than January or vice versa? But yeah, hopefully. Next week's meeting will be able to share something that will kind of give a more detailed roadmap on what we think January through to March looks like in terms of dates for customers. We'll try and move them over."
+    },
+    {
+      "who": "Speaker 2",
+      "start": 460.646,
+      "end": 470.64,
+      "text": "Awesome. That'd be good. Cool. Excellent. Um Tom, Hayley, QA, any call outs, any bits we're struggling with, any bits we're progressing with?"
+    },
+    {
+      "who": "Speaker 2",
+      "start": 473.414,
+      "end": 476.208,
+      "text": "call out really and truly everything's moving along as it should."
+    },
+    {
+      "who": "Speaker 2",
+      "start": 478.278,
+      "end": 494.352,
+      "text": "Okay, and no risk for any of the dates. I know we updated it last week, didn't we? Well, yeah, next week, wasn't it? Should have most of it done. Is that still looking okay? Uh we're up to date with everything now, so there is nothing actually left with us bar the stock sink stuff which working on in the background."
+    },
+    {
+      "who": "Speaker 2",
+      "start": 496.23,
+      "end": 507.92,
+      "text": "Perfect. Okay, lovely. And then um James onto customers, sister co. I know that was the one that was sort of had the eyes on it. Is that tested now? Appreciate we're probably not going to do that this side of Peak now, but"
+    },
+    {
+      "who": "Speaker 3",
+      "start": 508.614,
+      "end": 529.68,
+      "text": "Um so we're still having issues with getting the orders from Fuse into Snap because it's giving us like invalid API credentials. Um I think we tried updating the password on the API user and that still failed. So I think we're Now changing the well basically creating like a new host and then Try that instead. So yeah, just having an issue with getting those in at the moment."
+    },
+    {
+      "who": "Speaker 2",
+      "start": 533.67,
+      "end": 536.912,
+      "text": "No worries. Okay. Let's see, see how we get on with that. And"
+    },
+    {
+      "who": "Speaker 2",
+      "start": 538.662,
+      "end": 545.136,
+      "text": "So is that going to be an issue with all customers or is it just just on sister code that we're going to have that."
+    },
+    {
+      "who": "Speaker 3",
+      "start": 545.67,
+      "end": 581.808,
+      "text": "We have seen it on other customers previously. Um which we got. I think we had to create new API credentials for Snap and then Put it in the back end in Fuse, and I think I did fix it. But we tried to just update the parser to see if that worked, and it didn't this time. So Um yeah, it's a case of just recreating. I'm not sure why it does it because I think um I think the credentials do work for Snap, but for some reason Snap returns an error. Um when we put them in the back end config. So who who did the shames, the the fuse sister co stuff? Uh I've spoken to Steve about it. I think Steve's working on it at the moment. Okay, um"
+    },
+    {
+      "who": "Speaker 4",
+      "start": 582.47,
+      "end": 609.616,
+      "text": "The only way I've got, you are right. It has been sort of weirdly erroring for like no reason. You can you can literally log in with the password and it's fine. But I'm looking at the saved password now and it has like a bunch of characters in it. What I've been doing is when I generate them, I generate them without special characters and I just manually add I know work, which is what I did for Fuse. iconic yesterday to get that quickly working. And that seems to work. I don't know s if there's a special character clash happening somewhere, but"
+    },
+    {
+      "who": "Speaker 4",
+      "start": 611.334,
+      "end": 636.464,
+      "text": "Uh try and use less of them when you generate the passwords, I guess. Yeah, I'll try that again after the call. The other thing that James mentioned about the new host is that I think The I don't know if this would make a difference to this problem, but it that it's not currently set out to fuse underscores the old way because we did it before. We changed everything, so I was just going to change that anyway, just so it matches everything else. Yeah, and just make sure Snap have promoted the movements for it."
+    },
+    {
+      "who": "Speaker 2",
+      "start": 641.318,
+      "end": 663.44,
+      "text": "Okay, excellent. As I said, I think next week we'll spend a bit more time looking at what dates we start trying to plot in for the customers on the bathwall call on Friday, but there's another call out so we can give you all back seventeen minutes or however long it is, maybe a bit more than that, maybe nearly half an hour. Take all the time. Indeed, indeed. Cool. All right, we'll wrap it up then then. Thank you very much. Have a good rest of your day. Catch you later. Cheers, everyone. Have a good day. Catch you later."
+    }
+  ]
+}

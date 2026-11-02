@@ -1,0 +1,42 @@
+# selector-adapter — Waypoint index. Cheap orientation only, never documentation.
+# Every value is a fact, a path, or a command — never a sentence. Anything needing a sentence
+# belongs in a doc. (No line cap: the old ~25-line one was exceeded by 22 of 26 files.)
+service: selector-adapter
+system: fuse
+type: backend
+owner: harry-fitzgerald  # out-of-team work; carried forward by the Delivery Backends programme
+language: Go
+framework: chi
+deploy: cloud-run        # selector-adapter-dev only, bifrost-dev-global1; no prod environment
+observability: datadog   # service selector-adapter, source go; serverless-init sidecar
+
+interfaces:
+  inbound: [pubsub]                       # create_record push, filter recordType=sales_order AND selector=true
+  outbound: [selector-soap, firestore]    # ClientShipService.asmx ProcessShipment + DailyShipQuery; claims DB
+
+key_paths:
+  - apps/adapter/internal/core/booking                 # mapping (Gate C rules), use case, ports
+  - apps/adapter/internal/adapters/selector            # SOAP wire types in WSDL order, client, outcome classification
+  - apps/adapter/internal/adapters/claim               # Firestore claim per order: the only idempotency guard
+  - apps/adapter/internal/http/controllers/events      # push handler: 204 ack / 503 redeliver
+  - iac/projects/selector-adapter                      # dev-only Cloud Run, Firestore, filtered subscription
+  - docs/selector-sandbox-findings.md                  # how Selector really behaves
+
+note: >
+  Dev-only spike that books Selector shipments for customer-packed orders; Selector is delivery,
+  not fulfilment. Receives nothing until the deduper stamps `selector` (Delivery Backends B1).
+  See Bifrost/Delivery Backends for what comes next.
+
+runtime:
+  package_manager: "go modules; pnpm@11.0.8 for tools/canonschema only"
+  test_runner: "go test (claim-store tests need FIRESTORE_EMULATOR_HOST)"
+  go: "1.27.1"
+commands:
+  root: "apps/adapter/"
+  gate: ["make fmt-check", "go build ./...", "go vet ./...", "go test -race ./...", "make lint"]
+  missing: []
+  conditional: ["FIRESTORE_EMULATOR_HOST=127.0.0.1:8096 go test -race ./internal/adapters/claim/  # emulator via docker google-cloud-cli:emulators", "make gen  # canonical regen; needs GITHUB_TOKEN"]
+onboarded: 2026-10-27
+commands_verified: 2026-10-27
+commands_verified_sha: e5f710a
+commands_verified_paths: [apps/adapter/go.mod, mise.toml, apps/adapter/Makefile]

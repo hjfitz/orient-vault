@@ -1,0 +1,34 @@
+# fapi — Waypoint index. Cheap orientation only, never documentation.
+# Keep under ~25 lines. Anything needing a sentence belongs in a doc.
+service: fapi
+system: fuse
+type: backend            # backend | frontend | library | infra
+owner: bifrost           # Bifrost/Fuse team
+language: typescript
+framework: nestjs
+deploy: cloud-run
+observability: datadog
+
+interfaces:
+  inbound: [http, pubsub-push]
+  outbound: [pubsub, config-service, customer-webhooks, redis]
+
+key_paths:
+  - code/src/http/controllers   # api/legacy/confirmation/config-event/health controllers
+  - code/src/services           # bulk-ingest, pubsub-emitter, confirmation, connector-registry
+  - code/src/config             # env schema + RemoteConfig wiring
+  - iac/projects/api-gateway    # real service; api-gateway-sandbox is the Prism mock tier
+  - CLAUDE.md                   # repo's own agent notes — exceptionally current, read first
+
+runtime:
+  package_manager: "pnpm@latest"
+  test_runner: "vitest"
+  node: "24"
+commands:
+  root: "code/"
+  gate: ["test", "lint:fix", "build:check"]
+  missing: ["build:check:tests"]
+commands_verified: 2026-09-04
+commands_verified_sha: 2e533b4
+commands_verified_paths: [code/package.json, mise.toml]
+onboarded: 2026-08-24

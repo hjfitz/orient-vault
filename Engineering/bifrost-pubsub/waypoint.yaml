@@ -1,0 +1,38 @@
+# bifrost-pubsub — Waypoint index. Cheap orientation only, never documentation.
+# Keep under ~25 lines. Anything needing a sentence belongs in a doc.
+service: bifrost-pubsub
+system: fuse
+type: infra              # backend | frontend | library | infra
+owner: fuse-team         # wider Fuse team, same pattern as every other service this session
+language: HCL
+framework: Terraform / Terragrunt
+deploy: "n/a"             # provisions GCP Pub/Sub resources directly, no runtime of its own
+observability: none
+
+interfaces:
+  inbound: []                     # none — pure infra provisioning
+  outbound: []                     # provisions GCP Pub/Sub topics that every Fuse service reads via remote state
+
+key_paths:
+  - iac/modules/topic                              # the shared topic+DLT module — every topic goes through this
+  - iac/projects/bifrost-pubsub/*.pubsub.tf         # the real topic list (7 files, grouped by domain)
+  - iac/projects/bifrost-pubsub/*.outputs.tf        # what consuming repos actually read via terraform_remote_state
+  - README.md                                       # SUBSTANTIALLY STALE — see known-context before trusting it
+
+note: >
+  README.md is significantly behind the actual topic list — it still
+  describes deleted legacy per-entity topics as current and omits several
+  live cross-entity ones (create_data_failure, confirmation_data_failure,
+  confirmation_ready, confirmation_made). Verify any topic claim against the
+  .pubsub.tf files directly, not the README. No secops workflow exists here
+  (just deploy.yaml + tf-plan-pr.yaml).
+
+runtime: {}
+commands:
+  root: "."
+  gate: []
+  missing: []
+commands_verified: 2026-09-04
+commands_verified_sha: e6be675
+commands_verified_paths: []
+onboarded: 2026-08-24

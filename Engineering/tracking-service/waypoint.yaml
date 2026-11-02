@@ -1,0 +1,31 @@
+# tracking-service — Waypoint index. Cheap orientation only, never documentation.
+service: tracking-service
+type: backend
+owner: bifrost
+language: go
+framework: net/http (stdlib pattern router)
+deploy: cloud-run
+observability: datadog
+
+interfaces:
+  inbound: [pubsub, http]
+  outbound: []
+
+key_paths: [apps/api/internal/core, apps/api/internal/http/router.go, apps/api/internal/store, apps/api/firestore.indexes.json, iac/projects/tracking-service, apps/api/cmd]
+
+runtime:
+  root: apps/api
+  local: docker compose up --build && ./scripts/replay-fixture.sh
+commands:
+  gates: make fmt-check vet lint test-race
+  emulator: make test-emulator
+  iac: terraform fmt -check -recursive iac
+  missing: [build:check, build:check:tests, lint:fix]   # Go repo: the org's pnpm gates don't apply
+
+note: >
+  Poly-app layout (apps/api, not code/). Read Bifrost/Tracking Service/ for the programme.
+
+onboarded: 2026-10-09
+commands_verified: 2026-10-15
+commands_verified_sha: 9f01957
+commands_verified_paths: [apps/api/Makefile, apps/api/go.mod, mise.toml]

@@ -1,0 +1,134 @@
+{
+  "id": "20261019-100036-f543",
+  "title": "Bifrost Standup",
+  "status": "done",
+  "startedAt": "2026-10-19T10:00:36.676002346+01:00",
+  "endedAt": "2026-10-19T10:18:41.906680334+01:00",
+  "sources": {
+    "me": [
+      "JLAB TALK MICROPHONE Analog Stereo"
+    ],
+    "them": [
+      "Nightly",
+      "Slack"
+    ]
+  },
+  "call": true,
+  "speakers": {
+    "Room 1": "Harry",
+    "Room 2": "Harry",
+    "Speaker 1": "Matt",
+    "Speaker 2": "Jack",
+    "Speaker 3": "Jack",
+    "Speaker 4": "Tom",
+    "Speaker 5": "Humby",
+    "Speaker 6": "Schuster"
+  },
+  "summary": {
+    "tldr": [
+      "Stock sync is close to done end to end. A PR for hybrid ack handling on kit syncs that might overrun the pub/sub deadline is in review, and the Shopify and SFTP stock sync types work comes next.",
+      "Go-live picture before Christmas: Flir is aiming for early next week, Edom UK and Joe Loves are very unlikely, and Eccentric Molecules was pushed back a week because of the dual Shopify ticket.",
+      "Eccentric Molecules go/no-go on the two-store work is to be decided Wednesday. The backout plan is a full rollback, which nobody wants.",
+      "CT onboarding is on track on the Fuse side. Files will be staggered MD, then SO, then PO, but config in the Fuse UI waits on GLN numbers and the customer's values.",
+      "Tom has four hours today for platform testing. Failures so far are data validity, not platform issues."
+    ],
+    "decisions": [
+      "Eccentric Molecules go-live was pushed back by a week, agreed with the projects team.",
+      "CT files will be staggered MD first, then SO, then PO, two to three days apart.",
+      "The stock sync mapping format (simple or line-level for SFTP) will be discussed offline, not in standup.",
+      "Wednesday is when the team decides whether to proceed with the Eccentric Molecules two-store go-live."
+    ],
+    "actions": [
+      {
+        "owner": "Jack",
+        "text": "Send the CT project plan to Harry for visibility.",
+        "due": ""
+      },
+      {
+        "owner": "Team",
+        "text": "Review the stock sync PR for hybrid ack handling on kit syncs that could overrun the pub/sub deadline.",
+        "due": ""
+      },
+      {
+        "owner": "Harry",
+        "text": "Post in the team chat asking people which office day to swap for the Wednesday Southampton attendance requirement, Tuesday or Thursday.",
+        "due": ""
+      },
+      {
+        "owner": "Harry",
+        "text": "Look at the question Alex asked on Thursday.",
+        "due": ""
+      },
+      {
+        "owner": "Schuster",
+        "text": "Wrap up ticket 1203 after Harry's comments and work out where last Wednesday's progress stood.",
+        "due": "today"
+      },
+      {
+        "owner": "Speaker 1",
+        "text": "Continue the Shopify side of stock sync and the SFTP stock sync types change, and catch up on recruitment admin for last week's candidates.",
+        "due": "today"
+      },
+      {
+        "owner": "Tom",
+        "text": "Work through Fuse platform testing for four hours and send testing feedback by email.",
+        "due": "today"
+      }
+    ],
+    "questions": [
+      "Should SFTP stock sync mappings be simple or line-level? Speaker 1 asked for a product view, and Harry deferred it to a short discussion after standup.",
+      "Will Eccentric Molecules go ahead with the two-store go-live? It is to be decided Wednesday.",
+      "Are smoke tests before the Flir go-live agreed? Jack said this is not fully agreed and left the detail to Tom.",
+      "When will the GLN numbers and the values ILG needs to configure for CT arrive? The EDIFACT config cannot be saved without them.",
+      "When, if ever, will Joe Loves go live? Their Polish VAT number can take two days to two months."
+    ],
+    "speakers": [
+      {
+        "label": "Room 1",
+        "name": "Harry",
+        "basis": "Runs the standup, and Tom says 'Thanks, Harry' to this voice"
+      },
+      {
+        "label": "Speaker 2",
+        "name": "Jack",
+        "basis": "Addressed as Jack for the product view, gives the go-live recap, and sends the project plan to Harry"
+      },
+      {
+        "label": "Speaker 3",
+        "name": "Jack",
+        "basis": "Continues the same go-live recap as Speaker 2, so likely the same person split by the audio"
+      },
+      {
+        "label": "Speaker 4",
+        "name": "Tom",
+        "basis": "Addressed as Tom, and gives the testing and UAT update"
+      },
+      {
+        "label": "Speaker 5",
+        "name": "Humbie",
+        "basis": "Has just painted walls blue and done floors, and picks up tickets from the new sprint"
+      },
+      {
+        "label": "Speaker 6",
+        "name": "Schuster",
+        "basis": "Joined late with audio problems, and Harry addresses him as Schuster"
+      },
+      {
+        "label": "Speaker 1",
+        "name": "Matt",
+        "basis": "Likely. Gives the stock sync and recruitment update, and Jack mentions staying on with 'you and Matt' for the stock sync format"
+      }
+    ],
+    "model": "sonnet",
+    "usd": 0.08604,
+    "durationMs": 18176,
+    "at": "2026-10-19T10:25:03.629458903+01:00"
+  },
+  "enhancement": {
+    "model": "sonnet",
+    "usd": 0.1460234,
+    "durationMs": 20384,
+    "at": "2026-10-19T22:03:30.412282478+01:00",
+    "parts": 2
+  }
+}

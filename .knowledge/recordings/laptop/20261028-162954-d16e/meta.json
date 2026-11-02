@@ -1,0 +1,103 @@
+{
+  "id": "20261028-162954-d16e",
+  "title": "Wilders Catch up - beachhead",
+  "status": "done",
+  "startedAt": "2026-10-28T16:29:54.823824395Z",
+  "endedAt": "2026-10-28T16:42:58.376888548Z",
+  "sources": {
+    "me": [
+      "JLAB TALK MICROPHONE Analog Stereo"
+    ],
+    "them": [
+      "Nightly",
+      "Slack",
+      "speech-dispatcher-dummy"
+    ]
+  },
+  "call": true,
+  "speakers": {
+    "Speaker 1": "Wilders"
+  },
+  "summary": {
+    "tldr": [
+      "Speaker 1 described a web portal for a customer who imports CSVs from Manhattan (WMS): a holding area to validate, edit, search and manifest consignments before pushing to Selector.",
+      "Harry thinks Fuse may not be the right base and that building it outside Fuse would simplify things and help maintainability, though Fuse building blocks can be reused.",
+      "Rough shape: an SFTP host with validation, a UI showing the import queue with edits and search, and label printing. Selector handles label creation and manifesting, with an end-of-day CSV exported back to Manhattan.",
+      "Validation will be done in the app as far as possible, with Selector as a last resort; printing approach is unresolved because the printers are unknown and Dispatch Cloud's QZ Tray approach may not apply.",
+      "Harry will go through the notes overnight, draft plans and design docs, and they will catch up on Thursday."
+    ],
+    "decisions": [
+      "Do validation in the application as much as possible and use Selector's validate call only as a last resort.",
+      "Make the portal web-driven with nothing installed locally, if it can be avoided.",
+      "Lean towards building this outside Fuse, pending Harry reviewing the notes."
+    ],
+    "actions": [
+      {
+        "owner": "Speaker 1",
+        "text": "Send Harry the plan and notes document for the portal.",
+        "due": "tonight"
+      },
+      {
+        "owner": "Harry",
+        "text": "Review the notes overnight and put as much as possible into Confluence/Jira with a plan of attack.",
+        "due": "2026-10-29"
+      },
+      {
+        "owner": "Harry",
+        "text": "Put design docs together for the SFTP host with validation, the queue UI and printing.",
+        "due": "2026-10-29"
+      },
+      {
+        "owner": "Speaker 1",
+        "text": "Find out what label printers the customer uses and which label format (ZPL or EPL) applies.",
+        "due": ""
+      },
+      {
+        "owner": "Harry",
+        "text": "Point the knowledge system at the existing ZPL/EPL documentation as prior art for printing.",
+        "due": ""
+      },
+      {
+        "owner": "Harry",
+        "text": "Message Speaker 1 on the day about meeting in the office or on a huddle.",
+        "due": "2026-10-29"
+      },
+      {
+        "owner": "Speaker 1",
+        "text": "Ping Harry if actions come out of the planning that need starting tonight, and handle the Selector side.",
+        "due": ""
+      }
+    ],
+    "questions": [
+      "Should this be built on Fuse or outside it? Harry leans towards outside but wants to review first.",
+      "How will label printing work from a web UI, given Dispatch Cloud uses QZ Tray (paid) and nothing local is wanted? WebUSB was floated.",
+      "Which label printers does the customer have, and in what format (ZPL or EPL)?",
+      "How can useful validation errors be returned, since Selector's validate call sometimes returns only a generic error?",
+      "How will the four customer mapping requirements (e.g. consignment number and ship ref relating to their system) be handled?",
+      "Will Speaker 1 come into the office on Thursday or join a huddle?"
+    ],
+    "speakers": [
+      {
+        "label": "Harry",
+        "name": "Harry",
+        "basis": "the one voice on Harry's mic"
+      },
+      {
+        "label": "Speaker 1",
+        "name": "",
+        "basis": "the other party on the call, from the Selector/CSS integration vendor side and the one who spoke to the customer; the name is not given"
+      }
+    ],
+    "model": "sonnet",
+    "usd": 0.067304,
+    "durationMs": 9307,
+    "at": "2026-10-28T16:46:46.068054604Z"
+  },
+  "enhancement": {
+    "model": "sonnet",
+    "usd": 0.15307199999999999,
+    "durationMs": 18291,
+    "at": "2026-10-28T16:47:04.35973261Z",
+    "parts": 2
+  }
+}

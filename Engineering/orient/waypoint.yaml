@@ -1,0 +1,16 @@
+# orient — Waypoint index. Cheap orientation only, never documentation.
+# Keep under ~25 lines. Anything needing a sentence belongs in a doc.
+service: orient
+system: orient
+repo: ~/projects/orient   # deliberately outside ~/code — the Fuse org contract does not apply
+type: frontend            # backend | frontend | library | infra
+owner: hjf                # personal tool
+language: TypeScript
+framework: Next.js (App Router, React 19, Server Components)
+deploy: none              # local-only; no remote, no CI, direct-to-master
+observability: none
+
+interfaces:
+  inbound: [http]         # localhost:3000 only
+  reads: [obsidian-vault, sqlite-fts5, jira, github, datadog]
+  writes: [vault/.knowledge]

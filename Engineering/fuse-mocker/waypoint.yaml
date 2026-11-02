@@ -1,0 +1,30 @@
+# fuse-mocker — Waypoint index. Cheap orientation only, never documentation.
+# Keep under ~25 lines. Anything needing a sentence belongs in a doc.
+service: fuse-mocker
+system: fuse
+type: backend            # backend | frontend | library | infra
+owner: fuse-team         # wider Fuse team, same pattern as every other service this session
+language: "Go (apps/api) + TypeScript (apps/ui)"
+framework: "Go 1.25 stdlib + chi router / Next.js 16"
+deploy: cloud-run         # two services behind one HTTPS LB; dev-only, no prod
+observability: datadog
+
+interfaces:
+  inbound: [http]                 # /api/v1 (human/MCP) + /events/v1 (Pub/Sub push, 10 subscriptions)
+  outbound: [config-service, pubsub-mock-publishes, mongodb-own, fuse-mcp-consumer]
+
+key_paths:
+  - apps/api/internal/core/publisher/targets.go     # the publish contract — topic/envelope/attributes
+  - apps/api/internal/core/send/send.go             # canonical validation gate; publishes the PARSED envelope
+  - apps/api/tools/canonschema                       # generates the canonical layer from @gfs-bifrost/types' Zod tree
+  - apps/api/internal/core/generators                # hard-won SNAP field lore lives here, in comments
+  - CLAUDE.md                                         # rewritten post-migration, current and thorough
+
+note: >
+  A completed Go rewrite (not in progress) — poly-app monorepo since 2026-08,
+  full cutover verified live. Deep migration history lives in the Obsidian
+  vault at Bifrost/Fuse Mocker Go API/ (Overview + Migration State) — read
+  that for the cutover sequencing and risk register, this doc set describes
+  current state. No PR flow: direct commits to main auto-deploy to dev.
+
+onboarded: 2026-08-24

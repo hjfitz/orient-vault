@@ -1,0 +1,126 @@
+# Draft for ilg-platform/github-actions — NOT YET PROPOSED.
+#
+# Runs a Go task in a working directory. The Go counterpart to node-run.yaml, which is the only
+# language-specific gap a Go service hits: docker-build-push, terragrunt, secops-secrets,
+# secops-terraform and secops-container are all already language-agnostic, and secops-code
+# already ships a curated `go` preset (p/golang + p/owasp-top-ten).
+#
+# Two repos hand-roll this today — fuse-tui and fuse-mocker's apps/api — which is the platform
+# repo's own signal that it belongs here once rather than forked per service.
+#
+# Deliberately NOT included: a dependency-audit job. audit-ci is an npm dependency-tree auditor
+# with no lockfile to audit in a Go module, and govulncheck is a different shape (it does
+# reachability analysis on the built binary, not a lockfile scan). It fits better as its own
+# `secops-dep-go.yaml` alongside secops-dep-node and secops-dep-dotnet, and report-scheduler's
+# devsecops pipeline already records the same reasoning for omitting audit-ci from a Go repo.
+
+name: Go Run
+
+on:
+  workflow_call:
+    inputs:
+      working_directory:
+        description: The directory containing go.mod.
+        required: true
+        type: string
+      task:
+        description: >-
+          One of build | vet | test | test-race | fmt-check | lint | vulncheck | gen-check.
+          Chosen from a closed set rather than taking an arbitrary command, so a caller cannot
+          smuggle a shell one-liner through a reusable workflow.
+        required: true
+        type: string
+      go_version:
+        description: Go minor version, e.g. "1.25".
+        required: false
+        default: "1.25"
+        type: string
+      golangci_lint_version:
+        required: false
+        default: latest
+        type: string
+      checkout_ref:
+        required: false
+        type: string
+    secrets:
+      checkout_token:
+        required: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ inputs.working_directory }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ inputs.checkout_ref }}
+          token: ${{ secrets.checkout_token || github.token }}
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: ${{ inputs.go_version }}
+          cache-dependency-path: ${{ inputs.working_directory }}/go.sum
+
+      - name: Validate task
+        run: |
+          case "${{ inputs.task }}" in
+            build|vet|test|test-race|fmt-check|lint|vulncheck|gen-check) ;;
+            *) echo "::error::unknown task '${{ inputs.task }}'"; exit 1 ;;
+          esac
+
+      - name: build
+        if: inputs.task == 'build'
+        run: go build ./...
+
+      - name: vet
+        if: inputs.task == 'vet'
+        run: go vet ./...
+
+      - name: test
+        if: inputs.task == 'test'
+        run: go test ./...
+
+      - name: test-race
+        if: inputs.task == 'test-race'
+        run: go test -race ./...
+
+      # gofmt -l lists unformatted files and exits 0 either way, so the non-empty check is the gate.
+      - name: fmt-check
+        if: inputs.task == 'fmt-check'
+        run: |
+          unformatted=$(gofmt -l .)
+          if [ -n "$unformatted" ]; then
+            echo "::error::not gofmt-clean"
+            echo "$unformatted"
+            exit 1
+          fi
+
+      - name: lint
+        if: inputs.task == 'lint'
+        uses: golangci/golangci-lint-action@v6
+        with:
+          version: ${{ inputs.golangci_lint_version }}
+          working-directory: ${{ inputs.working_directory }}
+
+      - name: vulncheck
+        if: inputs.task == 'vulncheck'
+        run: |
+          go install golang.org/x/vuln/cmd/govulncheck@latest
+          "$(go env GOPATH)/bin/govulncheck" ./...
+
+      # For a repo that commits generated code: fails if regenerating produces a diff, so a
+      # stale generator output cannot merge.
+      - name: gen-check
+        if: inputs.task == 'gen-check'
+        run: |
+          make gen
+          if ! git diff --quiet; then
+            echo "::error::generated files are stale — run 'make gen' and commit the result"
+            git --no-pager diff --stat
+            exit 1
+          fi

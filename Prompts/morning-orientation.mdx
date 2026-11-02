@@ -1,0 +1,53 @@
+---
+type: prompt-tool
+id: morning-orientation
+title: Morning orientation
+area: orientation
+tags: [prompt-tool, orientation]
+version: 1
+queries:
+  fleet:
+    label: Plans waiting on you
+    type: plan
+    status: { in: [draft, active, blocked] }
+    limit: 10
+  stale:
+    label: Documentation behind its code
+    type: waypoint
+    where: { 'meta.attention': { eq: stale } }
+    limit: 5
+  decisions:
+    label: Open decisions, newest first
+    from: entries
+    kind: [plan-decision, programme-decision]
+    limit: 8
+---
+
+# Morning orientation
+
+Answers assemble from the vault; nothing here calls a model. Fill the form, copy the
+prompt, paste it into Claude Code.
+
+<PromptBuilder
+  id="morning-orientation"
+  fields={[
+    { name: 'energy', label: 'Current energy', kind: 'select', options: ['low', 'steady', 'high'] },
+    { name: 'outcome', label: 'Most important outcome', kind: 'textarea', required: true },
+    { name: 'risk', label: 'Main risk or distraction', kind: 'text' },
+    { name: 'constraints', label: 'Constraints on the day', kind: 'textarea' }
+  ]}
+  template={`You are helping me plan one working day. Do not invent facts; use only the context below.
+Today: {{today}} ({{weekday}}).
+My energy: {{energy}}. Most important outcome: {{outcome}}
+{{#if risk}}Main risk or distraction: {{risk}}{{/if}}
+{{#if constraints}}Constraints: {{constraints}}{{/if}}
+
+## Context (bounded; sensitive notes excluded)
+{{context}}
+
+## Ask
+1. A three-item plan for the day ordered by leverage, each tied to one context item by id.
+2. What I should explicitly not do today, and why.
+3. One message I should send before 10:00 (to whom, one paragraph).
+Return markdown, under 400 words.`}
+/>

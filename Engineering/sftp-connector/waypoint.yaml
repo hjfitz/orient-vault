@@ -1,0 +1,35 @@
+# sftp-connector — Waypoint index. Cheap orientation only, never documentation.
+service: sftp-connector
+system: fuse
+type: backend
+owner: bifrost
+language: typescript
+framework: express
+deploy: cloud-run + compute-vm
+observability: datadog
+
+interfaces:
+  inbound: [sftp, gcs, pubsub, http]
+  outbound: [create_record_request, gcs, config-service, ssh]
+
+key_paths:
+  - code/src/app.ts                    # route wiring
+  - code/src/controllers/pubsub.controller.ts   # every push endpoint
+  - code/src/import                    # parse + translate inbound files
+  - code/src/core/file-routing         # archive/ and error/ placement
+  - code/src/core/sftp-user-builder    # users.json + live VM user creation
+  - iac/projects/bifrost-sftp-connector # VM, buckets, notification, 12 subs
+
+repo_docs: CLAUDE.md   # owns users.json/SSH keys and the log-redaction rule
+runtime:
+  test_runner: "vitest"
+  node: "24"
+  package_manager: "pnpm"
+commands:
+  root: "code/"
+  gate: ["test", "lint:fix", "build:check"]
+  missing: ["build:check:tests"]
+commands_verified: 2026-09-04
+commands_verified_sha: e6784cc
+commands_verified_paths: [code/mise.toml, code/package.json, code/pnpm-workspace.yaml]
+onboarded: 2026-08-24

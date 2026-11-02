@@ -1,0 +1,11 @@
+# ilg-platform — Waypoint system index. Cheap orientation only, never documentation.
+# Members are NOT listed here: a service joins by declaring `system: ilg-platform` in its
+# own waypoint.yaml, so there is one source of truth. `wp system status ilg-platform` reads it.
+system: ilg-platform
+owner: platform-team
+purpose: >
+  Shared engineering surfaces every ILG product repo consumes — reusable CI workflows,
+  Terraform modules, the UI component library, observability SDK, security reporting.
+  Consumers are plural, so everything here is a contract. In: the shared surfaces. Out:
+  any one product's behaviour.
+created: 2026-09-24

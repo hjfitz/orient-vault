@@ -1,0 +1,8 @@
+businessId: CANARYSTOCKSYNC
+friendlyName: FUSE-1300 stock sync canary (test, 20 Oct 26)
+environment: production
+connectors: []
+wms: []
+created: '2026-10-21'
+last_synced: null
+kind: fixture

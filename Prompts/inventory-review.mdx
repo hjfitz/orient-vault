@@ -1,0 +1,69 @@
+---
+type: prompt-tool
+id: inventory-review
+title: Inventory review
+area: review
+tags: [prompt-tool, review]
+version: 1
+queries:
+  open:
+    label: Open work, least recently touched first
+    type: [plan, programme]
+    status: { in: [draft, active, blocked] }
+    sort: [[updated, asc]]
+    fields: [title, excerpt]
+    limit: 25
+  stale:
+    label: Documentation behind its code
+    type: waypoint
+    where: { 'meta.attention': { eq: stale } }
+    sort: [[updated, asc]]
+    limit: 10
+  decisions:
+    label: Open decisions, newest first
+    from: entries
+    kind: [plan-decision, programme-decision]
+    limit: 10
+---
+
+# Inventory review
+
+A keep-or-drop pass over everything open, oldest first, that comes back as one table you
+can act on rather than a summary you have to re-read. Untick anything out of scope; every
+item that stays gets a verdict, exactly once.
+
+<PromptBuilder
+  id="inventory-review"
+  fields={[
+    { name: 'focus', label: 'What this review is for', kind: 'text' },
+    { name: 'criteria', label: 'What "keep" means today', kind: 'textarea', required: true },
+    { name: 'capacity', label: 'Capacity actually available', kind: 'text' },
+    { name: 'horizon', label: 'Horizon', kind: 'select', options: ['this week', 'this sprint', 'this quarter'] }
+  ]}
+  template={`You are running a keep-or-drop review over an inventory of open work. Use only the items listed; do not add any.
+Today: {{today}} ({{weekday}}).
+{{#if focus}}What this review is for: {{focus}}{{/if}}
+Keep means: {{criteria}}
+{{#if capacity}}Capacity actually available: {{capacity}}{{/if}}
+{{#if horizon}}Horizon: {{horizon}}{{/if}}
+
+## Inventory
+{{#each context.open}}- [{{id}}] {{title}} — open work, last touched {{updated}}
+{{/each}}{{#each context.stale}}- [{{id}}] {{title}} — documentation behind its code
+{{/each}}{{#each context.decisions}}- [{{id}}] {{title}} — still undecided
+{{/each}}
+
+## Detail
+{{context}}
+
+## Ask
+Return one table, one row per inventory item, every item exactly once, with these columns: id, item, verdict, because, next action, owner.
+The verdict is one of KEEP, DROP, ACT, DEFER. No others, no hedging, no blanks.
+"because" is one line and must refer to the keep criterion above.
+"next action" is a single concrete step, or an em dash for DROP.
+Then, under the table:
+- **Do first** — the three ACT rows in the order they should happen, and why that order.
+- **Drop entirely** — the DROP rows written as one sentence I could send to someone.
+- **Not enough information** — any row you could not judge, and the one fact that would judge it.
+Never invent an item, never merge two items into one row, and never quietly leave one out.`}
+/>

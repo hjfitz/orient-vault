@@ -1,0 +1,29 @@
+# secops-reporting — Waypoint index. Cheap orientation only, never documentation.
+# Keep under ~25 lines. Anything needing a sentence belongs in a doc.
+service: secops-reporting
+system: ilg-platform
+type: backend            # backend | frontend | library | infra
+owner: "Harry Fitzgerald + the CTO"   # genuinely a two-person project, unlike other ilg-platform repos
+language: TypeScript
+framework: "NestJS 11 (api/) + Next.js 15 (ui/)"
+deploy: cloud-run         # two services, prod-only, no dev/staging anywhere
+observability: datadog
+
+interfaces:
+  inbound: [http]                 # ingest (dual OIDC + static key) + dashboard reads
+  outbound: [mongodb, github-actions-secops-workflows, azure-devops-oidc]
+
+key_paths:
+  - api/src/models/job-report.schema.ts   # the Zod discriminated-union contract — 7 scanners, not 6 (api/CLAUDE.md is stale)
+  - api/src/core                          # JobReportService — 968 lines of Mongo aggregation, the real risk surface
+  - api/src/http/guards                    # api-key + GitHub OIDC + Azure DevOps OIDC, deliberately asymmetric
+  - ui/lib/secops                          # SecopsApiClient + mirrored types — keep in sync with api/src/models by hand
+  - iac/projects/{secops-api,secops-ui}
+
+note: >
+  No PR flow: direct commits to main, every push deploys, gated only by terraform-prod
+  approval. The api/ side was rewritten in Go; that programme's rationale, cutover design
+  and scar tissue live in the Obsidian vault at Bifrost/SecOps API Go/ — read it before
+  changing api/, and don't duplicate it here.
+
+onboarded: 2026-08-24

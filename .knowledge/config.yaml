@@ -1,0 +1,45 @@
+# orient vault configuration. Every key has a working default.
+sensitive:
+  - Bifrost/HR/**
+  - Bifrost/Team/**
+  - Interviews/**
+contextExcluded:
+  - Engineering/index.md
+  - Customers/index.md
+trustedMdx:
+  - Prompts/
+promptBudgetChars: 24000
+external:
+  jiraBase: https://globalfreight.atlassian.net/browse/
+# Sidebar sections + ordering. Edit freely — a slug this file doesn't mention still shows,
+# under "Other", so a new nav view (or a typo here) never just disappears from the rail.
+# Each group answers one question:
+#   Now = what needs me today · Delivery = where the team's work is · Plans = what we are
+#   trying to do and why · Prod = is anything on fire · Knowledge = how things work, who is who
+#   Claude = what my agents are doing and what they cost
+nav:
+  groups:
+    - label: Now
+      slugs: [today, inbox, slack, meetings, recordings, focus, puzzles]
+    - label: Delivery
+      slugs: [sprint, backlog, epics, prs, tickets, ledger]
+    - label: Plans
+      slugs: [work, programmes, plans, decisions]
+    - label: Prod
+      slugs: [health, incidents, support, maintenance, soaks]
+    - label: Knowledge
+      slugs: [systems, people, explainers, digests, archive]
+    - label: Claude
+      slugs: [runs, tasks, history, usage, skills, tools, haude, analytics]
+# Whose vault this is, by People/ note name: the Org chart opens on the route to your team.
+people:
+  me: Harry Fitzgerald
+# Mixes on /focus. Nothing loads from YouTube until one is picked; an entry that is not a YouTube video link is skipped.
+focus:
+  music:
+    - title: Halo mix
+      url: https://youtu.be/QrizpPImHW4?list=PLVamrE1SaG4GoGwn6P2pyGhmQ4F1CeDMG
+    - title: Witcher mix
+      url: https://youtu.be/8GYL6c_GTE0?list=PLVamrE1SaG4GoGwn6P2pyGhmQ4F1CeDMG
+    - title: Civ VI soundtrack
+      url: https://youtu.be/cb922Sry_DI?list=PLVamrE1SaG4GoGwn6P2pyGhmQ4F1CeDMG

@@ -1,0 +1,44 @@
+# distraction-dashboard — Waypoint index. Cheap orientation only, never documentation.
+# Keep under ~25 lines. Anything needing a sentence belongs in a doc.
+service: distraction-dashboard
+system: fuse
+type: frontend           # backend | frontend | library | infra
+owner: "Harry Fitzgerald"   # his own initiative — the PRODUCT is team-shared (one login, whole team), maintenance is not
+language: TypeScript
+framework: "Next.js 15 (App Router) + React 19 + @ilg-platform/ui-toolkit"
+deploy: cloud-run         # DEV ONLY, deliberately — no prod stage exists
+observability: none
+
+interfaces:
+  inbound: [http]                 # the dashboard itself; single shared basic-auth login
+  outbound: [github-api]           # read-only: pulls, reviews, check-runs, actions/runs, jobs, logs
+
+key_paths:
+  - code/lib/github/api.ts          # the ONE cached GitHub fetch every read goes through — read before adding an endpoint
+  - code/lib/github/service.ts      # shaping/business logic over the cached reads
+  - code/middleware.ts              # the single auth gate over all routes
+  - wishlist.md                     # parked features + why — check before proposing something "new"
+  - CLAUDE.md                       # exceptionally thorough product philosophy + gotchas
+
+note: >
+  Dev-only by design (no prod.tfvars, no prod deploy stage) — this is an
+  internal tool, not a gap. No tests at all (`pnpm test` is an echo);
+  verification is manual: lint + build:check + a real login + Playwright
+  screenshot, explicitly covering soft navigation (a real prod-breaking
+  head-reconciliation bug once passed every full-page-load smoke test).
+  Heavy, closely-tracked @ilg-platform/ui-toolkit consumer — cross-check
+  the known SelectTrigger icon-stacking bug (see ui-toolkit's
+  known-context) if this dashboard renders any Select with icon options.
+
+runtime:
+  package_manager: "pnpm@9.15.4"
+  node: "22"
+  terraform: "1.9.0"
+commands:
+  root: "code/"
+  gate: ["test", "lint:fix", "build:check"]
+  missing: ["build:check:tests"]
+commands_verified: 2026-09-04
+commands_verified_sha: 9015870
+commands_verified_paths: [code/package.json, mise.toml]
+onboarded: 2026-08-24

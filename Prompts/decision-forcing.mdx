@@ -1,0 +1,75 @@
+---
+type: prompt-tool
+id: decision-forcing
+title: Decision forcing
+area: decisions
+tags: [prompt-tool, decisions]
+version: 1
+queries:
+  decisions:
+    label: Open decisions, newest first
+    from: entries
+    kind: [plan-decision, programme-decision]
+    limit: 8
+  plans:
+    label: Work the decision blocks
+    type: plan
+    status: { in: [draft, active, blocked] }
+    sort: [[updated, desc]]
+    fields: [title, excerpt]
+    limit: 5
+  programmes:
+    label: Programme open decisions
+    type: programme
+    sort: [[updated, desc]]
+    fields: [title, 'section:Open decisions']
+    limit: 4
+---
+
+# Decision forcing
+
+An open question, out as a decision record in the schema `wp decide --record` writes:
+Context, Options considered, Consequences, Confirmation. A record states what was decided
+then — it is never wrong, only superseded.
+
+<PromptBuilder
+  id="decision-forcing"
+  fields={[
+    { name: 'decision', label: 'The question, as you would say it out loud', kind: 'textarea', required: true },
+    { name: 'lean', label: 'Where you lean, and why', kind: 'textarea' },
+    { name: 'options', label: 'Options you can already see', kind: 'textarea' },
+    { name: 'deadline', label: 'Decide by', kind: 'text', placeholder: 'YYYY-MM-DD' },
+    { name: 'who_decides', label: 'Who actually decides', kind: 'text' }
+  ]}
+  template={`You are forcing one open decision to a written record. Use only the context below.
+The question: {{decision}}
+{{#if lean}}Where I lean, and why: {{lean}}{{/if}}
+{{#if options}}Options I can see: {{options}}{{/if}}
+{{#if deadline}}Decide by: {{deadline}}{{/if}}
+{{#if who_decides}}Who actually decides: {{who_decides}}{{/if}}
+Today: {{today}}.
+
+## Context (bounded; sensitive notes excluded)
+{{context}}
+
+## Ask
+Draft the record in exactly this shape and nothing else:
+
+# The decision, stated as a claim rather than a question
+
+## Context
+What forced a choice. Two or three sentences, citing context ids.
+
+## Options considered
+The chosen one first, then each rejected one, each with its because.
+
+## Consequences
+What this buys, and the cost being accepted.
+
+## Confirmation
+The signal in production that would show this was wrong.
+
+Then one line below the record: the command to file it, as
+wp decide --record SERVICE --title "the claim" --ticket TICKET
+If the context does not support a call, name the single fact that would settle it instead of hedging the record into something unfalsifiable.`}
+/>

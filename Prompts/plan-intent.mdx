@@ -1,0 +1,57 @@
+---
+type: prompt-tool
+id: plan-intent
+title: Plan intent
+area: planning
+tags: [prompt-tool, planning]
+version: 1
+queries:
+  overviews:
+    label: Service overviews
+    type: waypoint
+    where: { 'meta.docKind': { eq: overview } }
+    sort: [[container, asc]]
+    fields: [title, excerpt]
+    limit: 12
+---
+
+# Plan intent
+
+The self-contained brief a fresh planning agent needs: intent, the repo to read, and the
+service overview. It withholds known-context, the work ledger and the explainers on
+purpose — that read is worth having precisely because the vault's history has not
+coloured it, and the cross-check comes afterwards. Untick every service but the one.
+
+<PromptBuilder
+  id="plan-intent"
+  fields={[
+    { name: 'ticket', label: 'Ticket', kind: 'text', placeholder: 'FUSE-1234 or none' },
+    { name: 'intent', label: 'The change, in your own words', kind: 'textarea', required: true },
+    { name: 'observable_outcome', label: 'The observable outcome that proves it', kind: 'textarea' },
+    { name: 'repo_path', label: 'Repo or worktree to inspect', kind: 'text', placeholder: '~/code/fuse/<repo>' },
+    { name: 'key_paths', label: 'Key paths to start from', kind: 'text' },
+    { name: 'constraints', label: 'Constraints it must respect', kind: 'textarea' }
+  ]}
+  template={`You are drafting the implementation plan for one piece of work. You have no access to my earlier conversation, so this brief is self-contained.
+
+Ticket: {{ticket}}
+Intent: {{intent}}
+{{#if observable_outcome}}The observable outcome that proves it: {{observable_outcome}}{{/if}}
+{{#if repo_path}}Repo to inspect: {{repo_path}}{{/if}}
+{{#if key_paths}}Starting paths — a starting point, not a boundary: {{key_paths}}{{/if}}
+{{#if constraints}}Constraints: {{constraints}}{{/if}}
+Today: {{today}}.
+
+## Service context, deliberately thin
+{{context.overviews}}
+
+## Ask
+Read the real source at that repo and follow it where it actually leads.
+1. The critical files and boundaries this touches.
+2. A numbered sequence of increments, each independently implementable and verifiable, with the verification named inline. Prefer three to seven; if it needs more, say the work is too big to be one plan.
+3. The trade-offs you considered, and why you rejected the ones you rejected.
+State every assumption you had to make as an assumption.
+
+## What has been withheld, and why
+You have the service overview and nothing else. Its known-context, work ledger and explainers exist and are being kept from you on purpose: this read is valuable because the vault's own history has not biased it, and that cross-check runs after you report. Do not ask for them, and do not guess at what they say.`}
+/>

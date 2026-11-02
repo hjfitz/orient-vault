@@ -1,0 +1,1561 @@
+{
+  "audio": "/home/hjf/.local/state/orient/scribe/20261029-153138-d1e2/audio.wav",
+  "seconds": 443.8275,
+  "config": {
+    "ModelDir": "/home/hjf/.local/share/orient-scribe/models",
+    "ASR": "parakeet",
+    "Embedding": "nemo_en_titanet_small.onnx",
+    "Threshold": 1,
+    "Speakers": 0,
+    "WindowShift": 0.1,
+    "VAD": 0.35,
+    "Threads": 4
+  },
+  "loadNs": 3602192037,
+  "call": true,
+  "channels": {
+    "me": {
+      "gain": 6.2330434782608695,
+      "regions": [
+        {
+          "start": 77.478,
+          "end": 78
+        },
+        {
+          "start": 80.358,
+          "end": 91.088
+        },
+        {
+          "start": 91.494,
+          "end": 96.016
+        },
+        {
+          "start": 104.614,
+          "end": 106.224
+        },
+        {
+          "start": 107.334,
+          "end": 129.948
+        },
+        {
+          "start": 136.294,
+          "end": 136.752
+        },
+        {
+          "start": 240.038,
+          "end": 248.112
+        },
+        {
+          "start": 283.366,
+          "end": 285.2
+        },
+        {
+          "start": 393.478,
+          "end": 397.648
+        },
+        {
+          "start": 401.958,
+          "end": 402.48
+        },
+        {
+          "start": 405.03,
+          "end": 419.568
+        },
+        {
+          "start": 425.766,
+          "end": 427.024
+        },
+        {
+          "start": 429.446,
+          "end": 431.568
+        },
+        {
+          "start": 432.038,
+          "end": 442.064
+        }
+      ],
+      "turns": [
+        {
+          "start": 79.83284759521484,
+          "end": 95.39159393310547,
+          "speaker": 1
+        },
+        {
+          "start": 104.47034454345703,
+          "end": 128.1966094970703,
+          "speaker": 1
+        },
+        {
+          "start": 128.1966094970703,
+          "end": 129.7322235107422,
+          "speaker": 0
+        },
+        {
+          "start": 177.03285217285156,
+          "end": 183.71536254882812,
+          "speaker": 0
+        },
+        {
+          "start": 185.26785278320312,
+          "end": 186.85411071777344,
+          "speaker": 0
+        },
+        {
+          "start": 235.25160217285156,
+          "end": 235.96035766601562,
+          "speaker": 2
+        },
+        {
+          "start": 238.44097900390625,
+          "end": 245.9672393798828,
+          "speaker": 2
+        },
+        {
+          "start": 270.6216125488281,
+          "end": 273.979736328125,
+          "speaker": 0
+        },
+        {
+          "start": 277.03411865234375,
+          "end": 282.1472473144531,
+          "speaker": 0
+        },
+        {
+          "start": 282.839111328125,
+          "end": 288.9647216796875,
+          "speaker": 0
+        },
+        {
+          "start": 305.0634765625,
+          "end": 316.97723388671875,
+          "speaker": 0
+        },
+        {
+          "start": 338.0372314453125,
+          "end": 338.3747253417969,
+          "speaker": 0
+        },
+        {
+          "start": 342.22222900390625,
+          "end": 347.1497497558594,
+          "speaker": 0
+        },
+        {
+          "start": 393.3197326660156,
+          "end": 394.906005859375,
+          "speaker": 2
+        },
+        {
+          "start": 404.9635009765625,
+          "end": 412.8609924316406,
+          "speaker": 1
+        },
+        {
+          "start": 409.57037353515625,
+          "end": 419.07098388671875,
+          "speaker": 2
+        },
+        {
+          "start": 416.53973388671875,
+          "end": 416.9109802246094,
+          "speaker": 1
+        },
+        {
+          "start": 422.51348876953125,
+          "end": 423.22222900390625,
+          "speaker": 2
+        },
+        {
+          "start": 425.2135009765625,
+          "end": 439.1353759765625,
+          "speaker": 2
+        },
+        {
+          "start": 438.9834899902344,
+          "end": 440.43475341796875,
+          "speaker": 1
+        },
+        {
+          "start": 440.43475341796875,
+          "end": 441.98724365234375,
+          "speaker": 2
+        }
+      ],
+      "utterances": [
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 77.478,
+          "end": 78,
+          "text": "Okay."
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 80.358,
+          "end": 91.088,
+          "text": "Nothing outside of what you've mentioned. I mean like, yeah, all of this stuff is pretty well tied to where everything lands and how that kind of travels through views. So it is..."
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 91.494,
+          "end": 96.016,
+          "text": "Yeah, I guess safe to say it's not a trivial change that can be made here."
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 104.614,
+          "end": 106.224,
+          "text": "Try that. Is that any better?"
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 107.334,
+          "end": 128.1966094970703,
+          "text": "Excellent, yeah. I mean as I was saying, um it is look, you you've covered all of the rather detailed jack like the stuff, it's all pretty tightly coupled to where stuff gets um uploaded to, so it would be a pretty non-trivial like piece of work to go and change that and would like adversely impacts any kind of integration timelines."
+        },
+        {
+          "channel": "me",
+          "speaker": 0,
+          "start": 128.1966094970703,
+          "end": 129.948,
+          "text": "Yeah."
+        },
+        {
+          "channel": "me",
+          "speaker": 0,
+          "start": 136.294,
+          "end": 136.752,
+          "text": ""
+        },
+        {
+          "channel": "me",
+          "speaker": 2,
+          "start": 240.038,
+          "end": 248.112,
+          "text": ""
+        },
+        {
+          "channel": "me",
+          "speaker": 0,
+          "start": 283.366,
+          "end": 285.2,
+          "text": ""
+        },
+        {
+          "channel": "me",
+          "speaker": 2,
+          "start": 393.478,
+          "end": 397.648,
+          "text": "Yeah, maybe I'll stop checking off a little bit more button"
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 401.958,
+          "end": 402.48,
+          "text": "Mm."
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 405.03,
+          "end": 412.8609924316406,
+          "text": "Yeah, I'm afraid it's public key crypto oil for the SFTP service. Um that that's what we offer as much as drink plan advice."
+        },
+        {
+          "channel": "me",
+          "speaker": 2,
+          "start": 412.8609924316406,
+          "end": 419.568,
+          "text": "Undersized man. Uh yeah, you're putting a lot of pressure on that. That's catching nicely."
+        },
+        {
+          "channel": "me",
+          "speaker": 2,
+          "start": 425.766,
+          "end": 427.024,
+          "text": "box cutter then"
+        },
+        {
+          "channel": "me",
+          "speaker": 2,
+          "start": 429.446,
+          "end": 431.568,
+          "text": "our knowing is more than"
+        },
+        {
+          "channel": "me",
+          "speaker": 2,
+          "start": 432.038,
+          "end": 439.1353759765625,
+          "text": "Yeah with Carpy. Yeah. Just cuts on just so that the wheels run outside that you need to move generally and then you could"
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 439.1353759765625,
+          "end": 440.43475341796875,
+          "text": "Excellent. Cheers, guys."
+        },
+        {
+          "channel": "me",
+          "speaker": 2,
+          "start": 440.43475341796875,
+          "end": 442.064,
+          "text": "I mean you get a cheek."
+        }
+      ],
+      "timings": {
+        "vad": 1724719260,
+        "diarization": 24411433703,
+        "asr": 8653191542
+      }
+    },
+    "them": {
+      "gain": 1.4091165990907972,
+      "regions": [
+        {
+          "start": 2.374,
+          "end": 3.856
+        },
+        {
+          "start": 4.294,
+          "end": 23.056
+        },
+        {
+          "start": 23.686,
+          "end": 25.584
+        },
+        {
+          "start": 27.078,
+          "end": 37.648
+        },
+        {
+          "start": 38.15,
+          "end": 43.216
+        },
+        {
+          "start": 43.75,
+          "end": 48.816
+        },
+        {
+          "start": 49.574,
+          "end": 57.104
+        },
+        {
+          "start": 57.67,
+          "end": 77.724
+        },
+        {
+          "start": 96.55,
+          "end": 99.44
+        },
+        {
+          "start": 99.814,
+          "end": 100.176
+        },
+        {
+          "start": 106.598,
+          "end": 107.28
+        },
+        {
+          "start": 132.07,
+          "end": 144.496
+        },
+        {
+          "start": 145.094,
+          "end": 147.76
+        },
+        {
+          "start": 148.198,
+          "end": 156.752
+        },
+        {
+          "start": 157.222,
+          "end": 157.712
+        },
+        {
+          "start": 158.342,
+          "end": 159.248
+        },
+        {
+          "start": 160.934,
+          "end": 161.36
+        },
+        {
+          "start": 162.31,
+          "end": 174.928
+        },
+        {
+          "start": 176.678,
+          "end": 179.856
+        },
+        {
+          "start": 180.262,
+          "end": 183.408
+        },
+        {
+          "start": 183.782,
+          "end": 187.984
+        },
+        {
+          "start": 190.374,
+          "end": 210.3
+        },
+        {
+          "start": 210.886,
+          "end": 217.872
+        },
+        {
+          "start": 218.566,
+          "end": 225.68
+        },
+        {
+          "start": 226.95,
+          "end": 230.8
+        },
+        {
+          "start": 231.718,
+          "end": 232.688
+        },
+        {
+          "start": 233.638,
+          "end": 247.12
+        },
+        {
+          "start": 247.782,
+          "end": 248.4
+        },
+        {
+          "start": 248.774,
+          "end": 250.096
+        },
+        {
+          "start": 250.662,
+          "end": 255.472
+        },
+        {
+          "start": 256.166,
+          "end": 256.56
+        },
+        {
+          "start": 262.662,
+          "end": 273.84
+        },
+        {
+          "start": 274.566,
+          "end": 280.88
+        },
+        {
+          "start": 282.31,
+          "end": 284.592
+        },
+        {
+          "start": 285.158,
+          "end": 285.808
+        },
+        {
+          "start": 286.214,
+          "end": 288.336
+        },
+        {
+          "start": 291.078,
+          "end": 293.392
+        },
+        {
+          "start": 294.118,
+          "end": 304.208
+        },
+        {
+          "start": 305.062,
+          "end": 309.04
+        },
+        {
+          "start": 309.542,
+          "end": 322.16
+        },
+        {
+          "start": 322.758,
+          "end": 323.472
+        },
+        {
+          "start": 328.23,
+          "end": 328.72
+        },
+        {
+          "start": 329.83,
+          "end": 334.352
+        },
+        {
+          "start": 335.558,
+          "end": 338.064
+        },
+        {
+          "start": 339.718,
+          "end": 345.008
+        },
+        {
+          "start": 345.446,
+          "end": 346.8
+        },
+        {
+          "start": 347.686,
+          "end": 359.024
+        },
+        {
+          "start": 359.398,
+          "end": 361.616
+        },
+        {
+          "start": 362.182,
+          "end": 362.768
+        },
+        {
+          "start": 363.526,
+          "end": 373.776
+        },
+        {
+          "start": 374.15,
+          "end": 374.832
+        },
+        {
+          "start": 375.43,
+          "end": 375.824
+        },
+        {
+          "start": 376.358,
+          "end": 376.848
+        },
+        {
+          "start": 377.798,
+          "end": 384.432
+        },
+        {
+          "start": 384.998,
+          "end": 386.8
+        },
+        {
+          "start": 388.006,
+          "end": 390.096
+        },
+        {
+          "start": 392.102,
+          "end": 396.432
+        },
+        {
+          "start": 397.158,
+          "end": 399.728
+        },
+        {
+          "start": 402.246,
+          "end": 404.752
+        },
+        {
+          "start": 405.67,
+          "end": 406.16
+        },
+        {
+          "start": 413.83,
+          "end": 418.352
+        },
+        {
+          "start": 420.902,
+          "end": 425.776
+        },
+        {
+          "start": 427.43,
+          "end": 432.816
+        },
+        {
+          "start": 435.334,
+          "end": 441.744
+        },
+        {
+          "start": 442.758,
+          "end": 443.216
+        }
+      ],
+      "turns": [
+        {
+          "start": 2.3597187995910645,
+          "end": 25.545970916748047,
+          "speaker": 0
+        },
+        {
+          "start": 17.108470916748047,
+          "end": 17.513469696044922,
+          "speaker": 0
+        },
+        {
+          "start": 27.064720153808594,
+          "end": 48.816593170166016,
+          "speaker": 2
+        },
+        {
+          "start": 35.451595306396484,
+          "end": 35.94096755981445,
+          "speaker": 0
+        },
+        {
+          "start": 49.52534484863281,
+          "end": 77.6897201538086,
+          "speaker": 2
+        },
+        {
+          "start": 96.5053482055664,
+          "end": 100.13346862792969,
+          "speaker": 2
+        },
+        {
+          "start": 106.52909851074219,
+          "end": 107.2884750366211,
+          "speaker": 2
+        },
+        {
+          "start": 132.14535522460938,
+          "end": 156.61410522460938,
+          "speaker": 2
+        },
+        {
+          "start": 157.1709747314453,
+          "end": 157.7109832763672,
+          "speaker": 2
+        },
+        {
+          "start": 158.21722412109375,
+          "end": 159.21286010742188,
+          "speaker": 2
+        },
+        {
+          "start": 160.917236328125,
+          "end": 161.28848266601562,
+          "speaker": 5
+        },
+        {
+          "start": 162.26722717285156,
+          "end": 174.9572296142578,
+          "speaker": 5
+        },
+        {
+          "start": 176.6278533935547,
+          "end": 187.98472595214844,
+          "speaker": 5
+        },
+        {
+          "start": 190.04348754882812,
+          "end": 210.17535400390625,
+          "speaker": 2
+        },
+        {
+          "start": 210.8166046142578,
+          "end": 217.85348510742188,
+          "speaker": 2
+        },
+        {
+          "start": 218.51161193847656,
+          "end": 225.66661071777344,
+          "speaker": 2
+        },
+        {
+          "start": 226.93223571777344,
+          "end": 230.7797393798828,
+          "speaker": 5
+        },
+        {
+          "start": 231.65724182128906,
+          "end": 232.66973876953125,
+          "speaker": 5
+        },
+        {
+          "start": 233.5472412109375,
+          "end": 247.11473083496094,
+          "speaker": 2
+        },
+        {
+          "start": 247.7559814453125,
+          "end": 250.0509796142578,
+          "speaker": 5
+        },
+        {
+          "start": 250.62474060058594,
+          "end": 255.43411254882812,
+          "speaker": 2
+        },
+        {
+          "start": 252.93661499023438,
+          "end": 253.27410888671875,
+          "speaker": 5
+        },
+        {
+          "start": 254.3372344970703,
+          "end": 255.417236328125,
+          "speaker": 5
+        },
+        {
+          "start": 256.15972900390625,
+          "end": 256.4634704589844,
+          "speaker": 2
+        },
+        {
+          "start": 258.11724853515625,
+          "end": 258.4547424316406,
+          "speaker": 5
+        },
+        {
+          "start": 262.6397399902344,
+          "end": 280.89849853515625,
+          "speaker": 5
+        },
+        {
+          "start": 282.2822265625,
+          "end": 288.3066101074219,
+          "speaker": 5
+        },
+        {
+          "start": 291.0403747558594,
+          "end": 304.2028503417969,
+          "speaker": 5
+        },
+        {
+          "start": 305.02972412109375,
+          "end": 322.10723876953125,
+          "speaker": 2
+        },
+        {
+          "start": 305.4010009765625,
+          "end": 306.3797302246094,
+          "speaker": 5
+        },
+        {
+          "start": 314.4291076660156,
+          "end": 314.7834777832031,
+          "speaker": 2
+        },
+        {
+          "start": 322.74847412109375,
+          "end": 323.2041015625,
+          "speaker": 2
+        },
+        {
+          "start": 328.1991271972656,
+          "end": 338.0541076660156,
+          "speaker": 5
+        },
+        {
+          "start": 339.8091125488281,
+          "end": 346.8291015625,
+          "speaker": 5
+        },
+        {
+          "start": 347.3016052246094,
+          "end": 361.5947265625,
+          "speaker": 2
+        },
+        {
+          "start": 362.151611328125,
+          "end": 362.7928771972656,
+          "speaker": 2
+        },
+        {
+          "start": 363.5016174316406,
+          "end": 374.84161376953125,
+          "speaker": 2
+        },
+        {
+          "start": 375.39849853515625,
+          "end": 376.7822265625,
+          "speaker": 2
+        },
+        {
+          "start": 377.760986328125,
+          "end": 386.8228759765625,
+          "speaker": 5
+        },
+        {
+          "start": 387.98724365234375,
+          "end": 390.09661865234375,
+          "speaker": 5
+        },
+        {
+          "start": 392.07098388671875,
+          "end": 399.7153625488281,
+          "speaker": 5
+        },
+        {
+          "start": 402.26348876953125,
+          "end": 404.760986328125,
+          "speaker": 2
+        },
+        {
+          "start": 405.5878601074219,
+          "end": 406.1784973144531,
+          "speaker": 2
+        },
+        {
+          "start": 413.8059997558594,
+          "end": 418.29473876953125,
+          "speaker": 5
+        },
+        {
+          "start": 420.8597412109375,
+          "end": 425.702880859375,
+          "speaker": 5
+        },
+        {
+          "start": 426.9853820800781,
+          "end": 432.7903747558594,
+          "speaker": 0
+        },
+        {
+          "start": 429.8372497558594,
+          "end": 430.2253723144531,
+          "speaker": 5
+        },
+        {
+          "start": 429.8541259765625,
+          "end": 430.24224853515625,
+          "speaker": 0
+        },
+        {
+          "start": 435.2541198730469,
+          "end": 438.32537841796875,
+          "speaker": 0
+        },
+        {
+          "start": 436.14849853515625,
+          "end": 436.7559814453125,
+          "speaker": 0
+        },
+        {
+          "start": 437.7516174316406,
+          "end": 441.4472351074219,
+          "speaker": 0
+        },
+        {
+          "start": 437.8528747558594,
+          "end": 438.4434814453125,
+          "speaker": 0
+        },
+        {
+          "start": 439.25347900390625,
+          "end": 442.96600341796875,
+          "speaker": 0
+        }
+      ],
+      "utterances": [
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 2.374,
+          "end": 3.856,
+          "text": "Indeed, indeed."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 4.294,
+          "end": 23.056,
+          "text": "Lee's going to run a few minutes late so so we can possibly make a start without him. I'm the least qualified person to speak about anything to have SFTP or folders, so I'll just sit in the background and uh yeah, observe. So I don't know, Jack or Harry, if you if you want to start off from where we are on on our side and then just try and"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 23.686,
+          "end": 25.584,
+          "text": "Agree the approach and the steps forward."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 27.078,
+          "end": 37.648,
+          "text": "Yeah, I guess so. Darren sent over a question in terms of I think you guys asked around the routing for the files between returns and goods in"
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 38.15,
+          "end": 43.216,
+          "text": "Um because obviously they use the des adv message type. Um"
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 43.75,
+          "end": 48.816,
+          "text": "And Eddie Com's inability to kind of put those into two separate folders. So."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 49.574,
+          "end": 57.104,
+          "text": "I spoke with Harry and the team. Harry's the lead engineer on Fuse, the integration platform we're plugging you guys into."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 57.67,
+          "end": 77.724,
+          "text": "And the challenge from our standpoint is to take them in the same folder. And I'll let Harry add all the technical detail and the explanation behind it. But it essentially would be a substantial rebuild of our integration platform just because of how it segments today. Harry, I don't know if you've got anything additional to add to that."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 96.55,
+          "end": 99.44,
+          "text": "Y your microphone's a bit quiet, mate. Struggled to hear you there."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 99.814,
+          "end": 100.176,
+          "text": "Mm-hmm."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 106.598,
+          "end": 107.28,
+          "text": "Much better."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 132.07,
+          "end": 144.496,
+          "text": "Yeah, thanks, Harry. So I think the the purpose of the call really wanted to explore what our options are. Obviously, you know, we can go do a more detailed assessment on the fuse side, but I'm conscious we're on tight deadlines here and"
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 145.094,
+          "end": 147.76,
+          "text": "Want to get CT live for March."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 148.198,
+          "end": 156.752,
+          "text": "But also exploring the possibility of a way we can solve this problem up the chain, either at the SAP level or at the EDICOM level."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 157.222,
+          "end": 157.712,
+          "text": "Um"
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 158.342,
+          "end": 159.248,
+          "text": "Get around this problem."
+        },
+        {
+          "channel": "them",
+          "speaker": 5,
+          "start": 160.934,
+          "end": 161.36,
+          "text": "And"
+        },
+        {
+          "channel": "them",
+          "speaker": 5,
+          "start": 162.31,
+          "end": 174.928,
+          "text": "So because we we are going to send you uh a lot of ASNs, no, a lot of the sadive type of messages. You are saying that you are not able to"
+        },
+        {
+          "channel": "them",
+          "speaker": 5,
+          "start": 176.678,
+          "end": 179.856,
+          "text": "handle those EDI messages differently."
+        },
+        {
+          "channel": "them",
+          "speaker": 5,
+          "start": 180.262,
+          "end": 183.408,
+          "text": "based on the on the content you"
+        },
+        {
+          "channel": "them",
+          "speaker": 5,
+          "start": 183.782,
+          "end": 187.984,
+          "text": "You need to have uh each one of them in a separate folder."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 190.374,
+          "end": 210.3,
+          "text": "A little bit. So if it's a goods in, so if it's an advanced shipping notice, just generally, i.e., you're booking, stocking, or a transfer order along those lines, that can go into the purchase order folder and we ingest that. But because returns go through a different flow in the warehouse management system, even though it is like an ASN, to your point."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 210.886,
+          "end": 217.872,
+          "text": "We land it as a separate type and it goes through a separate flow, which is the separate folder essentially."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 218.566,
+          "end": 225.68,
+          "text": "Which is where the challenge lies for us, is if it lands in that goods in folder, Fuse will treat it as a goods in rather than a return."
+        },
+        {
+          "channel": "them",
+          "speaker": 5,
+          "start": 226.95,
+          "end": 230.8,
+          "text": "Okay, so it's only for the returns that you need to separate from"
+        },
+        {
+          "channel": "them",
+          "speaker": 5,
+          "start": 231.718,
+          "end": 232.688,
+          "text": "from the other ones."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 233.638,
+          "end": 247.12,
+          "text": "I think returns, it might be good to check work orders as well, if that's dependent on the message type there. I don't have that off the top of my head, sorry, but if that's a similar message type, that may be another one we need to look to split as well."
+        },
+        {
+          "channel": "them",
+          "speaker": 5,
+          "start": 247.782,
+          "end": 248.4,
+          "text": "Which one?"
+        },
+        {
+          "channel": "them",
+          "speaker": 5,
+          "start": 248.774,
+          "end": 250.096,
+          "text": "I I didn't understand."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 250.662,
+          "end": 255.472,
+          "text": "work orders. So this is like when you need kitting done essentially."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 256.166,
+          "end": 256.56,
+          "text": "Um"
+        },
+        {
+          "channel": "them",
+          "speaker": 5,
+          "start": 262.662,
+          "end": 273.84,
+          "text": "Okay, well uh I can I can talk to Ericom since those messages kitting and returns are they come from a different IDOC from SAP."
+        },
+        {
+          "channel": "them",
+          "speaker": 5,
+          "start": 274.566,
+          "end": 280.88,
+          "text": "Maybe if they can do something, I don't know, I will have to talk to them again."
+        },
+        {
+          "channel": "them",
+          "speaker": 5,
+          "start": 282.31,
+          "end": 284.592,
+          "text": "to see if those two can be"
+        },
+        {
+          "channel": "them",
+          "speaker": 5,
+          "start": 285.158,
+          "end": 285.808,
+          "text": "Rooted."
+        },
+        {
+          "channel": "them",
+          "speaker": 5,
+          "start": 286.214,
+          "end": 288.336,
+          "text": "So a different folder."
+        },
+        {
+          "channel": "them",
+          "speaker": 5,
+          "start": 291.078,
+          "end": 293.392,
+          "text": "It should be in case the kitting"
+        },
+        {
+          "channel": "them",
+          "speaker": 5,
+          "start": 294.118,
+          "end": 304.208,
+          "text": "You in case you need it in a different folder, it should be a different one. So we you we will have three different ones for the same EDI message, which is the salibre."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 305.062,
+          "end": 309.04,
+          "text": "Yeah, so in in Fuse we have uh"
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 309.542,
+          "end": 322.16,
+          "text": "I think the whole folder structure is on an email somewhere, but it's like create underscore work orders, create underscore purchase order, create underscore return goods authorization. Essentially, that's how we do the segmentation."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 322.758,
+          "end": 323.472,
+          "text": "Plus"
+        },
+        {
+          "channel": "them",
+          "speaker": 5,
+          "start": 328.23,
+          "end": 328.72,
+          "text": "Okay."
+        },
+        {
+          "channel": "them",
+          "speaker": 5,
+          "start": 329.83,
+          "end": 334.352,
+          "text": "Well, uh let me speak uh with Elikoma about it and I uh"
+        },
+        {
+          "channel": "them",
+          "speaker": 5,
+          "start": 335.558,
+          "end": 338.064,
+          "text": "I will come back to you on this."
+        },
+        {
+          "channel": "them",
+          "speaker": 5,
+          "start": 339.718,
+          "end": 345.008,
+          "text": "Yeah, if they can do anything or not, and if they don't"
+        },
+        {
+          "channel": "them",
+          "speaker": 5,
+          "start": 345.446,
+          "end": 346.8,
+          "text": "We talk again, but"
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 347.686,
+          "end": 359.024,
+          "text": "We can come back to the drawing board. I think an important thing to highlight is the egress leg. So the confirmations coming out, it's the same thing as well. So there's a separate folder for the confirmations. Hopefully that's"
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 359.398,
+          "end": 361.616,
+          "text": "less of an issue'cause it's just pulling butt."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 362.182,
+          "end": 362.768,
+          "text": "Um"
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 363.526,
+          "end": 373.776,
+          "text": "In terms of the passing and everything, when the files land, that's the same. So we they we don't need any comm to change the contents of the message or anything like that. It's just purely the landing it in the location."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 374.15,
+          "end": 374.832,
+          "text": "Yeah, really."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 375.43,
+          "end": 375.824,
+          "text": "Uh-huh."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 376.358,
+          "end": 376.848,
+          "text": "Okay."
+        },
+        {
+          "channel": "them",
+          "speaker": 5,
+          "start": 377.798,
+          "end": 384.432,
+          "text": "And about the connection, uh are you able to connect using AS two or"
+        },
+        {
+          "channel": "them",
+          "speaker": 5,
+          "start": 384.998,
+          "end": 386.8,
+          "text": "Or VAN or a ban?"
+        },
+        {
+          "channel": "them",
+          "speaker": 5,
+          "start": 388.006,
+          "end": 390.096,
+          "text": "Instead of SF TB or not?"
+        },
+        {
+          "channel": "them",
+          "speaker": 5,
+          "start": 392.102,
+          "end": 396.432,
+          "text": "because they are having trouble with this uh with with the key and then"
+        },
+        {
+          "channel": "them",
+          "speaker": 5,
+          "start": 397.158,
+          "end": 399.728,
+          "text": "not not connecting with user and password."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 402.246,
+          "end": 404.752,
+          "text": "Uh Harry, probably a question you could help with on that one."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 405.67,
+          "end": 406.16,
+          "text": "Tasking."
+        },
+        {
+          "channel": "them",
+          "speaker": 5,
+          "start": 413.83,
+          "end": 418.352,
+          "text": "Okay, so you didn't use AS two for example. You are not able to connect okay."
+        },
+        {
+          "channel": "them",
+          "speaker": 5,
+          "start": 420.902,
+          "end": 425.776,
+          "text": "Okay, so I will talk to Edicom and we'll come back."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 427.43,
+          "end": 432.816,
+          "text": "Sure, and yeah, if we need another call, just let me know. I'm more than happy to get something in the dio for us to discuss any sort of matters further."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 435.334,
+          "end": 441.744,
+          "text": "Okay, okay. Thank you. Lovely. All right. Have a good rest of your day. Thank you. Thank you."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 442.758,
+          "end": 443.216,
+          "text": "Uh-huh."
+        }
+      ],
+      "timings": {
+        "vad": 2158161730,
+        "diarization": 44363291816,
+        "asr": 32524911690
+      }
+    }
+  },
+  "lines": [
+    {
+      "who": "Speaker 1",
+      "start": 2.374,
+      "end": 25.584,
+      "text": "Indeed, indeed. Lee's going to run a few minutes late so so we can possibly make a start without him. I'm the least qualified person to speak about anything to have SFTP or folders, so I'll just sit in the background and uh yeah, observe. So I don't know, Jack or Harry, if you if you want to start off from where we are on on our side and then just try and Agree the approach and the steps forward."
+    },
+    {
+      "who": "Speaker 2",
+      "start": 27.078,
+      "end": 77.724,
+      "text": "Yeah, I guess so. Darren sent over a question in terms of I think you guys asked around the routing for the files between returns and goods in Um because obviously they use the des adv message type. Um And Eddie Com's inability to kind of put those into two separate folders. So. I spoke with Harry and the team. Harry's the lead engineer on Fuse, the integration platform we're plugging you guys into. And the challenge from our standpoint is to take them in the same folder. And I'll let Harry add all the technical detail and the explanation behind it. But it essentially would be a substantial rebuild of our integration platform just because of how it segments today. Harry, I don't know if you've got anything additional to add to that."
+    },
+    {
+      "who": "Room 1",
+      "start": 77.478,
+      "end": 78,
+      "text": "Okay."
+    },
+    {
+      "who": "Room 1",
+      "start": 80.358,
+      "end": 96.016,
+      "text": "Nothing outside of what you've mentioned. I mean like, yeah, all of this stuff is pretty well tied to where everything lands and how that kind of travels through views. So it is... Yeah, I guess safe to say it's not a trivial change that can be made here."
+    },
+    {
+      "who": "Speaker 2",
+      "start": 96.55,
+      "end": 100.176,
+      "text": "Y your microphone's a bit quiet, mate. Struggled to hear you there. Mm-hmm."
+    },
+    {
+      "who": "Room 1",
+      "start": 104.614,
+      "end": 106.224,
+      "text": "Try that. Is that any better?"
+    },
+    {
+      "who": "Speaker 2",
+      "start": 106.598,
+      "end": 107.28,
+      "text": "Much better."
+    },
+    {
+      "who": "Room 1",
+      "start": 107.334,
+      "end": 128.1966094970703,
+      "text": "Excellent, yeah. I mean as I was saying, um it is look, you you've covered all of the rather detailed jack like the stuff, it's all pretty tightly coupled to where stuff gets um uploaded to, so it would be a pretty non-trivial like piece of work to go and change that and would like adversely impacts any kind of integration timelines."
+    },
+    {
+      "who": "Room 2",
+      "start": 128.1966094970703,
+      "end": 129.948,
+      "text": "Yeah."
+    },
+    {
+      "who": "Speaker 2",
+      "start": 132.07,
+      "end": 159.248,
+      "text": "Yeah, thanks, Harry. So I think the the purpose of the call really wanted to explore what our options are. Obviously, you know, we can go do a more detailed assessment on the fuse side, but I'm conscious we're on tight deadlines here and Want to get CT live for March. But also exploring the possibility of a way we can solve this problem up the chain, either at the SAP level or at the EDICOM level. Um Get around this problem."
+    },
+    {
+      "who": "Speaker 3",
+      "start": 160.934,
+      "end": 174.928,
+      "text": "And So because we we are going to send you uh a lot of ASNs, no, a lot of the sadive type of messages. You are saying that you are not able to"
+    },
+    {
+      "who": "Speaker 3",
+      "start": 176.678,
+      "end": 187.984,
+      "text": "handle those EDI messages differently. based on the on the content you You need to have uh each one of them in a separate folder."
+    },
+    {
+      "who": "Speaker 2",
+      "start": 190.374,
+      "end": 225.68,
+      "text": "A little bit. So if it's a goods in, so if it's an advanced shipping notice, just generally, i.e., you're booking, stocking, or a transfer order along those lines, that can go into the purchase order folder and we ingest that. But because returns go through a different flow in the warehouse management system, even though it is like an ASN, to your point. We land it as a separate type and it goes through a separate flow, which is the separate folder essentially. Which is where the challenge lies for us, is if it lands in that goods in folder, Fuse will treat it as a goods in rather than a return."
+    },
+    {
+      "who": "Speaker 3",
+      "start": 226.95,
+      "end": 232.688,
+      "text": "Okay, so it's only for the returns that you need to separate from from the other ones."
+    },
+    {
+      "who": "Speaker 2",
+      "start": 233.638,
+      "end": 247.12,
+      "text": "I think returns, it might be good to check work orders as well, if that's dependent on the message type there. I don't have that off the top of my head, sorry, but if that's a similar message type, that may be another one we need to look to split as well."
+    },
+    {
+      "who": "Speaker 3",
+      "start": 247.782,
+      "end": 250.096,
+      "text": "Which one? I I didn't understand."
+    },
+    {
+      "who": "Speaker 2",
+      "start": 250.662,
+      "end": 256.56,
+      "text": "work orders. So this is like when you need kitting done essentially. Um"
+    },
+    {
+      "who": "Speaker 3",
+      "start": 262.662,
+      "end": 288.336,
+      "text": "Okay, well uh I can I can talk to Ericom since those messages kitting and returns are they come from a different IDOC from SAP. Maybe if they can do something, I don't know, I will have to talk to them again. to see if those two can be Rooted. So a different folder."
+    },
+    {
+      "who": "Speaker 3",
+      "start": 291.078,
+      "end": 304.208,
+      "text": "It should be in case the kitting You in case you need it in a different folder, it should be a different one. So we you we will have three different ones for the same EDI message, which is the salibre."
+    },
+    {
+      "who": "Speaker 2",
+      "start": 305.062,
+      "end": 323.472,
+      "text": "Yeah, so in in Fuse we have uh I think the whole folder structure is on an email somewhere, but it's like create underscore work orders, create underscore purchase order, create underscore return goods authorization. Essentially, that's how we do the segmentation. Plus"
+    },
+    {
+      "who": "Speaker 3",
+      "start": 328.23,
+      "end": 338.064,
+      "text": "Okay. Well, uh let me speak uh with Elikoma about it and I uh I will come back to you on this."
+    },
+    {
+      "who": "Speaker 3",
+      "start": 339.718,
+      "end": 346.8,
+      "text": "Yeah, if they can do anything or not, and if they don't We talk again, but"
+    },
+    {
+      "who": "Speaker 2",
+      "start": 347.686,
+      "end": 376.848,
+      "text": "We can come back to the drawing board. I think an important thing to highlight is the egress leg. So the confirmations coming out, it's the same thing as well. So there's a separate folder for the confirmations. Hopefully that's less of an issue'cause it's just pulling butt. Um In terms of the passing and everything, when the files land, that's the same. So we they we don't need any comm to change the contents of the message or anything like that. It's just purely the landing it in the location. Yeah, really. Uh-huh. Okay."
+    },
+    {
+      "who": "Speaker 3",
+      "start": 377.798,
+      "end": 390.096,
+      "text": "And about the connection, uh are you able to connect using AS two or Or VAN or a ban? Instead of SF TB or not?"
+    },
+    {
+      "who": "Speaker 3",
+      "start": 392.102,
+      "end": 396.432,
+      "text": "because they are having trouble with this uh with with the key and then"
+    },
+    {
+      "who": "Room 3",
+      "start": 393.478,
+      "end": 397.648,
+      "text": "Yeah, maybe I'll stop checking off a little bit more button"
+    },
+    {
+      "who": "Speaker 3",
+      "start": 397.158,
+      "end": 399.728,
+      "text": "not not connecting with user and password."
+    },
+    {
+      "who": "Room 1",
+      "start": 401.958,
+      "end": 402.48,
+      "text": "Mm."
+    },
+    {
+      "who": "Speaker 2",
+      "start": 402.246,
+      "end": 404.752,
+      "text": "Uh Harry, probably a question you could help with on that one."
+    },
+    {
+      "who": "Room 1",
+      "start": 405.03,
+      "end": 412.8609924316406,
+      "text": "Yeah, I'm afraid it's public key crypto oil for the SFTP service. Um that that's what we offer as much as drink plan advice."
+    },
+    {
+      "who": "Speaker 2",
+      "start": 405.67,
+      "end": 406.16,
+      "text": "Tasking."
+    },
+    {
+      "who": "Room 3",
+      "start": 412.8609924316406,
+      "end": 419.568,
+      "text": "Undersized man. Uh yeah, you're putting a lot of pressure on that. That's catching nicely."
+    },
+    {
+      "who": "Speaker 3",
+      "start": 413.83,
+      "end": 418.352,
+      "text": "Okay, so you didn't use AS two for example. You are not able to connect okay."
+    },
+    {
+      "who": "Speaker 3",
+      "start": 420.902,
+      "end": 425.776,
+      "text": "Okay, so I will talk to Edicom and we'll come back."
+    },
+    {
+      "who": "Room 3",
+      "start": 425.766,
+      "end": 427.024,
+      "text": "box cutter then"
+    },
+    {
+      "who": "Speaker 1",
+      "start": 427.43,
+      "end": 432.816,
+      "text": "Sure, and yeah, if we need another call, just let me know. I'm more than happy to get something in the dio for us to discuss any sort of matters further."
+    },
+    {
+      "who": "Room 3",
+      "start": 429.446,
+      "end": 439.1353759765625,
+      "text": "our knowing is more than Yeah with Carpy. Yeah. Just cuts on just so that the wheels run outside that you need to move generally and then you could"
+    },
+    {
+      "who": "Speaker 1",
+      "start": 435.334,
+      "end": 441.744,
+      "text": "Okay, okay. Thank you. Lovely. All right. Have a good rest of your day. Thank you. Thank you."
+    },
+    {
+      "who": "Room 1",
+      "start": 439.1353759765625,
+      "end": 440.43475341796875,
+      "text": "Excellent. Cheers, guys."
+    },
+    {
+      "who": "Room 3",
+      "start": 440.43475341796875,
+      "end": 442.064,
+      "text": "I mean you get a cheek."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 442.758,
+      "end": 443.216,
+      "text": "Uh-huh."
+    }
+  ]
+}

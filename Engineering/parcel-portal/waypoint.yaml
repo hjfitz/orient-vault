@@ -1,0 +1,48 @@
+# parcel-portal — Waypoint index. Cheap orientation only, never documentation.
+# Every value is a fact, a path, or a command — never a sentence. Anything needing a sentence
+# belongs in a doc. (No line cap: the old ~25-line one was exceeded by 22 of 26 files.)
+service: parcel-portal
+system: parcel-portal
+repo: /home/hjf/code/merak/parcel-portal
+github: ilg-merak/parcel-portal
+type: backend            # backend | frontend | library | infra
+owner: hjf
+language: [go, typescript]
+framework: [chi + oapi-codegen, sqlc + pgx, next.js + ui-toolkit]
+deploy: cloud-run        # svc + ui on Cloud Run; sftp on a MIG behind a TCP LB
+observability: datadog
+
+interfaces:
+  inbound: [http, pubsub, sftp]     # ui -> svc HTTP; GCS notification push; customer SFTP
+  outbound: [selector, gcs, cloud-sql, secret-manager]
+
+key_paths:
+  - apps/svc/openapi.yaml
+  - apps/svc/internal/core
+  - apps/svc/cmd/sftp
+  - apps/ui/src/app/(app)
+  - packages/label-print
+  - iac/projects
+
+runtime:
+  gcp: [ilg-merak-dev-b5e3, ilg-merak-prod-1be0]
+  region: us-central1
+  services: [svc-parcel-<env>, ui-parcel-<env>, sftp-parcel MIG]
+
+commands:
+  svc: "cd apps/svc && make check"                  # fmt, build, vet, race tests, lint, gen-check
+  svc-integration: "cd apps/svc && make deps-up && make test-integration"
+  svc-gen: "cd apps/svc && make gen"                # after openapi.yaml or SQL changes; bump info.version
+  ui: "cd apps/ui && pnpm run lint && pnpm run build:check && pnpm run build"
+  label-print: "cd packages/label-print && pnpm test"
+  missing: [build:check:tests]                      # Go + Next; the Node gate pair doesn't apply
+
+note: >
+  Programme state, gates and decisions live in Bifrost/Parcel Portal/, not here.
+  README.md and AGENTS.md at the repo root still describe svc-template; apps/svc/README.md
+  and docs/runbook.md are the real reference.
+
+onboarded: 2026-10-28
+commands_verified: 2026-10-29
+commands_verified_sha: 696cbd4
+commands_verified_paths: [apps/svc/go.mod, apps/ui/package.json, packages/label-print/package.json, mise.toml]

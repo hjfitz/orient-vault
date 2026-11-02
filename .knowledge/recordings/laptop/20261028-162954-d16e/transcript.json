@@ -1,0 +1,4042 @@
+{
+  "audio": "/home/hjf/.local/state/orient/scribe/20261028-162954-d16e/audio.wav",
+  "seconds": 783.3313125,
+  "config": {
+    "ModelDir": "/home/hjf/.local/share/orient-scribe/models",
+    "ASR": "parakeet",
+    "Embedding": "nemo_en_titanet_small.onnx",
+    "Threshold": 1,
+    "Speakers": 0,
+    "WindowShift": 0.1,
+    "VAD": 0.35,
+    "Threads": 4
+  },
+  "loadNs": 2479345188,
+  "call": true,
+  "echo": [
+    {
+      "channel": "me",
+      "speaker": 1,
+      "start": 33.094,
+      "end": 33.744,
+      "text": "Like uh"
+    },
+    {
+      "channel": "me",
+      "speaker": 1,
+      "start": 554.534,
+      "end": 554.928,
+      "text": "Yeah."
+    },
+    {
+      "channel": "me",
+      "speaker": 1,
+      "start": 756.806,
+      "end": 757.808,
+      "text": "Yeah."
+    }
+  ],
+  "channels": {
+    "me": {
+      "gain": 1.3977818403412552,
+      "regions": [
+        {
+          "start": 7.334,
+          "end": 7.696
+        },
+        {
+          "start": 31.238,
+          "end": 31.888
+        },
+        {
+          "start": 33.094,
+          "end": 33.744
+        },
+        {
+          "start": 48.966,
+          "end": 56.784
+        },
+        {
+          "start": 59.078,
+          "end": 59.888
+        },
+        {
+          "start": 73.766,
+          "end": 74.192
+        },
+        {
+          "start": 88.774,
+          "end": 92.72
+        },
+        {
+          "start": 94.278,
+          "end": 94.768
+        },
+        {
+          "start": 96.102,
+          "end": 96.592
+        },
+        {
+          "start": 99.206,
+          "end": 99.6
+        },
+        {
+          "start": 107.814,
+          "end": 108.24
+        },
+        {
+          "start": 134.662,
+          "end": 136.304
+        },
+        {
+          "start": 150.246,
+          "end": 155.6
+        },
+        {
+          "start": 168.454,
+          "end": 169.36
+        },
+        {
+          "start": 194.022,
+          "end": 194.384
+        },
+        {
+          "start": 196.166,
+          "end": 198.832
+        },
+        {
+          "start": 200.102,
+          "end": 202.416
+        },
+        {
+          "start": 205.478,
+          "end": 206.352
+        },
+        {
+          "start": 207.11,
+          "end": 208.976
+        },
+        {
+          "start": 210.406,
+          "end": 212.336
+        },
+        {
+          "start": 213.606,
+          "end": 214.256
+        },
+        {
+          "start": 214.886,
+          "end": 219.28
+        },
+        {
+          "start": 220.326,
+          "end": 221.008
+        },
+        {
+          "start": 223.142,
+          "end": 225.456
+        },
+        {
+          "start": 231.398,
+          "end": 233.264
+        },
+        {
+          "start": 234.502,
+          "end": 241.072
+        },
+        {
+          "start": 241.734,
+          "end": 243.6
+        },
+        {
+          "start": 245.766,
+          "end": 246.544
+        },
+        {
+          "start": 265.446,
+          "end": 265.904
+        },
+        {
+          "start": 281.734,
+          "end": 282.128
+        },
+        {
+          "start": 282.502,
+          "end": 284.368
+        },
+        {
+          "start": 287.942,
+          "end": 293.52
+        },
+        {
+          "start": 293.958,
+          "end": 295.408
+        },
+        {
+          "start": 296.326,
+          "end": 300.688
+        },
+        {
+          "start": 302.278,
+          "end": 302.704
+        },
+        {
+          "start": 303.462,
+          "end": 304.848
+        },
+        {
+          "start": 306.342,
+          "end": 313.872
+        },
+        {
+          "start": 319.206,
+          "end": 319.632
+        },
+        {
+          "start": 324.326,
+          "end": 327.024
+        },
+        {
+          "start": 330.79,
+          "end": 332.56
+        },
+        {
+          "start": 333.062,
+          "end": 333.904
+        },
+        {
+          "start": 334.374,
+          "end": 337.328
+        },
+        {
+          "start": 339.11,
+          "end": 341.84
+        },
+        {
+          "start": 349.446,
+          "end": 350.896
+        },
+        {
+          "start": 352.262,
+          "end": 359.152
+        },
+        {
+          "start": 360.166,
+          "end": 364.944
+        },
+        {
+          "start": 366.054,
+          "end": 366.704
+        },
+        {
+          "start": 370.726,
+          "end": 371.12
+        },
+        {
+          "start": 377.35,
+          "end": 377.744
+        },
+        {
+          "start": 380.806,
+          "end": 386.448
+        },
+        {
+          "start": 388.934,
+          "end": 389.328
+        },
+        {
+          "start": 400.71,
+          "end": 401.136
+        },
+        {
+          "start": 404.774,
+          "end": 406.992
+        },
+        {
+          "start": 408.038,
+          "end": 412.016
+        },
+        {
+          "start": 416.006,
+          "end": 417.04
+        },
+        {
+          "start": 424.742,
+          "end": 431.664
+        },
+        {
+          "start": 433.094,
+          "end": 433.936
+        },
+        {
+          "start": 438.15,
+          "end": 438.576
+        },
+        {
+          "start": 451.846,
+          "end": 453.584
+        },
+        {
+          "start": 455.014,
+          "end": 455.568
+        },
+        {
+          "start": 459.142,
+          "end": 466.32
+        },
+        {
+          "start": 466.886,
+          "end": 467.376
+        },
+        {
+          "start": 467.814,
+          "end": 470.832
+        },
+        {
+          "start": 479.142,
+          "end": 481.04
+        },
+        {
+          "start": 481.702,
+          "end": 488.816
+        },
+        {
+          "start": 489.606,
+          "end": 494.352
+        },
+        {
+          "start": 495.078,
+          "end": 500.656
+        },
+        {
+          "start": 502.63,
+          "end": 507.056
+        },
+        {
+          "start": 542.342,
+          "end": 543.216
+        },
+        {
+          "start": 543.59,
+          "end": 544.24
+        },
+        {
+          "start": 544.646,
+          "end": 552.336
+        },
+        {
+          "start": 554.534,
+          "end": 554.928
+        },
+        {
+          "start": 576.838,
+          "end": 583.184
+        },
+        {
+          "start": 609.446,
+          "end": 611.92
+        },
+        {
+          "start": 613.67,
+          "end": 615.024
+        },
+        {
+          "start": 615.846,
+          "end": 620.688
+        },
+        {
+          "start": 624.006,
+          "end": 627.184
+        },
+        {
+          "start": 628.486,
+          "end": 632.24
+        },
+        {
+          "start": 637.542,
+          "end": 638.032
+        },
+        {
+          "start": 642.374,
+          "end": 643.408
+        },
+        {
+          "start": 643.974,
+          "end": 646.48
+        },
+        {
+          "start": 646.982,
+          "end": 648.4
+        },
+        {
+          "start": 655.782,
+          "end": 666.576
+        },
+        {
+          "start": 696.838,
+          "end": 699.248
+        },
+        {
+          "start": 700.806,
+          "end": 703.888
+        },
+        {
+          "start": 704.614,
+          "end": 705.168
+        },
+        {
+          "start": 707.27,
+          "end": 708.464
+        },
+        {
+          "start": 709.542,
+          "end": 715.952
+        },
+        {
+          "start": 719.974,
+          "end": 720.624
+        },
+        {
+          "start": 721.35,
+          "end": 726.192
+        },
+        {
+          "start": 726.79,
+          "end": 729.04
+        },
+        {
+          "start": 729.574,
+          "end": 734.416
+        },
+        {
+          "start": 742.566,
+          "end": 750.16
+        },
+        {
+          "start": 751.014,
+          "end": 753.072
+        },
+        {
+          "start": 756.806,
+          "end": 757.808
+        },
+        {
+          "start": 768.614,
+          "end": 769.136
+        },
+        {
+          "start": 770.566,
+          "end": 775.12
+        },
+        {
+          "start": 777.862,
+          "end": 778.48
+        }
+      ],
+      "turns": [
+        {
+          "start": 7.304093837738037,
+          "end": 7.725968837738037,
+          "speaker": 1
+        },
+        {
+          "start": 31.148469924926758,
+          "end": 33.764095306396484,
+          "speaker": 1
+        },
+        {
+          "start": 47.314720153808594,
+          "end": 56.815345764160156,
+          "speaker": 1
+        },
+        {
+          "start": 59.0428466796875,
+          "end": 59.734718322753906,
+          "speaker": 1
+        },
+        {
+          "start": 73.7240982055664,
+          "end": 74.39909362792969,
+          "speaker": 1
+        },
+        {
+          "start": 88.74284362792969,
+          "end": 96.35346984863281,
+          "speaker": 1
+        },
+        {
+          "start": 99.18846893310547,
+          "end": 99.5428466796875,
+          "speaker": 1
+        },
+        {
+          "start": 107.77784729003906,
+          "end": 108.2503433227539,
+          "speaker": 1
+        },
+        {
+          "start": 113.8022232055664,
+          "end": 114.15660095214844,
+          "speaker": 1
+        },
+        {
+          "start": 133.56285095214844,
+          "end": 137.292236328125,
+          "speaker": 1
+        },
+        {
+          "start": 150.20159912109375,
+          "end": 155.58473205566406,
+          "speaker": 1
+        },
+        {
+          "start": 168.39285278320312,
+          "end": 169.23660278320312,
+          "speaker": 1
+        },
+        {
+          "start": 190.88723754882812,
+          "end": 191.3934783935547,
+          "speaker": 1
+        },
+        {
+          "start": 193.95848083496094,
+          "end": 194.38035583496094,
+          "speaker": 1
+        },
+        {
+          "start": 196.1184844970703,
+          "end": 202.34535217285156,
+          "speaker": 1
+        },
+        {
+          "start": 205.43348693847656,
+          "end": 221.02598571777344,
+          "speaker": 1
+        },
+        {
+          "start": 222.6122283935547,
+          "end": 225.2278594970703,
+          "speaker": 1
+        },
+        {
+          "start": 228.68724060058594,
+          "end": 228.99098205566406,
+          "speaker": 1
+        },
+        {
+          "start": 231.370361328125,
+          "end": 243.46974182128906,
+          "speaker": 1
+        },
+        {
+          "start": 245.68035888671875,
+          "end": 246.43972778320312,
+          "speaker": 1
+        },
+        {
+          "start": 257.7290954589844,
+          "end": 258.0666198730469,
+          "speaker": 1
+        },
+        {
+          "start": 265.3903503417969,
+          "end": 265.8966064453125,
+          "speaker": 1
+        },
+        {
+          "start": 271.4653625488281,
+          "end": 271.870361328125,
+          "speaker": 1
+        },
+        {
+          "start": 281.6916198730469,
+          "end": 284.3916015625,
+          "speaker": 1
+        },
+        {
+          "start": 287.8847351074219,
+          "end": 304.6584777832031,
+          "speaker": 1
+        },
+        {
+          "start": 306.29534912109375,
+          "end": 313.46722412109375,
+          "speaker": 1
+        },
+        {
+          "start": 319.1878662109375,
+          "end": 319.57598876953125,
+          "speaker": 1
+        },
+        {
+          "start": 324.3009948730469,
+          "end": 327.0178527832031,
+          "speaker": 1
+        },
+        {
+          "start": 330.61224365234375,
+          "end": 337.0247497558594,
+          "speaker": 1
+        },
+        {
+          "start": 339.0328674316406,
+          "end": 341.3953552246094,
+          "speaker": 1
+        },
+        {
+          "start": 349.3772277832031,
+          "end": 350.7778625488281,
+          "speaker": 1
+        },
+        {
+          "start": 352.2122497558594,
+          "end": 366.5559997558594,
+          "speaker": 1
+        },
+        {
+          "start": 370.7072448730469,
+          "end": 371.11224365234375,
+          "speaker": 1
+        },
+        {
+          "start": 377.3222351074219,
+          "end": 377.6934814453125,
+          "speaker": 1
+        },
+        {
+          "start": 380.61285400390625,
+          "end": 386.4516296386719,
+          "speaker": 1
+        },
+        {
+          "start": 388.86474609375,
+          "end": 389.25286865234375,
+          "speaker": 1
+        },
+        {
+          "start": 394.2647399902344,
+          "end": 394.6528625488281,
+          "speaker": 1
+        },
+        {
+          "start": 400.71099853515625,
+          "end": 401.0822448730469,
+          "speaker": 1
+        },
+        {
+          "start": 403.30975341796875,
+          "end": 412.0003662109375,
+          "speaker": 1
+        },
+        {
+          "start": 415.89849853515625,
+          "end": 416.80975341796875,
+          "speaker": 1
+        },
+        {
+          "start": 423.8972473144531,
+          "end": 431.4572448730469,
+          "speaker": 1
+        },
+        {
+          "start": 437.9203796386719,
+          "end": 438.5616149902344,
+          "speaker": 1
+        },
+        {
+          "start": 445.1934814453125,
+          "end": 445.5141296386719,
+          "speaker": 1
+        },
+        {
+          "start": 451.82537841796875,
+          "end": 455.55474853515625,
+          "speaker": 1
+        },
+        {
+          "start": 458.6766052246094,
+          "end": 470.6409912109375,
+          "speaker": 1
+        },
+        {
+          "start": 479.1291198730469,
+          "end": 506.88848876953125,
+          "speaker": 1
+        },
+        {
+          "start": 510.0272521972656,
+          "end": 510.3478698730469,
+          "speaker": 1
+        },
+        {
+          "start": 515.7816162109375,
+          "end": 516.1190795898438,
+          "speaker": 1
+        },
+        {
+          "start": 528.7584838867188,
+          "end": 529.1128540039062,
+          "speaker": 1
+        },
+        {
+          "start": 543.4903564453125,
+          "end": 552.3159790039062,
+          "speaker": 1
+        },
+        {
+          "start": 554.4928588867188,
+          "end": 554.8640747070312,
+          "speaker": 1
+        },
+        {
+          "start": 569.2247314453125,
+          "end": 569.5621948242188,
+          "speaker": 1
+        },
+        {
+          "start": 576.5484619140625,
+          "end": 582.9103393554688,
+          "speaker": 1
+        },
+        {
+          "start": 596.8322143554688,
+          "end": 597.1865844726562,
+          "speaker": 1
+        },
+        {
+          "start": 605.28662109375,
+          "end": 605.59033203125,
+          "speaker": 1
+        },
+        {
+          "start": 605.303466796875,
+          "end": 605.6240844726562,
+          "speaker": 1
+        },
+        {
+          "start": 609.0159912109375,
+          "end": 612.1884765625,
+          "speaker": 1
+        },
+        {
+          "start": 613.0322265625,
+          "end": 620.47412109375,
+          "speaker": 1
+        },
+        {
+          "start": 623.9503173828125,
+          "end": 632.0671997070312,
+          "speaker": 1
+        },
+        {
+          "start": 637.3153686523438,
+          "end": 637.9734497070312,
+          "speaker": 1
+        },
+        {
+          "start": 641.5172119140625,
+          "end": 648.2166137695312,
+          "speaker": 1
+        },
+        {
+          "start": 650.6128540039062,
+          "end": 651.0009765625,
+          "speaker": 1
+        },
+        {
+          "start": 654.0384521484375,
+          "end": 666.0703735351562,
+          "speaker": 1
+        },
+        {
+          "start": 674.2041015625,
+          "end": 674.7947387695312,
+          "speaker": 1
+        },
+        {
+          "start": 696.8165893554688,
+          "end": 705.15283203125,
+          "speaker": 1
+        },
+        {
+          "start": 707.2284545898438,
+          "end": 715.5140991210938,
+          "speaker": 1
+        },
+        {
+          "start": 719.9353637695312,
+          "end": 734.0597534179688,
+          "speaker": 1
+        },
+        {
+          "start": 742.5309448242188,
+          "end": 752.82470703125,
+          "speaker": 1
+        },
+        {
+          "start": 756.9759521484375,
+          "end": 757.5497436523438,
+          "speaker": 1
+        },
+        {
+          "start": 768.5859985351562,
+          "end": 775.0828247070312,
+          "speaker": 1
+        },
+        {
+          "start": 777.4959716796875,
+          "end": 778.3734741210938,
+          "speaker": 1
+        }
+      ],
+      "utterances": [
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 7.334,
+          "end": 7.696,
+          "text": "Yeah."
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 31.238,
+          "end": 31.888,
+          "text": "Right."
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 48.966,
+          "end": 56.784,
+          "text": "Well so does does a sorry, does the portal end up being like a holding area prior to sending stuff off to selector then?"
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 59.078,
+          "end": 59.888,
+          "text": "Okay."
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 73.766,
+          "end": 74.192,
+          "text": "Yeah."
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 88.774,
+          "end": 92.72,
+          "text": "Yeah, oh, don't don't fucking get me started on addresses."
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 94.278,
+          "end": 94.768,
+          "text": "Fives."
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 96.102,
+          "end": 96.592,
+          "text": "Whoop."
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 99.206,
+          "end": 99.6,
+          "text": "Okay."
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 107.814,
+          "end": 108.24,
+          "text": "Yeah."
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 134.662,
+          "end": 136.304,
+          "text": "No, no. I've um"
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 150.246,
+          "end": 155.6,
+          "text": "Yeah, interesting. Okay, so they wouldn't want SFTP then, they'd just upload it through the portal."
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 168.454,
+          "end": 169.36,
+          "text": "Okay."
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 194.022,
+          "end": 194.384,
+          "text": "Right."
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 196.166,
+          "end": 198.832,
+          "text": "Interesting. Okay. And it sounds like it might"
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 200.102,
+          "end": 202.416,
+          "text": "Fuse might not be the right thing to build this on."
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 205.478,
+          "end": 206.352,
+          "text": "Which is fine."
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 207.11,
+          "end": 208.976,
+          "text": "Yeah, I I think it's um"
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 210.406,
+          "end": 212.336,
+          "text": "Like fu fuse is intentionally dumb."
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 213.606,
+          "end": 214.256,
+          "text": "Uh"
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 214.886,
+          "end": 219.28,
+          "text": "It it doesn't it might actually like simplify things to be honest."
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 220.326,
+          "end": 221.008,
+          "text": "Um"
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 223.142,
+          "end": 225.456,
+          "text": "like it might simplify things in a really big way."
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 231.398,
+          "end": 233.264,
+          "text": "Yeah yeah let me"
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 234.502,
+          "end": 241.072,
+          "text": "Let me take a look because actually this existing outside of Fuse would make everybody's life a bit easier, especially from a"
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 241.734,
+          "end": 243.6,
+          "text": "maintainability perspective."
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 245.766,
+          "end": 246.544,
+          "text": "Uh"
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 265.446,
+          "end": 265.904,
+          "text": "Yeah."
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 281.734,
+          "end": 282.128,
+          "text": "Yeah."
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 282.502,
+          "end": 284.368,
+          "text": "Oh, that's that's fine though,'cause we can"
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 287.942,
+          "end": 293.52,
+          "text": "Yeah, I mean like that for for what it's worth there is a lot of fused tech that I would um"
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 293.958,
+          "end": 295.408,
+          "text": "use for this anyway."
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 296.326,
+          "end": 300.688,
+          "text": "Um it just probably wouldn't sit on like the the data pipeline, which"
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 302.278,
+          "end": 302.704,
+          "text": "Yeah."
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 303.462,
+          "end": 304.848,
+          "text": "Not really problematic."
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 306.342,
+          "end": 313.872,
+          "text": "Um but like what I'm trying to say is we've got a lot of the bu building blocks and we could just like ship a fucking executable pretty quickly."
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 319.206,
+          "end": 319.632,
+          "text": "Yeah."
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 324.326,
+          "end": 327.024,
+          "text": "Yes, that is like on"
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 330.79,
+          "end": 332.56,
+          "text": "Fucking headphones, sorry mate, I've just..."
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 333.062,
+          "end": 333.904,
+          "text": "Absolutely."
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 334.374,
+          "end": 337.328,
+          "text": "piece of shit like buy and refund go on"
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 339.11,
+          "end": 341.84,
+          "text": "That was your code is very important to me."
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 349.446,
+          "end": 350.896,
+          "text": "Okay, there we go. My bad."
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 352.262,
+          "end": 359.152,
+          "text": "Yeah, yeah, I don't know why they're like, they're fine, they're fine, they're fine. And they're like, I don't want to connect to anything more, mate. And they just they just turn off."
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 360.166,
+          "end": 364.944,
+          "text": "But they've got like 40% battery on them, so yeah, I don't know what fresh bullshit that is."
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 366.054,
+          "end": 366.704,
+          "text": "Um"
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 370.726,
+          "end": 371.12,
+          "text": "Yeah."
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 377.35,
+          "end": 377.744,
+          "text": "Mm."
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 380.806,
+          "end": 386.448,
+          "text": "We've got label printers in the office, right? Do we know what lab uh printers they've got over in wherever?"
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 388.934,
+          "end": 389.328,
+          "text": "Okay."
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 400.71,
+          "end": 401.136,
+          "text": "Okay."
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 404.774,
+          "end": 406.992,
+          "text": "That's fine'cause we can do like some web USB magic."
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 408.038,
+          "end": 412.016,
+          "text": "Um and and yeah, if we've what was the what's the standard format, sorry?"
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 416.006,
+          "end": 417.04,
+          "text": ""
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 424.742,
+          "end": 431.664,
+          "text": "Well we'll we'll point them we'll point them towards the new ones. The the only reason I ask is like if it's known tech and GFS then like we've got some prior art to work from."
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 433.094,
+          "end": 433.936,
+          "text": "Mm-mm."
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 438.15,
+          "end": 438.576,
+          "text": "Brilliant."
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 451.846,
+          "end": 453.584,
+          "text": "Yeah, they're fucking hucky aren't they?"
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 455.014,
+          "end": 455.568,
+          "text": "Yeah."
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 459.142,
+          "end": 466.32,
+          "text": "Yeah, base 64 encoded images over Hycalls is fucking gnarly, but like everybody in the biz does it."
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 466.886,
+          "end": 467.376,
+          "text": "So"
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 467.814,
+          "end": 470.832,
+          "text": "Yeah, it can't can't argue. Um but okay."
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 479.142,
+          "end": 481.04,
+          "text": "Yeah, send it over'cause I've I've just"
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 481.702,
+          "end": 488.816,
+          "text": "Yeah, l tou touch base on it tomorrow. What what I'll do is try and get as much as I can into confluence up slash Kira."
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 489.606,
+          "end": 494.352,
+          "text": "Um and get plan of attack. But really it sounds like we want an SFTP host"
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 495.078,
+          "end": 500.656,
+          "text": "where we can do some validation, we want like a UI where we can see the queue and then we want to be able to print stuff."
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 502.63,
+          "end": 507.056,
+          "text": "And then select will handle like the label creation side of things."
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 542.342,
+          "end": 543.216,
+          "text": "Ha ha ha ha ha."
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 543.59,
+          "end": 544.24,
+          "text": "But we can"
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 544.646,
+          "end": 552.336,
+          "text": "Yeah, we we can build this so that we can do the the validation as much as possible in the application. Um use selector as a last bet."
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 576.838,
+          "end": 583.184,
+          "text": "Cause we we can always like build some hard coding in as well for certain column values or like certain API calls."
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 609.446,
+          "end": 611.92,
+          "text": "No, that that's excellent then. Um"
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 613.67,
+          "end": 615.024,
+          "text": "Yeah, let me..."
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 615.846,
+          "end": 620.688,
+          "text": "some design docs together and are you in office tomorrow or do you just wanna hop on a huddle?"
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 624.006,
+          "end": 627.184,
+          "text": "I I'm easy either way, so um what whatever works for you?"
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 628.486,
+          "end": 632.24,
+          "text": "Yeah, th Thursdays and Tuesdays are my normal days, so I'll be in regardless."
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 637.542,
+          "end": 638.032,
+          "text": "Fair enough."
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 642.374,
+          "end": 643.408,
+          "text": "I completely get that."
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 643.974,
+          "end": 646.48,
+          "text": "Yeah. Just m message me on the day."
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 646.982,
+          "end": 648.4,
+          "text": "Yeah, yeah, there's no pressure."
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 655.782,
+          "end": 666.576,
+          "text": "one just flat mate that sounds really good much easier than the original epic uh that I had set up because I was like why don't we clone everything and just remove what they had"
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 696.838,
+          "end": 699.248,
+          "text": "Yeah, sounds sounds good. I'm gonna"
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 700.806,
+          "end": 703.888,
+          "text": "Yeah, I th I think what I'm gonna do is like fucking"
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 704.614,
+          "end": 705.168,
+          "text": "Um"
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 707.27,
+          "end": 708.464,
+          "text": "What watch this space?"
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 709.542,
+          "end": 715.952,
+          "text": "Um I've I've been inspired by our earlier chat in the knowledge channel so yeah, should be should be good."
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 719.974,
+          "end": 720.624,
+          "text": "Yeah."
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 721.35,
+          "end": 726.192,
+          "text": "I think like in general and s especially for this project"
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 726.79,
+          "end": 729.04,
+          "text": "Um yeah, it's all it's all good."
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 729.574,
+          "end": 734.416,
+          "text": "just have to I will I will sleep better tonight and we'll go from there."
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 742.566,
+          "end": 750.16,
+          "text": "No, no, I I'm sure you will. I think like a a big part of this is my fatigue and and the other part is like I've just not worked with you guys before."
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 751.014,
+          "end": 753.072,
+          "text": "Um and that that's probably showing"
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 768.614,
+          "end": 769.136,
+          "text": "Yeah."
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 770.566,
+          "end": 775.12,
+          "text": "It'd be good. Right. I'm gonna go kick off some plant stuff and I will update you as I go."
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 777.862,
+          "end": 778.48,
+          "text": "Take care of it."
+        }
+      ],
+      "timings": {
+        "vad": 2472062519,
+        "diarization": 60331167416,
+        "asr": 32782584209
+      }
+    },
+    "them": {
+      "gain": 0.7011554686067126,
+      "regions": [
+        {
+          "start": 0.102,
+          "end": 11.504
+        },
+        {
+          "start": 12.454,
+          "end": 18.128
+        },
+        {
+          "start": 18.63,
+          "end": 19.28
+        },
+        {
+          "start": 20.294,
+          "end": 26.448
+        },
+        {
+          "start": 27.078,
+          "end": 38.832
+        },
+        {
+          "start": 39.43,
+          "end": 46.96
+        },
+        {
+          "start": 47.334,
+          "end": 48.688
+        },
+        {
+          "start": 49.094,
+          "end": 49.552
+        },
+        {
+          "start": 57.67,
+          "end": 59.92
+        },
+        {
+          "start": 60.742,
+          "end": 66.736
+        },
+        {
+          "start": 67.11,
+          "end": 73.104
+        },
+        {
+          "start": 73.766,
+          "end": 74.416
+        },
+        {
+          "start": 74.918,
+          "end": 77.904
+        },
+        {
+          "start": 78.566,
+          "end": 81.392
+        },
+        {
+          "start": 82.054,
+          "end": 89.808
+        },
+        {
+          "start": 93.67,
+          "end": 113.724
+        },
+        {
+          "start": 114.246,
+          "end": 114.768
+        },
+        {
+          "start": 115.59,
+          "end": 117.84
+        },
+        {
+          "start": 118.47,
+          "end": 121.616
+        },
+        {
+          "start": 122.15,
+          "end": 124.016
+        },
+        {
+          "start": 124.39,
+          "end": 125.616
+        },
+        {
+          "start": 126.886,
+          "end": 130.768
+        },
+        {
+          "start": 131.302,
+          "end": 136.368
+        },
+        {
+          "start": 137.35,
+          "end": 142.416
+        },
+        {
+          "start": 142.982,
+          "end": 149.392
+        },
+        {
+          "start": 157.03,
+          "end": 159.952
+        },
+        {
+          "start": 160.518,
+          "end": 167.12
+        },
+        {
+          "start": 168.166,
+          "end": 177.904
+        },
+        {
+          "start": 178.598,
+          "end": 179.28
+        },
+        {
+          "start": 180.486,
+          "end": 183.024
+        },
+        {
+          "start": 183.398,
+          "end": 192.816
+        },
+        {
+          "start": 205.254,
+          "end": 206.576
+        },
+        {
+          "start": 226.31,
+          "end": 229.808
+        },
+        {
+          "start": 232.358,
+          "end": 233.072
+        },
+        {
+          "start": 246.342,
+          "end": 247.6
+        },
+        {
+          "start": 248.55,
+          "end": 249.52
+        },
+        {
+          "start": 250.214,
+          "end": 264.112
+        },
+        {
+          "start": 264.614,
+          "end": 265.072
+        },
+        {
+          "start": 265.574,
+          "end": 265.936
+        },
+        {
+          "start": 266.566,
+          "end": 270.896
+        },
+        {
+          "start": 271.43,
+          "end": 281.36
+        },
+        {
+          "start": 283.398,
+          "end": 287.28
+        },
+        {
+          "start": 287.814,
+          "end": 288.304
+        },
+        {
+          "start": 314.31,
+          "end": 315.632
+        },
+        {
+          "start": 316.678,
+          "end": 318.576
+        },
+        {
+          "start": 319.302,
+          "end": 319.888
+        },
+        {
+          "start": 320.39,
+          "end": 324.016
+        },
+        {
+          "start": 324.614,
+          "end": 325.104
+        },
+        {
+          "start": 326.854,
+          "end": 331.536
+        },
+        {
+          "start": 335.942,
+          "end": 336.592
+        },
+        {
+          "start": 337.99,
+          "end": 341.168
+        },
+        {
+          "start": 343.142,
+          "end": 344.336
+        },
+        {
+          "start": 344.774,
+          "end": 345.552
+        },
+        {
+          "start": 346.758,
+          "end": 347.216
+        },
+        {
+          "start": 351.59,
+          "end": 351.984
+        },
+        {
+          "start": 355.622,
+          "end": 356.304
+        },
+        {
+          "start": 358.022,
+          "end": 358.48
+        },
+        {
+          "start": 359.686,
+          "end": 360.048
+        },
+        {
+          "start": 363.174,
+          "end": 363.536
+        },
+        {
+          "start": 366.15,
+          "end": 366.512
+        },
+        {
+          "start": 367.046,
+          "end": 369.456
+        },
+        {
+          "start": 369.926,
+          "end": 370.416
+        },
+        {
+          "start": 370.95,
+          "end": 371.344
+        },
+        {
+          "start": 371.75,
+          "end": 376.784
+        },
+        {
+          "start": 377.19,
+          "end": 377.648
+        },
+        {
+          "start": 378.438,
+          "end": 380.336
+        },
+        {
+          "start": 380.71,
+          "end": 381.2
+        },
+        {
+          "start": 387.174,
+          "end": 394.544
+        },
+        {
+          "start": 395.046,
+          "end": 401.072
+        },
+        {
+          "start": 401.83,
+          "end": 404.112
+        },
+        {
+          "start": 404.678,
+          "end": 405.232
+        },
+        {
+          "start": 413.222,
+          "end": 418.32
+        },
+        {
+          "start": 418.982,
+          "end": 419.728
+        },
+        {
+          "start": 422.758,
+          "end": 425.872
+        },
+        {
+          "start": 432.134,
+          "end": 438.736
+        },
+        {
+          "start": 439.174,
+          "end": 444.528
+        },
+        {
+          "start": 445.062,
+          "end": 449.968
+        },
+        {
+          "start": 450.726,
+          "end": 454.512
+        },
+        {
+          "start": 454.982,
+          "end": 459.472
+        },
+        {
+          "start": 461.254,
+          "end": 462.448
+        },
+        {
+          "start": 470.406,
+          "end": 476.912
+        },
+        {
+          "start": 477.382,
+          "end": 478.096
+        },
+        {
+          "start": 478.822,
+          "end": 480.208
+        },
+        {
+          "start": 502.438,
+          "end": 502.992
+        },
+        {
+          "start": 507.078,
+          "end": 513.072
+        },
+        {
+          "start": 513.478,
+          "end": 515.28
+        },
+        {
+          "start": 515.878,
+          "end": 516.336
+        },
+        {
+          "start": 516.966,
+          "end": 523.216
+        },
+        {
+          "start": 523.91,
+          "end": 527.216
+        },
+        {
+          "start": 527.686,
+          "end": 528.464
+        },
+        {
+          "start": 529.062,
+          "end": 531.152
+        },
+        {
+          "start": 531.622,
+          "end": 532.144
+        },
+        {
+          "start": 532.518,
+          "end": 534.576
+        },
+        {
+          "start": 534.95,
+          "end": 544.304
+        },
+        {
+          "start": 550.502,
+          "end": 554.096
+        },
+        {
+          "start": 554.758,
+          "end": 558.992
+        },
+        {
+          "start": 559.686,
+          "end": 570
+        },
+        {
+          "start": 570.726,
+          "end": 574.256
+        },
+        {
+          "start": 574.758,
+          "end": 576.272
+        },
+        {
+          "start": 583.91,
+          "end": 588.592
+        },
+        {
+          "start": 589.446,
+          "end": 590.416
+        },
+        {
+          "start": 590.854,
+          "end": 594.192
+        },
+        {
+          "start": 595.302,
+          "end": 596.4
+        },
+        {
+          "start": 596.902,
+          "end": 601.424
+        },
+        {
+          "start": 602.31,
+          "end": 606.928
+        },
+        {
+          "start": 607.622,
+          "end": 608.56
+        },
+        {
+          "start": 609.35,
+          "end": 610.096
+        },
+        {
+          "start": 621.958,
+          "end": 622.64
+        },
+        {
+          "start": 623.942,
+          "end": 624.816
+        },
+        {
+          "start": 626.726,
+          "end": 628.176
+        },
+        {
+          "start": 632.774,
+          "end": 640.08
+        },
+        {
+          "start": 640.55,
+          "end": 646.608
+        },
+        {
+          "start": 647.174,
+          "end": 650.32
+        },
+        {
+          "start": 650.822,
+          "end": 651.248
+        },
+        {
+          "start": 651.91,
+          "end": 652.432
+        },
+        {
+          "start": 665.446,
+          "end": 667.728
+        },
+        {
+          "start": 668.518,
+          "end": 674.448
+        },
+        {
+          "start": 674.95,
+          "end": 677.072
+        },
+        {
+          "start": 677.51,
+          "end": 678
+        },
+        {
+          "start": 678.47,
+          "end": 682.8
+        },
+        {
+          "start": 683.654,
+          "end": 684.048
+        },
+        {
+          "start": 686.054,
+          "end": 696.368
+        },
+        {
+          "start": 696.774,
+          "end": 697.232
+        },
+        {
+          "start": 697.702,
+          "end": 698.128
+        },
+        {
+          "start": 698.63,
+          "end": 700.464
+        },
+        {
+          "start": 716.486,
+          "end": 717.392
+        },
+        {
+          "start": 717.83,
+          "end": 719.344
+        },
+        {
+          "start": 719.846,
+          "end": 720.752
+        },
+        {
+          "start": 736.422,
+          "end": 736.816
+        },
+        {
+          "start": 737.734,
+          "end": 743.344
+        },
+        {
+          "start": 751.046,
+          "end": 752.944
+        },
+        {
+          "start": 754.118,
+          "end": 755.376
+        },
+        {
+          "start": 756.006,
+          "end": 761.008
+        },
+        {
+          "start": 761.574,
+          "end": 764.016
+        },
+        {
+          "start": 766.054,
+          "end": 768.88
+        },
+        {
+          "start": 769.83,
+          "end": 770.256
+        },
+        {
+          "start": 776.326,
+          "end": 777.2
+        }
+      ],
+      "turns": [
+        {
+          "start": 0.03096874989569187,
+          "end": 11.522844314575195,
+          "speaker": 0
+        },
+        {
+          "start": 12.366594314575195,
+          "end": 19.302221298217773,
+          "speaker": 0
+        },
+        {
+          "start": 20.230344772338867,
+          "end": 26.474096298217773,
+          "speaker": 0
+        },
+        {
+          "start": 27.014095306396484,
+          "end": 49.52534484863281,
+          "speaker": 0
+        },
+        {
+          "start": 57.64221954345703,
+          "end": 81.43597412109375,
+          "speaker": 0
+        },
+        {
+          "start": 81.95909881591797,
+          "end": 89.8397216796875,
+          "speaker": 0
+        },
+        {
+          "start": 93.19784545898438,
+          "end": 114.8822250366211,
+          "speaker": 0
+        },
+        {
+          "start": 115.43909454345703,
+          "end": 125.66534423828125,
+          "speaker": 0
+        },
+        {
+          "start": 126.35722351074219,
+          "end": 149.42535400390625,
+          "speaker": 0
+        },
+        {
+          "start": 156.4622344970703,
+          "end": 167.21160888671875,
+          "speaker": 0
+        },
+        {
+          "start": 168.12286376953125,
+          "end": 192.87847900390625,
+          "speaker": 0
+        },
+        {
+          "start": 205.24786376953125,
+          "end": 206.63160705566406,
+          "speaker": 0
+        },
+        {
+          "start": 219.7266082763672,
+          "end": 220.0472412109375,
+          "speaker": 0
+        },
+        {
+          "start": 226.22348022460938,
+          "end": 229.83473205566406,
+          "speaker": 0
+        },
+        {
+          "start": 232.0284881591797,
+          "end": 232.97348022460938,
+          "speaker": 0
+        },
+        {
+          "start": 246.3047332763672,
+          "end": 281.4216003417969,
+          "speaker": 0
+        },
+        {
+          "start": 282.1472473144531,
+          "end": 282.6028747558594,
+          "speaker": 0
+        },
+        {
+          "start": 283.3453674316406,
+          "end": 288.2728576660156,
+          "speaker": 0
+        },
+        {
+          "start": 296.1028747558594,
+          "end": 296.59222412109375,
+          "speaker": 0
+        },
+        {
+          "start": 305.7384948730469,
+          "end": 306.0591125488281,
+          "speaker": 0
+        },
+        {
+          "start": 314.2772521972656,
+          "end": 325.1109924316406,
+          "speaker": 0
+        },
+        {
+          "start": 326.7984924316406,
+          "end": 331.6416015625,
+          "speaker": 0
+        },
+        {
+          "start": 332.7384948730469,
+          "end": 333.1266174316406,
+          "speaker": 0
+        },
+        {
+          "start": 337.9697265625,
+          "end": 341.1422424316406,
+          "speaker": 0
+        },
+        {
+          "start": 343.13348388671875,
+          "end": 345.5634765625,
+          "speaker": 0
+        },
+        {
+          "start": 346.7278747558594,
+          "end": 347.1835021972656,
+          "speaker": 0
+        },
+        {
+          "start": 348.4491271972656,
+          "end": 349.46160888671875,
+          "speaker": 0
+        },
+        {
+          "start": 355.6041259765625,
+          "end": 357.1059875488281,
+          "speaker": 0
+        },
+        {
+          "start": 357.83160400390625,
+          "end": 358.45599365234375,
+          "speaker": 0
+        },
+        {
+          "start": 359.620361328125,
+          "end": 360.0253601074219,
+          "speaker": 0
+        },
+        {
+          "start": 363.16412353515625,
+          "end": 363.51849365234375,
+          "speaker": 0
+        },
+        {
+          "start": 365.1722412109375,
+          "end": 365.5097351074219,
+          "speaker": 0
+        },
+        {
+          "start": 366.11724853515625,
+          "end": 381.1866149902344,
+          "speaker": 0
+        },
+        {
+          "start": 387.14349365234375,
+          "end": 405.3684997558594,
+          "speaker": 0
+        },
+        {
+          "start": 413.23223876953125,
+          "end": 418.3284912109375,
+          "speaker": 0
+        },
+        {
+          "start": 418.952880859375,
+          "end": 419.7291259765625,
+          "speaker": 0
+        },
+        {
+          "start": 422.749755859375,
+          "end": 425.854736328125,
+          "speaker": 0
+        },
+        {
+          "start": 432.1322326660156,
+          "end": 462.4903564453125,
+          "speaker": 0
+        },
+        {
+          "start": 456.11163330078125,
+          "end": 456.4491271972656,
+          "speaker": 0
+        },
+        {
+          "start": 470.32037353515625,
+          "end": 480.2259826660156,
+          "speaker": 0
+        },
+        {
+          "start": 502.02850341796875,
+          "end": 502.9566345214844,
+          "speaker": 0
+        },
+        {
+          "start": 507.0572509765625,
+          "end": 544.3341064453125,
+          "speaker": 0
+        },
+        {
+          "start": 550.4765625,
+          "end": 554.1384887695312,
+          "speaker": 0
+        },
+        {
+          "start": 554.7290649414062,
+          "end": 559.0828247070312,
+          "speaker": 0
+        },
+        {
+          "start": 559.6228637695312,
+          "end": 576.2615966796875,
+          "speaker": 0
+        },
+        {
+          "start": 570.7772216796875,
+          "end": 571.11474609375,
+          "speaker": 0
+        },
+        {
+          "start": 582.5390625,
+          "end": 610.0453491210938,
+          "speaker": 0
+        },
+        {
+          "start": 621.9253540039062,
+          "end": 622.6509399414062,
+          "speaker": 0
+        },
+        {
+          "start": 623.8997192382812,
+          "end": 624.8109741210938,
+          "speaker": 0
+        },
+        {
+          "start": 626.68408203125,
+          "end": 628.1690673828125,
+          "speaker": 0
+        },
+        {
+          "start": 631.5272216796875,
+          "end": 631.8309936523438,
+          "speaker": 0
+        },
+        {
+          "start": 632.7422485351562,
+          "end": 654.7303466796875,
+          "speaker": 0
+        },
+        {
+          "start": 665.3953247070312,
+          "end": 682.9622192382812,
+          "speaker": 0
+        },
+        {
+          "start": 683.6034545898438,
+          "end": 684.0928344726562,
+          "speaker": 0
+        },
+        {
+          "start": 685.5272216796875,
+          "end": 700.4447021484375,
+          "speaker": 0
+        },
+        {
+          "start": 709.1691284179688,
+          "end": 709.928466796875,
+          "speaker": 0
+        },
+        {
+          "start": 716.4253540039062,
+          "end": 720.7284545898438,
+          "speaker": 0
+        },
+        {
+          "start": 729.5540771484375,
+          "end": 729.908447265625,
+          "speaker": 0
+        },
+        {
+          "start": 735.2747192382812,
+          "end": 743.256591796875,
+          "speaker": 0
+        },
+        {
+          "start": 751.0359497070312,
+          "end": 768.6197509765625,
+          "speaker": 0
+        },
+        {
+          "start": 769.8009643554688,
+          "end": 770.2059936523438,
+          "speaker": 0
+        },
+        {
+          "start": 769.81787109375,
+          "end": 770.1890869140625,
+          "speaker": 0
+        },
+        {
+          "start": 776.02783203125,
+          "end": 777.158447265625,
+          "speaker": 0
+        },
+        {
+          "start": 778.7447509765625,
+          "end": 779.267822265625,
+          "speaker": 0
+        }
+      ],
+      "utterances": [
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 0.102,
+          "end": 11.504,
+          "text": "They need to know feedback in terms of. Obviously, this is all fucking data. I'm sending over to you so you can actually refer to it properly. But things, things like: if an import fails,"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 12.454,
+          "end": 18.128,
+          "text": "Wherever they get an error, once it's all imported, can they go in and change the data against what's imported before it goes through?"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 18.63,
+          "end": 19.28,
+          "text": "Um"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 20.294,
+          "end": 26.448,
+          "text": "Can they check that the consignment reference is right? Can they make changes to it? It's basically like a portal for what they've imported."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 27.078,
+          "end": 38.832,
+          "text": "Being able to make changes to that data and then push it on themselves. And then to be able to send. So, like with Selector, with CSS, you can send validate calls, you can send manifest calls."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 39.43,
+          "end": 46.96,
+          "text": "And via the API. So the ability to do that from that interface, which is really simple. Like the manifest and all that is literally just a fucking API call. It's super simple."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 47.334,
+          "end": 48.688,
+          "text": "So that's that's easy to do."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 49.094,
+          "end": 49.552,
+          "text": "Um"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 57.67,
+          "end": 59.92,
+          "text": "Yeah, basically. So it would be like a"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 60.742,
+          "end": 66.736,
+          "text": "A view for them to be able to import, check that it's actually, and then the validation that Fuse would do against like."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 67.11,
+          "end": 73.104,
+          "text": "Is it in the expected formatting? Have they given it the right info, like all the validation you would expect of an import system?"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 73.766,
+          "end": 74.416,
+          "text": "And then"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 74.918,
+          "end": 77.904,
+          "text": "Um the ability to change data if required."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 78.566,
+          "end": 81.392,
+          "text": "So like when they double click on the import line, it will be"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 82.054,
+          "end": 89.808,
+          "text": "The ability to like change number nine hatchwork on lane to number 10 hatchwork on lane because they mess up on that sort of info all the time and they manually change it."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 93.67,
+          "end": 113.724,
+          "text": "Exactly. So, and then the manifest process is a really simple call. We also set up auto-commit manifests on Selector. So, we would double-edge it. We generally set up an auto-commit because customers always forget to do the manifest, but they also want to have the ability to send that call. But that's all in place already. That's that would literally be a button done."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 114.246,
+          "end": 114.768,
+          "text": "Um"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 115.59,
+          "end": 117.84,
+          "text": "But you you can block it essentially. Like there's"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 118.47,
+          "end": 121.616,
+          "text": "Y your allowances of how you want to validate against whether you know"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 122.15,
+          "end": 124.016,
+          "text": "What's been manifested, what hasn't."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 124.39,
+          "end": 125.616,
+          "text": "the import queue to show"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 126.886,
+          "end": 130.768,
+          "text": "They manifested the day before a search feature for the for like"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 131.302,
+          "end": 136.368,
+          "text": "Ship references. This is all in the information, by the way. I'm not just expecting you to fucking remember. But yeah."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 137.35,
+          "end": 142.416,
+          "text": "Don't sound like a particularly complex UI thereafter. It's basically like,"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 142.982,
+          "end": 149.392,
+          "text": "Shows everything they've imported, make sure it has validation, make sure they can make changes, and make sure it has a search feature."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 157.03,
+          "end": 159.952,
+          "text": "Now, this is the caveat of it. They want it to."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 160.518,
+          "end": 167.12,
+          "text": "Think they want the CSVs to go into this automatically from their WMS system, which is via."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 168.166,
+          "end": 177.904,
+          "text": "A file location dropping, which is why SFTP was mentioned, because they would essentially have Manhattan send the CSV to that location, get automatically picked up into this."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 178.598,
+          "end": 179.28,
+          "text": "And then"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 180.486,
+          "end": 183.024,
+          "text": "At the end of the day, when they click manifest, this would"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 183.398,
+          "end": 192.816,
+          "text": "Um, the UI we build will export a CSV of everything that was imported and manifested that day, which they will then handle feeding back into Manhattan."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 205.254,
+          "end": 206.576,
+          "text": "Is it too many changes you reckon?"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 226.31,
+          "end": 229.808,
+          "text": "Cool. It's sent for all the notes to you, so you can obviously look through."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 232.358,
+          "end": 233.072,
+          "text": "Once you know that."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 246.342,
+          "end": 247.6,
+          "text": "Yeah, I mean, I'm you know."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 248.55,
+          "end": 249.52,
+          "text": "Again, as I've said."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 250.214,
+          "end": 264.112,
+          "text": "Fully happy to how you want to build this. This is kind of why we approached it from the like, oh, well, we know CSV integration really well. We know SFTP. It doesn't sound like that hard to add all the essentially the SOP calls that exist that they need for this are a thing already for us."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 264.614,
+          "end": 265.072,
+          "text": "Um"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 265.574,
+          "end": 265.936,
+          "text": "Mm."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 266.566,
+          "end": 270.896,
+          "text": "The complicated part is always the validation of the data coming in."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 271.43,
+          "end": 281.36,
+          "text": "That's the bit that has that selector does really poorly currently. So CSV integration, it like basically, if like one line, if line 14 out of 16 fails, it bricks the whole thing."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 283.398,
+          "end": 287.28,
+          "text": "That's what I'm that's the area I'm concerned about and that I don't know how to handle properly."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 287.814,
+          "end": 288.304,
+          "text": "Um"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 314.31,
+          "end": 315.632,
+          "text": "Yeah, yeah. So I"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 316.678,
+          "end": 318.576,
+          "text": "Basically, I think they want this web driven."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 319.302,
+          "end": 319.888,
+          "text": "Um"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 320.39,
+          "end": 324.016,
+          "text": "as a UI, so nothing nothing locally installed if we can avoid it."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 324.614,
+          "end": 325.104,
+          "text": "Um"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 326.854,
+          "end": 331.536,
+          "text": "The caveat of this is I don't know how we handle printing because I don't think Dispatch Cloud uses QZ Tray."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 335.942,
+          "end": 336.592,
+          "text": "Yeah."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 337.99,
+          "end": 341.168,
+          "text": "Um dispatch card uses QZ Tray to do local printing."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 343.142,
+          "end": 344.336,
+          "text": "Um can you hear me?"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 344.774,
+          "end": 345.552,
+          "text": "Mm pebba."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 346.758,
+          "end": 347.216,
+          "text": "Can you hear me?"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 351.59,
+          "end": 351.984,
+          "text": "You back?"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 355.622,
+          "end": 356.304,
+          "text": "It just ta out."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 358.022,
+          "end": 358.48,
+          "text": "Okay."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 359.686,
+          "end": 360.048,
+          "text": "Yeah."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 363.174,
+          "end": 363.536,
+          "text": "Yeah."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 366.15,
+          "end": 366.512,
+          "text": "And"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 367.046,
+          "end": 369.456,
+          "text": "Dispatch card uses QZ train to do"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 369.926,
+          "end": 370.416,
+          "text": "Printing."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 370.95,
+          "end": 371.344,
+          "text": "Um"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 371.75,
+          "end": 376.784,
+          "text": "That is a like a paid for subscription because the open sources of it, the security on it is dog."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 377.19,
+          "end": 377.648,
+          "text": "So"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 378.438,
+          "end": 380.336,
+          "text": "there's like a layer on it that you have to pay for."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 380.71,
+          "end": 381.2,
+          "text": "Um"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 387.174,
+          "end": 394.544,
+          "text": "No one seems to be able to answer that for me at the moment. I do not, like, conventionally, we would send like Zeppelin EPL for Zebra printers."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 395.046,
+          "end": 401.072,
+          "text": "And we have like some systems where we've we did like a conversion process we built for PDF into it, but"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 401.83,
+          "end": 404.112,
+          "text": "I I do not know and I'll have to find that out."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 404.678,
+          "end": 405.232,
+          "text": "That is"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 413.222,
+          "end": 418.32,
+          "text": "Uh well the ZPL in EPL is but I think ZPL I"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 418.982,
+          "end": 419.728,
+          "text": "Which one's the old one?"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 422.758,
+          "end": 425.872,
+          "text": "One of them's the old one. I can't remember off the top of my head."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 432.134,
+          "end": 438.736,
+          "text": "Yeah, yeah, for sure. Yeah, there's loads of documentation on it, especially on our knowledge system. Like all of that has been covered like tenfold. So if you just"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 439.174,
+          "end": 444.528,
+          "text": "Point it at about that, it will feed you everything we've we know about the ZPL EPL setups."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 445.062,
+          "end": 449.968,
+          "text": "Um, because we built a bunch of image basically, you know, they're image strings that come out of um"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 450.726,
+          "end": 454.512,
+          "text": "the API calls, we built a conversion tool to show the labels for that."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 454.982,
+          "end": 459.472,
+          "text": "Um so uses the same uses the same concept basically. Um"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 461.254,
+          "end": 462.448,
+          "text": "Yes, yeah, yeah, yeah."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 470.406,
+          "end": 476.912,
+          "text": "So yeah, that's where we're at at the moment. I do want me to leave this plan with you as is for now to peruse overnight."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 477.382,
+          "end": 478.096,
+          "text": "And then"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 478.822,
+          "end": 480.208,
+          "text": "We'll see sort of meet up tomorrow."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 502.438,
+          "end": 502.992,
+          "text": "Basically."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 507.078,
+          "end": 513.072,
+          "text": "Yeah, and oh and exporting of a C end of day CSV to put into ma um Manhattan."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 513.478,
+          "end": 515.28,
+          "text": "as well. But that's not, you know, that's the easy bit."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 515.878,
+          "end": 516.336,
+          "text": "Um"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 516.966,
+          "end": 523.216,
+          "text": "But yeah, the and selector will have used selector for the manifest process. And there is validation against."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 523.91,
+          "end": 527.216,
+          "text": "selector technically. You can do a validation call with the order."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 527.686,
+          "end": 528.464,
+          "text": "over API."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 529.062,
+          "end": 531.152,
+          "text": "Um it's a little bit like"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 531.622,
+          "end": 532.144,
+          "text": "Yeah."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 532.518,
+          "end": 534.576,
+          "text": "In terms of the feedback it can give sometimes."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 534.95,
+          "end": 544.304,
+          "text": "Um, because it's reliant on CSS having the error stored in it. And it sometimes it will just be like error, and that's that's all it will say. So, like, yeah."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 550.502,
+          "end": 554.096,
+          "text": "Yeah,'cause we have a very strict format of what what should be imported."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 554.758,
+          "end": 558.992,
+          "text": "Um we we know that. And they've only got four requirements."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 559.686,
+          "end": 570,
+          "text": "That we will need to figure out in terms of like, and it's in the plan, Pete listed it off in terms of like the cons number relates to something on their end, the ship ref needs to relate to something on their end that, um."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 570.726,
+          "end": 574.256,
+          "text": "And as long as we map those correctly, that will get into Selector on our end."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 574.758,
+          "end": 576.272,
+          "text": "Um it should be all all kosher."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 583.91,
+          "end": 588.592,
+          "text": "Yeah, the format should be pretty strict and they have the ability to adjust their CSVs. So"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 589.446,
+          "end": 590.416,
+          "text": "If it errors."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 590.854,
+          "end": 594.192,
+          "text": "As long as we're providing decent feedback, we don't need them to fix the error in"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 595.302,
+          "end": 596.4,
+          "text": "import process."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 596.902,
+          "end": 601.424,
+          "text": "We so they can recreate the CSV and drop it in quite easily, apparently."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 602.31,
+          "end": 606.928,
+          "text": "Um which makes it a little bit simpler um in terms of the air of the back loop."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 607.622,
+          "end": 608.56,
+          "text": "So yeah."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 609.35,
+          "end": 610.096,
+          "text": "Um"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 621.958,
+          "end": 622.64,
+          "text": "Um"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 623.942,
+          "end": 624.816,
+          "text": "I might be able to come down."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 626.726,
+          "end": 628.176,
+          "text": "Are you going are you going into office?"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 632.774,
+          "end": 640.08,
+          "text": "I w I don't know what my wife's doing with she's on a week off at the moment and she's been out with her friends every day, so I don't want to ruin her."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 640.55,
+          "end": 646.608,
+          "text": "Time off with me being like, I'm taking the car. So if I can, I will."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 647.174,
+          "end": 650.32,
+          "text": "Yeah, yeah, I mean, if I mean, I mean, I'm not, I'm not, you know, we'll we'll catch up either way."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 650.822,
+          "end": 651.248,
+          "text": "Um"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 651.91,
+          "end": 652.432,
+          "text": "But yeah."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 665.446,
+          "end": 667.728,
+          "text": "Well they were so genetic like yeah, unfortunately."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 668.518,
+          "end": 674.448,
+          "text": "They just was like saying random stuff. And I was like, I just need a call. Just let me just let me speak to them."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 674.95,
+          "end": 677.072,
+          "text": "So yeah, it it made it way easier."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 677.51,
+          "end": 678,
+          "text": "Um"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 678.47,
+          "end": 682.8,
+          "text": "And then we'll handle the selector stuff, which should be nice and easy if the validation's done on the front end, to be honest."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 683.654,
+          "end": 684.048,
+          "text": "Um"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 686.054,
+          "end": 696.368,
+          "text": "All right mate, if you need anything from me, I'm about all evening. Um so feel free because of the time frame we've got especially, feel free to ping me if you get some action and you want us to start on stuff tonight."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 696.774,
+          "end": 697.232,
+          "text": "I'm three."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 697.702,
+          "end": 698.128,
+          "text": "Um"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 698.63,
+          "end": 700.464,
+          "text": "So I you know, we'll go from there."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 716.486,
+          "end": 717.392,
+          "text": "Do you feel a bit more like"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 717.83,
+          "end": 719.344,
+          "text": "comfortable with the route we're going."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 719.846,
+          "end": 720.752,
+          "text": "in terms of in general."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 736.422,
+          "end": 736.816,
+          "text": "Okay."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 737.734,
+          "end": 743.344,
+          "text": "Yeah, I just want to, yeah, I want you to feel comfortable and that I'm not going to fucking torpedo us."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 751.046,
+          "end": 752.944,
+          "text": "Yeah. No, I look I wait no."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 754.118,
+          "end": 755.376,
+          "text": "We've appeared at a no-wheel and we're like."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 756.006,
+          "end": 761.008,
+          "text": "Hello, give us access to everything. So, no, I'm fully aware, Make. But I, yeah, this is."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 761.574,
+          "end": 764.016,
+          "text": "This dynamic is how we work. We're pretty"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 766.054,
+          "end": 768.88,
+          "text": "That's what I think actually did too."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 769.83,
+          "end": 770.256,
+          "text": "We'll get that."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 776.326,
+          "end": 777.2,
+          "text": "Sounds good, man. In a bit."
+        }
+      ],
+      "timings": {
+        "vad": 2670838445,
+        "diarization": 65060253796,
+        "asr": 45434468422
+      }
+    }
+  },
+  "lines": [
+    {
+      "who": "Speaker 1",
+      "start": 0.102,
+      "end": 11.504,
+      "text": "They need to know feedback in terms of. Obviously, this is all fucking data. I'm sending over to you so you can actually refer to it properly. But things, things like: if an import fails,"
+    },
+    {
+      "who": "Harry",
+      "start": 7.334,
+      "end": 7.696,
+      "text": "Yeah."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 12.454,
+      "end": 38.832,
+      "text": "Wherever they get an error, once it's all imported, can they go in and change the data against what's imported before it goes through? Um Can they check that the consignment reference is right? Can they make changes to it? It's basically like a portal for what they've imported. Being able to make changes to that data and then push it on themselves. And then to be able to send. So, like with Selector, with CSS, you can send validate calls, you can send manifest calls."
+    },
+    {
+      "who": "Harry",
+      "start": 31.238,
+      "end": 31.888,
+      "text": "Right."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 39.43,
+      "end": 48.688,
+      "text": "And via the API. So the ability to do that from that interface, which is really simple. Like the manifest and all that is literally just a fucking API call. It's super simple. So that's that's easy to do."
+    },
+    {
+      "who": "Harry",
+      "start": 48.966,
+      "end": 56.784,
+      "text": "Well so does does a sorry, does the portal end up being like a holding area prior to sending stuff off to selector then?"
+    },
+    {
+      "who": "Speaker 1",
+      "start": 49.094,
+      "end": 49.552,
+      "text": "Um"
+    },
+    {
+      "who": "Speaker 1",
+      "start": 57.67,
+      "end": 59.92,
+      "text": "Yeah, basically. So it would be like a"
+    },
+    {
+      "who": "Harry",
+      "start": 59.078,
+      "end": 59.888,
+      "text": "Okay."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 60.742,
+      "end": 73.104,
+      "text": "A view for them to be able to import, check that it's actually, and then the validation that Fuse would do against like. Is it in the expected formatting? Have they given it the right info, like all the validation you would expect of an import system?"
+    },
+    {
+      "who": "Harry",
+      "start": 73.766,
+      "end": 74.192,
+      "text": "Yeah."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 73.766,
+      "end": 89.808,
+      "text": "And then Um the ability to change data if required. So like when they double click on the import line, it will be The ability to like change number nine hatchwork on lane to number 10 hatchwork on lane because they mess up on that sort of info all the time and they manually change it."
+    },
+    {
+      "who": "Harry",
+      "start": 88.774,
+      "end": 92.72,
+      "text": "Yeah, oh, don't don't fucking get me started on addresses."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 93.67,
+      "end": 113.724,
+      "text": "Exactly. So, and then the manifest process is a really simple call. We also set up auto-commit manifests on Selector. So, we would double-edge it. We generally set up an auto-commit because customers always forget to do the manifest, but they also want to have the ability to send that call. But that's all in place already. That's that would literally be a button done."
+    },
+    {
+      "who": "Harry",
+      "start": 94.278,
+      "end": 96.592,
+      "text": "Fives. Whoop."
+    },
+    {
+      "who": "Harry",
+      "start": 99.206,
+      "end": 99.6,
+      "text": "Okay."
+    },
+    {
+      "who": "Harry",
+      "start": 107.814,
+      "end": 108.24,
+      "text": "Yeah."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 114.246,
+      "end": 136.368,
+      "text": "Um But you you can block it essentially. Like there's Y your allowances of how you want to validate against whether you know What's been manifested, what hasn't. the import queue to show They manifested the day before a search feature for the for like Ship references. This is all in the information, by the way. I'm not just expecting you to fucking remember. But yeah."
+    },
+    {
+      "who": "Harry",
+      "start": 134.662,
+      "end": 136.304,
+      "text": "No, no. I've um"
+    },
+    {
+      "who": "Speaker 1",
+      "start": 137.35,
+      "end": 149.392,
+      "text": "Don't sound like a particularly complex UI thereafter. It's basically like, Shows everything they've imported, make sure it has validation, make sure they can make changes, and make sure it has a search feature."
+    },
+    {
+      "who": "Harry",
+      "start": 150.246,
+      "end": 155.6,
+      "text": "Yeah, interesting. Okay, so they wouldn't want SFTP then, they'd just upload it through the portal."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 157.03,
+      "end": 177.904,
+      "text": "Now, this is the caveat of it. They want it to. Think they want the CSVs to go into this automatically from their WMS system, which is via. A file location dropping, which is why SFTP was mentioned, because they would essentially have Manhattan send the CSV to that location, get automatically picked up into this."
+    },
+    {
+      "who": "Harry",
+      "start": 168.454,
+      "end": 169.36,
+      "text": "Okay."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 178.598,
+      "end": 192.816,
+      "text": "And then At the end of the day, when they click manifest, this would Um, the UI we build will export a CSV of everything that was imported and manifested that day, which they will then handle feeding back into Manhattan."
+    },
+    {
+      "who": "Harry",
+      "start": 194.022,
+      "end": 194.384,
+      "text": "Right."
+    },
+    {
+      "who": "Harry",
+      "start": 196.166,
+      "end": 202.416,
+      "text": "Interesting. Okay. And it sounds like it might Fuse might not be the right thing to build this on."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 205.254,
+      "end": 206.576,
+      "text": "Is it too many changes you reckon?"
+    },
+    {
+      "who": "Harry",
+      "start": 205.478,
+      "end": 221.008,
+      "text": "Which is fine. Yeah, I I think it's um Like fu fuse is intentionally dumb. Uh It it doesn't it might actually like simplify things to be honest. Um"
+    },
+    {
+      "who": "Harry",
+      "start": 223.142,
+      "end": 225.456,
+      "text": "like it might simplify things in a really big way."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 226.31,
+      "end": 229.808,
+      "text": "Cool. It's sent for all the notes to you, so you can obviously look through."
+    },
+    {
+      "who": "Harry",
+      "start": 231.398,
+      "end": 233.264,
+      "text": "Yeah yeah let me"
+    },
+    {
+      "who": "Speaker 1",
+      "start": 232.358,
+      "end": 233.072,
+      "text": "Once you know that."
+    },
+    {
+      "who": "Harry",
+      "start": 234.502,
+      "end": 243.6,
+      "text": "Let me take a look because actually this existing outside of Fuse would make everybody's life a bit easier, especially from a maintainability perspective."
+    },
+    {
+      "who": "Harry",
+      "start": 245.766,
+      "end": 246.544,
+      "text": "Uh"
+    },
+    {
+      "who": "Speaker 1",
+      "start": 246.342,
+      "end": 265.072,
+      "text": "Yeah, I mean, I'm you know. Again, as I've said. Fully happy to how you want to build this. This is kind of why we approached it from the like, oh, well, we know CSV integration really well. We know SFTP. It doesn't sound like that hard to add all the essentially the SOP calls that exist that they need for this are a thing already for us. Um"
+    },
+    {
+      "who": "Harry",
+      "start": 265.446,
+      "end": 265.904,
+      "text": "Yeah."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 265.574,
+      "end": 281.36,
+      "text": "Mm. The complicated part is always the validation of the data coming in. That's the bit that has that selector does really poorly currently. So CSV integration, it like basically, if like one line, if line 14 out of 16 fails, it bricks the whole thing."
+    },
+    {
+      "who": "Harry",
+      "start": 281.734,
+      "end": 284.368,
+      "text": "Yeah. Oh, that's that's fine though,'cause we can"
+    },
+    {
+      "who": "Speaker 1",
+      "start": 283.398,
+      "end": 288.304,
+      "text": "That's what I'm that's the area I'm concerned about and that I don't know how to handle properly. Um"
+    },
+    {
+      "who": "Harry",
+      "start": 287.942,
+      "end": 300.688,
+      "text": "Yeah, I mean like that for for what it's worth there is a lot of fused tech that I would um use for this anyway. Um it just probably wouldn't sit on like the the data pipeline, which"
+    },
+    {
+      "who": "Harry",
+      "start": 302.278,
+      "end": 313.872,
+      "text": "Yeah. Not really problematic. Um but like what I'm trying to say is we've got a lot of the bu building blocks and we could just like ship a fucking executable pretty quickly."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 314.31,
+      "end": 318.576,
+      "text": "Yeah, yeah. So I Basically, I think they want this web driven."
+    },
+    {
+      "who": "Harry",
+      "start": 319.206,
+      "end": 319.632,
+      "text": "Yeah."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 319.302,
+      "end": 324.016,
+      "text": "Um as a UI, so nothing nothing locally installed if we can avoid it."
+    },
+    {
+      "who": "Harry",
+      "start": 324.326,
+      "end": 327.024,
+      "text": "Yes, that is like on"
+    },
+    {
+      "who": "Speaker 1",
+      "start": 324.614,
+      "end": 325.104,
+      "text": "Um"
+    },
+    {
+      "who": "Speaker 1",
+      "start": 326.854,
+      "end": 331.536,
+      "text": "The caveat of this is I don't know how we handle printing because I don't think Dispatch Cloud uses QZ Tray."
+    },
+    {
+      "who": "Harry",
+      "start": 330.79,
+      "end": 337.328,
+      "text": "Fucking headphones, sorry mate, I've just... Absolutely. piece of shit like buy and refund go on"
+    },
+    {
+      "who": "Speaker 1",
+      "start": 335.942,
+      "end": 341.168,
+      "text": "Yeah. Um dispatch card uses QZ Tray to do local printing."
+    },
+    {
+      "who": "Harry",
+      "start": 339.11,
+      "end": 341.84,
+      "text": "That was your code is very important to me."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 343.142,
+      "end": 347.216,
+      "text": "Um can you hear me? Mm pebba. Can you hear me?"
+    },
+    {
+      "who": "Harry",
+      "start": 349.446,
+      "end": 350.896,
+      "text": "Okay, there we go. My bad."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 351.59,
+      "end": 351.984,
+      "text": "You back?"
+    },
+    {
+      "who": "Harry",
+      "start": 352.262,
+      "end": 359.152,
+      "text": "Yeah, yeah, I don't know why they're like, they're fine, they're fine, they're fine. And they're like, I don't want to connect to anything more, mate. And they just they just turn off."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 355.622,
+      "end": 356.304,
+      "text": "It just ta out."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 358.022,
+      "end": 360.048,
+      "text": "Okay. Yeah."
+    },
+    {
+      "who": "Harry",
+      "start": 360.166,
+      "end": 364.944,
+      "text": "But they've got like 40% battery on them, so yeah, I don't know what fresh bullshit that is."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 363.174,
+      "end": 363.536,
+      "text": "Yeah."
+    },
+    {
+      "who": "Harry",
+      "start": 366.054,
+      "end": 366.704,
+      "text": "Um"
+    },
+    {
+      "who": "Speaker 1",
+      "start": 366.15,
+      "end": 370.416,
+      "text": "And Dispatch card uses QZ train to do Printing."
+    },
+    {
+      "who": "Harry",
+      "start": 370.726,
+      "end": 371.12,
+      "text": "Yeah."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 370.95,
+      "end": 377.648,
+      "text": "Um That is a like a paid for subscription because the open sources of it, the security on it is dog. So"
+    },
+    {
+      "who": "Harry",
+      "start": 377.35,
+      "end": 377.744,
+      "text": "Mm."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 378.438,
+      "end": 381.2,
+      "text": "there's like a layer on it that you have to pay for. Um"
+    },
+    {
+      "who": "Harry",
+      "start": 380.806,
+      "end": 386.448,
+      "text": "We've got label printers in the office, right? Do we know what lab uh printers they've got over in wherever?"
+    },
+    {
+      "who": "Speaker 1",
+      "start": 387.174,
+      "end": 394.544,
+      "text": "No one seems to be able to answer that for me at the moment. I do not, like, conventionally, we would send like Zeppelin EPL for Zebra printers."
+    },
+    {
+      "who": "Harry",
+      "start": 388.934,
+      "end": 389.328,
+      "text": "Okay."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 395.046,
+      "end": 401.072,
+      "text": "And we have like some systems where we've we did like a conversion process we built for PDF into it, but"
+    },
+    {
+      "who": "Harry",
+      "start": 400.71,
+      "end": 401.136,
+      "text": "Okay."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 401.83,
+      "end": 405.232,
+      "text": "I I do not know and I'll have to find that out. That is"
+    },
+    {
+      "who": "Harry",
+      "start": 404.774,
+      "end": 412.016,
+      "text": "That's fine'cause we can do like some web USB magic. Um and and yeah, if we've what was the what's the standard format, sorry?"
+    },
+    {
+      "who": "Speaker 1",
+      "start": 413.222,
+      "end": 419.728,
+      "text": "Uh well the ZPL in EPL is but I think ZPL I Which one's the old one?"
+    },
+    {
+      "who": "Speaker 1",
+      "start": 422.758,
+      "end": 425.872,
+      "text": "One of them's the old one. I can't remember off the top of my head."
+    },
+    {
+      "who": "Harry",
+      "start": 424.742,
+      "end": 431.664,
+      "text": "Well we'll we'll point them we'll point them towards the new ones. The the only reason I ask is like if it's known tech and GFS then like we've got some prior art to work from."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 432.134,
+      "end": 438.736,
+      "text": "Yeah, yeah, for sure. Yeah, there's loads of documentation on it, especially on our knowledge system. Like all of that has been covered like tenfold. So if you just"
+    },
+    {
+      "who": "Harry",
+      "start": 433.094,
+      "end": 433.936,
+      "text": "Mm-mm."
+    },
+    {
+      "who": "Harry",
+      "start": 438.15,
+      "end": 438.576,
+      "text": "Brilliant."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 439.174,
+      "end": 454.512,
+      "text": "Point it at about that, it will feed you everything we've we know about the ZPL EPL setups. Um, because we built a bunch of image basically, you know, they're image strings that come out of um the API calls, we built a conversion tool to show the labels for that."
+    },
+    {
+      "who": "Harry",
+      "start": 451.846,
+      "end": 453.584,
+      "text": "Yeah, they're fucking hucky aren't they?"
+    },
+    {
+      "who": "Speaker 1",
+      "start": 454.982,
+      "end": 459.472,
+      "text": "Um so uses the same uses the same concept basically. Um"
+    },
+    {
+      "who": "Harry",
+      "start": 455.014,
+      "end": 455.568,
+      "text": "Yeah."
+    },
+    {
+      "who": "Harry",
+      "start": 459.142,
+      "end": 466.32,
+      "text": "Yeah, base 64 encoded images over Hycalls is fucking gnarly, but like everybody in the biz does it."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 461.254,
+      "end": 462.448,
+      "text": "Yes, yeah, yeah, yeah."
+    },
+    {
+      "who": "Harry",
+      "start": 466.886,
+      "end": 470.832,
+      "text": "So Yeah, it can't can't argue. Um but okay."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 470.406,
+      "end": 480.208,
+      "text": "So yeah, that's where we're at at the moment. I do want me to leave this plan with you as is for now to peruse overnight. And then We'll see sort of meet up tomorrow."
+    },
+    {
+      "who": "Harry",
+      "start": 479.142,
+      "end": 500.656,
+      "text": "Yeah, send it over'cause I've I've just Yeah, l tou touch base on it tomorrow. What what I'll do is try and get as much as I can into confluence up slash Kira. Um and get plan of attack. But really it sounds like we want an SFTP host where we can do some validation, we want like a UI where we can see the queue and then we want to be able to print stuff."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 502.438,
+      "end": 502.992,
+      "text": "Basically."
+    },
+    {
+      "who": "Harry",
+      "start": 502.63,
+      "end": 507.056,
+      "text": "And then select will handle like the label creation side of things."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 507.078,
+      "end": 544.304,
+      "text": "Yeah, and oh and exporting of a C end of day CSV to put into ma um Manhattan. as well. But that's not, you know, that's the easy bit. Um But yeah, the and selector will have used selector for the manifest process. And there is validation against. selector technically. You can do a validation call with the order. over API. Um it's a little bit like Yeah. In terms of the feedback it can give sometimes. Um, because it's reliant on CSS having the error stored in it. And it sometimes it will just be like error, and that's that's all it will say. So, like, yeah."
+    },
+    {
+      "who": "Harry",
+      "start": 542.342,
+      "end": 552.336,
+      "text": "Ha ha ha ha ha. But we can Yeah, we we can build this so that we can do the the validation as much as possible in the application. Um use selector as a last bet."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 550.502,
+      "end": 576.272,
+      "text": "Yeah,'cause we have a very strict format of what what should be imported. Um we we know that. And they've only got four requirements. That we will need to figure out in terms of like, and it's in the plan, Pete listed it off in terms of like the cons number relates to something on their end, the ship ref needs to relate to something on their end that, um. And as long as we map those correctly, that will get into Selector on our end. Um it should be all all kosher."
+    },
+    {
+      "who": "Harry",
+      "start": 576.838,
+      "end": 583.184,
+      "text": "Cause we we can always like build some hard coding in as well for certain column values or like certain API calls."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 583.91,
+      "end": 610.096,
+      "text": "Yeah, the format should be pretty strict and they have the ability to adjust their CSVs. So If it errors. As long as we're providing decent feedback, we don't need them to fix the error in import process. We so they can recreate the CSV and drop it in quite easily, apparently. Um which makes it a little bit simpler um in terms of the air of the back loop. So yeah. Um"
+    },
+    {
+      "who": "Harry",
+      "start": 609.446,
+      "end": 611.92,
+      "text": "No, that that's excellent then. Um"
+    },
+    {
+      "who": "Harry",
+      "start": 613.67,
+      "end": 620.688,
+      "text": "Yeah, let me... some design docs together and are you in office tomorrow or do you just wanna hop on a huddle?"
+    },
+    {
+      "who": "Speaker 1",
+      "start": 621.958,
+      "end": 624.816,
+      "text": "Um I might be able to come down."
+    },
+    {
+      "who": "Harry",
+      "start": 624.006,
+      "end": 627.184,
+      "text": "I I'm easy either way, so um what whatever works for you?"
+    },
+    {
+      "who": "Speaker 1",
+      "start": 626.726,
+      "end": 628.176,
+      "text": "Are you going are you going into office?"
+    },
+    {
+      "who": "Harry",
+      "start": 628.486,
+      "end": 632.24,
+      "text": "Yeah, th Thursdays and Tuesdays are my normal days, so I'll be in regardless."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 632.774,
+      "end": 640.08,
+      "text": "I w I don't know what my wife's doing with she's on a week off at the moment and she's been out with her friends every day, so I don't want to ruin her."
+    },
+    {
+      "who": "Harry",
+      "start": 637.542,
+      "end": 638.032,
+      "text": "Fair enough."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 640.55,
+      "end": 646.608,
+      "text": "Time off with me being like, I'm taking the car. So if I can, I will."
+    },
+    {
+      "who": "Harry",
+      "start": 642.374,
+      "end": 648.4,
+      "text": "I completely get that. Yeah. Just m message me on the day. Yeah, yeah, there's no pressure."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 647.174,
+      "end": 652.432,
+      "text": "Yeah, yeah, I mean, if I mean, I mean, I'm not, I'm not, you know, we'll we'll catch up either way. Um But yeah."
+    },
+    {
+      "who": "Harry",
+      "start": 655.782,
+      "end": 666.576,
+      "text": "one just flat mate that sounds really good much easier than the original epic uh that I had set up because I was like why don't we clone everything and just remove what they had"
+    },
+    {
+      "who": "Speaker 1",
+      "start": 665.446,
+      "end": 684.048,
+      "text": "Well they were so genetic like yeah, unfortunately. They just was like saying random stuff. And I was like, I just need a call. Just let me just let me speak to them. So yeah, it it made it way easier. Um And then we'll handle the selector stuff, which should be nice and easy if the validation's done on the front end, to be honest. Um"
+    },
+    {
+      "who": "Speaker 1",
+      "start": 686.054,
+      "end": 697.232,
+      "text": "All right mate, if you need anything from me, I'm about all evening. Um so feel free because of the time frame we've got especially, feel free to ping me if you get some action and you want us to start on stuff tonight. I'm three."
+    },
+    {
+      "who": "Harry",
+      "start": 696.838,
+      "end": 699.248,
+      "text": "Yeah, sounds sounds good. I'm gonna"
+    },
+    {
+      "who": "Speaker 1",
+      "start": 697.702,
+      "end": 700.464,
+      "text": "Um So I you know, we'll go from there."
+    },
+    {
+      "who": "Harry",
+      "start": 700.806,
+      "end": 705.168,
+      "text": "Yeah, I th I think what I'm gonna do is like fucking Um"
+    },
+    {
+      "who": "Harry",
+      "start": 707.27,
+      "end": 715.952,
+      "text": "What watch this space? Um I've I've been inspired by our earlier chat in the knowledge channel so yeah, should be should be good."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 716.486,
+      "end": 720.752,
+      "text": "Do you feel a bit more like comfortable with the route we're going. in terms of in general."
+    },
+    {
+      "who": "Harry",
+      "start": 719.974,
+      "end": 734.416,
+      "text": "Yeah. I think like in general and s especially for this project Um yeah, it's all it's all good. just have to I will I will sleep better tonight and we'll go from there."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 736.422,
+      "end": 743.344,
+      "text": "Okay. Yeah, I just want to, yeah, I want you to feel comfortable and that I'm not going to fucking torpedo us."
+    },
+    {
+      "who": "Harry",
+      "start": 742.566,
+      "end": 753.072,
+      "text": "No, no, I I'm sure you will. I think like a a big part of this is my fatigue and and the other part is like I've just not worked with you guys before. Um and that that's probably showing"
+    },
+    {
+      "who": "Speaker 1",
+      "start": 751.046,
+      "end": 764.016,
+      "text": "Yeah. No, I look I wait no. We've appeared at a no-wheel and we're like. Hello, give us access to everything. So, no, I'm fully aware, Make. But I, yeah, this is. This dynamic is how we work. We're pretty"
+    },
+    {
+      "who": "Speaker 1",
+      "start": 766.054,
+      "end": 768.88,
+      "text": "That's what I think actually did too."
+    },
+    {
+      "who": "Harry",
+      "start": 768.614,
+      "end": 769.136,
+      "text": "Yeah."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 769.83,
+      "end": 770.256,
+      "text": "We'll get that."
+    },
+    {
+      "who": "Harry",
+      "start": 770.566,
+      "end": 775.12,
+      "text": "It'd be good. Right. I'm gonna go kick off some plant stuff and I will update you as I go."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 776.326,
+      "end": 777.2,
+      "text": "Sounds good, man. In a bit."
+    },
+    {
+      "who": "Harry",
+      "start": 777.862,
+      "end": 778.48,
+      "text": "Take care of it."
+    }
+  ]
+}

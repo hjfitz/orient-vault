@@ -1,0 +1,96 @@
+{
+  "id": "20261019-101855-38cb",
+  "title": "Stock Sync Catchup",
+  "status": "done",
+  "startedAt": "2026-10-19T10:18:55.06191544+01:00",
+  "endedAt": "2026-10-19T10:25:22.458347824+01:00",
+  "sources": {
+    "me": [
+      "JLAB TALK MICROPHONE Analog Stereo"
+    ],
+    "them": [
+      "Nightly",
+      "Slack"
+    ]
+  },
+  "call": true,
+  "speakers": {
+    "Speaker 1": "Jack",
+    "Speaker 2": "Jack",
+    "Speaker 3": "Matt"
+  },
+  "summary": {
+    "tldr": [
+      "Stock sync will be built without line-based mapping; plain SKU and quantity is enough, and kits can work if the message marks what is a kit.",
+      "Once stock sync lands, chasing CSV and Edifact over SFTP can be done without Snap-specific reporting, which supports the multi-WMS north star.",
+      "Multiple Shopify connectors on one store look like a non-issue because the Poland and UK setups are separate businesses with separate stock pools in Snap. This will be validated in QA.",
+      "A few transaction history items remain before the announcement, and a dedicated observability dashboard is wanted.",
+      "Snap load testing is waiting on other testing to finish. Snap has a host with prod-equivalent hardware to simulate against."
+    ],
+    "decisions": [
+      "Skip line-based mapping for stock sync; it is overkill and stock is just SKU and amount.",
+      "Kits are acceptable as long as the data denotes what is a kit and what is not.",
+      "Treat multiple Shopify connectors against one store as a non-issue because the businesses are separate, but validate it in QA."
+    ],
+    "actions": [
+      {
+        "owner": "Harry",
+        "text": "Look into observability and metrics for stock sync, including a distinct dashboard, outside the sprint.",
+        "due": ""
+      },
+      {
+        "owner": "Harry",
+        "text": "Finish the remaining transaction history work before announcing stock sync.",
+        "due": ""
+      },
+      {
+        "owner": "Harry",
+        "text": "Run Snap load testing against Snap's prod-spec host once the current testing wraps up, and share the results in Confluence.",
+        "due": ""
+      },
+      {
+        "owner": "Speaker 3",
+        "text": "Validate in QA that multiple Shopify connectors on the same store do not cause duplicate stock mutations.",
+        "due": ""
+      },
+      {
+        "owner": "Harry",
+        "text": "Share the orient skill packs for meeting transcription so Speaker 1 can bake them into their daybook.",
+        "due": ""
+      }
+    ],
+    "questions": [
+      "Does the stock sync message need a specific format so it can be passed into Edifact and sent for the Tilburg customer?",
+      "What observability and metrics already exist in the Snap adapter and Snap WMS seam for stock sync?",
+      "When will the testing that gates Snap load testing finish?"
+    ],
+    "speakers": [
+      {
+        "label": "Harry",
+        "name": "Harry",
+        "basis": "Voice on Harry's mic; says he built the local Granola clone in Orient"
+      },
+      {
+        "label": "Speaker 1",
+        "name": "Jack",
+        "basis": "Harry addresses Jack, and Speaker 1 is the one he says he has not told about Orient; Speaker 3 also names Jack on the Friday discussion"
+      },
+      {
+        "label": "Speaker 3",
+        "name": "Matt",
+        "basis": "Harry says 'Matt' while describing Orient; Speaker 3 has their own operational command system and talks about the Friday Shopify discussion. Weak match."
+      }
+    ],
+    "model": "sonnet",
+    "usd": 0.0412284,
+    "durationMs": 7732,
+    "at": "2026-10-19T10:27:12.451394847+01:00"
+  },
+  "enhancement": {
+    "model": "sonnet",
+    "usd": 0.06208470000000001,
+    "durationMs": 15111,
+    "at": "2026-10-19T22:03:45.541462307+01:00",
+    "parts": 1
+  }
+}

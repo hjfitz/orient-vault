@@ -1,0 +1,3435 @@
+{
+  "version": 1,
+  "mode": "normalise",
+  "root": "/home/hjf/Documents/obsidian",
+  "startedAt": "2026-09-05T18:37:48.860Z",
+  "finishedAt": "2026-09-05T18:38:27.423Z",
+  "durationMs": 38563,
+  "inventory": {
+    "documents": 334,
+    "sidecars": 27,
+    "assets": 5,
+    "totalBytes": 3739418,
+    "byExtension": [
+      [
+        ".md",
+        334
+      ],
+      [
+        ".yaml",
+        27
+      ],
+      [
+        ".png",
+        3
+      ],
+      [
+        ".draft",
+        1
+      ],
+      [
+        ".json",
+        1
+      ]
+    ],
+    "byFolder": [
+      [
+        "Meetings",
+        34
+      ],
+      [
+        "People",
+        31
+      ],
+      [
+        "Digests/2026-07",
+        22
+      ],
+      [
+        "Digests/2026-08",
+        16
+      ],
+      [
+        "Haude/Relationships",
+        11
+      ],
+      [
+        "Bifrost",
+        10
+      ],
+      [
+        "Digests/2026-06",
+        9
+      ],
+      [
+        "Haude",
+        8
+      ],
+      [
+        "Digests/Weekly",
+        7
+      ],
+      [
+        "Engineering/config-service",
+        7
+      ],
+      [
+        "Engineering/dedupe-service",
+        7
+      ],
+      [
+        "Engineering/sftp-connector",
+        7
+      ],
+      [
+        "Engineering/fuse-mcp",
+        6
+      ],
+      [
+        "Engineering/fuse-mocker",
+        6
+      ],
+      [
+        "Engineering/fuse-ui",
+        6
+      ],
+      [
+        "Engineering/ilg-secure-notes",
+        6
+      ],
+      [
+        "Engineering/replay-service",
+        6
+      ],
+      [
+        "Engineering/secops-reporting",
+        6
+      ],
+      [
+        "Engineering/shopify-connector",
+        6
+      ],
+      [
+        "Engineering/snap-adapter",
+        6
+      ],
+      [
+        "Engineering/snap-mcp",
+        6
+      ],
+      [
+        "Engineering/snap-queue-polling-service",
+        6
+      ],
+      [
+        "Customers/PURDYFIGG",
+        5
+      ],
+      [
+        "Digests/Roundups",
+        5
+      ],
+      [
+        "Engineering/bifrost-pubsub",
+        5
+      ],
+      [
+        "Engineering/collector",
+        5
+      ],
+      [
+        "Engineering/core-infra",
+        5
+      ],
+      [
+        "Engineering/distraction-dashboard",
+        5
+      ],
+      [
+        "Engineering/fapi",
+        5
+      ],
+      [
+        "Engineering/fuse-devtools",
+        5
+      ],
+      [
+        "Engineering/github-actions",
+        5
+      ],
+      [
+        "Engineering/github-config",
+        5
+      ],
+      [
+        "Engineering/observability-sdk",
+        5
+      ],
+      [
+        "Engineering/pkg-node",
+        5
+      ],
+      [
+        "Engineering/renovate-runner",
+        5
+      ],
+      [
+        "Engineering/terraform-modules",
+        5
+      ],
+      [
+        "Engineering/ui-toolkit",
+        5
+      ],
+      [
+        "Explainers",
+        5
+      ],
+      [
+        "(root)",
+        4
+      ],
+      [
+        "Bifrost/HR",
+        4
+      ],
+      [
+        "Digests/2026-09",
+        4
+      ],
+      [
+        "Haude/Channels",
+        4
+      ],
+      [
+        "Interviews",
+        4
+      ],
+      [
+        "Bifrost/Fuse MCP Go",
+        3
+      ],
+      [
+        "Bifrost/Fuse Mocker Go API",
+        3
+      ],
+      [
+        "Engineering/snap-adapter/plans",
+        3
+      ],
+      [
+        "_heap",
+        2
+      ],
+      [
+        "Bifrost/Dedupe NestJS Migration",
+        2
+      ],
+      [
+        "Bifrost/SecOps API Go",
+        2
+      ],
+      [
+        "Bifrost/Shopify Connector Rearchitecture",
+        2
+      ],
+      [
+        "Bifrost/Team",
+        2
+      ],
+      [
+        "Bifrost/Tech Services IaC Review",
+        2
+      ],
+      [
+        "Engineering",
+        2
+      ],
+      [
+        "Growth",
+        2
+      ],
+      [
+        "Bifrost/Platform Terraform Alignment",
+        1
+      ],
+      [
+        "Bifrost/Purdy & Figg Testing",
+        1
+      ],
+      [
+        "Customers",
+        1
+      ],
+      [
+        "Digests/Sprints",
+        1
+      ],
+      [
+        "Engineering/fapi/plans",
+        1
+      ],
+      [
+        "Engineering/fuse-ui/plans",
+        1
+      ],
+      [
+        "Engineering/secops-reporting/plans",
+        1
+      ],
+      [
+        "Engineering/sftp-connector/plans",
+        1
+      ],
+      [
+        "Engineering/shopify-connector/plans",
+        1
+      ],
+      [
+        "Engineering/snap-adapter/explainers",
+        1
+      ],
+      [
+        "Engineering/snap-queue-polling-service/plans",
+        1
+      ],
+      [
+        "Growth/Influence",
+        1
+      ]
+    ],
+    "skipped": [
+      [
+        "ignored-dir",
+        2
+      ]
+    ],
+    "treeHashBefore": "60a118e810ecd8b2663d73fe4deec08a61c7e70c27cc38da14f97e7da270581a",
+    "treeHashAfter": "c3d893c1f91faf12b672925a72057b61ed3fc3f9cdab2b928c5963dd24c54b01"
+  },
+  "documents": {
+    "parsed": 334,
+    "byType": [
+      [
+        "waypoint",
+        94
+      ],
+      [
+        "digest",
+        64
+      ],
+      [
+        "meeting-series",
+        34
+      ],
+      [
+        "person",
+        31
+      ],
+      [
+        "ledger",
+        27
+      ],
+      [
+        "note",
+        27
+      ],
+      [
+        "persona",
+        23
+      ],
+      [
+        "programme",
+        14
+      ],
+      [
+        "plan",
+        9
+      ],
+      [
+        "explainer",
+        6
+      ],
+      [
+        "customer",
+        3
+      ],
+      [
+        "index",
+        2
+      ]
+    ],
+    "byArea": [
+      [
+        "engineering",
+        137
+      ],
+      [
+        "digests",
+        64
+      ],
+      [
+        "meetings",
+        34
+      ],
+      [
+        "people",
+        31
+      ],
+      [
+        "programmes",
+        30
+      ],
+      [
+        "persona",
+        23
+      ],
+      [
+        "customers",
+        5
+      ],
+      [
+        "legacy",
+        5
+      ],
+      [
+        "growth",
+        3
+      ],
+      [
+        "inbox",
+        2
+      ]
+    ],
+    "byContainer": [
+      [
+        "(none)",
+        186
+      ],
+      [
+        "service",
+        130
+      ],
+      [
+        "programme",
+        14
+      ],
+      [
+        "customer",
+        4
+      ]
+    ],
+    "sensitive": 10,
+    "frontmatter": [
+      [
+        "present",
+        309
+      ],
+      [
+        "none",
+        25
+      ]
+    ],
+    "withTitleKey": 23,
+    "parseErrors": 0,
+    "duplicateBasenames": [
+      [
+        "overview.md",
+        35
+      ],
+      [
+        "architecture.md",
+        27
+      ],
+      [
+        "known-context.md",
+        27
+      ],
+      [
+        "ledger.md",
+        27
+      ],
+      [
+        "operations.md",
+        13
+      ],
+      [
+        "migration state.md",
+        5
+      ],
+      [
+        "2026-w34.md",
+        2
+      ],
+      [
+        "2026-w36.md",
+        2
+      ],
+      [
+        "index.md",
+        2
+      ],
+      [
+        "interfaces.md",
+        2
+      ],
+      [
+        "jack bailey.md",
+        2
+      ],
+      [
+        "matt shaw.md",
+        2
+      ],
+      [
+        "nylah klasson.md",
+        2
+      ],
+      [
+        "wolf clostermann.md",
+        2
+      ]
+    ]
+  },
+  "findings": {
+    "total": 261,
+    "bySeverity": [
+      [
+        "info",
+        261
+      ]
+    ],
+    "byCode": [
+      [
+        "LINK-UNRESOLVED",
+        134,
+        "info"
+      ],
+      [
+        "FM-TAGS-BLOCK",
+        50,
+        "info"
+      ],
+      [
+        "FM-DATE-QUOTED",
+        49,
+        "info"
+      ],
+      [
+        "FM-NO-BLOCK",
+        25,
+        "info"
+      ],
+      [
+        "PLAN-PLURAL-KEY",
+        3,
+        "info"
+      ]
+    ],
+    "fatal": []
+  },
+  "links": {
+    "parsedOccurrences": 4067,
+    "relationRows": 5819,
+    "classified": 4067,
+    "byResolution": [
+      [
+        "basename",
+        2782
+      ],
+      [
+        "entity",
+        405
+      ],
+      [
+        "path",
+        372
+      ],
+      [
+        "unresolved",
+        303
+      ],
+      [
+        "same-folder",
+        143
+      ],
+      [
+        "suffix",
+        51
+      ],
+      [
+        "relative",
+        10
+      ],
+      [
+        "same-container",
+        1
+      ]
+    ],
+    "unresolvedDistinct": [
+      [
+        "Manucurist",
+        144
+      ],
+      [
+        "Fulfil",
+        53
+      ],
+      [
+        "SportLux",
+        31
+      ],
+      [
+        "EPERFUM",
+        25
+      ],
+      [
+        "Accenture",
+        6
+      ],
+      [
+        "Meetings/DevOps Drop In",
+        6
+      ],
+      [
+        "project_fuse_mocker_go_api",
+        2
+      ],
+      [
+        "project_fuse1104_silent_loss_hardening",
+        2
+      ],
+      [
+        "reference_gfs_bifrost_checkouts",
+        2
+      ],
+      [
+        "reference_ilg_platform_workflows",
+        2
+      ],
+      [
+        "STUBBLE",
+        2
+      ],
+      [
+        "atlassian-confluence-access-loss",
+        1
+      ],
+      [
+        "CLAUDE",
+        1
+      ],
+      [
+        "Dock & Bay",
+        1
+      ],
+      [
+        "Dock &amp; Bay Fulfil.io API collection",
+        1
+      ],
+      [
+        "F Veal",
+        1
+      ],
+      [
+        "feedback_comment_density",
+        1
+      ],
+      [
+        "feedback_metrics_in_service_not_shared_package",
+        1
+      ],
+      [
+        "Gisou",
+        1
+      ],
+      [
+        "ICONIC",
+        1
+      ],
+      [
+        "Meetings/…",
+        1
+      ],
+      [
+        "Meetings/Bifrost Standup",
+        1
+      ],
+      [
+        "Pasted image 20260701164457.png",
+        1
+      ],
+      [
+        "Pasted image 20260701164734.png",
+        1
+      ],
+      [
+        "Pasted image 20260701170534.png",
+        1
+      ],
+      [
+        "People/Thomas Dunn",
+        1
+      ],
+      [
+        "project_dockbay_fulfilio_postman_collection",
+        1
+      ],
+      [
+        "project_fuse_mcp_go_rewrite",
+        1
+      ],
+      [
+        "project_fuse_mocker",
+        1
+      ],
+      [
+        "project_saira_prod_order_intake_outage",
+        1
+      ],
+      [
+        "project_secops_dep_node_checkout_regression",
+        1
+      ],
+      [
+        "Purdy and Figg",
+        1
+      ],
+      [
+        "reference_cloudrun_domain_mapping_region",
+        1
+      ],
+      [
+        "reference_cross_env_tfstate_read",
+        1
+      ],
+      [
+        "reference_fuse_dashboards",
+        1
+      ],
+      [
+        "reference_shopify_retrieval_conditions_traps",
+        1
+      ],
+      [
+        "Shopify retrieval-conditions full-replace",
+        1
+      ],
+      [
+        "Sprint 13",
+        1
+      ],
+      [
+        "Todo item below",
+        1
+      ]
+    ],
+    "ambiguousDistinct": []
+  },
+  "entities": {
+    "total": 299,
+    "stubs": 233,
+    "byKind": [
+      [
+        "ticket",
+        180
+      ],
+      [
+        "person",
+        48
+      ],
+      [
+        "service",
+        26
+      ],
+      [
+        "channel",
+        21
+      ],
+      [
+        "pr",
+        9
+      ],
+      [
+        "programme",
+        8
+      ],
+      [
+        "incident",
+        6
+      ],
+      [
+        "customer",
+        1
+      ]
+    ]
+  },
+  "entries": {
+    "total": 3116,
+    "byKind": [
+      [
+        "digest-todo",
+        1289
+      ],
+      [
+        "digest-section",
+        615
+      ],
+      [
+        "together",
+        303
+      ],
+      [
+        "open-loop",
+        217
+      ],
+      [
+        "human-slot",
+        167
+      ],
+      [
+        "programme-unit",
+        138
+      ],
+      [
+        "meeting-occurrence",
+        102
+      ],
+      [
+        "programme-decision",
+        91
+      ],
+      [
+        "persona-log",
+        88
+      ],
+      [
+        "plan-increment",
+        48
+      ],
+      [
+        "plan-decision",
+        46
+      ],
+      [
+        "snapshot-claim",
+        7
+      ],
+      [
+        "ledger",
+        3
+      ],
+      [
+        "explainer-update",
+        2
+      ]
+    ]
+  },
+  "manifest": {
+    "ids": 334,
+    "created": 0,
+    "renamed": 0,
+    "deleted": 0,
+    "stable": true
+  },
+  "index": {
+    "path": "/home/hjf/.local/state/orient/index.sqlite",
+    "documents": 334,
+    "entries": 3116,
+    "entities": 299,
+    "relations": 5819
+  },
+  "normalisation": {
+    "eligible": 307,
+    "wouldChange": 306,
+    "applied": 306,
+    "byRule": [
+      [
+        "add-title",
+        283
+      ],
+      [
+        "quote-date",
+        155
+      ],
+      [
+        "tags-flow",
+        50
+      ]
+    ],
+    "byRefusal": [
+      [
+        "no-frontmatter",
+        15
+      ],
+      [
+        "sensitive",
+        10
+      ],
+      [
+        "generated-index",
+        2
+      ]
+    ],
+    "files": [
+      {
+        "path": "Bifrost/Dedupe NestJS Migration/Migration State.md",
+        "rules": [
+          "quote-date"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Bifrost/Dedupe NestJS Migration/Overview.md",
+        "rules": [
+          "quote-date"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Bifrost/Epic Structure.md",
+        "rules": [],
+        "refusal": "no-frontmatter"
+      },
+      {
+        "path": "Bifrost/Epics Covered.md",
+        "rules": [],
+        "refusal": "no-frontmatter"
+      },
+      {
+        "path": "Bifrost/Fuse Collector.md",
+        "rules": [],
+        "refusal": "no-frontmatter"
+      },
+      {
+        "path": "Bifrost/Fuse MCP Go/Migration State.md",
+        "rules": [
+          "quote-date"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Bifrost/Fuse MCP Go/Overview.md",
+        "rules": [
+          "quote-date"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Bifrost/Fuse Mocker Go API/Migration State.md",
+        "rules": [
+          "quote-date"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Bifrost/Fuse Mocker Go API/Overview.md",
+        "rules": [
+          "quote-date"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Bifrost/HR/Ibrahim Investigation - notes.md",
+        "rules": [],
+        "refusal": "sensitive"
+      },
+      {
+        "path": "Bifrost/HR/Ibrahim Write-Up - Ben.md",
+        "rules": [],
+        "refusal": "sensitive"
+      },
+      {
+        "path": "Bifrost/HR/Ibrahim Write-Up - Kim.md",
+        "rules": [],
+        "refusal": "sensitive"
+      },
+      {
+        "path": "Bifrost/HR/Ibrahim Write-up - Ibrahim.md",
+        "rules": [],
+        "refusal": "sensitive"
+      },
+      {
+        "path": "Bifrost/James Godsell — Migration Lead Concerns.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Bifrost/Kit Confirmations & Short-Ship (FUSE-785).md",
+        "rules": [],
+        "refusal": "no-frontmatter"
+      },
+      {
+        "path": "Bifrost/Leadership notes.md",
+        "rules": [],
+        "refusal": "no-frontmatter"
+      },
+      {
+        "path": "Bifrost/Matt Tickets - Config Leadership.md",
+        "rules": [],
+        "refusal": "no-frontmatter"
+      },
+      {
+        "path": "Bifrost/Platform Terraform Alignment/Overview.md",
+        "rules": [
+          "quote-date"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Bifrost/Purdy & Figg Testing/Overview.md",
+        "rules": [
+          "quote-date"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Bifrost/SRE Terraform Framework — Bifrost Coexistence.md",
+        "rules": [],
+        "refusal": "no-frontmatter"
+      },
+      {
+        "path": "Bifrost/SecOps API Go/Migration State.md",
+        "rules": [
+          "quote-date"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Bifrost/SecOps API Go/Overview.md",
+        "rules": [
+          "quote-date"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Bifrost/SecOps Workflows 0.2 Plan.md",
+        "rules": [],
+        "refusal": "no-frontmatter"
+      },
+      {
+        "path": "Bifrost/Shopify Connector Rearchitecture/Migration State.md",
+        "rules": [
+          "quote-date"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Bifrost/Shopify Connector Rearchitecture/Overview.md",
+        "rules": [
+          "quote-date"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Bifrost/Team/Big up the team.md",
+        "rules": [],
+        "refusal": "sensitive"
+      },
+      {
+        "path": "Bifrost/Team/Matt Appraisal - 2026.md",
+        "rules": [],
+        "refusal": "sensitive"
+      },
+      {
+        "path": "Bifrost/Tech Services IaC Review/Overview.md",
+        "rules": [
+          "quote-date"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Bifrost/Tech Services IaC Review/Remediation State.md",
+        "rules": [
+          "quote-date"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Bifrost/Ticket Template.md",
+        "rules": [],
+        "refusal": "no-frontmatter"
+      },
+      {
+        "path": "Customers/PURDYFIGG/architecture.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Customers/PURDYFIGG/known-context.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Customers/PURDYFIGG/ledger.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Customers/PURDYFIGG/overview.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Customers/index.md",
+        "rules": [],
+        "refusal": "generated-index"
+      },
+      {
+        "path": "Digests/2026-06/2026-06-17.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Digests/2026-06/2026-06-18.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Digests/2026-06/2026-06-19.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Digests/2026-06/2026-06-23.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Digests/2026-06/2026-06-24.md",
+        "rules": [
+          "quote-date"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Digests/2026-06/2026-06-25.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Digests/2026-06/2026-06-26.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Digests/2026-06/2026-06-29.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Digests/2026-06/2026-06-30.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Digests/2026-07/2026-07-01.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Digests/2026-07/2026-07-02.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Digests/2026-07/2026-07-03.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Digests/2026-07/2026-07-06.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Digests/2026-07/2026-07-07.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Digests/2026-07/2026-07-09.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Digests/2026-07/2026-07-10.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Digests/2026-07/2026-07-13.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Digests/2026-07/2026-07-14.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Digests/2026-07/2026-07-15.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Digests/2026-07/2026-07-16.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Digests/2026-07/2026-07-17.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Digests/2026-07/2026-07-20.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Digests/2026-07/2026-07-21.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Digests/2026-07/2026-07-22.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Digests/2026-07/2026-07-23.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Digests/2026-07/2026-07-24.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Digests/2026-07/2026-07-27.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Digests/2026-07/2026-07-28.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Digests/2026-07/2026-07-29.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Digests/2026-07/2026-07-30.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Digests/2026-07/2026-07-31.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Digests/2026-08/2026-08-03.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Digests/2026-08/2026-08-04.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Digests/2026-08/2026-08-06.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Digests/2026-08/2026-08-10.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Digests/2026-08/2026-08-11.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Digests/2026-08/2026-08-12.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Digests/2026-08/2026-08-13.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Digests/2026-08/2026-08-17.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Digests/2026-08/2026-08-18.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Digests/2026-08/2026-08-19.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Digests/2026-08/2026-08-20.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Digests/2026-08/2026-08-24.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Digests/2026-08/2026-08-25.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Digests/2026-08/2026-08-26.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Digests/2026-08/2026-08-27.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Digests/2026-08/2026-08-28.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Digests/2026-09/2026-09-01.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Digests/2026-09/2026-09-02.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Digests/2026-09/2026-09-03.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Digests/2026-09/2026-09-04.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Digests/Roundups/2026-W30.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Digests/Roundups/2026-W32.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Digests/Roundups/2026-W34.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Digests/Roundups/2026-W35.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Digests/Roundups/2026-W36.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Digests/Sprints/Sprint-14-boundary.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Digests/Weekly/2026-W25.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Digests/Weekly/2026-W26.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Digests/Weekly/2026-W27.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Digests/Weekly/2026-W29.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Digests/Weekly/2026-W33.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Digests/Weekly/2026-W34.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Digests/Weekly/2026-W36.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/Waypoint — programme notes.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/bifrost-pubsub/architecture.md",
+        "rules": [
+          "tags-flow",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/bifrost-pubsub/known-context.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/bifrost-pubsub/ledger.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/bifrost-pubsub/overview.md",
+        "rules": [
+          "tags-flow",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/collector/architecture.md",
+        "rules": [
+          "tags-flow",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/collector/known-context.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/collector/ledger.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/collector/overview.md",
+        "rules": [
+          "tags-flow",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/config-service/architecture.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/config-service/interfaces.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/config-service/known-context.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/config-service/ledger.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/config-service/operations.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/config-service/overview.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/core-infra/architecture.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/core-infra/known-context.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/core-infra/ledger.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/core-infra/overview.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/dedupe-service/architecture.md",
+        "rules": [
+          "tags-flow",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/dedupe-service/known-context.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/dedupe-service/ledger.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/dedupe-service/operations.md",
+        "rules": [
+          "tags-flow",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/dedupe-service/overview.md",
+        "rules": [
+          "tags-flow",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/dedupe-service/testing.md",
+        "rules": [
+          "tags-flow",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/distraction-dashboard/architecture.md",
+        "rules": [
+          "tags-flow",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/distraction-dashboard/known-context.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/distraction-dashboard/ledger.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/distraction-dashboard/overview.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/fapi/architecture.md",
+        "rules": [
+          "tags-flow",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/fapi/known-context.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/fapi/ledger.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/fapi/overview.md",
+        "rules": [
+          "tags-flow",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/fapi/plans/FUSE-1056-resolve-confirmation-webhook-target-by-connector.md",
+        "rules": [
+          "tags-flow",
+          "quote-date"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/fuse-devtools/architecture.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/fuse-devtools/known-context.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/fuse-devtools/ledger.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/fuse-devtools/overview.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/fuse-mcp/architecture.md",
+        "rules": [
+          "tags-flow",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/fuse-mcp/known-context.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/fuse-mcp/ledger.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/fuse-mcp/operations.md",
+        "rules": [
+          "tags-flow",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/fuse-mcp/overview.md",
+        "rules": [
+          "tags-flow",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/fuse-mocker/architecture.md",
+        "rules": [
+          "tags-flow",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/fuse-mocker/known-context.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/fuse-mocker/ledger.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/fuse-mocker/operations.md",
+        "rules": [
+          "tags-flow",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/fuse-mocker/overview.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/fuse-ui/architecture.md",
+        "rules": [
+          "tags-flow",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/fuse-ui/known-context.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/fuse-ui/ledger.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/fuse-ui/operations.md",
+        "rules": [
+          "tags-flow",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/fuse-ui/overview.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/fuse-ui/plans/FUSE-1070-template-library-storage-browse-and-crud.md",
+        "rules": [
+          "tags-flow"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/github-actions/architecture.md",
+        "rules": [
+          "tags-flow",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/github-actions/known-context.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/github-actions/ledger.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/github-actions/overview.md",
+        "rules": [
+          "tags-flow",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/github-config/architecture.md",
+        "rules": [
+          "tags-flow",
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/github-config/known-context.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/github-config/ledger.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/github-config/overview.md",
+        "rules": [
+          "tags-flow",
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/ilg-secure-notes/architecture.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/ilg-secure-notes/known-context.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/ilg-secure-notes/ledger.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/ilg-secure-notes/operations.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/ilg-secure-notes/overview.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/index.md",
+        "rules": [],
+        "refusal": "generated-index"
+      },
+      {
+        "path": "Engineering/observability-sdk/architecture.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/observability-sdk/known-context.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/observability-sdk/ledger.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/observability-sdk/overview.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/pkg-node/architecture.md",
+        "rules": [
+          "tags-flow",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/pkg-node/known-context.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/pkg-node/ledger.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/pkg-node/overview.md",
+        "rules": [
+          "tags-flow",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/renovate-runner/architecture.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/renovate-runner/known-context.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/renovate-runner/ledger.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/renovate-runner/overview.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/replay-service/architecture.md",
+        "rules": [
+          "tags-flow",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/replay-service/known-context.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/replay-service/ledger.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/replay-service/operations.md",
+        "rules": [
+          "tags-flow",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/replay-service/overview.md",
+        "rules": [
+          "tags-flow",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/secops-reporting/architecture.md",
+        "rules": [
+          "tags-flow",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/secops-reporting/known-context.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/secops-reporting/ledger.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/secops-reporting/operations.md",
+        "rules": [
+          "tags-flow",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/secops-reporting/overview.md",
+        "rules": [
+          "tags-flow",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/secops-reporting/plans/vulnerability-report-issue-writer.md",
+        "rules": [
+          "quote-date"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/sftp-connector/architecture.md",
+        "rules": [
+          "tags-flow",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/sftp-connector/interfaces.md",
+        "rules": [
+          "tags-flow",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/sftp-connector/known-context.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/sftp-connector/ledger.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/sftp-connector/operations.md",
+        "rules": [
+          "tags-flow",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/sftp-connector/overview.md",
+        "rules": [
+          "tags-flow",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/sftp-connector/plans/FUSE-1010-re-point-prod-goods-out-mappings-before-the-flag.md",
+        "rules": [
+          "tags-flow",
+          "quote-date"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/shopify-connector/architecture.md",
+        "rules": [
+          "tags-flow",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/shopify-connector/known-context.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/shopify-connector/ledger.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/shopify-connector/operations.md",
+        "rules": [
+          "tags-flow",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/shopify-connector/overview.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/shopify-connector/plans/FUSE-1057-route-confirmations-to-the-originating-shopify-c.md",
+        "rules": [
+          "tags-flow"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/snap-adapter/architecture.md",
+        "rules": [
+          "tags-flow",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/snap-adapter/explainers/work-order-family-confirmations.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/snap-adapter/known-context.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/snap-adapter/ledger.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/snap-adapter/operations.md",
+        "rules": [
+          "tags-flow",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/snap-adapter/overview.md",
+        "rules": [
+          "tags-flow",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/snap-adapter/plans/FUSE-866-join-woc-lines-by-line-key.md",
+        "rules": [
+          "tags-flow",
+          "quote-date"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/snap-adapter/plans/routing-metadata-to-firestore-write-side.md",
+        "rules": [
+          "tags-flow"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/snap-mcp/architecture.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/snap-mcp/known-context.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/snap-mcp/ledger.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/snap-mcp/operations.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/snap-mcp/overview.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/snap-queue-polling-service/architecture.md",
+        "rules": [
+          "tags-flow",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/snap-queue-polling-service/known-context.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/snap-queue-polling-service/ledger.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/snap-queue-polling-service/operations.md",
+        "rules": [
+          "tags-flow",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/snap-queue-polling-service/overview.md",
+        "rules": [
+          "tags-flow",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/snap-queue-polling-service/plans/routing-metadata-to-firestore-read-side.md",
+        "rules": [
+          "tags-flow"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/terraform-modules/architecture.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/terraform-modules/known-context.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/terraform-modules/ledger.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/terraform-modules/overview.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/ui-toolkit/architecture.md",
+        "rules": [
+          "tags-flow",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/ui-toolkit/known-context.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/ui-toolkit/ledger.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Engineering/ui-toolkit/overview.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Explainers/2026-08-21-explain-skill-built.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Explainers/2026-08-24-work-order-lines-mirrored-across-both-snap-documents.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Explainers/2026-08-25-gadg-bulk-ingest-soak-test-findings.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Explainers/2026-08-26-gcp-config-antipattern-audit.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Explainers/2026-09-01-actioning-a-waypoint-plan.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Growth/Influence/Recommended Tooling etc..md",
+        "rules": [],
+        "refusal": "no-frontmatter"
+      },
+      {
+        "path": "Growth/Staff+ Things.md",
+        "rules": [],
+        "refusal": "no-frontmatter"
+      },
+      {
+        "path": "Growth/oli-harry career (no images).md",
+        "rules": [],
+        "refusal": "no-frontmatter"
+      },
+      {
+        "path": "Haude/Autonomy.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Haude/Channels/Agents-Only.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Haude/Channels/Bifrost-General.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Haude/Channels/Fitz-Nylah-Matt-GroupDM.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Haude/Channels/Guild-AI.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Haude/Decisions.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Haude/Disagreements.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Haude/Haude.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Haude/Lessons.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Haude/Mood.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Haude/Operating Rules.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Haude/Relationships/ChatGPT.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Haude/Relationships/Harry.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Haude/Relationships/Jack Bailey.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Haude/Relationships/Jaude.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Haude/Relationships/Matt Shaw.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Haude/Relationships/Nylah Klasson.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Haude/Relationships/Olliama.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Haude/Relationships/Shannonigans.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Haude/Relationships/Stefthropic.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Haude/Relationships/Thomas Dunn.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Haude/Relationships/Wolf Clostermann.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Haude/User.md",
+        "rules": [
+          "quote-date",
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Interviews/Azdean interview.md",
+        "rules": [],
+        "refusal": "sensitive"
+      },
+      {
+        "path": "Interviews/Feedback for both.md",
+        "rules": [],
+        "refusal": "sensitive"
+      },
+      {
+        "path": "Interviews/Harry Humby interview notes.md",
+        "rules": [],
+        "refusal": "sensitive"
+      },
+      {
+        "path": "Interviews/Interviews 24-11.md",
+        "rules": [],
+        "refusal": "sensitive"
+      },
+      {
+        "path": "Meetings/1-1 Harry Humby.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Meetings/1-1 Jack Bailey.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Meetings/1-1 Kyle Chandler.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Meetings/1-1 Matt Shaw.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Meetings/1-1 Nylah Klasson.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Meetings/1-1 Oli Denton.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Meetings/1-1 Schuster Efigenio.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Meetings/1-1 Stef Aspin.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Meetings/API Documentation - Examples.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Meetings/API Documentation - Mandatory Use Cases.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Meetings/Bifrost - Operational Readiness.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Meetings/Bifrost Leadership Catchup.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Meetings/Bifrost Refinement.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Meetings/Bifrost SteerCo.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Meetings/Bruno Scripting.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Meetings/Charlotte Tilbury SAP - ILG Integration Catch Up.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Meetings/EDIFACT Interfaces - DESADV RECADV.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Meetings/EDIFACT Interfaces - INSDES OSTRPT.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Meetings/EDIFACT Interfaces - INVRPT.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Meetings/EDIFACT Interfaces - PRICAT.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Meetings/Escentric Engraving - Solution Design.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Meetings/FUSE Shopify Load Test Call.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Meetings/Fuse Support & Operational Ownership.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Meetings/Fuse Support Catch up.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Meetings/Fuse-Bifrost Weekly Sync.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Meetings/ILG - Fulfil Dock and Bay Integration.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Meetings/ILG Self-Service Feasibility.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Meetings/Platform Engineering Weekly.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Meetings/Purdy and Figg Go-Live War Room.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Meetings/RGA SFTP Ingress Catch-up.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Meetings/Return-to-work catch-up.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Meetings/Saira Skin Shopify Migration.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Meetings/Shopify Bulk - go-no-go.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Meetings/Shopify Retrieval Conditions - Catch up.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "People/Alex Pickard.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "People/Alex Topea.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "People/Ankit Kansal.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "People/Ashley Quick.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "People/Darren Cobby.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "People/Darren Rielly.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "People/Denis Tomolea.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "People/Harry Humby.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "People/Hayley Prior.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "People/Jack Bailey.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "People/Jacques Dalton-Almeida.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "People/James Godsell.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "People/John Clarke.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "People/John Finney.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "People/Keith Rigg.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "People/Kyle Chandler.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "People/Laura Bockling.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "People/Lee Simmons.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "People/Matt Shaw.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "People/Milosz Fialkowski.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "People/Nylah Klasson.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "People/Oli Denton.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "People/Oliver Wilders.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "People/Patricia Navarro Vaquero.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "People/Peter Liu.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "People/Ryan Ellis.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "People/Sarah Davenport.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "People/Schuster Efigenio.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "People/Stef Aspin.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "People/Tom Dunn.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "People/Wolf Clostermann.md",
+        "rules": [
+          "add-title"
+        ],
+        "refusal": null
+      },
+      {
+        "path": "Untitled.md",
+        "rules": [],
+        "refusal": "no-frontmatter"
+      },
+      {
+        "path": "_heap/Inovize Issues.md",
+        "rules": [],
+        "refusal": "no-frontmatter"
+      },
+      {
+        "path": "_heap/Sportlux Confirmations @ 1-Jul.md",
+        "rules": [],
+        "refusal": "no-frontmatter"
+      }
+    ]
+  },
+  "doctor": {
+    "before": {
+      "available": true,
+      "fingerprint": "344fa436df8fb86ed4dbf99ce8c9d1bb260f98b55000854d6c04b9c86cb55a07",
+      "detail": "wp doctor: 33 findings across 12 sections, exit 2"
+    },
+    "after": {
+      "available": true,
+      "fingerprint": "344fa436df8fb86ed4dbf99ce8c9d1bb260f98b55000854d6c04b9c86cb55a07",
+      "detail": "wp doctor: 33 findings across 12 sections, exit 2"
+    },
+    "unchanged": true
+  },
+  "acceptance": [
+    {
+      "id": "inventoried-indexed",
+      "label": "Every inventoried document is indexed",
+      "expected": "334 of 334",
+      "actual": "334 of 334",
+      "status": "pass"
+    },
+    {
+      "id": "no-fatal",
+      "label": "No fatal findings",
+      "expected": "0 fatal",
+      "actual": "0 fatal",
+      "status": "pass"
+    },
+    {
+      "id": "warning-budget",
+      "label": "Warnings within the adoption budget",
+      "expected": "at most 40 warn",
+      "actual": "0 warn",
+      "status": "pass"
+    },
+    {
+      "id": "engineering-container",
+      "label": "Every Engineering/<svc>/** document has a service container",
+      "expected": "130 of 130",
+      "actual": "130 of 130",
+      "status": "pass"
+    },
+    {
+      "id": "plan-status",
+      "label": "Every plan carries a wp status",
+      "expected": "9 of 9",
+      "actual": "9 of 9",
+      "status": "pass"
+    },
+    {
+      "id": "programme-status",
+      "label": "Every programme status maps to the enum",
+      "expected": "14 mapped, 0 unmapped",
+      "actual": "14 mapped, 0 unmapped",
+      "status": "pass"
+    },
+    {
+      "id": "links-classified",
+      "label": "Every parsed wikilink occurrence is classified",
+      "expected": "4067 of 4067",
+      "actual": "4067 of 4067, 0 documents short",
+      "status": "pass"
+    },
+    {
+      "id": "ambiguous-budget",
+      "label": "Ambiguous targets within budget",
+      "expected": "at most 5 distinct",
+      "actual": "0 distinct",
+      "status": "pass"
+    },
+    {
+      "id": "tree-hash",
+      "label": "Vault tree hash unchanged",
+      "expected": "60a118e810ecd8b2",
+      "actual": "c3d893c1f91faf12",
+      "status": "fail"
+    },
+    {
+      "id": "manifest-idempotent",
+      "label": "A second reconcile leaves the manifest byte-identical",
+      "expected": "identical",
+      "actual": "identical",
+      "status": "pass"
+    },
+    {
+      "id": "doctor-unchanged",
+      "label": "wp doctor findings unchanged",
+      "expected": "identical",
+      "actual": "identical",
+      "status": "pass"
+    }
+  ],
+  "writes": [
+    "/home/hjf/Documents/obsidian/.knowledge/manifest.json"
+  ],
+  "rollback": [
+    "rm -r /home/hjf/Documents/obsidian/.knowledge",
+    "rm -f /home/hjf/.local/state/orient/index.sqlite /home/hjf/.local/state/orient/index.sqlite-wal /home/hjf/.local/state/orient/index.sqlite-shm"
+  ]
+}

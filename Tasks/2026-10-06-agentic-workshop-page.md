@@ -1,0 +1,21 @@
+---
+tags: [adhoc-task]
+date: 2026-10-06
+tldr: "Built the 8 Oct carrier-proxy agentic workshop page (artifact): agenda, Windows setup checklist, prompt-built action-ticket skill, run sheet. Placeholders and seats still open."
+session_id: 1d75ca15-4236-42fe-829d-76f8576c8a10
+status: open
+---
+# Build the agentic development workshop page
+
+## Outcome
+Artifact https://claude.ai/artifact/2fPcwQHnnLFT9MoAi9bZpr (v9): carrier-proxy migration into the new monorepo on api-host-framework, 10:00-16:00 Thu 8 Oct, Epsilon House. Skill is prompted, not shared; monorepo instructions live in CLAUDE.md (draft at ~/code/fuse/carrier-monorepo-CLAUDE.md).
+Framework AGENTS.md renamed to CLAUDE.md in gfs-hybrid-services/api-host-framework#12 (merged). Red nightly audit fixed separately in #13 (draft). Carriers: OCS CID-330 (Dan), Coll8 CID-331 (Chris), Exelot CID-332 (John), UPS CID-334 (Harry), all under CID-183 and unassigned in Jira; Evri CID-333 parked as backlog. Artifact retitled "Agentic Delivery Day". ADO MCP fixed (PAT must be base64("<email>:<pat>")).
+Monorepo gfs-hybrid-services/carrier-proxies created by hand and seeded directly on main as a pnpm workspace (apps/, packages/, iac/ with placeholder main.tf per carrier, pnpm 10.24 pinned, per-app CI, CLAUDE.md). github-config#4 closed. github-config ORG_ADMIN_TOKEN still 401. Evri app replaced by apps/ups-proxy in the repo.
+Dry run done 2026-10-06 (skill generation 90s, skill plan on CID-330 172s, CI on stub app green incl. framework install via GH_ORG_TOKEN). Fixed: bjs-proxy (not inpost) is the framework reference; retryWrapper retries 4xx so create calls need retries=0; success shapes unchanged, errors become problem+json; CI job-level GITHUB_TOKEN; tickets corrected.
+Owed: every participant must SSO-authorise their PAT (registry 403 otherwise), Claude Code seats (Oli), Windows/PowerShell untested, per-carrier fake upstream (OCS has none, write one), renew github-config ORG_ADMIN_TOKEN, framework issue for retryWrapper on non-idempotent calls.
+
+Dry run 2 (Coll8, CID-331): skill regenerated in 74s; plan 248s; full migration built, verified locally and pushed as draft PR gfs-hybrid-services/carrier-proxies#3 in 13 min of agent time (30 files, 4 checks green locally, CI green incl. frozen-lockfile install). Jira untouched except a notes comment on CID-331. Owed: close PR #3 + delete branch hjf/dryrun-coll8-delete-me after review (spoiler for Chris); framework issues (validation failures log the full request incl x-api-key and PII; CarrierException maps 4xx to 400 and 5xx to 599; no per-call retry control; ApiKy 5xx becomes 401); decide Tooling section in monorepo CLAUDE.md (vitest+biome like bjs-proxy vs framework jest+eslint).
+
+Auto mode check 2026-10-07: auto is the built-in default on Claude Code >= 2.1.283 (interactive terminal, all plans); classifier blocks force push, prod deploys, unapproved merges, secrets in pushes; 3 blocks in a row falls back to prompts; org admins can disable via permissions.disableAutoMode. Headless auto-mode run of the skill on CID-330 held its plan checkpoint (no files, branch or commits before approval). Page permissions note rewritten; bjs-proxy demoted to wiring example (own exception classes, npm, Biome). Tickets still say "Reference built on it: bjs-proxy". PR #3 + branch hjf/dryrun-coll8-delete-me still to close.
+
+Infra + deploy rolled into the main flow 2026-10-07 (page v23): Coll8 proven end to end (15 resources applied, revision Ready, bad-key 401 problem+json, logs in Datadog with carrier:coll8 + version=sha; destroy removed exactly 15; image tag deleted). carrier-proxies main now has the shared `carrier-proxy` module, Deploy to dev / Destroy dev / tf-plan-pr workflows and iac/README.md templates. CID-330/331/332/334 descriptions updated in Jira (deploy to dev in scope; prod, LB/domain, real creds out). Page: agenda, checkpoints (plan, Terraform plan, PR), teardown step, skill prompt ("never run deploy/terraform, wait for me"), ground rules; Cloud Run stretch section removed. Owed: Harry's new stretch idea; close PR #3 + branch hjf/dryrun-coll8-delete-me; repo secrets beyond placeholder APIKY_API_KEY; Windows/PowerShell `gh workflow run` untested.

@@ -1,0 +1,55 @@
+---
+type: prompt-tool
+id: meeting-debrief
+title: Meeting debrief
+area: meetings
+tags: [prompt-tool, meetings]
+version: 1
+queries:
+  series:
+    label: Meeting series
+    type: meeting-series
+    sort: [[updated, desc]]
+    fields: [title, excerpt]
+    limit: 8
+  people:
+    label: Open loops, by person
+    type: person
+    sort: [[updated, desc]]
+    fields: [title, 'section:Open loops']
+    limit: 8
+---
+
+# Meeting debrief
+
+Raw notes in, two paste-ready blocks out: the occurrence's pen-glyph Notes lines, and the
+open loops they created. The output is an addition — existing lines are never rewritten.
+
+<PromptBuilder
+  id="meeting-debrief"
+  fields={[
+    { name: 'series', label: 'Which series', kind: 'text', required: true, placeholder: '1-1 Jack Bailey' },
+    { name: 'date', label: 'Occurrence date', kind: 'text', placeholder: 'YYYY-MM-DD' },
+    { name: 'raw_notes', label: 'Raw notes, however they came out', kind: 'textarea', required: true },
+    { name: 'decisions', label: 'Anything decided', kind: 'textarea' },
+    { name: 'owed_by_me', label: 'What you now owe', kind: 'textarea' },
+    { name: 'owed_to_me', label: 'What they now owe', kind: 'textarea' }
+  ]}
+  template={`You are turning my raw notes from one meeting into the two places they belong.
+Meeting: {{series}}{{#if date}}, occurrence {{date}}{{/if}}. Written up {{today}}.
+
+Raw notes: {{raw_notes}}
+{{#if decisions}}Decided: {{decisions}}{{/if}}
+{{#if owed_by_me}}I now owe: {{owed_by_me}}{{/if}}
+{{#if owed_to_me}}They now owe: {{owed_to_me}}{{/if}}
+
+## Context (bounded; sensitive notes excluded)
+{{context}}
+
+## Ask
+1. Notes — the block to paste under that occurrence's "### Notes" heading. Every line starts "- ✍️ " exactly, past tense, one point per line, no sub-headings. It is an addition: leave the lines already there alone.
+2. Open loops — per person, the checkbox lines to add under "**I owe**" or "**Owed to me**" on their note, each as "- [ ] thing (date)".
+3. Anything that is neither a note nor a loop and should simply be dropped — list it so I can confirm.
+Keep my wording where it is already clear, and never summarise away a name, a number or a date.
+Return markdown, under 300 words.`}
+/>

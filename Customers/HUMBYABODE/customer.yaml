@@ -1,0 +1,8 @@
+businessId: HUMBYABODE
+friendlyName: HumbyAbode
+environment: production
+connectors: []
+wms: []
+created: '2026-10-21'
+last_synced: null
+kind: fixture

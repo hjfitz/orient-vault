@@ -1,0 +1,40 @@
+# snap-queue-polling-service — Waypoint index. Cheap orientation only, never documentation.
+# Keep under ~25 lines. Anything needing a sentence belongs in a doc.
+service: snap-queue-polling-service
+system: fuse
+repo: snap-adapter        # code lives in the snap-adapter monorepo; the same-named ~/code/fuse checkout is the archived standalone repo
+type: backend            # backend | frontend | library | infra
+owner: fuse-team         # wider Fuse team, shared with snap-adapter (write side)
+language: TypeScript
+framework: Express
+deploy: cloud-run         # Cloud Run service name is snap-polling-service-{env}, NOT the repo name
+observability: datadog
+
+interfaces:
+  inbound: [http, pubsub, cron]   # Cloud Scheduler -> pubsub -> http push endpoints
+  outbound: [snap-fulfil-wms, config-service, redis, pubsub-confirmation-topics]
+
+key_paths:
+  - apps/snap-queue-polling-service/src/core/snap/confirmations   # confirmation handlers, one per type
+  - apps/snap-queue-polling-service/src/core/snap/outbound-queue  # OutboundQueueDrain + queue mechanics
+  - apps/snap-queue-polling-service/src/core/polling/polling.service.ts  # two-stage saga
+  - apps/snap-queue-polling-service/src/http/controllers/event.controller.ts
+  - iac/projects/snap-queue-polling-service                        # terraform, in the monorepo below
+
+note: >
+  Lives in the gfs-bifrost/snap-adapter monorepo at apps/snap-queue-polling-service —
+  NOT the archived standalone gfs-bifrost/snap-queue-polling-service repo (read-only,
+  pushes fail). Always work from ~/code/fuse/snap-adapter/apps/snap-queue-polling-service.
+
+runtime:
+  package_manager: "pnpm@10.30.3"
+  test_runner: "vitest"
+  node: "24"
+commands:
+  root: "apps/snap-queue-polling-service/"
+  gate: ["test", "lint:fix", "build:check"]
+  missing: ["build:check:tests"]
+commands_verified: 2026-09-04
+commands_verified_sha: 95bdc57
+commands_verified_paths: [apps/snap-queue-polling-service/mise.toml, apps/snap-queue-polling-service/package.json, apps/snap-queue-polling-service/pnpm-workspace.yaml]
+onboarded: 2026-08-24

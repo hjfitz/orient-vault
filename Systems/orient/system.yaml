@@ -1,0 +1,10 @@
+# orient — Waypoint system index. Cheap orientation only, never documentation.
+# Members are NOT listed here: a service joins by declaring `system: orient` in its
+# own waypoint.yaml, so there is one source of truth. `wp system status orient` reads it.
+system: orient
+owner: hjf
+purpose: >
+  Personal engineering-knowledge system: the Obsidian vault, the tooling that writes it
+  (wp.py, cust.py, ~30 Claude Code skills) and the local app that reads it. In: capturing
+  and surfacing durable context. Out: anything that makes the vault depend on the app.
+created: 2026-09-24

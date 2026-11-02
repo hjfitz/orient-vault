@@ -1,0 +1,41 @@
+# github-actions — Waypoint index. Cheap orientation only, never documentation.
+# Keep under ~25 lines. Anything needing a sentence belongs in a doc.
+service: github-actions
+system: ilg-platform
+type: infra              # backend | frontend | library | infra
+owner: ilg-platform       # shared, ownerless platform effort (#platform-engineering) — Harry contributes regularly, but this is NOT Fuse-team-owned
+language: "YAML (GitHub Actions) + Node 22 ESM scripts"
+framework: "GitHub Actions reusable workflows + composite/JS actions"
+deploy: "n/a"             # no runtime — consumed by other repos' CI via a rolling tag
+observability: none
+
+interfaces:
+  inbound: []                     # none — invoked via `uses:` from consuming repos' own CI
+  outbound: [secops-reporting-ingest-api]   # the six secops-* workflows report scan results here
+
+key_paths:
+  - .github/workflows/docker-build-push.yaml   # image build+push, optional prod approval gate
+  - .github/workflows/terragrunt.yaml           # plan/apply, PR comment, GitHub App auth for module fetches
+  - .github/workflows/secops-*.yaml             # 6 DevSecOps scan reusables — the biggest surface here
+  - .github/actions/secops-report                # normalises + POSTs scan results to secops-reporting
+  - .github/actions/sarif-summary                 # the DX rendering pattern every secops-* workflow uses
+  - CLAUDE.md                                      # exceptionally thorough — read this first
+
+note: >
+  Cross-org, not Fuse-owned: consumers span gfs-bifrost, gfs-hybrid-services,
+  and ilg-platform at minimum. Org rename gfs-platform -> ilg-platform is
+  deliberately left half-done in the README/examples — don't "fix" it.
+  Rolling-tag versioning (0.1-affogato, 0.2-bonbon) is the whole discipline:
+  force-move for backward-compatible changes, bump the tag number for
+  breaking ones. A tag-cut once broke another repo's CI for five days
+  because its consumer set was assumed, not searched for — see known-context.
+
+runtime: {}
+commands:
+  root: "."
+  gate: []
+  missing: []
+commands_verified: 2026-09-04
+commands_verified_sha: 1e12095
+commands_verified_paths: []
+onboarded: 2026-08-24

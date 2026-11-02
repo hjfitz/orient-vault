@@ -1,0 +1,90 @@
+{
+  "id": "20261102-093603-477b",
+  "title": "Recording Mon 2 Nov 09:36",
+  "status": "done",
+  "startedAt": "2026-11-02T09:36:03.843860396Z",
+  "endedAt": "2026-11-02T10:03:44.5969574Z",
+  "sources": {
+    "me": [
+      "JLAB TALK MICROPHONE Analog Stereo"
+    ],
+    "them": [
+      "Nightly",
+      "Slack",
+      "speech-dispatcher-dummy"
+    ]
+  },
+  "call": true,
+  "summary": {
+    "tldr": [
+      "A US customer wants support cover from 7am to 8pm US time (roughly 2pm to midnight UK), starting today. The team sees this as impractical and unsustainable.",
+      "Harry will message Pete to arrange a quick call and get a go/no-go. If it goes ahead, Harry will give them a list of what would be needed to make it viable.",
+      "Dispatch Cloud testing against a live FedEx account may start today. There are customer-vs-product limitations, and the Dispatch Cloud devs are unlikely to turn fixes around quickly.",
+      "Darren's customer portal work is progressing: infra is done, auth is gating customers, and the UI is in progress. Dev is expected to be up and running by end of week.",
+      "Tuesday's in-office session with Pete is an intro to North Star and Merak, with nothing new. A product/tech sync on ways of working is likely to follow, but isn't yet in the calendar."
+    ],
+    "decisions": [],
+    "actions": [
+      {
+        "owner": "Harry",
+        "text": "Message Pete and arrange a call to get a go/no-go on US live-hours support cover.",
+        "due": "today"
+      },
+      {
+        "owner": "Harry",
+        "text": "If support cover goes ahead, give the customer a list of what would be needed to make it viable.",
+        "due": ""
+      },
+      {
+        "owner": "Speaker 2",
+        "text": "Try to arrange a call with the American warehouse contacts to reset their expectations on the support cover the team can realistically provide.",
+        "due": "this afternoon"
+      },
+      {
+        "owner": "Speaker 1",
+        "text": "Catch up with Speaker 2 and others, possibly with a daily, on Dispatch Cloud testing.",
+        "due": "today"
+      },
+      {
+        "owner": "Speaker 3",
+        "text": "Get the customer portal CX work and satellite services over the line, with dev up and running.",
+        "due": "end of the week"
+      }
+    ],
+    "questions": [
+      "Is the team expected to support the US customer in the evenings, and ad hoc or on a planned rota? Speaker 2 asked, and it was left to Pete's go/no-go.",
+      "What has the business already promised the customer on hours and start date? Nobody knows.",
+      "Is there enough manpower to cover the extended hours sustainably?",
+      "When will Dispatch Cloud fixes for the customer's limitations arrive? Turnaround is expected to be slow.",
+      "Will there be a group call after Tuesday's Pete session on ways of working and who is responsible for what? Nothing is in the calendar yet."
+    ],
+    "speakers": [
+      {
+        "label": "Speaker 1",
+        "name": "Harry",
+        "basis": "Leads the stand-up, says they will message Pete and later asks Darren for updates. This conflicts with the Harry mic label, so it is uncertain."
+      },
+      {
+        "label": "Speaker 2",
+        "name": "",
+        "basis": "Reports on the support request and Dispatch Cloud, and asks about evening support. Likely an engineer or support lead."
+      },
+      {
+        "label": "Speaker 3",
+        "name": "Darren",
+        "basis": "Asked 'Darren, anything else from yourselves?' and then answered with the customer portal update."
+      }
+    ],
+    "model": "sonnet",
+    "usd": 0.058684,
+    "durationMs": 8912,
+    "at": "2026-11-02T10:09:30.7863994Z"
+  },
+  "enhancement": {
+    "model": "sonnet",
+    "usd": 0.08546799999999999,
+    "durationMs": 18358,
+    "at": "2026-11-02T10:09:49.145387423Z",
+    "parts": 1
+  }
+}

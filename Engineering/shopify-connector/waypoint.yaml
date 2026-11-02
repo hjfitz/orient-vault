@@ -1,0 +1,42 @@
+# shopify-connector — Waypoint index. Cheap orientation only, never documentation.
+# Keep under ~25 lines. Anything needing a sentence belongs in a doc.
+service: shopify-connector
+system: fuse
+type: backend            # backend | frontend | library | infra
+owner: fuse-team         # wider Fuse team does ordinary feature work here too
+language: TypeScript
+framework: NestJS
+deploy: cloud-run         # shopify-connector-{env}-cr (this app); shopify-app-{env} (sibling)
+observability: datadog
+
+interfaces:
+  inbound: [http, pubsub, cron]   # Cloud Scheduler polls + confirmation/ack/failure/config pushes
+  outbound: [shopify-graphql-api, config-service, mongodb-atlas, pubsub-create-record-request]
+
+key_paths:
+  - apps/shopify-connector/src/core/collections          # metered-poll ingest pipeline (SalesOrderCollector)
+  - apps/shopify-connector/src/core/bulk                  # newer bulk-ingest path (tick/reap/reassemble)
+  - apps/shopify-connector/src/http/controllers           # events/bulk/confirmation/ack/failure controllers
+  - apps/shopify-connector/src/adapters/shopify/token-provider  # ShopToken lock protocol (native driver side)
+  - apps/shopify-app                                       # sibling app: offline OAuth token refresh only
+  - iac/shopify-connector/projects/bifrost-shopify-connector
+
+note: >
+  The ~/code/fuse/shopify-connector checkout is routinely well behind origin/main — read
+  origin/main via `git show`/`git log`, don't trust the working tree. An internal
+  re-architecture programme (owned by Harry) is tracked separately in the Obsidian vault at
+  Bifrost/Shopify Connector Rearchitecture/ — read its Migration State.md for the current
+  risk register and live bugs, don't duplicate it here.
+
+runtime:
+  test_runner: "jest"
+  node: "24"
+  package_manager: "pnpm@10.24"
+commands:
+  root: "apps/shopify-connector/"
+  gate: ["test", "lint:fix", "build:check"]
+  missing: ["build:check:tests"]
+commands_verified: 2026-09-04
+commands_verified_sha: 3b6458d
+commands_verified_paths: [apps/shopify-connector/mise.toml, apps/shopify-connector/package.json, apps/shopify-connector/pnpm-workspace.yaml]
+onboarded: 2026-08-24

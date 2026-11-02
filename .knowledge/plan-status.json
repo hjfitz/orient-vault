@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "plans": {
+    "Engineering/shopify-connector/plans/FUSE-1057-route-confirmations-to-the-originating-shopify-c.md": {
+      "note": "6/6 increments done, 6 AC open. Next: verify the acceptance criteria and sign off.",
+      "updated": "2026-09-07T14:21:05.664Z"
+    },
+    "Engineering/fapi/plans/FUSE-1056-resolve-confirmation-webhook-target-by-connector.md": {
+      "note": "4/5 increments done, 0 AC open. Next: **UNBLOCKED 2026-09-02 15:30 — the producer is now in prod.** Widen the 5 existing cross-entity confirmation subscripti…",
+      "updated": "2026-09-07T14:21:05.664Z"
+    },
+    "Engineering/snap-adapter/plans/FUSE-1147-stop-re-putting-live-shipments.md": {
+      "note": "0/0 increments done, 0 AC open. Next: review and close it out.",
+      "updated": "2026-09-07T14:21:05.664Z"
+    },
+    "Engineering/snap-queue-polling-service/plans/routing-metadata-to-firestore-read-side.md": {
+      "note": "3/4 increments done, 4 AC open. Next: Retire the fallback: delete `extractRouting` (base, goods-in and RGA variants) and the attachment fetch in pick/pack/WO…",
+      "updated": "2026-09-07T14:21:05.664Z"
+    },
+    "Engineering/snap-adapter/plans/routing-metadata-to-firestore-write-side.md": {
+      "note": "4/6 increments done, 4 AC open. Next: Retire attachment write: delete `writeRoutingMetadata` (interface + 5 services), `buildRoutingAttachment`, `ROUTING_MET…",
+      "updated": "2026-09-07T14:21:05.664Z"
+    },
+    "Engineering/fuse-ui/plans/FUSE-1070-template-library-storage-browse-and-crud.md": {
+      "note": "8/8 increments done, 0 AC open. Next: review and close it out.",
+      "updated": "2026-09-07T14:21:05.664Z"
+    },
+    "Engineering/snap-adapter/plans/FUSE-866-join-woc-lines-by-line-key.md": {
+      "note": "5/6 increments done, 1 AC open. Next: Dev end-to-end: confirm the SFTP file is QA's expected 2 rows — **awaiting a decision on deploying this branch to dev**…",
+      "updated": "2026-09-07T14:21:05.664Z"
+    },
+    "Engineering/secops-reporting/plans/vulnerability-report-issue-writer.md": {
+      "note": "6/7 increments done, 5 AC open. Next: Live end-to-end proof, same style as the producer side's own ratification this session: trigger a real scan, confirm a …",
+      "updated": "2026-09-07T14:21:05.664Z"
+    },
+    "Engineering/sftp-connector/plans/FUSE-1010-re-point-prod-goods-out-mappings-before-the-flag.md": {
+      "note": "Next: review and close it out.",
+      "updated": "2026-09-07T14:21:05.664Z"
+    }
+  }
+}

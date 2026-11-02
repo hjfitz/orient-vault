@@ -1,0 +1,108 @@
+{
+  "id": "20261029-153138-d1e2",
+  "title": "SFTP Folder Discussion",
+  "status": "done",
+  "startedAt": "2026-10-29T15:31:38.375814943Z",
+  "endedAt": "2026-10-29T15:39:02.319395359Z",
+  "sources": {
+    "me": [
+      "Bose QC45"
+    ],
+    "them": [
+      "Google Chrome",
+      "Nightly",
+      "Slack",
+      "speech-dispatcher-dummy"
+    ]
+  },
+  "call": true,
+  "speakers": {
+    "Room 1": "Harry",
+    "Speaker 1": "Darren Cobby",
+    "Speaker 2": "Jack",
+    "Speaker 3": "Ingrid"
+  },
+  "merged": {
+    "Room 2": "Room 1",
+    "Room 3": "Room 1"
+  },
+  "summary": {
+    "tldr": [
+      "Fuse cannot easily take returns and goods-in ASNs (same DESADV message type) in one folder; Fuse segments by landing folder, so changing it would be a substantial rebuild and hurt timelines.",
+      "Aim is to go live for March, so the team is looking to solve the routing upstream at SAP or Edicom level instead.",
+      "Ingrid will ask Edicom whether returns and kitting/work orders, which come from different IDOCs in SAP, can be routed to separate folders, giving three folders for the same EDI message.",
+      "Egress (confirmations) also uses a separate folder, but that is less of a concern; no message content change is needed, only landing location.",
+      "Connection: Fuse SFTP offers only public key authentication; AS2 or VAN is not available. Ingrid will take this back to Edicom."
+    ],
+    "decisions": [
+      "Do not rebuild Fuse to split returns by content for now; first try to solve the folder routing upstream with Edicom/SAP.",
+      "Reconvene if Edicom cannot route returns and kitting to separate folders."
+    ],
+    "actions": [
+      {
+        "owner": "Ingrid",
+        "text": "Speak with Edicom about routing returns and kitting/work-order messages (separate SAP IDOCs) to separate folders, and report back.",
+        "due": ""
+      },
+      {
+        "owner": "Ingrid",
+        "text": "Raise with Edicom the connection issue: Fuse SFTP supports only public key authentication, not user/password, AS2 or VAN.",
+        "due": ""
+      },
+      {
+        "owner": "Jack",
+        "text": "Check whether work orders (kitting) use the same message type as returns and so also need a separate folder.",
+        "due": ""
+      },
+      {
+        "owner": "Jack",
+        "text": "Share the Fuse folder structure (create_work_orders, create_purchase_order, create_return_goods_authorization, plus confirmation folders) with Ingrid, as it is in an earlier email.",
+        "due": ""
+      },
+      {
+        "owner": "Darren Cobby",
+        "text": "Schedule a follow-up call if one is needed once Edicom responds.",
+        "due": ""
+      }
+    ],
+    "questions": [
+      "Can Edicom or SAP route returns and kitting messages into separate folders from goods-in ASNs?",
+      "Do work orders (kitting) use the same message type as returns, and so need their own folder?",
+      "Can the connection use AS2 or a VAN instead of SFTP, given Edicom's trouble with key-based authentication? Harry said Fuse offers only public key SFTP.",
+      "What would a more detailed Fuse-side assessment of splitting by content show, and could it fit the March go-live?"
+    ],
+    "speakers": [
+      {
+        "label": "Room 1",
+        "name": "Harry",
+        "basis": "Named by Harry; Jack calls on Harry for technical detail"
+      },
+      {
+        "label": "Speaker 1",
+        "name": "Darren Cobby",
+        "basis": "Named by Harry; says he's observing and offers to schedule calls"
+      },
+      {
+        "label": "Speaker 2",
+        "name": "Jack",
+        "basis": "Named by Harry; introduces Harry and frames the Fuse side"
+      },
+      {
+        "label": "Speaker 3",
+        "name": "Ingrid",
+        "basis": "Named by Harry; speaks for the Edicom/SAP side and will talk to Edicom"
+      }
+    ],
+    "model": "sonnet",
+    "usd": 0.0413101,
+    "durationMs": 8054,
+    "at": "2026-10-29T15:48:35.267822606Z"
+  },
+  "enhancement": {
+    "model": "sonnet",
+    "usd": 0.07161400000000001,
+    "durationMs": 15041,
+    "at": "2026-10-29T15:41:29.01944037Z",
+    "parts": 1
+  }
+}

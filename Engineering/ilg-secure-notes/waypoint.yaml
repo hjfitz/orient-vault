@@ -1,0 +1,41 @@
+# ilg-secure-notes — Waypoint index. Cheap orientation only, never documentation.
+# Keep under ~25 lines. Anything needing a sentence belongs in a doc.
+service: ilg-secure-notes
+system: fuse
+type: backend            # backend | frontend | library | infra
+owner: "Harry Fitzgerald"   # narrower/personal ownership, despite fuse-ui depending on it
+language: TypeScript
+framework: Next.js 15 (App Router)
+deploy: cloud-run         # PROD ONLY — org-level exception, no PR flow, no staging
+observability: none
+
+interfaces:
+  inbound: [http]                 # public web UI + POST /api/secrets (API-key), POST /api/cleanup (scheduler)
+  outbound: [gcs]                   # encrypted secret storage only
+
+key_paths:
+  - code/src/lib/crypto.ts          # AES encrypt/decrypt
+  - code/src/lib/storage.ts          # GCS read/write/delete
+  - code/src/app/api/secrets/route.ts   # the API contract fuse-ui + other CLI consumers depend on
+  - iac/projects/ilg-secure-notes/scheduler.tf   # the 15-min cleanup cron
+  - CLAUDE.md
+
+note: >
+  Org-level PR-flow exception: commit straight to master, no PR/changelog/
+  Slack, push deploys directly to prod, no staging exists at all.
+  fuse-ui depends on this for SFTP credential handover — its dev
+  environment also points at the PROD ots.ilg.software link (there's no
+  dev instance of this app to point at instead). Verified: this app's two
+  Select usages carry no icons, so it is NOT affected by the ui-toolkit
+  SelectTrigger icon-stacking bug found elsewhere this session.
+
+runtime:
+  package_manager: "pnpm@9.15.9"
+commands:
+  root: "code/"
+  gate: ["lint:fix"]
+  missing: ["test", "build:check", "build:check:tests"]
+commands_verified: 2026-09-04
+commands_verified_sha: bf87745
+commands_verified_paths: [code/package.json]
+onboarded: 2026-08-24

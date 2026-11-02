@@ -1,0 +1,61 @@
+---
+type: prompt-tool
+id: weekly-review
+title: Weekly review
+area: review
+tags: [prompt-tool, review]
+version: 1
+queries:
+  dailies:
+    label: This week's daily digests
+    type: digest
+    where: { 'meta.cadence': { eq: daily } }
+    sort: [[updated, desc]]
+    fields: [title, 'section:Todo']
+    limit: 5
+  weekly:
+    label: Last weekly review
+    type: digest
+    where: { 'meta.cadence': { eq: weekly } }
+    sort: [[updated, desc]]
+    fields: [title, 'section:Self-review']
+    limit: 1
+---
+
+# Weekly review
+
+A weekly digest arrives with four slots only you can fill — more of, less of, lessons,
+the one thing. This fills them from what you say plus the week's own record, and nothing
+here calls a model.
+
+<PromptBuilder
+  id="weekly-review"
+  fields={[
+    { name: 'more_of', label: 'More of — what energised you', kind: 'textarea', required: true },
+    { name: 'less_of', label: 'Less of — what drained you', kind: 'textarea', required: true },
+    { name: 'lessons', label: 'Anything you learned', kind: 'textarea' },
+    { name: 'one_thing', label: 'The one thing that would have made the week easier', kind: 'textarea' },
+    { name: 'mood', label: 'How the week felt', kind: 'select', options: ['heavy', 'ordinary', 'good'] }
+  ]}
+  template={`You are helping me write the human half of my weekly review. Use only the context below; do not credit me with work it does not show.
+Week ending {{today}} ({{weekday}}).
+
+More of: {{more_of}}
+Less of: {{less_of}}
+{{#if lessons}}Lessons I noticed: {{lessons}}{{/if}}
+{{#if one_thing}}The one thing: {{one_thing}}{{/if}}
+{{#if mood}}How the week felt: {{mood}}{{/if}}
+
+## The week's own record (bounded; sensitive notes excluded)
+{{context}}
+
+## Ask
+Write the four Self-review slots in the vault's format, ready to paste:
+- **Energy audit — more of / less of** — two bullets, each naming the specific work rather than a feeling in the abstract.
+- **Lessons — what I learned** — at most two bullets, each falsifiable.
+- **The one thing** — one bullet, and it must be a standing decision or a delegation, not another task.
+Then three needle-movers for next week, each tied to one context item by id.
+Where my note and the record disagree, say so in one line instead of smoothing it over.
+Leave a slot I left empty as "left blank" — do not write it for me.
+Return markdown, under 350 words.`}
+/>

@@ -1,0 +1,123 @@
+{
+  "id": "20261028-114234-8059",
+  "title": "Spicy Catchup",
+  "status": "done",
+  "startedAt": "2026-10-28T11:42:34.591488477Z",
+  "endedAt": "2026-10-28T12:28:59.987946399Z",
+  "sources": {
+    "me": [
+      "JLAB TALK MICROPHONE Analog Stereo"
+    ],
+    "them": [
+      "Nightly",
+      "speech-dispatcher-dummy"
+    ]
+  },
+  "call": true,
+  "speakers": {
+    "Speaker 1": "Wilders"
+  },
+  "merged": {
+    "Speaker 2": "Speaker 1"
+  },
+  "summary": {
+    "tldr": [
+      "Harry takes technical leadership on the US customer go-live work (Merrick-related) and will build a UI on top of Fuse so the first US customer does not end up on Dispatch Cloud.",
+      "The tension about Harry's perception of Speaker 1's team (seen as vibe coding with no visible tickets) was aired and smoothed over. Harry apologised for how it came across and said it was a visibility gap, not distrust.",
+      "Plan: Fuse takes the customer's CSV via SFTP drop, converts it to an API call and sends it to Selector. Harry builds the UI and data ingestion; Speaker 1 handles the Selector side, the spec and the carrier API testing.",
+      "Work will run as one team with an epic, tickets and PRs, and Harry will add a stand-up on Monday, Wednesday and Friday. Speaker 1 will try to join the US team's daily calls this week to get the real requirements. The US go-live is wanted in about a week or two."
+    ],
+    "decisions": [
+      "Harry takes technical lead on this US customer work and Merrick-related work while he has capacity.",
+      "Build a UI on top of Fuse with SFTP CSV collection instead of expanding Dispatch Cloud, aiming for a basic first version that can grow later.",
+      "Use this as a test bed for working as one dev team: an epic with requirements, tickets broken down, a project and PRs.",
+      "Speaker 1 owns the process and requirements side; Harry owns the technical build and back end.",
+      "Split of work: Harry handles getting data in plus the UI; Speaker 1 handles getting the CSV working in Selector and testing carrier API calls.",
+      "Harry will run a stand-up style catch-up every Monday, Wednesday and Friday to avoid silos."
+    ],
+    "actions": [
+      {
+        "owner": "Harry",
+        "text": "Talk to Harrison and set up the Jira board and epic for the US customer UI and CSV integration, sorting out Jira permissions",
+        "due": ""
+      },
+      {
+        "owner": "Speaker 1",
+        "text": "Gather the UI spec and requirements, including what the US warehouse actually does in Dispatch Cloud, and put them in the epic",
+        "due": ""
+      },
+      {
+        "owner": "Speaker 1",
+        "text": "Try to join the daily US team calls this week to learn what the customer really needs",
+        "due": "this week"
+      },
+      {
+        "owner": "Speaker 1",
+        "text": "Tell Harry when the board is ready for changes",
+        "due": ""
+      },
+      {
+        "owner": "Speaker 1",
+        "text": "Give Harry the Selector context: which Selector API is called, the available actions, and what goes in and comes out",
+        "due": ""
+      },
+      {
+        "owner": "Speaker 1",
+        "text": "Get the CSV working in Selector and test it, including carrier API calls and the unfixed bugs found in testing",
+        "due": ""
+      },
+      {
+        "owner": "Harry",
+        "text": "Build the UI on Fuse and the SFTP CSV ingestion, then get it to the customer to test as soon as possible",
+        "due": ""
+      },
+      {
+        "owner": "Harry",
+        "text": "Set up a recurring Monday, Wednesday and Friday stand-up with Speaker 1's team",
+        "due": ""
+      },
+      {
+        "owner": "Harry",
+        "text": "Put the work into the epic, with the Selector details and the team's workload recorded for visibility",
+        "due": ""
+      }
+    ],
+    "questions": [
+      "What does the front end need to do? Is it only a view of imports, order cancelling and data edits, or more?",
+      "What are the CSV format and requirements for the US customer? The file was sent during the call and still needs checking.",
+      "Is the one-to-two-week go-live realistic, given the customer reportedly planned to go live Monday on Dispatch Cloud?",
+      "Which Selector API should Fuse call to process a shipment, and what other Selector actions are needed?",
+      "Who sets the US plan? Speaker 1 is getting conflicting messages from Pete, Dan and Ollie, and Harry's account of what Denton said may have differed from what was meant.",
+      "Who will provide technical support after go-live? The plan only says technical services will support it, and Speaker 1 expects this to be their area.",
+      "Does Phil, or anyone, know what the customer actually needs, as opposed to what Dispatch Cloud offers?"
+    ],
+    "speakers": [
+      {
+        "label": "Speaker 1",
+        "name": "",
+        "basis": "Leads the team that built Talos and the labelling system, owns process and requirements, and reports to or works with Denton. Name not stated."
+      },
+      {
+        "label": "Speaker 2",
+        "name": "",
+        "basis": "Short interjections, apparently the same person or a second voice at Speaker 1's end (dog and family asides). Likely the same person as Speaker 1, but unclear."
+      },
+      {
+        "label": "Harry",
+        "name": "Harry",
+        "basis": "Harry's mic voice; called Fitz by Speaker 1."
+      }
+    ],
+    "model": "sonnet",
+    "usd": 0.115546,
+    "durationMs": 12872,
+    "at": "2026-10-28T12:40:43.873174121Z"
+  },
+  "enhancement": {
+    "model": "sonnet",
+    "usd": 0.43433120000000003,
+    "durationMs": 42671,
+    "at": "2026-10-28T12:41:26.544784759Z",
+    "parts": 6
+  }
+}

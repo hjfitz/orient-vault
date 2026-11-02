@@ -1,0 +1,240 @@
+---
+tags: [waypoint, ledger]
+---
+# parcel-portal — work ledger
+
+Agent-facing. Newest first. What meaningful work happened here, and the
+context a future agent needs. Not a diary, not release notes, not a diff.
+
+## 2026-11-02 — Set each customer's carrier account in the admin UI
+
+Set each customer's carrier account in the admin UI
+
+Unit C12. Each tenant has its own Selector account, set from a Carrier card on Settings → Customers with a write-only password. svc seals the password into carrier_connection.password_ciphertext (AES-256-GCM, tenant-bound AAD) with a Terraform-generated key (svc-parcel-carrier-key, prevent_destroy), pinned by CARRIER_KEY_VERSION. The password must be re-entered when the endpoint changes. Migration 010 and contract 4.0.0 drop passwordSecret. The env-var carrier config from #25 is removed. No IAM change. Live on dev at 8205627 (migrations applied, svc ready, fake carrier mode). Prod is held at D1. Follow-up: when two admins save the same carrier card at once, a password-less save can restore the old password.
+
+PR: ilg-merak/parcel-portal#43
+PR: ilg-merak/parcel-portal#44
+
+## 2026-10-29 — Edit an order's products and customs before dispatch
+
+Edit an order's products and customs before dispatch
+
+C11 part 2 (MKP-36). The order page edits currency and, per line, quantity (1–100000), unit price, HS code, customs description and origin, before dispatch only. Stage 2 re-runs; a quantity change re-checks packing; edits and packs that lose a race with another write get 409 order_changed; every edit logs 'Order edited' with field names only. Three review rounds (the third with Harry's go-ahead). Live on dev f3b7bbd. Follow-up: scope the quantity-edit packing re-check to the edited SKUs (a qty edit on a partly-packed import also flags untouched lines), treat an unchanged quantity as no change, move the misplaced packed() doc comment.
+
+PR: ilg-merak/parcel-portal#41
+
+## 2026-10-29 — Add the file page, a shipping-methods editor and setup-flow fixes
+
+Add the file page, a shipping-methods editor and setup-flow fixes
+
+C11 part 1 (MKP-36). A new customer starts on Despatch Cloud's layout; uploads for a customer with no layout are refused; the admin picker offers only customers that take files. Each customer has its own shipping method → carrier/service list (import_mapping.shipping_methods, cleared on a layout change). A page per order file shows problems by row with the CSV column highlighted, paged 200 at a time. Two review rounds. Live on dev a0283de. Line and customs editing (#41) is held for one narrow fix.
+
+PR: ilg-merak/parcel-portal#38
+PR: ilg-merak/parcel-portal#39
+PR: ilg-merak/parcel-portal#40
+
+## 2026-10-29 — Add the admin Customers page, a dev-only fake carrier and a sandbox Manifest guard
+
+Add the admin Customers page, a dev-only fake carrier and a sandbox Manifest guard
+
+C10 (MKP-34). A gfs_admin creates customers, folders, layouts and users in the UI, so a dev end-to-end test needs no API access. Dev books with a fake carrier (CARRIER_MODE=fake, refused outside dev at boot and at plan time) that labels US/CA FedEx orders as TEST and derives its daily query from the portal's own shipments. Manifest is refused against the shared Selector sandbox. Independent review: nothing blocking; one round of hardening, delta re-review clean. Live on dev c0b34e1; startup warning logged.
+
+PR: ilg-merak/parcel-portal#33
+PR: ilg-merak/parcel-portal#34
+PR: ilg-merak/parcel-portal#35
+
+## 2026-10-29 — Serve the UI only through its load balancer
+
+Serve the UI only through its load balancer
+
+D2 follow-up (MKP-35). With the dev certificate ACTIVE, the UI's Cloud Run ingress defaults to internal-load-balancer: https://parcel.delivery.freightops.dev → 200, the run.app URL → 404. A new env's UI is unreachable until its cert is active (runbook).
+
+PR: ilg-merak/parcel-portal#37
+
+## 2026-10-29 — Put the Parcel Portal at parcel.delivery.<domain>
+
+Put the Parcel Portal at parcel.delivery.<domain>
+
+D2 (MKP-35). ilg-merak claims delivery.<domain> (core-infra#16: dnsRecordWriter for each env's merak runner, merged and applied by Harry). The UI sits behind the platform serverless load balancer at parcel.delivery.freightops.dev with a managed cert; sftp.parcel.delivery.freightops.dev points at the SFTP static IP. Follow-up: switch UI ingress to internal-LB once the cert is ACTIVE.
+
+PR: ilg-merak/parcel-portal#32
+PR: ilg-platform/core-infra#16
+
+## 2026-10-29 — Fix the sftp dev deploy: plan-time key count, canary memory, Cloud Scheduler API
+
+Fix the sftp dev deploy: plan-time key count, canary memory, Cloud Scheduler API
+
+Every sftp dev apply had failed since the canary landed (#18), which is what #merak-notifications was reporting. Three stacked causes: authorized-keys count depended on an apply-time key; the canary job asked for 256 MiB (Cloud Run jobs need 512); Cloud Scheduler API was off. Dev sftp applies green; canary PASS on dev at 10:27.
+
+PR: ilg-merak/parcel-portal#26
+PR: ilg-merak/parcel-portal#27
+PR: ilg-merak/parcel-portal#28
+
+## 2026-10-29 — Upload order files from the browser alongside SFTP
+
+Upload order files from the browser alongside SFTP
+
+C9 (MKP-33). Orders gets a drop zone and an Upload button. svc writes the CSV to <slug>/inbound/<name> in the inbound bucket so the SFTP import pipeline imports it unchanged; a re-upload replaces the file. import_file records source and uploader (an admin uploading for a customer is recorded). The bucket notification now covers every tenant, request bodies are capped before validation, and sign-in retries once on a cold start. Independent review: 3 blockers found and fixed, delta re-review clean.
+
+PR: ilg-merak/parcel-portal#29
+PR: ilg-merak/parcel-portal#30
+
+## 2026-10-29 — Read the carrier account from deploy-time config
+
+Read the carrier account from deploy-time config
+
+While the portal serves one customer, svc's Selector account is CARRIER_ env vars set from `carrier` in iac/env/<env>.tfvars (dev: sandbox for tca; prod: none until MKP-10). Only the named tenant can dispatch; the password stays a hand-made svc-parcel-carrier-<slug> secret read at booking time. PUT /admin/tenants/{id}/carrier-connection removed (contract 3.0.0), GET read-only; carrier_connection table kept for the multi-customer future. Deployed to dev and verified in Datadog.
+
+PR: ilg-merak/parcel-portal#25
+
+## 2026-10-28 — MKP-31
+
+Add WebUSB bench printing as @ilg-merak/label-print
+
+Standalone package (pairing, ZPL/EPL/PDF send, pdf.js raster to ZPL ^GFA / EPL GW, typed errors, DemoPrinter), 93 vitest tests, own CI; apps/ui wires Settings → Printing, printLabels everywhere incl. C7 batch results, auto-print after dispatch on a paired browser, print-to-screen fallback. ui image now builds from repo root. Real printers untested until 29 Oct office test.
+
+PR: ilg-merak/parcel-portal#23
+
+## 2026-10-28 — MKP-30
+
+Dispatch and check selected orders in one go
+
+C7. svc contract 2.10.0: POST /orders/dispatch runs B5's per-order dispatch sequentially (own claim/reconcile each, never ProcessShipments), per-order booked/not_booked with the single dispatch's codes plus carrier_unavailable/not_found/not_attempted; 3-minute budget, cap 100 (sandbox ~0.6 s/order). POST /orders/validate = portal checks + ValidateShipment, books nothing. B5's read-and-build moved into a shared preparer. UI: ready-only checkboxes, Dispatch selected / Check with carrier, results panel, print all booked as one PDF. Sandbox run: 18 booked and all voided, no commit.
+
+PR: ilg-merak/parcel-portal#21
+
+## 2026-10-28 — MKP-23
+
+Shipments date filter in the site's timezone
+
+bookedFrom/bookedTo are site-local days via the export's day bounds; DST-tested.
+
+PR: ilg-merak/parcel-portal#20
+
+## 2026-10-28 — MKP-23
+
+Add the Shipments screen: search, labels, void, manifest, and printing settings
+
+C2 + C3 (MKP-23, MKP-24) in one PR. svc contract 2.8.0, migration 007: GET /shipments search (shipref, consref, tracking, carrier, status, booked days), GET /shipments/{id}, GET /shipments/labels (one merged PDF via pdfcpu, or joined ZPL), void via DeleteShipments recorded only on Selector's confirmation (DailyShipQuery decides a refused delete) releasing the order to ready, manifest via CommitShipments + DailyShipQuery marking, refresh-status for auto-commits (manifested_by empty), bench_printer per tenant (recorded only), GET /admin/tenants. UI: /shipments, detail, print page (browser dialog), Settings > Printing. Gate assumptions: MKP-9 explicit Manifest button + auto-commit backstop, manifested can't be voided; MKP-8 print-to-screen floor, silent printing not built. Sandbox DailyShipQuery statuses seen: PRINTED, MANIFESTED, DELETED, MANIFESTED_DELETED; CommitShipments never called on sandbox.
+
+PR: ilg-merak/parcel-portal#19
+
+## 2026-10-28 — MKP-28
+
+Add the ops runbook, Datadog monitors and the SFTP canary
+
+docs/runbook.md, 10 Datadog monitors as Terraform (off until DATADOG_APP_KEY exists, no paging by default), SFTP canary as a scheduled Cloud Run job uploading an import-ignored dotfile. Plus the svc system variable fix (#16) that had broken the svc dev apply since #11.
+
+PR: ilg-merak/parcel-portal#18
+
+## 2026-10-28 — MKP-27
+
+Add packaging presets and package contents
+
+Per-tenant presets (admin CRUD, customer list, Settings → Packaging), PUT /orders/{id}/parcels to pack with a picked preset or manual dims and assign items (re-validated, never defaulted), contents per parcel on dispatched orders.
+
+PR: ilg-merak/parcel-portal#17
+
+## 2026-10-28 — MKP-21
+
+Take the despatch date from the site's timezone
+
+Dispatch and reconcile use the tenant timezone (default America/New_York) instead of the UTC day; invalid zones fall back with a tenant-ID-only log line.
+
+PR: ilg-merak/parcel-portal#15
+
+## 2026-10-28 — MKP-26
+
+Build the Manhattan SCALE export
+
+DC's 17-column layout, consref in Channel Alt ID, multi-parcel tracking comma-joined and quoted, voided as Cancelled=Yes, days bounded by a new tenant timezone, optional Excel-proof formula cells (off by default), Export page with row count and download.
+
+PR: ilg-merak/parcel-portal#14
+
+## 2026-10-28 — MKP-21
+
+Book and label: dispatch through Selector
+
+Ledger already written by the B5 agent; this records the merge to main.
+
+PR: ilg-merak/parcel-portal#13
+
+## 2026-10-28 — MKP-21
+
+Dispatch a ready order through Selector, at most once, and keep its labels
+
+POST /orders/{id}/dispatch books a ready order on the tenant's Selector account (carrier_connection names a Secret Manager secret svc-parcel-carrier-*, 5-min cache), stores labels in the labels bucket (<tenant>/labels/<shipment>/<parcel>.pdf|zpl), marks the order dispatched. At-most-once: dispatch_attempt claimed in one tx that locks and holds the order (orders.dispatch_attempt_id; B4 ReplaceOrder now skips held orders), in_flight unique per order with a 5-min lease; outcome_unknown (retryable+RequestSent, labels not stored, or expired lease) is reconciled via DailyShipQuery and any unrecorded live consignment voided before booking again (lost bookings are voided, not adopted: no label reprint op). 422 carrier_rejected keeps the order ready. New tables carrier_connection/dispatch_attempt/shipment/shipment_parcel (migration 004), GET /orders/{id}/shipment ({shipment} envelope), label stream route, admin carrier-connection routes, contract 2.3.0, Terraform labels bucket + prefix-conditioned secretAccessor. 1064 integration tests pass; live sandbox 2-parcel HERMES 2DAY booked, both PDF labels served, voided. FedEx/US/CA untested (MKP-10). On merge with C1 (#12): UpdateEditedOrder needs AND dispatch_attempt_id IS NULL; both bump the contract to 2.3.0.
+
+PR: ilg-merak/parcel-portal#13
+
+## 2026-10-28 — MKP-22
+
+Build the Orders screen
+
+Orders grid with status, plain failure reasons, search by shipref/consref, rejected-files list; order page edits address/service before dispatch via PATCH /orders/{id} reusing B4's stage-2 rules; dispatch button against B5's contract with labels opened to print.
+
+PR: ilg-merak/parcel-portal#12
+
+## 2026-10-28 — MKP-20
+
+Import uploaded order files into orders, with two-stage validation
+
+POST /events/inbound-files (Pub/Sub push, OIDC as svc-parcel-<env>-push) imports <slug>/inbound/<file>: claim import_file per bucket/object/generation, stage 1 header vs the tenant's layout (rejects the file with a reason), B2 mapper, stage 2 per-row problems {row, field, column, code, message} (mandatory fields, US state from County + ZIP, CA customs per line, unmeasured parcels), then orders + finished file in one transaction. New tables orders/order_line/parcel/parcel_item/import_mapping and tenant.slug, composite (id, tenant_id) FKs, one live order per shipref. Admin slug/mapping routes (dc-layout built in), customer read API for import files and orders. Terraform push subscription with dead-letter. Assumes MKP-5 per-product rows (no parcels -> needs_packing), MKP-7 state from County, MKP-29 fix by re-drop. 950 integration tests pass; local SFTP -> fake-gcs -> Pub/Sub emulator -> svc run verified; nothing deployed.
+
+PR: ilg-merak/parcel-portal#11
+
+## 2026-10-28 — MKP-15
+
+Add tenants, per-person sign-in and tenant-scoped data access
+
+Opaque hashed sessions, argon2id login with identical failures and throttling, context-scoped stores that refuse to run without a tenant (static test), admin cross-tenant only via path and logged, bootstrap admin from Secret Manager, UI sign-in with svc reachable only from the UI SA. 168 integration tests pass.
+
+PR: ilg-merak/parcel-portal#10
+
+## 2026-10-28 — MKP-19
+
+Add the single-user Go SFTP host
+
+cmd/sftp copied from sftp-connector's Go host, one user with keys in Secret Manager, GCS inbound bucket + finalize notification, MIG/LB IaC with its own VPC. Dev apply partial: needs terraform-runner compute.instanceAdmin.v1 (ilg-merak/gcp-config#7).
+
+PR: ilg-merak/parcel-portal#7
+
+## 2026-10-28 — MKP-14
+
+Add Cloud SQL with IAM-only auth, startup migrations and the first tables
+
+Cloud SQL PostgreSQL 17 (svc-parcel-<env>, dev db-f1-micro ZONAL, prod db-custom-1-3840 REGIONAL) in iac/projects/svc: connector-only public IP, IAM database user for the runtime SA (cloudsqlsuperuser via google-beta database_roles), no password users. svc connects through cloudsqlconn with IAM auth, applies embedded tern migrations at startup under an advisory lock, and the startup probe is /health/readiness (DB reachable and migrated). Migration 001: tenant, app_user, import_file. Removes the template notes example; contract 2.0.0. Draft; not yet deployed (deploy dispatch and CI trigger blocked by the permission guard).
+
+PR: ilg-merak/parcel-portal#8
+
+## 2026-10-28 — MKP-18
+
+Port the rules-engine mapper and add the DC-layout mapping
+
+Mapper engine ported to Go (111 conformance fixtures from rules-engine 2.1.1 pass), order model, LinedConfig + MapOrders with per-row problems, embedded DC 40-column mapping with placeholder FedEx services and assumed parcel columns pending gates MKP-5/MKP-7.
+
+PR: ilg-merak/parcel-portal#9
+
+## 2026-10-28 — MKP-17
+
+Port the Fuse mapping DSL to Go
+
+Lexer, parser, interpreter, lookup and runner; 298 conformance cases generated from rules-engine 2.1.1 all pass.
+
+PR: ilg-merak/parcel-portal#6
+
+## 2026-10-28 — MKP-16
+
+Add the Go Selector client
+
+Validate, book (multi-package, PDF/ZPL), void, commit and daily query; typed errors with plain user messages; sandbox-recorded fixtures.
+
+PR: ilg-merak/parcel-portal#5
+
+## 2026-10-28 — MKP-13
+
+Scaffold the parcel portal repo from svc-template
+
+Repo, names, GFS-branded UI shell (Orders/Shipments/Export/Settings), Basic-auth stub, dev deploy.
+
+PR: ilg-merak/parcel-portal#4

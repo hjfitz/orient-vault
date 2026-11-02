@@ -1,0 +1,70 @@
+---
+tags: [waypoint]
+---
+# Engineering
+
+One folder per service. Inside each:
+
+- `waypoint.yaml` — cheap orientation index (not documentation)
+- `overview.md` / `architecture.md` / `known-context.md` (+ optional `operations.md`, `testing.md`, `interfaces.md`, `design.md`) — durable context
+- `plans/` — what we intend to do, and what is happening now
+- `ledger.md` — agent-facing record of meaningful work, newest first
+- `explainers/` — human-facing current system truth
+
+Source is implementation truth. Git is forensic truth. Plans describe intended and
+current work. The ledger records completed work. Explainers describe the system as
+it is now. Regenerate this page with `wp index`; check health with `wp doctor`.
+
+| Service | Type | Docs | Explainers | Active plans | Last work |
+| --- | --- | --- | --- | --- | --- |
+| [[Engineering/agents/overview\|agents]] | ? | 0 | 0 | 0 | — |
+| [[Engineering/api-host-framework/overview\|api-host-framework]] | backend | 0 | 0 | 0 | 2026-10-06 |
+| [[Engineering/apiky/overview\|apiky]] | backend | 0 | 0 | 0 | 2026-10-09 |
+| [[Engineering/audit-service/overview\|audit-service]] | backend | 4 | 1 | 0 | 2026-10-27 |
+| [[Engineering/bifrost-pubsub/overview\|bifrost-pubsub]] | infra | 3 | 0 | 0 | 2026-10-14 |
+| [[Engineering/carrier-proxies/overview\|carrier-proxies]] | backend | 0 | 0 | 0 | 2026-10-08 |
+| [[Engineering/collector/overview\|collector]] | backend | 3 | 1 | 0 | 2026-10-05 |
+| [[Engineering/config-service/overview\|config-service]] | backend | 5 | 0 | 1 | 2026-10-29 |
+| [[Engineering/core-infra/overview\|core-infra]] | infra | 3 | 0 | 0 | 2026-09-21 |
+| [[Engineering/cx/overview\|cx]] | backend | 0 | 0 | 0 | 2026-10-12 |
+| [[Engineering/dedupe-service/overview\|dedupe-service]] | backend | 5 | 0 | 0 | 2026-10-28 |
+| [[Engineering/distraction-dashboard/overview\|distraction-dashboard]] | frontend | 4 | 0 | 0 | — |
+| [[Engineering/fapi/overview\|fapi]] | backend | 3 | 0 | 0 | 2026-10-20 |
+| [[Engineering/fuse-devtools/overview\|fuse-devtools]] | backend | 3 | 0 | 0 | 2026-10-31 |
+| [[Engineering/fuse-mcp/overview\|fuse-mcp]] | backend | 4 | 0 | 0 | 2026-10-22 |
+| [[Engineering/fuse-mcp-server/overview\|fuse-mcp-server]] | backend | 0 | 0 | 0 | 2026-10-05 |
+| [[Engineering/fuse-mocker/overview\|fuse-mocker]] | backend | 4 | 0 | 0 | 2026-10-02 |
+| [[Engineering/fuse-ui/overview\|fuse-ui]] | frontend | 5 | 3 | 1 | 2026-10-29 |
+| [[Engineering/gcp-config/overview\|gcp-config]] | backend | 0 | 0 | 0 | 2026-10-29 |
+| [[Engineering/github-actions/overview\|github-actions]] | infra | 3 | 0 | 0 | 2026-10-27 |
+| [[Engineering/github-config/overview\|github-config]] | infra | 3 | 0 | 0 | 2026-10-27 |
+| [[Engineering/ilg-merak/overview\|ilg-merak]] | backend | 0 | 0 | 0 | 2026-10-28 |
+| [[Engineering/ilg-platform-core-infra/overview\|ilg-platform-core-infra]] | backend | 0 | 0 | 0 | 2026-10-29 |
+| [[Engineering/ilg-secure-notes/overview\|ilg-secure-notes]] | backend | 4 | 0 | 0 | — |
+| [[Engineering/images/overview\|images]] | backend | 0 | 0 | 1 | 2026-10-29 |
+| [[Engineering/merak-portal/overview\|merak-portal]] | backend | 0 | 0 | 0 | 2026-10-28 |
+| [[Engineering/observability/overview\|observability]] | backend | 0 | 0 | 0 | 2026-10-29 |
+| [[Engineering/observability-sdk/overview\|observability-sdk]] | library | 3 | 0 | 0 | — |
+| [[Engineering/orient/overview\|orient]] | frontend | 1 | 0 | 0 | — |
+| [[Engineering/parcel-portal/overview\|parcel-portal]] | backend | 4 | 0 | 0 | 2026-10-29 |
+| [[Engineering/pkg-node/overview\|pkg-node]] | library | 3 | 0 | 1 | 2026-10-28 |
+| [[Engineering/remote-compute/overview\|remote-compute]] | backend | 0 | 0 | 2 | 2026-10-29 |
+| [[Engineering/renovate-runner/overview\|renovate-runner]] | infra | 3 | 0 | 0 | — |
+| [[Engineering/replay-service/overview\|replay-service]] | backend | 4 | 0 | 0 | 2026-10-19 |
+| [[Engineering/repo-template/overview\|repo-template]] | ? | 0 | 0 | 0 | — |
+| [[Engineering/secops-reporting/overview\|secops-reporting]] | backend | 4 | 0 | 1 | 2026-09-14 |
+| [[Engineering/secrets-hub/overview\|secrets-hub]] | backend | 0 | 0 | 2 | 2026-10-15 |
+| [[Engineering/selector-adapter/overview\|selector-adapter]] | backend | 3 | 0 | 0 | 2026-10-28 |
+| [[Engineering/selector-rest-proxy/overview\|selector-rest-proxy]] | backend | 3 | 0 | 0 | — |
+| [[Engineering/sftp-connector/overview\|sftp-connector]] | backend | 5 | 1 | 2 | 2026-11-02 |
+| [[Engineering/shopify-connector/overview\|shopify-connector]] | backend | 4 | 0 | 1 | 2026-10-22 |
+| [[Engineering/snap-adapter/overview\|snap-adapter]] | backend | 4 | 2 | 1 | 2026-10-19 |
+| [[Engineering/snap-mcp/overview\|snap-mcp]] | backend | 4 | 0 | 0 | 2026-10-02 |
+| [[Engineering/snap-queue-polling-service/overview\|snap-queue-polling-service]] | backend | 4 | 0 | 9 | 2026-10-15 |
+| [[Engineering/svc-template/overview\|svc-template]] | backend | 0 | 0 | 0 | 2026-10-28 |
+| [[Engineering/tech-services-manager/overview\|tech-services-manager]] | ? | 0 | 0 | 0 | — |
+| [[Engineering/terraform-modules/overview\|terraform-modules]] | infra | 3 | 0 | 0 | 2026-10-28 |
+| [[Engineering/tracking-service/overview\|tracking-service]] | backend | 4 | 0 | 1 | 2026-10-19 |
+| [[Engineering/ui-toolkit/overview\|ui-toolkit]] | library | 4 | 0 | 0 | — |
+| [[Engineering/wms-gateway/overview\|wms-gateway]] | backend | 4 | 0 | 0 | 2026-10-09 |
+| [[Engineering/workspace-kit/overview\|workspace-kit]] | backend | 0 | 0 | 0 | 2026-10-28 |

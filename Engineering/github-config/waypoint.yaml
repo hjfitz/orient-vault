@@ -1,0 +1,41 @@
+# github-config — Waypoint index. Cheap orientation only, never documentation.
+# Keep under ~25 lines. Anything needing a sentence belongs in a doc.
+service: github-config
+system: fuse
+type: infra              # backend | frontend | library | infra
+owner: fuse-team         # wider Fuse team — confirmed multi-author (Nylah Klasson + others)
+language: HCL
+framework: Terraform / Terragrunt
+deploy: "n/a"             # provisions GitHub org resources directly, no runtime of its own
+observability: none
+
+interfaces:
+  inbound: []                     # none
+  outbound: []                     # none
+
+key_paths:
+  - iac/modules/repository          # the shared module every one of the 33 repos goes through
+  - iac/projects/bifrost-github-config/main.tf   # the actual repo list — read this, not the README
+  - iac/projects/bifrost-github-config/teams.tf   # team membership/admin grants
+
+note: >
+  THE authoritative source of truth for gfs-bifrost repo archival status
+  — confirmed directly (order-management-system, standalone
+  snap-queue-polling-service, shopfiy-app were all archived here).
+  performance-tests, llm-analytics, fuse-localdev, testdata-ui, and
+  bifrost-lang were archived 2026-08-18, six days before this onboarding
+  pass — strike performance-tests from any future candidate list.
+  snap-test-automation is a real repo created via this config but not
+  yet present in the local ~/code/fuse/ checkout. secops moved out to
+  ilg-platform (2026-07-27) and is no longer managed here.
+
+runtime:
+  terraform: "latest"
+commands:
+  root: "."
+  gate: []
+  missing: []
+commands_verified: 2026-09-04
+commands_verified_sha: 020b71d
+commands_verified_paths: [mise.toml]
+onboarded: 2026-08-24

@@ -1,0 +1,40 @@
+# config-service — Waypoint index. Cheap orientation only, never documentation.
+# Keep under ~25 lines. Anything needing a sentence belongs in a doc.
+service: config-service
+system: fuse
+type: backend            # backend | frontend | library | infra
+owner: fuse-team         # wider Fuse team, same as the other onboarded services
+language: TypeScript
+framework: NestJS        # + a bolted-on Express instance for auth/logging middleware
+deploy: cloud-run
+observability: datadog
+
+interfaces:
+  inbound: [http, pubsub]        # ~50-route REST API + one push subscription
+  outbound: [mongodb, pubsub-config-revision, sftp-connector-provisioning-callback]
+
+key_paths:
+  - code/src/core                      # business/storefront/connector/backend/ddp/etc services
+  - code/src/repositories              # Collection<T> Mongo wrapper, collections.module.ts
+  - code/src/http/api/v1               # controllers + ingress/response Zod schemas
+  - code/src/core/pubsub/config.dispatcher.ts   # the ONE thing this service publishes
+  - code/openapi.yaml                  # hand-written API contract, served at runtime
+  - iac/projects/config-service
+
+note: >
+  README.md is stale (it describes a pre-NestJS layout) — trust CLAUDE.md and the code.
+  The local checkout is not kept current; read origin/main via `git show`/`git log` rather
+  than the working tree.
+
+runtime:
+  package_manager: "pnpm@10"
+  test_runner: "vitest"
+  node: "24"
+commands:
+  root: "code/"
+  gate: ["test", "lint:fix", "build:check", "build:check:tests"]
+  missing: []
+commands_verified: 2026-09-04
+commands_verified_sha: 70138a7
+commands_verified_paths: [code/package.json, code/pnpm-workspace.yaml, mise.toml]
+onboarded: 2026-08-24

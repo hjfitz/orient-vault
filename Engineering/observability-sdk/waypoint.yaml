@@ -1,0 +1,40 @@
+# observability-sdk — Waypoint index. Cheap orientation only, never documentation.
+# Keep under ~25 lines. Anything needing a sentence belongs in a doc.
+service: observability-sdk
+system: ilg-platform
+type: library            # backend | frontend | library | infra
+owner: "Matt Shaw (ilg-platform)"   # effective owner/designer; Harry is a regular consumer, not a contributor here
+language: TypeScript
+framework: "pnpm workspace, ADR-driven design (9 ADRs in docs/adr/)"
+deploy: "n/a"             # published to GitHub Packages, no runtime of its own
+observability: none
+
+interfaces:
+  inbound: []                     # none — consumed as npm packages
+  outbound: [datadog, opentelemetry]   # via optional-peer exporters/engines, never required
+
+key_paths:
+  - pkg/observability                          # core: logs + metrics + LogContext (@ilg-platform/observability)
+  - pkg/observability-trace                     # tracing, deliberately separate package
+  - pkg/adaptors/observability-{nest,express,next}
+  - docs/adr                                    # 9 ADRs — the actual design rationale, read before changing anything
+  - CLAUDE.md                                   # exceptionally thorough
+
+note: >
+  Was cloned fresh for this onboarding — no local checkout existed under
+  ~/code/fuse/ before now, unlike every other repo this session. fapi was
+  the pilot/soak service before 1.0.0 was cut. @gfs-bifrost/observability
+  (in pkg-node) is the Fuse-facing adaptor wrapping this SDK as an optional
+  peer. "Tolaria" in the CLAUDE.md is the old internal codename for this
+  library, not a separate external system.
+
+runtime:
+  package_manager: "pnpm@10.24.0"
+commands:
+  root: "."
+  gate: ["test", "lint:fix"]
+  missing: ["build:check", "build:check:tests"]
+commands_verified: 2026-09-04
+commands_verified_sha: 88ed69b
+commands_verified_paths: [package.json, pnpm-workspace.yaml]
+onboarded: 2026-08-24

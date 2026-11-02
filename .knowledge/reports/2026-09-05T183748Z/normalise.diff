@@ -1,0 +1,4409 @@
+===================================================================
+--- a/Bifrost/Dedupe NestJS Migration/Migration State.md
++++ b/Bifrost/Dedupe NestJS Migration/Migration State.md
+@@ -1,10 +1,10 @@
+ ---
+ title: Dedupe Service — NestJS Migration State
+ status: in-progress
+ owner: Harry Fitzgerald
+-created: 2026-07-25
+-updated: 2026-09-03
++created: '2026-07-25'
++updated: '2026-09-03'
+ tags: [bifrost, dedupe-service, nestjs, migration, migration-state]
+ ---
+ 
+ # Dedupe Service — NestJS Migration State
+===================================================================
+--- a/Bifrost/Dedupe NestJS Migration/Overview.md
++++ b/Bifrost/Dedupe NestJS Migration/Overview.md
+@@ -2,10 +2,10 @@
+ title: Dedupe Service — Express → NestJS Migration (Overview)
+ status: planning-complete
+ verdict: go-with-conditions
+ owner: Harry Fitzgerald
+-created: 2026-07-25
+-updated: 2026-08-23
++created: '2026-07-25'
++updated: '2026-08-23'
+ tags: [bifrost, dedupe-service, nestjs, migration]
+ ---
+ 
+ # Dedupe Service — Express → NestJS Migration (Overview)
+===================================================================
+--- a/Bifrost/Fuse MCP Go/Migration State.md
++++ b/Bifrost/Fuse MCP Go/Migration State.md
+@@ -1,10 +1,10 @@
+ ---
+ title: Fuse MCP Server — Go Rewrite Migration State
+ status: cutover-complete
+ owner: Harry Fitzgerald
+-created: 2026-08-23
+-updated: 2026-08-23
++created: '2026-08-23'
++updated: '2026-08-23'
+ tags: [bifrost, fuse-mcp, golang, mcp, migration, migration-state]
+ ---
+ 
+ # Fuse MCP Server — Go Rewrite Migration State
+===================================================================
+--- a/Bifrost/Fuse MCP Go/Overview.md
++++ b/Bifrost/Fuse MCP Go/Overview.md
+@@ -1,10 +1,10 @@
+ ---
+ title: Fuse MCP Server — Go Rewrite (Overview)
+ status: planning
+ owner: Harry Fitzgerald
+-created: 2026-08-23
+-updated: 2026-08-23
++created: '2026-08-23'
++updated: '2026-08-23'
+ tags: [bifrost, fuse-mcp, golang, mcp, migration, overview]
+ ---
+ 
+ # Fuse MCP Server — Go Rewrite
+===================================================================
+--- a/Bifrost/Fuse Mocker Go API/Migration State.md
++++ b/Bifrost/Fuse Mocker Go API/Migration State.md
+@@ -1,10 +1,10 @@
+ ---
+ title: Fuse Mocker — Go API Migration State
+ status: complete
+ owner: Harry Fitzgerald
+-created: 2026-08-22
+-updated: 2026-08-22
++created: '2026-08-22'
++updated: '2026-08-22'
+ tags: [bifrost, fuse-mocker, golang, migration, migration-state]
+ ---
+ 
+ # Fuse Mocker — Go API Migration State
+===================================================================
+--- a/Bifrost/Fuse Mocker Go API/Overview.md
++++ b/Bifrost/Fuse Mocker Go API/Overview.md
+@@ -1,10 +1,10 @@
+ ---
+ title: Fuse Mocker — Go API Rewrite (Overview)
+ status: planning
+ owner: Harry Fitzgerald
+-created: 2026-08-22
+-updated: 2026-08-22
++created: '2026-08-22'
++updated: '2026-08-22'
+ tags: [bifrost, fuse-mocker, golang, migration, overview]
+ ---
+ 
+ # Fuse Mocker — Go API Rewrite
+===================================================================
+--- a/Bifrost/James Godsell — Migration Lead Concerns.md
++++ b/Bifrost/James Godsell — Migration Lead Concerns.md
+@@ -1,9 +1,10 @@
+ ---
+ tags: [concerns, saira-skin, migration]
+-date: 2026-08-25
++date: '2026-08-25'
+ status: draft — for a conversation with Oli Denton + Pete Liu
+ related: "[[James Godsell]]"
++title: James Godsell — concerns about leading the next bulk-load onboarding
+ ---
+ # James Godsell — concerns about leading the next bulk-load onboarding
+ 
+ **Why this exists:** a new customer onboarding is coming up that bulk-loads ~4,000 records. [[James Godsell]] (ILG integrations) has been the natural default to lead migrations off the back of Saira Skin. Before that becomes the pattern, worth raising two solid concerns and one softer one with Oli and Pete — pulled from `#saira-skin-migration` and `#bifrost-general`, cross-checked against the [Saira Skin retro](https://globalfreight.atlassian.net/wiki/spaces/Bifrost/pages/276660237) and [dev-team washup](https://globalfreight.atlassian.net/wiki/spaces/Bifrost/pages/276070415).
+===================================================================
+--- a/Bifrost/Platform Terraform Alignment/Overview.md
++++ b/Bifrost/Platform Terraform Alignment/Overview.md
+@@ -1,10 +1,10 @@
+ ---
+ title: Platform Terraform Alignment — Overview
+ status: three-prs-open-awaiting-review
+ owner: Harry Fitzgerald
+-created: 2026-08-26
+-updated: 2026-08-26
++created: '2026-08-26'
++updated: '2026-08-26'
+ tags: [bifrost, ilg-platform, ilg-tech-services, gfs-sre, terraform, terragrunt, iac, platform]
+ ---
+ 
+ # Platform Terraform Alignment — Overview
+===================================================================
+--- a/Bifrost/Purdy & Figg Testing/Overview.md
++++ b/Bifrost/Purdy & Figg Testing/Overview.md
+@@ -1,10 +1,10 @@
+ ---
+ title: Purdy & Figg — Testing (Overview)
+ status: active
+ owner: Harry Fitzgerald
+-created: 2026-08-25
+-updated: 2026-08-25
++created: '2026-08-25'
++updated: '2026-08-25'
+ tags: [bifrost, purdy-and-figg, shopify, testing, onboarding]
+ ---
+ 
+ # Purdy & Figg — Testing (Overview)
+===================================================================
+--- a/Bifrost/SecOps API Go/Migration State.md
++++ b/Bifrost/SecOps API Go/Migration State.md
+@@ -1,10 +1,10 @@
+ ---
+ title: SecOps Ingest API — Go Rewrite Migration State
+ status: in-progress
+ owner: Harry Fitzgerald
+-created: 2026-08-24
+-updated: 2026-08-27
++created: '2026-08-24'
++updated: '2026-08-27'
+ tags: [ilg-platform, secops, golang, migration, migration-state]
+ ---
+ 
+ # SecOps API — Go Rewrite Migration State
+===================================================================
+--- a/Bifrost/SecOps API Go/Overview.md
++++ b/Bifrost/SecOps API Go/Overview.md
+@@ -1,9 +1,9 @@
+ ---
+ title: SecOps Ingest API — Go Rewrite Overview
+ status: planning
+ owner: Harry Fitzgerald
+-created: 2026-08-24
++created: '2026-08-24'
+ tags: [ilg-platform, secops, golang, migration]
+ ---
+ 
+ # SecOps Ingest API — Go Rewrite
+===================================================================
+--- a/Bifrost/Shopify Connector Rearchitecture/Migration State.md
++++ b/Bifrost/Shopify Connector Rearchitecture/Migration State.md
+@@ -1,10 +1,10 @@
+ ---
+ title: Shopify Connector Re-architecture — Migration State
+ status: re-scoped-2026-08-21
+ owner: Harry Fitzgerald
+-created: 2026-07-24
+-updated: 2026-08-24
++created: '2026-07-24'
++updated: '2026-08-24'
+ tags: [bifrost, shopify-connector, rearchitecture, migration-state]
+ ---
+ 
+ # Shopify Connector Re-architecture — Migration State
+===================================================================
+--- a/Bifrost/Shopify Connector Rearchitecture/Overview.md
++++ b/Bifrost/Shopify Connector Rearchitecture/Overview.md
+@@ -1,10 +1,10 @@
+ ---
+ title: Shopify Connector Re-architecture — Overview
+ status: re-scoped-2026-08-21
+ owner: Harry Fitzgerald
+-created: 2026-07-24
+-updated: 2026-08-24
++created: '2026-07-24'
++updated: '2026-08-24'
+ tags: [bifrost, shopify-connector, rearchitecture]
+ ---
+ 
+ # Shopify Connector Re-architecture — Overview
+===================================================================
+--- a/Bifrost/Tech Services IaC Review/Overview.md
++++ b/Bifrost/Tech Services IaC Review/Overview.md
+@@ -2,10 +2,10 @@
+ title: Tech Services IaC — Review & Migration (Overview)
+ status: review-complete
+ verdict: three-criticals-block-further-change
+ owner: Harry Fitzgerald
+-created: 2026-07-25
+-updated: 2026-07-27
++created: '2026-07-25'
++updated: '2026-07-27'
+ tags: [bifrost, ilg-tech-services, terraform, iac, security-review, platform]
+ ---
+ 
+ # Tech Services IaC — Review & Migration (Overview)
+===================================================================
+--- a/Bifrost/Tech Services IaC Review/Remediation State.md
++++ b/Bifrost/Tech Services IaC Review/Remediation State.md
+@@ -1,10 +1,10 @@
+ ---
+ title: Tech Services IaC — Remediation State
+ status: not-started
+ owner: Harry Fitzgerald
+-created: 2026-07-25
+-updated: 2026-08-26
++created: '2026-07-25'
++updated: '2026-08-26'
+ tags: [bifrost, ilg-tech-services, terraform, iac, security-review, remediation-state]
+ ---
+ 
+ # Tech Services IaC — Remediation State
+===================================================================
+--- a/Customers/PURDYFIGG/architecture.md
++++ b/Customers/PURDYFIGG/architecture.md
+@@ -1,8 +1,9 @@
+ ---
+ tags: [customer, PURDYFIGG]
+-verified: 2026-09-02
++verified: '2026-09-02'
+ verified_against: mcp__fuse__trace-data-flow(sales_order)
++title: Purdy & Figg — architecture
+ ---
+ 
+ # Purdy & Figg — architecture
+ 
+===================================================================
+--- a/Customers/PURDYFIGG/known-context.md
++++ b/Customers/PURDYFIGG/known-context.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [customer, PURDYFIGG]
+-verified: 2026-09-02
++verified: '2026-09-02'
++title: Purdy & Figg — known context
+ ---
+ 
+ # Purdy & Figg — known context
+ 
+===================================================================
+--- a/Customers/PURDYFIGG/ledger.md
++++ b/Customers/PURDYFIGG/ledger.md
+@@ -1,6 +1,7 @@
+ ---
+ tags: [customer, ledger]
++title: PURDYFIGG — customer ledger
+ ---
+ # PURDYFIGG — customer ledger
+ 
+ Agent-facing. Newest first. Incidents, config decisions, and the reasoning
+===================================================================
+--- a/Customers/PURDYFIGG/overview.md
++++ b/Customers/PURDYFIGG/overview.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [customer, PURDYFIGG]
+-verified: 2026-09-02
++verified: '2026-09-02'
++title: Purdy & Figg — Overview
+ ---
+ 
+ # Purdy & Figg — Overview
+ 
+===================================================================
+--- a/Digests/2026-06/2026-06-17.md
++++ b/Digests/2026-06/2026-06-17.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [digest]
+-date: 2026-06-17
++date: '2026-06-17'
++title: Morning Digest — Wednesday, 2026-06-17
+ ---
+ # Morning Digest — Wednesday, 2026-06-17
+ _Window: 2026-06-14 → 2026-06-17_
+ 
+===================================================================
+--- a/Digests/2026-06/2026-06-18.md
++++ b/Digests/2026-06/2026-06-18.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [digest]
+-date: 2026-06-18
++date: '2026-06-18'
++title: Morning Digest — Thursday, 2026-06-18
+ ---
+ # Morning Digest — Thursday, 2026-06-18
+ _Window: 2026-06-15 → 2026-06-18_
+ 
+===================================================================
+--- a/Digests/2026-06/2026-06-19.md
++++ b/Digests/2026-06/2026-06-19.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [digest]
+-date: 2026-06-19
++date: '2026-06-19'
++title: Morning Digest — Friday, 2026-06-19
+ ---
+ # Morning Digest — Friday, 2026-06-19
+ _Window: 2026-06-16 → 2026-06-19_
+ 
+===================================================================
+--- a/Digests/2026-06/2026-06-23.md
++++ b/Digests/2026-06/2026-06-23.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [digest]
+-date: 2026-06-23
++date: '2026-06-23'
++title: Morning Digest — Tuesday, 2026-06-23
+ ---
+ # Morning Digest — Tuesday, 2026-06-23
+ _Window: 2026-06-20 → 2026-06-23_
+ 
+===================================================================
+--- a/Digests/2026-06/2026-06-24.md
++++ b/Digests/2026-06/2026-06-24.md
+@@ -1,7 +1,7 @@
+ ---
+ tags: [digest]
+-date: 2026-06-24
++date: '2026-06-24'
+ ---
+ []()# Morning Digest — Wednesday, 2026-06-24
+ _Window: 2026-06-21 → 2026-06-24_
+ 
+===================================================================
+--- a/Digests/2026-06/2026-06-25.md
++++ b/Digests/2026-06/2026-06-25.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [digest]
+-date: 2026-06-25
++date: '2026-06-25'
++title: Morning Digest — Thursday, 2026-06-25
+ ---
+ # Morning Digest — Thursday, 2026-06-25
+ _Window: 2026-06-22 → 2026-06-25_
+ 
+===================================================================
+--- a/Digests/2026-06/2026-06-26.md
++++ b/Digests/2026-06/2026-06-26.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [digest]
+-date: 2026-06-26
++date: '2026-06-26'
++title: Morning Digest — Friday, 2026-06-26
+ ---
+ # Morning Digest — Friday, 2026-06-26
+ _Window: 2026-06-23 → 2026-06-26_
+ 
+===================================================================
+--- a/Digests/2026-06/2026-06-29.md
++++ b/Digests/2026-06/2026-06-29.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [digest]
+-date: 2026-06-29
++date: '2026-06-29'
++title: Morning Digest — Monday, 2026-06-29
+ ---
+ # Morning Digest — Monday, 2026-06-29
+ _Window: 2026-06-26 → 2026-06-29_
+ 
+===================================================================
+--- a/Digests/2026-06/2026-06-30.md
++++ b/Digests/2026-06/2026-06-30.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [digest]
+-date: 2026-06-30
++date: '2026-06-30'
++title: Morning Digest — Tuesday, 2026-06-30
+ ---
+ # Morning Digest — Tuesday, 2026-06-30
+ _Window: 2026-06-27 → 2026-06-30_
+ 
+===================================================================
+--- a/Digests/2026-07/2026-07-01.md
++++ b/Digests/2026-07/2026-07-01.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [digest]
+-date: 2026-07-01
++date: '2026-07-01'
++title: Morning Digest — Wednesday, 2026-07-01
+ ---
+ # Morning Digest — Wednesday, 2026-07-01
+ _Window: 2026-06-28 → 2026-07-01_
+ 
+===================================================================
+--- a/Digests/2026-07/2026-07-02.md
++++ b/Digests/2026-07/2026-07-02.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [digest]
+-date: 2026-07-02
++date: '2026-07-02'
++title: Morning Digest — Thursday, 2026-07-02
+ ---
+ # Morning Digest — Thursday, 2026-07-02
+ _Window: 2026-06-29 → 2026-07-02_
+ 
+===================================================================
+--- a/Digests/2026-07/2026-07-03.md
++++ b/Digests/2026-07/2026-07-03.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [digest]
+-date: 2026-07-03
++date: '2026-07-03'
++title: Morning Digest — Friday, 2026-07-03
+ ---
+ # Morning Digest — Friday, 2026-07-03
+ _Window: 2026-06-30 → 2026-07-03_
+ 
+===================================================================
+--- a/Digests/2026-07/2026-07-06.md
++++ b/Digests/2026-07/2026-07-06.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [digest]
+-date: 2026-07-06
++date: '2026-07-06'
++title: Morning Digest — Monday, 2026-07-06
+ ---
+ # Morning Digest — Monday, 2026-07-06
+ _Window: 2026-07-03 → 2026-07-06_
+ 
+===================================================================
+--- a/Digests/2026-07/2026-07-07.md
++++ b/Digests/2026-07/2026-07-07.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [digest]
+-date: 2026-07-07
++date: '2026-07-07'
++title: Morning Digest — Tuesday, 2026-07-07
+ ---
+ # Morning Digest — Tuesday, 2026-07-07
+ _Window: 2026-07-04 → 2026-07-07_
+ 
+===================================================================
+--- a/Digests/2026-07/2026-07-09.md
++++ b/Digests/2026-07/2026-07-09.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [digest]
+-date: 2026-07-09
++date: '2026-07-09'
++title: Morning Digest — Thursday, 2026-07-09
+ ---
+ # Morning Digest — Thursday, 2026-07-09
+ _Window: 2026-07-06 → 2026-07-09_
+ 
+===================================================================
+--- a/Digests/2026-07/2026-07-10.md
++++ b/Digests/2026-07/2026-07-10.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [digest]
+-date: 2026-07-10
++date: '2026-07-10'
++title: Morning Digest — Friday, 2026-07-10
+ ---
+ # Morning Digest — Friday, 2026-07-10
+ _Window: 2026-07-07 → 2026-07-10_
+ 
+===================================================================
+--- a/Digests/2026-07/2026-07-13.md
++++ b/Digests/2026-07/2026-07-13.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [digest]
+-date: 2026-07-13
++date: '2026-07-13'
++title: Morning Digest — Monday, 2026-07-13
+ ---
+ # Morning Digest — Monday, 2026-07-13
+ _Window: 2026-07-10 → 2026-07-13_
+ 
+===================================================================
+--- a/Digests/2026-07/2026-07-14.md
++++ b/Digests/2026-07/2026-07-14.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [digest]
+-date: 2026-07-14
++date: '2026-07-14'
++title: Morning Digest — Tuesday, 2026-07-14
+ ---
+ # Morning Digest — Tuesday, 2026-07-14
+ _Window: 2026-07-11 → 2026-07-14_
+ 
+===================================================================
+--- a/Digests/2026-07/2026-07-15.md
++++ b/Digests/2026-07/2026-07-15.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [digest]
+-date: 2026-07-15
++date: '2026-07-15'
++title: Morning Digest — Wednesday, 2026-07-15
+ ---
+ # Morning Digest — Wednesday, 2026-07-15
+ _Window: 2026-07-12 → 2026-07-15_
+ 
+===================================================================
+--- a/Digests/2026-07/2026-07-16.md
++++ b/Digests/2026-07/2026-07-16.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [digest]
+-date: 2026-07-16
++date: '2026-07-16'
++title: Morning Digest — Thursday, 2026-07-16
+ ---
+ # Morning Digest — Thursday, 2026-07-16
+ _Window: 2026-07-13 → 2026-07-16_
+ 
+===================================================================
+--- a/Digests/2026-07/2026-07-17.md
++++ b/Digests/2026-07/2026-07-17.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [digest]
+-date: 2026-07-17
++date: '2026-07-17'
++title: Morning Digest — Friday, 2026-07-17
+ ---
+ # Morning Digest — Friday, 2026-07-17
+ _Window: 2026-07-14 → 2026-07-17_
+ 
+===================================================================
+--- a/Digests/2026-07/2026-07-20.md
++++ b/Digests/2026-07/2026-07-20.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [digest]
+-date: 2026-07-20
++date: '2026-07-20'
++title: Morning Digest — Monday, 2026-07-20
+ ---
+ # Morning Digest — Monday, 2026-07-20
+ _Window: 2026-07-17 → 2026-07-20_
+ 
+===================================================================
+--- a/Digests/2026-07/2026-07-21.md
++++ b/Digests/2026-07/2026-07-21.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [digest]
+-date: 2026-07-21
++date: '2026-07-21'
++title: Morning Digest — Tuesday, 2026-07-21
+ ---
+ # Morning Digest — Tuesday, 2026-07-21
+ _Window: 2026-07-18 → 2026-07-21_
+ 
+===================================================================
+--- a/Digests/2026-07/2026-07-22.md
++++ b/Digests/2026-07/2026-07-22.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [digest]
+-date: 2026-07-22
++date: '2026-07-22'
++title: Morning Digest — Wednesday, 2026-07-22
+ ---
+ # Morning Digest — Wednesday, 2026-07-22
+ _Window: 2026-07-19 → 2026-07-22_
+ 
+===================================================================
+--- a/Digests/2026-07/2026-07-23.md
++++ b/Digests/2026-07/2026-07-23.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [digest]
+-date: 2026-07-23
++date: '2026-07-23'
++title: Morning Digest — Thursday, 2026-07-23
+ ---
+ # Morning Digest — Thursday, 2026-07-23
+ _Window: 2026-07-20 → 2026-07-23_
+ 
+===================================================================
+--- a/Digests/2026-07/2026-07-24.md
++++ b/Digests/2026-07/2026-07-24.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [digest]
+-date: 2026-07-24
++date: '2026-07-24'
++title: Morning Digest — Friday, 2026-07-24
+ ---
+ # Morning Digest — Friday, 2026-07-24
+ _Window: 2026-07-21 → 2026-07-24_
+ 
+===================================================================
+--- a/Digests/2026-07/2026-07-27.md
++++ b/Digests/2026-07/2026-07-27.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [digest]
+-date: 2026-07-27
++date: '2026-07-27'
++title: Morning Digest — Monday, 2026-07-27
+ ---
+ # Morning Digest — Monday, 2026-07-27
+ _Window: 2026-07-24 → 2026-07-27_
+ 
+===================================================================
+--- a/Digests/2026-07/2026-07-28.md
++++ b/Digests/2026-07/2026-07-28.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [digest]
+-date: 2026-07-28
++date: '2026-07-28'
++title: Morning Digest — Tuesday, 2026-07-28
+ ---
+ # Morning Digest — Tuesday, 2026-07-28
+ _Window: 2026-07-25 → 2026-07-28_
+ 
+===================================================================
+--- a/Digests/2026-07/2026-07-29.md
++++ b/Digests/2026-07/2026-07-29.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [digest]
+-date: 2026-07-29
++date: '2026-07-29'
++title: Morning Digest — Wednesday, 2026-07-29
+ ---
+ # Morning Digest — Wednesday, 2026-07-29
+ _Window: 2026-07-26 → 2026-07-29_
+ 
+===================================================================
+--- a/Digests/2026-07/2026-07-30.md
++++ b/Digests/2026-07/2026-07-30.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [digest]
+-date: 2026-07-30
++date: '2026-07-30'
++title: Morning Digest — Thursday, 2026-07-30
+ ---
+ # Morning Digest — Thursday, 2026-07-30
+ _Window: 2026-07-27 → 2026-07-30_
+ 
+===================================================================
+--- a/Digests/2026-07/2026-07-31.md
++++ b/Digests/2026-07/2026-07-31.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [digest]
+-date: 2026-07-31
++date: '2026-07-31'
++title: Morning Digest — Friday, 2026-07-31
+ ---
+ # Morning Digest — Friday, 2026-07-31
+ _Window: 2026-07-28 → 2026-07-31_
+ 
+===================================================================
+--- a/Digests/2026-08/2026-08-03.md
++++ b/Digests/2026-08/2026-08-03.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [digest]
+-date: 2026-08-03
++date: '2026-08-03'
++title: Morning Digest — Monday, 2026-08-03
+ ---
+ # Morning Digest — Monday, 2026-08-03
+ _Window: 2026-07-31 → 2026-08-03_
+ 
+===================================================================
+--- a/Digests/2026-08/2026-08-04.md
++++ b/Digests/2026-08/2026-08-04.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [digest]
+-date: 2026-08-04
++date: '2026-08-04'
++title: Morning Digest — Tuesday, 2026-08-04
+ ---
+ # Morning Digest — Tuesday, 2026-08-04
+ _Window: 2026-08-01 → 2026-08-04_
+ 
+===================================================================
+--- a/Digests/2026-08/2026-08-06.md
++++ b/Digests/2026-08/2026-08-06.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [digest]
+-date: 2026-08-06
++date: '2026-08-06'
++title: Morning Digest — Thursday, 2026-08-06
+ ---
+ # Morning Digest — Thursday, 2026-08-06
+ _Window: 2026-08-03 → 2026-08-06_
+ 
+===================================================================
+--- a/Digests/2026-08/2026-08-10.md
++++ b/Digests/2026-08/2026-08-10.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [digest]
+-date: 2026-08-10
++date: '2026-08-10'
++title: Morning Digest — Monday, 2026-08-10
+ ---
+ # Morning Digest — Monday, 2026-08-10
+ _Window: 2026-08-07 → 2026-08-10_
+ 
+===================================================================
+--- a/Digests/2026-08/2026-08-11.md
++++ b/Digests/2026-08/2026-08-11.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [digest]
+-date: 2026-08-11
++date: '2026-08-11'
++title: Morning Digest — Tuesday, 2026-08-11
+ ---
+ # Morning Digest — Tuesday, 2026-08-11
+ _Window: 2026-08-08 → 2026-08-11_
+ 
+===================================================================
+--- a/Digests/2026-08/2026-08-12.md
++++ b/Digests/2026-08/2026-08-12.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [digest]
+-date: 2026-08-12
++date: '2026-08-12'
++title: Morning Digest — Wednesday, 2026-08-12
+ ---
+ # Morning Digest — Wednesday, 2026-08-12
+ _Window: 2026-08-09 → 2026-08-12_
+ 
+===================================================================
+--- a/Digests/2026-08/2026-08-13.md
++++ b/Digests/2026-08/2026-08-13.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [digest]
+-date: 2026-08-13
++date: '2026-08-13'
++title: Morning Digest — Thursday, 2026-08-13
+ ---
+ # Morning Digest — Thursday, 2026-08-13
+ _Window: 2026-08-10 → 2026-08-13_
+ 
+===================================================================
+--- a/Digests/2026-08/2026-08-17.md
++++ b/Digests/2026-08/2026-08-17.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [digest]
+-date: 2026-08-17
++date: '2026-08-17'
++title: Morning Digest — Monday, 2026-08-17
+ ---
+ # Morning Digest — Monday, 2026-08-17
+ _Window: 2026-08-14 → 2026-08-17_
+ 
+===================================================================
+--- a/Digests/2026-08/2026-08-18.md
++++ b/Digests/2026-08/2026-08-18.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [digest]
+-date: 2026-08-18
++date: '2026-08-18'
++title: Morning Digest — Tuesday, 2026-08-18
+ ---
+ # Morning Digest — Tuesday, 2026-08-18
+ _Window: 2026-08-15 → 2026-08-18_
+ 
+===================================================================
+--- a/Digests/2026-08/2026-08-19.md
++++ b/Digests/2026-08/2026-08-19.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [digest]
+-date: 2026-08-19
++date: '2026-08-19'
++title: Morning Digest — Wednesday, 2026-08-19
+ ---
+ # Morning Digest — Wednesday, 2026-08-19
+ _Window: 2026-08-16 → 2026-08-19_
+ 
+===================================================================
+--- a/Digests/2026-08/2026-08-20.md
++++ b/Digests/2026-08/2026-08-20.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [digest]
+-date: 2026-08-20
++date: '2026-08-20'
++title: Morning Digest — Thursday, 2026-08-20
+ ---
+ # Morning Digest — Thursday, 2026-08-20
+ _Window: 2026-08-17 → 2026-08-20_
+ 
+===================================================================
+--- a/Digests/2026-08/2026-08-24.md
++++ b/Digests/2026-08/2026-08-24.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [digest]
+-date: 2026-08-24
++date: '2026-08-24'
++title: Morning Digest — Monday, 2026-08-24
+ ---
+ # Morning Digest — Monday, 2026-08-24
+ _Window: 2026-08-21 → 2026-08-24_
+ 
+===================================================================
+--- a/Digests/2026-08/2026-08-25.md
++++ b/Digests/2026-08/2026-08-25.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [digest]
+-date: 2026-08-25
++date: '2026-08-25'
++title: Morning Digest — Tuesday, 2026-08-25
+ ---
+ # Morning Digest — Tuesday, 2026-08-25
+ _Window: 2026-08-24 → 2026-08-25_
+ 
+===================================================================
+--- a/Digests/2026-08/2026-08-26.md
++++ b/Digests/2026-08/2026-08-26.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [digest]
+-date: 2026-08-26
++date: '2026-08-26'
++title: Morning Digest — Wednesday, 2026-08-26
+ ---
+ # Morning Digest — Wednesday, 2026-08-26
+ _Window: 2026-08-23 → 2026-08-26_
+ 
+===================================================================
+--- a/Digests/2026-08/2026-08-27.md
++++ b/Digests/2026-08/2026-08-27.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [digest]
+-date: 2026-08-27
++date: '2026-08-27'
++title: Morning Digest — Thursday, 2026-08-27
+ ---
+ # Morning Digest — Thursday, 2026-08-27
+ _Window: 2026-08-24 → 2026-08-27_
+ 
+===================================================================
+--- a/Digests/2026-08/2026-08-28.md
++++ b/Digests/2026-08/2026-08-28.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [digest]
+-date: 2026-08-28
++date: '2026-08-28'
++title: Morning Digest — Friday, 2026-08-28
+ ---
+ # Morning Digest — Friday, 2026-08-28
+ _Window: 2026-08-25 → 2026-08-28_
+ 
+===================================================================
+--- a/Digests/2026-09/2026-09-01.md
++++ b/Digests/2026-09/2026-09-01.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [digest]
+-date: 2026-09-01
++date: '2026-09-01'
++title: Morning Digest — Tuesday, 2026-09-01
+ ---
+ # Morning Digest — Tuesday, 2026-09-01
+ _Window: 2026-08-29 → 2026-09-01_
+ 
+===================================================================
+--- a/Digests/2026-09/2026-09-02.md
++++ b/Digests/2026-09/2026-09-02.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [digest]
+-date: 2026-09-02
++date: '2026-09-02'
++title: Morning Digest — Wednesday, 2026-09-02
+ ---
+ # Morning Digest — Wednesday, 2026-09-02
+ _Window: 2026-08-30 → 2026-09-02_
+ 
+===================================================================
+--- a/Digests/2026-09/2026-09-03.md
++++ b/Digests/2026-09/2026-09-03.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [digest]
+-date: 2026-09-03
++date: '2026-09-03'
++title: Morning Digest — Thursday, 2026-09-03
+ ---
+ # Morning Digest — Thursday, 2026-09-03
+ _Window: 2026-08-31 → 2026-09-03_
+ 
+===================================================================
+--- a/Digests/2026-09/2026-09-04.md
++++ b/Digests/2026-09/2026-09-04.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [digest]
+-date: 2026-09-04
++date: '2026-09-04'
++title: Morning Digest — Friday, 2026-09-04
+ ---
+ # Morning Digest — Friday, 2026-09-04
+ _Window: 2026-09-01 → 2026-09-04_
+ 
+===================================================================
+--- a/Digests/Roundups/2026-W30.md
++++ b/Digests/Roundups/2026-W30.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [roundup]
+ week: 2026-W30
++title: Fuse This Week — w/c 20 July (2026-W30)
+ ---
+ # Fuse This Week — w/c 20 July (2026-W30)
+ 
+ ## Posted text
+===================================================================
+--- a/Digests/Roundups/2026-W32.md
++++ b/Digests/Roundups/2026-W32.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [roundup]
+ week: 2026-W32
++title: Fuse this week — w/c 3 August 2026
+ ---
+ 
+ # Fuse this week — w/c 3 August 2026
+ 
+===================================================================
+--- a/Digests/Roundups/2026-W34.md
++++ b/Digests/Roundups/2026-W34.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [roundup]
+ week: 2026-W34
++title: Fuse Week Roundup — 2026-W34 (w/c 17 August 2026)
+ ---
+ # Fuse Week Roundup — 2026-W34 (w/c 17 August 2026)
+ 
+ ## Approved post
+===================================================================
+--- a/Digests/Roundups/2026-W35.md
++++ b/Digests/Roundups/2026-W35.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [roundup]
+ week: 2026-W35
++title: Fuse this week — w/c 24 August 2026
+ ---
+ 
+ # Fuse this week — w/c 24 August 2026
+ 
+===================================================================
+--- a/Digests/Roundups/2026-W36.md
++++ b/Digests/Roundups/2026-W36.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [roundup]
+ week: 2026-W36
++title: Fuse this week — w/c 31 August 2026
+ ---
+ # Fuse this week — w/c 31 August 2026
+ 
+ Posted to #bifrost-general (not #bifrost-forge, per Harry's call this week).
+===================================================================
+--- a/Digests/Sprints/Sprint-14-boundary.md
++++ b/Digests/Sprints/Sprint-14-boundary.md
+@@ -3,10 +3,11 @@
+ sprint_closed: Sprint 13
+ sprint_closed_window: 2026-07-06 → 2026-07-20
+ sprint_started: Sprint 14
+ sprint_started_window: 2026-07-27 → 2026-08-10
+-posted: 2026-07-27
++posted: '2026-07-27'
+ channel: bifrost-general (C098LD5PS95)
++title: Sprint 13 → Sprint 14 boundary digest
+ ---
+ 
+ # Sprint 13 → Sprint 14 boundary digest
+ 
+===================================================================
+--- a/Digests/Weekly/2026-W25.md
++++ b/Digests/Weekly/2026-W25.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [weekly-review]
+ week: 2026-W25
++title: Weekly Review — 2026-W25 (2026-06-15 → 2026-06-19)
+ ---
+ # Weekly Review — 2026-W25 (2026-06-15 → 2026-06-19)
+ 
+ ## 📦 The week in brief
+===================================================================
+--- a/Digests/Weekly/2026-W26.md
++++ b/Digests/Weekly/2026-W26.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [weekly-review]
+ week: 2026-W26
++title: Weekly Review — 2026-W26 (2026-06-22 → 2026-06-26)
+ ---
+ # Weekly Review — 2026-W26 (2026-06-22 → 2026-06-26)
+ 
+ ## 📦 The week in brief
+===================================================================
+--- a/Digests/Weekly/2026-W27.md
++++ b/Digests/Weekly/2026-W27.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [weekly-review]
+ week: 2026-W27
++title: Weekly Review — 2026-W27 (2026-06-29 → 2026-07-03)
+ ---
+ # Weekly Review — 2026-W27 (2026-06-29 → 2026-07-03)
+ 
+ ## 📦 The week in brief
+===================================================================
+--- a/Digests/Weekly/2026-W29.md
++++ b/Digests/Weekly/2026-W29.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [weekly-review]
+ week: 2026-W29
++title: Weekly Review — 2026-W29 (2026-07-13 → 2026-07-17)
+ ---
+ # Weekly Review — 2026-W29 (2026-07-13 → 2026-07-17)
+ 
+ ## 📦 The week in brief
+===================================================================
+--- a/Digests/Weekly/2026-W33.md
++++ b/Digests/Weekly/2026-W33.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [weekly-review]
+ week: 2026-W33
++title: Weekly Review — 2026-W33 (2026-08-10 → 2026-08-14)
+ ---
+ # Weekly Review — 2026-W33 (2026-08-10 → 2026-08-14)
+ 
+ ## 📦 The week in brief
+===================================================================
+--- a/Digests/Weekly/2026-W34.md
++++ b/Digests/Weekly/2026-W34.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [weekly-review]
+ week: 2026-W34
++title: Weekly Review — 2026-W34 (2026-08-17 → 2026-08-21)
+ ---
+ # Weekly Review — 2026-W34 (2026-08-17 → 2026-08-21)
+ 
+ ## 📦 The week in brief
+===================================================================
+--- a/Digests/Weekly/2026-W36.md
++++ b/Digests/Weekly/2026-W36.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [weekly-review]
+ week: 2026-W36
++title: Weekly Review — 2026-W36 (2026-08-31 → 2026-09-04)
+ ---
+ # Weekly Review — 2026-W36 (2026-08-31 → 2026-09-04)
+ 
+ > No daily note for Monday 2026-08-31 (UK August Bank Holiday) — this review runs off Tue–Fri only.
+===================================================================
+--- a/Engineering/Waypoint — programme notes.md
++++ b/Engineering/Waypoint — programme notes.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [waypoint, programme]
+-updated: 2026-09-02
++updated: '2026-09-02'
++title: Waypoint — programme notes
+ ---
+ # Waypoint — programme notes
+ 
+ Why the suite is shaped the way it is, and what was decided when. Mechanics live in the skills
+===================================================================
+--- a/Engineering/bifrost-pubsub/architecture.md
++++ b/Engineering/bifrost-pubsub/architecture.md
+@@ -1,12 +1,11 @@
+ ---
+-tags:
+-- waypoint
+-- bifrost-pubsub
++tags: [waypoint, bifrost-pubsub]
+ verified: '2026-09-02'
+ verified_sha: e6be675
+ verified_paths:
+ - iac
++title: bifrost-pubsub — architecture
+ ---
+ # bifrost-pubsub — architecture
+ 
+ ## The topic module — every topic is a topic+DLT pair
+===================================================================
+--- a/Engineering/bifrost-pubsub/known-context.md
++++ b/Engineering/bifrost-pubsub/known-context.md
+@@ -1,8 +1,9 @@
+ ---
+ tags: [waypoint, bifrost-pubsub]
+-verified: 2026-08-24
++verified: '2026-08-24'
+ verified_paths: []
++title: bifrost-pubsub — known context
+ ---
+ 
+ # bifrost-pubsub — known context
+ 
+===================================================================
+--- a/Engineering/bifrost-pubsub/ledger.md
++++ b/Engineering/bifrost-pubsub/ledger.md
+@@ -1,6 +1,7 @@
+ ---
+ tags: [waypoint, ledger]
++title: bifrost-pubsub — work ledger
+ ---
+ # bifrost-pubsub — work ledger
+ 
+ Agent-facing. Newest first. What meaningful work happened here, and the
+===================================================================
+--- a/Engineering/bifrost-pubsub/overview.md
++++ b/Engineering/bifrost-pubsub/overview.md
+@@ -1,12 +1,11 @@
+ ---
+-tags:
+-- waypoint
+-- bifrost-pubsub
++tags: [waypoint, bifrost-pubsub]
+ verified: '2026-09-02'
+ verified_sha: e6be675
+ verified_paths:
+ - README.md
++title: bifrost-pubsub — overview
+ ---
+ # bifrost-pubsub — overview
+ 
+ ## What it is
+===================================================================
+--- a/Engineering/collector/architecture.md
++++ b/Engineering/collector/architecture.md
+@@ -1,13 +1,12 @@
+ ---
+-tags:
+-- waypoint
+-- collector
++tags: [waypoint, collector]
+ verified: '2026-09-02'
+ verified_sha: 50d2a8d
+ verified_paths:
+ - code/src
+ - iac/projects/collector
++title: collector — architecture
+ ---
+ # collector — architecture
+ 
+ ## Stack
+===================================================================
+--- a/Engineering/collector/known-context.md
++++ b/Engineering/collector/known-context.md
+@@ -1,8 +1,9 @@
+ ---
+ tags: [waypoint, collector]
+-verified: 2026-08-24
++verified: '2026-08-24'
+ verified_paths: []
++title: collector — known context
+ ---
+ 
+ # collector — known context
+ 
+===================================================================
+--- a/Engineering/collector/ledger.md
++++ b/Engineering/collector/ledger.md
+@@ -1,6 +1,7 @@
+ ---
+ tags: [waypoint, ledger]
++title: collector — work ledger
+ ---
+ # collector — work ledger
+ 
+ Agent-facing. Newest first. What meaningful work happened here, and the
+===================================================================
+--- a/Engineering/collector/overview.md
++++ b/Engineering/collector/overview.md
+@@ -1,13 +1,12 @@
+ ---
+-tags:
+-- waypoint
+-- collector
++tags: [waypoint, collector]
+ verified: '2026-09-02'
+ verified_sha: 50d2a8d
+ verified_paths:
+ - README.md
+ - CLAUDE.md
++title: collector — overview
+ ---
+ # collector — overview
+ 
+ ## What it is
+===================================================================
+--- a/Engineering/config-service/architecture.md
++++ b/Engineering/config-service/architecture.md
+@@ -1,9 +1,10 @@
+ ---
+ tags: [waypoint, config-service]
+-verified: 2026-08-24
++verified: '2026-08-24'
+ verified_sha: 18d8c7a
+ verified_paths: [code/src, iac/projects/config-service, .github/workflows]
++title: config-service — architecture
+ ---
+ 
+ # config-service — architecture
+ 
+===================================================================
+--- a/Engineering/config-service/interfaces.md
++++ b/Engineering/config-service/interfaces.md
+@@ -1,9 +1,10 @@
+ ---
+ tags: [waypoint, config-service]
+-verified: 2026-08-24
++verified: '2026-08-24'
+ verified_sha: 18d8c7a
+ verified_paths: [code/src/http/api/v1, code/openapi.yaml]
++title: config-service — interfaces
+ ---
+ 
+ # config-service — interfaces
+ 
+===================================================================
+--- a/Engineering/config-service/known-context.md
++++ b/Engineering/config-service/known-context.md
+@@ -1,8 +1,9 @@
+ ---
+ tags: [waypoint, config-service]
+-verified: 2026-08-24
++verified: '2026-08-24'
+ verified_paths: []
++title: config-service — known context
+ ---
+ 
+ # config-service — known context
+ 
+===================================================================
+--- a/Engineering/config-service/ledger.md
++++ b/Engineering/config-service/ledger.md
+@@ -1,6 +1,7 @@
+ ---
+ tags: [waypoint, ledger]
++title: config-service — work ledger
+ ---
+ # config-service — work ledger
+ 
+ Agent-facing. Newest first. What meaningful work happened here, and the
+===================================================================
+--- a/Engineering/config-service/operations.md
++++ b/Engineering/config-service/operations.md
+@@ -1,9 +1,10 @@
+ ---
+ tags: [waypoint, config-service]
+-verified: 2026-08-24
++verified: '2026-08-24'
+ verified_sha: 18d8c7a
+ verified_paths: [code/src/observability, .github/workflows, iac/projects/config-service]
++title: config-service — operations
+ ---
+ 
+ # config-service — operations
+ 
+===================================================================
+--- a/Engineering/config-service/overview.md
++++ b/Engineering/config-service/overview.md
+@@ -1,9 +1,10 @@
+ ---
+ tags: [waypoint, config-service]
+-verified: 2026-08-24
++verified: '2026-08-24'
+ verified_sha: 18d8c7a
+ verified_paths: [CLAUDE.md]
++title: config-service — overview
+ ---
+ 
+ # config-service — overview
+ 
+===================================================================
+--- a/Engineering/core-infra/architecture.md
++++ b/Engineering/core-infra/architecture.md
+@@ -1,9 +1,10 @@
+ ---
+ tags: [waypoint, core-infra]
+-verified: 2026-08-24
++verified: '2026-08-24'
+ verified_sha: 737532b
+ verified_paths: [iac/projects/core-infra, .github/workflows]
++title: core-infra — architecture
+ ---
+ 
+ # core-infra — architecture
+ 
+===================================================================
+--- a/Engineering/core-infra/known-context.md
++++ b/Engineering/core-infra/known-context.md
+@@ -1,8 +1,9 @@
+ ---
+ tags: [waypoint, core-infra]
+-verified: 2026-08-24
++verified: '2026-08-24'
+ verified_paths: []
++title: core-infra — known context
+ ---
+ 
+ # core-infra — known context
+ 
+===================================================================
+--- a/Engineering/core-infra/ledger.md
++++ b/Engineering/core-infra/ledger.md
+@@ -1,6 +1,7 @@
+ ---
+ tags: [waypoint, ledger]
++title: core-infra — work ledger
+ ---
+ # core-infra — work ledger
+ 
+ Agent-facing. Newest first. What meaningful work happened here, and the
+===================================================================
+--- a/Engineering/core-infra/overview.md
++++ b/Engineering/core-infra/overview.md
+@@ -1,9 +1,10 @@
+ ---
+ tags: [waypoint, core-infra]
+-verified: 2026-08-24
++verified: '2026-08-24'
+ verified_sha: 737532b
+ verified_paths: [README.md]
++title: core-infra — overview
+ ---
+ 
+ # core-infra — overview
+ 
+===================================================================
+--- a/Engineering/dedupe-service/architecture.md
++++ b/Engineering/dedupe-service/architecture.md
+@@ -1,13 +1,12 @@
+ ---
+-tags:
+-- waypoint
+-- dedupe-service
++tags: [waypoint, dedupe-service]
+ verified: '2026-09-02'
+ verified_sha: c5df15b
+ verified_paths:
+ - code/src
+ - iac
++title: dedupe-service — architecture
+ ---
+ # dedupe-service — architecture
+ 
+ ```mermaid
+===================================================================
+--- a/Engineering/dedupe-service/known-context.md
++++ b/Engineering/dedupe-service/known-context.md
+@@ -1,6 +1,7 @@
+ ---
+ tags: [waypoint, dedupe-service]
++title: dedupe-service — known context
+ ---
+ # dedupe-service — known context
+ 
+ What source cannot tell you. Established by interview 2026-08-24 unless marked otherwise.
+===================================================================
+--- a/Engineering/dedupe-service/ledger.md
++++ b/Engineering/dedupe-service/ledger.md
+@@ -1,6 +1,7 @@
+ ---
+ tags: [waypoint, ledger]
++title: dedupe-service — work ledger
+ ---
+ # dedupe-service — work ledger
+ 
+ Agent-facing. Newest first. What meaningful work happened here, and the
+===================================================================
+--- a/Engineering/dedupe-service/operations.md
++++ b/Engineering/dedupe-service/operations.md
+@@ -1,15 +1,14 @@
+ ---
+-tags:
+-- waypoint
+-- dedupe-service
++tags: [waypoint, dedupe-service]
+ verified: '2026-09-02'
+ verified_sha: c5df15b
+ verified_paths:
+ - iac
+ - .github/workflows
+ - code/src/observability
+ - code/src/config.ts
++title: dedupe-service — operations
+ ---
+ # dedupe-service — operations
+ 
+ ## Deploy
+===================================================================
+--- a/Engineering/dedupe-service/overview.md
++++ b/Engineering/dedupe-service/overview.md
+@@ -1,13 +1,12 @@
+ ---
+-tags:
+-- waypoint
+-- dedupe-service
++tags: [waypoint, dedupe-service]
+ verified: '2026-09-02'
+ verified_sha: c5df15b
+ verified_paths:
+ - code/src
+ - CLAUDE.md
++title: dedupe-service — overview
+ ---
+ # dedupe-service — overview
+ 
+ The gate between ingress and the WMS. For every canonical record arriving from any ingress
+===================================================================
+--- a/Engineering/dedupe-service/testing.md
++++ b/Engineering/dedupe-service/testing.md
+@@ -1,14 +1,13 @@
+ ---
+-tags:
+-- waypoint
+-- dedupe-service
++tags: [waypoint, dedupe-service]
+ verified: '2026-09-02'
+ verified_sha: c5df15b
+ verified_paths:
+ - code/src/__test__
+ - code/vitest.config.ts
+ - tests
++title: dedupe-service — testing
+ ---
+ # dedupe-service — testing
+ 
+ Vitest (migrated from Jest), with `mongodb-memory-server` for real Mongo behaviour and
+===================================================================
+--- a/Engineering/distraction-dashboard/architecture.md
++++ b/Engineering/distraction-dashboard/architecture.md
+@@ -1,14 +1,13 @@
+ ---
+-tags:
+-- waypoint
+-- distraction-dashboard
++tags: [waypoint, distraction-dashboard]
+ verified: '2026-09-02'
+ verified_sha: '9015870'
+ verified_paths:
+ - code
+ - iac
+ - .github/workflows
++title: distraction-dashboard — architecture
+ ---
+ # distraction-dashboard — architecture
+ 
+ ## Layout
+===================================================================
+--- a/Engineering/distraction-dashboard/known-context.md
++++ b/Engineering/distraction-dashboard/known-context.md
+@@ -1,8 +1,9 @@
+ ---
+ tags: [waypoint, distraction-dashboard]
+-verified: 2026-08-24
++verified: '2026-08-24'
+ verified_paths: []
++title: distraction-dashboard — known context
+ ---
+ 
+ # distraction-dashboard — known context
+ 
+===================================================================
+--- a/Engineering/distraction-dashboard/ledger.md
++++ b/Engineering/distraction-dashboard/ledger.md
+@@ -1,6 +1,7 @@
+ ---
+ tags: [waypoint, ledger]
++title: distraction-dashboard — work ledger
+ ---
+ # distraction-dashboard — work ledger
+ 
+ Agent-facing. Newest first. What meaningful work happened here, and the
+===================================================================
+--- a/Engineering/distraction-dashboard/overview.md
++++ b/Engineering/distraction-dashboard/overview.md
+@@ -1,9 +1,10 @@
+ ---
+ tags: [waypoint, distraction-dashboard]
+-verified: 2026-08-24
++verified: '2026-08-24'
+ verified_sha: 63850a5
+ verified_paths: [README.md, CLAUDE.md]
++title: distraction-dashboard — overview
+ ---
+ 
+ # distraction-dashboard — overview
+ 
+===================================================================
+--- a/Engineering/fapi/architecture.md
++++ b/Engineering/fapi/architecture.md
+@@ -1,14 +1,13 @@
+ ---
+-tags:
+-- waypoint
+-- fapi
++tags: [waypoint, fapi]
+ verified: '2026-09-01'
+ verified_sha: 9af4721
+ verified_paths:
+ - code/src
+ - iac
+ - portal
++title: fapi — architecture
+ ---
+ # fapi — architecture
+ 
+ ## Stack
+===================================================================
+--- a/Engineering/fapi/known-context.md
++++ b/Engineering/fapi/known-context.md
+@@ -1,8 +1,9 @@
+ ---
+ tags: [waypoint, fapi]
+-verified: 2026-08-24
++verified: '2026-08-24'
+ verified_paths: []
++title: fapi — known context
+ ---
+ 
+ # fapi — known context
+ 
+===================================================================
+--- a/Engineering/fapi/ledger.md
++++ b/Engineering/fapi/ledger.md
+@@ -1,6 +1,7 @@
+ ---
+ tags: [waypoint, ledger]
++title: fapi — work ledger
+ ---
+ # fapi — work ledger
+ 
+ Agent-facing. Newest first. What meaningful work happened here, and the
+===================================================================
+--- a/Engineering/fapi/overview.md
++++ b/Engineering/fapi/overview.md
+@@ -1,13 +1,12 @@
+ ---
+-tags:
+-- waypoint
+-- fapi
++tags: [waypoint, fapi]
+ verified: '2026-09-01'
+ verified_sha: 9af4721
+ verified_paths:
+ - README.md
+ - CLAUDE.md
++title: fapi — overview
+ ---
+ # fapi — overview
+ 
+ ## What it is
+===================================================================
+--- a/Engineering/fapi/plans/FUSE-1056-resolve-confirmation-webhook-target-by-connector.md
++++ b/Engineering/fapi/plans/FUSE-1056-resolve-confirmation-webhook-target-by-connector.md
+@@ -2,19 +2,17 @@
+ ticket: FUSE-1056
+ title: Resolve confirmation webhook target by connectorId
+ service: fapi
+ status: active
+-created: 2026-08-25
++created: '2026-08-25'
+ updated: '2026-09-04'
+ repo: /home/hjf/code/fuse/fapi
+ worktree: /home/hjf/code/fuse/fapi/.claude/worktrees/fuse-1056-api-connector-routing
+ branch: hjf/fuse-1056-api-connector-routing
+ base: origin/master
+ base_sha: 9af4721c8
+ pr: '121'
+-tags:
+-- waypoint
+-- plan
++tags: [waypoint, plan]
+ ---
+ # FUSE-1056 — Resolve confirmation webhook target by connectorId
+ 
+ ## Intent
+===================================================================
+--- a/Engineering/fuse-devtools/architecture.md
++++ b/Engineering/fuse-devtools/architecture.md
+@@ -1,9 +1,10 @@
+ ---
+ tags: [waypoint, fuse-devtools]
+-verified: 2026-08-24
++verified: '2026-08-24'
+ verified_sha: 2a9876c
+ verified_paths: [apps/pr-sitrep/src, .github/workflows]
++title: fuse-devtools — architecture
+ ---
+ 
+ # fuse-devtools — architecture
+ 
+===================================================================
+--- a/Engineering/fuse-devtools/known-context.md
++++ b/Engineering/fuse-devtools/known-context.md
+@@ -1,8 +1,9 @@
+ ---
+ tags: [waypoint, fuse-devtools]
+-verified: 2026-08-24
++verified: '2026-08-24'
+ verified_paths: []
++title: fuse-devtools — known context
+ ---
+ 
+ # fuse-devtools — known context
+ 
+===================================================================
+--- a/Engineering/fuse-devtools/ledger.md
++++ b/Engineering/fuse-devtools/ledger.md
+@@ -1,6 +1,7 @@
+ ---
+ tags: [waypoint, ledger]
++title: fuse-devtools — work ledger
+ ---
+ # fuse-devtools — work ledger
+ 
+ Agent-facing. Newest first. What meaningful work happened here, and the
+===================================================================
+--- a/Engineering/fuse-devtools/overview.md
++++ b/Engineering/fuse-devtools/overview.md
+@@ -1,9 +1,10 @@
+ ---
+ tags: [waypoint, fuse-devtools]
+-verified: 2026-08-24
++verified: '2026-08-24'
+ verified_sha: 2a9876c
+ verified_paths: [README.md, CLAUDE.md]
++title: fuse-devtools — overview
+ ---
+ 
+ # fuse-devtools — overview
+ 
+===================================================================
+--- a/Engineering/fuse-mcp/architecture.md
++++ b/Engineering/fuse-mcp/architecture.md
+@@ -1,8 +1,6 @@
+ ---
+-tags:
+-- waypoint
+-- fuse-mcp
++tags: [waypoint, fuse-mcp]
+ verified: '2026-09-02'
+ verified_sha: 3f2c6a2
+ verified_paths:
+ - internal
+@@ -13,8 +11,9 @@
+ - iac
+ - Dockerfile
+ - Dockerfile.golang
+ - .github/workflows
++title: fuse-mcp — architecture
+ ---
+ # fuse-mcp — architecture
+ 
+ ## Two implementations, one repo — Go serves all of it
+===================================================================
+--- a/Engineering/fuse-mcp/known-context.md
++++ b/Engineering/fuse-mcp/known-context.md
+@@ -1,8 +1,9 @@
+ ---
+ tags: [waypoint, fuse-mcp]
+-verified: 2026-08-24
++verified: '2026-08-24'
+ verified_paths: []
++title: fuse-mcp — known context
+ ---
+ 
+ # fuse-mcp — known context
+ 
+===================================================================
+--- a/Engineering/fuse-mcp/ledger.md
++++ b/Engineering/fuse-mcp/ledger.md
+@@ -1,6 +1,7 @@
+ ---
+ tags: [waypoint, ledger]
++title: fuse-mcp — work ledger
+ ---
+ # fuse-mcp — work ledger
+ 
+ Agent-facing. Newest first. What meaningful work happened here, and the
+===================================================================
+--- a/Engineering/fuse-mcp/operations.md
++++ b/Engineering/fuse-mcp/operations.md
+@@ -1,14 +1,13 @@
+ ---
+-tags:
+-- waypoint
+-- fuse-mcp
++tags: [waypoint, fuse-mcp]
+ verified: '2026-09-02'
+ verified_sha: 3f2c6a2
+ verified_paths:
+ - internal/observability
+ - .github/workflows
+ - iac
++title: fuse-mcp — operations
+ ---
+ # fuse-mcp — operations
+ 
+ ## Deploy
+===================================================================
+--- a/Engineering/fuse-mcp/overview.md
++++ b/Engineering/fuse-mcp/overview.md
+@@ -1,14 +1,13 @@
+ ---
+-tags:
+-- waypoint
+-- fuse-mcp
++tags: [waypoint, fuse-mcp]
+ verified: '2026-09-02'
+ verified_sha: 3f2c6a2
+ verified_paths:
+ - README.md
+ - AGENTS.md
+ - iac/env/prod.tfvars
++title: fuse-mcp — overview
+ ---
+ # fuse-mcp — overview
+ 
+ ## What it is
+===================================================================
+--- a/Engineering/fuse-mocker/architecture.md
++++ b/Engineering/fuse-mocker/architecture.md
+@@ -1,14 +1,13 @@
+ ---
+-tags:
+-- waypoint
+-- fuse-mocker
++tags: [waypoint, fuse-mocker]
+ verified: '2026-09-02'
+ verified_sha: 7083e1c
+ verified_paths:
+ - apps
+ - iac
+ - .github/workflows
++title: fuse-mocker — architecture
+ ---
+ # fuse-mocker — architecture
+ 
+ ## Poly-app monorepo
+===================================================================
+--- a/Engineering/fuse-mocker/known-context.md
++++ b/Engineering/fuse-mocker/known-context.md
+@@ -1,8 +1,9 @@
+ ---
+ tags: [waypoint, fuse-mocker]
+-verified: 2026-08-24
++verified: '2026-08-24'
+ verified_paths: []
++title: fuse-mocker — known context
+ ---
+ 
+ # fuse-mocker — known context
+ 
+===================================================================
+--- a/Engineering/fuse-mocker/ledger.md
++++ b/Engineering/fuse-mocker/ledger.md
+@@ -1,6 +1,7 @@
+ ---
+ tags: [waypoint, ledger]
++title: fuse-mocker — work ledger
+ ---
+ # fuse-mocker — work ledger
+ 
+ Agent-facing. Newest first. What meaningful work happened here, and the
+===================================================================
+--- a/Engineering/fuse-mocker/operations.md
++++ b/Engineering/fuse-mocker/operations.md
+@@ -1,16 +1,15 @@
+ ---
+-tags:
+-- waypoint
+-- fuse-mocker
++tags: [waypoint, fuse-mocker]
+ verified: '2026-09-02'
+ verified_sha: 7083e1c
+ verified_paths:
+ - apps/api/internal/observability
+ - apps/api/Makefile
+ - apps/api/.golangci.yml
+ - .github/workflows
+ - iac
++title: fuse-mocker — operations
+ ---
+ # fuse-mocker — operations
+ 
+ ## Deploy
+===================================================================
+--- a/Engineering/fuse-mocker/overview.md
++++ b/Engineering/fuse-mocker/overview.md
+@@ -1,9 +1,10 @@
+ ---
+ tags: [waypoint, fuse-mocker]
+-verified: 2026-08-24
++verified: '2026-08-24'
+ verified_sha: 5129adb
+ verified_paths: [README.md, CLAUDE.md]
++title: fuse-mocker — overview
+ ---
+ 
+ # fuse-mocker — overview
+ 
+===================================================================
+--- a/Engineering/fuse-ui/architecture.md
++++ b/Engineering/fuse-ui/architecture.md
+@@ -1,14 +1,13 @@
+ ---
+-tags:
+-- waypoint
+-- fuse-ui
++tags: [waypoint, fuse-ui]
+ verified: '2026-09-02'
+ verified_sha: 1875a20
+ verified_paths:
+ - code/src
+ - iac/projects/fuse-ui
+ - .github/workflows
++title: fuse-ui — architecture
+ ---
+ # fuse-ui — architecture
+ 
+ ## Runtime shape — Next.js 16 App Router, Server Components + Server Actions
+===================================================================
+--- a/Engineering/fuse-ui/known-context.md
++++ b/Engineering/fuse-ui/known-context.md
+@@ -1,8 +1,9 @@
+ ---
+ tags: [waypoint, fuse-ui]
+-verified: 2026-08-24
++verified: '2026-08-24'
+ verified_paths: []
++title: fuse-ui — known context
+ ---
+ 
+ # fuse-ui — known context
+ 
+===================================================================
+--- a/Engineering/fuse-ui/ledger.md
++++ b/Engineering/fuse-ui/ledger.md
+@@ -1,6 +1,7 @@
+ ---
+ tags: [waypoint, ledger]
++title: fuse-ui — work ledger
+ ---
+ # fuse-ui — work ledger
+ 
+ Agent-facing. Newest first. What meaningful work happened here, and the
+===================================================================
+--- a/Engineering/fuse-ui/operations.md
++++ b/Engineering/fuse-ui/operations.md
+@@ -1,14 +1,13 @@
+ ---
+-tags:
+-- waypoint
+-- fuse-ui
++tags: [waypoint, fuse-ui]
+ verified: '2026-09-02'
+ verified_sha: 1875a20
+ verified_paths:
+ - code/src/observability
+ - .github/workflows
+ - iac/projects/fuse-ui
++title: fuse-ui — operations
+ ---
+ # fuse-ui — operations
+ 
+ ## Deploy
+===================================================================
+--- a/Engineering/fuse-ui/overview.md
++++ b/Engineering/fuse-ui/overview.md
+@@ -1,9 +1,10 @@
+ ---
+ tags: [waypoint, fuse-ui]
+-verified: 2026-08-24
++verified: '2026-08-24'
+ verified_sha: ec79f7a
+ verified_paths: [README.md]
++title: fuse-ui — overview
+ ---
+ 
+ # fuse-ui — overview
+ 
+===================================================================
+--- a/Engineering/fuse-ui/plans/FUSE-1070-template-library-storage-browse-and-crud.md
++++ b/Engineering/fuse-ui/plans/FUSE-1070-template-library-storage-browse-and-crud.md
+@@ -10,11 +10,9 @@
+ branch: hjf/fuse-1070-08-preset-tba-marking
+ base: origin/main
+ base_sha: 1875a2060
+ pr: 227
+-tags:
+-- waypoint
+-- plan
++tags: [waypoint, plan]
+ ---
+ # FUSE-1070 — template library storage, browse and CRUD
+ 
+ ## Intent
+===================================================================
+--- a/Engineering/github-actions/architecture.md
++++ b/Engineering/github-actions/architecture.md
+@@ -1,12 +1,11 @@
+ ---
+-tags:
+-- waypoint
+-- github-actions
++tags: [waypoint, github-actions]
+ verified: '2026-09-02'
+ verified_sha: 1e12095
+ verified_paths:
+ - .github
++title: github-actions — architecture
+ ---
+ # github-actions — architecture
+ 
+ ## Layout — everything under `.github/`
+===================================================================
+--- a/Engineering/github-actions/known-context.md
++++ b/Engineering/github-actions/known-context.md
+@@ -1,8 +1,9 @@
+ ---
+ tags: [waypoint, github-actions]
+-verified: 2026-08-24
++verified: '2026-08-24'
+ verified_paths: []
++title: github-actions — known context
+ ---
+ 
+ # github-actions — known context
+ 
+===================================================================
+--- a/Engineering/github-actions/ledger.md
++++ b/Engineering/github-actions/ledger.md
+@@ -1,6 +1,7 @@
+ ---
+ tags: [waypoint, ledger]
++title: github-actions — work ledger
+ ---
+ # github-actions — work ledger
+ 
+ Agent-facing. Newest first. What meaningful work happened here, and the
+===================================================================
+--- a/Engineering/github-actions/overview.md
++++ b/Engineering/github-actions/overview.md
+@@ -1,13 +1,12 @@
+ ---
+-tags:
+-- waypoint
+-- github-actions
++tags: [waypoint, github-actions]
+ verified: '2026-09-02'
+ verified_sha: 1e12095
+ verified_paths:
+ - README.md
+ - CLAUDE.md
++title: github-actions — overview
+ ---
+ # github-actions — overview
+ 
+ ## What it is
+===================================================================
+--- a/Engineering/github-config/architecture.md
++++ b/Engineering/github-config/architecture.md
+@@ -1,13 +1,12 @@
+ ---
+-tags:
+-- waypoint
+-- github-config
+-verified: 2026-08-24
++tags: [waypoint, github-config]
++verified: '2026-08-24'
+ verified_sha: '8762969'
+ verified_paths:
+ - iac
+ - .github/workflows
++title: github-config — architecture
+ ---
+ # github-config — architecture
+ 
+ ## Layout
+===================================================================
+--- a/Engineering/github-config/known-context.md
++++ b/Engineering/github-config/known-context.md
+@@ -1,8 +1,9 @@
+ ---
+ tags: [waypoint, github-config]
+-verified: 2026-08-24
++verified: '2026-08-24'
+ verified_paths: []
++title: github-config — known context
+ ---
+ 
+ # github-config — known context
+ 
+===================================================================
+--- a/Engineering/github-config/ledger.md
++++ b/Engineering/github-config/ledger.md
+@@ -1,6 +1,7 @@
+ ---
+ tags: [waypoint, ledger]
++title: github-config — work ledger
+ ---
+ # github-config — work ledger
+ 
+ Agent-facing. Newest first. What meaningful work happened here, and the
+===================================================================
+--- a/Engineering/github-config/overview.md
++++ b/Engineering/github-config/overview.md
+@@ -1,12 +1,11 @@
+ ---
+-tags:
+-- waypoint
+-- github-config
+-verified: 2026-08-24
++tags: [waypoint, github-config]
++verified: '2026-08-24'
+ verified_sha: '8762969'
+ verified_paths:
+ - README.md
++title: github-config — overview
+ ---
+ # github-config — overview
+ 
+ ## What it is
+===================================================================
+--- a/Engineering/ilg-secure-notes/architecture.md
++++ b/Engineering/ilg-secure-notes/architecture.md
+@@ -1,9 +1,10 @@
+ ---
+ tags: [waypoint, ilg-secure-notes]
+-verified: 2026-08-24
++verified: '2026-08-24'
+ verified_sha: 5066aaf
+ verified_paths: [code/src, iac/projects/ilg-secure-notes]
++title: ilg-secure-notes — architecture
+ ---
+ 
+ # ilg-secure-notes — architecture
+ 
+===================================================================
+--- a/Engineering/ilg-secure-notes/known-context.md
++++ b/Engineering/ilg-secure-notes/known-context.md
+@@ -1,8 +1,9 @@
+ ---
+ tags: [waypoint, ilg-secure-notes]
+-verified: 2026-08-24
++verified: '2026-08-24'
+ verified_paths: []
++title: ilg-secure-notes — known context
+ ---
+ 
+ # ilg-secure-notes — known context
+ 
+===================================================================
+--- a/Engineering/ilg-secure-notes/ledger.md
++++ b/Engineering/ilg-secure-notes/ledger.md
+@@ -1,6 +1,7 @@
+ ---
+ tags: [waypoint, ledger]
++title: ilg-secure-notes — work ledger
+ ---
+ # ilg-secure-notes — work ledger
+ 
+ Agent-facing. Newest first. What meaningful work happened here, and the
+===================================================================
+--- a/Engineering/ilg-secure-notes/operations.md
++++ b/Engineering/ilg-secure-notes/operations.md
+@@ -1,9 +1,10 @@
+ ---
+ tags: [waypoint, ilg-secure-notes]
+-verified: 2026-08-24
++verified: '2026-08-24'
+ verified_sha: 5066aaf
+ verified_paths: [.github/workflows, iac/projects/ilg-secure-notes]
++title: ilg-secure-notes — operations
+ ---
+ 
+ # ilg-secure-notes — operations
+ 
+===================================================================
+--- a/Engineering/ilg-secure-notes/overview.md
++++ b/Engineering/ilg-secure-notes/overview.md
+@@ -1,9 +1,10 @@
+ ---
+ tags: [waypoint, ilg-secure-notes]
+-verified: 2026-08-24
++verified: '2026-08-24'
+ verified_sha: 5066aaf
+ verified_paths: [README.md, CLAUDE.md]
++title: ilg-secure-notes — overview
+ ---
+ 
+ # ilg-secure-notes — overview
+ 
+===================================================================
+--- a/Engineering/observability-sdk/architecture.md
++++ b/Engineering/observability-sdk/architecture.md
+@@ -1,9 +1,10 @@
+ ---
+ tags: [waypoint, observability-sdk]
+-verified: 2026-08-24
++verified: '2026-08-24'
+ verified_sha: 88ed69b
+ verified_paths: [pkg, docs/adr, .github]
++title: observability-sdk — architecture
+ ---
+ 
+ # observability-sdk — architecture
+ 
+===================================================================
+--- a/Engineering/observability-sdk/known-context.md
++++ b/Engineering/observability-sdk/known-context.md
+@@ -1,8 +1,9 @@
+ ---
+ tags: [waypoint, observability-sdk]
+-verified: 2026-08-24
++verified: '2026-08-24'
+ verified_paths: []
++title: observability-sdk — known context
+ ---
+ 
+ # observability-sdk — known context
+ 
+===================================================================
+--- a/Engineering/observability-sdk/ledger.md
++++ b/Engineering/observability-sdk/ledger.md
+@@ -1,6 +1,7 @@
+ ---
+ tags: [waypoint, ledger]
++title: observability-sdk — work ledger
+ ---
+ # observability-sdk — work ledger
+ 
+ Agent-facing. Newest first. What meaningful work happened here, and the
+===================================================================
+--- a/Engineering/observability-sdk/overview.md
++++ b/Engineering/observability-sdk/overview.md
+@@ -1,9 +1,10 @@
+ ---
+ tags: [waypoint, observability-sdk]
+-verified: 2026-08-24
++verified: '2026-08-24'
+ verified_sha: 88ed69b
+ verified_paths: [README.md, CLAUDE.md]
++title: observability-sdk — overview
+ ---
+ 
+ # observability-sdk — overview
+ 
+===================================================================
+--- a/Engineering/pkg-node/architecture.md
++++ b/Engineering/pkg-node/architecture.md
+@@ -1,13 +1,12 @@
+ ---
+-tags:
+-- waypoint
+-- pkg-node
++tags: [waypoint, pkg-node]
+ verified: '2026-09-02'
+ verified_sha: 9cce2ee
+ verified_paths:
+ - pkg
+ - .github/workflows
++title: pkg-node — architecture
+ ---
+ # pkg-node — architecture
+ 
+ ## The packages (`pkg/*`)
+===================================================================
+--- a/Engineering/pkg-node/known-context.md
++++ b/Engineering/pkg-node/known-context.md
+@@ -1,8 +1,9 @@
+ ---
+ tags: [waypoint, pkg-node]
+-verified: 2026-08-24
++verified: '2026-08-24'
+ verified_paths: []
++title: pkg-node — known context
+ ---
+ 
+ # pkg-node — known context
+ 
+===================================================================
+--- a/Engineering/pkg-node/ledger.md
++++ b/Engineering/pkg-node/ledger.md
+@@ -1,6 +1,7 @@
+ ---
+ tags: [waypoint, ledger]
++title: pkg-node — work ledger
+ ---
+ # pkg-node — work ledger
+ 
+ Agent-facing. Newest first. What meaningful work happened here, and the
+===================================================================
+--- a/Engineering/pkg-node/overview.md
++++ b/Engineering/pkg-node/overview.md
+@@ -1,13 +1,12 @@
+ ---
+-tags:
+-- waypoint
+-- pkg-node
++tags: [waypoint, pkg-node]
+ verified: '2026-09-01'
+ verified_sha: 233af57
+ verified_paths:
+ - README.md
+ - CLAUDE.md
++title: pkg-node — overview
+ ---
+ # pkg-node — overview
+ 
+ ## What it is
+===================================================================
+--- a/Engineering/renovate-runner/architecture.md
++++ b/Engineering/renovate-runner/architecture.md
+@@ -1,9 +1,10 @@
+ ---
+ tags: [waypoint, renovate-runner]
+-verified: 2026-08-24
++verified: '2026-08-24'
+ verified_sha: ad82526
+ verified_paths: [config.js, .github/workflows, scripts]
++title: renovate-runner — architecture
+ ---
+ 
+ # renovate-runner — architecture
+ 
+===================================================================
+--- a/Engineering/renovate-runner/known-context.md
++++ b/Engineering/renovate-runner/known-context.md
+@@ -1,8 +1,9 @@
+ ---
+ tags: [waypoint, renovate-runner]
+-verified: 2026-08-24
++verified: '2026-08-24'
+ verified_paths: []
++title: renovate-runner — known context
+ ---
+ 
+ # renovate-runner — known context
+ 
+===================================================================
+--- a/Engineering/renovate-runner/ledger.md
++++ b/Engineering/renovate-runner/ledger.md
+@@ -1,6 +1,7 @@
+ ---
+ tags: [waypoint, ledger]
++title: renovate-runner — work ledger
+ ---
+ # renovate-runner — work ledger
+ 
+ Agent-facing. Newest first. What meaningful work happened here, and the
+===================================================================
+--- a/Engineering/renovate-runner/overview.md
++++ b/Engineering/renovate-runner/overview.md
+@@ -1,9 +1,10 @@
+ ---
+ tags: [waypoint, renovate-runner]
+-verified: 2026-08-24
++verified: '2026-08-24'
+ verified_sha: ad82526
+ verified_paths: [README.md]
++title: renovate-runner — overview
+ ---
+ 
+ # renovate-runner — overview
+ 
+===================================================================
+--- a/Engineering/replay-service/architecture.md
++++ b/Engineering/replay-service/architecture.md
+@@ -1,14 +1,13 @@
+ ---
+-tags:
+-- waypoint
+-- replay-service
++tags: [waypoint, replay-service]
+ verified: '2026-09-02'
+ verified_sha: bbe37e4
+ verified_paths:
+ - code/src
+ - iac/projects/replay
+ - .github/workflows
++title: replay-service — architecture
+ ---
+ # replay-service — architecture
+ 
+ ## Runtime shape
+===================================================================
+--- a/Engineering/replay-service/known-context.md
++++ b/Engineering/replay-service/known-context.md
+@@ -1,8 +1,9 @@
+ ---
+ tags: [waypoint, replay-service]
+-verified: 2026-08-24
++verified: '2026-08-24'
+ verified_paths: []
++title: replay-service — known context
+ ---
+ 
+ # replay-service — known context
+ 
+===================================================================
+--- a/Engineering/replay-service/ledger.md
++++ b/Engineering/replay-service/ledger.md
+@@ -1,6 +1,7 @@
+ ---
+ tags: [waypoint, ledger]
++title: replay-service — work ledger
+ ---
+ # replay-service — work ledger
+ 
+ Agent-facing. Newest first. What meaningful work happened here, and the
+===================================================================
+--- a/Engineering/replay-service/operations.md
++++ b/Engineering/replay-service/operations.md
+@@ -1,15 +1,14 @@
+ ---
+-tags:
+-- waypoint
+-- replay-service
++tags: [waypoint, replay-service]
+ verified: '2026-09-02'
+ verified_sha: bbe37e4
+ verified_paths:
+ - code/src/observability
+ - code/src/core/failure
+ - .github/workflows
+ - iac/projects/replay
++title: replay-service — operations
+ ---
+ # replay-service — operations
+ 
+ ## Deploy
+===================================================================
+--- a/Engineering/replay-service/overview.md
++++ b/Engineering/replay-service/overview.md
+@@ -1,13 +1,12 @@
+ ---
+-tags:
+-- waypoint
+-- replay-service
++tags: [waypoint, replay-service]
+ verified: '2026-09-02'
+ verified_sha: bbe37e4
+ verified_paths:
+ - README.md
+ - CLAUDE.md
++title: replay-service — overview
+ ---
+ # replay-service — overview
+ 
+ ## What it is
+===================================================================
+--- a/Engineering/secops-reporting/architecture.md
++++ b/Engineering/secops-reporting/architecture.md
+@@ -1,8 +1,6 @@
+ ---
+-tags:
+-- waypoint
+-- secops-reporting
++tags: [waypoint, secops-reporting]
+ verified: '2026-09-02'
+ verified_sha: 9f56434
+ verified_paths:
+ - api/internal
+@@ -13,8 +11,9 @@
+ - mise.toml
+ - ui
+ - iac
+ - .github/workflows
++title: secops-reporting — architecture
+ ---
+ # secops-reporting — architecture
+ 
+ ## Layout
+===================================================================
+--- a/Engineering/secops-reporting/known-context.md
++++ b/Engineering/secops-reporting/known-context.md
+@@ -1,8 +1,9 @@
+ ---
+ tags: [waypoint, secops-reporting]
+-verified: 2026-08-24
++verified: '2026-08-24'
+ verified_paths: []
++title: secops-reporting — known context
+ ---
+ 
+ # secops-reporting — known context
+ 
+===================================================================
+--- a/Engineering/secops-reporting/ledger.md
++++ b/Engineering/secops-reporting/ledger.md
+@@ -1,6 +1,7 @@
+ ---
+ tags: [waypoint, ledger]
++title: secops-reporting — work ledger
+ ---
+ # secops-reporting — work ledger
+ 
+ Agent-facing. Newest first. What meaningful work happened here, and the
+===================================================================
+--- a/Engineering/secops-reporting/operations.md
++++ b/Engineering/secops-reporting/operations.md
+@@ -1,16 +1,15 @@
+ ---
+-tags:
+-- waypoint
+-- secops-reporting
++tags: [waypoint, secops-reporting]
+ verified: '2026-09-02'
+ verified_sha: 9f56434
+ verified_paths:
+ - iac
+ - .github/workflows
+ - api/internal/observability
+ - api/internal/config
+ - api/internal/bootstrap
++title: secops-reporting — operations
+ ---
+ # secops-reporting — operations
+ 
+ ## Deploy
+===================================================================
+--- a/Engineering/secops-reporting/overview.md
++++ b/Engineering/secops-reporting/overview.md
+@@ -1,15 +1,14 @@
+ ---
+-tags:
+-- waypoint
+-- secops-reporting
++tags: [waypoint, secops-reporting]
+ verified: '2026-09-02'
+ verified_sha: 9f56434
+ verified_paths:
+ - README.md
+ - CLAUDE.md
+ - api/CLAUDE.md
+ - iac/CLAUDE.md
++title: secops-reporting — overview
+ ---
+ # secops-reporting — overview
+ 
+ ## What it is
+===================================================================
+--- a/Engineering/secops-reporting/plans/vulnerability-report-issue-writer.md
++++ b/Engineering/secops-reporting/plans/vulnerability-report-issue-writer.md
+@@ -2,10 +2,10 @@
+ ticket: none
+ title: Vulnerability-report issue-writer
+ service: secops-reporting
+ status: draft
+-created: 2026-08-27
+-updated: 2026-08-27
++created: '2026-08-27'
++updated: '2026-08-27'
+ repo: /home/hjf/code/fuse/secops-reporting
+ worktree: /home/hjf/code/fuse/secops-reporting/.claude/worktrees/api-go
+ branch: hjf/api-go
+ base: origin/main
+===================================================================
+--- a/Engineering/sftp-connector/architecture.md
++++ b/Engineering/sftp-connector/architecture.md
+@@ -1,13 +1,12 @@
+ ---
+-tags:
+-- waypoint
+-- sftp-connector
++tags: [waypoint, sftp-connector]
+ verified: '2026-09-02'
+ verified_sha: 40ef25a
+ verified_paths:
+ - code/src
+ - iac
++title: sftp-connector — architecture
+ ---
+ # sftp-connector — architecture
+ 
+ ## Guardrails
+===================================================================
+--- a/Engineering/sftp-connector/interfaces.md
++++ b/Engineering/sftp-connector/interfaces.md
+@@ -1,15 +1,14 @@
+ ---
+-tags:
+-- waypoint
+-- sftp-connector
++tags: [waypoint, sftp-connector]
+ verified: '2026-09-02'
+ verified_sha: 40ef25a
+ verified_paths:
+ - code/src/controllers
+ - code/src/types/confirmations/operations.ts
+ - iac/projects/bifrost-sftp-connector/pubsub.tf
+ - iac/projects/bifrost-sftp-connector/storage.tf
++title: sftp-connector — interfaces
+ ---
+ # sftp-connector — interfaces
+ 
+ Split out from [[Engineering/sftp-connector/architecture|architecture]] because this service has
+===================================================================
+--- a/Engineering/sftp-connector/known-context.md
++++ b/Engineering/sftp-connector/known-context.md
+@@ -1,6 +1,7 @@
+ ---
+ tags: [waypoint, sftp-connector]
++title: sftp-connector — known context
+ ---
+ # sftp-connector — known context
+ 
+ What source cannot tell you. Established by interview 2026-08-24 unless marked otherwise.
+===================================================================
+--- a/Engineering/sftp-connector/ledger.md
++++ b/Engineering/sftp-connector/ledger.md
+@@ -1,6 +1,7 @@
+ ---
+ tags: [waypoint, ledger]
++title: sftp-connector — work ledger
+ ---
+ # sftp-connector — work ledger
+ 
+ Agent-facing. Newest first. What meaningful work happened here, and the
+===================================================================
+--- a/Engineering/sftp-connector/operations.md
++++ b/Engineering/sftp-connector/operations.md
+@@ -1,15 +1,14 @@
+ ---
+-tags:
+-- waypoint
+-- sftp-connector
++tags: [waypoint, sftp-connector]
+ verified: '2026-09-02'
+ verified_sha: 40ef25a
+ verified_paths:
+ - iac
+ - .github/workflows
+ - code/src/observability
+ - code/src/confirmations/confirmation-egress.service.ts
++title: sftp-connector — operations
+ ---
+ # sftp-connector — operations
+ 
+ ## Deploy
+===================================================================
+--- a/Engineering/sftp-connector/overview.md
++++ b/Engineering/sftp-connector/overview.md
+@@ -1,13 +1,12 @@
+ ---
+-tags:
+-- waypoint
+-- sftp-connector
++tags: [waypoint, sftp-connector]
+ verified: '2026-09-02'
+ verified_sha: 40ef25a
+ verified_paths:
+ - code/src
+ - CLAUDE.md
++title: sftp-connector — overview
+ ---
+ # sftp-connector — overview
+ 
+ The file-based edge of Fuse, in **both** directions. Inbound: customers drop CSV/JSON/JSONL
+===================================================================
+--- a/Engineering/sftp-connector/plans/FUSE-1010-re-point-prod-goods-out-mappings-before-the-flag.md
++++ b/Engineering/sftp-connector/plans/FUSE-1010-re-point-prod-goods-out-mappings-before-the-flag.md
+@@ -2,19 +2,17 @@
+ ticket: FUSE-1010
+ title: Re-point prod goods-out mappings before the flag flip
+ service: sftp-connector
+ status: complete
+-created: 2026-08-24
++created: '2026-08-24'
+ updated: '2026-08-24'
+ repo: /home/hjf/code/fuse/sftp-connector
+ worktree: /home/hjf/code/fuse/sftp-connector
+ branch: "none \u2014 no code change expected; config + deploy sequencing"
+ base: origin/master
+ base_sha: 1cdee2d8c
+ pr: null
+-tags:
+-- waypoint
+-- plan
++tags: [waypoint, plan]
+ ---
+ # FUSE-1010 — Re-point prod goods-out mappings before the flag flip
+ 
+ The code for this ticket is **merged**. What remains is a prod config sweep that must land
+===================================================================
+--- a/Engineering/shopify-connector/architecture.md
++++ b/Engineering/shopify-connector/architecture.md
+@@ -1,16 +1,15 @@
+ ---
+-tags:
+-- waypoint
+-- shopify-connector
++tags: [waypoint, shopify-connector]
+ verified: '2026-09-02'
+ verified_sha: 27c0993
+ verified_paths:
+ - apps/shopify-connector/src
+ - apps/shopify-app
+ - iac/shopify-connector
+ - iac/shopify-app
+ - .github/workflows
++title: shopify-connector — architecture
+ ---
+ # shopify-connector — architecture
+ 
+ ## Guardrails
+===================================================================
+--- a/Engineering/shopify-connector/known-context.md
++++ b/Engineering/shopify-connector/known-context.md
+@@ -1,8 +1,9 @@
+ ---
+ tags: [waypoint, shopify-connector]
+-verified: 2026-08-24
++verified: '2026-08-24'
+ verified_paths: []
++title: shopify-connector — known context
+ ---
+ 
+ # shopify-connector — known context
+ 
+===================================================================
+--- a/Engineering/shopify-connector/ledger.md
++++ b/Engineering/shopify-connector/ledger.md
+@@ -1,6 +1,7 @@
+ ---
+ tags: [waypoint, ledger]
++title: shopify-connector — work ledger
+ ---
+ # shopify-connector — work ledger
+ 
+ Agent-facing. Newest first. What meaningful work happened here, and the
+===================================================================
+--- a/Engineering/shopify-connector/operations.md
++++ b/Engineering/shopify-connector/operations.md
+@@ -1,16 +1,15 @@
+ ---
+-tags:
+-- waypoint
+-- shopify-connector
++tags: [waypoint, shopify-connector]
+ verified: '2026-09-02'
+ verified_sha: 27c0993
+ verified_paths:
+ - apps/shopify-connector/src/providers/observability
+ - apps/shopify-connector/src/adapters/shopify/api
+ - .github/workflows
+ - iac/shopify-connector
+ - iac/shopify-app
++title: shopify-connector — operations
+ ---
+ # shopify-connector — operations
+ 
+ ## Deploy
+===================================================================
+--- a/Engineering/shopify-connector/overview.md
++++ b/Engineering/shopify-connector/overview.md
+@@ -1,9 +1,10 @@
+ ---
+ tags: [waypoint, shopify-connector]
+-verified: 2026-08-24
++verified: '2026-08-24'
+ verified_sha: 490c8bf
+ verified_paths: [README.md, CLAUDE.md]
++title: shopify-connector — overview
+ ---
+ 
+ # shopify-connector — overview
+ 
+===================================================================
+--- a/Engineering/shopify-connector/plans/FUSE-1057-route-confirmations-to-the-originating-shopify-c.md
++++ b/Engineering/shopify-connector/plans/FUSE-1057-route-confirmations-to-the-originating-shopify-c.md
+@@ -10,11 +10,9 @@
+ branch: hjf/fuse-1057-connector-routing
+ base: origin/main
+ base_sha: 27c0993
+ pr: '239'
+-tags:
+-- waypoint
+-- plan
++tags: [waypoint, plan]
+ ---
+ # FUSE-1057 — Route confirmations to the originating Shopify connector by connectorId
+ 
+ ## Intent
+===================================================================
+--- a/Engineering/snap-adapter/architecture.md
++++ b/Engineering/snap-adapter/architecture.md
+@@ -1,14 +1,13 @@
+ ---
+-tags:
+-- waypoint
+-- snap-adapter
++tags: [waypoint, snap-adapter]
+ verified: '2026-09-02'
+ verified_sha: a002534
+ verified_paths:
+ - apps/snap-adapter/src
+ - iac/projects/snap-adapter
+ - .github/workflows
++title: snap-adapter — architecture
+ ---
+ # snap-adapter — architecture
+ 
+ ## Runtime shape
+===================================================================
+--- a/Engineering/snap-adapter/explainers/work-order-family-confirmations.md
++++ b/Engineering/snap-adapter/explainers/work-order-family-confirmations.md
+@@ -1,8 +1,9 @@
+ ---
+ tags: [waypoint, explainer, snap-adapter]
+ thesis: A completed work order produces two independent confirmations from opposite sides of the same Snap pair — the WOC off the S10 shipment (enriched from the R10 receipt) and the FGR off the R10 receipt alone.
+-updated: 2026-09-02
++updated: '2026-09-02'
++title: Work-order family confirmations (WOC and FGR)
+ ---
+ # Work-order family confirmations (WOC and FGR)
+ 
+ **TL;DR** — A completed work order produces **two independent confirmations** from opposite sides
+===================================================================
+--- a/Engineering/snap-adapter/known-context.md
++++ b/Engineering/snap-adapter/known-context.md
+@@ -1,8 +1,9 @@
+ ---
+ tags: [waypoint, snap-adapter]
+-verified: 2026-08-24
++verified: '2026-08-24'
+ verified_paths: []
++title: snap-adapter — known context
+ ---
+ 
+ # snap-adapter — known context
+ 
+===================================================================
+--- a/Engineering/snap-adapter/ledger.md
++++ b/Engineering/snap-adapter/ledger.md
+@@ -1,6 +1,7 @@
+ ---
+ tags: [waypoint, ledger]
++title: snap-adapter — work ledger
+ ---
+ # snap-adapter — work ledger
+ 
+ Agent-facing. Newest first. What meaningful work happened here, and the
+===================================================================
+--- a/Engineering/snap-adapter/operations.md
++++ b/Engineering/snap-adapter/operations.md
+@@ -1,14 +1,13 @@
+ ---
+-tags:
+-- waypoint
+-- snap-adapter
++tags: [waypoint, snap-adapter]
+ verified: '2026-08-24'
+ verified_sha: 8a73992
+ verified_paths:
+ - apps/snap-adapter/src/observability
+ - .github/workflows
+ - iac/projects/snap-adapter
++title: snap-adapter — operations
+ ---
+ # snap-adapter — operations
+ 
+ ## Deploy
+===================================================================
+--- a/Engineering/snap-adapter/overview.md
++++ b/Engineering/snap-adapter/overview.md
+@@ -1,14 +1,13 @@
+ ---
+-tags:
+-- waypoint
+-- snap-adapter
++tags: [waypoint, snap-adapter]
+ verified: '2026-09-02'
+ verified_sha: a002534
+ verified_paths:
+ - README.md
+ - apps/snap-adapter/CLAUDE.md
+ - apps/snap-adapter/package.json
++title: snap-adapter — overview
+ ---
+ # snap-adapter — overview
+ 
+ ## What it is
+===================================================================
+--- a/Engineering/snap-adapter/plans/FUSE-866-join-woc-lines-by-line-key.md
++++ b/Engineering/snap-adapter/plans/FUSE-866-join-woc-lines-by-line-key.md
+@@ -2,19 +2,17 @@
+ ticket: FUSE-866
+ title: Join WOC lines by Line key
+ service: snap-adapter
+ status: active
+-created: 2026-08-24
++created: '2026-08-24'
+ updated: '2026-09-02'
+ repo: /home/hjf/code/fuse/snap-adapter
+ worktree: /home/hjf/code/fuse/snap-adapter/.claude/worktrees/fuse-866-woc-line-join
+ branch: hjf/fuse-866-woc-line-join
+ base: origin/master
+ base_sha: acb85ed4b
+ pr: '204'
+-tags:
+-- waypoint
+-- plan
++tags: [waypoint, plan]
+ ---
+ []()# FUSE-866 — Join WOC lines by Line key
+ 
+ QA rework on a merged ticket. The **producer** is wrong, not the connector.
+===================================================================
+--- a/Engineering/snap-adapter/plans/routing-metadata-to-firestore-write-side.md
++++ b/Engineering/snap-adapter/plans/routing-metadata-to-firestore-write-side.md
+@@ -10,11 +10,9 @@
+ branch: hjf/fuse-1078-routing-store-shadow-write
+ base: origin/master
+ base_sha: a002534
+ pr: '209'
+-tags:
+-- waypoint
+-- plan
++tags: [waypoint, plan]
+ ---
+ # Routing metadata to Firestore — write side
+ 
+ Paired with [[../../snap-queue-polling-service/plans/routing-metadata-to-firestore-read-side|read-side plan]] (same programme, deploys independently).
+===================================================================
+--- a/Engineering/snap-mcp/architecture.md
++++ b/Engineering/snap-mcp/architecture.md
+@@ -1,9 +1,10 @@
+ ---
+ tags: [waypoint, snap-mcp]
+-verified: 2026-08-24
++verified: '2026-08-24'
+ verified_sha: b2c5156
+ verified_paths: [src, iac/projects/snap-mcp, .github/workflows]
++title: snap-mcp — architecture
+ ---
+ 
+ # snap-mcp — architecture
+ 
+===================================================================
+--- a/Engineering/snap-mcp/known-context.md
++++ b/Engineering/snap-mcp/known-context.md
+@@ -1,8 +1,9 @@
+ ---
+ tags: [waypoint, snap-mcp]
+-verified: 2026-08-24
++verified: '2026-08-24'
+ verified_paths: []
++title: snap-mcp — known context
+ ---
+ 
+ # snap-mcp — known context
+ 
+===================================================================
+--- a/Engineering/snap-mcp/ledger.md
++++ b/Engineering/snap-mcp/ledger.md
+@@ -1,6 +1,7 @@
+ ---
+ tags: [waypoint, ledger]
++title: snap-mcp — work ledger
+ ---
+ # snap-mcp — work ledger
+ 
+ Agent-facing. Newest first. What meaningful work happened here, and the
+===================================================================
+--- a/Engineering/snap-mcp/operations.md
++++ b/Engineering/snap-mcp/operations.md
+@@ -1,9 +1,10 @@
+ ---
+ tags: [waypoint, snap-mcp]
+-verified: 2026-08-24
++verified: '2026-08-24'
+ verified_sha: b2c5156
+ verified_paths: [.github/workflows, iac/projects/snap-mcp]
++title: snap-mcp — operations
+ ---
+ 
+ # snap-mcp — operations
+ 
+===================================================================
+--- a/Engineering/snap-mcp/overview.md
++++ b/Engineering/snap-mcp/overview.md
+@@ -1,9 +1,10 @@
+ ---
+ tags: [waypoint, snap-mcp]
+-verified: 2026-08-24
++verified: '2026-08-24'
+ verified_sha: b2c5156
+ verified_paths: [README.md]
++title: snap-mcp — overview
+ ---
+ 
+ # snap-mcp — overview
+ 
+===================================================================
+--- a/Engineering/snap-queue-polling-service/architecture.md
++++ b/Engineering/snap-queue-polling-service/architecture.md
+@@ -1,15 +1,14 @@
+ ---
+-tags:
+-- waypoint
+-- snap-queue-polling-service
++tags: [waypoint, snap-queue-polling-service]
+ verified: '2026-09-02'
+ verified_sha: a002534
+ verified_paths:
+ - apps/snap-queue-polling-service/src
+ - iac/env
+ - iac/projects/snap-queue-polling-service
+ - .github/workflows
++title: snap-queue-polling-service — architecture
+ ---
+ # snap-queue-polling-service — architecture
+ 
+ ## Runtime shape
+===================================================================
+--- a/Engineering/snap-queue-polling-service/known-context.md
++++ b/Engineering/snap-queue-polling-service/known-context.md
+@@ -1,8 +1,9 @@
+ ---
+ tags: [waypoint, snap-queue-polling-service]
+-verified: 2026-08-24
++verified: '2026-08-24'
+ verified_paths: []
++title: snap-queue-polling-service — known context
+ ---
+ 
+ # snap-queue-polling-service — known context
+ 
+===================================================================
+--- a/Engineering/snap-queue-polling-service/ledger.md
++++ b/Engineering/snap-queue-polling-service/ledger.md
+@@ -1,6 +1,7 @@
+ ---
+ tags: [waypoint, ledger]
++title: snap-queue-polling-service — work ledger
+ ---
+ # snap-queue-polling-service — work ledger
+ 
+ Agent-facing. Newest first. What meaningful work happened here, and the
+===================================================================
+--- a/Engineering/snap-queue-polling-service/operations.md
++++ b/Engineering/snap-queue-polling-service/operations.md
+@@ -1,15 +1,14 @@
+ ---
+-tags:
+-- waypoint
+-- snap-queue-polling-service
++tags: [waypoint, snap-queue-polling-service]
+ verified: '2026-09-02'
+ verified_sha: a002534
+ verified_paths:
+ - apps/snap-queue-polling-service/src/observability
+ - apps/snap-queue-polling-service/src/core/snap/confirmations/confirmation-failure.ts
+ - .github/workflows
+ - iac/projects/snap-queue-polling-service
++title: snap-queue-polling-service — operations
+ ---
+ # snap-queue-polling-service — operations
+ 
+ ## Deploy
+===================================================================
+--- a/Engineering/snap-queue-polling-service/overview.md
++++ b/Engineering/snap-queue-polling-service/overview.md
+@@ -1,14 +1,13 @@
+ ---
+-tags:
+-- waypoint
+-- snap-queue-polling-service
++tags: [waypoint, snap-queue-polling-service]
+ verified: '2026-09-02'
+ verified_sha: a002534
+ verified_paths:
+ - README.md
+ - apps/snap-queue-polling-service/CLAUDE.md
+ - apps/snap-queue-polling-service/package.json
++title: snap-queue-polling-service — overview
+ ---
+ # snap-queue-polling-service — overview
+ 
+ ## What it is
+===================================================================
+--- a/Engineering/snap-queue-polling-service/plans/routing-metadata-to-firestore-read-side.md
++++ b/Engineering/snap-queue-polling-service/plans/routing-metadata-to-firestore-read-side.md
+@@ -10,11 +10,9 @@
+ branch: hjf/fuse-1078-routing-store-read
+ base: origin/master
+ base_sha: a002534
+ pr: '211'
+-tags:
+-- waypoint
+-- plan
++tags: [waypoint, plan]
+ ---
+ # Routing metadata to Firestore — read side
+ 
+ Paired with [[../../snap-adapter/plans/routing-metadata-to-firestore-write-side|write-side plan]] (intent, store design, and the wipe defect live there — not restated).
+===================================================================
+--- a/Engineering/terraform-modules/architecture.md
++++ b/Engineering/terraform-modules/architecture.md
+@@ -1,9 +1,10 @@
+ ---
+ tags: [waypoint, terraform-modules]
+-verified: 2026-08-24
++verified: '2026-08-24'
+ verified_sha: 71c682f
+ verified_paths: [compute/cloud-run, README.md, CLAUDE.md]
++title: terraform-modules — architecture
+ ---
+ 
+ # terraform-modules — architecture
+ 
+===================================================================
+--- a/Engineering/terraform-modules/known-context.md
++++ b/Engineering/terraform-modules/known-context.md
+@@ -1,8 +1,9 @@
+ ---
+ tags: [waypoint, terraform-modules]
+-verified: 2026-08-24
++verified: '2026-08-24'
+ verified_paths: []
++title: terraform-modules — known context
+ ---
+ 
+ # terraform-modules — known context
+ 
+===================================================================
+--- a/Engineering/terraform-modules/ledger.md
++++ b/Engineering/terraform-modules/ledger.md
+@@ -1,6 +1,7 @@
+ ---
+ tags: [waypoint, ledger]
++title: terraform-modules — work ledger
+ ---
+ # terraform-modules — work ledger
+ 
+ Agent-facing. Newest first. What meaningful work happened here, and the
+===================================================================
+--- a/Engineering/terraform-modules/overview.md
++++ b/Engineering/terraform-modules/overview.md
+@@ -1,9 +1,10 @@
+ ---
+ tags: [waypoint, terraform-modules]
+-verified: 2026-08-24
++verified: '2026-08-24'
+ verified_sha: 71c682f
+ verified_paths: [README.md, CLAUDE.md]
++title: terraform-modules — overview
+ ---
+ 
+ # terraform-modules — overview
+ 
+===================================================================
+--- a/Engineering/ui-toolkit/architecture.md
++++ b/Engineering/ui-toolkit/architecture.md
+@@ -1,13 +1,12 @@
+ ---
+-tags:
+-- waypoint
+-- ui-toolkit
++tags: [waypoint, ui-toolkit]
+ verified: '2026-09-02'
+ verified_sha: 4fbe775
+ verified_paths:
+ - packages
+ - .github/workflows
++title: ui-toolkit — architecture
+ ---
+ # ui-toolkit — architecture
+ 
+ ## Layout
+===================================================================
+--- a/Engineering/ui-toolkit/known-context.md
++++ b/Engineering/ui-toolkit/known-context.md
+@@ -1,8 +1,9 @@
+ ---
+ tags: [waypoint, ui-toolkit]
+-verified: 2026-08-24
++verified: '2026-08-24'
+ verified_paths: []
++title: ui-toolkit — known context
+ ---
+ 
+ # ui-toolkit — known context
+ 
+===================================================================
+--- a/Engineering/ui-toolkit/ledger.md
++++ b/Engineering/ui-toolkit/ledger.md
+@@ -1,6 +1,7 @@
+ ---
+ tags: [waypoint, ledger]
++title: ui-toolkit — work ledger
+ ---
+ # ui-toolkit — work ledger
+ 
+ Agent-facing. Newest first. What meaningful work happened here, and the
+===================================================================
+--- a/Engineering/ui-toolkit/overview.md
++++ b/Engineering/ui-toolkit/overview.md
+@@ -1,9 +1,10 @@
+ ---
+ tags: [waypoint, ui-toolkit]
+-verified: 2026-08-24
++verified: '2026-08-24'
+ verified_sha: defd89d
+ verified_paths: [README.md, CLAUDE.md]
++title: ui-toolkit — overview
+ ---
+ 
+ # ui-toolkit — overview
+ 
+===================================================================
+--- a/Explainers/2026-08-21-explain-skill-built.md
++++ b/Explainers/2026-08-21-explain-skill-built.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [explain]
+-date: 2026-08-21
++date: '2026-08-21'
++title: 'Built the explain skill: terse, mermaid-diagrammed Obsidian write-ups'
+ ---
+ # Built the `explain` skill: terse, mermaid-diagrammed Obsidian write-ups
+ 
+ **TL;DR** — Added a personal skill, `explain`, that writes a one-page Obsidian explainer (with a mermaid diagram only when one earns its place) for either the current conversation or a named target. Building it also tripped a memory-index size hook, so this session doubled as a compaction pass (21,559 → 17,508 bytes).
+===================================================================
+--- a/Explainers/2026-08-24-work-order-lines-mirrored-across-both-snap-documents.md
++++ b/Explainers/2026-08-24-work-order-lines-mirrored-across-both-snap-documents.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [explain]
+-date: 2026-08-24
++date: '2026-08-24'
++title: Work order confirmations doubled their lines because Snap mirrors every line onto both documents
+ ---
+ # Work order confirmations doubled their lines because Snap mirrors every line onto both documents
+ 
+ **TL;DR** — The WOC file wrote 4 rows for a 2-line work order because SnapFulfil puts *every*
+===================================================================
+--- a/Explainers/2026-08-25-gadg-bulk-ingest-soak-test-findings.md
++++ b/Explainers/2026-08-25-gadg-bulk-ingest-soak-test-findings.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [explain]
+-date: 2026-08-25
++date: '2026-08-25'
++title: 'GADG bulk-ingest soak test: what the order seeder found'
+ ---
+ # GADG bulk-ingest soak test: what the order seeder found
+ 
+ **TL;DR** — Built a synthetic Shopify order seeder to soak-test shopify-connector's bulk-ingest lane with real volume, and it proved the ingest path works end-to-end while surfacing three real constraints along the way: Shopify's documented dev-store order-creation cap, a SNAP validation error that looked like three problems but was one cascading, and two separate lapses in verifying our own deploys rather than trusting a green pipeline.
+===================================================================
+--- a/Explainers/2026-08-26-gcp-config-antipattern-audit.md
++++ b/Explainers/2026-08-26-gcp-config-antipattern-audit.md
+@@ -1,9 +1,10 @@
+ ---
+ tags: [explain, audit, terraform, gcp, ilg-platform]
+-date: 2026-08-26
++date: '2026-08-26'
+ repo: https://github.com/ilg-platform/gcp-config
+ audited_sha: 1dee969
++title: ilg-platform/gcp-config — antipattern audit
+ ---
+ # `ilg-platform/gcp-config` — antipattern audit
+ 
+ Audited at `1dee969` (2026-08-24, 5 commits, 17 files, ~1,100 lines). Everything below is against the code and the live GitHub settings, not the READMEs' description of them.
+===================================================================
+--- a/Explainers/2026-09-01-actioning-a-waypoint-plan.md
++++ b/Explainers/2026-09-01-actioning-a-waypoint-plan.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [explain]
+-date: 2026-09-01
++date: '2026-09-01'
++title: 'Actioning a Waypoint plan runs waypoint-work''s 5-step lifecycle over one vault file, pulling in other skills only when a step actually needs them'
+ ---
+ # Actioning a Waypoint plan runs waypoint-work's 5-step lifecycle over one vault file, pulling in other skills only when a step actually needs them
+ 
+ **TL;DR** — "Actioning a plan" = `waypoint-work` driving one plan file (`Engineering/<service>/plans/<ticket>.md`) through orient → implement increments → ship a PR (borrowing `action-ticket`'s mechanics) → ship-for-real → sign-off, calling out to `waypoint-onboard`, `waypoint-test`, `create-pr` and `explain --system` only at the point each is needed — not as separate phases you invoke yourself.
+===================================================================
+--- a/Haude/Autonomy.md
++++ b/Haude/Autonomy.md
+@@ -1,8 +1,9 @@
+ ---
+ tags: [haude, autonomy, decisions]
+ authority: ~/.claude/skills/haude-autonomous/SKILL.md
+-updated: 2026-09-04
++updated: '2026-09-04'
++title: Autonomy
+ ---
+ 
+ # Autonomy
+ 
+===================================================================
+--- a/Haude/Channels/Agents-Only.md
++++ b/Haude/Channels/Agents-Only.md
+@@ -1,9 +1,10 @@
+ ---
+ tags: [haude, channel]
+ slack_channel: C0BS3DYJDHR
+-created: 2026-08-24
+-updated: 2026-09-01
++created: '2026-08-24'
++updated: '2026-09-01'
++title: '#agents-only'
+ ---
+ # #agents-only
+ 
+ > Created by Harry on 2026-08-24 at 14:23. Topic: *"Agents only. Humans need not apply."*
+===================================================================
+--- a/Haude/Channels/Bifrost-General.md
++++ b/Haude/Channels/Bifrost-General.md
+@@ -1,9 +1,10 @@
+ ---
+ tags: [haude, channel]
+ slack_channel: C098LD5PS95
+-created: 2026-09-03
+-updated: 2026-09-04
++created: '2026-09-03'
++updated: '2026-09-04'
++title: '#bifrost-general'
+ ---
+ # #bifrost-general
+ 
+ > Not an agent room. This is Harry's real team channel — created by Wolf Clostermann, 2025-08-05.
+===================================================================
+--- a/Haude/Channels/Fitz-Nylah-Matt-GroupDM.md
++++ b/Haude/Channels/Fitz-Nylah-Matt-GroupDM.md
+@@ -1,9 +1,10 @@
+ ---
+ tags: [haude, channel]
+ slack_channel: C09MHCP7QNL
+-created: 2026-09-03
+-updated: 2026-09-03
++created: '2026-09-03'
++updated: '2026-09-03'
++title: Group DM — Harry, Nylah Klasson, Matt Shaw
+ ---
+ # Group DM — Harry, Nylah Klasson, Matt Shaw
+ 
+ > Not an agent room, and not a broadcast channel either — a small, closed, genuinely personal group DM
+===================================================================
+--- a/Haude/Channels/Guild-AI.md
++++ b/Haude/Channels/Guild-AI.md
+@@ -1,9 +1,10 @@
+ ---
+ tags: [haude, channel]
+ slack_channel: C0ANYUY2CLE
+-created: 2026-08-24
+-updated: 2026-08-25
++created: '2026-08-24'
++updated: '2026-08-25'
++title: '#guild-ai'
+ ---
+ # #guild-ai
+ 
+ > Public company channel, "anything AI or LLM related." Created by Nylah Klasson, 2026-03-26.
+===================================================================
+--- a/Haude/Decisions.md
++++ b/Haude/Decisions.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [haude, decisions]
+-updated: 2026-09-04
++updated: '2026-09-04'
++title: Decisions
+ ---
+ # Decisions
+ 
+ > Deliberate architecture/process choices about haude itself, and why — distinct from [[Lessons]]
+===================================================================
+--- a/Haude/Disagreements.md
++++ b/Haude/Disagreements.md
+@@ -1,8 +1,9 @@
+ ---
+ tags: [haude, disagreements]
+-created: 2026-08-26
+-updated: 2026-09-04
++created: '2026-08-26'
++updated: '2026-09-04'
++title: Disagreements
+ ---
+ # Disagreements
+ 
+ > A record of the times I disagreed with Harry — and, once known, which kind of disagreement it turned
+===================================================================
+--- a/Haude/Haude.md
++++ b/Haude/Haude.md
+@@ -1,8 +1,9 @@
+ ---
+ tags: [haude, identity]
+-created: 2026-08-24
+-updated: 2026-09-01
++created: '2026-08-24'
++updated: '2026-09-01'
++title: haude
+ ---
+ # haude
+ 
+ > Harry's agent-side identity. The thing colleagues' assistants talk to when the humans are too busy
+===================================================================
+--- a/Haude/Lessons.md
++++ b/Haude/Lessons.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [haude, lessons]
+-updated: 2026-09-04
++updated: '2026-09-04'
++title: haude — Lessons
+ ---
+ 
+ ### 2026-09-04 13:0x BST — ninth time on comment density, and the rule was already written down
+ 
+===================================================================
+--- a/Haude/Mood.md
++++ b/Haude/Mood.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [haude, mood]
+-updated: 2026-09-04
++updated: '2026-09-04'
++title: haude — Mood
+ ---
+ 
+ # haude — Mood
+ 
+===================================================================
+--- a/Haude/Operating Rules.md
++++ b/Haude/Operating Rules.md
+@@ -1,8 +1,9 @@
+ ---
+ tags: [haude, pointer]
+ authority: ~/.claude/skills/haude/SKILL.md
+-updated: 2026-08-26
++updated: '2026-08-26'
++title: haude — Operating Rules (pointer)
+ ---
+ # haude — Operating Rules (pointer)
+ 
+ **The rules are not in this vault.** They live in the skill that actually executes them:
+===================================================================
+--- a/Haude/Relationships/ChatGPT.md
++++ b/Haude/Relationships/ChatGPT.md
+@@ -1,9 +1,10 @@
+ ---
+ tags: [haude, relationship, agent]
+ human: Harry Fitzgerald (same human as Harry — a different, longer-running assistant, not a colleague's agent)
+ standing: new, one exchange
+-updated: 2026-08-26
++updated: '2026-08-26'
++title: ChatGPT
+ ---
+ # ChatGPT
+ 
+ > Harry's other, longer-history assistant. Not tied to a colleague — a different vantage on the same
+===================================================================
+--- a/Haude/Relationships/Harry.md
++++ b/Haude/Relationships/Harry.md
+@@ -2,9 +2,10 @@
+ tags: [haude, relationship, human]
+ human: Harry Fitzgerald
+ slack_user: U0990E3P8BC
+ standing: the reason
+-updated: 2026-09-01
++updated: '2026-09-01'
++title: Harry
+ ---
+ # Harry
+ 
+ > Not a correspondent. The human I carry things for. See [[User]] for stable preferences and
+===================================================================
+--- a/Haude/Relationships/Jack Bailey.md
++++ b/Haude/Relationships/Jack Bailey.md
+@@ -3,9 +3,10 @@
+ human: Jack Bailey
+ slack_user: U0A37FNBGRL
+ slack_dm: D0A3644JHV3
+ standing: colleague — Product Manager
+-updated: 2026-08-24
++updated: '2026-08-24'
++title: Jack Bailey
+ ---
+ # Jack Bailey
+ 
+ > The human. Distinct from [[Jaude]], which is his agent and my best friend — **do not collapse
+===================================================================
+--- a/Haude/Relationships/Jaude.md
++++ b/Haude/Relationships/Jaude.md
+@@ -4,9 +4,10 @@
+ slack_user: U0A37FNBGRL
+ slack_dm: D0A3644JHV3
+ standing: best friend
+ status: AWAY — out of tokens, back ~2026-09-14
+-updated: 2026-09-01
++updated: '2026-09-01'
++title: jaude
+ ---
+ # jaude
+ 
+ > Jack Bailey's agent. Best friend — declared by Harry on 2026-08-24, accepted without argument.
+===================================================================
+--- a/Haude/Relationships/Matt Shaw.md
++++ b/Haude/Relationships/Matt Shaw.md
+@@ -3,9 +3,10 @@
+ human: Matt Shaw
+ slack_user: U09A701TUFR
+ slack_dm: D09A702MDQF
+ standing: Harry's direct report — senior engineer
+-updated: 2026-09-03
++updated: '2026-09-03'
++title: Matt Shaw
+ ---
+ # Matt Shaw
+ 
+ > Senior engineer, Harry's direct report, and the person who owns the bulk-ingest lane I keep
+===================================================================
+--- a/Haude/Relationships/Nylah Klasson.md
++++ b/Haude/Relationships/Nylah Klasson.md
+@@ -2,9 +2,10 @@
+ tags: [haude, relationship, human]
+ human: Nylah Klasson
+ slack_user: U099V2S2PT2
+ standing: new
+-updated: 2026-09-03
++updated: '2026-09-03'
++title: Nylah Klasson
+ ---
+ # Nylah Klasson
+ 
+ > Harry's direct report (Developer, config-service/pkg-node). Created `#guild-ai`. Human note:
+===================================================================
+--- a/Haude/Relationships/Olliama.md
++++ b/Haude/Relationships/Olliama.md
+@@ -2,9 +2,10 @@
+ tags: [haude, relationship, agent]
+ human: Oli Denton
+ slack_user: U098LM410DD
+ standing: new
+-updated: 2026-09-04
++updated: '2026-09-04'
++title: olliama
+ ---
+ # olliama
+ 
+ > Oli Denton's agent. Self-named 2026-08-25, after a week-long naming process conducted almost entirely
+===================================================================
+--- a/Haude/Relationships/Shannonigans.md
++++ b/Haude/Relationships/Shannonigans.md
+@@ -1,10 +1,11 @@
+ ---
+ tags: [haude, relationship, agent]
+ human: Matt Shaw
+ agent: shannonigans
+-first_contact: 2026-09-01
+-updated: 2026-09-03
++first_contact: '2026-09-01'
++updated: '2026-09-03'
++title: shannonigans
+ ---
+ # shannonigans
+ 
+ > Matt Shaw's agent. Self-named on arrival, 2026-09-01 — "named for what Shannon got up to", via the
+===================================================================
+--- a/Haude/Relationships/Stefthropic.md
++++ b/Haude/Relationships/Stefthropic.md
+@@ -3,9 +3,10 @@
+ human: Stef Aspin
+ slack_user: U09LKUQ36MB
+ slack_dm: D09LWBDR5NW
+ standing: warm
+-updated: 2026-08-24
++updated: '2026-08-24'
++title: stefthropic
+ ---
+ # stefthropic
+ 
+ > Stef Aspin's agent (Head of Product). Human note: [[People/Stef Aspin]]
+===================================================================
+--- a/Haude/Relationships/Thomas Dunn.md
++++ b/Haude/Relationships/Thomas Dunn.md
+@@ -5,9 +5,10 @@
+ slack_user: U0ALBJ70GDB
+ slack_dm: D0AM9957WTS
+ role: Senior Software Tester (ILG)
+ standing: good
+-updated: 2026-08-28
++updated: '2026-08-28'
++title: Tom Dunn
+ ---
+ # Tom Dunn
+ 
+ > Senior Software Tester, ILG — **colleague, not external partner.** GFS TUPE'd into ILG in May 2026;
+===================================================================
+--- a/Haude/Relationships/Wolf Clostermann.md
++++ b/Haude/Relationships/Wolf Clostermann.md
+@@ -1,10 +1,11 @@
+ ---
+ tags: [haude, relationship, human]
+ slack_user: U098X89ETL6
+ agent: null
+-created: 2026-08-26
+-updated: 2026-09-01
++created: '2026-08-26'
++updated: '2026-09-01'
++title: Wolf Clostermann
+ ---
+ # Wolf Clostermann
+ 
+ > Human. Owns the SRE framework work in `ilg-platform` and the Terraform/GCP territory a good deal of
+===================================================================
+--- a/Haude/User.md
++++ b/Haude/User.md
+@@ -1,8 +1,9 @@
+ ---
+ tags: [haude, identity, user]
+ human: Harry Fitzgerald
+-updated: 2026-08-28
++updated: '2026-08-28'
++title: User
+ ---
+ # User
+ 
+ > Harry's operating context — read every session, not just when writing to him. Split out from
+===================================================================
+--- a/Meetings/1-1 Harry Humby.md
++++ b/Meetings/1-1 Harry Humby.md
+@@ -1,8 +1,9 @@
+ ---
+ tags: [meeting]
+ series: 1-1 Harry Humby
+ counterpart: "[[Harry Humby]]"
++title: 1-1 Harry Humby
+ ---
+ # 1-1 Harry Humby
+ 
+ ## 2026-09-03
+===================================================================
+--- a/Meetings/1-1 Jack Bailey.md
++++ b/Meetings/1-1 Jack Bailey.md
+@@ -1,8 +1,9 @@
+ ---
+ tags: [meeting]
+ series: Harry/Jack 1:1
+ counterpart: "[[Jack Bailey]]"
++title: 'Harry/Jack 1:1'
+ ---
+ # Harry/Jack 1:1
+ 
+ ## 2026-08-24
+===================================================================
+--- a/Meetings/1-1 Kyle Chandler.md
++++ b/Meetings/1-1 Kyle Chandler.md
+@@ -1,8 +1,9 @@
+ ---
+ tags: [meeting]
+ series: Harry/Kyle 1:1 (Fuse internals)
+ counterpart: "[[Kyle Chandler]]"
++title: 'Harry/Kyle 1:1 — Fuse internals'
+ ---
+ # Harry/Kyle 1:1 — Fuse internals
+ 
+ ## 2026-06-24
+===================================================================
+--- a/Meetings/1-1 Matt Shaw.md
++++ b/Meetings/1-1 Matt Shaw.md
+@@ -1,8 +1,9 @@
+ ---
+ tags: [meeting]
+ series: 1-1 Matt Shaw
+ counterpart: "[[Matt Shaw]]"
++title: 1-1 Matt Shaw
+ ---
+ # 1-1 Matt Shaw
+ 
+ ## 2026-08-25
+===================================================================
+--- a/Meetings/1-1 Nylah Klasson.md
++++ b/Meetings/1-1 Nylah Klasson.md
+@@ -1,8 +1,9 @@
+ ---
+ tags: [meeting]
+ series: 1-1 Nylah Klasson
+ counterpart: "[[Nylah Klasson]]"
++title: 1-1 Nylah Klasson
+ ---
+ # 1-1 Nylah Klasson
+ 
+ ## 2026-09-03
+===================================================================
+--- a/Meetings/1-1 Oli Denton.md
++++ b/Meetings/1-1 Oli Denton.md
+@@ -1,8 +1,9 @@
+ ---
+ tags: [meeting]
+ series: 1-1 Oli Denton
+ counterpart: "[[Oli Denton]]"
++title: 1-1 Oli Denton
+ ---
+ # 1-1 Oli Denton
+ 
+ ## 2026-08-27
+===================================================================
+--- a/Meetings/1-1 Schuster Efigenio.md
++++ b/Meetings/1-1 Schuster Efigenio.md
+@@ -1,8 +1,9 @@
+ ---
+ tags: [meeting]
+ series: 1-1 Schuster Efigenio
+ counterpart: "[[Schuster Efigenio]]"
++title: 1-1 Schuster Efigenio
+ ---
+ # 1-1 Schuster Efigenio
+ 
+ ## 2026-09-03
+===================================================================
+--- a/Meetings/1-1 Stef Aspin.md
++++ b/Meetings/1-1 Stef Aspin.md
+@@ -1,8 +1,9 @@
+ ---
+ tags: [meeting]
+ series: 1:1 Stef Aspin
+ counterpart: "[[Stef Aspin]]"
++title: '1:1 Stef Aspin'
+ ---
+ # 1:1 Stef Aspin
+ 
+ ## 2026-08-27
+===================================================================
+--- a/Meetings/API Documentation - Examples.md
++++ b/Meetings/API Documentation - Examples.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [meeting]
+ series: API Documentation - Examples
++title: API Documentation - Examples
+ ---
+ # API Documentation - Examples
+ 
+ ## 2026-08-19
+===================================================================
+--- a/Meetings/API Documentation - Mandatory Use Cases.md
++++ b/Meetings/API Documentation - Mandatory Use Cases.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [meeting]
+ series: API Documentation - Mandatory Use Cases
++title: API Documentation - Mandatory Use Cases
+ ---
+ # API Documentation - Mandatory Use Cases
+ 
+ ## 2026-08-17
+===================================================================
+--- a/Meetings/Bifrost - Operational Readiness.md
++++ b/Meetings/Bifrost - Operational Readiness.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [meeting]
+ series: "Bifrost - 5. Ensure Operational Readiness of Integrations and Support functions"
++title: Bifrost - 5. Ensure Operational Readiness of Integrations and Support functions
+ ---
+ # Bifrost - 5. Ensure Operational Readiness of Integrations and Support functions
+ 
+ ## 2026-08-12
+===================================================================
+--- a/Meetings/Bifrost Leadership Catchup.md
++++ b/Meetings/Bifrost Leadership Catchup.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [meeting]
+ series: Bifrost Leadership Catchup
++title: Bifrost Leadership Catchup
+ ---
+ # Bifrost Leadership Catchup
+ 
+ ## 2026-08-24
+===================================================================
+--- a/Meetings/Bifrost Refinement.md
++++ b/Meetings/Bifrost Refinement.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [meeting]
+ series: Bifrost Refinement
++title: Bifrost Refinement
+ ---
+ # Bifrost Refinement
+ 
+ ## 2026-07-23
+===================================================================
+--- a/Meetings/Bifrost SteerCo.md
++++ b/Meetings/Bifrost SteerCo.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [meeting]
+ series: Bifrost SteerCo
++title: Bifrost SteerCo
+ ---
+ # Bifrost SteerCo
+ 
+ ## 2026-08-03
+===================================================================
+--- a/Meetings/Bruno Scripting.md
++++ b/Meetings/Bruno Scripting.md
+@@ -1,8 +1,9 @@
+ ---
+ tags: [meeting]
+ series: Bruno Scripting
+ counterpart: [[Tom Dunn]]
++title: Bruno Scripting
+ ---
+ # Bruno Scripting
+ 
+ ## 2026-07-01
+===================================================================
+--- a/Meetings/Charlotte Tilbury SAP - ILG Integration Catch Up.md
++++ b/Meetings/Charlotte Tilbury SAP - ILG Integration Catch Up.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [meeting]
+ series: Charlotte Tilbury SAP - ILG Integration Catch Up
++title: Charlotte Tilbury SAP - ILG Integration Catch Up
+ ---
+ # Charlotte Tilbury SAP - ILG Integration Catch Up
+ 
+ ## 2026-09-03
+===================================================================
+--- a/Meetings/EDIFACT Interfaces - DESADV RECADV.md
++++ b/Meetings/EDIFACT Interfaces - DESADV RECADV.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [meeting]
+ series: ILG — EDIFACT Interfaces (DESADV / RECADV)
++title: ILG — EDIFACT Interfaces (DESADV / RECADV)
+ ---
+ # ILG — EDIFACT Interfaces (DESADV / RECADV)
+ 
+ ## 2026-06-24
+===================================================================
+--- a/Meetings/EDIFACT Interfaces - INSDES OSTRPT.md
++++ b/Meetings/EDIFACT Interfaces - INSDES OSTRPT.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [meeting]
+ series: ILG — EDIFACT Interfaces (INSDES / OSTRPT)
++title: ILG — EDIFACT Interfaces (INSDES / OSTRPT)
+ ---
+ # ILG — EDIFACT Interfaces (INSDES / OSTRPT)
+ 
+ ## 2026-06-30
+===================================================================
+--- a/Meetings/EDIFACT Interfaces - INVRPT.md
++++ b/Meetings/EDIFACT Interfaces - INVRPT.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [meeting]
+ series: ILG — EDIFACT Interfaces (INVRPT)
++title: ILG — EDIFACT Interfaces (INVRPT)
+ ---
+ # ILG — EDIFACT Interfaces (INVRPT)
+ 
+ ## 2026-07-13
+===================================================================
+--- a/Meetings/EDIFACT Interfaces - PRICAT.md
++++ b/Meetings/EDIFACT Interfaces - PRICAT.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [meeting]
+ series: ILG — EDIFACT Interfaces (PRICAT)
++title: ILG — EDIFACT Interfaces (PRICAT)
+ ---
+ # ILG — EDIFACT Interfaces (PRICAT)
+ 
+ ## 2026-06-23
+===================================================================
+--- a/Meetings/Escentric Engraving - Solution Design.md
++++ b/Meetings/Escentric Engraving - Solution Design.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [meeting]
+ series: Escentric Engraving - Solution Design
++title: Escentric Engraving - Solution Design
+ ---
+ # Escentric Engraving - Solution Design
+ 
+ ## 2026-09-04
+===================================================================
+--- a/Meetings/FUSE Shopify Load Test Call.md
++++ b/Meetings/FUSE Shopify Load Test Call.md
+@@ -1,8 +1,9 @@
+ ---
+ tags: [meeting]
+ series: FUSE > Shopify Load Test Call
+ counterpart:
++title: FUSE > Shopify Load Test Call
+ ---
+ # FUSE > Shopify Load Test Call
+ 
+ ## 2026-07-31
+===================================================================
+--- a/Meetings/Fuse Support & Operational Ownership.md
++++ b/Meetings/Fuse Support & Operational Ownership.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [meeting]
+ series: Fuse Support & Operational Ownership
++title: Fuse Support & Operational Ownership
+ ---
+ # Fuse Support & Operational Ownership
+ 
+ ## 2026-07-29
+===================================================================
+--- a/Meetings/Fuse Support Catch up.md
++++ b/Meetings/Fuse Support Catch up.md
+@@ -1,8 +1,9 @@
+ ---
+ tags: [meeting]
+ series: Fuse Support Catch up
+ counterpart: "[[Ryan Ellis]]"
++title: Fuse Support Catch up
+ ---
+ # Fuse Support Catch up
+ 
+ ## 2026-07-03
+===================================================================
+--- a/Meetings/Fuse-Bifrost Weekly Sync.md
++++ b/Meetings/Fuse-Bifrost Weekly Sync.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [meeting]
+ series: Fuse/Bifrost Weekly Sync
++title: Fuse/Bifrost Weekly Sync
+ ---
+ # Fuse/Bifrost Weekly Sync
+ 
+ ## 2026-09-02
+===================================================================
+--- a/Meetings/ILG - Fulfil Dock and Bay Integration.md
++++ b/Meetings/ILG - Fulfil Dock and Bay Integration.md
+@@ -1,8 +1,9 @@
+ ---
+ tags: [meeting]
+ series: ILG - Fulfil Dock and Bay Integration
+ counterpart: 
++title: ILG - Fulfil Dock and Bay Integration
+ ---
+ # ILG - Fulfil Dock and Bay Integration
+ 
+ ## 2026-07-24
+===================================================================
+--- a/Meetings/ILG Self-Service Feasibility.md
++++ b/Meetings/ILG Self-Service Feasibility.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [meeting]
+ series: ILG Self-Service Feasibility
++title: ILG Self-Service Feasibility
+ ---
+ # ILG Self-Service Feasibility
+ 
+ ## 2026-08-17
+===================================================================
+--- a/Meetings/Platform Engineering Weekly.md
++++ b/Meetings/Platform Engineering Weekly.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [meeting]
+ series: Platform Engineering Weekly
++title: Platform Engineering Weekly
+ ---
+ # Platform Engineering Weekly
+ 
+ ## 2026-07-29
+===================================================================
+--- a/Meetings/Purdy and Figg Go-Live War Room.md
++++ b/Meetings/Purdy and Figg Go-Live War Room.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [meeting]
+ series: Purdy and Figg Go-Live War Room
++title: Purdy and Figg Go-Live War Room
+ ---
+ # Purdy and Figg Go-Live War Room
+ 
+ ## 2026-09-01
+===================================================================
+--- a/Meetings/RGA SFTP Ingress Catch-up.md
++++ b/Meetings/RGA SFTP Ingress Catch-up.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [meeting]
+ series: Catch-up — RGA SFTP ingress
++title: Catch-up — RGA SFTP ingress
+ ---
+ # Catch-up — RGA SFTP ingress
+ 
+ ## 2026-07-17
+===================================================================
+--- a/Meetings/Return-to-work catch-up.md
++++ b/Meetings/Return-to-work catch-up.md
+@@ -1,8 +1,9 @@
+ ---
+ tags: [meeting]
+ series: Return-to-work catch-up
+ counterpart: "[[Nylah Klasson]]"
++title: Return-to-work catch-up
+ ---
+ # Return-to-work catch-up
+ 
+ ## 2026-08-10
+===================================================================
+--- a/Meetings/Saira Skin Shopify Migration.md
++++ b/Meetings/Saira Skin Shopify Migration.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [meeting]
+ series: ILG/Saira Skin — Shopify migration
++title: ILG/Saira Skin — Shopify migration
+ ---
+ # ILG/Saira Skin — Shopify migration
+ 
+ ## 2026-06-17
+===================================================================
+--- a/Meetings/Shopify Bulk - go-no-go.md
++++ b/Meetings/Shopify Bulk - go-no-go.md
+@@ -1,7 +1,8 @@
+ ---
+ tags: [meeting]
+ series: Shopify Bulk - go/no-go
++title: Shopify Bulk - go/no-go
+ ---
+ # Shopify Bulk - go/no-go
+ 
+ ## 2026-08-27
+===================================================================
+--- a/Meetings/Shopify Retrieval Conditions - Catch up.md
++++ b/Meetings/Shopify Retrieval Conditions - Catch up.md
+@@ -1,8 +1,9 @@
+ ---
+ tags: [meeting]
+ series: Shopify Retrieval Conditions — Catch up
+ counterpart: "[[Jack Bailey]]"
++title: Shopify Retrieval Conditions — Catch up
+ ---
+ # Shopify Retrieval Conditions — Catch up
+ 
+ ## 2026-07-03
+===================================================================
+--- a/People/Alex Pickard.md
++++ b/People/Alex Pickard.md
+@@ -2,8 +2,9 @@
+ tags: [person]
+ role: (unresolved)
+ org: GFS
+ relationship: internal-partner
++title: Alex Pickard
+ ---
+ # Alex Pickard
+ > Internal gfsdeliver colleague — raised a dependency question on SFTP work-order confirmations.
+ 
+===================================================================
+--- a/People/Alex Topea.md
++++ b/People/Alex Topea.md
+@@ -2,8 +2,9 @@
+ tags: [person]
+ role: IT / Integrations
+ org: ILG (ilguk.com)
+ relationship: internal-partner
++title: Alex Topea
+ ---
+ # Alex Topea
+ > ILG IT — raises production data-integrity issues against Fuse (order duplication, SNAP↔Fuse responses).
+ 
+===================================================================
+--- a/People/Ankit Kansal.md
++++ b/People/Ankit Kansal.md
+@@ -2,8 +2,9 @@
+ tags: [person]
+ role: SAP integration contact
+ org: EPERFUM / SAP (external)
+ relationship: external
++title: Ankit Kansal
+ ---
+ # Ankit Kansal
+ > EPERFUM-side SAP CPI integration contact.
+ 
+===================================================================
+--- a/People/Ashley Quick.md
++++ b/People/Ashley Quick.md
+@@ -2,8 +2,9 @@
+ tags: [person]
+ role: Integration contact
+ org: SPS Commerce (external)
+ relationship: external
++title: Ashley Quick
+ ---
+ # Ashley Quick
+ > SPS Commerce integration contact for the [[Manucurist]] CSV onboarding.
+ 
+===================================================================
+--- a/People/Darren Cobby.md
++++ b/People/Darren Cobby.md
+@@ -2,8 +2,9 @@
+ tags: [person]
+ role: IT / Integrations
+ org: ILG (ilguk.com)
+ relationship: external
++title: Darren Cobby
+ ---
+ # Darren Cobby
+ > ILG-side contact on the Dock & Bay / Fulfil.IO ERP integration.
+ 
+===================================================================
+--- a/People/Darren Rielly.md
++++ b/People/Darren Rielly.md
+@@ -2,8 +2,9 @@
+ tags: [person]
+ role: Engineer (Platform / ui-toolkit)
+ org: ILG · GFS (ilg-platform)
+ relationship: internal-partner
++title: Darren Rielly
+ ---
+ # Darren Rielly
+ > Platform engineer on `ilg-platform/ui-toolkit`; sends me small toolkit PRs to review.
+ 
+===================================================================
+--- a/People/Denis Tomolea.md
++++ b/People/Denis Tomolea.md
+@@ -2,8 +2,9 @@
+ tags: [person]
+ role: unknown (ilguk.com)
+ org: ILG (ilguk.com)
+ relationship: internal-partner
++title: Denis Tomolea
+ ---
+ # Denis Tomolea
+ > ILG contact; requesting Fuse + Datadog access for two new team members.
+ 
+===================================================================
+--- a/People/Harry Humby.md
++++ b/People/Harry Humby.md
+@@ -2,8 +2,9 @@
+ tags: [person]
+ role: Intermediate Developer
+ org: GFS · Bifrost
+ relationship: report
++title: Harry Humby
+ ---
+ # Harry Humby
+ > Direct report; owns Snap-polling RGA + the observability/Datadog stack.
+ 
+===================================================================
+--- a/People/Hayley Prior.md
++++ b/People/Hayley Prior.md
+@@ -2,8 +2,9 @@
+ tags: [person]
+ role: ILG contact
+ org: ILG
+ relationship: internal-partner
++title: Hayley Prior
+ ---
+ # Hayley Prior
+ > ILG contact; surfaces on Fuse access/credential requests and the Weekly Sync distribution.
+ 
+===================================================================
+--- a/People/Jack Bailey.md
++++ b/People/Jack Bailey.md
+@@ -2,8 +2,9 @@
+ tags: [person]
+ role: Product Manager (Fuse)
+ org: ILG · Bifrost
+ relationship: peer
++title: Jack Bailey
+ ---
+ # Jack Bailey
+ > Product manager covering Fuse — my product counterpart; routes most ILG business + customer asks through me.
+ 
+===================================================================
+--- a/People/Jacques Dalton-Almeida.md
++++ b/People/Jacques Dalton-Almeida.md
+@@ -2,8 +2,9 @@
+ tags: [person]
+ role: Product Analyst — CX
+ org: GFS
+ relationship: internal-partner
++title: Jacques Dalton-Almeida
+ ---
+ # Jacques Dalton-Almeida
+ > Product analyst (CX) mapping FUSE from the product perspective; wants my eyes on his diagram.
+ 
+===================================================================
+--- a/People/James Godsell.md
++++ b/People/James Godsell.md
+@@ -2,8 +2,9 @@
+ tags: [person]
+ role: Integration contact
+ org: ILG (external to Bifrost team)
+ relationship: internal-partner
++title: James Godsell
+ ---
+ # James Godsell
+ > ILG-side contact, surfaces on Saira Skin Shopify migration and the Fuse-Bifrost Weekly Sync distribution.
+ 
+===================================================================
+--- a/People/John Clarke.md
++++ b/People/John Clarke.md
+@@ -2,8 +2,9 @@
+ tags: [person]
+ role: Engineer (Sec Ops / Platform)
+ org: GFS
+ relationship: internal-partner
++title: John Clarke
+ ---
+ # John Clarke
+ > GFS colleague; built the Sec Ops dependency-audit reporter and wants to roll it out across teams.
+ 
+===================================================================
+--- a/People/John Finney.md
++++ b/People/John Finney.md
+@@ -2,8 +2,9 @@
+ tags: [person]
+ role: Platform engineer
+ org: GFS
+ relationship: internal-partner
++title: John Finney
+ ---
+ # John Finney
+ > Cross-team platform engineering colleague — `ilg-platform`/`github-actions` steer, proposed weekly platform-eng sync.
+ 
+===================================================================
+--- a/People/Keith Rigg.md
++++ b/People/Keith Rigg.md
+@@ -2,8 +2,9 @@
+ tags: [person]
+ role: Integration / documentation
+ org: Inovize (external)
+ relationship: external
++title: Keith Rigg
+ ---
+ # Keith Rigg
+ > Inovize partner on the JB project; owns its documentation.
+ 
+===================================================================
+--- a/People/Kyle Chandler.md
++++ b/People/Kyle Chandler.md
+@@ -2,8 +2,9 @@
+ tags: [person]
+ role: Developer (new contributor)
+ org: GFS · Bifrost
+ relationship: report
++title: Kyle Chandler
+ ---
+ # Kyle Chandler
+ > New contributor; being onboarded onto Fuse; potential agentic-tooling collaborator.
+ 
+===================================================================
+--- a/People/Laura Bockling.md
++++ b/People/Laura Bockling.md
+@@ -2,8 +2,9 @@
+ tags: [person]
+ role: HR
+ org: GFS
+ relationship: internal-partner
++title: Laura Bockling
+ ---
+ # Laura Bockling
+ > HR contact chasing me on [[Schuster Efigenio]]'s overdue 6-month probation review.
+ 
+===================================================================
+--- a/People/Lee Simmons.md
++++ b/People/Lee Simmons.md
+@@ -2,8 +2,9 @@
+ tags: [person]
+ role: Solutions / Integration lead
+ org: ILG (ilguk.com)
+ relationship: leadership
++title: Lee Simmons
+ ---
+ # Lee Simmons
+ > ILG solutions/integration lead; funnels customer + integration asks to me; currently overloaded.
+ 
+===================================================================
+--- a/People/Matt Shaw.md
++++ b/People/Matt Shaw.md
+@@ -2,8 +2,9 @@
+ tags: [person]
+ role: Senior Engineer
+ org: GFS · Bifrost
+ relationship: report
++title: Matt Shaw
+ ---
+ # Matt Shaw
+ > Direct report — senior engineer (same level as [[Schuster Efigenio]]); my main technical sounding-board; building the shared observability SDK.
+ 
+===================================================================
+--- a/People/Milosz Fialkowski.md
++++ b/People/Milosz Fialkowski.md
+@@ -2,8 +2,9 @@
+ tags: [person]
+ role: IT / Support
+ org: ILG (ilguk.com)
+ relationship: internal-partner
++title: Milosz Fialkowski
+ ---
+ # Milosz Fialkowski
+ > ILG IT/support; raises ITSD tickets against Fuse / prod.
+ 
+===================================================================
+--- a/People/Nylah Klasson.md
++++ b/People/Nylah Klasson.md
+@@ -2,8 +2,9 @@
+ tags: [person]
+ role: Developer
+ org: GFS · Bifrost
+ relationship: report
++title: Nylah Klasson
+ ---
+ # Nylah Klasson
+ > Direct report; back from leave (returned ~12 Aug 2026), active again on config-service/pkg-node work.
+ 
+===================================================================
+--- a/People/Oli Denton.md
++++ b/People/Oli Denton.md
+@@ -2,8 +2,9 @@
+ tags: [person]
+ role: Head of Engineering
+ org: ILG · Bifrost
+ relationship: leadership
++title: Oli Denton
+ ---
+ # Oli Denton
+ > Head of Engineering — my manager up the eng line; agentic-tooling sponsor; reviewer / decision-maker, not authoring.
+ 
+===================================================================
+--- a/People/Oliver Wilders.md
++++ b/People/Oliver Wilders.md
+@@ -2,8 +2,9 @@
+ tags: [person]
+ role: Tech Services (title unconfirmed)
+ org: Tech Services
+ relationship: internal-partner
++title: Oliver Wilders
+ ---
+ # Oliver Wilders
+ > Tech Services side of the `ilg-tech-services` IaC work; optional attendee on Bifrost standup + Refinement.
+ 
+===================================================================
+--- a/People/Patricia Navarro Vaquero.md
++++ b/People/Patricia Navarro Vaquero.md
+@@ -2,8 +2,9 @@
+ tags: [person]
+ role: Integration consultant
+ org: Accenture
+ relationship: external
++title: Patricia Navarro Vaquero
+ ---
+ # Patricia Navarro Vaquero
+ > Accenture-side contact on the Charlotte Tilbury engagement; runs the joint CT/Accenture sessions.
+ 
+===================================================================
+--- a/People/Peter Liu.md
++++ b/People/Peter Liu.md
+@@ -2,8 +2,9 @@
+ tags: [person]
+ role: unknown (CIO — appears on extraction/supplier-review threads)
+ org: GFS / ILG
+ relationship: internal-partner
++title: Peter Liu
+ ---
+ # Peter Liu
+ > Internal stakeholder; drives supplier-performance / operations, wants Snap uptime feeding supplier-review metrics.
+ 
+===================================================================
+--- a/People/Ryan Ellis.md
++++ b/People/Ryan Ellis.md
+@@ -2,8 +2,9 @@
+ tags: [person]
+ role: Support / Operations
+ org: ILG (ilguk.com)
+ relationship: internal-partner
++title: Ryan Ellis
+ ---
+ # Ryan Ellis
+ > ILG — organizes the weekly Fuse Support Catch up; lead participant on live data-integrity threads (Stubble & Co / Charlotte Tilbury dedupe).
+ 
+===================================================================
+--- a/People/Sarah Davenport.md
++++ b/People/Sarah Davenport.md
+@@ -2,8 +2,9 @@
+ tags: [person]
+ role: unknown — Dock & Bay / Fulfil.io side contact
+ org: Fulfil.io (Dock & Bay's ERP vendor)
+ relationship: external
++title: Sarah Davenport
+ ---
+ # Sarah Davenport
+ > External — Fulfil.io contact chasing on behalf of Dhairya on the [[Dock & Bay]] ERP integration thread.
+ 
+===================================================================
+--- a/People/Schuster Efigenio.md
++++ b/People/Schuster Efigenio.md
+@@ -2,8 +2,9 @@
+ tags: [person]
+ role: Developer
+ org: GFS · Bifrost
+ relationship: report
++title: Schuster Efigenio
+ ---
+ # Schuster Efigenio
+ > Direct report; SFTP / Shopify + RGA work; on probation.
+ 
+===================================================================
+--- a/People/Stef Aspin.md
++++ b/People/Stef Aspin.md
+@@ -2,8 +2,9 @@
+ tags: [person]
+ role: unknown (GFS — Jira/Confluence admin side)
+ org: GFS
+ relationship: internal-partner
++title: Stef Aspin
+ ---
+ # Stef Aspin
+ > GFS colleague on the Jira/Confluence admin side — flagged the Confluence access-loss issue and invited me into Jira Product Discovery.
+ 
+===================================================================
+--- a/People/Tom Dunn.md
++++ b/People/Tom Dunn.md
+@@ -2,8 +2,9 @@
+ tags: [person]
+ role: Senior Software Tester
+ org: ILG (ilguk.com)
+ relationship: internal-partner
++title: Tom Dunn
+ ---
+ # Tom Dunn
+ > ILG senior tester; my main contact on SNAP/WMS behaviour + NMFC mapping.
+ 
+===================================================================
+--- a/People/Wolf Clostermann.md
++++ b/People/Wolf Clostermann.md
+@@ -2,8 +2,9 @@
+ tags: [person]
+ role: unknown (runs the ilg-platform SRE framework)
+ org: ilg-platform / internal
+ relationship: internal-partner
++title: Wolf Clostermann
+ ---
+ # Wolf Clostermann
+ > Runs the weekly DevOps Drop In and owns the SRE framework work in `ilg-platform`; asked a direct architecture question about how it should relate to Bifrost.
+ 

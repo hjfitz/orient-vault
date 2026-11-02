@@ -1,0 +1,34 @@
+# collector — Waypoint index. Cheap orientation only, never documentation.
+# Keep under ~25 lines. Anything needing a sentence belongs in a doc.
+service: collector
+system: fuse
+type: backend            # backend | frontend | library | infra
+owner: bifrost           # Bifrost/Fuse team
+language: typescript
+framework: nestjs
+deploy: cloud-run
+observability: datadog
+
+interfaces:
+  inbound: [pubsub-push, http]
+  outbound: [mongodb-atlas]
+
+key_paths:
+  - code/src/http/controllers/event.controller.ts   # all ingest routes; order-sensitive
+  - code/src/core                                    # per-record-type services + registries
+  - code/src/repositories/collection.ts              # upsert/soft-delete/lifecycle semantics
+  - iac/projects/collector/pubsub.tf                 # must agree with event.controller.ts routes
+  - CLAUDE.md                                        # exceptionally current — read first (one known stale spot, see known-context)
+
+runtime:
+  package_manager: "pnpm@9.15.0"
+  test_runner: "vitest"
+  node: "latest"
+commands:
+  root: "code/"
+  gate: ["test", "lint:fix", "build:check"]
+  missing: ["build:check:tests"]
+commands_verified: 2026-09-04
+commands_verified_sha: a402dfd
+commands_verified_paths: [code/mise.toml, code/package.json, code/pnpm-workspace.yaml]
+onboarded: 2026-08-24

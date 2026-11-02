@@ -1,0 +1,42 @@
+# wms-gateway — Waypoint index. Cheap orientation only, never documentation.
+# Every value is a fact, a path, or a command — never a sentence. Anything needing a sentence
+# belongs in a doc. (No line cap: the old ~25-line one was exceeded by 22 of 26 files.)
+service: wms-gateway
+system: fuse
+type: backend            # backend | frontend | library | infra
+owner: bifrost           # Fuse team owns it; other teams may query it
+language: Go
+framework: chi
+deploy: cloud-run        # wms-gateway-{env}, internal-only ingress
+observability: datadog
+
+interfaces:
+  inbound: [http]        # fapi service-to-service, x-api-key; no pubsub, no cron
+  outbound: [config-service, snap-fulfil-wms]
+
+key_paths:
+  - apps/gateway/internal/core                    # use-cases: salesorder (reference flow), stock
+  - apps/gateway/internal/adapters/snap           # per-business provider + SNAP adapter + weak decode
+  - apps/gateway/internal/http/adapterclient      # shared outbound client: retry, cache, limiter, breaker
+  - apps/gateway/openapi.yaml                     # route contract, enforced both ways by bootstrap/routes_test.go
+  - apps/gateway/tools/canonschema                # Zod -> JSON Schema -> Go canonical codegen
+  - iac/projects/wms-gateway                      # terragrunt: Cloud Run + Datadog sidecar + SNAP concurrency locals
+
+note: >
+  Poly-app monorepo whose only app is Go, in a TypeScript-heavy fleet. Human-first repo, not
+  LLM-first. Canonical Go types are generated from pkg-node's Zod schemas, so a canonical change
+  needs a pkg-node release before it can land here.
+
+runtime:
+  package_manager: "go modules; pnpm@11.0.8 for tools/canonschema only"
+  test_runner: "go test"
+  go: "1.27.1 (go.mod; root mise.toml pins 1.25.1 and cannot build it)"
+commands:
+  root: "apps/gateway/"
+  gate: ["make fmt-check", "go build ./...", "go vet ./...", "go test ./...", "go test -race ./...", "make lint"]
+  missing: []
+  conditional: ["make gen-check  # canonical layer or codegen tool touched; needs @gfs-bifrost npm token + make tools"]
+onboarded: 2026-10-01
+commands_verified: 2026-10-01
+commands_verified_sha: 9fc03c8
+commands_verified_paths: [mise.toml, apps/gateway/go.mod]

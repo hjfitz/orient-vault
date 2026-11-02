@@ -1,0 +1,18 @@
+# How a merge between two machines' vaults resolves, by file class (orient plan
+# multi-machine-safe-durable-data-locally, Decisions). Union is only for files that are
+# append-only by design; a structured file (JSON, YAML, plans, tables) must never be unioned.
+
+# Append-only logs: keep both sides' new lines. Records under <host>/ have one writer and
+# never merge in practice; union is the safety net.
+*.jsonl merge=union
+Engineering/*/ledger.md merge=union
+Engineering/*/ideas-log.md merge=union
+Customers/*/ledger.md merge=union
+
+# Derived indexes: keep ours and regenerate (wp index / cust) after the pull.
+# Needs `git config merge.ours.driver true` in each clone.
+Engineering/index.md merge=ours
+Customers/index.md merge=ours
+
+# One writer machine (config.yaml manifestWriter); never merge it, take one side whole.
+.knowledge/manifest.json -merge

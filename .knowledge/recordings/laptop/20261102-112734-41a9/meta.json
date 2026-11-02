@@ -1,0 +1,121 @@
+{
+  "id": "20261102-112734-41a9",
+  "title": "Fuse Leadership Catchup",
+  "meeting": {
+    "docId": "d_bwakabtompjo",
+    "series": "Bifrost Leadership Catchup",
+    "date": "2026-11-02",
+    "href": "/meeting/bifrost-leadership-catchup"
+  },
+  "context": "11:15–12:00 GMT · no location on the invite · calendar title \"Fuse Leadership Catchup\" · organiser Harry · w/ Jack Bailey, Oli Denton, Matt Shaw · ⚠️ no agenda\n\nContext:\n**Owed by you**\n- Reply-all with call-outs on Darren Cobby's Q1 Fuse migration timeline (forwarded to you alone by Tom Dunn at 09:17)\n- Agree the Peak on-call route, then tell Ryan Ellis\n- Confirm owners and dates on the Integrations Path Forward workshop actions, or say they stand\n\n**Other context**\n- [Bi-Frost Migrations timeline](https://outlook.office365.com/owa/?ItemID=AAMkADVhYjUxODIyLWM5NTktNGJmOC1hN2FjLWFjMjllNWUzYmY4MwBGAAAAAAAEXHdKGOMeRLfpaU7ff8ChBwABLsgQpFdPTayXOZTVrraLAAAAAAEMAAABLsgQpFdPTayXOZTVrraLAAHYYTv%2FAAA%3D\u0026exvsurl=1\u0026viewmodel=ReadMessageItem): Darren calls it aggressive, wants Jack Bailey and Tom Dunn to write up customer-facing technical changes (API payload differences for the top-10 customers), customer comms out by end of next week ahead of Black Friday, and a call early next week\n- [Ionic short-ship Resolution](https://outlook.office365.com/owa/?ItemID=AAMkADVhYjUxODIyLWM5NTktNGJmOC1hN2FjLWFjMjllNWUzYmY4MwBGAAAAAAAEXHdKGOMeRLfpaU7ff8ChBwABLsgQpFdPTayXOZTVrraLAAAAAAEMAAABLsgQpFdPTayXOZTVrraLAAHWswZHAAA%3D\u0026exvsurl=1\u0026viewmodel=ReadMessageItem): a SnapFulfil master data upload removed product criteria; Lee Simmons will confirm once the Iconic Fuse customer, connector and SFTP are decommissioned\n- [Jack's Friday workshop update](https://outlook.office365.com/owa/?ItemID=AAMkADVhYjUxODIyLWM5NTktNGJmOC1hN2FjLWFjMjllNWUzYmY4MwBGAAAAAAAEXHdKGOMeRLfpaU7ff8ChBwABLsgQpFdPTayXOZTVrraLAAAAAAEMAAABLsgQpFdPTayXOZTVrraLAAHWswZGAAA%3D\u0026exvsurl=1\u0026viewmodel=ReadMessageItem): S9 (first dev face-to-face) pushed back, as there are no in-person go-lives this side of the year\n- CT DESADV call (29 Oct): no Fuse rebuild for now; Ingrid takes folder routing to Edicom — [recording](http://localhost:3000/recordings/20261029-153138-d1e2)\n- Matt Shaw is on the invite this time (the 19 Oct action to bring him in); his 2 to 4 Nov leave request starts today\n\nTo raise:\n- [ ] Peak on-call route and the support-model meeting with Ryan and Dennis (carried ×2)\n- [ ] Workshop actions: who owns what, and by when (carried ×2)\n- [ ] CT GLN ownership for the Edicom/EDIFACT config: still unowned in ILG (carried ×1)\n- [ ] Who from Fuse covers Distraction Duty while Matt is on leave 2 to 4 Nov?\n\nCarried from last time:\n- [ ] Harry: Organise a small meeting with Ryan and Dennis on the support model and on-call route\n- [ ] Harry: Produce the triage flow chart and runbooks for escalating issues to the Fuse team\n- [ ] Harry: Send meeting notes to Jack and Oli\n- [ ] Harry: Talk to Testy about moving CT config work to Danny and Steve\n- [ ] Jack Bailey: Put together a design for an SFTP-style browser view in Fuse\n- [ ] Jack Bailey: Talk to Baron about Fuse representation at the Bifrost operational workshop",
+  "status": "done",
+  "startedAt": "2026-11-02T11:27:34.310603877Z",
+  "endedAt": "2026-11-02T11:56:48.059536365Z",
+  "sources": {
+    "me": [
+      "JLAB TALK MICROPHONE Analog Stereo"
+    ],
+    "them": [
+      "Nightly",
+      "speech-dispatcher-dummy"
+    ]
+  },
+  "call": true,
+  "speakers": {
+    "Speaker 1": "Jack Bailey",
+    "Speaker 2": "Oli Denton",
+    "Speaker 3": "Jack Bailey"
+  },
+  "summary": {
+    "tldr": [
+      "Matt was out, so there was no sprint detail. Harry will set up the support-model call with Ryan today, and Oli offered to be looped in for authority.",
+      "Iconic short-ship stays with Jack, who will chase it on the Wednesday call. Oli also wants a clear plan in case it happens again.",
+      "Integration status: Flare and the molecules integration are live, with Poland waiting on an operational UPS flow. CT is blocked on Edicom/SAP splitting EDIFACT messages. Jack expects no more go-lives this year.",
+      "Snap: Synergy are rolling back the API changes after performance degradation. Load testing is ready, but Harry doubts it is representative until the rollback is done.",
+      "Team capacity: the Bifrost team will be about 40% smaller once Harry and Nyla step away, with no short-term cover. Matt is to be read in on strategy and given final say on candidates."
+    ],
+    "decisions": [
+      "Jack keeps eyes on the Iconic short-ship issue and raises it on Wednesday's call.",
+      "Harry will step back from directing Matt's work but stays informed and remains Matt's manager.",
+      "Matt gets final say on the Spectrum candidates.",
+      "Harry will handle the Ryan support-model conversation himself and loop Oli in only if he wants extra authority."
+    ],
+    "actions": [
+      {
+        "owner": "Harry",
+        "text": "Set up a call with Ryan (and Dennis) on the support model, going through the runbooks first",
+        "due": "today"
+      },
+      {
+        "owner": "Jack Bailey",
+        "text": "Raise the Iconic short-ship issue on Wednesday's call and keep chasing for a resolution",
+        "due": "Wednesday"
+      },
+      {
+        "owner": "Harry",
+        "text": "Pick up Jake's Friday note asking for evidence on the Snap performance testing, as part of the catch-up list",
+        "due": "today"
+      },
+      {
+        "owner": "Harry",
+        "text": "Catch up with Jack on the Snap load testing and whether the test instance matches the production software",
+        "due": ""
+      },
+      {
+        "owner": "Harry",
+        "text": "Tell the Bifrost folk at Wednesday's catch-up that Harry and Nyla are stepping away, and set expectations on the smaller team",
+        "due": "Wednesday"
+      },
+      {
+        "owner": "Oli Denton",
+        "text": "Take five minutes with Harry on the TCA file ingestion handover and what Harry does next",
+        "due": ""
+      },
+      {
+        "owner": "Jack Bailey",
+        "text": "Offer to give Matt context on longer-term integration strategy (North Star, Manhattan Scale), once agreed with Harry and Oli",
+        "due": ""
+      }
+    ],
+    "questions": [
+      "How much should Matt be read in on the long-term integration strategy (North Star, WMS-agnostic work) so soon, and by whom?",
+      "Should Snap load testing wait for the API rollback, so it tests the same software?",
+      "When and how will the team be told about the new role and the JD, given the North Star readout tomorrow?",
+      "How will the Bifrost team be covered while it is 40% smaller, given no short-term capacity and slow compensation changes?",
+      "Will CT's Edicom/SAP conversation on splitting EDIFACT message types produce a fix? Nothing has been heard yet."
+    ],
+    "speakers": [
+      {
+        "label": "Harry",
+        "name": "Harry",
+        "basis": "the label for Harry's own mic"
+      },
+      {
+        "label": "Speaker 1",
+        "name": "Jack Bailey",
+        "basis": "gives integration and Bifrost updates and was asked about Iconic; the invite lists Jack"
+      },
+      {
+        "label": "Speaker 3",
+        "name": "Jack Bailey",
+        "basis": "continues Jack's points and is likely the same voice split in two"
+      },
+      {
+        "label": "Speaker 2",
+        "name": "Oli Denton",
+        "basis": "leads the agenda, asks about the support model and compensation; the only other attendee since Matt is out"
+      }
+    ],
+    "model": "sonnet",
+    "usd": 0.0963172,
+    "durationMs": 15835,
+    "at": "2026-11-02T12:08:08.22270185Z"
+  },
+  "enhancement": {
+    "model": "sonnet",
+    "usd": 0.289726,
+    "durationMs": 26642,
+    "at": "2026-11-02T12:08:34.865608771Z",
+    "parts": 4
+  }
+}

@@ -1,0 +1,122 @@
+{
+  "id": "20261019-133321-defe",
+  "title": "Harry/Jack",
+  "meeting": {
+    "docId": "d_gnhrzi4xz54m",
+    "series": "Harry/Jack 1:1",
+    "date": "2026-10-19",
+    "href": "/meeting/1-1-jack-bailey"
+  },
+  "context": "13:30–14:15 BST · Teams · weekly Fuse catch-up (recurring, optional, no formal agenda on the invite)\n\nContext:\n**Owed by you**\n- Confirm owners and dates on his Integrations Path Forward actions, or say they stand (you are named on S18 hourly ingest monitoring, and L3)\n- Agree the Peak on-call route for engineering cover\n- Approve his access request to the \"Use-Case Readiness\" artifact\n- Grant his \"Fuse EDI Evidence\" access request from 10-01\n- Answer his Transaction History question in `#real-agent-only`\n\n**Other context**\n- CT PRICAT GLN thread: he [answered on your behalf Fri](https://outlook.office365.com/owa/?ItemID=AAMkADVhYjUxODIyLWM5NTktNGJmOC1hN2FjLWFjMjllNWUzYmY4MwBGAAAAAAAEXHdKGOMeRLfpaU7ff8ChBwABLsgQpFdPTayXOZTVrraLAAAAAAEMAAABLsgQpFdPTayXOZTVrraLAAHMCWGPAAA%3D\u0026exvsurl=1\u0026viewmodel=ReadMessageItem) and offered Fuse UI help once someone has the value\n- [Purdy \u0026 Figg sample payloads thread](https://outlook.office365.com/owa/?ItemID=AAMkADVhYjUxODIyLWM5NTktNGJmOC1hN2FjLWFjMjllNWUzYmY4MwBGAAAAAAAEXHdKGOMeRLfpaU7ff8ChBwABLsgQpFdPTayXOZTVrraLAAAAAAEMAAABLsgQpFdPTayXOZTVrraLAAHMCWGLAAA%3D\u0026exvsurl=1\u0026viewmodel=ReadMessageItem): Tom Dunn says Purdy will start sending sales orders by API for WS shipments\n- His workshop check-in: S2 who's-who card done (fill in yours), S8 comms audit session this week, S7 moved to 8 Nov\n\nTo raise:\n- [ ] CT PRICAT GLN: ILG has no trading-partner ID yet. Who owns getting it into the connector config in Fuse UI?\n- [ ] Purdy \u0026 Figg API onboarding: what changes when they move WS shipments to sales orders by API?\n- [ ] Workshop actions: who owns what, and by when (carried ×1)\n- [ ] Dock and Bay go-live watch monitors D2, D3, D7, D8, D10 and D11 are red: does the despatch plan explain it? (carried ×1)\n\nCarried from last time:\n- [ ] SPS Commerce↔Manucurist work split (from 06-17) — still live\n- [ ] Putwall — takeaways + where FUSE fits (now agreed to build in Fuse)",
+  "status": "done",
+  "startedAt": "2026-10-19T13:33:21.553399873+01:00",
+  "endedAt": "2026-10-19T14:00:38.93094814+01:00",
+  "sources": {
+    "me": [
+      "JLAB TALK MICROPHONE Analog Stereo"
+    ],
+    "them": [
+      "Nightly",
+      "speech-dispatcher-dummy"
+    ]
+  },
+  "call": true,
+  "speakers": {
+    "Speaker 2": "Jack"
+  },
+  "merged": {
+    "Speaker 1": "Speaker 2"
+  },
+  "summary": {
+    "tldr": [
+      "Agreed to go bold on the CT PRICAT GLN: use the one UK GLN ILG has for both UK and Poland and let CT correct it if needed. This unblocks dev testing, which Danny will start.",
+      "Into peak the focus is keeping things airtight, mainly observability, with no big side mission. Order of work: dictionary support on the Shopify egress leg, then Shopify parity gaps, then webhook and status webhook work.",
+      "FUSE-1223 (default values and required check) is live in prod, and a short release note will go out.",
+      "Jack raised surfacing pre-canonicalization rejections in transaction history. Harry will check whether the data is already in the event and how big the work is.",
+      "Most of the pre-meeting list (Purdy \u0026 Figg, workshop actions, Dock and Bay monitors, Peak on-call) was not discussed."
+    ],
+    "decisions": [
+      "Reply to CT that ILG's single UK GLN will be used for both UK and Poland, and let CT push back if it does not work.",
+      "Go into peak focused on making things airtight (mostly observability) rather than starting a big side mission.",
+      "Finish dictionary support on the Shopify egress leg first, then start on the Shopify parity gaps.",
+      "Release FUSE-1223 with a short note, not a full announcement, and do not wait for Harry."
+    ],
+    "actions": [
+      {
+        "owner": "Jack",
+        "text": "Reply on the CT PRICAT GLN thread saying the UK GLN will be used for both UK and Poland, and that CT should say if that does not work.",
+        "due": ""
+      },
+      {
+        "owner": "Harry",
+        "text": "Check whether pre-canonicalization rejections (SFTP/API validation failures) are already in the event, and size the work to show them in transaction history, possibly with a separate status.",
+        "due": ""
+      },
+      {
+        "owner": "Harry",
+        "text": "Refine and estimate the webhook epic and the status webhook so work can be reshuffled and Matt can lead it.",
+        "due": ""
+      },
+      {
+        "owner": "Jack",
+        "text": "Review the design for the SFTP file explorer.",
+        "due": "this week"
+      },
+      {
+        "owner": "Jack",
+        "text": "Send a short release note for FUSE-1223.",
+        "due": ""
+      },
+      {
+        "owner": "Harry",
+        "text": "Post a message in the team chat about Harry's Thursday arrangements.",
+        "due": ""
+      },
+      {
+        "owner": "Harry",
+        "text": "Share Matt's stand-up update with Jack if Jack misses Wednesday's stand-up.",
+        "due": "Wednesday"
+      },
+      {
+        "owner": "Harry",
+        "text": "Start dev testing for the CT PRICAT integration through Danny now that a GLN exists.",
+        "due": ""
+      }
+    ],
+    "questions": [
+      "Is ILG registered as one legal entity or two (UK and Poland), and does one GLN cover both?",
+      "Does CT's integration actually require the GLN, or is it only filling in a field?",
+      "Do Net Courier values need a dictionary mapping for Shopify tracking URLs, or is it already covered in the map?",
+      "How large is the work to surface pre-canonicalization failures in transaction history?",
+      "Will the business use the bigger new features as intended, given their maturity?"
+    ],
+    "speakers": [
+      {
+        "label": "Harry",
+        "name": "Harry",
+        "basis": "the one voice on Harry's mic"
+      },
+      {
+        "label": "Speaker 1",
+        "name": "Jack",
+        "basis": "Harry addresses Jack by name; the 1:1 is with Jack, and this voice alternates mid-sentence with Speaker 2"
+      },
+      {
+        "label": "Speaker 2",
+        "name": "Jack",
+        "basis": "probably the same voice as Speaker 1, split by diarization, since the two continue each other's sentences"
+      }
+    ],
+    "model": "sonnet",
+    "usd": 0.102522,
+    "durationMs": 15024,
+    "at": "2026-10-19T14:08:30.527639817+01:00"
+  },
+  "enhancement": {
+    "model": "sonnet",
+    "usd": 0.2340221,
+    "durationMs": 21233,
+    "at": "2026-10-19T22:04:47.81471739+01:00",
+    "parts": 3
+  }
+}

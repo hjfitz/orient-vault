@@ -1,0 +1,40 @@
+# renovate-runner — Waypoint index. Cheap orientation only, never documentation.
+# Keep under ~25 lines. Anything needing a sentence belongs in a doc.
+service: renovate-runner
+system: fuse
+type: infra              # backend | frontend | library | infra
+owner: fuse-team         # wider Fuse team, same pattern as the other infra repos
+language: "Shell + JS config"
+framework: "GitHub Actions + Renovate"
+deploy: "n/a"             # runs as a scheduled workflow, no runtime service of its own
+observability: none
+
+interfaces:
+  inbound: []                     # none — scheduled/dispatched GitHub Actions workflow
+  outbound: [github-api, slack, ghcr]   # opens PRs, posts to #bifrost-forge, pulls Renovate images
+
+key_paths:
+  - config.js                          # THE actual automerge policy — read this, not any skill's summary of it
+  - .github/workflows/renovate.yaml    # 3 triggers, 3 jobs
+  - scripts/select-renovate-image-tag.sh   # the soak-window pinning strategy
+  - scripts/build-daily-report.sh       # the once-daily #bifrost-forge Slack report
+
+note: >
+  This IS the automerge policy the renovate-clear/morning-digest skills
+  defer to — @gfs-bifrost patch/minor automerges everywhere except
+  order-management-system (no CI to validate it); @ilg-platform
+  patch/minor is off by default, on only for a named allowlist. That
+  allowlist still references the pre-move path 'gfs-bifrost/secops'
+  (moved to ilg-platform/secops-reporting 2026-07-27) — likely a dead
+  entry now, documented not fixed this pass. fuse-billing appears in
+  that allowlist, confirming it's a real, active repo not yet onboarded.
+
+runtime: {}
+commands:
+  root: "."
+  gate: []
+  missing: []
+commands_verified: 2026-09-04
+commands_verified_sha: ad82526
+commands_verified_paths: []
+onboarded: 2026-08-24

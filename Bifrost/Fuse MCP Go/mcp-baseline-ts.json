@@ -1,0 +1,1827 @@
+{
+  "prompts": [
+    {
+      "arguments": [
+        {
+          "description": "The service to implement the feature in (e.g. 'fapi', 'snap-adapter')",
+          "name": "service",
+          "required": true
+        },
+        {
+          "description": "Brief description of the feature to implement",
+          "name": "feature",
+          "required": true
+        }
+      ],
+      "description": "Template for implementing a new feature in a Fuse service. Pulls in architecture rules and conventions.",
+      "name": "new-feature"
+    }
+  ],
+  "resourceTemplates": [
+    {
+      "description": "Look up a specific Fuse service by name",
+      "name": "service-by-name",
+      "uriTemplate": "fuse://service/{name}"
+    }
+  ],
+  "resources": [
+    {
+      "description": "HTTP API routes exposed by each Fuse service with methods, paths, and descriptions",
+      "mimeType": "application/json",
+      "name": "api-endpoints",
+      "uri": "fuse://api-endpoints"
+    },
+    {
+      "description": "Layered architecture rules, directory responsibilities, dependency direction, and agent guidelines",
+      "mimeType": "application/json",
+      "name": "architecture",
+      "uri": "fuse://architecture"
+    },
+    {
+      "description": "All canonical type definitions from @gfs-bifrost/types with field summaries and Zod schema names",
+      "mimeType": "application/json",
+      "name": "canonical-types",
+      "uri": "fuse://canonical-types"
+    },
+    {
+      "description": "Configuration domain model \u2014 the customer setup model (business \u2192 storefront \u2192 connector \u2192 mapping) and how to build one, fragments, backlinks, config revision events, handler patterns, cache keys, and the RemoteConfig consumer pattern",
+      "mimeType": "application/json",
+      "name": "config-domain",
+      "uri": "fuse://config-domain"
+    },
+    {
+      "description": "File naming patterns, controller rules, dependency direction, config access, exception handling",
+      "mimeType": "application/json",
+      "name": "conventions",
+      "uri": "fuse://conventions"
+    },
+    {
+      "description": "Per-customer integration nuances and known quirks discovered during support investigations, outside standard config-service data",
+      "mimeType": "application/json",
+      "name": "customer-notes",
+      "uri": "fuse://customer-notes"
+    },
+    {
+      "description": "MongoDB collections used by each service with their purpose and contents",
+      "mimeType": "application/json",
+      "name": "database-collections",
+      "uri": "fuse://database-collections"
+    },
+    {
+      "description": "Terraform/Terragrunt patterns, Cloud Run config, CI/CD workflows, environment structure, and infrastructure dependencies",
+      "mimeType": "application/json",
+      "name": "deployment",
+      "uri": "fuse://deployment"
+    },
+    {
+      "description": "BifrostMessage/BifrostBulkMessage envelope format, metadata structure, and event rules",
+      "mimeType": "application/json",
+      "name": "event-contracts",
+      "uri": "fuse://event-contracts"
+    },
+    {
+      "description": "All exception types per service with HTTP status codes, error fields, static factory methods, error handler locations, and adapter boundary translation patterns",
+      "mimeType": "application/json",
+      "name": "exceptions",
+      "uri": "fuse://exceptions"
+    },
+    {
+      "description": "All Pub/Sub topics with naming conventions, envelope types, publishers, and subscribers",
+      "mimeType": "application/json",
+      "name": "pubsub-topology",
+      "uri": "fuse://pubsub-topology"
+    },
+    {
+      "description": "Inter-service HTTP call graph showing which services call which over HTTP and why",
+      "mimeType": "application/json",
+      "name": "service-dependencies",
+      "uri": "fuse://service-dependencies"
+    },
+    {
+      "description": "All Fuse platform services with descriptions, tech stacks, and responsibilities",
+      "mimeType": "application/json",
+      "name": "services",
+      "uri": "fuse://services"
+    },
+    {
+      "description": "The five @gfs-bifrost packages in pkg-node: types, ddp, rules-engine, cache, remote-config",
+      "mimeType": "application/json",
+      "name": "shared-packages",
+      "uri": "fuse://shared-packages"
+    },
+    {
+      "description": "Test framework setup, file naming conventions, mock patterns, fixture factories, HTTP testing with supertest, and MongoMemoryServer integration test patterns",
+      "mimeType": "application/json",
+      "name": "testing",
+      "uri": "fuse://testing"
+    }
+  ],
+  "tools": [
+    {
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "noauth"
+          }
+        ]
+      },
+      "description": "Read from the config-service API (GET). Fetch any resource by path \u2014 connectors, mappings, backends, storefronts, etc. Requires CONFIG_SERVICE_STAGING_URL + CONFIG_SERVICE_STAGING_KEY (and/or PRODUCTION equivalents).",
+      "inputSchema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "properties": {
+          "environment": {
+            "default": "staging",
+            "description": "Target environment",
+            "enum": [
+              "staging",
+              "production"
+            ],
+            "type": "string"
+          },
+          "path": {
+            "description": "API path (e.g. '/api/v1/storefronts/sf_xxx/connectors/conn_xxx/mappings/goods_out_confirmation')",
+            "type": "string"
+          }
+        },
+        "required": [
+          "path"
+        ],
+        "type": "object"
+      },
+      "name": "config-read",
+      "securitySchemes": [
+        {
+          "type": "noauth"
+        }
+      ]
+    },
+    {
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "noauth"
+          }
+        ]
+      },
+      "description": "Write to the config-service API (POST, PUT, PATCH, DELETE). Use this to create or update businesses, storefronts, connectors, shipment methods, warehouse routing, SKU blacklists, DDP rules, and default mappings. Requires CONFIG_SERVICE_STAGING_URL + CONFIG_SERVICE_STAGING_KEY (and/or PRODUCTION equivalents). Production writes require confirm: true.",
+      "inputSchema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "properties": {
+          "body": {
+            "anyOf": [
+              {
+                "additionalProperties": {},
+                "propertyNames": {
+                  "type": "string"
+                },
+                "type": "object"
+              },
+              {
+                "items": {},
+                "type": "array"
+              }
+            ],
+            "description": "Request body (omit for DELETE)"
+          },
+          "confirm": {
+            "default": false,
+            "description": "Must be true when writing to production",
+            "type": "boolean"
+          },
+          "environment": {
+            "default": "staging",
+            "description": "Target environment",
+            "enum": [
+              "staging",
+              "production"
+            ],
+            "type": "string"
+          },
+          "method": {
+            "description": "HTTP method",
+            "enum": [
+              "POST",
+              "PUT",
+              "PATCH",
+              "DELETE"
+            ],
+            "type": "string"
+          },
+          "path": {
+            "description": "API path (e.g. '/api/v1/shipment_methods/GADG', '/api/v1/business/ACME/warehouses/routing')",
+            "type": "string"
+          }
+        },
+        "required": [
+          "method",
+          "path"
+        ],
+        "type": "object"
+      },
+      "name": "config-write",
+      "securitySchemes": [
+        {
+          "type": "noauth"
+        }
+      ]
+    },
+    {
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "noauth"
+          }
+        ]
+      },
+      "description": "Fetch full detail for one held dedupe record by id \u2014 the canonical record, envelope metadata, and dedupe observability fields (dedupeCount, reason, correlation trail). Requires DEDUPE_SERVICE_STAGING_URL + DEDUPE_SERVICE_STAGING_KEY (and/or PRODUCTION equivalents).",
+      "inputSchema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "properties": {
+          "environment": {
+            "default": "staging",
+            "description": "Target environment",
+            "enum": [
+              "staging",
+              "production"
+            ],
+            "type": "string"
+          },
+          "id": {
+            "description": "The record's Mongo _id",
+            "type": "string"
+          },
+          "recordType": {
+            "enum": [
+              "sales_order",
+              "purchase_order",
+              "master_data",
+              "return_goods_authorization",
+              "work_order"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "recordType",
+          "id"
+        ],
+        "type": "object"
+      },
+      "name": "dedupe-get-record",
+      "securitySchemes": [
+        {
+          "type": "noauth"
+        }
+      ]
+    },
+    {
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "noauth"
+          }
+        ]
+      },
+      "description": "List held dedupe records for one record type, paged. Filter by business, a contains match on the record's reference, a createdAt date range, or how many duplicates a record has held. Requires DEDUPE_SERVICE_STAGING_URL + DEDUPE_SERVICE_STAGING_KEY (and/or PRODUCTION equivalents).",
+      "inputSchema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "properties": {
+          "businessId": {
+            "description": "Exact business id match (e.g. 'GADG')",
+            "minLength": 1,
+            "type": "string"
+          },
+          "environment": {
+            "default": "staging",
+            "description": "Target environment",
+            "enum": [
+              "staging",
+              "production"
+            ],
+            "type": "string"
+          },
+          "from": {
+            "description": "ISO 8601 lower bound on storedAt",
+            "type": "string"
+          },
+          "maxDedupeCount": {
+            "maximum": 9007199254740991,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "minDedupeCount": {
+            "description": "Only records that have held at least this many duplicates",
+            "maximum": 9007199254740991,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "page": {
+            "default": 1,
+            "maximum": 9007199254740991,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "pageSize": {
+            "default": 25,
+            "maximum": 100,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "recordType": {
+            "description": "The held record type to list",
+            "enum": [
+              "sales_order",
+              "purchase_order",
+              "master_data",
+              "return_goods_authorization",
+              "work_order"
+            ],
+            "type": "string"
+          },
+          "reference": {
+            "description": "Case-insensitive contains match on the record's business key",
+            "minLength": 1,
+            "type": "string"
+          },
+          "to": {
+            "description": "ISO 8601 upper bound on storedAt",
+            "type": "string"
+          }
+        },
+        "required": [
+          "recordType"
+        ],
+        "type": "object"
+      },
+      "name": "dedupe-list",
+      "securitySchemes": [
+        {
+          "type": "noauth"
+        }
+      ]
+    },
+    {
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "noauth"
+          }
+        ]
+      },
+      "description": "Release (hard-delete) one held dedupe record by id, clearing the dedupe gate so the same record can flow again on resend. Does NOT resend to Snap \u2014 the customer must resend, and the resend is then processed normally. Requires DEDUPE_SERVICE_STAGING_URL + DEDUPE_SERVICE_STAGING_KEY (and/or PRODUCTION equivalents). Production releases require confirm: true.",
+      "inputSchema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "properties": {
+          "confirm": {
+            "default": false,
+            "description": "Must be true when releasing in production",
+            "type": "boolean"
+          },
+          "environment": {
+            "default": "staging",
+            "description": "Target environment",
+            "enum": [
+              "staging",
+              "production"
+            ],
+            "type": "string"
+          },
+          "id": {
+            "description": "The record's Mongo _id",
+            "type": "string"
+          },
+          "recordType": {
+            "enum": [
+              "sales_order",
+              "purchase_order",
+              "master_data",
+              "return_goods_authorization",
+              "work_order"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "recordType",
+          "id"
+        ],
+        "type": "object"
+      },
+      "name": "dedupe-release",
+      "securitySchemes": [
+        {
+          "type": "noauth"
+        }
+      ]
+    },
+    {
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "noauth"
+          }
+        ]
+      },
+      "description": "Release (hard-delete) every held dedupe record for one business + record type \u2014 pages through the held set and deletes each match. Does NOT resend to Snap \u2014 the customer must resend each record. Requires DEDUPE_SERVICE_STAGING_URL + DEDUPE_SERVICE_STAGING_KEY (and/or PRODUCTION equivalents). Production releases require confirm: true.",
+      "inputSchema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "properties": {
+          "businessId": {
+            "description": "Exact business id whose held records will be released (e.g. 'GADG') \u2014 required, no fleet-wide release",
+            "minLength": 1,
+            "type": "string"
+          },
+          "confirm": {
+            "default": false,
+            "description": "Must be true when releasing in production",
+            "type": "boolean"
+          },
+          "environment": {
+            "default": "staging",
+            "description": "Target environment",
+            "enum": [
+              "staging",
+              "production"
+            ],
+            "type": "string"
+          },
+          "recordType": {
+            "enum": [
+              "sales_order",
+              "purchase_order",
+              "master_data",
+              "return_goods_authorization",
+              "work_order"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "recordType",
+          "businessId"
+        ],
+        "type": "object"
+      },
+      "name": "dedupe-release-all",
+      "securitySchemes": [
+        {
+          "type": "noauth"
+        }
+      ]
+    },
+    {
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "noauth"
+          }
+        ]
+      },
+      "description": "Aggregate totals (held count + duplicates blocked) across every record type the deduper holds, optionally scoped to one business. Requires DEDUPE_SERVICE_STAGING_URL + DEDUPE_SERVICE_STAGING_KEY (and/or PRODUCTION equivalents) to be set.",
+      "inputSchema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "properties": {
+          "businessId": {
+            "description": "Scope to one business (e.g. 'GADG'); omit for every business",
+            "type": "string"
+          },
+          "environment": {
+            "default": "staging",
+            "description": "Which environment to query",
+            "enum": [
+              "staging",
+              "production"
+            ],
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "name": "dedupe-summary",
+      "securitySchemes": [
+        {
+          "type": "noauth"
+        }
+      ]
+    },
+    {
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "noauth"
+          }
+        ]
+      },
+      "description": "Fetch live configuration for a business from the config-service API. Returns backend, storefronts, warehouse routing, SKU blacklist, and DDP rules. Requires CONFIG_SERVICE_STAGING_URL + CONFIG_SERVICE_STAGING_KEY (and/or PRODUCTION equivalents) to be set.",
+      "inputSchema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "properties": {
+          "businessId": {
+            "description": "The business ID to look up (e.g. 'gadg', 'acme')",
+            "type": "string"
+          },
+          "environment": {
+            "default": "staging",
+            "description": "Which environment to query",
+            "enum": [
+              "staging",
+              "production"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "businessId"
+        ],
+        "type": "object"
+      },
+      "name": "get-business-config",
+      "securitySchemes": [
+        {
+          "type": "noauth"
+        }
+      ]
+    },
+    {
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "noauth"
+          }
+        ]
+      },
+      "description": "Fetch one record collector holds by its Mongo _id, with lifecycle metadata (createdAt, status). recordType is one of collector's use cases: purchase_order, sales_order, master_data, stock_adjustment, return_goods_authorization, pick_confirmation, pack_confirmation \u2014 goods-in/goods-out confirmations have no single-record route (use get-fuse-records with confirmations: true to list them). Requires COLLECTOR_SERVICE_STAGING_URL + COLLECTOR_SERVICE_STAGING_KEY (and/or PRODUCTION equivalents).",
+      "inputSchema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "properties": {
+          "businessId": {
+            "description": "Business id (e.g. 'GADG')",
+            "minLength": 1,
+            "type": "string"
+          },
+          "environment": {
+            "default": "staging",
+            "description": "Target environment",
+            "enum": [
+              "staging",
+              "production"
+            ],
+            "type": "string"
+          },
+          "id": {
+            "description": "The record's Mongo _id",
+            "type": "string"
+          },
+          "recordType": {
+            "enum": [
+              "purchase_order",
+              "sales_order",
+              "master_data",
+              "stock_adjustment",
+              "return_goods_authorization",
+              "pick_confirmation",
+              "pack_confirmation"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "recordType",
+          "businessId",
+          "id"
+        ],
+        "type": "object"
+      },
+      "name": "get-fuse-record",
+      "securitySchemes": [
+        {
+          "type": "noauth"
+        }
+      ]
+    },
+    {
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "noauth"
+          }
+        ]
+      },
+      "description": "List records collector holds for a business, paged. recordType is one of collector's use cases: purchase_order, sales_order, master_data, stock_adjustment, return_goods_authorization, pick_confirmation, pack_confirmation. Pass confirmations: true (purchase_order or sales_order only) to list goods-in/goods-out CONFIRMATIONS instead of the canonical orders themselves \u2014 there is no confirmations browsing route for the other record types. Requires COLLECTOR_SERVICE_STAGING_URL + COLLECTOR_SERVICE_STAGING_KEY (and/or PRODUCTION equivalents).",
+      "inputSchema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "properties": {
+          "businessId": {
+            "description": "Business id (e.g. 'GADG')",
+            "minLength": 1,
+            "type": "string"
+          },
+          "confirmations": {
+            "default": false,
+            "description": "List goods-in/goods-out confirmations instead of the canonical record. Only valid when recordType is purchase_order or sales_order.",
+            "type": "boolean"
+          },
+          "count": {
+            "default": 10,
+            "description": "Number of records to return (max 100)",
+            "maximum": 100,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "environment": {
+            "default": "staging",
+            "description": "Target environment",
+            "enum": [
+              "staging",
+              "production"
+            ],
+            "type": "string"
+          },
+          "offset": {
+            "default": 0,
+            "description": "Number of records to skip",
+            "maximum": 9007199254740991,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "recordType": {
+            "description": "The record type to list",
+            "enum": [
+              "purchase_order",
+              "sales_order",
+              "master_data",
+              "stock_adjustment",
+              "return_goods_authorization",
+              "pick_confirmation",
+              "pack_confirmation"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "recordType",
+          "businessId"
+        ],
+        "type": "object"
+      },
+      "name": "get-fuse-records",
+      "securitySchemes": [
+        {
+          "type": "noauth"
+        }
+      ]
+    },
+    {
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "noauth"
+          }
+        ]
+      },
+      "description": "Fetch a business's live SNAP credentials \u2014 host, username, password \u2014 from the config-service BACKEND_CONFIG fragment, the same source snap-adapter resolves at runtime. Pass the returned values straight into the snap MCP's tools (snap-get, snap-search, snap-write, etc.), which take host + username + password directly. Returns only the connection, not the rest of the business config. Requires CONFIG_SERVICE_STAGING_URL + CONFIG_SERVICE_STAGING_KEY (and/or PRODUCTION equivalents) to be set.",
+      "inputSchema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "properties": {
+          "businessId": {
+            "description": "The business ID to look up (e.g. 'gadg', 'acme')",
+            "minLength": 1,
+            "type": "string"
+          },
+          "environment": {
+            "default": "staging",
+            "description": "Which config-service to read",
+            "enum": [
+              "staging",
+              "production"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "businessId"
+        ],
+        "type": "object"
+      },
+      "name": "get-snap-connection",
+      "securitySchemes": [
+        {
+          "type": "noauth"
+        }
+      ]
+    },
+    {
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "noauth"
+          }
+        ]
+      },
+      "description": "List the businesses (customers) configured in Fuse, live from config-service. Pages through GET /api/v1/business, so the result is always current \u2014 there is no cached or baked-in roster. Use this to find a businessId, check whether a customer exists in an environment, or compare staging against production. Requires CONFIG_SERVICE_STAGING_URL + CONFIG_SERVICE_STAGING_KEY (and/or PRODUCTION equivalents) to be set.",
+      "inputSchema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "properties": {
+          "environment": {
+            "default": "staging",
+            "description": "Which environment to query",
+            "enum": [
+              "staging",
+              "production"
+            ],
+            "type": "string"
+          },
+          "search": {
+            "description": "Case-insensitive substring matched against businessId and friendlyName (e.g. 'stubble', 'lisa'). Omit to list every business.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "name": "list-customers",
+      "securitySchemes": [
+        {
+          "type": "noauth"
+        }
+      ]
+    },
+    {
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "noauth"
+          }
+        ]
+      },
+      "description": "Return the Confluence changelog page ID for a Fuse service. Use this when creating a PR to know which page to update.",
+      "inputSchema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "properties": {
+          "name": {
+            "description": "Service directory name (e.g. 'snap-adapter', 'config-service', 'fapi', 'collector')",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "type": "object"
+      },
+      "name": "lookup-changelog-page",
+      "securitySchemes": [
+        {
+          "type": "noauth"
+        }
+      ]
+    },
+    {
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "noauth"
+          }
+        ]
+      },
+      "description": "Look up a config fragment or backlink by type or keyword. Returns the data shape, handler, cache key, and API fallback details. Setup-shaped keywords ('customer', 'business', 'storefront', 'setup', 'onboarding') return the customer setup model instead \u2014 the business \u2192 storefront \u2192 connector \u2192 mapping hierarchy and the order to build one.",
+      "inputSchema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "properties": {
+          "name": {
+            "description": "Config type or keyword (e.g. 'ddp', 'warehouse_routing', 'backend', 'connector', 'shipment', 'sku_blacklist', 'customer', 'storefront')",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "type": "object"
+      },
+      "name": "lookup-config",
+      "securitySchemes": [
+        {
+          "type": "noauth"
+        }
+      ]
+    },
+    {
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "noauth"
+          }
+        ]
+      },
+      "description": "Look up the HTTP call graph for a specific Fuse service \u2014 returns both what it calls (outbound) and what calls it (inbound).",
+      "inputSchema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "properties": {
+          "name": {
+            "description": "Service name (e.g. 'fapi', 'snap-adapter', 'config-service', 'fuse-ui')",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "type": "object"
+      },
+      "name": "lookup-dependency",
+      "securitySchemes": [
+        {
+          "type": "noauth"
+        }
+      ]
+    },
+    {
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "noauth"
+          }
+        ]
+      },
+      "description": "Look up the HTTP API endpoints for a specific Fuse service",
+      "inputSchema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "properties": {
+          "name": {
+            "description": "Service name (e.g. 'fapi', 'config-service', 'collector', 'replay')",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "type": "object"
+      },
+      "name": "lookup-endpoints",
+      "securitySchemes": [
+        {
+          "type": "noauth"
+        }
+      ]
+    },
+    {
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "noauth"
+          }
+        ]
+      },
+      "description": "Look up a Fuse service by name and get its full details",
+      "inputSchema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "properties": {
+          "name": {
+            "description": "Service name or directory name (e.g. 'fapi', 'snap-adapter', 'dedupe-service')",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "type": "object"
+      },
+      "name": "lookup-service",
+      "securitySchemes": [
+        {
+          "type": "noauth"
+        }
+      ]
+    },
+    {
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "noauth"
+          }
+        ]
+      },
+      "description": "Look up a Pub/Sub topic by name and get its publishers, subscribers, envelope type, and category",
+      "inputSchema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "properties": {
+          "name": {
+            "description": "Topic name or partial match (e.g. 'sales_order', 'config_revision', 'confirmation_ready')",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "type": "object"
+      },
+      "name": "lookup-topic",
+      "securitySchemes": [
+        {
+          "type": "noauth"
+        }
+      ]
+    },
+    {
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "noauth"
+          }
+        ]
+      },
+      "description": "Look up a canonical type definition by name and get its fields and Zod schema",
+      "inputSchema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "properties": {
+          "name": {
+            "description": "Type name or keyword (e.g. 'CanonicalSalesOrder', 'sales order', 'GoodsInConfirmation', 'master data')",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "type": "object"
+      },
+      "name": "lookup-type",
+      "securitySchemes": [
+        {
+          "type": "noauth"
+        }
+      ]
+    },
+    {
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "noauth"
+          }
+        ]
+      },
+      "description": "What the mocker sent \u2014 its activity log (30-day retention; load runs log one summary row per run, not per message). Lists newest-first with filters, or pass id to fetch one full entry including the sent payload. Each entry carries the correlationId and topic, so a send can be traced through the pipeline in Datadog. Dev-only \u2014 requires MOCKER_STAGING_URL + MOCKER_STAGING_KEY.",
+      "inputSchema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "properties": {
+          "businessId": {
+            "description": "Filter to one business (e.g. 'GADG')",
+            "type": "string"
+          },
+          "correlationId": {
+            "description": "Filter to entries whose correlationId starts with this value \u2014 pass your own custom id, or a load-run prefix, to read back everything sent under it",
+            "type": "string"
+          },
+          "from": {
+            "description": "ISO 8601 lower bound on sentAt",
+            "type": "string"
+          },
+          "id": {
+            "description": "Fetch one full activity entry (includes the sent payload) instead of listing",
+            "type": "string"
+          },
+          "limit": {
+            "maximum": 9007199254740991,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "offset": {
+            "maximum": 9007199254740991,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "outcome": {
+            "enum": [
+              "published",
+              "validation_failed",
+              "publish_failed"
+            ],
+            "type": "string"
+          },
+          "source": {
+            "description": "What kind of send produced the entry",
+            "enum": [
+              "one_off",
+              "schedule",
+              "load_run"
+            ],
+            "type": "string"
+          },
+          "target": {
+            "description": "Which dev Pub/Sub topic to address \u2014 the three cross-entity topics take a recordType; the two legacy per-entity confirmation topics do not",
+            "enum": [
+              "create_record_request",
+              "create_record",
+              "confirmation_ready",
+              "sales_order_confirmation_ready",
+              "purchase_order_confirmation_ready"
+            ],
+            "type": "string"
+          },
+          "to": {
+            "description": "ISO 8601 upper bound on sentAt",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "name": "mock-activity",
+      "securitySchemes": [
+        {
+          "type": "noauth"
+        }
+      ]
+    },
+    {
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "noauth"
+          }
+        ]
+      },
+      "description": "Generate a mock canonical payload from a dev customer's real config-service setup (shipment methods, warehouse routing, backend) WITHOUT publishing it \u2014 pair with mock-send to publish. Currently generatable: sales_order on the create targets, dispatch on confirmation_ready, and the legacy sales_order_confirmation_ready target (no recordType). Generated sales orders leave order.class unset by default; order.class is per-business \u2014 e.g. GADG's Snap tenant needs 'GADW' \u2014 so pass options.orderClass when Snap rejects the create. Dev-only \u2014 requires MOCKER_STAGING_URL + MOCKER_STAGING_KEY.",
+      "inputSchema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "properties": {
+          "businessId": {
+            "description": "Dev business whose config seeds the payload (e.g. 'GADG')",
+            "minLength": 1,
+            "type": "string"
+          },
+          "options": {
+            "description": "Generator options",
+            "properties": {
+              "lineCount": {
+                "description": "How many lines",
+                "maximum": 9007199254740991,
+                "minimum": 1,
+                "type": "integer"
+              },
+              "orderClass": {
+                "description": "Sets order.class \u2014 per-business, some Snap tenants require one (GADW works for GADG); omit to leave unset",
+                "type": "string"
+              },
+              "skus": {
+                "description": "SKUs to put on the generated lines",
+                "items": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "type": "array"
+              }
+            },
+            "type": "object"
+          },
+          "recordType": {
+            "description": "Required for the cross-entity targets, omit for the legacy per-entity ones. create_record_request/create_record: sales_order | purchase_order | master_data | return_goods_authorization | work_order. confirmation_ready: pick_confirmation | pack_confirmation | return_goods_authorization | dispatch | receipt | finished_good_receipt | work_order_confirmation.",
+            "type": "string"
+          },
+          "target": {
+            "description": "Which dev Pub/Sub topic to address \u2014 the three cross-entity topics take a recordType; the two legacy per-entity confirmation topics do not",
+            "enum": [
+              "create_record_request",
+              "create_record",
+              "confirmation_ready",
+              "sales_order_confirmation_ready",
+              "purchase_order_confirmation_ready"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "target",
+          "businessId"
+        ],
+        "type": "object"
+      },
+      "name": "mock-generate",
+      "securitySchemes": [
+        {
+          "type": "noauth"
+        }
+      ]
+    },
+    {
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "noauth"
+          }
+        ]
+      },
+      "description": "Manage the mocker's burst/soak load runs against the dev pipeline. Actions: list, start, status (id required), cancel (id required). start requires mode, target, businessId, payloadSource, ratePerSecond \u2014 plus total for a burst or durationMinutes for a soak. Every numeric limit (rate, burst total, soak duration) is advisory in three tiers: below 'warn' it's silent; above 'warn' it proceeds with a `warnings` array in the response; above 'confirm' the start is REJECTED with HTTP 409 and `{needsConfirmation: true, warnings: [...]}` \u2014 read the warnings and resend the exact same call with `confirm: true` to actually start it. A 'hard max' tier exists per field (sized at 'would plausibly take shared dev Snap/collector/dedupe down') and always rejects \u2014 no confirm bypasses it. Only ONE run may be active at a time (a second start returns 'a run is already in progress'). Dev-only \u2014 requires MOCKER_STAGING_URL + MOCKER_STAGING_KEY.",
+      "inputSchema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "properties": {
+          "action": {
+            "description": "What to do",
+            "enum": [
+              "list",
+              "start",
+              "status",
+              "cancel"
+            ],
+            "type": "string"
+          },
+          "businessId": {
+            "description": "start: dev business to send as (e.g. 'GADG')",
+            "type": "string"
+          },
+          "confirm": {
+            "description": "start: pass true to proceed after a prior start returned needsConfirmation:true for these same values",
+            "type": "boolean"
+          },
+          "correlationId": {
+            "description": "start: an optional correlation-id PREFIX for the run \u2014 every message becomes '<prefix>-<n>', so one Datadog query covers the whole run. Kept mock-identifiable. Defaults to 'mock-run-<runId>'.",
+            "type": "string"
+          },
+          "durationMinutes": {
+            "description": "start, soak only: run length in minutes \u2014 advisory tiers (warn/confirm/hard-max), see tool description",
+            "maximum": 9007199254740991,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "id": {
+            "description": "Run id \u2014 required for status/cancel",
+            "type": "string"
+          },
+          "mode": {
+            "description": "start: burst = fixed message count as fast as the rate allows; soak = steady rate for a duration",
+            "enum": [
+              "burst",
+              "soak"
+            ],
+            "type": "string"
+          },
+          "payloadSource": {
+            "description": "Where each send's payload comes from: freshly generated per send, or a saved preset",
+            "oneOf": [
+              {
+                "properties": {
+                  "kind": {
+                    "const": "generated",
+                    "type": "string"
+                  },
+                  "options": {
+                    "properties": {
+                      "lineCount": {
+                        "description": "How many lines",
+                        "maximum": 9007199254740991,
+                        "minimum": 1,
+                        "type": "integer"
+                      },
+                      "orderClass": {
+                        "description": "Sets order.class \u2014 per-business, some Snap tenants require one (GADW works for GADG); omit to leave unset",
+                        "type": "string"
+                      },
+                      "skus": {
+                        "description": "SKUs to put on the generated lines",
+                        "items": {
+                          "minLength": 1,
+                          "type": "string"
+                        },
+                        "type": "array"
+                      }
+                    },
+                    "type": "object"
+                  }
+                },
+                "required": [
+                  "kind"
+                ],
+                "type": "object"
+              },
+              {
+                "properties": {
+                  "kind": {
+                    "const": "preset",
+                    "type": "string"
+                  },
+                  "presetId": {
+                    "description": "Saved preset id",
+                    "minLength": 1,
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "kind",
+                  "presetId"
+                ],
+                "type": "object"
+              }
+            ]
+          },
+          "ratePerSecond": {
+            "description": "start: messages/second, fired concurrently once per second regardless of mode \u2014 advisory tiers (warn/confirm/hard-max), same for burst and soak (see tool description)",
+            "maximum": 9007199254740991,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "recordType": {
+            "description": "Required for the cross-entity targets, omit for the legacy per-entity ones. create_record_request/create_record: sales_order | purchase_order | master_data | return_goods_authorization | work_order. confirmation_ready: pick_confirmation | pack_confirmation | return_goods_authorization | dispatch | receipt | finished_good_receipt | work_order_confirmation.",
+            "type": "string"
+          },
+          "sendOptions": {
+            "description": "Publish options",
+            "properties": {
+              "broadcast": {
+                "description": "confirmation_ready only: stamp the planned broadcast attribute (the customer-level broadcast opt-in)",
+                "type": "boolean"
+              },
+              "channel": {
+                "description": "The origin channel to impersonate. Stamped as metadata.source, always mock-marked so mock traffic is never mistaken for a real ingest: 'mock-sftp' / 'mock-rest' / 'mock-shopify', or plain 'mock' when omitted. Also auto-resolves metadata.connectorId to the customer's first connector of that type unless connectorId is given.",
+                "enum": [
+                  "sftp",
+                  "rest",
+                  "shopify"
+                ],
+                "type": "string"
+              },
+              "connectorId": {
+                "description": "The originating connector to attribute the record to \u2014 stamped as metadata.connectorId, the fine-grained key smart confirmation routing (FUSE-927) routes on. Use it to target a SPECIFIC connector when a customer has several of the same type (channel alone cannot distinguish them), or pass an unknown id to exercise the connector-unresolvable broadcast path. Omit BOTH connectorId and channel to mock a manual-Snap-origin record (no originating connector \u2014 the broadcast path).",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "target": {
+            "description": "Which dev Pub/Sub topic to address \u2014 the three cross-entity topics take a recordType; the two legacy per-entity confirmation topics do not",
+            "enum": [
+              "create_record_request",
+              "create_record",
+              "confirmation_ready",
+              "sales_order_confirmation_ready",
+              "purchase_order_confirmation_ready"
+            ],
+            "type": "string"
+          },
+          "total": {
+            "description": "start, burst only: total messages \u2014 advisory tiers (warn/confirm/hard-max), see tool description",
+            "maximum": 9007199254740991,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "action"
+        ],
+        "type": "object"
+      },
+      "name": "mock-load-run",
+      "securitySchemes": [
+        {
+          "type": "noauth"
+        }
+      ]
+    },
+    {
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "noauth"
+          }
+        ]
+      },
+      "description": "Manage the mocker's persistent recurring sends \u2014 each schedule publishes one message per occurrence at a jittered interval (uniform between min/max seconds, minimum 10s), surviving restarts. Actions: list (all schedules), create (name, businessId, target, payloadSource, minIntervalSeconds + maxIntervalSeconds required), enable / disable / delete / run-now (id required; run-now fires one occurrence immediately without touching the regular cadence). Dev-only \u2014 requires MOCKER_STAGING_URL + MOCKER_STAGING_KEY.",
+      "inputSchema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "properties": {
+          "action": {
+            "description": "What to do",
+            "enum": [
+              "list",
+              "create",
+              "enable",
+              "disable",
+              "delete",
+              "run-now"
+            ],
+            "type": "string"
+          },
+          "businessId": {
+            "description": "create: dev business to send as (e.g. 'GADG')",
+            "type": "string"
+          },
+          "id": {
+            "description": "Schedule id \u2014 required for enable/disable/delete/run-now",
+            "type": "string"
+          },
+          "maxIntervalSeconds": {
+            "description": "create: longest gap between sends (>= minIntervalSeconds)",
+            "maximum": 9007199254740991,
+            "minimum": 10,
+            "type": "integer"
+          },
+          "minIntervalSeconds": {
+            "description": "create: shortest gap between sends (>= 10)",
+            "maximum": 9007199254740991,
+            "minimum": 10,
+            "type": "integer"
+          },
+          "name": {
+            "description": "create: display name (unique)",
+            "maxLength": 80,
+            "type": "string"
+          },
+          "payloadSource": {
+            "description": "Where each send's payload comes from: freshly generated per send, or a saved preset",
+            "oneOf": [
+              {
+                "properties": {
+                  "kind": {
+                    "const": "generated",
+                    "type": "string"
+                  },
+                  "options": {
+                    "properties": {
+                      "lineCount": {
+                        "description": "How many lines",
+                        "maximum": 9007199254740991,
+                        "minimum": 1,
+                        "type": "integer"
+                      },
+                      "orderClass": {
+                        "description": "Sets order.class \u2014 per-business, some Snap tenants require one (GADW works for GADG); omit to leave unset",
+                        "type": "string"
+                      },
+                      "skus": {
+                        "description": "SKUs to put on the generated lines",
+                        "items": {
+                          "minLength": 1,
+                          "type": "string"
+                        },
+                        "type": "array"
+                      }
+                    },
+                    "type": "object"
+                  }
+                },
+                "required": [
+                  "kind"
+                ],
+                "type": "object"
+              },
+              {
+                "properties": {
+                  "kind": {
+                    "const": "preset",
+                    "type": "string"
+                  },
+                  "presetId": {
+                    "description": "Saved preset id",
+                    "minLength": 1,
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "kind",
+                  "presetId"
+                ],
+                "type": "object"
+              }
+            ]
+          },
+          "recordType": {
+            "description": "Required for the cross-entity targets, omit for the legacy per-entity ones. create_record_request/create_record: sales_order | purchase_order | master_data | return_goods_authorization | work_order. confirmation_ready: pick_confirmation | pack_confirmation | return_goods_authorization | dispatch | receipt | finished_good_receipt | work_order_confirmation.",
+            "type": "string"
+          },
+          "sendOptions": {
+            "description": "Publish options",
+            "properties": {
+              "broadcast": {
+                "description": "confirmation_ready only: stamp the planned broadcast attribute (the customer-level broadcast opt-in)",
+                "type": "boolean"
+              },
+              "channel": {
+                "description": "The origin channel to impersonate. Stamped as metadata.source, always mock-marked so mock traffic is never mistaken for a real ingest: 'mock-sftp' / 'mock-rest' / 'mock-shopify', or plain 'mock' when omitted. Also auto-resolves metadata.connectorId to the customer's first connector of that type unless connectorId is given.",
+                "enum": [
+                  "sftp",
+                  "rest",
+                  "shopify"
+                ],
+                "type": "string"
+              },
+              "connectorId": {
+                "description": "The originating connector to attribute the record to \u2014 stamped as metadata.connectorId, the fine-grained key smart confirmation routing (FUSE-927) routes on. Use it to target a SPECIFIC connector when a customer has several of the same type (channel alone cannot distinguish them), or pass an unknown id to exercise the connector-unresolvable broadcast path. Omit BOTH connectorId and channel to mock a manual-Snap-origin record (no originating connector \u2014 the broadcast path).",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "target": {
+            "description": "Which dev Pub/Sub topic to address \u2014 the three cross-entity topics take a recordType; the two legacy per-entity confirmation topics do not",
+            "enum": [
+              "create_record_request",
+              "create_record",
+              "confirmation_ready",
+              "sales_order_confirmation_ready",
+              "purchase_order_confirmation_ready"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "action"
+        ],
+        "type": "object"
+      },
+      "name": "mock-schedule",
+      "securitySchemes": [
+        {
+          "type": "noauth"
+        }
+      ]
+    },
+    {
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "noauth"
+          }
+        ]
+      },
+      "description": "One-off publish of a mock canonical message onto a Fuse DEV Pub/Sub topic via fuse-mocker. The payload is passed through the mocker's canonical validation gate and published in a proper Bifrost envelope (correlationId minted, metadata.source always mock-marked \u2014 'mock', or 'mock-<channel>' when a channel is chosen). Returns { correlationId, messageId, topic }; a 400 response carries the canonical-validation issues verbatim. Use mock-generate first if you need a payload built from the customer's real config. To exercise smart confirmation routing, set options.connectorId to a specific originating connector (or omit it for the manual-origin broadcast path). Dev-only \u2014 requires MOCKER_STAGING_URL + MOCKER_STAGING_KEY; there is no production mocker.",
+      "inputSchema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "properties": {
+          "businessId": {
+            "description": "Dev business the message belongs to (e.g. 'GADG')",
+            "minLength": 1,
+            "type": "string"
+          },
+          "correlationId": {
+            "description": "An optional correlation id of your own (e.g. 'perf-test-7') so you can trace this send in Fuse's logs without copying a generated uuid. Kept mock-identifiable \u2014 prefixed 'mock-' unless it already starts with it. Reuse the same value across sends to group them under one trace, then read them back with mock-activity's correlationId filter. Charset: letters, digits, . _ : -",
+            "type": "string"
+          },
+          "options": {
+            "description": "Publish options",
+            "properties": {
+              "broadcast": {
+                "description": "confirmation_ready only: stamp the planned broadcast attribute (the customer-level broadcast opt-in)",
+                "type": "boolean"
+              },
+              "channel": {
+                "description": "The origin channel to impersonate. Stamped as metadata.source, always mock-marked so mock traffic is never mistaken for a real ingest: 'mock-sftp' / 'mock-rest' / 'mock-shopify', or plain 'mock' when omitted. Also auto-resolves metadata.connectorId to the customer's first connector of that type unless connectorId is given.",
+                "enum": [
+                  "sftp",
+                  "rest",
+                  "shopify"
+                ],
+                "type": "string"
+              },
+              "connectorId": {
+                "description": "The originating connector to attribute the record to \u2014 stamped as metadata.connectorId, the fine-grained key smart confirmation routing (FUSE-927) routes on. Use it to target a SPECIFIC connector when a customer has several of the same type (channel alone cannot distinguish them), or pass an unknown id to exercise the connector-unresolvable broadcast path. Omit BOTH connectorId and channel to mock a manual-Snap-origin record (no originating connector \u2014 the broadcast path).",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "payload": {
+            "anyOf": [
+              {
+                "additionalProperties": {},
+                "propertyNames": {
+                  "type": "string"
+                },
+                "type": "object"
+              },
+              {
+                "items": {},
+                "type": "array"
+              }
+            ],
+            "description": "The canonical record \u2014 an object, or an array of records for the bulk confirmation topics. Passed through as-is."
+          },
+          "recordType": {
+            "description": "Required for the cross-entity targets, omit for the legacy per-entity ones. create_record_request/create_record: sales_order | purchase_order | master_data | return_goods_authorization | work_order. confirmation_ready: pick_confirmation | pack_confirmation | return_goods_authorization | dispatch | receipt | finished_good_receipt | work_order_confirmation.",
+            "type": "string"
+          },
+          "target": {
+            "description": "Which dev Pub/Sub topic to address \u2014 the three cross-entity topics take a recordType; the two legacy per-entity confirmation topics do not",
+            "enum": [
+              "create_record_request",
+              "create_record",
+              "confirmation_ready",
+              "sales_order_confirmation_ready",
+              "purchase_order_confirmation_ready"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "target",
+          "businessId",
+          "payload"
+        ],
+        "type": "object"
+      },
+      "name": "mock-send",
+      "securitySchemes": [
+        {
+          "type": "noauth"
+        }
+      ]
+    },
+    {
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "noauth"
+          }
+        ]
+      },
+      "description": "Fetch one held failure by id \u2014 the canonical record as stored, envelope metadata, failure stage/source/errors, replay history, and the replayability verdict. Read this before retrying: `replayable` runs the same strict canonical schema the retry gate runs, and `blockingIssues` lists the field/problem pairs that would reject it. The id is replay-service's own UUID, not a Mongo _id. Requires REPLAY_SERVICE_STAGING_URL + REPLAY_SERVICE_STAGING_KEY (and/or PRODUCTION equivalents).",
+      "inputSchema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "properties": {
+          "environment": {
+            "default": "staging",
+            "description": "Target environment",
+            "enum": [
+              "staging",
+              "production"
+            ],
+            "type": "string"
+          },
+          "id": {
+            "description": "The failure's UUID",
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ],
+        "type": "object"
+      },
+      "name": "replay-get-failure",
+      "securitySchemes": [
+        {
+          "type": "noauth"
+        }
+      ]
+    },
+    {
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "noauth"
+          }
+        ]
+      },
+      "description": "List the failures replay-service holds \u2014 the pipeline's failure inbox \u2014 paged and newest first. Filter by business, record type, whether the failure has ever been replayed (replayed: false is the untried queue, true is 'failed again'), a substring search over the record reference and failure reason, or a creation date. Each summary carries recordId, reason, attempts, lastReplayAt and lastReplayStatus. Requires REPLAY_SERVICE_STAGING_URL + REPLAY_SERVICE_STAGING_KEY (and/or PRODUCTION equivalents).",
+      "inputSchema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "properties": {
+          "businessId": {
+            "description": "Exact business id match (e.g. 'GADG')",
+            "minLength": 1,
+            "type": "string"
+          },
+          "count": {
+            "default": 10,
+            "description": "Number of failures to return (max 100)",
+            "maximum": 100,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "createdAt": {
+            "description": "ISO 8601 date \u2014 matches that whole day, not a range (e.g. '2026-08-18')",
+            "type": "string"
+          },
+          "environment": {
+            "default": "staging",
+            "description": "Target environment",
+            "enum": [
+              "staging",
+              "production"
+            ],
+            "type": "string"
+          },
+          "offset": {
+            "default": 0,
+            "description": "Number of failures to skip",
+            "maximum": 9007199254740991,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "replayed": {
+            "description": "true = replayed at least once and failed again; false = never replayed",
+            "type": "boolean"
+          },
+          "search": {
+            "description": "Case-insensitive substring over the record reference and failure reason",
+            "minLength": 1,
+            "type": "string"
+          },
+          "sort": {
+            "default": "newest",
+            "description": "Creation-time order",
+            "enum": [
+              "newest",
+              "oldest"
+            ],
+            "type": "string"
+          },
+          "useCase": {
+            "description": "Restrict to one or more record types",
+            "items": {
+              "enum": [
+                "sales_order",
+                "purchase_order",
+                "master_data",
+                "pick_confirmation",
+                "pack_confirmation"
+              ],
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "name": "replay-list-failures",
+      "securitySchemes": [
+        {
+          "type": "noauth"
+        }
+      ]
+    },
+    {
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "noauth"
+          }
+        ]
+      },
+      "description": "Retry (redrive) one held failure by id \u2014 republishes the stored canonical record so it re-enters the pipeline, and appends the attempt to the failure's replay history. Inbound record types re-enter at ingress via their create_*_request topic and are deduped downstream, so a double retry is safe; confirmation record types go to confirmation_ready. The record must pass the strict canonical schema first \u2014 a fresh failure is stored as a deep partial and usually needs repairing (via the Retry Queue in fuse-ui) before it will retry, so check replay-get-failure's blockingIssues first. Requires REPLAY_SERVICE_STAGING_URL + REPLAY_SERVICE_STAGING_KEY (and/or PRODUCTION equivalents). Production retries require confirm: true.",
+      "inputSchema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "properties": {
+          "actor": {
+            "description": "Who to attribute the attempt to in the replay history (e.g. an email); defaults to 'fuse-mcp'",
+            "minLength": 1,
+            "type": "string"
+          },
+          "confirm": {
+            "default": false,
+            "description": "Must be true when retrying in production",
+            "type": "boolean"
+          },
+          "environment": {
+            "default": "staging",
+            "description": "Target environment",
+            "enum": [
+              "staging",
+              "production"
+            ],
+            "type": "string"
+          },
+          "id": {
+            "description": "The failure's UUID",
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ],
+        "type": "object"
+      },
+      "name": "replay-retry",
+      "securitySchemes": [
+        {
+          "type": "noauth"
+        }
+      ]
+    },
+    {
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "noauth"
+          }
+        ]
+      },
+      "description": "Search across all platform knowledge \u2014 services, topics, types, endpoints, and collections \u2014 by keyword. Use when you don't know which specific lookup tool to call.",
+      "inputSchema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "properties": {
+          "query": {
+            "description": "Search term (e.g. 'sales_order', 'warehouse', 'SFTP', 'connector', 'blacklist')",
+            "type": "string"
+          }
+        },
+        "required": [
+          "query"
+        ],
+        "type": "object"
+      },
+      "name": "search",
+      "securitySchemes": [
+        {
+          "type": "noauth"
+        }
+      ]
+    },
+    {
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "noauth"
+          }
+        ]
+      },
+      "description": "Submit canonical data to Fuse via the fapi v2 API. Authenticates as the business itself: resolves the business's REST connector apiKey from config-service and sends HTTP Basic auth (businessId:apiKey), matching fapi's RemoteConfigApiKeyGuard. Requires FAPI_{ENV}_URL plus CONFIG_SERVICE_{ENV}_{URL,KEY} env vars. Production submissions require confirm: true.",
+      "inputSchema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "properties": {
+          "businessId": {
+            "description": "The business to submit as (e.g. 'GADG'). Must own a REST connector and match the businessId on every record.",
+            "type": "string"
+          },
+          "confirm": {
+            "default": false,
+            "description": "Must be true when submitting to production",
+            "type": "boolean"
+          },
+          "entityType": {
+            "description": "Entity type to submit",
+            "enum": [
+              "sales-orders",
+              "purchase-orders",
+              "master-data",
+              "return-goods",
+              "work-orders"
+            ],
+            "type": "string"
+          },
+          "environment": {
+            "default": "staging",
+            "description": "Target environment",
+            "enum": [
+              "staging",
+              "production"
+            ],
+            "type": "string"
+          },
+          "payload": {
+            "anyOf": [
+              {
+                "additionalProperties": {},
+                "propertyNames": {
+                  "type": "string"
+                },
+                "type": "object"
+              },
+              {
+                "items": {},
+                "type": "array"
+              }
+            ],
+            "description": "The canonical record, or an array of records. A single object is wrapped into an array for the v2 bulk endpoint."
+          }
+        },
+        "required": [
+          "businessId",
+          "entityType",
+          "payload"
+        ],
+        "type": "object"
+      },
+      "name": "submit-to-fuse",
+      "securitySchemes": [
+        {
+          "type": "noauth"
+        }
+      ]
+    },
+    {
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "noauth"
+          }
+        ]
+      },
+      "description": "Trace the end-to-end data flow for an entity type through the Fuse pipeline",
+      "inputSchema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "properties": {
+          "entity": {
+            "description": "Entity type: 'sales_order', 'purchase_order', or 'master_data'",
+            "type": "string"
+          }
+        },
+        "required": [
+          "entity"
+        ],
+        "type": "object"
+      },
+      "name": "trace-data-flow",
+      "securitySchemes": [
+        {
+          "type": "noauth"
+        }
+      ]
+    }
+  ]
+}

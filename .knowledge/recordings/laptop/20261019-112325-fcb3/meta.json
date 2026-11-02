@@ -1,0 +1,131 @@
+{
+  "id": "20261019-112325-fcb3",
+  "title": "Fuse Leadership Catchup",
+  "meeting": {
+    "docId": "d_bwakabtompjo",
+    "series": "Bifrost Leadership Catchup",
+    "date": "2026-10-19",
+    "href": "/meeting/bifrost-leadership-catchup"
+  },
+  "context": "11:15–12:00 BST · Teams · calendar title \"Fuse Leadership Catchup\" · organiser Harry · w/ Jack Bailey, Oli Denton · ⚠️ no agenda\n\nContext:\n**Owed by you**\n- Agree the Peak on-call route, then tell Ryan Ellis\n- Confirm owners and dates on Jack Bailey's workshop actions, or say they stand\n\n**Other context**\n- Integrations workshop actions: S13 Datadog session Tue 20 Oct (ingest alerting for all Fuse customers before 1 Nov, opt-out only); S4 deferred a week; S8 comms audit session this week; S7 moved to 8 Nov\n- CT PRICAT GLN still unowned: ILG has no trading-partner ID\n- Hiring: Senior Software Engineer pipeline delegated to you by Oli Denton; interview outcome unconfirmed\n\nCarried from last time:\n- [ ] Agree the Peak on-call route, then tell Ryan Ellis\n- [ ] Confirm owners and dates on the workshop actions",
+  "status": "done",
+  "startedAt": "2026-10-19T11:23:25.978470785+01:00",
+  "endedAt": "2026-10-19T12:12:04.576348152+01:00",
+  "sources": {
+    "me": [
+      "JLAB TALK MICROPHONE Analog Stereo"
+    ],
+    "them": [
+      "Nightly",
+      "Slack",
+      "speech-dispatcher-dummy"
+    ]
+  },
+  "call": true,
+  "speakers": {
+    "Room 1": "Harry",
+    "Room 2": "Harry",
+    "Speaker 1": "Jack Bailey",
+    "Speaker 2": "Oli Denton",
+    "Speaker 3": "Oli Denton",
+    "Speaker 4": "Jack Bailey"
+  },
+  "merged": {
+    "Room 2": "Room 1",
+    "Speaker 1": "Speaker 4",
+    "Speaker 2": "Speaker 3"
+  },
+  "summary": {
+    "tldr": [
+      "Support model mostly agreed: a flow chart and runbooks so Ryan's team triages before escalating, plus agreed response expectations with Ryan's team. Harry will set up a small meeting with Ryan and Dennis this week.",
+      "Out-of-hours and Peak on-call route not settled; it is to be worked out in the Ryan meeting.",
+      "CT go-live pushed back a week and moved to the top of the backlog. Roadmap is locked to year end, and the CT GLN/Edicom config is still being chased.",
+      "No customer go-live meetup is likely before the new year; a site visit or office day is the fallback.",
+      "Hiring: one candidate failed the vibe check and the agency is still searching. The ad covers both the backfill and the Merak capacity, with a senior-dev minimum."
+    ],
+    "decisions": [
+      "Support model is agreed in principle: IT teams do level-one diligence using a flow chart and runbooks, then hand over with the agreed information.",
+      "Agree a response expectation with Ryan's team, e.g. if there is no response within thirty minutes, the issue is treated as de-escalated.",
+      "Meet Ryan's team in a small group (Dennis, who runs the team day to day) this week, ideally Thursday, without the guides being fully written.",
+      "Only team leaders (Darren, Lee, Ryan) can raise critical priority, per the workshop actions; this is general, not only out of hours.",
+      "No go-live meetup before the new year; consider a site visit or an office day instead.",
+      "The CT go-live was pushed back a week and the work moved to the top of the backlog.",
+      "No changes in freex.net until customers move to Fuse (decision reported by Jack).",
+      "Transaction history will show the raw ingest payload this sprint.",
+      "Roadmap is locked to the end of the year; spare capacity may open up if CT needs little rework."
+    ],
+    "actions": [
+      {
+        "owner": "Harry",
+        "text": "Organise a small meeting with Ryan and Dennis on the support model and on-call route",
+        "due": "This week, ideally Thursday"
+      },
+      {
+        "owner": "Harry",
+        "text": "Produce the triage flow chart and runbooks for escalating issues to the Fuse team",
+        "due": ""
+      },
+      {
+        "owner": "Harry",
+        "text": "Send meeting notes to Jack and Oli",
+        "due": ""
+      },
+      {
+        "owner": "Harry",
+        "text": "Bring Matt into the next catch-up",
+        "due": "Next catch-up"
+      },
+      {
+        "owner": "Harry",
+        "text": "Talk to Testy about moving CT config work to Danny and Steve",
+        "due": ""
+      },
+      {
+        "owner": "Jack Bailey",
+        "text": "Put together a design for an SFTP-style browser view in Fuse",
+        "due": ""
+      },
+      {
+        "owner": "Jack Bailey",
+        "text": "Talk to Baron about Fuse representation at the Bifrost operational workshop",
+        "due": ""
+      }
+    ],
+    "questions": [
+      "What is the on-call rota and how will Ryan's team call the Fuse team? The Peak on-call route is still unagreed.",
+      "How will CS fit in? CS does simple fixes today in the legacy world, and Ryan's team lacks capacity to inherit them.",
+      "Who owns the global location numbers (GLNs) for CT's Edicom/EDIFACT config? No one in ILG seems to know.",
+      "Have the owners and dates on the workshop actions been confirmed? This was not covered.",
+      "Will the referral bonus increase be formally approved, and will Chris be told there are two roles?",
+      "Will the site visit go ahead, at BM2 or another site via Steph's contacts?"
+    ],
+    "speakers": [
+      {
+        "label": "Room 1",
+        "name": "Harry",
+        "basis": "Is asked to organise the Ryan meeting, and Jack says 'Harry' while Room 1 answers"
+      },
+      {
+        "label": "Speaker 1",
+        "name": "Jack Bailey",
+        "basis": "Addressed as Jack and recaps the workshop actions"
+      },
+      {
+        "label": "Speaker 2",
+        "name": "Oli Denton",
+        "basis": "Called Ollie; runs the agenda and hiring"
+      }
+    ],
+    "model": "sonnet",
+    "usd": 0.14088599999999998,
+    "durationMs": 19435,
+    "at": "2026-10-19T12:27:01.556409343+01:00"
+  },
+  "enhancement": {
+    "model": "sonnet",
+    "usd": 0.4390182,
+    "durationMs": 41007,
+    "at": "2026-10-19T22:04:26.56888194+01:00",
+    "parts": 6
+  }
+}

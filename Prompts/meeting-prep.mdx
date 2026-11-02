@@ -1,0 +1,59 @@
+---
+type: prompt-tool
+id: meeting-prep
+title: Meeting prep
+area: meetings
+tags: [prompt-tool, meetings]
+version: 1
+queries:
+  series:
+    label: Meeting series
+    type: meeting-series
+    sort: [[updated, desc]]
+    fields: [title, excerpt]
+    limit: 8
+  people:
+    label: Open loops, by person
+    type: person
+    sort: [[updated, desc]]
+    fields: [title, 'section:Open loops']
+    limit: 8
+  plans:
+    label: Work in flight
+    type: plan
+    status: { in: [draft, active, blocked] }
+    sort: [[updated, desc]]
+    fields: [title, excerpt]
+    limit: 5
+---
+
+# Meeting prep
+
+One series at a time. Untick everything that is not this meeting — the include list is
+the filter — then copy. Nothing here calls a model.
+
+<PromptBuilder
+  id="meeting-prep"
+  fields={[
+    { name: 'series', label: 'Which series', kind: 'text', required: true, placeholder: '1-1 Jack Bailey' },
+    { name: 'counterpart', label: 'Who you are meeting', kind: 'text' },
+    { name: 'agenda', label: 'Agenda you were given', kind: 'textarea' },
+    { name: 'to_raise', label: 'What you want out of it', kind: 'textarea' }
+  ]}
+  template={`You are preparing me for one recurring meeting. Use only the context below.
+Meeting: {{series}}, {{weekday}} {{today}}.
+{{#if counterpart}}Counterpart: {{counterpart}}{{/if}}
+{{#if agenda}}Agenda I was given: {{agenda}}{{/if}}
+{{#if to_raise}}What I want out of it: {{to_raise}}{{/if}}
+
+## Context (bounded; sensitive notes excluded)
+{{context}}
+
+## Ask
+1. Context — at most six lines on what is actually open between us, each citing a context id.
+2. Carried — what was owed from last time and still is not done. Say "nothing carried" if the context does not show any.
+3. To raise — three items at most, ordered by what only this meeting can resolve.
+4. One question I should ask and probably will not.
+Do not read the whole plan list back to me. If the context holds nothing on this series, say so plainly rather than inventing an agenda.
+Return markdown, under 250 words.`}
+/>

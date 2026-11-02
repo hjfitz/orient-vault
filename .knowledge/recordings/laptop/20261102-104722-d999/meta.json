@@ -1,0 +1,112 @@
+{
+  "id": "20261102-104722-d999",
+  "title": "Oli/Harry Quick Catchup",
+  "status": "done",
+  "startedAt": "2026-11-02T10:47:22.804872111Z",
+  "endedAt": "2026-11-02T11:26:20.689733188Z",
+  "sources": {
+    "me": [
+      "JLAB TALK MICROPHONE Analog Stereo"
+    ],
+    "them": [
+      "Nightly",
+      "Slack",
+      "speech-dispatcher-dummy"
+    ]
+  },
+  "call": true,
+  "speakers": {
+    "Room 1": "Harry",
+    "Room 2": "Harry",
+    "Speaker 1": "Oli"
+  },
+  "merged": {
+    "Room 2": "Room 1",
+    "Speaker 2": "Speaker 1"
+  },
+  "summary": {
+    "tldr": [
+      "Oli backed Harry's handling of the SFTP/Ionic request with Lee's team, on the condition that they delete the data by end of Monday.",
+      "Most of the call was about the strained relationship between Harry and the Bifrost team, including a comment passed to Kyle that Oli said needs raising formally. Oli's reading is that the lead is too direct and sensitive about not being seen as a developer.",
+      "They agreed to coach that team by raising concerns once and letting them make non-damaging mistakes, and to take problems case by case.",
+      "Oli admitted dropping the ball on one-to-ones and asked Harry to raise concerns early and not vent late.",
+      "Harry's standalone data-processing repo and the new tiered GCP VM were shown. Laptop upgrades will be justified case by case."
+    ],
+    "decisions": [
+      "Coach the Bifrost team by raising concerns once, then letting them make non-damaging mistakes, handled case by case.",
+      "Give better hardware only where a need is shown, not to everyone by default.",
+      "Oli will take the issue with Ollie directly, and the working relationship with the team continues with a reset and more care."
+    ],
+    "actions": [
+      {
+        "owner": "Harry",
+        "text": "Check that Lee's team has deleted the SFTP data and get confirmation.",
+        "due": "End of Monday 2 November"
+      },
+      {
+        "owner": "Speaker 1",
+        "text": "Raise the comment passed to Kyle with the person concerned formally, as a possible grievance/HR compliance issue.",
+        "due": ""
+      },
+      {
+        "owner": "Speaker 1",
+        "text": "Talk to Ollie about being too direct and about his expectations on update frequency.",
+        "due": ""
+      },
+      {
+        "owner": "Speaker 1",
+        "text": "Restart regular one-to-ones with Harry.",
+        "due": ""
+      },
+      {
+        "owner": "Harry",
+        "text": "Raise concerns about how things are going with Oli early, not after venting.",
+        "due": ""
+      },
+      {
+        "owner": "Harry",
+        "text": "Work out how many days contagious to decide whether to come into the office tomorrow for the company showcase.",
+        "due": "Tuesday 3 November"
+      },
+      {
+        "owner": "Harry",
+        "text": "Talk to Jack.",
+        "due": ""
+      }
+    ],
+    "questions": [
+      "How is the Bifrost handover or ownership split meant to work, given that nobody clearly owns managing and delivering it?",
+      "Will letting the team make mistakes be enough, or will AI-generated shortcuts leave a time bomb in twelve months?",
+      "Is more RAM or a MacBook the right fix for Harry's laptop, given CPU is the bottleneck before memory?",
+      "Has the SFTP data deletion by Lee's team actually happened?"
+    ],
+    "speakers": [
+      {
+        "label": "Speaker 1",
+        "name": "Oli",
+        "basis": "Other side of the call, meeting titled Oli/Harry, says 'I'm technically your boss'"
+      },
+      {
+        "label": "Room 1",
+        "name": "Harry",
+        "basis": "Main voice on Harry's mic, discusses own repo and the Kyle/Carl conversation"
+      },
+      {
+        "label": "Room 2",
+        "name": "Harry",
+        "basis": "Probably Harry again on the room mic, answers SFTP and Tom questions"
+      }
+    ],
+    "model": "sonnet",
+    "usd": 0.115228,
+    "durationMs": 15964,
+    "at": "2026-11-02T11:38:07.403774179Z"
+  },
+  "enhancement": {
+    "model": "sonnet",
+    "usd": 0.382127,
+    "durationMs": 39014,
+    "at": "2026-11-02T11:38:46.418857316Z",
+    "parts": 5
+  }
+}

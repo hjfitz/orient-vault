@@ -1,0 +1,58 @@
+---
+tags: [adhoc-task]
+date: 2026-10-12
+tldr: "Rebuilt explainers as BLUF + typed blocks, then spread that design language to every Waypoint overview/architecture (28 services), the Systems docs and the generic reader; sweep also surfaced a cluster of exposure findings"
+session_id: 6f677b58-a1cb-4a48-b9d0-e739ddc43ea5
+status: open
+---
+# UX-review orient's reader and rebuild explainers around BLUF
+
+## Outcome
+orient master `e95972e` (reader: one column + rail, house headings), `0ae4b2b`/`5940b63`/`bb9cb44`/`a00e722` (orient-bluf, evidence, claim tags, native flow + sequence SVG), `6dddb9a` (moved-anchor chip). `explain` skill rewritten (BLUF, mil-style rules, lint, drift check); design.md re-anchored. WOC/FGR explainer migrated and re-verified against snap-adapter `ccfcd9a`: the old page was stale (poller now has a clearer).
+Owed: migrate the other 4 system explainers on their next refresh; consider running `explain-drift.py --all --write` from the morning digest.
+
+## Follow-up: system explainers migrated
+The other four system explainers (snap-adapter read-before-write-create-path, collector reference-search, fuse-ui mapping-template-library and transaction-history-reference-search) are now in the BLUF format, re-verified against current code. Lint clean, drift 0 of 51 anchors moved, all render in orient with no block errors.
+The 7 event explainers in `Explainers/` are migrated too, so every explainer in the vault is in the BLUF format. Two keep a justified length warning (GADG soak test 749 words, GCP config audit 1,595 words).
+
+## Follow-up: explainers table
+/explainers is now a sortable table with Type, Confidence and Service columns and the BLUF as the second line (orient `f69dfda`, `0317269`). `confidence:` is a frontmatter key the lint keeps equal to the BLUF block; all 13 pages are stamped.
+
+## Follow-up: Waypoint overview layout
+The one-column overview felt awkward because the h2 rules, the 72ch text and the rail ended at three different right edges. Rules now stop at the text (`--measure`), the Waypoint track is `40rem` so the rail sits beside the prose, rail titles wrap to two lines, and the rail is separated on phones (orient `c6a6e41`). Explainers keep the 68rem track. `design.md` updated and re-anchored. Not done: a sticky rail, and dropping the repeated service chip in the header.
+
+## Follow-up: homepage done-state
+Ticked items now look done: box check mark, dimmed struck text, a "done N" group (orient `8ac7f9f`). Todos and You owe were not ticked live.
+
+## Follow-up: explainer design language across Waypoint
+- **orient:** sticky outline rail with scroll-spy on explainer, Waypoint and generic readers; Waypoint context (verification, plans, refs, backlinks) collapsed; the Waypoint track widens only when a doc has a flow, sequence or table; guardrails render as a kind chip plus a paths line (`c15e907`, `36e49b1`, `27cc8db`). design.md re-anchored.
+- **Skills:** `explain` lint gained `overview`, `architecture` and `blocks` modes (reads folded YAML scalars); `waypoint-onboard/doc-shapes.md` defines the two shapes; `waypoint-refresh` keeps the blocks true.
+- **Content:** all 28 services' overview.md + architecture.md rewritten against code at each default-branch head (BLUF, orient-flow, evidence, typed guardrails), plus Systems fuse/ilg-platform/orient and Customers/PURDYFIGG. 63 docs lint with 0 errors; no mermaid left; all 56 anchors re-verified; 69 pages render with no block errors. Two architecture docs stay over the word cap (shopify-connector, snap-queue-polling-service).
+- **Findings from the sweep** ([[2026-10-13-waypoint-restyle-findings]] has the full list and what I verified): Cloud Run services granting `allUsers` invoker with no app-level token check on Pub/Sub push routes (dedupe-service, fapi, snap-queue-polling-service, collector, replay-service, config-service customer-creation); distraction-dashboard on Next 15.2.4 behind in-app login only; collector `code/.env` tracked with a Mongo URI password; fuse-mcp config-read URL built from caller path; orient-web and orient-pty listening on 0.0.0.0 with a Host-header-gated ticket route; pkg-node peer-floor drift; pkg-node CI pinned to a personal branch.
+Owed: decide on the exposure findings (none fixed); stale `known-context.md` and `waypoint.yaml` entries listed in each agent report (not edited); the restyle brief did not forbid live calls, and replay-service's agent sent one empty POST to dev.
+
+## Follow-up: customers onboarded into orient
+- **Source decision:** live config-service for what is configured, vault narrative for why, joined on `businessId`. orient reads a generated, secret-free snapshot, never config-service itself.
+- **`cust sync`** (`~/.claude/customers/config_snapshot.py`): reads prod and dev through the hosted Fuse MCP using the token already in `~/.claude.json`, projects through an allowlist, refuses to write if any secret value seen in the raw payload appears in the output, diffs against the previous snapshot, and writes `Customers/<ID>/config.snapshot.yaml` plus a generated `overview.md` for businesses with no narrative. 41 businesses (31 prod, 10 dev-only fixtures), 10 unit tests.
+- **orient** (`6ab7882`, `007dcb1`): Customers tab is a roster (env, channels, WMS, confirmations, recent changes, narrative or config-only); customer docs get a live-config rail. Fixed a bug where a hash like `12e45678` read as Infinity and silently dropped SPORTLUX.
+- **Finding:** PURDYFIGG's hand-written overview says no REST or SFTP channel and confirmations all off; live prod has three connectors and the Shopify one confirms. Narrative not edited.
+Owed: no daily timer yet (needs a decision on a scheduled job holding that token); 40 generated stubs are config only; warehouse routing is not in the snapshot; PURDYFIGG overview needs a human pass.
+
+## Follow-up: PR review from the Team page
+- **orient** `f6e2fc1`, `17adb7a`, `1207e62`, `ce41a05`, `4a48006` and a token-colour fix: Team PRs open `/pr/<owner>/<repo>/<n>` with a unified diff (line numbers, threads placed under their lines, paginated files), reviews, checks and commits. A `+` on a line adds a pending comment kept in the browser; Finish review sends approve, request changes or comment with its inline comments in one call, behind a second click; replies post at once. Every attempt is logged to `~/.local/state/orient/review-log.jsonl` without its text.
+- **Bug found:** `~/.secrets` assigns `GITHUB_TOKEN` three times; orient's fallback parser took the first (an old token plus its `# comment`), so every GitHub call from orient-web was a 401. Now last-assignment-wins.
+- **Security:** orient-web, the dev server and the pty sidecar now listen on `127.0.0.1` only (`90a7314`); the LAN address is refused. Closes the 0.0.0.0 finding, at the cost of LAN access.
+Owed: the submit path has only been tested against a mocked fetch (19 tests) and by driving the UI up to the second click, never against GitHub; Team page rows from the digest boards still link to github.com.
+- **Later the same day:** split (side-by-side) diff is the default with `?view=unified` for the old layout (`ed43103`); PR descriptions wrapped in `<details>` now render as real collapsibles with markdown inside (the pipeline had turned them into literal text); the conversation is a modal with markdown (`f7a2221`). I broke the PR page for a few minutes by staging all of `src/components/pr/`, which swept another session's half-finished CI panel into a commit; fixed by adding its import. Lesson: stage files, not directories, in orient.
+Owed: Claude-assisted review (draft mode in `review-code`, drafts written to the vault, loaded in orient as pending comments) is designed but not built.
+- **Background Claude review** (orient `98a3142`, `0330ca3` and a re-run fix): Review with Claude runs a headless `claude -p` (Sonnet, medium or high effort, no spend cap) with no tools, no MCP servers and no skills, fed the PR text, existing comments, CI status and a diff whose lines carry their numbers. Its structured answer becomes pending comments badged claude (edit or dismiss), a prefilled summary and a suggested verdict; findings off the diff go into the summary; a draft for an older commit is not loaded; a re-run replaces its earlier comments. Real run on fapi#169: 13-17s, $0.02-$0.11. orient's no-LLM rule is amended to allow tool-less headless runs. Nothing is ever posted until the reviewer clicks Finish review.
+Owed: high effort not exercised live; auto-drafting reviews for PRs awaiting my review is not built; findings from runs after the first were not checked against the code.
+- **Review outcomes** (orient `5e4e26f`): the PR page shows your latest review above the diff, read from GitHub so it survives a reload (verdict, time, inline comment count, commit, a "new commits since your review" warning), plus what became of Claude's draft (drafted / sent / edited / dismissed, stored with the draft). Submitting scrolls up and refreshes: threads appear under their lines and the header verdict chips update. Verified end to end against a local GitHub stand-in (`ORIENT_GITHUB_API`), never against real GitHub.
+Owed: the Team page does not show your review state per PR; the new-commits warning is unit-tested only.
+- **Live updates + Finish popover** (orient `621ca96`): the PR page polls a fingerprint (head sha, comment and review counts, state) every 20s while visible; new comments refresh quietly with a notice, a moved head or merge waits behind a Load changes banner. Drafts are kept per PR not per commit; a pending comment whose line left the diff is set aside in the Finish panel (move to summary or drop), never sent. The Finish review panel is a 34rem popover with larger verdict buttons. Verified against the local GitHub stand-in at 3440px.
+Owed: CI status is not part of the poll, so it only updates when something else refreshes the page.
+- **/prs grouped by sprint** (orient `454fe9f`): PRs whose ticket is in the active sprint sit under "In sprint" (sprint name and end date), everything else, including PRs with no ticket, under "Other". Reuses the sprint board adapter's issue keys, so no new Jira calls; if Jira cannot name the sprint nothing is grouped and a chip says so.
+- **/prs ux-review batch** (orient `7eaf1a9`, `a352820`, `a66996c`): rows now say where you stand (you: requested sorts first), ready to merge, conflicts, size, and a finished ticket with an open PR; CI reads failing/running and a running check is no longer reported as green (PrCi gained `pending`); passing CI is a muted tick, not a chip; authors lose `_gfsdev`; titles clip on 0 of 34 rows at 1440 (was 18) and wrap on phones; two panes from 2200px. design.md gained a /prs and review-page section and was re-anchored.
+Owed from that review: split Other into people and bots, sprint overrun on the sprint chip, opened age and comment counts. I also swept another session's two staged file deletions into a commit and had to rebuild it; stage files and read `git diff --cached` before committing.
+- **Page analytics** (orient `6bcb5bb`, `859b415`): `/analytics` (g A) shows views, days used, time in use, last opened, a trend and a verdict per page, joined to every nav view and app page so never-opened pages appear as zeros. A client tracker beacons route templates (never ids or titles) to `analytics.jsonl` in the state dir (not disposable); automated browsers and the dev server are ignored. No verdicts until the log covers the window. Verified end to end on a second instance with its own state dir; the real log stays empty until the user browses.
+Owed: nothing recorded before 2026-10-13 can be recovered; revisit after ~30 days of use to decide what to retire.

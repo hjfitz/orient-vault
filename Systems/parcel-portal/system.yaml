@@ -1,0 +1,11 @@
+# parcel-portal — Waypoint system index. Cheap orientation only, never documentation.
+# Members are NOT listed here: a service joins by declaring `system: parcel-portal` in its
+# own waypoint.yaml, so there is one source of truth. `wp system status parcel-portal` reads it.
+system: parcel-portal
+owner: hjf
+purpose: >
+  A GFS-run parcel portal for shippers whose WMS drops order CSVs: import with row-level
+  validation, book and label through Selector, print at the bench, export the day back.
+  First customer TCA (Yusen US). Out: carrier integrations (Selector's), Fuse's canonical bus.
+programme: Bifrost/Parcel Portal
+created: 2026-10-29

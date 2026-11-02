@@ -1,0 +1,95 @@
+{
+  "id": "20261028-144006-cb9a",
+  "title": "Recording Wed 28 Oct 14:40",
+  "status": "done",
+  "startedAt": "2026-10-28T14:40:06.132479121Z",
+  "endedAt": "2026-10-28T14:54:53.531578273Z",
+  "sources": {
+    "me": [
+      "JLAB TALK MICROPHONE Analog Stereo"
+    ],
+    "them": [
+      "Nightly",
+      "Slack",
+      "speech-dispatcher-dummy"
+    ]
+  },
+  "call": true,
+  "speakers": {
+    "Speaker 1": "Kyle",
+    "Speaker 2": "Wilders",
+    "Speaker 3": "Jake"
+  },
+  "summary": {
+    "tldr": [
+      "Harry walked two colleagues through his Waypoint workflow: onboarding services, then action-ticket, plan and programme tiers, with persona-based plan review.",
+      "Speaker 1 wants to focus on architecture diagrams (C4/Mermaid-style) to give agents the right context and document undocumented services, including an onboarding-process diagram.",
+      "A third colleague joined to say the customer behind a new project hasn't been asked what they need. The team may start by mirroring Dispatch Cloud features one for one, adding analytics and removing unused parts later.",
+      "Harry will send over the skills extracted from orient; Waypoint also works with plain Obsidian.",
+      "Harry showed that he has onboarded all Fuse customers, with per-customer connector setups visible."
+    ],
+    "decisions": [
+      "Start without customer input if needed: mirror Dispatch Cloud as closely as possible, add analytics, then remove unused features.",
+      "Aim to release by Monday, with changes possible afterwards."
+    ],
+    "actions": [
+      {
+        "owner": "Harry",
+        "text": "Extract the Waypoint skills from orient so they can be run standalone, and send them to Speaker 1 and Speaker 2.",
+        "due": ""
+      },
+      {
+        "owner": "Harry",
+        "text": "Ask Steph whether they have extra context on what the customer needs for the Dispatch Cloud work.",
+        "due": ""
+      },
+      {
+        "owner": "Speaker 3",
+        "text": "Join the customer meeting to ask the basic questions and feed any answers back to Harry.",
+        "due": ""
+      },
+      {
+        "owner": "Speaker 1",
+        "text": "Build architecture diagrams for services, starting with one for the Iris onboarding process.",
+        "due": ""
+      }
+    ],
+    "questions": [
+      "What does the customer actually need from the Dispatch Cloud replacement, and which options will they use?",
+      "Do customers want to see and configure the headless selector themselves, or have it as a paid managed service?"
+    ],
+    "speakers": [
+      {
+        "label": "Harry",
+        "name": "Harry",
+        "basis": "Harry's own mic; runs the recording and demos Waypoint"
+      },
+      {
+        "label": "Speaker 1",
+        "name": "",
+        "basis": "Colleague on the call who discusses context issues, Iris, and the selector VM; name not stated"
+      },
+      {
+        "label": "Speaker 2",
+        "name": "",
+        "basis": "Colleague on the call who chimes in on Mermaid and warns the late joiner about recording; name not stated"
+      },
+      {
+        "label": "Speaker 3",
+        "name": "",
+        "basis": "Late joiner dealing with the customer requirements problem; name not stated"
+      }
+    ],
+    "model": "sonnet",
+    "usd": 0.06646200000000001,
+    "durationMs": 7600,
+    "at": "2026-10-28T15:00:26.349598466Z"
+  },
+  "enhancement": {
+    "model": "sonnet",
+    "usd": 0.158582,
+    "durationMs": 19353,
+    "at": "2026-10-28T15:00:45.703766559Z",
+    "parts": 2
+  }
+}

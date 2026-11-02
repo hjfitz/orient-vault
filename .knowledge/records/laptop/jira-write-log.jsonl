@@ -1,0 +1,6 @@
+{"at":"2026-10-13T14:56:43.759Z","action":"flag","key":"FUSE-1077","flagged":false,"ok":true}
+{"at":"2026-10-13T14:56:45.266Z","action":"flag","key":"FUSE-1292","flagged":false,"ok":true}
+{"at":"2026-10-15T10:38:39.390Z","action":"assign","key":"FUSE-1298","to":"me","ok":true}
+{"at":"2026-10-15T10:38:43.884Z","action":"transition","key":"FUSE-1298","statusIds":["10111"],"transition":"21","ok":true}
+{"at":"2026-10-15T11:49:20.656Z","action":"assign","key":"FUSE-1299","to":"me","ok":true}
+{"at":"2026-10-15T11:49:29.668Z","action":"assign","key":"FUSE-1299","to":"nobody","ok":true}

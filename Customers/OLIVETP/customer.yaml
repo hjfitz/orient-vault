@@ -1,0 +1,8 @@
+businessId: OLIVETP
+friendlyName: Olive Tree People
+environment: production
+connectors: []
+wms: []
+created: '2026-10-13'
+last_synced: null
+kind: fixture

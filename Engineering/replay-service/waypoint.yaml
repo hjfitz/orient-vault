@@ -1,0 +1,42 @@
+# replay-service — Waypoint index. Cheap orientation only, never documentation.
+# Keep under ~25 lines. Anything needing a sentence belongs in a doc.
+service: replay-service
+system: fuse
+type: backend            # backend | frontend | library | infra
+owner: fuse-team         # wider Fuse team, same pattern as every other service this session
+language: TypeScript
+framework: NestJS
+deploy: cloud-run         # replay-{env}
+observability: datadog
+
+interfaces:
+  inbound: [http, pubsub]        # admin API + create_data_failure/confirmation_data_failure/confirmation_made pushes
+  outbound: [mongodb, pubsub-create-record-request, pubsub-confirmation-ready]
+
+key_paths:
+  - code/src/core/failure                 # failure.service.ts, inbound/confirmation schema maps, reason-expression
+  - code/src/http/controllers/failures.controller.ts   # the admin API, incl. undocumented POST /replay (bulk)
+  - code/src/http/controllers/event.controller.ts       # create-failure/confirmation-failure/confirmation-made ingest
+  - code/src/models/constants.ts          # UseCaseName / ConfirmationRecordType — the gate for what's storable
+  - iac/projects/replay/pubsub.tf         # 3 subscriptions, 3 DLTs (all unconsumed but monitored)
+
+note: >
+  README.md is verbatim "Repository Template" boilerplate — ignore it, trust
+  CLAUDE.md (exceptionally well-maintained, updated same-PR as the latest code
+  change). Local checkout ~3 days/5 commits behind origin/main, clean (no
+  uncommitted changes) — low-risk drift, but still read origin/main for anything
+  current. Has leftover collector/dedupe fork scaffolding — see CLAUDE.md's
+  "Inherited scaffolding" section before assuming a file is load-bearing.
+
+runtime:
+  package_manager: "pnpm@10.24.0"
+  test_runner: "vitest"
+  node: "latest"
+commands:
+  root: "code/"
+  gate: ["test", "lint:fix", "build:check"]
+  missing: ["build:check:tests"]
+commands_verified: 2026-09-04
+commands_verified_sha: 76d0ad7
+commands_verified_paths: [code/mise.toml, code/package.json, code/pnpm-workspace.yaml]
+onboarded: 2026-08-24

@@ -1,0 +1,120 @@
+{
+  "id": "20261028-130301-7a65",
+  "title": "Weekly Bifrost Catchup",
+  "status": "done",
+  "startedAt": "2026-10-28T13:03:01.807189074Z",
+  "endedAt": "2026-10-28T13:14:09.75735627Z",
+  "sources": {
+    "me": [
+      "JLAB TALK MICROPHONE Analog Stereo"
+    ],
+    "them": [
+      "Google Chrome",
+      "Nightly",
+      "speech-dispatcher-dummy"
+    ]
+  },
+  "call": true,
+  "speakers": {
+    "Speaker 1": "Jack",
+    "Speaker 2": "Darren",
+    "Speaker 3": "James",
+    "Speaker 4": "Steve"
+  },
+  "summary": {
+    "tldr": [
+      "Eccentric Molecules and Flare orders now flow end to end; Shopify parity items (one connector per store, line-level attributes) are live in production.",
+      "Snap performance is degrading ahead of peak after their version upgrades; Ryan is working with Synergy Direct, and the risk is delayed orders reaching the WMS, not lost orders.",
+      "Raw transaction history will likely spill into next sprint because work order and pick/pack feedback was reprioritised ahead of CT, and about half the team is off ill.",
+      "Stock by location is grouped into the Shopify Jitterbit parity work, which probably won't start at the beginning of November.",
+      "Sister Co orders into Snap still fail with invalid API credentials; a special-character issue in generated passwords is suspected and a new host is being set up."
+    ],
+    "decisions": [
+      "Stock by location is folded into the Shopify Jitterbit parity initiative.",
+      "Work order and pick/pack feedback is fixed before the CT work, to avoid duplicate feedback, and this delays the raw transaction history.",
+      "Compare the broken-down Shopify requirements list against the reviewed client extracts when the Jitterbit parity work starts."
+    ],
+    "actions": [
+      {
+        "owner": "Speaker 1",
+        "text": "Update the group on the Snap performance issue once Ryan reports back from Synergy Direct.",
+        "due": ""
+      },
+      {
+        "owner": "Speaker 1",
+        "text": "Close out stock sync and stock API QA.",
+        "due": "End of this sprint"
+      },
+      {
+        "owner": "Speaker 1",
+        "text": "Make, test and get sign-off on the minor work order and pick/pack rework.",
+        "due": ""
+      },
+      {
+        "owner": "Speaker 2",
+        "text": "Hold the Friday session to start plotting customer migration dates.",
+        "due": "Friday"
+      },
+      {
+        "owner": "Speaker 2",
+        "text": "Share a more detailed January to March roadmap of customer dates at next week's meeting.",
+        "due": "Next week's meeting"
+      },
+      {
+        "owner": "Speaker 4",
+        "text": "Regenerate the Sister Co Snap API password without special characters and retest after the call.",
+        "due": "After the call"
+      },
+      {
+        "owner": "Speaker 4",
+        "text": "Rename the new Snap host to match the current Fuse naming convention and confirm Snap have promoted the changes for it.",
+        "due": ""
+      },
+      {
+        "owner": "Speaker 3",
+        "text": "Create the new host and retry getting Sister Co orders from Fuse into Snap.",
+        "due": ""
+      }
+    ],
+    "questions": [
+      "Will the Snap degradation delay orders into the WMS at peak volumes, and can Synergy Direct find the cause?",
+      "Is the Snap invalid API credentials error caused by special characters in passwords, or by something else?",
+      "Is the Snap credentials issue likely to hit other customers?",
+      "Which Shopify Jitterbit parity items are needed first, and which customers can move in January versus March?",
+      "Does the production date field in returns goods mapping matter for any client-specific need?"
+    ],
+    "speakers": [
+      {
+        "label": "Speaker 1",
+        "name": "Jack",
+        "basis": "Gives the product update and roadmap; Speaker 2 addresses them as Jack"
+      },
+      {
+        "label": "Speaker 2",
+        "name": "Darren",
+        "basis": "Chairs the call and is invited to start by Speaker 1 as Darren; covers customer plans"
+      },
+      {
+        "label": "Speaker 3",
+        "name": "James",
+        "basis": "Speaker 2 asks James about Sister Co; reports on the Snap order issue"
+      },
+      {
+        "label": "Speaker 4",
+        "name": "Steve",
+        "basis": "Speaker 3 says they spoke to Steve, who is working on the Snap credentials"
+      }
+    ],
+    "model": "sonnet",
+    "usd": 0.0466021,
+    "durationMs": 9297,
+    "at": "2026-10-28T13:17:37.208807328Z"
+  },
+  "enhancement": {
+    "model": "sonnet",
+    "usd": 0.11634479999999998,
+    "durationMs": 23629,
+    "at": "2026-10-28T13:18:00.838940545Z",
+    "parts": 2
+  }
+}

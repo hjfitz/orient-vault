@@ -1,0 +1,43 @@
+# core-infra — Waypoint index. Cheap orientation only, never documentation.
+# Keep under ~25 lines. Anything needing a sentence belongs in a doc.
+service: core-infra
+system: fuse
+type: infra              # backend | frontend | library | infra
+owner: fuse-team         # wider Fuse team, same pattern as bifrost-pubsub/pkg-node
+language: HCL
+framework: Terraform / Terragrunt
+deploy: "n/a"             # provisions GCP resources directly, no runtime of its own
+observability: none
+
+interfaces:
+  inbound: []                     # none — pure infra provisioning
+  outbound: []                     # none
+
+key_paths:
+  - iac/projects/core-infra/crypto.tf              # KMS + config-service's customer-credential AES key
+  - iac/projects/core-infra/workload-identity.tf   # multi-org GitHub Actions OIDC trust
+  - iac/projects/core-infra/tfstate-access.tf       # cross-env tfstate read grants, well-commented
+  - iac/projects/core-infra/dns.tf                  # DEPRECATED — zone moved to ilg-platform/core-infra, pending D1 removal
+
+note: >
+  No CLAUDE.md exists; README is still the unfilled generic template.
+  config-service's own customer-credential AES key is provisioned HERE,
+  not in config-service's repo — a real cross-repo dependency. WIF trust
+  spans gfs-bifrost, gfs-platform/ilg-platform, and ilg-tech-services via
+  a variable-driven org allowlist. The DNS zone (and its central records —
+  royalmail, apiky, docs, bifrost-tech, etc.) moved wholesale to
+  ilg-platform/core-infra 2026-09-15/16; this repo's dns.tf is dead code
+  pending removal, not authoritative for anything. See architecture.md's
+  DNS section.
+
+runtime:
+  node: "22"
+  terraform: "1.3"
+commands:
+  root: "."
+  gate: []
+  missing: []
+commands_verified: 2026-09-04
+commands_verified_sha: 737532b
+commands_verified_paths: [mise.toml]
+onboarded: 2026-08-24

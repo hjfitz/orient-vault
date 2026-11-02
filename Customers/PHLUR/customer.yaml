@@ -1,0 +1,8 @@
+businessId: PHLUR
+friendlyName: Phlur UK
+environment: production
+connectors: []
+wms: []
+created: '2026-10-13'
+last_synced: null
+kind: customer

@@ -1,0 +1,10 @@
+# fuse — Waypoint system index. Cheap orientation only, never documentation.
+# Members are NOT listed here: a service joins by declaring `system: fuse` in its
+# own waypoint.yaml, so there is one source of truth. `wp system status fuse` reads it.
+system: fuse
+owner: fuse-team
+purpose: >
+  The canonical-first integration platform between ILG's customers and the SnapFulfil
+  WMS. In: order/stock/master-data/confirmation flow, per-customer config, the operational
+  surfaces over it. Out: the WMS itself, shared platform surfaces (see ilg-platform).
+created: 2026-09-24

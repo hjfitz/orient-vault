@@ -1,0 +1,8 @@
+businessId: DOCKBAY
+friendlyName: Dock and Bay
+environment: production
+connectors: []
+wms: []
+created: '2026-10-13'
+last_synced: null
+kind: customer

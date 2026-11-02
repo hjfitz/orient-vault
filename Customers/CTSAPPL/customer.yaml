@@ -1,0 +1,8 @@
+businessId: CTSAPPL
+friendlyName: Charlotte Tilbury SAP (PL)
+environment: production
+connectors: []
+wms: []
+created: '2026-10-22'
+last_synced: null
+kind: fixture

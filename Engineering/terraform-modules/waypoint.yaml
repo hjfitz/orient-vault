@@ -1,0 +1,37 @@
+# terraform-modules — Waypoint index. Cheap orientation only, never documentation.
+# Keep under ~25 lines. Anything needing a sentence belongs in a doc.
+service: terraform-modules
+system: ilg-platform
+type: infra              # backend | frontend | library | infra
+owner: ilg-platform       # shared, ownerless platform effort (#platform-engineering) — Harry contributes regularly, not Fuse-team-owned
+language: HCL
+framework: Terraform (pure HCL, no CI/tooling of any kind)
+deploy: "n/a"             # no runtime — consumed via git module source + ?ref=<tag>
+observability: none
+
+interfaces:
+  inbound: []                     # none
+  outbound: []                     # none
+
+key_paths:
+  - compute/cloud-run              # the ONLY built module — everything else is a .keep placeholder
+  - CLAUDE.md                      # short, precise, states directly what's built vs planned
+
+note: >
+  Only compute/cloud-run is implemented; networking/, pubsub/, secrets/,
+  storage/ are all empty .keep placeholders for planned work — don't invent
+  their surface. Verified 2026-08-24: NONE of the 10 Fuse services onboarded
+  this session actually source compute/cloud-run — every one hand-rolls its
+  own cloud-run.tf. Confirmed expected: new services adopt it via
+  repo-template-ilg; migrating existing services isn't a current priority.
+  Same org-rename-in-flight (gfs-platform -> ilg-platform) as github-actions.
+
+runtime: {}
+commands:
+  root: "."
+  gate: []
+  missing: []
+commands_verified: 2026-09-04
+commands_verified_sha: 10b40f9
+commands_verified_paths: []
+onboarded: 2026-08-24

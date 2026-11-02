@@ -1,0 +1,143 @@
+{
+  "id": "20261027-133739-1ed2",
+  "title": "Recording Tue 27 Oct 13:37",
+  "status": "done",
+  "startedAt": "2026-10-27T13:37:39.884334329Z",
+  "endedAt": "2026-10-27T14:15:50.788116993Z",
+  "sources": {
+    "me": [
+      "JLAB TALK MICROPHONE Analog Stereo"
+    ],
+    "them": [
+      "Nightly",
+      "Slack",
+      "speech-dispatcher-dummy"
+    ]
+  },
+  "call": true,
+  "speakers": {
+    "Room 1": "Harry",
+    "Room 2": "Harry",
+    "Speaker 1": "Jack"
+  },
+  "merged": {
+    "Room 2": "Room 1"
+  },
+  "summary": {
+    "tldr": [
+      "Catch-up after Room 2's time off: Snap performance is bad after the version upgrades, which can't be postponed because of the 1 November de minimis deadline. Peak starts next week.",
+      "Work order and pick/pack bug tickets move above the raw payload work, with stock sync still on top, because CT will need those use cases in a few weeks.",
+      "Eccentric can go live. Stock adjustments for Poland become parity work in November.",
+      "Room 2 will build a Selector adapter to test using Fuse as the data pipeline into Selector, and will run load and burst tests against Snap's test instance. The Selector thread moves to the Merak channel.",
+      "Merak news stays quiet until Pete's all hands this week. Room 2 then announces it and talks to Matt the week after."
+    ],
+    "decisions": [
+      "Move the work order and pick/pack bug tickets above the raw payload work in the sprint. Stock sync stays top.",
+      "Capture Eccentric's Poland stock adjustments under the November Shopify parity work instead of treating them as urgent.",
+      "Keep the Selector-via-Fuse first pass without UI exposure, or admin-only if surfaced at all.",
+      "Raise the Selector-via-Fuse idea in the Merak channel so Tom and Steph can see it.",
+      "Hold Merak announcements to the team until after the all hands. Room 2 announces at the first catch-up after it, then handles the Matt transition the week after.",
+      "Speaker 1 keeps covering Fuse until a backfill arrives. Status quo until the end of the year.",
+      "Snap upgrades cannot be postponed because of the de minimis requirement, so the team has to accept the degraded service."
+    ],
+    "actions": [
+      {
+        "owner": "Room 2",
+        "text": "Build the Selector adapter to prove out the Fuse-to-Selector flow, without UI at first.",
+        "due": ""
+      },
+      {
+        "owner": "Room 2",
+        "text": "Start a thread about the Selector backend with Speaker 1 and Ollie, then move it to the Merak channel.",
+        "due": ""
+      },
+      {
+        "owner": "Room 2",
+        "text": "Run load and burst performance tests against Snap's non-production test instance and get preliminary numbers back to Snap.",
+        "due": "Over the next week or so"
+      },
+      {
+        "owner": "Room 2",
+        "text": "Put the interim peak support model to Ollie, Ryan and Dennis and check they can respond as urgently as the team would.",
+        "due": ""
+      },
+      {
+        "owner": "Room 2",
+        "text": "Distil the shared tooling (support bot, PR updates) so Matt's team can use it.",
+        "due": ""
+      },
+      {
+        "owner": "Room 2",
+        "text": "Announce the Merak changes at the first catch-up after the all hands, then talk to Matt the week after.",
+        "due": "After this week's all hands"
+      },
+      {
+        "owner": "Room 2",
+        "text": "Watch the North Star video Speaker 1 sent and give feedback.",
+        "due": ""
+      },
+      {
+        "owner": "Speaker 1",
+        "text": "Get agreement on who can call an urgent incident (the three team leads), routing anyone else's calls through them.",
+        "due": ""
+      },
+      {
+        "owner": "Speaker 1",
+        "text": "Attach Darren's new CT files to the epic.",
+        "due": ""
+      },
+      {
+        "owner": "Speaker 1",
+        "text": "Explore the SFTP file explorer, probably at connector level, and share prototypes for feedback.",
+        "due": "This week, as time allows"
+      },
+      {
+        "owner": "Speaker 1",
+        "text": "Talk to Steph about including Matt in the interview process for the new engineering hire.",
+        "due": ""
+      },
+      {
+        "owner": "Speaker 1",
+        "text": "Tell Eccentric the issue was latency, not the missing prod feature flag.",
+        "due": ""
+      }
+    ],
+    "questions": [
+      "How should Fuse and Selector be separated in the UI, and is that a Merak concern rather than a Fuse one?",
+      "Should Alex (QA, on secondment from carriers) be pulled back to carriers, and how is he better integrated with the ILG QA team to avoid duplicate sign-offs?",
+      "When is the right time to run Snap load tests so the results are representative, given the maintenance windows?",
+      "Who has actually run end-to-end stock sync and get-stock tests, and when will ILG QA start on them?",
+      "Where should the SFTP file explorer live: baked into the connector, or as a separate view across customers?",
+      "Will the Merak ramp-up start soon, given the Amazon and GFS issues?",
+      "Will the team leads call urgent only when it is really urgent?"
+    ],
+    "speakers": [
+      {
+        "label": "Speaker 1",
+        "name": "",
+        "basis": "Remote voice on the call who ran the update. Mentions Steph, Tom and Pete, and is out Thursday and Friday next week. Name not given."
+      },
+      {
+        "label": "Room 2",
+        "name": "",
+        "basis": "Back from leave, owns the Matt and Merak transition and the Selector and Snap load-testing work. Name not given."
+      },
+      {
+        "label": "Room 1",
+        "name": "Harry",
+        "basis": "Room 2 addresses 'Harry' in the room; low confidence"
+      }
+    ],
+    "model": "sonnet",
+    "usd": 0.122488,
+    "durationMs": 21287,
+    "at": "2026-10-27T14:25:23.072643992Z"
+  },
+  "enhancement": {
+    "model": "sonnet",
+    "usd": 0.37582879999999996,
+    "durationMs": 34802,
+    "at": "2026-10-27T14:25:57.875683297Z",
+    "parts": 5
+  }
+}
