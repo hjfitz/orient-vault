@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-02 — Add a skill for logging in from another laptop
+
+Add a skill for logging in from another laptop
+
+Ship: SHIP-1102-add-laptop. New add-laptop skill, run on the new laptop: finds or makes its key, checks it against keys on main and in open PRs (refuses one that's someone else's), adds it only where missing, checks the plan is an in-place rc-users metadata update, sets up ssh; covers removing a lost laptop's key and its other logins. Two variable checks: no key twice on one owner, no key under two emails (type + key data, comment and spacing ignored; errors name owner not key). README, create-workstation, prod.tfvars comment and Confluence (v3) point to it. Prod plan No changes. Open: terraform-prod allows self-review.
+
+PR: ilg-platform/remote-compute#12
+
 ## 2026-11-02 — Keep IAP access across a workstation rebuild
 
 Keep IAP access across a workstation rebuild
