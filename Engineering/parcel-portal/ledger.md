@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-03 — Cancel pending orders and pack them into a preset in bulk (C16 G, svc)
+
+Cancel pending orders and pack them into a preset in bulk (C16 G, svc)
+
+Harry asked to bulk-change the status of pending orders (3 Nov) and agreed two actions. POST /orders/cancel voids pending orders that no dispatch holds, recorded under the user and audited; a later file with the same reference imports the order afresh. POST /orders/pack gives each needs_packing order one preset parcel holding all its lines, through the single-order pack. Both return per-order results and work for an acting admin. Contract 4.7.0; no migration. Verified locally as a customer and as an acting admin.
+
+PR: ilg-merak/parcel-portal#76
+
 ## 2026-11-03 — Rework the file layout editor around columns, grouping and portal fields (C17 2/2)
 
 Rework the file layout editor around columns, grouping and portal fields (C17 2/2)
