@@ -8,7 +8,7 @@ from: laptop
 to: hjf.shell.platform.ilg.software
 session_id: 80a57909-179d-48c7-a6cb-da766abb7a8a
 resumed_by: ""
-updated: 2026-11-03T16:35Z
+updated: 2026-11-03T16:45Z
 ---
 # Handover: Parcel Portal
 
@@ -26,12 +26,12 @@ Dev runs main at `ad72137` (svc-parcel-dev and ui-parcel-dev, project `ilg-merak
 Dev SFTP users: `tca` (the existing dev test client's key) and `tca-verify` (disabled, left from verification).
 
 ## In flight
-Each was started as a fork in the laptop session; each merges and deploys itself. If the laptop session ends first, finish the row from the target with "To close it".
+The laptop's forks were **stopped at 16:42Z** (Harry logging off). Both had pushed everything; their laptop worktrees are clean and not reachable from here — work from the pushed branches. Finish each row:
 
-| Work | PR / branch | State (16:30Z) | To close it |
+| Work | PR / branch | State (16:45Z) | To close it |
 | --- | --- | --- | --- |
-| Site-local dates (C16 F): tenant time zone on `/me` (acting tenant's when acting), one named-zone formatter, Export day picker | #68 `hjf/c16-local-dates` | Open, CI running | Contract version → next free minor after main (4.7.0); merge; confirm svc+ui `terraform-apply-dev` success and image tags = merge sha |
-| Bulk Cancel + Pack-with-preset on Orders (C16 G) | #76 (svc) → #77 (ui), stack | Open, CI | Merge bottom-up (`gh stack merge 77 --yes --merge` from the repo root); confirm svc+ui dev deploys; contract → next free minor after 4.7.0 |
+| Site-local dates (C16 F): tenant time zone on `/me` (acting tenant's when acting), one named-zone formatter, Export day picker | #68 `hjf/c16-local-dates` (head `b7e5381`) | Open, CI running; **behind main** — main moved to contract 4.7.0 (C17) | In a worktree off the branch: `git merge origin/main`, resolve `apps/svc/openapi.yaml` to **4.8.0** (next free minor), `make gen`, svc + ui gates, push; wait for CI; merge; confirm svc+ui `terraform-apply-dev` success + image tags; record in Closed |
+| Bulk Cancel + Pack-with-preset on Orders (C16 G) | #76 `hjf/c16-bulk-actions-svc` → #77 `hjf/c16-bulk-actions-ui` (stack, head `c0226f9`) | Open, CI running; clean on top of main | If #68 merges first, re-check the stack's contract version doesn't collide (renumber to the next free minor); then `gh stack merge 77 --yes --merge` from the repo root; confirm svc+ui dev deploys; ledger entries exist from the fork — check with `grep -F "#76" ~/Documents/obsidian/Engineering/parcel-portal/ledger.md`, add if missing |
 
 ## Waiting on Harry
 Nothing is blocked on him now. These come back to him before proceeding:
@@ -57,7 +57,7 @@ Nothing is blocked on him now. These come back to him before proceeding:
 ## On the target
 Checked 2026-11-03 ~16:40Z on `harry@hjf.shell.platform.ilg.software`; synced with remote-compute's `sync-claude-config` (vault, `~/code`, `~/code/merak` config, skills, MCP servers); this record, `session-handover/SKILL.md` and `Migration State.md` verified identical by sha256.
 - **Has:** claude, gh (logged in as harry-fitzgerald_gfsdev), gcloud (harry.fitzgerald@gfsdeliver.com), git, go, node, docker, python3, jq, tmux, mise (pnpm, terraform, terragrunt, gitleaks installed under mise — not on the login PATH until `mise` activates in the repo), `~/.claude/waypoint`, orient at `~/projects/orient`, the vault.
-- **Missing — do first:** clone the repo: `mkdir -p ~/code/merak && cd ~/code/merak && git clone https://github.com/ilg-merak/parcel-portal.git` (memories key on the folder Claude starts in, so start Claude from `~/code/merak`). The dev admin password file `~/parcel-portal-dev-admin.txt` is not synced — ask Harry to place it, or read it from wherever he keeps it; never print it. No local Postgres yet: `cd apps/svc && make deps-up` (docker is there). OAuth MCP servers (Atlassian, Datadog, Slack, ado-remote) need `/mcp` once; the fuse MCP kept the workstation's own config.
+- **Repo:** cloned at `~/code/merak/parcel-portal` (16:47Z, `gh repo clone`; the workstation's gh account sees the open PRs). Claude starts from `~/code/merak`. The dev admin password file `~/parcel-portal-dev-admin.txt` is not synced — ask Harry to place it, or read it from wherever he keeps it; never print it. No local Postgres yet: `cd apps/svc && make deps-up` (docker is there). OAuth MCP servers (Atlassian, Datadog, Slack, ado-remote) need `/mcp` once; the fuse MCP kept the workstation's own config.
 - **Start:** `ssh harry@hjf.shell.platform.ilg.software`, `cd ~/code/merak`, `claude`, then "pick up the Parcel Portal handover".
 
 ## Gotchas
