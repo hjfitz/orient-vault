@@ -8,9 +8,9 @@ snap_instance:
 channel: bifrost-notifications
 thread_url: "https://gfsdeliver-eng.slack.com/archives/C099WKQTE8G/p1793631805960609"
 opened_at: "2026-11-02T15:01:59Z"
-severity_assessed: P3
+severity_assessed: P2
 flapping: false
-outcome: real_minor
+outcome: unresolved
 escalated_to:
 ticket:
 session_id: 7198be0e-f4de-4cae-8e32-ef4ac0c4cdb9
@@ -39,6 +39,18 @@ Monitor 302685719 (priority 3): `sum(last_15m):default_zero(sum:fuse.ingest.vali
 
 ## Outcome
 Real_minor, P3. Not a platform fault or rule change: DOCKBAY's Fulfil.io is sending sales orders with null `shipContacts.0.contact.email`/`phone` and `order.class`, which fapi's canonical schema rejects (400), a pattern since 19 Oct. 26 POSTs rejected at 15:01Z; they are lost to Fuse unless DOCKBAY resends. Support/DOCKBAY should be asked to resend the rejected orders and fix or default those fields (or the schema should accept nulls). Re-check if rejections continue or DOCKBAY confirms the orders were not resent (then raise).
+
+## Update 2026-11-03 (Alert, metric 51.0 at 13:03:59Z)
+Thread: C099WKQTE8G / 1793711124.580619. Thresholds (monitor 302685719, Terraform-managed): critical 50, warning 10. Tripping value 51.0 vs >50.
+- **All 51 are DOCKBAY again:** 51 `Record batch rejected` warns in the last 75m, every one connector conn_068adb81..., recordType sales_order, service rest_connector; no other connector or record type.
+- **One 7-second burst:** 13:03:18-13:03:25Z (per-minute counts over 26h: 14:37 1, 14:51 3, 14:52 1, 15:01 26 on 2 Nov, 17:01 1, then 13:03 51 today). Nothing before or after on 3 Nov.
+- **Same fault:** all 51 are `order.class` AND `shipContacts.0.contact.email` `expected string, received null` (one pair per record).
+- **Accepted in the same burst:** 18 `Record batch emitted` at 13:03Z (DOCKBAY posts hourly at about :01-:03; accepted 11:03 26, 12:03 14, no rejections at those). So about 51 of 69 orders (74%) rejected at 13:03.
+- **Volume since 2 Nov 14:00Z:** 83 rejected vs 468 accepted batches (hourly counts, all 1 record each); 14:00 hour 2 Nov was 139 accepted.
+- **No Fuse-side change:** single fapi version 1d72173 across all rest_connector logs in 48h; last merged fapi PR #179 (20 Oct).
+- **Resend:** a 400 is not stored; no order id in rejection logs. Rejections did not recur at the hourly runs after 2 Nov 15:01 (1 at 17:01), so the 2 Nov rejected orders were not re-posted unchanged, but whether they arrived corrected is NOT established.
+- Not established: distinct orders rejected, whether any were resent; snap-adapter DOCKBAY order refs (Fuse MCP down, 401); what Fulfil sends for these orders.
+Assessed P2 candidate (live customer, repeat and doubling, orders not reaching Fuse); returned ESCALATE to watcher.
 
 ## Links
 - Slack thread: https://gfsdeliver-eng.slack.com/archives/C099WKQTE8G/p1793631805960609
