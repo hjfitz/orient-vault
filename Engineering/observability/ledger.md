@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-03 — Move default_zero out of query fields on the SFTP dashboard
+
+Move default_zero out of query fields on the SFTP dashboard
+
+Fix-forward for #82: 14 widgets had default_zero(...) in queries[].query, which the dashboard UI renders as 'invalid formula in query field'. Functions go in formulas[].formula, as on every other board here. None of the API checks reproduce the UI's rejection: v1 /query, POST /dashboard and v2 /query/scalar|timeseries all accept it. Grep committed JSON for a function in a query field instead.
+
+PR: gfs-bifrost/observability#83
+
 ## 2026-11-03 — Add an SFTP Host tab to the SFTP Connector dashboard
 
 Add an SFTP Host tab to the SFTP Connector dashboard
