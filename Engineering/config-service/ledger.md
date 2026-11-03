@@ -7,6 +7,15 @@ title: config-service — work ledger
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-03 — Serve dev config from Cloud SQL
+
+Serve dev config from Cloud SQL
+
+D3 runbook step 9: persistence_backend = postgres, freeze lifted, dev backfill job removed. Stacked on #306; held until the delta backfill and parity are green.
+
+Ship: SHIP-1028-cloudsql-repo-seam
+PR: gfs-bifrost/config-service#307
+
 ## 2026-11-03 — Freeze dev config writes for the Cloud SQL cutover
 
 Freeze dev config writes for the Cloud SQL cutover
