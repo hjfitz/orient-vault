@@ -8,7 +8,7 @@ from: laptop
 to: hjf.shell.platform.ilg.software
 session_id: 80a57909-179d-48c7-a6cb-da766abb7a8a
 resumed_by: 7652f0c7-9f02-4c64-b56f-a154250bb016
-updated: 2026-11-03T17:38Z
+updated: 2026-11-03T17:47Z
 ---
 # Handover: Parcel Portal
 
@@ -29,7 +29,7 @@ Dev SFTP users: `tca` (the existing dev test client's key) and `tca-verify` (dis
 ## In flight
 | Work | PR / branch | State | To close it |
 | --- | --- | --- | --- |
-| C15 P4b: CSV upload over the API | #80 `hjf/c15-api-upload` (draft; worktree `.claude/worktrees/c15-api-upload`) | Gates green locally. review-panel findings fixed (`0cfa306`). See its Closed row for CI. | On Harry's yes to 5.0.0: `gh pr ready 80`, merge, confirm the svc+ui dev deploys, then record it here. Main has moved since? Then merge `origin/main` in first, and renumber if a 5.x has landed. |
+| C15 P4b: CSV upload over the API | #80 `hjf/c15-api-upload` (draft; worktree `.claude/worktrees/c15-api-upload`) | Gates green locally. review-panel findings fixed (`0cfa306`). CI: all 31 checks green on `0cfa306`, the UI lint and build included. Draft until Harry answers. | On Harry's yes to 5.0.0: `gh pr ready 80`, merge, confirm the svc+ui dev deploys, then record it here. Main has moved since? Then merge `origin/main` in first, and renumber if a 5.x has landed. |
 
 ## Waiting on Harry
 - **Portal contract 5.0.0 for P4b (#80).** Recommend yes.
