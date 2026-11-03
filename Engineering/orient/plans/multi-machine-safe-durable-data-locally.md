@@ -281,18 +281,4 @@ To roll back: systemctl --user disable --now orient-vault-sync.timer, then delet
      or refuted hypothesis. Not restated doc content. Sign-off promotes each confirmed one into
      the matching durable doc, then clears it from here; a refuted one moves to ## Handback
      rather than being deleted. Legitimately empty. -->
-- **Systems/orient/architecture.md is stale:**
-  - It says `orient-web` binds `0.0.0.0`; it binds loopback, since 90a7314 on 2026-10-13.
-  - It says "three systemd units"; there are six, including desk, scribe and the vault-sync to come.
-  - It says wp.py has "22" subcommands.
-  - Refresh it at sign-off.
-- **The `sync-claude-config` copier ships much more than skills and the vault:** CLAUDE.md, settings, statusline, agents, commands, hooks, project memory, `--extra ~/code` and MCP servers with their tokens from `~/.claude.json`. It also skips symlinks. Nothing documents this in the vault.
-- **`statusline.py` writes `usage-history.jsonl` at 3-5k rows a day** (72.5k rows in total). Any sync design that commits on every change has to batch it.
-- **Two `.knowledge` stores (`plan-status`, `todo-defers`) write non-atomically and read a parse failure as empty.** Before this plan, a crash mid-write lost every note, sync or no sync.
-- **Scribe's write surface on `meta.json`** goes well beyond status: rename, trim, merge, speaker naming, delete and enhance.
-- **Claude Code's Edit and Write refuse to write through a symlinked file** ("it is a symbolic link. Write to the link's target path instead"), but write through a symlinked directory normally. Tested in a scratchpad on 2026-11-02. Anything linked into `~/.claude` must be linked at the directory level.
-- **`wp tick --note` suppresses the `done:` stamp if the note contains the sha** (`cmd_tick`, `if sha and sha not in new`). It's a substring check, so a note that mentions the commit loses its stamp silently.
-- **A destructive job wired into a service's startup runs the moment the service starts.** To get a "dry run first", run the dry run (`orient-scribe prune -dry-run`) *before* deploying the build that prunes on start; a flag added afterwards doesn't help. That's how the 2026-10-19 audio went.
-- **A oneshot systemd unit can't take a "run again" request.** `systemctl start` on a oneshot unit that is already activating merges into the running job, so a write that lands mid-sync would wait for the next timer run. vault-sync.sh fixes this with a request stamp (`.git/orient-sync-requested`) that the running sync checks before it exits.
-- **`wp tick` used to tick the template's example increment.** The Increments guidance comment carries an example `- [ ] 6. Widen the subscription filter`, and `cmd_tick` took the first `- [ ] N.` match, comments included. So on any plan with an increment 6, the first tick of 6 stamped the comment, not the real increment. Fixed in writers 2026-11-03 (the comment is now stripped before matching). Two plans already have the example ticked: `images/remote-compute-vm-image-packer-ubuntu-24-04` and `remote-compute/first-workstation-stack-module-and-one-engineer-`. Their real increment 6 may be missing its tick and stamp.
-- **In bash, `cmd <missing-file 2>/dev/null` still prints the "No such file" error:** redirections apply left to right, and the input redirect fails before stderr moves. Put `2>/dev/null` first.
+(Promoted 2026-11-03 into `Systems/orient/architecture.md` and `Systems/orient/known-context.md`. The bash redirect-order note was general, not orient's, and was dropped. The `wp tick` example-increment bug is fixed in writers 01dbcf2.)
