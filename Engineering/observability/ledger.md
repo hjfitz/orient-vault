@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-03 — Add an SFTP Host tab to the SFTP Connector dashboard
+
+Add an SFTP Host tab to the SFTP Connector dashboard
+
+Tabbed [FUSE][SFTP Connector] Overview (rnw-pit-a9v): the Connector tab's widgets were repointed at the shared metric catalogue (22/38 queries had been reading nothing since the move off fuse.messages.* / fuse.config.retrieval.failure / fuse.record_parse.failure). Adds an SFTP Host tab covering health, logins, uploads to ingest, users.json/provisioning/config, logs and the legacy VM. Gotchas: a logs query's $environment expands to environment:<v>, so @environment needs $environment.value; host container.* metrics carry env, not environment, so GCE instance_name:sftp-host-<env>-* is used instead; validate a tabbed body by POSTing a temp dashboard, because plan doesn't catch 400s.
+
+PR: gfs-bifrost/observability#82
+
 ## 2026-11-02 — Publish the prod SFTP host monitors ahead of S2
 
 Publish the prod SFTP host monitors ahead of S2
