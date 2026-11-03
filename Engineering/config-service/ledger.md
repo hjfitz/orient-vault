@@ -7,6 +7,14 @@ title: config-service — work ledger
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-03 — Give run.invoker one owner so prod plans stop flip-flopping
+
+Give run.invoker one owner so prod plans stop flip-flopping
+
+Found in #312's prod plan. iam_binding.public was authoritative for roles/run.invoker with only allUsers, so every apply stripped the Pub/Sub push identity's iam_member and the next apply re-created it (a SetIamPolicy by github-runner on every apply). The push identity now sits in the binding's members, and the old iam_member left state through removed { destroy = false }, so nothing was revoked at any point. Prod plan 0/2/0 + 1 forgotten, agreed with Harry; applied. Live run.invoker in prod and dev is allUsers + the -ps identity; prod config-service-prod-00069-lq5 at 100%. CLAUDE.md records the one-owner rule and the fixed MCP customer_creation drift. Left alone: the run.googleapis.com/container-dependencies annotation every plan re-adds.
+
+PR: gfs-bifrost/config-service#313
+
 ## 2026-11-03 — Log a rate-limited request as a 429, not an unhandled 500
 
 Log a rate-limited request as a 429, not an unhandled 500
