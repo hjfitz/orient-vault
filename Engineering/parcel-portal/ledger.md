@@ -6,6 +6,22 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-03 — Manage a customer's API keys in Settings (C15 P2 UI)
+
+Manage a customer's API keys in Settings (C15 P2 UI)
+
+C15 P2 UI. API keys tab on the customer: list, make with a label (secret shown once with copy), and revoke behind a confirm; an optional Overview checklist step; a note that the customer API isn't open yet.
+
+PR: ilg-merak/parcel-portal#71
+
+## 2026-11-03 — Let GFS admins make and revoke API keys (C15 P2)
+
+Let GFS admins make and revoke API keys (C15 P2)
+
+C15 P2. core/apikeys creates ppk_<env>_<keyId>_<secret> keys (shown once, SHA-256 stored), lists, revokes, and authenticates a token to its tenant with a throttled last-used. Admin routes under /admin/tenants/{tenantId}/api-keys (contract 4.6.0, additive). Audit by key id only.
+
+PR: ilg-merak/parcel-portal#70
+
 ## 2026-11-03 — Store each customer's API keys (C15 P1)
 
 Store each customer's API keys (C15 P1)
