@@ -2,9 +2,9 @@
 ticket: none
 title: Go remote and bootstrap a fresh machine
 service: orient
-status: draft
+status: active
 created: '2026-11-02'
-updated: '2026-11-02'
+updated: '2026-11-03'
 repo: /home/hjf/projects/orient
 worktree: /home/hjf/projects/orient
 branch: master
