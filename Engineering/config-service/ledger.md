@@ -7,6 +7,15 @@ title: config-service — work ledger
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-03 — Number parity placeholders in sorted key order
+
+Number parity placeholders in sorted key order
+
+parity:write numbered generated values by first appearance, so a key-order difference (Mongo updatedAt before createdAt) read as a value difference. Now numbered in sorted key order; output key order kept. First live dev write check: 83/83 steps and 62 events identical with the fix.
+
+Ship: SHIP-1028-cloudsql-repo-seam
+PR: gfs-bifrost/config-service#305
+
 ## 2026-11-03 — Add the write half of the Cloud SQL parity check
 
 Add the write half of the Cloud SQL parity check
