@@ -26,7 +26,7 @@ PR: ilg-merak/parcel-portal#77
 
 Cancel pending orders and pack them into a preset in bulk (C16 G, svc)
 
-Harry asked to bulk-change the status of pending orders (3 Nov) and agreed two actions. POST /orders/cancel voids pending orders that no dispatch holds, recorded under the user and audited; a later file with the same reference imports the order afresh. POST /orders/pack gives each needs_packing order one preset parcel holding all its lines, through the single-order pack. Both return per-order results and work for an acting admin. Contract 4.7.0; no migration. Verified locally as a customer and as an acting admin.
+Harry asked to bulk-change the status of pending orders (3 Nov) and agreed two actions. POST /orders/cancel voids pending orders that no dispatch holds, recorded under the user and audited; a later file with the same reference imports the order afresh. POST /orders/pack gives each needs_packing order one preset parcel holding all its lines, through the single-order pack. Both return per-order results and work for an acting admin. Contract 4.9.0 (renumbered after #68 took 4.8.0); no migration. Verified locally as a customer and as an acting admin. Pre-merge review fixes: portal-side per-order faults are logged ('Bulk order action failed'), a held order (dispatch running or outcome unknown) says to dispatch it again to settle it, stale-read is order_changed. Merged with #77 as 6b12b7d via the async stack merge API.
 
 PR: ilg-merak/parcel-portal#76
 

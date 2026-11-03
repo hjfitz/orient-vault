@@ -8,7 +8,7 @@ from: laptop
 to: hjf.shell.platform.ilg.software
 session_id: 80a57909-179d-48c7-a6cb-da766abb7a8a
 resumed_by: 7652f0c7-9f02-4c64-b56f-a154250bb016
-updated: 2026-11-03T16:55Z
+updated: 2026-11-03T17:14Z
 ---
 # Handover: Parcel Portal
 
@@ -72,5 +72,6 @@ Checked 2026-11-03 ~16:40Z on `harry@hjf.shell.platform.ilg.software`; synced wi
 ## Closed since handover
 | When (UTC) | Work | Result |
 | --- | --- | --- |
+| 2026-11-03 ~17:09 | #76/#77 bulk Cancel + Pack (C16 G) | Merged main (with #68) in and renumbered the contract **4.8.0 → 4.9.0**. Ran review-panel on the stack and fixed what it found. In bulk.go: a portal-side failure (internal or unavailable) is now logged as "Bulk order action failed"; a held order's message now says to dispatch it again to settle it; a stale-read conflict is now coded `order_changed`. In the UI: the preset picker falls back when the chosen preset is gone; the cancel dialog keeps its count while it closes; the order page says "cancelled". svc gates + integration green locally, CI green. **Native GitHub stack:** `gh pr merge` is refused, and the extension isn't installed here, so it merged via `PUT /pulls/77/merge-async` (merges downstack too). Merged as `6b12b7d`; svc+ui `terraform-apply-dev` success, both on `dev-6b12b7d`, svc "Migrations applied" toVersion 14 at 17:08Z. |
 | 2026-11-03 ~16:55 | #68 site-local dates (C16 F) | Already had main merged (contract 4.8.0); svc gates + integration green locally, CI green (UI gates from CI: this box's gh token lacks `read:packages`). review-panel: no blockers (follow-up: customer settings tabs show the *acting* tenant's zone, not that customer's). Merged as `5f57837`; svc+ui `terraform-apply-dev` success, both on `dev-5f57837`, svc "Migrations applied" toVersion 14 at 16:54Z. Resumed by the workstation session. |
 | 2026-11-03 ~16:30 | C17 file layout editor rework | #73 + #74 merged as `ad72137`; svc+ui dev on `dev-ad72137`; C17 ✅ in Migration State |
