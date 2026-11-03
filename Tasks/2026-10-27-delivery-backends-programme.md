@@ -1,7 +1,7 @@
 ---
 tags: [adhoc-task]
 date: 2026-10-27
-tldr: "Parcel Portal: onboarded as an orient system; C9 browser upload, C10 admin Customers + dev fake carrier, C11 file page/shipping methods/line editing and D2 DNS (parcel.delivery.freightops.dev) live on dev, prod held at D1. Delivery Backends: A1–A3 + Merak portal in prod; B1 prod gate floating; B3 after soak"
+tldr: "Parcel Portal: C9–C13 and D2 live on dev (browser upload, admin Customers + fake carrier, file page/line editing, per-customer carrier account, tabbed Settings + CSV mapping editor with dry-run), C14 per-user SFTP designed; prod held at D1. Delivery Backends: A1–A3 + Merak portal in prod; B1 prod gate floating; B3 after soak"
 session_id: 80a57909-179d-48c7-a6cb-da766abb7a8a
 status: open
 ---
@@ -20,3 +20,4 @@ B1 merged (prod gate awaiting Harry). B2 merged and verified on dev (sandbox boo
 Out-of-ticket costing: wp ledger (new --programme flag) and wp programme tick log the session to ~/.local/state/orient/work-usage.jsonl; orient 658604a + 1d69a4f price programme rows on /programmes and out-of-ticket entries on /ledger (a session split evenly across its ledger entries). This session backfilled (14 entries, Delivery Backends £79). CLAUDE.md, waypoint-programme and orient-record skills updated.
 Parcel Portal (new programme, MKP-2): the DC-clone epic was canned for Wilders' TCA requirements; programme, epic and 25 MKP tasks (units plus [Gate] tasks with Blocks links) created; every unit but D1 built by agents and merged to ilg-merak/parcel-portal; svc, ui and sftp deployed to dev; SFTP verified. Owed: Harry's signed-in dev e2e (Bifrost/Parcel Portal/Dev test checklist.md), then prod; customer gates MKP-5–10 and 29 are open.
 2026-10-29: Parcel Portal onboarded to orient as the `parcel-portal` system (Systems/ + Engineering/ docs). Carrier account moved to env (#25). sftp dev deploys fixed (#26–#28; canary PASS). Shipped to dev via /ship with independent reviews: browser upload C9 (#29/#30), admin Customers + dev fake carrier + sandbox Manifest guard C10 (#33–#35), file page + shipping methods + line/customs editing C11 (#38–#41), DNS D2 (#32/#37 + ilg-platform/core-infra#16): UI at parcel.delivery.freightops.dev. Harry signed in and imported on dev. MKP-32 (G10 tenant question) and MKP-33–36 created; 33–36 done. Owed: see the 29 Oct digest todo; prod still held at D1.
+2026-11-02/03: C12 per-customer carrier account (#43/#44) live on dev. C13 tabbed Settings (#47) and CSV mapping editor with a dry-run preview (#48/#49 svc, #51 UI, #52 fix) live on dev, each through a review panel. C14 per-user SFTP credentials designed (ledger row), awaiting Harry's go-ahead. MKP Jira dropped for this programme.
