@@ -69,11 +69,19 @@ sessions and often carries a multi-vintage pile of uncommitted work. Committing 
 whole tree — check `git status` and ask before committing someone else's in-flight edits.
 Never `git stash`: the stash stack is shared.
 
-**No remote.** "Pushed" is never a thing here; commits are local-only to `master`. Do not
-report or attempt a push.
+**No remote for the app or the writers yet (snapshot 2026-11-03).** Commits to `~/projects/orient` and `~/projects/orient-writers` are local to `master`/`main`. Do not report or attempt a push until Plan B (`go-remote-and-bootstrap-a-fresh-machine`) wires `hjfitz/*`. The vault's own origin is still the local stand-in `~/.local/state/orient/vault-remote.git`.
 
-**`~/.claude` is not version-controlled.** The writers — `wp.py`, `cust.py`, ~30 skills — have
-no history and no backup. This is the system's biggest single point of failure.
+**Never use `gitswitch` for anything unattended.** It swaps the whole global SSH config between the personal and work accounts. The orient repos pin the personal key per repo with `core.sshCommand "ssh -F ~/.ssh/config-self"`.
+
+**The vault commits itself.** `orient-vault-sync` commits everything every 90 s and after every writer's kick. Anything dropped into the vault is committed and pushed unless `.gitignore` excludes it. Keep secrets, audio and per-machine state out, or ignore them first.
+
+**Writers are linked into `~/.claude` by directory, never by file.** Claude Code's Edit and Write refuse to write through a symlinked file, but write through a symlinked directory. A new skill goes in `orient-writers/skills/<name>/` with a directory link.
+
+**The retired `sync-claude-config` copier ships far more than skills.** It copies CLAUDE.md, settings, the statusline, agents, hooks, project memory, `~/code` and the MCP servers with their tokens from `~/.claude.json`. It is disabled (unit files kept). Re-enabling it would overwrite the VM's git-managed writers and leak tokens.
+
+**A destructive job wired into a service's start runs the moment it deploys.** Run its dry run (`orient-scribe prune -dry-run`) *before* deploying the build. Audio for four 2026-10-19 recordings was lost this way.
+
+**`wp tick --note` drops the `done:` stamp if the note contains the sha.** `cmd_tick` checks `sha not in new` as a substring. Leave the commit out of the note.
 
 **Config is memoised at boot.** Editing `.knowledge/config.yaml` needs the dev server
 restarted, not just a reload. Kill by PID — `pkill -f` matches the agent's own shell.
