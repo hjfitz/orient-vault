@@ -6,6 +6,58 @@ title: 1-1 Matt Shaw
 ---
 # 1-1 Matt Shaw
 
+## 2026-11-03
+_10:30–11:00 GMT · Teams / Slack huddle · ⚠️ no agenda (normal for a 1:1) · ⚠️ Matt is on leave 2 to 4 Nov and the slot clashes with the Northstar all-hands · [event](https://outlook.office365.com/owa/?itemid=AAkBOQAICN85PWdfgAAuAAAAAB2EAxGqZhHNm8gAqgAvxFoNAAEuyBCkV09NrJc5lNWutosAAANLx5iUAABA%3D&exvsurl=1&path=/calendar/item)_
+
+### Context
+
+**Open PRs**
+- [fapi#181](https://github.com/gfs-bifrost/fapi/pull/181) — [FUSE-1324](https://globalfreight.atlassian.net/browse/FUSE-1324) — approved, green, mergeable, idle 6d
+- [shopify-connector#351](https://github.com/gfs-bifrost/shopify-connector/pull/351) — FUSE-1324 — approved, green, mergeable, idle 6d
+- [dedupe-service#165](https://github.com/gfs-bifrost/dedupe-service/pull/165) — FUSE-1324 — merge conflicts
+- FUSE-1314 duty drafts: [collector#131](https://github.com/gfs-bifrost/collector/pull/131), [fuse-mocker#35](https://github.com/gfs-bifrost/fuse-mocker/pull/35), [fapi#182](https://github.com/gfs-bifrost/fapi/pull/182) and [dedupe-service#166](https://github.com/gfs-bifrost/dedupe-service/pull/166) (all CI-green drafts, 6d idle; snap-adapter#311 merged via Schuster)
+
+**Active Jira**
+- [FUSE-1324](https://globalfreight.atlassian.net/browse/FUSE-1324) Redis hang (Code Review)
+- [FUSE-1314](https://globalfreight.atlassian.net/browse/FUSE-1314) Sprint 16 Distraction Duty (In Progress)
+
+**Owed by you**
+- Approve his holiday request for 2–4 Nov (3 days) — starts Monday
+- Approve his access request to the "Fuse EDI Evidence" artifact (10-06, still open 10-08)
+- Sign and send on his start-of-year PDR once he finishes the form
+- Sequence the confirmation defects he triaged (FUSE-1272, 1273, 1274, 1276, 1281 backlog; 1275 and 1280 are L2 mapping fixes) — [group DM](https://gfsdeliver-eng.slack.com/archives/C0BC33H8QMT/p1790783612714759) — 10-05: FUSE-1281 is Done, 1272 is Ready for QA, 1275/1280 are Schuster's; 1273, 1274 and 1276 are left to order at the 10:00 standup
+- Assign and prioritise FUSE-1272 to FUSE-1276, the QA defects he raised from Tom Dunn's list
+- Agree the next-rules-engine-publish plan now that he's merged [pkg-node#240](https://github.com/gfs-bifrost/pkg-node/pull/240) (peer floor `>=10.5.0` re-breaks sftp-connector on `types` ^9.5)
+- Ask where the FUSE-995 diff actually lives — Code Review status but no open PR against it in the sweep for a full week now
+- Review his FUSE-995 structured-logging stack — 6 PRs across 5 repos, all 🔵 needs-review, CI green: [replay-service#84](https://github.com/gfs-bifrost/replay-service/pull/84), [shopify-connector#256](https://github.com/gfs-bifrost/shopify-connector/pull/256)/[#257](https://github.com/gfs-bifrost/shopify-connector/pull/257)/[#263](https://github.com/gfs-bifrost/shopify-connector/pull/263), [sftp-connector#267](https://github.com/gfs-bifrost/sftp-connector/pull/267), [fapi#136](https://github.com/gfs-bifrost/fapi/pull/136)
+- Review his 5 green PRs awaiting review
+- Ask why 7 approved/green/mergeable PRs (replay-service#56/57/60/63/65/66, fuse-ui#191) are sitting unmerged 3d
+- Answer his #bifrost-private question — scope the nightly gitleaks/secops scan to `main` only? He says a decision might unblock nightlies (carried ×5 since 07-21)
+- Take him up on his offer to review my PRs
+- FUSE-999 catch-up **today in the office** — he has early findings on the blockers, and I promised to share where I think the perf issue is
+- Pre-review his FUSE-999/1012 pkg-node stack [#178–#182](https://github.com/gfs-bifrost/pkg-node/pulls) + [fapi#90](https://github.com/gfs-bifrost/fapi/pull/90) before wider review (carried ×3)
+- Review [pkg-node#174](https://github.com/gfs-bifrost/pkg-node/pull/174) (FUSE-999) — CI green, awaiting review
+- Resolve the merge conflicts on [fuse-ui#166](https://github.com/gfs-bifrost/fuse-ui/pull/166) (8d idle, ⚠️ stale) + [fuse-ui#170](https://github.com/gfs-bifrost/fuse-ui/pull/170) (7d idle, ⚠️ stale) — both still draft
+
+**Other context**
+- On leave 2 to 4 Nov; the holiday request still has no approval seen in any source
+- A Spectrum IT recruiter CV for a Senior Developer shares his name (cc'd to him), so check it is not a mix-up; Monday's leadership catch-up agreed he gets final say on candidates and is read in on strategy
+
+### To raise
+- [ ] Who covers Distraction Duty while he is away, and which of the duty drafts should merge or close
+- [ ] Is the FUSE-792 Get Stock API ready for Thomas Dunn to test? (carried ×1)
+- [ ] pkg-node#282 is the last of the `types` v11 train and the five red majors are open: what does he want to do about fapi#178, dedupe-service#163, snap-adapter#302, sftp-connector#315 and fuse-mocker#34? (carried ×1)
+- [ ] Where do the draft advisory-fix PRs stand, and which red repos (config-service, fuse-ui, fuse-mcp, secrets-hub, shopify-connector, snap-mcp) have no fix PR yet? (carried ×1)
+- [ ] FUSE-1296 (stock sync QA, Ready for QA, unassigned): who runs it? (carried ×2)
+- [ ] I will refine and estimate the webhook epic and the status webhook so he can lead it. Does he want to? (carried ×2)
+- [ ] Is his start-of-year PDR form ready to sign? (carried ×3)
+
+### Carried from last time
+- [ ] (nothing recorded)
+
+### Notes
+- ✍️ 
+
 ## 2026-10-27
 _10:30–11:00 GMT · Teams / Epsilon House / Slack huddle · ⚠️ no agenda (normal for a 1:1) · [event](https://outlook.office365.com/owa/?itemid=AAkBOQAICN8zvT57QAAuAAAAAB2EAxGqZhHNm8gAqgAvxFoNAANLx5iUAABA%3D&exvsurl=1&path=/calendar/item)_
 

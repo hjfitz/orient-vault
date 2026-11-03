@@ -69,6 +69,7 @@ title: Harry Humby
 - ✍️ 
 
 ## Together (newest first)
+- 2026-11-03 — shopify-connector#346 (FUSE-1305) is approved, green and mergeable; FUSE-1205 is In QA and Alex Pickard confirmed the failed-run error shows in the UI
 - 2026-10-29 — 1:1 at 11:30 after he was off sick on 28 Oct; three FUSE-1325 PRs approved and green and still waiting on your "priority?" → [[Meetings/1-1 Harry Humby]]
 - 2026-10-27 — Messaged at 00:55 that he has a cold and may not be in; his FUSE-1325 skip-draft-CI PRs are still awaiting review
 - 2026-10-26 — three FUSE-1325 skip-draft-CI PRs (shopify-connector#353, sftp-connector#354, snap-adapter#310) still waiting 3 days for your review, 'priority?' unanswered; four FUSE-1314 PRs open → [[Digests/2026-10/2026-10-26|2026-10-26 digest]]

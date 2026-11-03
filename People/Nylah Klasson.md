@@ -45,6 +45,7 @@ title: Nylah Klasson
 - ✍️ 
 
 ## Together (newest first)
+- 2026-11-03 — 1:1 at 11:30 clashes with the Northstar all-hands; 15 open PRs, 14 with no ticket key, four fuse-ui PRs awaiting review with CI green → [[Meetings/1-1 Nylah Klasson]]
 - 2026-10-29 — 22 open PRs (21 with no ticket key), including a stacked fuse-ui chain; 4 overdue training modules chased by ILG L&D
 - 2026-10-27 — 1:1 today; her FUSE-1148 PR and a 32-PR fuse-ui draft stack are open, her Support Bot suggestion is unanswered → [[Meetings/1-1 Nylah Klasson]]
 - 2026-10-26 — suggested the Support Bot run independently of your token usage and take over open-PR reporting; collector#130 approved and mergeable → [[Digests/2026-10/2026-10-26|2026-10-26 digest]]

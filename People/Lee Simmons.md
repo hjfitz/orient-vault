@@ -64,6 +64,7 @@ title: Lee Simmons
 - ✍️ 
 
 ## Together (newest first)
+- 2026-11-03 — emailed that customer IconicL is deleted from Fuse dev and prod (Ionic short-ship closure)
 - 2026-10-16 — "Migration thread: hypercare ownership": his L2 Projects team owns hypercare for FUSE migrations and new business, and the thread reads as closed with Ryan and Darren agreed
 - 2026-10-13 — goods-in confirmations thread: he is happy for James (ILG) to fix the blank SFTP status mapping and asks whether it applies to all SFTP customers or only Byoma
 - 2026-10-09 — he and [[Matt Shaw]] resolved the "Works Orders via SFTP - Gadgets Testing" email thread: CT works orders carry no carrier or ship method, so no carrier field is needed

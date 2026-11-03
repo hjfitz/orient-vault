@@ -56,6 +56,7 @@ title: Oli Denton
 - ✍️ 
 
 ## Together (newest first)
+- 2026-11-02 — Quick catch-up on Mon 2 Nov: backed your SFTP and Ionic handling on condition the data is deleted, agreed a coaching approach with the Bifrost team and to restart regular 1:1s
 - 2026-11-02 — Wrote up the Ionic short-ship resolution agreed in Friday's huddle with Lee Simmons
 - 2026-10-16 — "Senior Software Engineer - Peter Langley" email: he has delegated the pipeline to me, and the first-round interview date and outcome are unconfirmed
 - 2026-10-15 — 1:1 at 12:30 (90 min) → [[Meetings/1-1 Oli Denton]]

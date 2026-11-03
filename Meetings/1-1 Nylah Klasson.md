@@ -6,6 +6,46 @@ title: 1-1 Nylah Klasson
 ---
 # 1-1 Nylah Klasson
 
+## 2026-11-03
+_11:30–12:00 GMT · Slack huddle / Epsilon House Office · ⚠️ no agenda (normal for a 1:1) · ⚠️ clashes with the Northstar all-hands · [event](https://outlook.office365.com/owa/?itemid=AAkBOQAICN85PWdfgAAuAAAAAB2EAxGqZhHNm8gAqgAvxFoNAAEuyBCkV09NrJc5lNWutosAAacMZ%2BwAABA%3D&exvsurl=1&path=/calendar/item)_
+
+### Context
+
+**Open PRs**
+- 15 open fuse-ui PRs, 14 with no ticket key; four awaiting review with CI green ([fuse-ui#368](https://github.com/gfs-bifrost/fuse-ui/pull/368), [#371](https://github.com/gfs-bifrost/fuse-ui/pull/371), [#374](https://github.com/gfs-bifrost/fuse-ui/pull/374), [#377](https://github.com/gfs-bifrost/fuse-ui/pull/377))
+- 10 drafts (fuse-ui#367 to #381), 6 failing `add-tf-plan-output / terragrunt`, 5 stale; [fuse-ui#348](https://github.com/gfs-bifrost/fuse-ui/pull/348) is keyed to the placeholder `FUSE-1`
+
+**Active Jira**
+- [FUSE-1330](https://globalfreight.atlassian.net/browse/FUSE-1330) [UI] Batch not selectable in FGR/WOC mappings (In Progress, unassigned): a candidate for her
+
+**Owed by you**
+- Chase her Yusen Advance PDR online conversation assignment, now overdue since 10 Oct
+- Chase her overdue mandatory training, Yusen Advance Manual Handling (carried ×13 on my todo)
+- Cover Sprint 16 Distraction Duty: [FUSE-1314](https://globalfreight.atlassian.net/browse/FUSE-1314) is assigned to her despite her resignation, and snap-mcp's nightly DevSecOps is red on a CRITICAL `proxy-addr` advisory with no fix PR
+- Sign and send on her start-of-year PDR once she finishes the form (due 10 Oct; check it's still needed given her resignation)
+- Complete the leaver form — Bakeerthana Mohankumar (ILG People) forwarded the resignation letter today (2026-09-16) with a direct ask to action it
+- Read her [resignation letter](https://outlook.office365.com/owa/?ItemID=AAMkADVhYjUxODIyLWM5NTktNGJmOC1hN2FjLWFjMjllNWUzYmY4MwBGAAAAAAAEXHdKGOMeRLfpaU7ff8ChBwABLsgQpFdPTayXOZTVrraLAAAAAAEMAAABLsgQpFdPTayXOZTVrraLAAG0S3v8AAA%3D&exvsurl=1&viewmodel=ReadMessageItem) end to end — confirm notice period + last working day
+- Line up the backfill with [[Oli Denton]] (he DM'd about the leaver/team backfill) — 09:00 1:1 today is the venue
+- Plan handover of her open work — [observability#28](https://github.com/gfs-bifrost/observability/pull/28) (🔴 conflicts), [collector#89](https://github.com/gfs-bifrost/collector/pull/89) ([FUSE-1058](https://globalfreight.atlassian.net/browse/FUSE-1058), draft) — and any live tickets before her last day
+- Kick off HR offboarding process once the last day is confirmed
+
+**Other context**
+- Monday's leadership catch-up: the Bifrost team will be about 40% smaller once you and Nylah step away; you tell the team at Wednesday's catch-up
+- Yusen Advance: the Fire Awareness Refresher is overdue for her too
+
+### To raise
+- [ ] Which of the 10 stacked fuse-ui drafts are meant to merge, and who is reviewing the four awaiting review?
+- [ ] Could she take FUSE-1330, and what is left to hand over before she goes?
+- [ ] Which of the 32 stacked fuse-ui drafts are meant to merge, and what is the plan for the `add-tf-plan-output / terragrunt` failure? (carried ×1)
+- [ ] What is her last working day, and what is left to hand over? (carried ×3)
+- [ ] Her two overdue Yusen Advance items: the PDR conversation (due 10 Oct) and Manual Handling (carried ×2)
+
+### Carried from last time
+- [ ] (nothing recorded)
+
+### Notes
+- ✍️ 
+
 ## 2026-10-27
 _11:30–12:00 GMT · Slack huddle / Epsilon House Office · ⚠️ no agenda (normal for a 1:1) · [event](https://outlook.office365.com/owa/?itemid=AAkBOQAICN8zvT57QAAuAAAAAB2EAxGqZhHNm8gAqgAvxFoNAAEuyBCkV09NrJc5lNWutosAAacMZ%2BwAABA%3D&exvsurl=1&path=/calendar/item)_
 

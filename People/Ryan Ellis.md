@@ -29,6 +29,7 @@ title: Ryan Ellis
 - ✍️
 
 ## Together (newest first)
+- 2026-11-03 — Snap API update today 10:00 (ingest paused from 09:30); you owe him a support-model call with Dennis today
 - 2026-10-22 — his outcome note on the 21 Oct Snap cluster change: BM2 down from about 08:15 BST, a critical ticket with Snap, a second Snap change at 16:00, maintenance complete about 16:14; Vajk Komora's 21:17 question on whether the fix resolved the outage and the slowness is unanswered. No meeting invite for him and Dennis exists yet
 - 2026-10-21 — his 08:00 BST Snap cluster change notice (low-risk, some degradation possible); on 10-20 he told Vajk Komora ILG is logging every Snap outage and challenging Snap to fix them before Peak. The Purdy & Figg load test time is still owed
 - 2026-10-19 — Snap cleared the Purdy & Figg load test on ILGSTG (Tom Dunn: "please proceed"); a date and time from you is owed

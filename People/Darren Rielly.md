@@ -14,6 +14,9 @@ title: Darren Rielly
 - GitHub: `darren-rielly_gfsdev` (unverified — confirm on first review)
 
 ## Open loops
+**I owe**
+- [ ] Review bifrost-pubsub#18 (said you would look on Tue 3 Nov) — [DM](https://gfsdeliver-eng.slack.com/archives/D09GTBH3WNQ/p1793643105078299)
+
 **Owed to me**
 - [ ] Review his small `ilg-platform/ui-toolkit` PRs — [DM bump](https://gfsdeliver-eng.slack.com/archives/D09GTBH3WNQ/p1783412176175329?thread_ts=1783088026.237789&cid=D09GTBH3WNQ) (asked 07-03, bumped 07-07)
 
@@ -22,6 +25,7 @@ title: Darren Rielly
 - ✍️ 
 
 ## Together (newest first)
+- 2026-11-03 — asked for a review of bifrost-pubsub#18 in a DM on Mon 18:10; you replied you would look today
 - 2026-07-29 — attends today's [[Meetings/Platform Engineering Weekly]] with a "UI Toolkit updates" agenda item
 - 2026-07-07 — DM bump: a few small ui-toolkit PRs waiting on my review (originally 07-03 "no rush")
 
