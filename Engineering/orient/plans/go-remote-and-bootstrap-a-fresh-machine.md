@@ -167,6 +167,8 @@ Take the git setup built in [[multi-machine-safe-durable-data-locally]] (Plan A,
      time. A decision worth defending in a review six months out belongs in a durable record
      instead — `wp decide --record`. -->
 
+- **2026-11-03** — Amended at activation (2026-11-03), from a read-only look at the VM (harry@hjf.shell.platform.ilg.software: Arch, 22 cores, 31 GB; mise provides node 24, pnpm 10, Go; passwordless sudo; Linger=no). (1) The copier is already retired (Plan A), so inc 4's copier steps are moot. (2) orient-vault-sync.{service,timer} are already in systemd/; inc 2 adds the other five. (3) The VM gets three deploy keys, one per repo, since GitHub needs a key unique per repo: hjfitz/orient read-only, hjfitz/orient-vault and hjfitz/orient-writers write-enabled, because the VM writes both. Each clone pins its key with core.sshCommand. (4) bootstrap.sh must run loginctl enable-linger, or the VM's sync timer stops at logout. (5) The VM's copier-made vault (18 MB) already holds Bifrost/HR and Interviews. Inc 4 moves it aside and the sparse clone replaces it.
+
 ## Learnings
 <!-- Durable facts about the service surfaced while planning, working or testing that are not
      already written anywhere in the vault — a gotcha, a constraint, a fragile edge, a confirmed
