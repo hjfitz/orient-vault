@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-03 — Publish the live SFTP logins for the SFTP host (C14 U2)
+
+Publish the live SFTP logins for the SFTP host (C14 U2)
+
+C14 U2. svc writes every enabled SFTP user's live keys and its tenant's slug to sftp-users.json in a new svc-owned bucket. It writes at startup, after each SFTP user or key change, and after a slug change, with a generation precondition read before the database read. Publishes are detached from the request and retried in the background until they succeed. Revoke and disable answer 503 when their write fails. Terraform: the bucket, svc's objectUser on it only, SFTP_USERS_BUCKET, and a monitor. Review-panel fixes: request cancellation, a deadline on the lock, and a reconciler so a stale snapshot never waits for the next change. The plan was shared with Harry before merging.
+
+PR: ilg-merak/parcel-portal#57
+
 ## 2026-11-03 — Store and manage per-customer SFTP users and keys (C14 U1)
 
 Store and manage per-customer SFTP users and keys (C14 U1)
