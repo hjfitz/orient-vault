@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-03 — Let GFS admins add other GFS admins (C16)
+
+Let GFS admins add other GFS admins (C16)
+
+Per Harry (3 Nov), the GFS staff page's add form creates GFS admins. svc now enforces where roles live: a gfs_admin only in GFS's own tenant, and a customer only in a customer tenant (400 otherwise).
+
+PR: ilg-merak/parcel-portal#62
+
 ## 2026-11-03 — Lead each order with its next step (C16 B)
 
 Lead each order with its next step (C16 B)
