@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-03 — Log an API key's revocation once (C15 P2 follow-up)
+
+Log an API key's revocation once (C15 P2 follow-up)
+
+RevokeAPIKey reports found and newly (the query reads the previous revoked_at FOR UPDATE), so revoking a revoked key stays a 204 with its first time but no longer logs 'API key revoked' again. UploadPanel's tenantId/tenantName props were left: they still choose the admin upload route.
+
+PR: ilg-merak/parcel-portal#82
+
 ## 2026-11-03 — Put the customer API behind a public gateway (C15 P5)
 
 Put the customer API behind a public gateway (C15 P5)
