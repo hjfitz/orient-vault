@@ -225,6 +225,16 @@ The VM then stays warm for two weeks before the SSH provisioning code and the VM
   - **Audit-service:** prod `fuse.audit.ingest{kind:sftp_login,outcome:stored}` went 3 (the 11-02 support test logins) → 14. **This proves host `sftp_login` events land in prod audit-service.**
   - **Noise:** 951 unknown-user attempts on the host over 08:07–08:13Z, about 60/min per instance, then tailing off. It is the same root/admin spray the VM sees, and is only counted.
   - **Hold:** monitor 335786586 (fewer than 2 healthy instances) is muted to 17:30Z because size 1 trips it by design. Harry is offline 08:20–09:00Z, so the ramp (#391, size 3) is held until 09:00Z (Harry, 08:17Z).
+  - **08:28 and 08:57Z checks, clean:**
+    - three customers on the host (C062 3.64.88.217, 447A 52.202.100.85, E5A3 185.132.40.199), every login accepted;
+    - 16 uploads committed, 0 failed; connector ingest normal, 0 connector errors;
+    - from 08:28Z on, audit-service stored exactly one prod `sftp_login` per host login (68 = 68).
+  - **Ramp (#391, `sftp_host_size = 3`):**
+    - merged by `cut.sh prod s2 --host-size 3 --apply --pr 391` as `5616f7e` at 08:58Z;
+    - host plan: MIG `target_size` 1 → 3 only (0/1/0); connector plan: image tag plus standing drift;
+    - gates approved 08:59–09:02Z, `p_s2_done` at 09:04:54Z (398 s), finished at 09:05:12Z;
+    - host 3/3 HEALTHY in zones a, b and c; 335786586 unmuted and OK (`can_connect` = 3).
+  - **After the ramp (09:03–09:15Z):** no customer changed side. The host has the same three users; the VM has C062 3.64.142.243, C232, DD2A. 0 known-user failures, refused requests, handshake failures or upload failures.
 - 2026-11-02 [inc 3 breakglass] **Fast eject drilled on scratch:** `cut.sh` at `2084114`, `sftp-host-rehearsal-*` in bifrost-dev-global1, `CUT_HOST_FULL_SIZE=1`. Order: S1, S2, `rollback-s2 --fast`, rollback-S1, all exit 0, 20:03–20:10Z.
   - **S1:** 102.0 s, blip 18.0 s.
   - **S2:** 126.2 s. The host went HEALTHY 54 s after the resize, and both backends were HEALTHY.
