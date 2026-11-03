@@ -7,6 +7,14 @@ title: fuse-mcp — work ledger
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-03 — Record config-service's move to Cloud SQL Postgres in the data files
+
+Record config-service's move to Cloud SQL Postgres in the data files
+
+Owed item 2 after E2. database-collections now lists config-service's seven Postgres tables (businesses, storefronts, connectors, backends, shipment_methods, ddp_rules, feature_flags) with keys, constraints and the shared row envelope, and records which Mongo collections were renamed. The legacy default_mappings entry is gone. services (tech stack, persistence), deployment (Cloud SQL live, Atlas frozen until decommission) and config-domain (version field, feature flags, setup-model storage names) updated to match. Parity baseline refreshed; go test ./internal/... green; Code Quality, Code Quality Go and Deploy green; live server checked with search and lookup-service. Data-only commit straight to master, no PR.
+
+Commit: gfs-bifrost/fuse-mcp@5071278
+
 ## 2026-10-22 — Clear the nightly govulncheck and MCP SDK findings
 
 Clear the nightly govulncheck and MCP SDK findings
