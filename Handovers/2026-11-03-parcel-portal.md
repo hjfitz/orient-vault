@@ -8,12 +8,12 @@ from: laptop
 to: hjf.shell.platform.ilg.software
 session_id: 80a57909-179d-48c7-a6cb-da766abb7a8a
 resumed_by: 7652f0c7-9f02-4c64-b56f-a154250bb016
-updated: 2026-11-03T18:50Z
+updated: 2026-11-03T19:29Z
 ---
 # Handover: Parcel Portal
 
 ## Where things stand
-Dev svc runs main at `2cca2d8` (svc-parcel-dev, revision 00033), and dev ui runs `6b12b7d` (#79 touched no UI). Both are in project `ilg-merak-dev-b5e3`, us-central1. The SFTP host runs the per-user build from #59/#66. Prod is held at D1: nothing is deployed there, and every prod gate stays parked (don't approve the `docker-push-prod` / `terraform-*-prod` jobs). Dev database migrations are at 014. The portal contract is 4.9.0, and the customer API (`public-openapi.yaml`) is 1.0.0.
+Dev svc runs main at `8ed8744` (revision 00035), and dev ui runs `2218b15`. Both are in project `ilg-merak-dev-b5e3`, us-central1. The SFTP host runs the per-user build from #59/#66. Prod is held at D1: nothing is deployed there, and every prod gate stays parked (don't approve the `docker-push-prod` / `terraform-*-prod` jobs). Dev database migrations are at 014. The portal contract is **5.0.0**, and the customer API is **1.1.0**.
 
 | Unit | What it delivered | PRs | State |
 | --- | --- | --- | --- |
@@ -22,39 +22,30 @@ Dev svc runs main at `2cca2d8` (svc-parcel-dev, revision 00033), and dev ui runs
 | C17 | File layout editor rework | #73 #74 | ✅ Live on dev |
 | C15 P1–P2 | Per-customer API keys: store, core, admin API, keys tab | #69 #70 #71 | Live on dev |
 | C15 P4a | Customer API contract `public-openapi.yaml` 1.0.0, the `APIKey` middleware (a chi group, before path binding), `GET /v1/order-files/{id}`, `make public-contract-check` in CI | #79 | Live on dev svc. Not reachable from outside until P5. Not hit on dev: this account lacks `run.invoker`; verified locally over HTTP and by a clean revision start |
-| C15 P4b | `POST /v1/order-files` (CSV, `Idempotency-Key`), customer API 1.1.0, portal contract **5.0.0** | #80 (draft) | Ready; **held for Harry** (below) |
+| C15 P4b | `POST /v1/order-files` (CSV, `Idempotency-Key`), customer API 1.1.0, portal contract 5.0.0 | #80 | Live on dev |
+| C15 P5 | Public gateway `cmd/gateway` + `iac/projects/gateway` at `api.parcel.delivery.<domain>` (`/v1` proxy, `/docs`) | #81 (draft) | Ready; dev plan recorded; **Harry to merge** (below) |
 
 Dev SFTP users: `tca` (the existing dev test client's key) and `tca-verify` (disabled, left from verification).
 
 ## In flight
 | Work | PR / branch | State | To close it |
 | --- | --- | --- | --- |
-| C15 P5: the public gateway | #81 `hjf/c15-gateway` (draft; worktree `.claude/worktrees/c15-gateway`) | **Dev plan (PR comment, `deb04d3`): `gateway` 15 to add, 0 to change, 0 to destroy.** The adds:<br>• the Cloud Run service and its SA `gateway-parcel-dev-cloudrun`<br>• `allUsers` invoker on the gateway<br>• `run.invoker` on `svc-parcel-dev` for that SA<br>• the LB: global address, NEG, backend, URL maps, HTTP/HTTPS proxies and forwarding rules, managed cert<br>• the A record `api.parcel.delivery.freightops.dev`<br>svc/ui dev: image drift only. sftp dev: template replace from image drift only; the merge also redeploys the SFTP host routinely, since `internal/config` and `observability` are in its path filter. Prod plans fail as by design. | Read the **dev** `gateway` plan comment and record it here. Apply only if it's purely additive: nothing destroyed or replaced, with IAM limited to the gateway's own invoker grant on svc and its `allUsers` invoker. Then `gh pr ready 81` and merge, and confirm `gateway-on-push`'s `terraform-apply-dev`, the `dev-<sha>` image and `https://api.parcel.delivery.freightops.dev/docs` (the cert can take ~15–60 min). Anything else in the plan waits for Harry. |
+| C15 P5: the public gateway | #81 `hjf/c15-gateway` at `1532bd2` (draft; worktree `.claude/worktrees/c15-gateway`) | All CI green apart from the prod plans, which fail by design. review-panel findings fixed. **Dev plan: `gateway` 15 to add, 0 to change, 0 to destroy** (details in #81's description). Not merged: the auto-mode classifier refused the agent's merge as a protected IaC apply, because merging applies the dev Terraform, including the new IAM grant. | **Harry merges #81** (or adds a permission rule so the agent can). Then confirm `gateway deploy`'s `terraform-apply-dev`, the image `parcel-gateway:dev-<sha>`, and `https://api.parcel.delivery.freightops.dev/docs` (the managed cert can take 15–60 min), plus a keyless `GET /v1/order-files/<uuid>` → 401 through it. The merge also redeploys the SFTP host routinely (path filter). |
 
 ## Waiting on Harry
-- **Portal contract 5.0.0 for P4b (#80).** Recommend yes.
-  - Adding `api` to `ImportFile.source` is breaking under oasdiff either way. An enum value added is `response-property-enum-value-added`; moving to `x-extensible-enum` is `response-property-became-not-enum`. Both were checked on 3 Nov.
-  - So the earlier "x-extensible-enum plus a minor" can't pass contract-check.
-  - A 5.0.0 costs nothing: no 4.x was ever released (only the template's `svc-openapi-v1.0.0`), and the in-repo UI is the only consumer. It makes `source` an `x-extensible-enum` for good.
-- **Two small API calls, in #80's Notes.**
-  - Should Idempotency-Keys be shared across a customer's API keys (as built, Stripe-style) or per key?
-  - Should `problems` on an order file be capped or paged?
-- **Any Terraform change.** Share the dev plan (and prod's, once prod exists) before merging; his yes covers that change's merge and its dev gate only. Explain any IAM change first. Next due: the C15 public gateway (P5).
+- **Merge #81, the C15 P5 gateway.** It's ready and its dev plan is recorded; see In flight.
+- **C15 P6 (JSON `POST /v1/orders`)** was not started: it wasn't asked for, and it needs two domain calls. How does a JSON order relate to an import file, given orders hang off files? Does resending a shipRef replace the order, as a re-import does?
+- **Any further Terraform change.** Share the dev plan before merging (and prod's, once prod exists). Explain any IAM change first.
 - **Prod** is held at D1 until G7 (Oli Denton: intake here or in Fuse), the customer's SFTP key, `DATADOG_APP_KEY`, and the customer gates.
-- **This box's GitHub token can't read GitHub Packages.** It lacks `read:packages`, so `pnpm install` for apps/ui fails here (401 on `@ilg-platform/ui-toolkit`) and the UI gates only run in CI. Fix: `gh auth refresh -s read:packages` (needs a browser, plus SSO for ilg-platform), then `pnpm config set "//npm.pkg.github.com/:_authToken" "$(gh auth token)"`.
+- **This box's GitHub token can't read GitHub Packages.** It lacks `read:packages`, so the UI gates run in CI only. Fix: `gh auth refresh -s read:packages`, then `pnpm config set "//npm.pkg.github.com/:_authToken" "$(gh auth token)"`.
 
 ## Next up
-1. #80 on Harry's yes (above).
-2. **C15 P5: the public gateway.**
-   - A Cloud Run gateway proxying `/v1` to svc. It sends its own ID token in `X-Serverless-Authorization`, so svc gets the key in `Authorization`.
-   - Swagger UI at `/docs`, an LB host `api.parcel.delivery.<domain>`, and rate limiting on the refusal path.
-   - **The Terraform plan goes to Harry first.** Publish `public-openapi.yaml` in the release alongside it: `contract-bundle` still ships only `openapi.yaml`.
-3. C15 P6: JSON `POST /v1/orders`. P7: Cloud Armor and monitors.
-4. **Small:**
-   - The customer settings tabs show dates in the acting tenant's zone, not that customer's (from #68's review).
-   - UploadPanel's `tenantId`/`tenantName` props are unused.
-   - Revoking a revoked API key logs twice.
+1. #81 on Harry's merge, then verify it on dev (above).
+2. **C15 P6** (JSON orders), once Harry has made the two calls above. **P7:** Cloud Armor and rate limiting on the gateway, plus a Datadog monitor. Publish `public-openapi.yaml` in the release.
+3. **Small:**
+   - The customer settings tabs show dates in the acting tenant's zone, not that customer's; that needs the customer's zone from svc.
    - The admin-add-admins path has no UI test.
+   - UploadPanel's `tenantId`/`tenantName` props are not dead: they choose the admin upload route, so leave them unless that route goes.
 
 ## How work is done here
 - **Source of truth:** vault `Bifrost/Parcel Portal/Migration State.md` (units, gates, decision log, scar tissue — load the `waypoint-programme` skill), ledger `Engineering/parcel-portal/ledger.md`, design doc `Systems/parcel-portal/design.md`. Every PR gets `wp ledger parcel-portal --programme "Parcel Portal"` (`--force` for a second same-day entry). No MKP Jira: PRs are out-of-ticket ("Ticket: none (Parcel Portal programme, unit Cn)").
@@ -90,6 +81,7 @@ Checked 2026-11-03 ~16:40Z on `harry@hjf.shell.platform.ilg.software`; synced wi
 ## Closed since handover
 | When (UTC) | Work | Result |
 | --- | --- | --- |
+| 2026-11-03 ~19:28 | #82, an API key revoke logged once | `RevokeAPIKey` reports whether this call revoked the key. Merged as `8ed8744`; svc `terraform-apply-dev` success, `dev-8ed8744`, revision 00035 applied migrations with no errors. |
 | 2026-11-03 ~18:46 | #80 C15 P4b, CSV upload over the API | Harry answered the stop DM in-session, about 17:50Z: "happy to continue with the lot overnight". Taken as yes to portal contract 5.0.0, with the two API questions kept at their defaults (keys per customer, problems uncapped). Merged as `2218b15`; svc and ui `terraform-apply-dev` success, both on `dev-2218b15`, revision 00034 applied migrations with no errors. |
 | 2026-11-03 ~17:27 | #79 C15 P4a, the customer API's first route behind API keys | Built on the workstation. review-panel (backend, security, contract) found five issues, all fixed before merge: the key check now runs before path binding and fails closed; 500/503 are declared; the enums are `x-extensible-enum`; an unknown route answers a JSON 404; a refused key gets an API-specific 401. Evidence was gathered over HTTP locally (11 cases, key in the log 0 times). svc gates, integration, contract-check and public-contract-check are green, and CI ran the new step. Merged as `2cca2d8`; svc `terraform-apply-dev` success, `dev-2cca2d8`; revision 00033 applied migrations, is listening, no errors. |
 | 2026-11-03 ~17:09 | #76/#77 bulk Cancel + Pack (C16 G) | Merged main (with #68) in and renumbered the contract **4.8.0 → 4.9.0**. Ran review-panel on the stack and fixed what it found. In bulk.go: a portal-side failure (internal or unavailable) is now logged as "Bulk order action failed"; a held order's message now says to dispatch it again to settle it; a stale-read conflict is now coded `order_changed`. In the UI: the preset picker falls back when the chosen preset is gone; the cancel dialog keeps its count while it closes; the order page says "cancelled". svc gates + integration green locally, CI green. **Native GitHub stack:** `gh pr merge` is refused, and the extension isn't installed here, so it merged via `PUT /pulls/77/merge-async` (merges downstack too). Merged as `6b12b7d`; svc+ui `terraform-apply-dev` success, both on `dev-6b12b7d`, svc "Migrations applied" toVersion 14 at 17:08Z. |
