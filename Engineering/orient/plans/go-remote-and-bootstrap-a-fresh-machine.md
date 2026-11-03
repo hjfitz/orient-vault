@@ -106,7 +106,7 @@ Take the git setup built in [[multi-machine-safe-durable-data-locally]] (Plan A,
       [x] confirmed (2026-11-03, multi-machine-safe-durable-data-locally signed off)
     - gate: Harry decides on the commit author email (resolved 2026-11-02: kept as is, private repo)
       [x] confirmed
-- [ ] 2. **Units in the repo.** (AC 3)
+- [x] 2. **Units in the repo.** (AC 3) — systemd-analyze verify clean; all 7 units active from repo copies; :3000 on 127.0.0.1 only; /today, /recordings 200; scribe and desk up — done: e14885b
   - Add `systemd/` with all six units plus `orient-vault-sync.{service,timer}`, written with `%h` and `-H 127.0.0.1`, and a `make install-units` target.
   - Swap them in for the laptop's hand-written units.
   - Verify:
