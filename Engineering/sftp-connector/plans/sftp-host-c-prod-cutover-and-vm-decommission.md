@@ -4,7 +4,7 @@ title: 'SFTP host C: prod cutover and VM decommission'
 service: sftp-connector
 status: active
 created: '2026-10-20'
-updated: '2026-11-02'
+updated: '2026-11-03'
 repo: /home/hjf/code/fuse/sftp-connector
 worktree: unknown
 branch: unknown
@@ -212,6 +212,19 @@ The VM then stays warm for two weeks before the SSH provisioning code and the VM
 ### Evidence
 <!-- Newest first, dated. One bullet per check actually run, opening with what it discharges.
      "Suite green" alone is not evidence. Sign-off requires at least one dated bullet here. -->
+- 2026-11-03 [inc 3, S2] **Prod S2 done: the host serves prod beside the VM, at size 1.** Pre-flight passed at 07:45Z: no Deploy runs in flight; host 3/3 HEALTHY on `2084114` (#388, #389); VM HEALTHY; prod SFTP Host monitors OK; load 0.6.
+  - **#390** (`sftp_host_backend = true`, `sftp_host_size = 1`) was merged by `cut.sh prod s2 --apply --pr 390` as `dd046fc` at 08:00:50Z. Prod plans were read before the gates:
+    - host run 41600160074: backend service gains the MIG beside the VM, MIG 3 → 1 (0/2/0). The VM backend renders as remove+add only because Terraform re-renders the backend set; group, mode and failover are unchanged.
+    - connector run 41600160162: image tag plus the standing drift (container-dependencies, env reorder) only.
+  - **Timing:** host apply finished at 08:07:05Z; `p_s2_done` at 08:12:37Z (706 s, mostly the 300 s drain on the two removed instances); S2 finished in 759 s. Both backends HEALTHY ×1. The operator client landed on the host 10 of 10 times.
+  - **Customers, 08:07–08:13Z:**
+    - host: FUSE_C062E5C41B from 3.64.88.217, 12/12 accepted;
+    - VM: FUSE_C062E5C41B's other IP 3.64.142.243, FUSE_C232BE3BCC (51.141.86.75), FUSE_447A6A12D5 (52.202.119.209).
+    - So C062's two pollers split across the sides, and both kept working.
+  - **Host clean:** 0 failed logins for known users, 0 refused requests, 0 handshake failures, 0 users.json skips, 0 audit publish failures, 0 connector lookup failures.
+  - **Audit-service:** prod `fuse.audit.ingest{kind:sftp_login,outcome:stored}` went 3 (the 11-02 support test logins) → 14. **This proves host `sftp_login` events land in prod audit-service.**
+  - **Noise:** 951 unknown-user attempts on the host over 08:07–08:13Z, about 60/min per instance, then tailing off. It is the same root/admin spray the VM sees, and is only counted.
+  - **Hold:** monitor 335786586 (fewer than 2 healthy instances) is muted to 17:30Z because size 1 trips it by design. Harry is offline 08:20–09:00Z, so the ramp (#391, size 3) is held until 09:00Z (Harry, 08:17Z).
 - 2026-11-02 [inc 3 breakglass] **Fast eject drilled on scratch:** `cut.sh` at `2084114`, `sftp-host-rehearsal-*` in bifrost-dev-global1, `CUT_HOST_FULL_SIZE=1`. Order: S1, S2, `rollback-s2 --fast`, rollback-S1, all exit 0, 20:03–20:10Z.
   - **S1:** 102.0 s, blip 18.0 s.
   - **S2:** 126.2 s. The host went HEALTHY 54 s after the resize, and both backends were HEALTHY.
@@ -320,6 +333,8 @@ The VM then stays warm for two weeks before the SSH provisioning code and the VM
      the plan in the same increment and record the correction here. Legitimately empty at plan
      time. A decision worth defending in a review six months out belongs in a durable record
      instead — `wp decide --record`. -->
+
+- **2026-11-03** — S2 ramp held at size 1 from 08:13Z to 09:00Z while Harry is away from the laptop (no watcher, no breakglass from this session). Size 1 is stable: if it fails, the health check moves its customers to the VM. Ramp resumes 09:00Z (Harry, 2026-11-03).
 
 - **2026-11-02** — S2 as a one-day trial on 2026-11-03 (Harry, 2026-11-02: 'customers are slow and very forgiving'). S2 at size 1 at 08:00Z, ramp to 3 at about 08:30Z, hold all day, then at 17:00Z keep the split overnight by default or eject. The breakglass is `rollback-s2 --fast` (#387). The split stops at S2: rollback-S3 is the Terraform path only, because S3 moves the health check to HTTP, which the VM can't pass. Dropped: the 4-week auth.log baseline gate (replaced by #388's host logging and watching at S2), the 48 h S1→S2 dwell and the 1-week S2 ramp. Prod login audit is on from S2 (#389).
 
