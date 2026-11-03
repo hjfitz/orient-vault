@@ -1,17 +1,21 @@
 ---
-ticket: "none"
-title: "Enterprise CI GitHub App rollout: rename, install, docs"
-service: "github-actions"
+ticket: none
+title: 'Enterprise CI GitHub App rollout: rename, install, docs'
+service: github-actions
 status: draft
-created: "2026-11-03"
-updated: "2026-11-03"
-repo: "ilg-platform/github-actions"
-worktree: "none"
-branch: "none"
-base: "origin/main"
-base_sha: "none"
-pr:
-tags: [waypoint, plan]
+created: '2026-11-03'
+updated: '2026-11-03'
+repo: ilg-platform/github-actions
+worktree: none
+branch: none
+base: origin/main
+base_sha: none
+pr: null
+tags:
+- waypoint
+- plan
+impl_model: sonnet
+impl_effort: low
 ---
 # none — Enterprise CI GitHub App rollout: rename, install, docs
 
