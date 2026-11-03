@@ -73,3 +73,6 @@ The kit is `~/sftp-cutover/` (laptop scratchpad or workstation `rc-hjf`). Start 
 
 - Watch for DD2AF79592 failing again with no login in between.
 - S4 (provisioning moves to the host) is not today.
+- **After S4 (Plan C inc 4 follow-ons):** re-run the VM startup script (sftp-connector#376), which also reverts today's sshd `-l INFO` logging change, and the daily `users.json` sync timer on the VM.
+- **Plan C inc 2 verify items still owed:** ingest rates, and the first provisioning through `SFTP_ADMIN_HOST`.
+- **Not verified:** a real login as `support`, which needs Harry's key.
