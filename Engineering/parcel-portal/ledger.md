@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-03 — Sign SFTP logins in only against svc's SFTP users (C14 U4)
+
+Sign SFTP logins in only against svc's SFTP users (C14 U4)
+
+C14 U4. The SFTP host polls svc's sftp-users.json and signs logins in against its last good copy. Anyone not in it can't log in: there is no shared account, and nobody can until a first snapshot loads. A key logs in only its own user, into that user's business's folder, and uploads carry sftp-user. Adds a per-user session cap. The canary moves to its own _canary login and prefix. Terraform: the host gets objectViewer on svc's SFTP users bucket only; the single-user vars and the authorized-keys secret are removed; adds a refresh-failure monitor. Merge after #57, and run the dev cutover first (create SFTP user tca in TCA Demo with the dev test key). Not merged: carries Terraform and IAM, so the plan goes to Harry once it retargets to main.
+
+PR: ilg-merak/parcel-portal#59
+
 ## 2026-11-03 — Manage a customer's SFTP users in Settings (C14 U3)
 
 Manage a customer's SFTP users in Settings (C14 U3)
