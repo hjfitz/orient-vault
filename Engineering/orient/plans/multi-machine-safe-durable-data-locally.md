@@ -172,6 +172,17 @@ The proof is two scratch clones of the vault writing concurrently, with no lost 
 ### Evidence
 <!-- Newest first, dated. One bullet per check actually run, opening with what it discharges.
      "Suite green" alone is not evidence. Sign-off requires at least one dated bullet here. -->
+- 2026-11-03 [inc 6] **Writes kick the sync** (AC 5): orient commit 11aaab0, writers commit 60c4c5f.
+  - Harness: a bare remote and clones A and B of the vault (14 MB), real `wp` and `orient-vault-sync`.
+    - `wp idea` on A returned in 0.09 s and its commit was on origin at 0.3 s. B had it at 0.8 s, after a `wp index` on B (a rewriting command, so it pulls first).
+    - Offline, with origin on an address that hangs: `wp idea` returned in 0.11 s (the kick never blocks). A rewriting command waited 8.4 s, bounded by the fetch timeout; it was 16.4 s before `pull` took the result of a sync that finished while it waited. When DNS fails, it took 0.4 s.
+    - On reconnect, a kick pushed the queued commits and B picked up both offline ideas. `git grep '^<<<<<<<'` is empty on A and B.
+    - A kick during a running sync, with A's push held 2 s by a pre-push hook: the second write still reached origin, because the running sync went round again.
+  - Live vault:
+    - The Claude Code `PostToolUse` hook: an Edit to this plan was committed and synced as bb42852 within 2 s, and a file outside the vault didn't kick.
+    - `wp decide` pulled, wrote and synced as 21c8c7a, in 0.15 s.
+    - A save through deployed orient (`POST /api/write`) was on origin in 0.25 s (7b627b6). The probe file was then deleted (d4ba3a8).
+  - Tests: 4,734 vitest (5 new, in `tests/unit/vault-sync.test.ts`: kicks inside the vault, not outside, not without `.git`, not when switched off, never throws). The 14 cust unittests pass, lint shows the 2 old warnings, and tsc is clean.
 - 2026-11-02 [inc 5] **The vault in git, with sync**: orient commit 535e9e3, writers commit 3ac78d2.
   - Harness: a copy of the vault without audio (1,312 files, a 13 MB `.git`), a bare remote and clones A and B, each with its own host file, using the real `wp` and `scripts/vault-sync.sh`.
     - A `wp ledger` entry on each clone for the same service: both entries on both clones, 0 conflict markers.
