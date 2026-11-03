@@ -6,7 +6,7 @@ owner: Harry
 services:
 - snap-queue-polling-service
 created: '2026-09-18'
-updated: '2026-09-18'
+updated: '2026-11-03'
 tags:
 - bifrost
 - migration-state
