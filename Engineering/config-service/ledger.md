@@ -7,6 +7,14 @@ title: config-service — work ledger
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-03 — Log a rate-limited request as a 429, not an unhandled 500
+
+Log a rate-limited request as a 429, not an unhandled 500
+
+Owed item 3 after E2, found in the prod write smoke. logError had no TooManyRequestsException branch, so a correct 429 (second credential cycle inside the lockout) logged as "Error unhandled" with statusCode 500 and was counted as a 5xx and as fuse.errors.unknown. It now logs a "Request refused: rate limited" warn with statusCode 429 and counts as a 4xx; the client response is unchanged. Proven live on dev (throwaway ZZLOG429, since deleted) and by a new logger.spec.ts that fails 3/3 without the fix. Prod plan 1/2/0 agreed with Harry and applied: prod config-service-prod-00068-7ml at 100%, 0 errors and 0 5xx in the first 15 minutes. The plan also re-created the pubsub_invoker IAM member: a standing flip-flop with the authoritative iam_binding.public on run.invoker, raised with Harry as a follow-up.
+
+PR: gfs-bifrost/config-service#312
+
 ## 2026-11-03 — Serve prod config from Cloud SQL
 
 Serve prod config from Cloud SQL
