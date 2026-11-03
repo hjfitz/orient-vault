@@ -136,7 +136,7 @@ Take the git setup built in [[multi-machine-safe-durable-data-locally]] (Plan A,
     - gate: private repos `hjfitz/orient-vault` and `hjfitz/orient-writers` created by Harry (remote chosen 2026-11-02)
       [x] confirmed (2026-11-03; both pushed from the laptop)
     - gate: the VM's write-enabled deploy keys added to `orient-vault` and `orient-writers` (keys in the VM's `~/.ssh/orient-deploy/`)
-      [ ] confirmed
+      [x] confirmed (2026-11-03; all three keys accepted, `orient` read-only)
     - gate: Obsidian Sync confirmed disconnected in the app (`core-plugins.json` has `sync: true` but there is no `sync.json`)
       [x] confirmed (2026-11-03: Harry hasn't used Obsidian since orient was built; no sync.json)
     - gate: `gitleaks detect` over the vault clean
@@ -156,11 +156,22 @@ Take the git setup built in [[multi-machine-safe-durable-data-locally]] (Plan A,
 ### Evidence
 <!-- Newest first, dated. One bullet per check actually run, opening with what it discharges.
      "Suite green" alone is not evidence. Sign-off requires at least one dated bullet here. -->
+- 2026-11-03 [inc 4] **The VM is a clone of the GitHub remotes** (AC 5): orient f9bdc45, writers 01dbcf2.
+  - Laptop: writers pushed to `hjfitz/orient-writers`, and the vault's origin moved from the local stand-in to `hjfitz/orient-vault` (first sync and push 4.6 s, ls-remote equals HEAD).
+  - VM (`harry@hjf.shell.platform.ilg.software`): `HOST=vm SPARSE=1 HEADLESS=1 SSH_MODE=deploy scripts/bootstrap.sh`, rc 0 in 99 s on the second run. The first stopped on mise's python having no PyYAML, fixed in f9bdc45.
+    - The copier's vault, `~/.claude/{waypoint,customers,hooks}` and 33 copied skills moved to `~/.orient-bootstrap-backup/20261103-102645/` (19 MB).
+    - `git sparse-checkout list` excludes `Bifrost/HR`, `Bifrost/Team`, `Interviews` and `.knowledge/recordings`. None are on disk, and 0 of them are in the index. The partial-clone filter is `blob:none`.
+    - `index:status` ok at 1,062 documents. orient-web, -index, -pty and the vault-sync timer are active, Linger=yes, and `/today`, `/recordings` and `/usage` return 200 on `127.0.0.1:3000` only. `claude mcp get orient` is connected, and `wp` and `cust` run.
+  - Round trip, probe files in `_heap/` (removed after):
+    - VM → laptop: on origin about 4 s after the write, and on the laptop at 101 s, on the laptop's own timer.
+    - Laptop → VM: on the VM at about 25 s.
+    - Both sync statuses read `ok synced`.
 - <YYYY-MM-DD> [inc <n>] <what was run, against what, and the observable result>
 
 ### Not verified
 <!-- Stated, not papered over. "(none)" is a deliberate claim, and a fine one. -->
-- <what remains unproven, and what would prove it>
+- **`records/vm/` hasn't appeared yet.** Nothing on the VM has appended a record so far. The first Claude Code session there writes `usage-history`, and the VM's first sync after that commits it, because records commit straight away on a machine's first sync.
+- **The VM's `~/.secrets` is an empty template**, so its orient shows no Jira, GitHub, Datadog or incident.io data until Harry fills it in.
 
 ## Decisions & deviations
 <!-- Date-stamped, newest first — written by `wp decide`, and by hand when that is easier.
