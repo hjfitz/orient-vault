@@ -172,8 +172,6 @@ Take the git setup built in [[multi-machine-safe-durable-data-locally]] (Plan A,
 ### Not verified
 <!-- Stated, not papered over. "(none)" is a deliberate claim, and a fine one. -->
 - **`records/vm/` hasn't appeared yet.** Nothing on the VM has appended a record so far. The first Claude Code session there writes `usage-history`, and the VM's first sync after that commits it, because records commit straight away on a machine's first sync.
-- **The VM's `~/.secrets` is an empty template**, so its orient shows no Jira, GitHub, Datadog or incident.io data until Harry fills it in.
-
 ## Decisions & deviations
 <!-- Date-stamped, newest first — written by `wp decide`, and by hand when that is easier.
      Where implementation departed from this plan, and why. Source wins over the plan: correct
