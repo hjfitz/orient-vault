@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-03 — Add Harry's Termius SSH key to rc-hjf
+
+Add Harry's Termius SSH key to rc-hjf
+
+Ship: SHIP-1103-termius-key. Second key on Harry's rc-hjf entry (Termius), added in place via rc-users metadata; prod plan 0/1/0, apply run 41614140326, login and served keys verified.
+
+PR: ilg-platform/remote-compute#13
+
 ## 2026-11-02 — Add a skill for logging in from another laptop
 
 Add a skill for logging in from another laptop
