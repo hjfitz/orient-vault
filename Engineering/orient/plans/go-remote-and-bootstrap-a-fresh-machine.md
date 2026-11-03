@@ -124,7 +124,7 @@ Take the git setup built in [[multi-machine-safe-durable-data-locally]] (Plan A,
     - The units, then `pnpm index:build` and `pnpm deploy:web`.
   - Add `docs/INSTALL.md` for the manual steps: keys, `gh auth login`, `~/.secrets` values.
   - Verify: in a container or a throwaway user, against local bare remotes, the script runs end to end, `pnpm index:status` exits 0, `/today` returns 200, and a `wp idea` round-trips to a second scratch clone.
-- [ ] 4. **Vault and writers go remote, the VM becomes a clone.** (AC 5)
+- [x] 4. **Vault and writers go remote, the VM becomes a clone.** (AC 5) — VM bootstrapped from GitHub remotes (sparse, headless, deploy keys); writes round-trip both ways within one timer interval — done: f9bdc45
   - Push the vault and writers to their remote, then enable the laptop's sync timer against it.
   - Remove the copier's `--folder ~/Documents/obsidian`, and its writer files if the writers repo now covers them.
   - On the VM: move the existing `~/Documents/obsidian` aside, then run `bootstrap.sh` with `HOST=vm SPARSE=1 HEADLESS=1` and a read-only deploy key on `hjfitz/orient`.
