@@ -42,6 +42,7 @@ that needs more machinery than this is a smell.
    assertion. Three near-identical lines beat an abstraction.
 
 ## The nine stages, in order
+> SUPERSEDED 2026-11-03 — the **pre-filter** stage ("drop rows decidable from the raw row, claim live") is gone: the Redis claim was deleted by #308 (FUSE-1324), so there is nothing to pre-filter on, and `announce` is no longer "claim → publish → clear" (see Announce below). Two things the sketch lacked now exist in the code and the track runner must carry them: a **collection budget** (420 s, checked between lanes and at page boundaries, first page always processed, with `recordLaneDeferral` for the rest) threaded through read / resolve / enrich, and an **announce budget** (540 s, checked between pages of 100, never between a page's publish and its clear). Polls themselves are serialised per business upstream of this pipeline by a Pub/Sub ordering key, so the pipeline needs no idempotency step of its own. The list below is kept as the original design.
 ```
 select    which businesses to poll (config gate)                       once per schedule tick
 read      one queue read per track per business                         $top per request
