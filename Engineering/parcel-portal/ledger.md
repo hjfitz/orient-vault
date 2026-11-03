@@ -6,6 +6,16 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-03 — Store and manage per-customer SFTP users and keys (C14 U1)
+
+Store and manage per-customer SFTP users and keys (C14 U1)
+
+C14 U1, a three-PR stack. Adds migration 011: sftp_user and sftp_user_key, keys only. Usernames are never reused, and a live key belongs to one user across all tenants. Disabling a user revokes its keys. import_file.sftp_user_id is read from the host's sftp-user metadata and is tenant-bound. The core use-case and ssh key parser refuse options, private keys, short RSA and types the host doesn't accept. GFS admins get the API under /admin/tenants/{id}/sftp-users (contract 4.3.0, additive). The review panel's data findings were fixed before opening: the add-key/disable race, the composite FK on import_file, indexes, and constraint-specific error mapping. Not yet live for logins: the snapshot (U2) and the host (U4) follow.
+
+PR: ilg-merak/parcel-portal#53
+PR: ilg-merak/parcel-portal#54
+PR: ilg-merak/parcel-portal#55
+
 ## 2026-11-03 — Say so when Try a file can't read the picked file
 
 Say so when Try a file can't read the picked file
