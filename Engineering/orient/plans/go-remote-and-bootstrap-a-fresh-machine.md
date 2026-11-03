@@ -93,7 +93,7 @@ Take the git setup built in [[multi-machine-safe-durable-data-locally]] (Plan A,
                      [ ] confirmed
 -->
 
-- [ ] 1. **First push of orient.** (AC 1,2,6)
+- [x] 1. **First push of orient.** (AC 1,2,6) — gitleaks clean with reviewed allowlist; ls-remote master equals HEAD; global git and ~/.ssh/config unchanged — done: 078c0fc
   - Review the 11 gitleaks hits and the `gfsdeliver` fixtures and defaults. Scrub them going forward (synthetic addresses, config defaults moved to `~/.secrets` or `config.yaml`), or allowlist them with notes.
   - Add `IdentitiesOnly yes` to `~/.ssh/config-self`.
   - `git remote add origin git@github.com:hjfitz/orient.git`, then `git config core.sshCommand "ssh -F ~/.ssh/config-self"`, then push `master`.
