@@ -212,6 +212,12 @@ The VM then stays warm for two weeks before the SSH provisioning code and the VM
 ### Evidence
 <!-- Newest first, dated. One bullet per check actually run, opening with what it discharges.
      "Suite green" alone is not evidence. Sign-off requires at least one dated bullet here. -->
+- 2026-11-03 [inc 4, S3 dwell] **Midday check, 09:46–11:45Z on the host: clean.**
+  - 710 customer logins, all accepted, from 12 user/IP pairs across 9 customers (FUSE_033BE0B235, 15ADCA408F, 447A6A12D5 ×3 IPs, 84B6F5A152, 8B8F319605, C062E5C41B ×2 IPs, C232BE3BCC, DD2AF79592, E5A356978A). The per-user/IP counts sum to the `login.accepted` metric (710 against 711). The VM has had no logins since 09:47Z.
+  - 41 uploads committed and 0 failed. The connector ingested 46 records with 0 validation or connector errors. audit-service stored 712 prod `sftp_login` events. The backend was HEALTHY ×3 and no prod SFTP Host monitor was non-OK.
+  - The guard woke three times, none for a customer failure. `support` from 193.46.255.86 closed before auth: a daily scanner on that IP since 10-30, with about 25 scanner IPs against `support` this past week. FUSE_DD2AF79592 from its usual IP 86.98.154.68 closed before auth at 11:32Z, after a good host login at 10:24Z with its VM key fingerprint (`SHA256:n7Zd…`). 185.140.18.4 failed the handshake offering only `sk-*` host-key types, and hit the VM in the same minute.
+  - **The host presents the VM's host keys.** ED25519 `4syD6…`, ECDSA `ELz2g…` and RSA `gW1am…` are identical on the NLB (34.89.6.210) and the VM (34.147.133.18) per `ssh-keyscan`, so clients pinning the VM's key see no change.
+  - Still unseen on the host: FUSE_ABDAD7F392, BF65660F94 and 59DC37CB09 (2–6 logins a week on the VM).
 - 2026-11-03 [inc 4, S3] **Prod S3 done: all customers on the host since 09:46:30Z.** Harry chose 100% today over holding at S2 ("100% is what I had in mind").
   - **#392** (`sftp_vm_backend = false`) was merged by `cut.sh prod s3 --apply --pr 392` as `72984d4`. Prod plans were read before the gates:
     - host run 41613083576: `sftp-host-prod` loses the VM backend and `health_checks` goes `-ssh` → `-http` (0/1/0);
