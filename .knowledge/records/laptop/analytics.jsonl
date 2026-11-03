@@ -1631,3 +1631,6 @@
 {"t":"leave","at":"2026-11-03T09:03:49.448Z","visit":"cbc32f11-f80a-4b37-b864-de97d971d09f","activeMs":30000}
 {"t":"leave","at":"2026-11-03T09:03:57.366Z","visit":"d0f43831-851c-46c0-92d9-c0628955b4aa","activeMs":129000}
 {"t":"leave","at":"2026-11-03T09:03:57.367Z","visit":"cbc32f11-f80a-4b37-b864-de97d971d09f","activeMs":31000}
+{"t":"leave","at":"2026-11-03T09:31:41.689Z","visit":"d0f43831-851c-46c0-92d9-c0628955b4aa","activeMs":137000}
+{"t":"view","at":"2026-11-03T09:31:41.930Z","visit":"b43b81f2-e1b5-4212-9432-73d0abeb1473","route":"/recordings/…"}
+{"t":"leave","at":"2026-11-03T09:32:08.785Z","visit":"b43b81f2-e1b5-4212-9432-73d0abeb1473","activeMs":24000}
