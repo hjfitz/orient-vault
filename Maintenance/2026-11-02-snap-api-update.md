@@ -14,6 +14,7 @@ slack_url: "https://gfsdeliver-eng.slack.com/archives/C098LD5PS95/p1793693844443
 slack_ts: "1793693844.443569"
 notified_at: "2026-11-02T15:04:47Z"
 posted_at: "2026-11-03T08:17:34Z"
+unpinned_at: "2026-11-03T15:50:07Z"
 session_id: 3550ca00-e900-415b-af5b-66d3b61d57f6
 ---
 # Snap maintenance: API update, Tue 3 Nov
