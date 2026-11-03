@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-03 — Say so when Try a file can't read the picked file
+
+Say so when Try a file can't read the picked file
+
+Unit C13 follow-up, found while verifying #51 on dev. When the browser can't read the picked file, file.text() rejects. That rejection went unhandled and nothing showed; Try a file now asks for the file again.
+
+PR: ilg-merak/parcel-portal#52
+
 ## 2026-11-03 — Edit a customer's file layout in Settings, with a dry-run preview
 
 Edit a customer's file layout in Settings, with a dry-run preview
