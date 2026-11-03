@@ -7,6 +7,15 @@ title: config-service — work ledger
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-03 — Serve prod config from Cloud SQL
+
+Serve prod config from Cloud SQL
+
+E2 switch: persistence_backend = postgres in prod.tfvars, freeze lifted, prod backfill job removed. Stacked on #309.
+
+Ship: SHIP-1028-cloudsql-repo-seam
+PR: gfs-bifrost/config-service#310
+
 ## 2026-11-03 — Freeze prod config writes for the Cloud SQL cutover
 
 Freeze prod config writes for the Cloud SQL cutover
