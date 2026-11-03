@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-03 — Pack and cancel ticked orders from the Orders page (C16 G, UI)
+
+Pack and cancel ticked orders from the Orders page (C16 G, UI)
+
+Any pending order can be ticked. Dispatch and Check take the ready ones, Pack N in this box (preset picker) takes those that need packing, and Cancel N takes any of them, with a confirmation. With no presets, the action links an acting admin to the Packaging tab or tells a customer to ask GFS. Cancelled orders show as Cancelled.
+
+PR: ilg-merak/parcel-portal#77
+
 ## 2026-11-03 — Cancel pending orders and pack them into a preset in bulk (C16 G, svc)
 
 Cancel pending orders and pack them into a preset in bulk (C16 G, svc)
