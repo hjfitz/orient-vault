@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-03 — Read svc's SFTP users bucket from the bucket, not its grant (C14 U2 fix)
+
+Read svc's SFTP users bucket from the bucket, not its grant (C14 U2 fix)
+
+Dev's first apply of #57 failed with the Google provider's 'inconsistent final plan' on Cloud Run env, because SFTP_USERS_BUCKET was read from the IAM member's bucket, which is known only after apply. A rerun got dev through; this reads the bucket's own name so prod's first apply won't fail the same way.
+
+PR: ilg-merak/parcel-portal#63
+
 ## 2026-11-03 — Let GFS admins add other GFS admins (C16)
 
 Let GFS admins add other GFS admins (C16)
