@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-03 — Give the SFTP host its users bucket's real name (C14 U4 fix)
+
+Give the SFTP host its users bucket's real name (C14 U4 fix)
+
+Dev's apply of #59 failed with the provider's 'inconsistent final plan' on the host instance template, which read SFTP_USERS_BUCKET from the IAM member ('b/<name>', only known after apply; it would also have been unreadable). Switched to the bucket data source's name. Applied on dev: the new hosts loaded 2 SFTP users and the canary passes as _canary. Verified live: unknown usernames and key mismatches are refused; tca-verify is confined to its own /inbound; disabling it refused the login 27 s later.
+
+PR: ilg-merak/parcel-portal#66
+
 ## 2026-11-03 — Let GFS admins act for a customer (C16 C)
 
 Let GFS admins act for a customer (C16 C)
