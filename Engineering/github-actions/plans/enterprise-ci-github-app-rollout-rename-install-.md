@@ -113,6 +113,20 @@ work only — the code it relies on is [[cross-org-go-terraform-module-auth-via-
 <!-- Stated, not papered over. "(none)" is a deliberate claim, and a fine one. -->
 - Everything — plan stage.
 
+## Rollout & rollback
+<!-- Added on demand. Written at plan time; amend in place as it changes.
+     `Shared state touched:` is the single home for the five classes git does not own — a dev
+     deploy, a prod config write, a Datadog monitor, a CI var or secret, cross-repo IaC. Reverting
+     the branch undoes none of them, so if they are not written here they are not written down. -->
+
+- **Order:** <what must ship before what, and what breaks if reversed>
+- **Flags/config:** <flag or config key, old value -> new, and where it lives>
+- **One-way doors:** <what cannot be undone once it is in prod, and the gate before it>
+- **Rollback:** <per increment: git revert / forward-only / a flag flip>
+- **Shared state touched:** <dev deploys, prod config writes, Datadog monitors, CI vars/secrets,
+  cross-repo IaC — or "(none)", which is a deliberate claim>
+- **Proof in prod:** <the metric or log line that shows this working, and its pre-deploy baseline>
+
 ## Decisions & deviations
 <!-- Date-stamped, newest first — written by `wp decide`, and by hand when that is easier.
      Where implementation departed from this plan, and why. Source wins over the plan: correct
