@@ -92,7 +92,7 @@ The proof is two scratch clones of the vault writing concurrently, with no lost 
      `wp brief` shows unmet gates in its NEXT block — so "do not action this yet" stops being
      bold prose a fresh session can miss:
 
-         - [x] 6. Widen the subscription filter (AC 6) — verify: filter matches in dev — harness + live: wp, orient save and the Claude Code hook each reach origin in under 0.5 s; offline never blocks — done: 11aaab0
+         - [ ] 6. Widen the subscription filter (AC 6) — verify: filter matches in dev
                gate: FUSE-1052 AND FUSE-1053 confirmed in prod
                      [ ] confirmed
 -->
