@@ -169,6 +169,8 @@ Take the git setup built in [[multi-machine-safe-durable-data-locally]] (Plan A,
      time. A decision worth defending in a review six months out belongs in a durable record
      instead — `wp decide --record`. -->
 
+- **2026-11-03** — Three repos, not two: Harry kept orient-writers separate from orient so the app can be shared publicly one day without his skills. Should orient go public, its history first needs the work emails and Slack/incident.io workspace URLs scrubbed from test fixtures, and the gfsdeliver default in config.ts, by a history rewrite. That would orphan vault sha anchors, so plan it as its own piece of work. Laptop side of inc 4 done: writers pushed to hjfitz/orient-writers, and the vault's origin repointed from the local stand-in to hjfitz/orient-vault, first push in 4.6 s.
+
 - **2026-11-03** — Inc 3 proven in a throwaway user (orienttest) on the VM itself, not a scratch HOME on the laptop. A throwaway user has its own systemd user manager, so units, lingering and deploy:web run for real, and the 22-core VM carries a second node_modules and build that the laptop can't spare. The first run found node-pty compiling from source with no node-gyp, now installed by the script. The user was removed afterwards (userdel -r).
 
 - **2026-11-03** — Inc 2: scripts/install-units.sh (with HEADLESS=1) instead of a make install-units target; the repo has no root Makefile and its other entry points are scripts/. Units call /usr/bin/env mise, because mise is ~/.local/bin/mise on the laptop and /usr/bin/mise on the VM. The laptop's old hand-written units are in ~/.config/systemd/user/backup-pre-repo-units-20261103/.
