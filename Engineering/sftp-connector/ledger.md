@@ -7,6 +7,14 @@ title: sftp-connector — work ledger
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-03 — Ramp the prod SFTP host to 3 instances (cut S2)
+
+Ramp the prod SFTP host to 3 instances (cut S2)
+
+Plan C S2 ramp, 2026-11-03: prod tfvars sftp_host_size = 3 after the 08:12Z split; cut.sh prod s2 --host-size 3 merges it.
+
+PR: gfs-bifrost/sftp-connector#391
+
 ## 2026-11-03 — Add the host to prod SFTP's backend service (cut S2)
 
 Add the host to prod SFTP's backend service (cut S2)
