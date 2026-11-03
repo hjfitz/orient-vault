@@ -7,6 +7,14 @@ title: sftp-connector — work ledger
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-03 — Take the prod SFTP VM out of the backend service (cut S3)
+
+Take the prod SFTP VM out of the backend service (cut S3)
+
+Plan C S3, 2026-11-03 (Harry: 100% was the intent for today): prod tfvars sftp_vm_backend = false; health check moves to the host's HTTP /healthz. Rollback is Terraform only (~10 min). cut.sh prod s3 merges it.
+
+PR: gfs-bifrost/sftp-connector#392
+
 ## 2026-11-03 — Ramp the prod SFTP host to 3 instances (cut S2)
 
 Ramp the prod SFTP host to 3 instances (cut S2)
