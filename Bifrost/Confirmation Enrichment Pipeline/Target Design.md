@@ -167,11 +167,14 @@ only that business's cycle), **per entry** (from `enrich` through `mapAndValidat
 | Stock adjustment with unresolvable direction | returns `null`, re-polled forever, silent | `{ kind: "skip", reason: "unresolvable_direction" }` — metered every cycle, so it becomes visible and a product decision can be made |
 | Customer id read from `bizId` / `businessId` / the movement's own field | three conventions across handlers | `track.ownerOf(entity)` decides once, after the cross-tenant check; the group key uses it. STOCK's `ownerOf` uses the field the canonical uses today until **G3** verifies it |
 | Goods-out / goods-in publish under an alias tag | `if/else` inside the publish loop | `publish.tag` on the type; `announce` is branch-free |
-| `isClearable` duck-type before claiming | `lodash.get("identifiers.queueId")` | every mapper stamps `queueId` today (verified across all 8), so the pipeline record carries `row.XDoc` as a typed field and every canonical is claimed — same behaviour, no duck-typing |
+| `isClearable` duck-type before claiming (2026-11-03: now read by the clearer via `get(row, "identifiers.queueId")`, not before a claim; the typed-`queueId` fix still applies) | `lodash.get("identifiers.queueId")` | every mapper stamps `queueId` today (verified across all 8), so the pipeline record carries `row.XDoc` as a typed field and every canonical is claimed — same behaviour, no duck-typing |
 | Debug `/trigger` and `/check` | re-implement the poll | call `pollBusinesses(ids, { types, announce })`; `/check` is `announce: false` |
 
 ## Dropping: one vocabulary
 ```ts
+// SUPERSEDED 2026-11-03 — drop "claimed" (SkipReason) and "duplicate_claim" (WithholdReason): the claim is gone (#308).
+// Candidate additions for U6 to decide: a deadline-deferral skip (today recordLaneDeferral / deadline_reached), and
+// whether the clearer's own reasons (no_subscription, no_queue_id, and its fail reasons) join this vocabulary.
 type SkipReason     = "circuit_open" | "fetch_failed" | "not_returned" | "cross_tenant" | "claimed"
                     | "unowned" | "enrichment_failed" | "map_failed" | "invalid" | "unresolvable_direction";
 type WithholdReason = "connector_unresolved" | "connector_ineligible" | "duplicate_claim";
@@ -186,6 +189,18 @@ which can go. Fail-open is a property of a *gate*, declared where the gate is (t
 single `broadcastConfirmations` escape), never re-decided at a drop site.
 
 ## Announce: the only side effects
+> SUPERSEDED 2026-11-03 — both sketches below predate #291/#293/#308. There is **no claim**; the allow-list is gone (#291), so every published row is cleared except a group whose channel takes no `confirmation_ready` for its type (`no_subscription`) and a row with no `queueId`; `stock_adjustment` is cleared like the rest (#293); snap-adapter's own clear-down is retired (#294). Announce is **paged**:
+>
+> ```ts
+> for (const [i, page] of chunk(g.confirmations, ANNOUNCE_PAGE_SIZE).entries()) {   // 100
+>   if (i > 0 && pastAnnounceDeadline()) break;      // between pages only
+>   await publish(page, g.type.publish, attributes(g));
+>   await deps.clearer.clearPublished(g, page, deps.snap);   // never rejects; a failed clear republishes next poll
+> }
+> ```
+>
+> `clear` outcomes returned by mappers (zero-quantity, cancelled) still execute in announce, and the manual-origin failure fan-out still follows the group. Whether announce stays isolated per group (today a publish failure in one group aborts the rest of the run) is still U7's decision.
+
 > SUPERSEDED 2026-10-05 — the sketch below predates Poller Clear-Down C2. Announce now has a second clear: once a
 > group's publish resolves, `OutboundQueueClearer.clearPublished` PATCHes that group's published rows (allow-listed
 > businesses, routed to a channel that subscribes to the type; broadcast/unrouted/no-subscription/`stock_adjustment`
@@ -214,6 +229,8 @@ Ordering pinned by scar tissue: claim → publish, and the whole cycle completes
 A publish failure on one group is logged and metered and no longer aborts the rest of the cycle.
 
 ## What stays byte-identical (the contract pin)
+> SUPERSEDED 2026-11-03 — drop the claim key `confirmation-claim:{businessId}:{queueId}` and its TTL from the pin (deleted, #308), and replace the black-box counts "56 / 21 / 40 / 11" with the counts U0 re-derives at master (e2e at #308: schedule poll 29, debug trigger 69, Check Endpoint 22). The SNAP call set per type is *re-inventoried* by U0 against today's handlers, not the 09-18 review. Add to the pin: the per-business ordering key on the poll message, the 420 s / 540 s budgets and the 240 s stale-poll skip, and clear-after-publish per page. Unchanged: topics and attributes, envelopes, store doc shape and ids, `$top=1000`, the 600 s ack deadline, `confirmationsEnabled` fail-closed.
+
 Topics and `recordType` / `source` / `broadcast` attributes; `BifrostMessage` envelopes and
 `metadata.recordType`; the claim key `confirmation-claim:{businessId}:{queueId}` and TTL; the Firestore
 store doc shape and ids; the SNAP call set per type (plus, since C2, one `PATCH …/processed` per published routed row for an allow-listed business; the black-box mock business isn't allow-listed, so its counts are unchanged) (asserted by the black-box counts 56 / 21 / 40 / 11
