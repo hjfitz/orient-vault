@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-03 — Manage a customer's SFTP users in Settings (C14 U3)
+
+Manage a customer's SFTP users in Settings (C14 U3)
+
+C14 U3. A new SFTP users tab under Settings → Customers. It lists logins with their keys, adds a user with an optional first key, adds a key, and revokes a key or disables a user behind confirmations. svc's reasons are shown as they are. On a 503 from revoke or disable, the tab says the key may still sign in. A banner says the SFTP server doesn't use these logins until U4. Five frontend review findings fixed: accessible names, the SSR date, 503-only wording, the dialog close, and a stale add-key form. Evidence: screenshots from a local run against svc.
+
+PR: ilg-merak/parcel-portal#58
+
 ## 2026-11-03 — Publish the live SFTP logins for the SFTP host (C14 U2)
 
 Publish the live SFTP logins for the SFTP host (C14 U2)
