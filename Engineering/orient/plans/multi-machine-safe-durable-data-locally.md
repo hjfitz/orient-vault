@@ -2,7 +2,7 @@
 ticket: none
 title: Multi-machine-safe durable data, locally
 service: orient
-status: active
+status: complete
 created: '2026-11-02'
 updated: '2026-11-03'
 repo: /home/hjf/projects/orient
