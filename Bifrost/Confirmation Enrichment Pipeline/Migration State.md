@@ -29,6 +29,8 @@ stay identical. The framing is *declarative, not extensible*: the type set is fi
 the behaviour can be read from the track literals and operated on with confidence. Review:
 https://claude.ai/artifact/UMpV4iouA7bTv3hVv9PyR8. No Jira ticket by Harry's choice.
 
+> SUPERSEDED 2026-11-03 — the claim key is no longer part of the contract (the Redis claim was deleted by #308), and the black-box counts are no longer 56 / 21 / 40 / 11. See the 2026-11-03 Decision log entry; U0 re-derives both against `master`.
+
 Invariants every unit holds: behaviour-preserving on `master`; black-box call counts re-derived (with the
 arithmetic written down) rather than patched; golden-master canonical outputs unchanged; no abstract
 `Stage`/engine/registry types — tracks are literals, stages are functions. The end state, stage order,
