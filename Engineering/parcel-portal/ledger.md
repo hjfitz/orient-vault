@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-03 — Allow the demo printer per customer (C16 D)
+
+Allow the demo printer per customer (C16 D)
+
+C16 part D, from Harry: the demo printer is per-customer config. Migration 012 adds tenant.demo_printer (off by default). Admins toggle it on the customer's Bench printers tab via PUT /admin/tenants/{id}/demo-printer (audited), and both bench reads carry demoPrinter (contract 4.4.0, additive). Customers only see the demo option when it's allowed. A browser still using it after it's turned off is warned and prints with the dialog, with a reason.
+
+PR: ilg-merak/parcel-portal#64
+
 ## 2026-11-03 — Read svc's SFTP users bucket from the bucket, not its grant (C14 U2 fix)
 
 Read svc's SFTP users bucket from the bucket, not its grant (C14 U2 fix)
