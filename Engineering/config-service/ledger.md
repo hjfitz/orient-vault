@@ -7,6 +7,14 @@ title: config-service — work ledger
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-03 — Add the write half of the Cloud SQL parity check
+
+Add the write half of the Cloud SQL parity check
+
+Ship: SHIP-1028-cloudsql-repo-seam. D2 parity oracle (83-step write sequence plus the events each step publishes). Script only.
+
+PR: gfs-bifrost/config-service#303
+
 ## 2026-11-03 — Add the read half of the Cloud SQL parity check
 
 Add the read half of the Cloud SQL parity check
