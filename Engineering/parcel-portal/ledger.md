@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-03 — Set a customer up from one place, and keep GFS staff apart (C16 A)
+
+Set a customer up from one place, and keep GFS staff apart (C16 A)
+
+C16 part A, from the UX review. Customers get an Overview tab (folder plus a setup checklist), and Packaging and Bench printers become customer tabs, replacing the admin pages that took a pasted UUID. GFS's own tenant is shown as staff with a Users tab only, and nobody can disable their own sign-in. Primary buttons get variants; headings, failure messages and the shipping-methods empty state are fixed. Five frontend review findings fixed, plus a swallowed redirect.
+
+PR: ilg-merak/parcel-portal#60
+
 ## 2026-11-03 — Sign SFTP logins in only against svc's SFTP users (C14 U4)
 
 Sign SFTP logins in only against svc's SFTP users (C14 U4)
