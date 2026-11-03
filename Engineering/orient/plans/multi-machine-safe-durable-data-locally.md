@@ -8,7 +8,7 @@ updated: '2026-11-03'
 repo: /home/hjf/projects/orient
 worktree: /home/hjf/projects/orient
 branch: master
-base: master
+base: 0f9f52ecc
 base_sha: 0f9f52ecc
 pr: null
 tags:
@@ -43,14 +43,14 @@ The proof is two scratch clones of the vault writing concurrently, with no lost 
 ## Acceptance criteria
 <!-- Observable, checkable outcomes — not tasks. Numbered by order: increments cite them as
      (AC 2,4), and sign-off prints which criteria no increment claims. -->
-- [ ] 1. The writers are in a git repo whose `git ls-files` holds only allow-listed paths. gitleaks is clean, and skills, `wp` and `cust` work unchanged on the laptop.
-- [ ] 2. No durable record lives only in `~/.local/state/orient`. Deleting it loses only the index, caches and run dirs.
-- [ ] 3. A corrupt or half-written `.knowledge` store makes the write fail. It is never read as an empty store and overwritten.
-- [ ] 4. Two clones writing concurrently (ledger entries, plan notes, usage rows, programme ticks, hand edits) lose nothing, and `git grep '^<<<<<<<'` is empty on both.
+- [x] 1. The writers are in a git repo whose `git ls-files` holds only allow-listed paths. gitleaks is clean, and skills, `wp` and `cust` work unchanged on the laptop.
+- [x] 2. No durable record lives only in `~/.local/state/orient`. Deleting it loses only the index, caches and run dirs.
+- [x] 3. A corrupt or half-written `.knowledge` store makes the write fail. It is never read as an empty store and overwritten.
+- [x] 4. Two clones writing concurrently (ledger entries, plan notes, usage rows, programme ticks, hand edits) lose nothing, and `git grep '^<<<<<<<'` is empty on both.
 > SUPERSEDED 2026-11-03 — "reaches clone B within seconds" holds only up to the remote. B has no push channel, so it sees A's write on its next sync: at most one timer interval (90 s), or at once when B runs a rewriting `wp`/`cust` command, which pulls first. Read AC 5 as: A's write reaches origin within seconds, and every other clone within one timer interval.
-- [ ] 5. A `wp` or orient write on clone A reaches clone B within seconds, and a hand edit within one timer interval (≤2 min). Commits queue while offline and push on reconnect.
-- [ ] 6. Meeting audio is never committed (`git check-ignore` matches it) and is deleted 14 days after recording. Transcripts and summaries sit in a vault-tracked dir that is not indexed.
-- [ ] 7. On the laptop, `/usage`, work-cost, `/analytics` and `/recordings` show the same totals and counts before and after.
+- [x] 5. A `wp` or orient write on clone A reaches clone B within seconds, and a hand edit within one timer interval (≤2 min). Commits queue while offline and push on reconnect.
+- [x] 6. Meeting audio is never committed (`git check-ignore` matches it) and is deleted 14 days after recording. Transcripts and summaries sit in a vault-tracked dir that is not indexed.
+- [x] 7. On the laptop, `/usage`, work-cost, `/analytics` and `/recordings` show the same totals and counts before and after.
 
 ## Affected boundaries
 <!-- Components, paths and contracts this touches. Wikilink existing explainers; do not restate
@@ -222,7 +222,8 @@ The proof is two scratch clones of the vault writing concurrently, with no lost 
 
 ### Not verified
 <!-- Stated, not papered over. "(none)" is a deliberate claim, and a fine one. -->
-- <what remains unproven, and what would prove it>
+- **Only one machine so far.** The remote is the local stand-in `~/.local/state/orient/vault-remote.git`, and every cross-machine run used scratch clones on the laptop. Real laptop ↔ VM sync over GitHub (SSH latency, the VM's read-only deploy key, sparse checkout) is Plan B's proof: `go-remote-and-bootstrap-a-fresh-machine`.
+- **Until Plan B, the stand-in remote lives in the disposable state dir.** It holds nothing the vault's own `.git` lacks, so deleting it loses no data, but the sync then reports `offline` until origin is repointed.
 
 ## Decisions & deviations
 <!-- Date-stamped, newest first — written by `wp decide`, and by hand when that is easier.

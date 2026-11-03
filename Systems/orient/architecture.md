@@ -2,21 +2,21 @@
 tags:
 - system
 - orient
-verified: '2026-09-24'
+verified: '2026-11-03'
 title: orient — architecture
-thesis: "orient is four components around one artefact, the Obsidian vault, which stays authoritative. The writers own exact vault paths. The app adopts the vault in place and reads it through a disposable SQLite index."
-confidence: moderate
+thesis: "orient is four components around one artefact, the Obsidian vault, which stays authoritative and is a git repo synced between machines. The writers own exact vault paths. The app adopts the vault in place and reads it through a disposable SQLite index."
+confidence: high
 ---
 # orient — architecture
 
 ```orient-bluf
-{ "v": 1, "bluf": "orient is four components around one artefact, the Obsidian vault, which stays authoritative. The writers own exact vault paths. The app adopts the vault in place and reads it through a disposable SQLite index.", "confidence": "moderate", "action": "Never add an app feature that needs vault files rewritten. Change a doc-kind list or frontmatter rule in wp.py and orient together." }
+{ "v": 1, "bluf": "orient is four components around one artefact, the Obsidian vault, which stays authoritative and is a git repo synced between machines. The writers own exact vault paths. The app adopts the vault in place and reads it through a disposable SQLite index.", "confidence": "high", "action": "Never add an app feature that needs vault files rewritten. Change a doc-kind list or frontmatter rule in wp.py and orient together. Put durable data in the vault, never the state dir." }
 ```
 
 Four components around one shared artefact: **the Obsidian vault**. Everything here exists to
-write to it or to read from it, and the vault — not any program — is the source of truth.
+write to it or to read from it, and the vault, not any program, is the source of truth.
 
-The app repo also holds a read-only Go MCP server over the index (`mcp/`) [5]. Three systemd user units run beside it: `orient-web` (the app), `orient-index` (the watcher) and `orient-pty` (a terminal sidecar) [6].
+**CONFIRMED** The app repo also holds a read-only Go MCP server (`mcp/`) and the meeting recorder (`scribe/`) [5]. Six systemd user units run on the machine: `orient-web`, `orient-index`, `orient-pty`, `orient-desk`, `orient-scribe` and `orient-vault-sync` (a 90 s timer) [6].
 
 ```orient-flow
 { "v": 1, "title": "Who writes the vault, who reads it",
@@ -25,7 +25,7 @@ The app repo also holds a read-only Go MCP server over the index (`mcp/`) [5]. T
     { "id": "agents", "label": "Claude Code sessions", "sub": "run skills all day", "kind": "external" },
     { "id": "skills", "label": "~30 Claude Code skills", "sub": "digests, triage, tickets, reviews", "kind": "external", "ev": [2] },
     { "id": "wp", "label": "wp.py and cust.py", "sub": "plans, ledgers, programmes, systems", "kind": "external", "ev": [2] },
-    { "id": "vault", "label": "Obsidian vault", "sub": "~/Documents/obsidian, authoritative", "kind": "store", "tone": "accent", "ev": [1] },
+    { "id": "vault", "label": "Obsidian vault", "sub": "~/Documents/obsidian, a git repo", "kind": "store", "tone": "accent", "ev": [1] },
     { "id": "app", "label": "orient", "sub": "Next.js app, reads the vault in place", "kind": "service", "service": "orient", "ev": [1, 3] },
     { "id": "src", "label": "External systems", "sub": "Jira, GitHub, Datadog, incident.io, Slack, email", "kind": "external", "ev": [4] }
   ],
@@ -44,23 +44,19 @@ The app repo also holds a read-only Go MCP server over the index (`mcp/`) [5]. T
 
 ## The one rule
 
-**The vault is authoritative and belongs to the writers.** `wp.py` (22 subcommands),
-`cust.py` and the skills own exact paths and write them every weekday. The app **adopts the
-vault in place**: it never moves, renames or rewrites an existing file except through a
-user-initiated editor save. It adds `<vault>/.knowledge/`, and new documents only under `Prompts/`, `Engineering/<svc>/decisions/`, `_heap/`, `Digests/Orientation/` and `People/`. Every write passes `resolveWritablePath` [1][7].
+**CONFIRMED** **The vault is authoritative and belongs to the writers.** `wp.py` (22 subcommands), `cust.py` and the skills own exact paths and write them every weekday. The app **adopts the vault in place**. It never moves, renames or rewrites an existing file except through a user-initiated editor save. It adds `<vault>/.knowledge/`, and new documents only under `Prompts/`, `Engineering/<svc>/decisions/`, `_heap/`, `Digests/Orientation/` and `People/`. Every write passes `resolveWritablePath` [1][7].
 
-That asymmetry is the whole design. It is why the app can be deleted and rebuilt with no data
-loss, and why a schema idea that would require rewriting vault files is out of bounds.
+That asymmetry is the whole design. The app can be deleted and rebuilt with no data loss. A schema idea that needs vault files rewritten is out of bounds.
 
 ## Read path
 
 ```orient-flow
 { "v": 1, "title": "Read path",
   "nodes": [
-    { "id": "v", "label": "Vault", "sub": "~700 Markdown files", "kind": "store", "ev": [8] },
+    { "id": "v", "label": "Vault", "sub": "~1,060 Markdown files", "kind": "store", "ev": [8] },
     { "id": "w", "label": "orient-index.service", "sub": "systemd user unit, vault watcher", "kind": "step", "ev": [6] },
     { "id": "db", "label": "SQLite and FTS5", "sub": "~/.local/state/orient", "kind": "store", "ev": [1] },
-    { "id": "app", "label": "orient-web.service", "sub": "Next.js server components, port 3000", "kind": "service", "service": "orient", "tone": "accent", "ev": [6] },
+    { "id": "app", "label": "orient-web.service", "sub": "127.0.0.1:3000", "kind": "service", "service": "orient", "tone": "accent", "ev": [6] },
     { "id": "mcp", "label": "orient-mcp", "sub": "Go stdio server, read-only", "kind": "external", "ev": [5] }
   ],
   "edges": [
@@ -72,53 +68,84 @@ loss, and why a schema idea that would require rewriting vault files is out of b
   ] }
 ```
 
-**The index is disposable**; the manifest lives in `<vault>/.knowledge/`. Rollback is deleting
-both. Updates are **in place, never a rename** — renaming a new file over the live one strands
-every open reader on a deleted inode.
+**CONFIRMED** **The index is disposable.** Updates go in place, never by rename: renaming a new file over the live one strands every open reader on a deleted inode [1].
 
-Costs, measured: one save ≈ 25 ms; full rebuild ≈ 8.7 s; staleness stamping ≈ 7 s (hence
-every 15 min, not per save) [1]. A structural change schedules a full sweep after 30 s quiet (and every 6 hours as a backstop),
-because it changes how *other* documents' links resolve.
+**CONFIRMED** Costs, measured: one save takes about 25 ms, a full rebuild about 8.7 s, and staleness stamping about 7 s, so it runs every 15 min [1]. A structural change schedules a full sweep after 30 s quiet, with a 6-hour backstop. It changes how *other* documents' links resolve.
 
-`orient-web.service` runs `next start -H 0.0.0.0 -p 3000`, so it listens on every interface, not loopback [6]. **UNKNOWN** whether a host firewall limits it. The app serves the whole vault, sensitive globs included, and accepts editor saves.
+**CONFIRMED** `orient-web` binds `127.0.0.1:3000` only [6]. Reach it from another machine over an SSH tunnel. The app serves the whole vault, sensitive globs included, and accepts editor saves.
+
+## What lives where
+
+**CONFIRMED** `.knowledge/` holds two kinds of data [1][9]:
+
+- **Derived, regenerable:** `manifest.json` and `reports/`. Rollback is deleting them and the state dir.
+- **Durable, synced:** `records/<host>/` (usage, plan-usage, work-usage, analytics and write logs), `recordings/<host>/`, and the append-only `plan-status.jsonl` and `todo-defers.jsonl`.
+
+**CONFIRMED** `~/.local/state/orient` holds only the index, caches, run dirs and secrets it can mint again. Nothing durable may live only there [10].
+
+**CONFIRMED** Each machine names itself in `~/.config/orient/host` (default `laptop`). It appends only under its own `<host>/` directory, so no record file has two writers [10]. Readers merge every host.
+
+**CONFIRMED** Recordings: transcripts and summaries sync, audio stays on the machine that recorded it [11]. `orient-scribe` deletes audio 14 days after recording. A recording from another host is read-only: edits return 409.
+
+**CONFIRMED** The manifest has one writer, the host named `manifestWriter` in `config.yaml` [10]. Other hosts skip writing it.
+
+## Sync between machines
+
+```orient-flow
+{ "v": 1, "title": "How a write reaches the other machines",
+  "nodes": [
+    { "id": "w", "label": "A write", "sub": "wp, cust, orient save, Claude Code edit", "kind": "step" },
+    { "id": "s", "label": "orient-vault-sync", "sub": "commit, fetch, merge, push", "kind": "service", "service": "orient", "tone": "accent", "ev": [9] },
+    { "id": "o", "label": "origin", "sub": "the authoritative copy", "kind": "store" },
+    { "id": "b", "label": "Another machine", "sub": "its timer or its next rewrite pulls", "kind": "external" }
+  ],
+  "edges": [
+    { "from": "w", "to": "s", "label": "kick" },
+    { "from": "s", "to": "o", "label": "push" },
+    { "from": "o", "to": "b", "label": "fetch, ≤90 s" }
+  ] }
+```
+
+- **CONFIRMED** `scripts/vault-sync.sh` commits everything, fetches, **merges (never rebases)** and pushes [9]. A timer runs it every 90 s.
+- **CONFIRMED** Each writer kicks a sync after a write, so the write reaches origin in under 1 s [9][12]. A kick during a running sync makes it go round again.
+- **CONFIRMED** A `wp`/`cust` command that rewrites a file pulls first [12]. Offline, the kick is a no-op and commits queue.
+- **CONFIRMED** Records commit at most hourly: the statusline appends 3,000 to 5,000 rows a day [9].
+- **CONFIRMED** `.gitattributes` unions append-only logs and ledgers and keeps "ours" for generated indexes [13]. A conflict aborts the merge, writes `.git/orient-sync-status` and notifies once.
 
 ## Layering inside the app
 
-- React components never import `better-sqlite3`, `node:fs` or `child_process` — all data
-  flows through `src/domain/*` (`server-only`).
+- React components never import `better-sqlite3`, `node:fs` or `child_process`. All data flows through `src/domain/*` (`server-only`).
 - No SQL outside `src/query/builder.ts`.
-- One render boundary: `src/render/renderDocument.tsx`. `.md` → Markdown; `.mdx` → MDX **only**
-  under a trusted folder (`Prompts/`), ESM rejected.
-- Sensitive globs (`Bifrost/HR`, `Bifrost/Team`, `Interviews`) are indexed and searchable but
-  never enter Today or prompt context.
+- One render boundary: `src/render/renderDocument.tsx`. `.md` renders as Markdown; `.mdx` as MDX **only** under a trusted folder (`Prompts/`), with ESM rejected.
+- Sensitive globs (`Bifrost/HR`, `Bifrost/Team`, `Interviews`) are indexed and searchable but never enter Today or prompt context.
 - **No LLM calls.** The app emits a prompt; Claude Code executes it.
 
-## Components not separately onboarded
+## The writers
 
-Only the app is an `Engineering/` service — it is the one component with a git repo.
-`wp.py`/`cust.py` and the skills live under `~/.claude`, which is **not version-controlled**,
-so they cannot be sha-anchored and have no `waypoint.yaml`. Their contracts are documented
-where they bind: this doc, and `known-context.md`.
+**CONFIRMED** `wp.py`, `cust.py`, the hooks, the statusline and Harry's own skills live in the `orient-writers` repo (`~/projects/orient-writers`) [2]. Each is linked into `~/.claude` at the directory level. A gitleaks pre-commit hook guards it.
 
-That is a real gap, not a deliberate choice — losing `~/.claude` would lose the writers.
+**ASSESSED** They are versioned but not an onboarded `Engineering/` service, so docs cannot sha-anchor them yet. Their contracts are documented where they bind: this doc and `known-context.md`.
 
 ## Coupling that must hold
 
-The app hand-mirrors constants the writers own. Frontmatter parsing must agree with `wp.py`'s
-splitter and key lists, and orient's `WAYPOINT_DOC_KINDS` mirrors `wp.py`'s `DEFAULT_DOCS` [1].
-**Add a doc kind in one and not the other and it silently renders as "other".**
+**CONFIRMED** The app hand-mirrors constants the writers own. Frontmatter parsing must agree with `wp.py`'s splitter and key lists. orient's `WAYPOINT_DOC_KINDS` mirrors `wp.py`'s `DEFAULT_DOCS` [1]. **Add a doc kind in one and not the other and it silently renders as "other".** The host-id pattern and records path are mirrored the same way between `config.ts` and `wp.py` [10].
 
 ## Evidence
 
 ```orient-evidence
 { "v": 1, "items": [
-  { "id": 1, "kind": "code", "ref": "README.md@27cc8db", "note": "orient repo: write rules, watcher costs, state locations" },
-  { "id": 2, "kind": "doc", "ref": "~/.claude/waypoint/wp.py", "note": "22 top-level subcommands; 31 skill directories under ~/.claude/skills; neither is a git repo" },
-  { "id": 3, "kind": "code", "ref": "CLAUDE.md@27cc8db", "note": "orient repo: architecture invariants" },
-  { "id": 4, "kind": "code", "ref": "src/adapters/github.ts@27cc8db", "note": "the app's own fetches go to Jira, GitHub, Datadog and incident.io adapters; no Slack adapter exists" },
-  { "id": 5, "kind": "code", "ref": "docs/mcp-spec.md@27cc8db" },
-  { "id": 6, "kind": "doc", "ref": "~/.config/systemd/user/orient-web.service", "note": "also orient-index.service and orient-pty.service" },
-  { "id": 7, "kind": "code", "ref": "src/edit/pathSafety.ts@27cc8db" },
-  { "id": 8, "kind": "log", "ref": "find ~/Documents/obsidian -name '*.md', excluding dot-directories: 700 files, 2026-10-13" }
+  { "id": 1, "kind": "code", "ref": "README.md@11aaab0", "note": "orient repo: write rules, watcher costs, state and .knowledge locations" },
+  { "id": 2, "kind": "doc", "ref": "~/projects/orient-writers@01dbcf2", "note": "wp.py has 22 top-level subcommands; 32 skills" },
+  { "id": 3, "kind": "code", "ref": "CLAUDE.md@11aaab0", "note": "orient repo: architecture invariants" },
+  { "id": 4, "kind": "code", "ref": "src/adapters/github.ts@11aaab0", "note": "the app's own fetches go to Jira, GitHub, Datadog and incident.io adapters" },
+  { "id": 5, "kind": "code", "ref": "docs/mcp-spec.md@11aaab0" },
+  { "id": 6, "kind": "doc", "ref": "~/.config/systemd/user/orient-*.service", "note": "orient-web ExecStart: next start -H 127.0.0.1 -p 3000; six units plus orient-vault-sync.timer, 2026-11-03" },
+  { "id": 7, "kind": "code", "ref": "src/edit/pathSafety.ts@11aaab0" },
+  { "id": 8, "kind": "log", "ref": "find ~/Documents/obsidian -name '*.md' -not -path '*/.*': 1,062 files, 2026-11-03" },
+  { "id": 9, "kind": "code", "ref": "scripts/vault-sync.sh@11aaab0" },
+  { "id": 10, "kind": "code", "ref": "src/config.ts@11aaab0", "note": "hostId, recordsDir, manifestWriter, vaultSyncBin" },
+  { "id": 11, "kind": "code", "ref": "scribe/internal/store/store.go@11aaab0" },
+  { "id": 12, "kind": "code", "ref": "src/adapters/vault-sync.ts@11aaab0" },
+  { "id": 13, "kind": "doc", "ref": "~/Documents/obsidian/.gitattributes" }
 ] }
 ```
