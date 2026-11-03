@@ -212,6 +212,17 @@ The VM then stays warm for two weeks before the SSH provisioning code and the VM
 ### Evidence
 <!-- Newest first, dated. One bullet per check actually run, opening with what it discharges.
      "Suite green" alone is not evidence. Sign-off requires at least one dated bullet here. -->
+- 2026-11-03 [inc 4, S3] **Prod S3 done: all customers on the host since 09:46:30Z.** Harry chose 100% today over holding at S2 ("100% is what I had in mind").
+  - **#392** (`sftp_vm_backend = false`) was merged by `cut.sh prod s3 --apply --pr 392` as `72984d4`. Prod plans were read before the gates:
+    - host run 41613083576: `sftp-host-prod` loses the VM backend and `health_checks` goes `-ssh` → `-http` (0/1/0);
+    - connector run 41613083543: image tag plus standing drift.
+  - **Timing:** gates approved 09:43–09:45Z; `p_s3_done` at 09:46:12Z (275 s); S3 finished in 328 s. The host is HEALTHY ×3; the VM drain ended at 09:51:18Z. The VM journal shows no accepted logins after 09:47Z.
+  - **VM-only users first seen on the host, all accepted:** FUSE_C232BE3BCC (51.141.86.75, 12 logins in 8 min), FUSE_84B6F5A152 and FUSE_8B8F319605 (130.255.29.213, PuTTY/WinSCP), FUSE_15ADCA408F (20.26.12.135), and FUSE_447A6A12D5's other IP 52.21.250.44. In the 09:45–09:53Z window: 0 login failures, 0 handshake failures, 0 upload failures, 0 connector errors; audit-service stored 52 prod `sftp_login`.
+  - **Not yet seen on the host:** FUSE_033BE0B235, FUSE_DD2AF79592, FUSE_ABDAD7F392, FUSE_BF65660F94, FUSE_59DC37CB09 (low-frequency pollers).
+  - **Expected noise:**
+    - 335786576 fired for `sftp-connector-prod-sftp-vm`, because the VM went HEALTHY → UNHEALTHY at 09:46:43Z under the new HTTP check as it was drained out.
+    - Two `sftp request refused` lines of type `simple@putty.projects.tartarus.org`, a PuTTY no-reply extension that the host refuses and continues past.
+  - **Guard fixes:** grouping a log aggregate by a facet a line lacks drops the line. The refused lines have no `remote`, and the handshake lines have no `error`. The guard now signals on ungrouped totals.
 - 2026-11-03 [inc 3, S2] **Prod S2 done: the host serves prod beside the VM, at size 1.** Pre-flight passed at 07:45Z: no Deploy runs in flight; host 3/3 HEALTHY on `2084114` (#388, #389); VM HEALTHY; prod SFTP Host monitors OK; load 0.6.
   - **#390** (`sftp_host_backend = true`, `sftp_host_size = 1`) was merged by `cut.sh prod s2 --apply --pr 390` as `dd046fc` at 08:00:50Z. Prod plans were read before the gates:
     - host run 41600160074: backend service gains the MIG beside the VM, MIG 3 → 1 (0/2/0). The VM backend renders as remove+add only because Terraform re-renders the backend set; group, mode and failover are unchanged.

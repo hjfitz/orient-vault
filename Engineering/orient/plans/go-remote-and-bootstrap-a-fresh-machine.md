@@ -138,7 +138,7 @@ Take the git setup built in [[multi-machine-safe-durable-data-locally]] (Plan A,
     - gate: the VM's write-enabled deploy keys added to `orient-vault` and `orient-writers` (keys in the VM's `~/.ssh/orient-deploy/`)
       [ ] confirmed
     - gate: Obsidian Sync confirmed disconnected in the app (`core-plugins.json` has `sync: true` but there is no `sync.json`)
-      [ ] confirmed
+      [x] confirmed (2026-11-03: Harry hasn't used Obsidian since orient was built; no sync.json)
     - gate: `gitleaks detect` over the vault clean
       [x] confirmed (2026-11-03: 0 findings over history and tree)
 - [ ] 5. **Fresh-hardware proof.** (AC 4)
