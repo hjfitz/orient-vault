@@ -24,7 +24,7 @@ it is now. Regenerate this page with `wp index`; check health with `wp doctor`.
 | [[Engineering/bifrost-pubsub/overview\|bifrost-pubsub]] | infra | 3 | 0 | 0 | 2026-10-14 |
 | [[Engineering/carrier-proxies/overview\|carrier-proxies]] | backend | 0 | 0 | 0 | 2026-10-08 |
 | [[Engineering/collector/overview\|collector]] | backend | 3 | 1 | 0 | 2026-10-05 |
-| [[Engineering/config-service/overview\|config-service]] | backend | 5 | 0 | 1 | 2026-11-02 |
+| [[Engineering/config-service/overview\|config-service]] | backend | 5 | 0 | 1 | 2026-11-03 |
 | [[Engineering/core-infra/overview\|core-infra]] | infra | 3 | 0 | 0 | 2026-09-21 |
 | [[Engineering/cx/overview\|cx]] | backend | 0 | 0 | 0 | 2026-10-12 |
 | [[Engineering/dedupe-service/overview\|dedupe-service]] | backend | 5 | 0 | 0 | 2026-10-28 |
@@ -45,7 +45,7 @@ it is now. Regenerate this page with `wp index`; check health with `wp doctor`.
 | [[Engineering/merak-portal/overview\|merak-portal]] | backend | 0 | 0 | 0 | 2026-10-28 |
 | [[Engineering/observability/overview\|observability]] | backend | 0 | 0 | 0 | 2026-11-02 |
 | [[Engineering/observability-sdk/overview\|observability-sdk]] | library | 3 | 0 | 0 | — |
-| [[Engineering/orient/overview\|orient]] | frontend | 1 | 0 | 2 | 2026-11-02 |
+| [[Engineering/orient/overview\|orient]] | frontend | 1 | 0 | 2 | 2026-11-03 |
 | [[Engineering/parcel-portal/overview\|parcel-portal]] | backend | 4 | 0 | 0 | 2026-11-02 |
 | [[Engineering/pkg-node/overview\|pkg-node]] | library | 3 | 0 | 1 | 2026-11-02 |
 | [[Engineering/remote-compute/overview\|remote-compute]] | backend | 0 | 0 | 2 | 2026-11-02 |
