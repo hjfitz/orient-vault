@@ -7,6 +7,14 @@ title: sftp-connector — work ledger
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-03 — Add the host to prod SFTP's backend service (cut S2)
+
+Add the host to prod SFTP's backend service (cut S2)
+
+Plan C S2 trial, 2026-11-03: prod tfvars sftp_host_backend = true, sftp_host_size = 1; cut.sh prod s2 merges it. A ramp PR to size 3 follows.
+
+PR: gfs-bifrost/sftp-connector#390
+
 ## 2026-11-02 — Log refused SFTP requests and algorithm mismatches on the host
 
 Log refused SFTP requests and algorithm mismatches on the host
