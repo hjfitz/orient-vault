@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-03 — Let a GFS admin acting for a customer dispatch its orders (C16)
+
+Let a GFS admin acting for a customer dispatch its orders (C16)
+
+Harry said to proceed (3 Nov). Migration 013 points dispatch_attempt.started_by and shipment.booked_by at app_user(id), the same shape as voided_by and manifested_by. The acting-dispatch 403 is removed (contract 4.5.1). Verified locally: an acting gfs_admin booked a customer's order, recorded under the admin.
+
+PR: ilg-merak/parcel-portal#67
+
 ## 2026-11-03 — Give the SFTP host its users bucket's real name (C14 U4 fix)
 
 Give the SFTP host its users bucket's real name (C14 U4 fix)
