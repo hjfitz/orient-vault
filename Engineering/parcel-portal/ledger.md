@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-03 — Take orders as JSON over the customer API (C15 P6)
+
+Take orders as JSON over the customer API (C15 P6)
+
+C15 P6. POST /v1/orders (customer API 1.2.0): up to 100 JSON orders; one request = one import file (source api, object never written); service.requested mapped via the layout's carrier/carrierService lookups (miss = unmapped_service); then the import's own plan + ApplyImport, so validation, statuses, replace-if-undispatched by shipRef, refuse-if-dispatched and duplicates behave as a file's. Per-order created/replaced/refused with status and problems (no file column). Harry, 3 Nov evening: 'P6, breaking changes, deployments: all fine'; the design calls (one request one file, resend replaces, no Idempotency-Key) were made here.
+
+PR: ilg-merak/parcel-portal#83
+
 ## 2026-11-03 — Log an API key's revocation once (C15 P2 follow-up)
 
 Log an API key's revocation once (C15 P2 follow-up)
