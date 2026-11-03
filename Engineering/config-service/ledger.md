@@ -7,6 +7,15 @@ title: config-service — work ledger
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-03 — Freeze prod config writes for the Cloud SQL cutover
+
+Freeze prod config writes for the Cloud SQL cutover
+
+E2 freeze: persistence_read_only = true in prod.tfvars. Held as a draft until Harry's go; the freeze starts at the prod gate approval.
+
+Ship: SHIP-1028-cloudsql-repo-seam
+PR: gfs-bifrost/config-service#309
+
 ## 2026-11-03 — Serve dev config from Cloud SQL
 
 Serve dev config from Cloud SQL
