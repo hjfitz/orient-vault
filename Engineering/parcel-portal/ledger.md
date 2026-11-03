@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-03 — Let a customer's own layout ignore extra columns and carry its shipping methods (C17 1/2)
+
+Let a customer's own layout ignore extra columns and carry its shipping methods (C17 1/2)
+
+C17, Harry 3 Nov: the file layout editor was 'extremely confusing'. svc: a customer's own layout ignores extra columns (missing required ones still refused; DC built-in stays strict); shipping methods read and write a custom layout's carrier/carrierService lookups; mapping fields gain plain labels; contract 4.6.0.
+
+PR: ilg-merak/parcel-portal#73
+
 ## 2026-11-03 — Manage a customer's API keys in Settings (C15 P2 UI)
 
 Manage a customer's API keys in Settings (C15 P2 UI)
