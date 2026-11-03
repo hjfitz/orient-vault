@@ -48,6 +48,8 @@ Legend: ⬜ not started · 🟨 in progress · ✅ merged · ⛔ blocked · ⏸ 
      context beside the code); Deps drives `wp programme next`; Tier is the sizing estimate. -->
 
 
+> SUPERSEDED 2026-11-03 — re-baselined against `snap-adapter` master `7f4e10d`. **U0:** the baseline has no `claim.duplicate` (the claim is gone); black-box counts are whatever `tests/test-cases.ts` derives at master (e2e at #308: schedule poll 29 SNAP calls, debug trigger 69, Check Endpoint 22), not 56/21/40/11; golden masters pin the mappers *after* #246/#249/#255/#257/#242/#313/#315 (batch-grain lines, WOC batch and consumed); the per-type SNAP call inventory is re-derived from the handlers at master, not the 09-18 review §4; add `snap.outbound.{cleared,clear_failed,clear_skipped}` and `confirmation_run.deadline_reached{stage}` to the 24h baseline. **U1/U2:** `QueueLane.drain` and both handler bases now take a `collectionDeadline` and page the collection (DESPATCH pages of 50, first page always processed, `recordLaneDeferral` for the rest) — typed records and provenance-per-page must keep that.
+
 ### A — Foundations (make the compiler carry the shape)
 | Unit | St | Summary | Deps | Risk | Tier | PR | Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- |
