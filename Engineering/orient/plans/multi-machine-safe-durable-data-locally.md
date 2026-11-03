@@ -156,7 +156,7 @@ The proof is two scratch clones of the vault writing concurrently, with no lost 
     - `git check-ignore` matches `audio.*`.
     - Offline commits queue, then push on reconnect.
     - `pnpm index:watch` on B batches a 50-file pull, and `pnpm index:status` exits 0.
-- [ ] 6. **Writes kick the sync straight away.** (AC 5)
+- [x] 6. **Writes kick the sync straight away.** (AC 5) — wp, orient save and the Claude Code hook each reach origin in under 0.5 s; offline never blocks — done: 11aaab0
   - `wp.py` and `cust.py` run `systemctl --user start --no-block orient-vault-sync` after any write, and do a best-effort pull before a rewriting command (tick, set-status, programme tick, sync, index).
   - The orient save paths and `.knowledge` stores do the same through a new `src/adapters/vault-sync.ts`.
   - A Claude Code `PostToolUse` hook on `Write|Edit` covers vault paths.
