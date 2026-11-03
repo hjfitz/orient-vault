@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-03 — Take order files over the customer API, idempotently (C15 P4b, draft)
+
+Take order files over the customer API, idempotently (C15 P4b, draft)
+
+C15 P4b. POST /v1/order-files (customer API 1.1.0): CSV stored as <slug>/inbound/api-<token>-<name> with metadata source=api, api-key, import-file-id, content-sha256; recorded as received and answered 202 with its id before the import runs, which keeps the id. Idempotency-Key: token = hash(tenant, key), conditional GCS create; same file replays, different file 409. A clashing import-file-id falls back to a new id. Portal contract 5.0.0: ImportFile.source x-extensible-enum [sftp, browser, api] (oasdiff calls both enum-add and enum->x-extensible-enum breaking; no 4.x was ever released). Held as a draft for Harry's yes on 5.0.0.
+
+PR: ilg-merak/parcel-portal#80
+
 ## 2026-11-03 — Serve the customer API's first route behind API keys (C15 P4a)
 
 Serve the customer API's first route behind API keys (C15 P4a)
