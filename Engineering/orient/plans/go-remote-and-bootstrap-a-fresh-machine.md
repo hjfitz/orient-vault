@@ -103,7 +103,7 @@ Take the git setup built in [[multi-machine-safe-durable-data-locally]] (Plan A,
     - `git ls-remote` shows `master` at the local HEAD.
     - `git config --global` and `~/.ssh/config` are unchanged (`diff` against `config-gfs`).
     - gate: Plan A complete
-      [ ] confirmed
+      [x] confirmed (2026-11-03, multi-machine-safe-durable-data-locally signed off)
     - gate: Harry decides on the commit author email (resolved 2026-11-02: kept as is, private repo)
       [x] confirmed
 - [ ] 2. **Units in the repo.** (AC 3)

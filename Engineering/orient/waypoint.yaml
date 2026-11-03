@@ -7,7 +7,7 @@ type: frontend            # backend | frontend | library | infra
 owner: hjf                # personal tool
 language: TypeScript
 framework: Next.js (App Router, React 19, Server Components)
-deploy: none              # local-only; no remote, no CI, direct-to-master
+deploy: none              # no CI; direct-to-master, pushed to private hjfitz/orient; each machine runs pnpm deploy:web
 observability: none
 
 interfaces:
