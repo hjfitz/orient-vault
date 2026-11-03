@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-03 — Tab the settings pages, with a tabbed page per customer
+
+Tab the settings pages, with a tabbed page per customer
+
+Unit C13, first part. Settings is tabbed: Customers (GFS admins only), Packaging and Printing. Customers is a list, and each customer opens on its own page with Folder, File layout, Shipping methods, Carrier account and Users tabs, each with its own URL. Old ?tenant= links redirect. The tabs are links with aria-current. Review (frontend and security, panel of 2) found 3 issues, all fixed before merge: the Radix tablist semantics, a missing header on the error state, and the non-admin redirect. Merged as 861674a. Base for the mapping editor in the File layout tab.
+
+PR: ilg-merak/parcel-portal#47
+
 ## 2026-11-02 — Set each customer's carrier account in the admin UI
 
 Set each customer's carrier account in the admin UI
