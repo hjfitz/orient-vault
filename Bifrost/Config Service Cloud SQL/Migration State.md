@@ -112,6 +112,13 @@ Legend: ⬜ not started · 🟨 in progress · ✅ merged · ⛔ blocked · ⏸ 
 - **R10 A public endpoint instead of a private one** — with connector-only access, a leaked SA key plus `cloudsql.client` reaches the instance from anywhere, where a private IP would also need a network position. Mitigation: no authorised networks, `connector_enforcement = REQUIRED`, IAM database users only (no passwords to leak), keys never minted (WIF and runtime identities) — accepted.
 
 ## Decision log
+- **2026-11-03** — **E2: prod serves config from Cloud SQL Postgres since about 14:04:13Z.** Harry told users and muted 5xx monitor 302797201, then confirmed the freeze ("go") and the switch ("yep - let's go").
+  - **Freeze:** #309 (`b7dba9a`) merged 13:51:42Z. I merged it with its two integration checks still pending; both passed afterwards. Prod plan 1/3/0 (one more main-container env block than the image-only plan). Gate approved 13:53:36Z, read-only from about 13:56:36Z; a write probe got 503.
+  - **Delta copy** `config-service-prod-backfill-2phfv`: all 173 rows unchanged (no prod writes after E1's 13:46 copy), 1,441 ms.
+  - **Read parity under the freeze:** 2,232 probes, 0 differ. Tag and pin cleared before the switch.
+  - **Switch:** #310 (`9627e7b`) merged 13:59:51Z. Prod plan 0/3/1 (backfill job destroyed). Ten env blocks showed as replaced because the gcloud tag updates had reordered the env list. The apply sets env from the Terraform code, and only the tfvar changed. Gate approved 14:01:13Z; `00067-27d` at 100%, postgres, writes on. **Writes were frozen for about 7½ minutes.**
+  - **First minutes:** 0 errors, 2 "Entity not found" warnings. Cloud SQL CPU about 15%, about 1 backend. 35 GETs answered 200 and 14 answered 404 from the Postgres revision (dedupe-service, sftp-connector and others). No writes yet.
+  - **Rollback is now lossy:** a write that lands on Postgres is lost if we flip back. Mongo is frozen at the 13:46 state, which matches Postgres exactly.
 - **2026-11-03** — **E1 done: prod Postgres holds a copy of prod config, and read parity is clean.** Harry's go; he also dropped D3's week-long soak in favour of cutting prod over today ("very well tested, we should be able to reconstruct anything through logs"). Dev keeps soaking alongside as the canary for R10.
   - **Dry run** `config-service-prod-backfill-r54x9`: 173 rows (businesses 34, storefronts 33, connectors 39, backends 34, shipmentMethods 27, ddpRules 5, flags 1). 0 skipped, 0 unmapped, 0 deleted, 2 documents timed from `_id`. 1,348 ms.
   - **Apply** `-nh6lc` at 13:46Z: the same 173 rows inserted in 1,147 ms (19 s with job start-up). **The E2 delta copy is about 1 s.** The freeze is therefore bounded by the Terraform apply plus the read check, about 7 minutes as on dev.
