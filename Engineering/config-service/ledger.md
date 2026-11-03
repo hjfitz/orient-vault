@@ -7,6 +7,14 @@ title: config-service — work ledger
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-03 — Set PERSISTENCE_READ_ONLY from a persistence_read_only tfvar
+
+Set PERSISTENCE_READ_ONLY from a persistence_read_only tfvar
+
+Ship: SHIP-1028-cloudsql-repo-seam. The cutover write freeze becomes a tfvars change (default false, no behaviour change), needed for the D3 dev rehearsal and E2. E1/E2 owe (1).
+
+PR: gfs-bifrost/config-service#301
+
 ## 2026-11-03 — Take zod 4.6.7 so the zod advisory is fixed, not allowlisted
 
 Take zod 4.6.7 so the zod advisory is fixed, not allowlisted
