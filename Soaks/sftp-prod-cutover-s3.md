@@ -66,6 +66,7 @@ The kit is `~/sftp-cutover/` (laptop scratchpad or workstation `rc-hjf`). Start 
 - **2026-11-03 10:20Z:** clean. 208 logins accepted, 0 failures.
 - **2026-11-03 11:45Z (midday DM):** clean. 710 logins accepted from 12 user/IP pairs (9 customers). 41 uploads, 0 failed. 712 audit events stored. The guard woke three times (`support` scanner, DD2AF79592 closed before auth after a good 10:24Z login, a scanner handshake), none for a customer failure. The host's ED25519, ECDSA and RSA keys are identical to the VM's.
 - **2026-11-03 13:52Z:** clean on both the laptop and the workstation guards. VM idle since 09:47Z.
+- **2026-11-03 13:57Z:** clean. The watch moved from the laptop to the workstation `rc-hjf`. The laptop guard stopped after its 13:57Z check, and its log was copied to `~/sftp-cutover/s2-prod/guard.log` there.
 - **Next: 2026-11-03 17:00Z.** DM Harry the keep-overnight-or-roll-back recommendation. Keep is the default if clean. Update Plan C evidence.
 
 ## Open
