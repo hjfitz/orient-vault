@@ -7,6 +7,14 @@ title: config-service — work ledger
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-03 — Add the read half of the Cloud SQL parity check
+
+Add the read half of the Cloud SQL parity check
+
+Ship: SHIP-1028-cloudsql-repo-seam. D2 parity oracle (every GET route, values compared, Mongo as the expected side). Script only.
+
+PR: gfs-bifrost/config-service#302
+
 ## 2026-11-03 — Set PERSISTENCE_READ_ONLY from a persistence_read_only tfvar
 
 Set PERSISTENCE_READ_ONLY from a persistence_read_only tfvar
