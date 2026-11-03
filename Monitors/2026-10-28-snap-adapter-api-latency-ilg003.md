@@ -152,3 +152,17 @@ Vendor P3: sustained Snap-side slowness, no failures or backlog. Monitor is chro
 - No maintenance record covers 2 Nov (newest Maintenance/ file is 2026-10-28). Email/pin not checked.
 - Verdict unchanged: vendor P3, same plateau; one more self-healed PURDYFIGG wave, headroom better than 16:42Z. Reply: draft returned to watcher.
 - Not established: why Snap is slow; direct Snap probe (Fuse MCP 401); which host PURDYFIGG uses; the four rejected records' fate; email/pinned maintenance notice.
+
+## Re-fire 3 Nov 06:37:08Z (ilg004 and ilg001 Alert; checked ~06:40Z)
+- Thread: 29 Oct thread 1793253749.135479 (C099WKQTE8G), about 15 one-line acks since the 18:58Z full measurement. Draft returned to the watcher, not posted by this run.
+- 30-min avg latency 19:00Z 2 Nov to 06:30Z 3 Nov (s), range over the 24 buckets: ilg001 2.0-5.3, ilg003 2.0-4.4, ilg004 2.1-5.2; ilg002 0.11-0.27, ilg005 0.10-0.36. Last bucket (06:00-06:30Z): ilg001 5.33, ilg004 5.24, ilg003 4.36, ilg002 0.25, ilg005 0.36. 10-min buckets 04:40-06:30Z: ilg001 2.3-5.3, ilg004 2.3-5.2, ilg003 2.3-5.0. No step change; ilg002/005 not affected.
+- Same overnight window a week earlier (26 Oct 19:00Z to 27 Oct 07:00Z, hourly): ilg001 3.1-5.3s, ilg004 3.1-4.9s, ilg002 0.19-0.34s, ilg005 0.18-0.34s, but ilg003 0.15-0.25s (now 2.0-4.4s).
+- Failed polls: `snap.poll.request` minus `.success` is 0 on all five hosts over 19:00Z-now.
+- snap_adapter: 0 error or warn logs since 19:00Z (1406 info; 452 "Entity created in SNAP"); 236 errors 16:00Z-now, all earlier. 0 slot_timeout and 0 snap_api_error anywhere in prod since 19:00Z. snap-polling-service: 0 error logs; warns are only "Consignment StU not found" (5494) and "Stock movement dropped" (1400).
+- Oldest unacked since 19:00Z, max per snap_adapter prod sub: create_record_sales_order 26s, all others 0. No other prod sub above 31s (bifrost snap_poll_customer).
+- PURDYFIGG reap total per hour (sum of @total): 12237 (19Z), 4270, 2316, 1429, 754, 522, 342, 151, 54, 9, 16, 18 (06Z). Errored 0 on the latest samples.
+- Other monitor events since 20:00Z: Fuse UI 5xx rate high (P2) Triggered 01:54:55Z, Recovered 02:08:55Z; PF go-live T3 Triggered 21:26Z, Recovered 01:26Z; PF go-live T6 No data 22:11Z to 06:09Z recovered. All OK now. Monitors in Alert/Warn that notify bifrost-notifications now: only 179927768.
+- Held records (17 ids): no "Entity created in SNAP" log for any since 27 Oct (7-day query; query validated against #6647100). Latest log per id: replay_service create-failure for #139010, #6521935, 15309, SC17418706, SO399422/428, UK-911960/912082/912102, WHSL16074^16152; collector failure for SO399425; dedupe 204 for #139527 (20:50Z), #139531 (20:55Z), #37747 (22:20Z), #37526 (30 Oct); shopify publish for #6617071 (29 Oct); no log in 14 days for PO573058.
+- Maintenance/: no record covers 3 Nov (newest 2026-10-28).
+- Verdict: vendor, P3, same plateau, slightly below the evening's 10-min peaks, no errors, no backlog, no failed polls. Flapping across the 5s line continues.
+- Not established: why Snap is slow; direct Snap probe (Fuse MCP 401); whether the 17 records exist in Snap or are still in replay-service (no replay-list-failures); Snap maintenance email/pin; whether the monitor's muted_until_ts (2026-11-05) is a scoped mute.
