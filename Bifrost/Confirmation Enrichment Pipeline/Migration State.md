@@ -116,6 +116,7 @@ Legend: ⬜ not started · 🟨 in progress · ✅ merged · ⛔ blocked · ⏸ 
 ## Scar tissue
 - **Read the queue once per transaction type**, never once unfiltered — `$top` is per request and one backlogged type would starve the others (INC-30 scenario). The track runner keeps one read per track per business.
 - **Handlers/mappers never touch the queue or Redis or Pub/Sub.** FUSE-876's review rejected an ambient per-poll cache (`AsyncLocalStorage`) precisely because a handler's dependency on "someone already fetched this" was invisible in its signature — enrichment must be explicit input to a mapper, never ambient.
+> SUPERSEDED 2026-11-03 — the Redis claim, its key and its TTL were deleted by #308 (FUSE-1324, after INC-40: the claim hung the poller and failed open, ~2,000 duplicate publishes). Redis stays only for the config cache and the stock-sync lock. Idempotency is now per-business serialisation plus clear-after-publish.
 - **Claim key is `confirmation-claim:{businessId}:{queueId}`** (FUSE-1176); `queueId` alone collides across tenants.
 - **A routing-store read failure fails that page for the cycle and rethrows; it never degrades to broadcast.** `snap.routing_lookup.{hit,fallback_attachment,miss}` are the drain gauge for eventually deleting the attachment read — keep them meaningful.
 - **Absent `confirmationsEnabled` is not-enabled** (fail closed) — safe only because of the FUSE-1063 prod backfill; do not loosen.
