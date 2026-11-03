@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-03 — Let GFS admins act for a customer (C16 C)
+
+Let GFS admins act for a customer (C16 C)
+
+C16 part C (Harry: a customer switcher is necessary for support). svc: a gfs_admin's X-Acting-Tenant header scopes session routes to a customer, with each request logged; others get 403, unknown tenants 404. Dispatch is refused while acting, because dispatch_attempt.started_by and shipment.booked_by are FK'd to a user of the same tenant; this is a decision for Harry. UI: an Acting as switcher (httpOnly cookie, cleared on sign-in and sign-out), a banner on every page, and a pick-a-customer state for admins on Orders, Shipments and Export. Contract 4.4.0, additive.
+
+PR: ilg-merak/parcel-portal#65
+
 ## 2026-11-03 — Allow the demo printer per customer (C16 D)
 
 Allow the demo printer per customer (C16 D)
