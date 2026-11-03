@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-03 — Rework the file layout editor around columns, grouping and portal fields (C17 2/2)
+
+Rework the file layout editor around columns, grouping and portal fields (C17 2/2)
+
+C17, Harry 3 Nov: the file layout editor was 'extremely confusing'. UI: one File layout card — start from Despatch Cloud's layout, file columns first (read from a sample), a grouping column picker, portal-field dropdowns grouped Order / Each product line with required fields always listed, column / fixed value / advanced expression sources, translate values and if-blank, derived required/optional columns, check at the bottom. DC template round-trips to identical rules.
+
+PR: ilg-merak/parcel-portal#74
+
 ## 2026-11-03 — Let a customer's own layout ignore extra columns and carry its shipping methods (C17 1/2)
 
 Let a customer's own layout ignore extra columns and carry its shipping methods (C17 1/2)
