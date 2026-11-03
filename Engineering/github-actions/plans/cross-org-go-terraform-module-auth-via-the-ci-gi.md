@@ -1,17 +1,21 @@
 ---
-ticket: "none"
-title: "Cross-org Go + Terraform module auth via the CI GitHub App"
-service: "github-actions"
+ticket: none
+title: Cross-org Go + Terraform module auth via the CI GitHub App
+service: github-actions
 status: draft
-created: "2026-11-03"
-updated: "2026-11-03"
-repo: "ilg-platform/github-actions"
-worktree: "/home/harry/code/ilg-platform/github-actions"
-branch: "hjf/github-module-auth"
-base: "origin/main"
-base_sha: "7d03e30"
-pr:
-tags: [waypoint, plan]
+created: '2026-11-03'
+updated: '2026-11-03'
+repo: ilg-platform/github-actions
+worktree: /home/harry/code/ilg-platform/github-actions
+branch: hjf/github-module-auth
+base: origin/main
+base_sha: 7d03e30
+pr: null
+tags:
+- waypoint
+- plan
+impl_model: opus
+impl_effort: medium
 ---
 # none — Cross-org Go + Terraform module auth via the CI GitHub App
 
