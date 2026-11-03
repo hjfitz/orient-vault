@@ -8,7 +8,7 @@ from: laptop
 to: hjf.shell.platform.ilg.software
 session_id: 80a57909-179d-48c7-a6cb-da766abb7a8a
 resumed_by: 7652f0c7-9f02-4c64-b56f-a154250bb016
-updated: 2026-11-03T17:47Z
+updated: 2026-11-03T18:50Z
 ---
 # Handover: Parcel Portal
 
@@ -29,7 +29,7 @@ Dev SFTP users: `tca` (the existing dev test client's key) and `tca-verify` (dis
 ## In flight
 | Work | PR / branch | State | To close it |
 | --- | --- | --- | --- |
-| C15 P4b: CSV upload over the API | #80 `hjf/c15-api-upload` (draft; worktree `.claude/worktrees/c15-api-upload`) | Gates green locally. review-panel findings fixed (`0cfa306`). CI: all 31 checks green on `0cfa306`, the UI lint and build included. Draft until Harry answers. | On Harry's yes to 5.0.0: `gh pr ready 80`, merge, confirm the svc+ui dev deploys, then record it here. Main has moved since? Then merge `origin/main` in first, and renumber if a 5.x has landed. |
+| C15 P5: the public gateway | #81 `hjf/c15-gateway` (draft; worktree `.claude/worktrees/c15-gateway`) | Pushed; CI and the PR Terraform plans running; review-panel running | Read the **dev** `gateway` plan comment and record it here. Apply only if it's purely additive: nothing destroyed or replaced, with IAM limited to the gateway's own invoker grant on svc and its `allUsers` invoker. Then `gh pr ready 81` and merge, and confirm `gateway-on-push`'s `terraform-apply-dev`, the `dev-<sha>` image and `https://api.parcel.delivery.freightops.dev/docs` (the cert can take ~15–60 min). Anything else in the plan waits for Harry. |
 
 ## Waiting on Harry
 - **Portal contract 5.0.0 for P4b (#80).** Recommend yes.
@@ -90,6 +90,7 @@ Checked 2026-11-03 ~16:40Z on `harry@hjf.shell.platform.ilg.software`; synced wi
 ## Closed since handover
 | When (UTC) | Work | Result |
 | --- | --- | --- |
+| 2026-11-03 ~18:46 | #80 C15 P4b, CSV upload over the API | Harry answered the stop DM in-session, about 17:50Z: "happy to continue with the lot overnight". Taken as yes to portal contract 5.0.0, with the two API questions kept at their defaults (keys per customer, problems uncapped). Merged as `2218b15`; svc and ui `terraform-apply-dev` success, both on `dev-2218b15`, revision 00034 applied migrations with no errors. |
 | 2026-11-03 ~17:27 | #79 C15 P4a, the customer API's first route behind API keys | Built on the workstation. review-panel (backend, security, contract) found five issues, all fixed before merge: the key check now runs before path binding and fails closed; 500/503 are declared; the enums are `x-extensible-enum`; an unknown route answers a JSON 404; a refused key gets an API-specific 401. Evidence was gathered over HTTP locally (11 cases, key in the log 0 times). svc gates, integration, contract-check and public-contract-check are green, and CI ran the new step. Merged as `2cca2d8`; svc `terraform-apply-dev` success, `dev-2cca2d8`; revision 00033 applied migrations, is listening, no errors. |
 | 2026-11-03 ~17:09 | #76/#77 bulk Cancel + Pack (C16 G) | Merged main (with #68) in and renumbered the contract **4.8.0 → 4.9.0**. Ran review-panel on the stack and fixed what it found. In bulk.go: a portal-side failure (internal or unavailable) is now logged as "Bulk order action failed"; a held order's message now says to dispatch it again to settle it; a stale-read conflict is now coded `order_changed`. In the UI: the preset picker falls back when the chosen preset is gone; the cancel dialog keeps its count while it closes; the order page says "cancelled". svc gates + integration green locally, CI green. **Native GitHub stack:** `gh pr merge` is refused, and the extension isn't installed here, so it merged via `PUT /pulls/77/merge-async` (merges downstack too). Merged as `6b12b7d`; svc+ui `terraform-apply-dev` success, both on `dev-6b12b7d`, svc "Migrations applied" toVersion 14 at 17:08Z. |
 | 2026-11-03 ~16:55 | #68 site-local dates (C16 F) | Already had main merged (contract 4.8.0); svc gates + integration green locally, CI green (UI gates from CI: this box's gh token lacks `read:packages`). review-panel: no blockers (follow-up: customer settings tabs show the *acting* tenant's zone, not that customer's). Merged as `5f57837`; svc+ui `terraform-apply-dev` success, both on `dev-5f57837`, svc "Migrations applied" toVersion 14 at 16:54Z. Resumed by the workstation session. |
