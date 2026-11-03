@@ -47,6 +47,7 @@ The proof is two scratch clones of the vault writing concurrently, with no lost 
 - [ ] 2. No durable record lives only in `~/.local/state/orient`. Deleting it loses only the index, caches and run dirs.
 - [ ] 3. A corrupt or half-written `.knowledge` store makes the write fail. It is never read as an empty store and overwritten.
 - [ ] 4. Two clones writing concurrently (ledger entries, plan notes, usage rows, programme ticks, hand edits) lose nothing, and `git grep '^<<<<<<<'` is empty on both.
+> SUPERSEDED 2026-11-03 — "reaches clone B within seconds" holds only up to the remote. B has no push channel, so it sees A's write on its next sync: at most one timer interval (90 s), or at once when B runs a rewriting `wp`/`cust` command, which pulls first. Read AC 5 as: A's write reaches origin within seconds, and every other clone within one timer interval.
 - [ ] 5. A `wp` or orient write on clone A reaches clone B within seconds, and a hand edit within one timer interval (≤2 min). Commits queue while offline and push on reconnect.
 - [ ] 6. Meeting audio is never committed (`git check-ignore` matches it) and is deleted 14 days after recording. Transcripts and summaries sit in a vault-tracked dir that is not indexed.
 - [ ] 7. On the laptop, `/usage`, work-cost, `/analytics` and `/recordings` show the same totals and counts before and after.
