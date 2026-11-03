@@ -7,6 +7,15 @@ title: config-service — work ledger
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-03 — Freeze dev config writes for the Cloud SQL cutover
+
+Freeze dev config writes for the Cloud SQL cutover
+
+D3 runbook step 6: persistence_read_only = true in dev.tfvars. Held as a draft until the window is agreed with integrations; merging starts the window.
+
+Ship: SHIP-1028-cloudsql-repo-seam
+PR: gfs-bifrost/config-service#306
+
 ## 2026-11-03 — Number parity placeholders in sorted key order
 
 Number parity placeholders in sorted key order
