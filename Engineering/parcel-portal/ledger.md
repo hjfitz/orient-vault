@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-03 — Serve the customer API's first route behind API keys (C15 P4a)
+
+Serve the customer API's first route behind API keys (C15 P4a)
+
+C15 P4a. public-openapi.yaml 1.0.0 is the customer API's own contract, generated into internal/http/publicapi and served on svc's router beside the portal routes, each with its own validator. middleware.APIKey (Bearer ppk_...) runs in a chi group before path binding, so a keyless request is always 401; it scopes to the key's tenant and ignores X-Acting-Tenant. GET /v1/order-files/{id} reads one of the customer's files (no bucket path or uploader ids). make public-contract-check in CI. P4b (CSV upload, source=api) waits on Harry's internal ImportFile.source enum call. svc stays private until P5's gateway (Terraform).
+
+PR: ilg-merak/parcel-portal#79
+
 ## 2026-11-03 — Pack and cancel ticked orders from the Orders page (C16 G, UI)
 
 Pack and cancel ticked orders from the Orders page (C16 G, UI)
