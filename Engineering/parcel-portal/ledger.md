@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-03 — Match a layout's columns by name and say what's still to map (C18)
+
+Match a layout's columns by name and say what's still to map (C18)
+
+C18, Harry 3 Nov ('lets give it a whirl') after asking whether the CSV mapping/defaults/formatting UX was now good. svc: POST /admin/mapping/suggest matches a file's columns to fields by name (word-based, family words rule fields out, tested against DC's 49 columns and a non-DC header set); MappingField.neededFor (us_address, cross_border, parcel) kept equal to stage 2 by test; contract 5.1.0. UI: reading a sample matches columns and marks them 'Matched: check it' with undo; required fields unmapped are an amber to-do rather than red; US/cross-border fields listed with badges; If blank and Translate values are direct links; a parcels note.
+
+PR: ilg-merak/parcel-portal#84
+
 ## 2026-11-03 — Take orders as JSON over the customer API (C15 P6)
 
 Take orders as JSON over the customer API (C15 P6)
