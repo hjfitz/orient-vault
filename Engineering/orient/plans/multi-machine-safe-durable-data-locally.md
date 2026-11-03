@@ -4,7 +4,7 @@ title: Multi-machine-safe durable data, locally
 service: orient
 status: active
 created: '2026-11-02'
-updated: '2026-11-02'
+updated: '2026-11-03'
 repo: /home/hjf/projects/orient
 worktree: /home/hjf/projects/orient
 branch: master
@@ -219,6 +219,8 @@ The proof is two scratch clones of the vault writing concurrently, with no lost 
      the plan in the same increment and record the correction here. Legitimately empty at plan
      time. A decision worth defending in a review six months out belongs in a durable record
      instead — `wp decide --record`. -->
+
+- **2026-11-03** — Inc 6: writers run the sync script directly as ~/.local/bin/orient-vault-sync (kick = background sync, pull = commit + merge, no push) instead of `systemctl --user start`. That passes the writer's own vault through (scratch clones work, the VM needs no unit to kick), and a kick that lands mid-sync marks the running sync to go round again; systemd would have merged it into the running job and dropped it. Kicked runs log to .git/orient-sync.log, not the journal. Fetch and push are bounded by timeout (20 s; 8 s when a writer is waiting). orient kicks after editor saves and .knowledge store writes but never pulls first: the editor already checks the file on disk against its base hash. Record appends don't kick, because the sync batches them hourly. AC 5 amended: other clones see a write within one timer interval, not seconds.
 
 - **2026-11-02** — Inc 5 departures:
 - Fetch and merge instead of pull --rebase. Hourly records batching keeps the tree dirty, and rebase refuses a dirty tree; a merge refuses only if the incoming side touches a dirty file, and nothing but this host writes its records. Merge commits are the cost.
