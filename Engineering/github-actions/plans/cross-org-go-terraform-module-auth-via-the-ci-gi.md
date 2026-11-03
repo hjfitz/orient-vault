@@ -128,13 +128,11 @@ Release rule for every increment: merge → canary at `@main` → `git log 0.2-b
      deploy, a prod config write, a Datadog monitor, a CI var or secret, cross-repo IaC. Reverting
      the branch undoes none of them, so if they are not written here they are not written down. -->
 
-- **Order:** <what must ship before what, and what breaks if reversed>
-- **Flags/config:** <flag or config key, old value -> new, and where it lives>
-- **One-way doors:** <what cannot be undone once it is in prod, and the gate before it>
-- **Rollback:** <per increment: git revert / forward-only / a flag flip>
-- **Shared state touched:** <dev deploys, prod config writes, Datadog monitors, CI vars/secrets,
-  cross-repo IaC — or "(none)", which is a deliberate claim>
-- **Proof in prod:** <the metric or log line that shows this working, and its pre-deploy baseline>
+- **Order:** inc 1 (composite) must be on `0.2-bonbon` before inc 2-6 merge — they ref it literally (G2). Inc 2-6 are mutually independent; ship docker-build-push (inc 3, prod deploy path) on its own tag move, never batched.
+- **Flags/config:** none — all new inputs default empty; behaviour only changes for callers that pass `gh_app_id`/`gh_app_private_key`/`private_module_owners`.
+- **One-way doors:** none on the code side. Each force-move is reversible by moving `0.2-bonbon` back to the previous sha (record it before each move).
+- **Rollback:** per increment: `git push -f origin <prev-sha>:refs/tags/0.2-bonbon` (immediate fleet effect), then revert the PR on `main`.
+- **Shared state touched:** the `0.2-bonbon` rolling tag (every 0.2 caller across the enterprise); canary repo `ilg-platform/github-actions-canary` repo-level var + secret holding the app key.
 
 ## Decisions & deviations
 <!-- Date-stamped, newest first — written by `wp decide`, and by hand when that is easier.

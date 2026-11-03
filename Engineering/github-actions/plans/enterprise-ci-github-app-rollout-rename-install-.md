@@ -119,13 +119,11 @@ work only — the code it relies on is [[cross-org-go-terraform-module-auth-via-
      deploy, a prod config write, a Datadog monitor, a CI var or secret, cross-repo IaC. Reverting
      the branch undoes none of them, so if they are not written here they are not written down. -->
 
-- **Order:** <what must ship before what, and what breaks if reversed>
-- **Flags/config:** <flag or config key, old value -> new, and where it lives>
-- **One-way doors:** <what cannot be undone once it is in prod, and the gate before it>
-- **Rollback:** <per increment: git revert / forward-only / a flag flip>
-- **Shared state touched:** <dev deploys, prod config writes, Datadog monitors, CI vars/secrets,
-  cross-repo IaC — or "(none)", which is a deliberate claim>
-- **Proof in prod:** <the metric or log line that shows this working, and its pre-deploy baseline>
+- **Order:** inventory → decide name/split → rename (pr-sitrep check) → installs + secrets → Confluence (after code plan on tag) → announce.
+- **Flags/config:** org var `PLATFORM_CI_APP_ID` (=4035291, or new app id if split) and org secret `PLATFORM_CI_APP_PRIVATE_KEY` in every org; repo-level shadows deleted.
+- **One-way doors:** the rename frees the old slug (another app can take it) — anything matching on `ilg-platform-ci[bot]` must be updated first. Deleting repo-level shadows can break callers whose repo value differed (e.g. pointed at 3896251) — verify each before deleting.
+- **Rollback:** rename back (if slug still free); re-add repo-level var/secret from the inventory record; uninstall per org.
+- **Shared state touched:** GitHub App settings (gfs-dev); org installations in every org; org + repo Actions vars/secrets in every org; pr-sitrep dev+prod (Secret Manager key unchanged unless rotated).
 
 ## Decisions & deviations
 <!-- Date-stamped, newest first — written by `wp decide`, and by hand when that is easier.
