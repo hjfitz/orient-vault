@@ -361,6 +361,8 @@ The VM then stays warm for two weeks before the SSH provisioning code and the VM
      time. A decision worth defending in a review six months out belongs in a durable record
      instead — `wp decide --record`. -->
 
+- **2026-11-03** — S3 dwell guard: login failures for `support` closed_before_auth, and handshake failures from IPs with no successful login in 7 days (VM baseline or host), are treated as scanner noise and don't trigger rollback. That's the run sheet's 'from a customer IP'.
+
 - **2026-11-03** — S2 ramp held at size 1 from 08:13Z to 09:00Z while Harry is away from the laptop (no watcher, no breakglass from this session). Size 1 is stable: if it fails, the health check moves its customers to the VM. Ramp resumes 09:00Z (Harry, 2026-11-03).
 
 - **2026-11-02** — S2 as a one-day trial on 2026-11-03 (Harry, 2026-11-02: 'customers are slow and very forgiving'). S2 at size 1 at 08:00Z, ramp to 3 at about 08:30Z, hold all day, then at 17:00Z keep the split overnight by default or eject. The breakglass is `rollback-s2 --fast` (#387). The split stops at S2: rollback-S3 is the Terraform path only, because S3 moves the health check to HTTP, which the VM can't pass. Dropped: the 4-week auth.log baseline gate (replaced by #388's host logging and watching at S2), the 48 h S1→S2 dwell and the 1-week S2 ramp. Prod login audit is on from S2 (#389).
