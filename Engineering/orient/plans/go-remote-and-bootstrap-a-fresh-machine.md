@@ -113,7 +113,7 @@ Take the git setup built in [[multi-machine-safe-durable-data-locally]] (Plan A,
     - `systemd-analyze --user verify systemd/*`.
     - After a restart, `curl -sf 127.0.0.1:3000/today` and `ss -ltn | grep ':3000'` show loopback only.
     - `/recordings` and the desk still work.
-- [ ] 3. **Bootstrap and INSTALL, proven in a scratch home.** (AC 4)
+- [x] 3. **Bootstrap and INSTALL, proven in a scratch home.** (AC 4) — throwaway VM user, deploy keys, SPARSE+HEADLESS: rerun rc=0 in 84s; index:status ok; /today /recordings /usage 200 on loopback; HR/Team/Interviews absent from disk and index; wp idea round-tripped to a second clone — done: 4f5b12e
   - `scripts/bootstrap.sh` takes `ORIENT_REMOTE`, `VAULT_REMOTE`, `WRITERS_REMOTE`, `HOST` and `SPARSE`, plus `HEADLESS` to skip desk, scribe and models.
   - It does:
     - The toolchain: mise, pnpm, Go, PyYAML.
