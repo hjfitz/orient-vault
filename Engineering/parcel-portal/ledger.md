@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-03 — Store each customer's API keys (C15 P1)
+
+Store each customer's API keys (C15 P1)
+
+C15 P1. Migration 014: api_key (SHA-256 of the secret only, unique key id, revocable, last used) and import_file.api_key_id, with source api allowed. A tenant-scoped store plus one unscoped by-hash lookup for authentication. The import keeps an api-key from object metadata only for its own tenant. The contract enum for ImportFile.source is left for P4 (adding a response enum value is breaking).
+
+PR: ilg-merak/parcel-portal#69
+
 ## 2026-11-03 — Show every date in the site's time zone (C16 F)
 
 Show every date in the site's time zone (C16 F)
