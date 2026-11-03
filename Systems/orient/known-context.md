@@ -2,7 +2,7 @@
 tags:
 - system
 - orient
-verified: '2026-09-24'
+verified: '2026-11-03'
 title: orient — known context
 ---
 # orient — known context
