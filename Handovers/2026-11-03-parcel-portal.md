@@ -55,7 +55,10 @@ Nothing is blocked on him now. These come back to him before proceeding:
 - **Secrets:** never print them. Dev admin password: `~/parcel-portal-dev-admin.txt` (read in scripts only).
 
 ## On the target
-Not yet checked — **ship** fills this in.
+Checked 2026-11-03 ~16:40Z on `harry@hjf.shell.platform.ilg.software`; synced with remote-compute's `sync-claude-config` (vault, `~/code`, `~/code/merak` config, skills, MCP servers); this record, `session-handover/SKILL.md` and `Migration State.md` verified identical by sha256.
+- **Has:** claude, gh (logged in as harry-fitzgerald_gfsdev), gcloud (harry.fitzgerald@gfsdeliver.com), git, go, node, docker, python3, jq, tmux, mise (pnpm, terraform, terragrunt, gitleaks installed under mise — not on the login PATH until `mise` activates in the repo), `~/.claude/waypoint`, orient at `~/projects/orient`, the vault.
+- **Missing — do first:** clone the repo: `mkdir -p ~/code/merak && cd ~/code/merak && git clone https://github.com/ilg-merak/parcel-portal.git` (memories key on the folder Claude starts in, so start Claude from `~/code/merak`). The dev admin password file `~/parcel-portal-dev-admin.txt` is not synced — ask Harry to place it, or read it from wherever he keeps it; never print it. No local Postgres yet: `cd apps/svc && make deps-up` (docker is there). OAuth MCP servers (Atlassian, Datadog, Slack, ado-remote) need `/mcp` once; the fuse MCP kept the workstation's own config.
+- **Start:** `ssh harry@hjf.shell.platform.ilg.software`, `cd ~/code/merak`, `claude`, then "pick up the Parcel Portal handover".
 
 ## Gotchas
 - **Terraform: never read a bucket name from a `google_storage_bucket_iam_member`'s `.bucket`.** It's `b/<name>` and unknown until apply, so the Cloud Run / instance template update fails with the provider's "inconsistent final plan" — and a rerun hands the service an unreadable name. Read the bucket resource's or data source's `.name` (#63, #66).
