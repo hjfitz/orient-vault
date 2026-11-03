@@ -2,7 +2,7 @@
 tags:
 - system
 - parcel-portal
-verified: '2026-10-29'
+verified: '2026-11-03'
 title: parcel-portal — design language
 ---
 # parcel-portal — design language
@@ -19,3 +19,12 @@ The system has one rendered surface, the [[parcel-portal]] ui (`apps/ui`), built
 - Toolkit components wherever one exists; frontend structure decisions wait for Darren Rielly's principles (`AGENTS.md`, *Frontend*).
 - Light theme only; dark mode isn't built (snapshot 2026-10-29).
 - Dates and the export day are the site's local day, shown as such.
+
+## From the UX review (2026-11-03)
+- **`GButton` defaults to `ghost`**, which reads as plain text. Every primary action sets `variant="default"`, and secondary ones `outline`.
+- **The order page leads with the state's next step:** Dispatch first when ready, Packing first when it needs packing. A problem is shown on the field it's about. Dispatched and voided orders are a read-only summary, never a greyed-out form.
+- **One back control:** `GHeaderContent backHref`, never an in-page "Back" button or link.
+- **Configuration lives on the customer.** Everything an admin sets for one customer is a tab under Settings → Customers → that customer: Overview (folder plus setup checklist), File layout, Shipping methods, Carrier account, Packaging, Bench printers, Users, SFTP users. Never a top-level page with a customer picker. GFS's own tenant is "GFS staff", with Users only.
+- **A failure names what failed** ("SFTP users can't be loaded…"), and svc's lower-case reasons are turned into sentences before they're shown.
+- **Dates still show UTC** until the tenant's time zone reaches the UI (`/me`), even though the stance above is the site's local day. That's the open gap.
+- **Phones aren't a target:** the reader is at a bench computer, and the wide tables don't reflow at 390px. That's deliberate.
