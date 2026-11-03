@@ -156,6 +156,7 @@ Take the git setup built in [[multi-machine-safe-durable-data-locally]] (Plan A,
 ### Evidence
 <!-- Newest first, dated. One bullet per check actually run, opening with what it discharges.
      "Suite green" alone is not evidence. Sign-off requires at least one dated bullet here. -->
+- 2026-11-03 [inc 4] **The VM's `~/.secrets` matches the laptop's**: copied over ssh with mode 600, sha256 identical. After an orient-web restart, `/today`, `/tickets` and `/incidents` return 200. From the VM, each token gets 200 from the host orient calls: GitHub `/user`, Jira `globalfreight.atlassian.net/rest/api/3/myself`, Datadog `api.datadoghq.com/api/v1/validate` and incident.io `/v2/incidents`.
 - 2026-11-03 [inc 4] **The VM is a clone of the GitHub remotes** (AC 5): orient f9bdc45, writers 01dbcf2.
   - Laptop: writers pushed to `hjfitz/orient-writers`, and the vault's origin moved from the local stand-in to `hjfitz/orient-vault` (first sync and push 4.6 s, ls-remote equals HEAD).
   - VM (`harry@hjf.shell.platform.ilg.software`): `HOST=vm SPARSE=1 HEADLESS=1 SSH_MODE=deploy scripts/bootstrap.sh`, rc 0 in 99 s on the second run. The first stopped on mise's python having no PyYAML, fixed in f9bdc45.
