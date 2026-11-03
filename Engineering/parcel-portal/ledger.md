@@ -6,6 +6,24 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-03 — Edit a customer's file layout in Settings, with a dry-run preview
+
+Edit a customer's file layout in Settings, with a dry-run preview
+
+Unit C13, the mapping editor. svc (#48, #49; contract 4.1.0 then 4.2.0, additive):
+- the tenant's layout in editable form, with a built-in expanded and its shipping-method overrides baked into its dictionaries;
+- built-in layouts by name, and the fields a rule can fill;
+- a save-time check that every rule parses, uses known functions and looks up a declared dictionary, with errors naming the rule;
+- POST mapping/preview, a write-nothing dry run that shares one parse, map and plan path with the real import. It caps orders at 100 and problems at 200, the body at 3 MiB and the file at 2 MiB.
+
+UI (#51): an editor on Settings → Customers → <customer> → File layout, with tabs for Columns, Order fields, Line fields, Defaults, Dictionaries and Try a file. Saving gives the customer its own layout, and the Shipping methods tab points such a customer at its dictionaries.
+
+Review panels: svc (backend, contract/security, tests) found 2 contract defects and 5 test gaps, all fixed. UI (frontend) found 5 defects, all fixed: number defaults, keeping unshown config keys, stale groupBy, preview state across tabs, the server-action body limit. Verified locally end to end against svc. Follow-up: there's no cost bound on DSL evaluation in preview (admin-only).
+
+PR: ilg-merak/parcel-portal#48
+PR: ilg-merak/parcel-portal#49
+PR: ilg-merak/parcel-portal#51
+
 ## 2026-11-03 — Tab the settings pages, with a tabbed page per customer
 
 Tab the settings pages, with a tabbed page per customer
