@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-03 — Put the customer API behind a public gateway (C15 P5)
+
+Put the customer API behind a public gateway (C15 P5)
+
+C15 P5. cmd/gateway forwards /v1 to private svc signed with an ID token for svc as its own SA (X-Serverless-Authorization; caller's dropped), passes x-request-id, serves Swagger UI at /docs over the embedded public spec (/openapi.json); anything else JSON 404, unclean paths not forwarded. iac/projects/gateway: Cloud Run (LB-only ingress, allUsers invoker), run.invoker on svc for its SA (as the UI has), own HTTPS LB + managed cert, A record api.parcel.delivery.<domain>. gateway-on-push/manual-deploy; plan matrix and scans include it. Harry OK'd P5 dev Terraform overnight in-session (3 Nov) on a purely additive plan.
+
+PR: ilg-merak/parcel-portal#81
+
 ## 2026-11-03 — Take order files over the customer API, idempotently (C15 P4b, draft)
 
 Take order files over the customer API, idempotently (C15 P4b, draft)
