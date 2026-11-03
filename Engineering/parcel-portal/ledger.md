@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-03 — Lead each order with its next step (C16 B)
+
+Lead each order with its next step (C16 B)
+
+C16 part B, from the UX review. A ready order shows Dispatch first and one needing packing shows Packing first. Problems are marked on their field. Dispatched and voided orders show a read-only summary. One back control throughout; visible row links; single-parcel shipments without a duplicate per-parcel print button.
+
+PR: ilg-merak/parcel-portal#61
+
 ## 2026-11-03 — Set a customer up from one place, and keep GFS staff apart (C16 A)
 
 Set a customer up from one place, and keep GFS staff apart (C16 A)
