@@ -8,9 +8,9 @@ snap_instance:
 channel: bifrost-notifications
 thread_url: "https://gfsdeliver-eng.slack.com/archives/C099WKQTE8G/p1793631805960609"
 opened_at: "2026-11-02T15:01:59Z"
-severity_assessed: P2
+severity_assessed: P3
 flapping: false
-outcome: unresolved
+outcome: real_minor
 escalated_to:
 ticket:
 session_id: 7198be0e-f4de-4cae-8e32-ef4ac0c4cdb9
@@ -50,7 +50,7 @@ Thread: C099WKQTE8G / 1793711124.580619. Thresholds (monitor 302685719, Terrafor
 - **No Fuse-side change:** single fapi version 1d72173 across all rest_connector logs in 48h; last merged fapi PR #179 (20 Oct).
 - **Resend:** a 400 is not stored; no order id in rejection logs. Rejections did not recur at the hourly runs after 2 Nov 15:01 (1 at 17:01), so the 2 Nov rejected orders were not re-posted unchanged, but whether they arrived corrected is NOT established.
 - Not established: distinct orders rejected, whether any were resent; snap-adapter DOCKBAY order refs (Fuse MCP down, 401); what Fulfil sends for these orders.
-Assessed P2 candidate (live customer, repeat and doubling, orders not reaching Fuse); returned ESCALATE to watcher.
+Agent assessed a P2 candidate and returned ESCALATE. Harry judged it P3 (one customer, recurring since 19 Oct, no Fuse change) and chose a @fuse-support request to contact Dock and Bay instead of declaring an incident (2026-11-03). Still open: whether DOCKBAY resent the rejected orders, and whether the canonical schema should accept null.
 
 ## Links
 - Slack thread: https://gfsdeliver-eng.slack.com/archives/C099WKQTE8G/p1793631805960609
