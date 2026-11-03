@@ -8,18 +8,19 @@ from: laptop
 to: hjf.shell.platform.ilg.software
 session_id: 80a57909-179d-48c7-a6cb-da766abb7a8a
 resumed_by: ""
-updated: 2026-11-03T16:30Z
+updated: 2026-11-03T16:35Z
 ---
 # Handover: Parcel Portal
 
 ## Where things stand
-Dev runs main at `10b6b0d` (svc-parcel-dev and ui-parcel-dev, project `ilg-merak-dev-b5e3`, us-central1), and the SFTP host runs the per-user build from #59/#66. Prod is held at D1: nothing deployed there, every prod gate stays parked (don't approve `docker-push-prod` / `terraform-*-prod` jobs). Dev database migrations are at 014.
+Dev runs main at `ad72137` (svc-parcel-dev and ui-parcel-dev, project `ilg-merak-dev-b5e3`, us-central1), and the SFTP host runs the per-user build from #59/#66. Prod is held at D1: nothing deployed there, every prod gate stays parked (don't approve `docker-push-prod` / `terraform-*-prod` jobs). Dev database migrations are at 014.
 
 | Unit | What it delivered | PRs | State |
 | --- | --- | --- | --- |
 | C13 | CSV mapping editor, preview, tabbed settings | #47 #48 #49 #51 #52 | Live on dev; being reworked as C17 |
 | C14 | Per-user SFTP logins: users + keys in Postgres, svc publishes `sftp-users.json`, host signs in only against it, each user confined to its own `<slug>/inbound/` | #53 #54 #55 #57 #58 #59 #63 #66 | ✅ Verified on the live host: unknown user/key refused, `..` can't escape, a disabled user refused 27 s later, canary PASS as `_canary` |
 | C16 A–E | Customer Overview checklist; packaging + bench printers as customer tabs; GFS staff (admins add admins); order page led by its next step; customer switcher (`X-Acting-Tenant`); per-customer demo printer; admins dispatch while acting | #60 #61 #62 #64 #65 #67 | Live on dev |
+| C17 | File layout editor rework: one card, columns first, group-by picker, field dropdowns, translate values, required columns derived on save, extra columns ignored for a customer's own layout (DC built-in stays strict), shipping methods for every layout (contract 4.7.0) | #73 #74 | Live on dev |
 | C15 P1–P2 | Per-customer API keys: store (migration 014), core (`ppk_` tokens, sha256 only, `Authenticate`), admin API, API keys tab | #69 #70 #71 | Live on dev; nothing calls the API yet |
 
 Dev SFTP users: `tca` (the existing dev test client's key) and `tca-verify` (disabled, left from verification).
@@ -29,9 +30,8 @@ Each was started as a fork in the laptop session; each merges and deploys itself
 
 | Work | PR / branch | State (16:30Z) | To close it |
 | --- | --- | --- | --- |
-| Site-local dates (C16 F): tenant time zone on `/me` (acting tenant's when acting), one named-zone formatter, Export day picker | #68 `hjf/c16-local-dates` | Open, CI running | Contract version → next free minor after main (4.6.0); merge; confirm svc+ui `terraform-apply-dev` success and image tags = merge sha |
-| File layout editor rework (C17): one card, columns first, group-by picker, field dropdowns, translate values, required columns derived, extra columns ignored for a customer's own layout, shipping methods for every layout | #73 `hjf/c17-layout-svc` → #74 `hjf/c17-layout-editor` (stack) | Open | Merge bottom-up (`gh stack merge 74 --yes --merge` from the repo root); confirm deploys; ux-review before/after screenshots in the PR; add/tick C17 in Migration State |
-| Bulk Cancel + Pack-with-preset on Orders (C16 G) | `hjf/c16-bulk-actions` (not yet pushed at 16:30Z) | Building | If unpushed when the laptop stops: restart from the design in Migration State's C16 row / this record's Next up |
+| Site-local dates (C16 F): tenant time zone on `/me` (acting tenant's when acting), one named-zone formatter, Export day picker | #68 `hjf/c16-local-dates` | Open, CI running | Contract version → next free minor after main (4.7.0); merge; confirm svc+ui `terraform-apply-dev` success and image tags = merge sha |
+| Bulk Cancel + Pack-with-preset on Orders (C16 G) | #76 (svc) → #77 (ui), stack | Open, CI | Merge bottom-up (`gh stack merge 77 --yes --merge` from the repo root); confirm svc+ui dev deploys; contract → next free minor after 4.7.0 |
 
 ## Waiting on Harry
 Nothing is blocked on him now. These come back to him before proceeding:
@@ -42,7 +42,7 @@ Nothing is blocked on him now. These come back to him before proceeding:
 ## Next up
 1. Close the In flight rows.
 2. **C15 P4–P7** (design: Migration State C15 row; the full design-agent report is summarised there): P4 public `/v1` contract (`public-openapi.yaml` v1.0.0) + `apiKey` middleware + CSV upload via the inbound bucket with `Idempotency-Key`; P5 public gateway Cloud Run + Swagger UI at `/docs` + LB host `api.parcel.delivery.<domain>` (**Terraform plan to Harry**); P6 JSON `POST /v1/orders`; P7 Cloud Armor/monitors (optional). Parse tokens with `core/apikeys`'s pattern (base64url secrets contain `_`).
-3. C17 follow-ups from its PR's ux-review findings.
+3. C17 follow-ups: none owed from its ux-review (all four findings fixed); evidence screenshots on `hjf/c17-layout-editor-evidence` (keep until the PR bodies no longer need them).
 4. Small: UploadPanel's unused `tenantId`/`tenantName` props; revoking a revoked API key logs twice; the admin-add-admins path has no UI test.
 
 ## How work is done here
@@ -72,3 +72,4 @@ Checked 2026-11-03 ~16:40Z on `harry@hjf.shell.platform.ilg.software`; synced wi
 ## Closed since handover
 | When (UTC) | Work | Result |
 | --- | --- | --- |
+| 2026-11-03 ~16:30 | C17 file layout editor rework | #73 + #74 merged as `ad72137`; svc+ui dev on `dev-ad72137`; C17 ✅ in Migration State |
