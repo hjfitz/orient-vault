@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-03 — Alert on config-service's Cloud SQL instance
+
+Alert on config-service's Cloud SQL instance
+
+R11 of the Config Service Cloud SQL programme. Seven monitors on config-service's prod Cloud SQL instance: the service's own Postgres health ping (prod P1, plus a silent dev copy for the R10 connector canary), instance down (P1), connections (P2), CPU, memory and disk (P3). Thresholds are set against the live baseline (CPU 11-18%, memory 29%, disk 2.3%, 2 backends) and the connection ceiling (cap 100, app max 40). Also repointed the 5xx monitor (302797201)'s message from Mongo to Cloud SQL. Left out: failed IAM logins (Cloud SQL logs don't reach Datadog) and query latency (p95 has spiked to 1.3s since the cutover; it stays an E3 soak check). Plan 7/1/0, applied 2026-11-03; all seven monitors are OK.
+
+PR: gfs-bifrost/observability#84
+
 ## 2026-11-03 — Move default_zero out of query fields on the SFTP dashboard
 
 Move default_zero out of query fields on the SFTP dashboard
