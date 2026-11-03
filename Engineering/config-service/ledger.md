@@ -7,6 +7,14 @@ title: config-service — work ledger
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-03 — Take zod 4.6.7 so the zod advisory is fixed, not allowlisted
+
+Take zod 4.6.7 so the zod advisory is fixed, not allowlisted
+
+Dependency Audit went red on main and on every open PR when the GHSA-mrhx-c7xc-m3w5 allowlist entry expired. types 11.4.1 and observability 2.5.0 now accept zod ^4.4.3, so zod moved to 4.6.7 and the entry was removed.
+
+PR: gfs-bifrost/config-service#300
+
 ## 2026-11-02 — Add the Mongo to Cloud SQL backfill job
 
 Add the Mongo to Cloud SQL backfill job
