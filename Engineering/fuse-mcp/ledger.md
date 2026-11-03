@@ -7,6 +7,14 @@ title: fuse-mcp — work ledger
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-03 — Correct config-service's customer_creation role in services.json
+
+Correct config-service's customer_creation role in services.json
+
+services.json said config-service "Publishes customer_creation events"; it subscribes (sftp-connector publishes, per pubsub-topology.json), and the topic carries the SFTP provisioning callback. Known drift flagged in config-service's CLAUDE.md. Parity baseline refreshed, go test green, Code Quality / Code Quality Go / Deploy green, live lookup-service shows the new line. Data-only commit straight to master.
+
+Commit: gfs-bifrost/fuse-mcp@22d4cd7
+
 ## 2026-11-03 — Record config-service's move to Cloud SQL Postgres in the data files
 
 Record config-service's move to Cloud SQL Postgres in the data files
