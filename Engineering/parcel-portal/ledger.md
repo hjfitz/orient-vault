@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-03 — Show every date in the site's time zone (C16 F)
+
+Show every date in the site's time zone (C16 F)
+
+C16 part F, UX review item 9. /me gains timezone: the zone of the tenant the request reads, so it's the customer's when a GFS admin is acting (contract 4.6.0). The UI shows every time as 'Nov 3, 2026, 10:05 AM EST' rather than en-GB UTC, and the export spells out its day. Follow-up: the toolkit GDatePicker hardcodes en-GB.
+
+PR: ilg-merak/parcel-portal#68
+
 ## 2026-11-03 — Let a GFS admin acting for a customer dispatch its orders (C16)
 
 Let a GFS admin acting for a customer dispatch its orders (C16)
