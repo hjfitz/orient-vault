@@ -69,7 +69,7 @@ sessions and often carries a multi-vintage pile of uncommitted work. Committing 
 whole tree — check `git status` and ask before committing someone else's in-flight edits.
 Never `git stash`: the stash stack is shared.
 
-**No remote for the app or the writers yet (snapshot 2026-11-03).** Commits to `~/projects/orient` and `~/projects/orient-writers` are local to `master`/`main`. Do not report or attempt a push until Plan B (`go-remote-and-bootstrap-a-fresh-machine`) wires `hjfitz/*`. The vault's own origin is still the local stand-in `~/.local/state/orient/vault-remote.git`.
+**Every repo has a private GitHub remote (snapshot 2026-11-03):** `hjfitz/orient`, `hjfitz/orient-writers` and `hjfitz/orient-vault`. Each clone pins its key with `core.sshCommand`: the personal key through `~/.ssh/config-self` on the laptop, and a per-repo deploy key on the VM. The old local stand-in `~/.local/state/orient/vault-remote.git` is a stale backup and can be deleted.
 
 **Never use `gitswitch` for anything unattended.** It swaps the whole global SSH config between the personal and work accounts. The orient repos pin the personal key per repo with `core.sshCommand "ssh -F ~/.ssh/config-self"`.
 

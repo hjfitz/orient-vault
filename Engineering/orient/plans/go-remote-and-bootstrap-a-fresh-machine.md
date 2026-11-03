@@ -134,6 +134,8 @@ Take the git setup built in [[multi-machine-safe-durable-data-locally]] (Plan A,
     - `records/vm/` appears.
     - The next 17:30 copier run lists no vault files.
     - gate: private repos `hjfitz/orient-vault` and `hjfitz/orient-writers` created by Harry (remote chosen 2026-11-02)
+      [x] confirmed (2026-11-03; both pushed from the laptop)
+    - gate: the VM's write-enabled deploy keys added to `orient-vault` and `orient-writers` (keys in the VM's `~/.ssh/orient-deploy/`)
       [ ] confirmed
     - gate: Obsidian Sync confirmed disconnected in the app (`core-plugins.json` has `sync: true` but there is no `sync.json`)
       [ ] confirmed
