@@ -7,6 +7,15 @@ title: sftp-connector — work ledger
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-04 — Move prod SFTP provisioning to the host (cut S4)
+
+Move prod SFTP provisioning to the host (cut S4)
+
+Plan C inc 4, S4: prod create_sftp_user consumption moves from the connector's SSH-to-VM path to the multi-zone host, which consumes the event and publishes UserCreationResponse on customer_creation. PR 1 turns the connector's push subscription off; PR 2 sets sftp_host_provisioning = live. Merged in order by cut.sh prod s4. Prep done 2026-11-04: prod VM startup script re-run (09:05Z, rc=0, getent fix live, 41 users resynced) and a daily sync_users.sh timer (03:30Z) on the VM.
+
+PR: gfs-bifrost/sftp-connector#394
+PR: gfs-bifrost/sftp-connector#395
+
 ## 2026-11-03 — Take the prod SFTP VM out of the backend service (cut S3)
 
 Take the prod SFTP VM out of the backend service (cut S3)
