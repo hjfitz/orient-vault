@@ -75,6 +75,6 @@ The kit is `~/sftp-cutover/` (laptop scratchpad or workstation `rc-hjf`). Start 
 
 - Watch for DD2AF79592 failing again with no login in between.
 - S4 (provisioning moves to the host) is not today.
-- **After S4 (Plan C inc 4 follow-ons):** re-run the VM startup script (sftp-connector#376), which also reverts the 2026-11-02 `sftp-server -l INFO` subsystem logging, and add the daily `users.json` sync timer on the VM.
+- **S4 prep done 2026-11-04 (before S4, per Plan C inc 4):** VM startup script re-run at 09:05Z (rc=0; #376's `getent` fix live; 41 users resynced; the 2026-11-02 `sftp-server -l INFO` logging reverted in the file), and a daily `sftp-sync-users.timer` (03:30Z) on the VM. **If the VM ever serves customers again (rollback-S3), disable that timer first**, because each run remounts every user. S4 PRs: sftp-connector#394 (consumer → host) and #395 (host provisioning live), via `cut.sh prod s4`.
 - **Plan C inc 2 verify items still owed:** ingest rates, and the first provisioning through `SFTP_ADMIN_HOST`.
 - **Not verified:** a real login as `support`, which needs Harry's key.
