@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-04 — Add a demo customer and a sample order file for trying the portal on dev
+
+Add a demo customer and a sample order file for trying the portal on dev
+
+Harry, 4 Nov: make upload → pack → label easy to test. Dev/local only (fake carrier): POST /admin/demo-customer sets up a ready customer (DC layout, fake Selector, presets, demo printer); GET /sample-orders.csv gives ready/needs-packing/flagged orders with fresh refs. UI: Try the portal card (acts for it, opens Orders) and Download a sample file. Contract 5.5.0. Checklist rewritten.
+
+PR: ilg-merak/parcel-portal#90
+
 ## 2026-11-04 — Make a customer's SFTP folder from its name instead of asking for one
 
 Make a customer's SFTP folder from its name instead of asking for one
