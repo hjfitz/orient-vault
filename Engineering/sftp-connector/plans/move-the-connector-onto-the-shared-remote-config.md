@@ -14,6 +14,8 @@ pr: null
 tags:
 - waypoint
 - plan
+impl_model: opus
+impl_effort: medium
 ---
 # none — Move the connector onto the shared remote-config package
 
