@@ -7,6 +7,14 @@ title: terraform-modules — work ledger
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-04 — Add database/cloud-sql-iam to terraform-modules
+
+Add database/cloud-sql-iam to terraform-modules
+
+Programme unit M2: promote config-service's cloud-sql-iam module as database/cloud-sql-iam. .tf files and tests byte-identical to config-service#314 (merge that first), 50/50 tests. Root CLAUDE.md gains a maintainer section and allows a tests/ dir. Release is a compatible force-move of 0.1-affogato (pinners: repo-template, gcp-config, wc-malware-analysis; none affected). M3 (config-service repoint) needs the GitHub App token wired into its terragrunt calls.
+
+PR: ilg-platform/terraform-modules#5
+
 ## 2026-10-28 — cloud-run: run Datadog in the app container, drop the sidecars
 
 cloud-run: run Datadog in the app container, drop the sidecars
