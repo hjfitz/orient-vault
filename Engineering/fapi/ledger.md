@@ -7,6 +7,14 @@ title: fapi — work ledger
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-04 — FUSE-1153
+
+Capture the raw API request on ingress
+
+fapi now stamps the request it actually received on metadata.capture of every record it publishes to create_record_request: route, headers (authorization, proxy-authorization, cookie and x-api-key dropped) and the raw body exactly as sent, decoded with the declared charset. It is captured by a body-parser verify hook (bootstrap/body-parsers.ts, shared with the integration tests), ahead of v1's legacy mapping and v2's Zod defaulting, and threaded to bulk-ingest through the @ApiRequestCapture() param decorator. The body is left out above 1 MB, or 32 MB across a request's records, because it rides inline on each message and Pub/Sub caps a message at 10 MB; route and headers are kept, and a "Raw request body not captured" warning is logged. Types were bumped to ^11.4.1 (identical to Renovate #178). Verified in dev against the published envelopes. Follow-ups: dedupe-service logs the full metadata (so raw bodies reach its logs), and collector dedup of captures is the sibling ticket.
+
+PR: gfs-bifrost/fapi#184
+
 ## 2026-10-20 — Start fapi on a cache-less remote config when Redis is unreachable
 
 Start fapi on a cache-less remote config when Redis is unreachable

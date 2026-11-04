@@ -8,7 +8,7 @@ from: laptop
 to: hjf.shell.platform.ilg.software
 session_id: 80a57909-179d-48c7-a6cb-da766abb7a8a
 resumed_by: 7652f0c7-9f02-4c64-b56f-a154250bb016
-updated: 2026-11-04T00:50Z
+updated: 2026-11-04T01:40Z
 ---
 # Handover: Parcel Portal
 
@@ -84,6 +84,7 @@ Checked 2026-11-03 ~16:40Z on `harry@hjf.shell.platform.ilg.software`; synced wi
 ## Closed since handover
 | When (UTC) | Work | Result |
 | --- | --- | --- |
+| 2026-11-04 | #86, one Access tab | Harry: merge Users, SFTP users and API keys, make them intuitive, link Swagger and share the SFTP host. Access tab: Portal users / SFTP (host with copy, port 22, `/inbound`, key-only) / API (address, Swagger docs link, bearer key); old tab URLs redirect to `access#users|sftp|api`; stale "not live yet" notes removed. ui Terraform: `SFTP_HOST` (only where `sftp_host_enabled`) and `CUSTOMER_API_URL` env vars from `dns_domain`; Harry OK'd the dev plan (0/1/0, in-place on ui-parcel-dev). Prod plans fail on lookups of never-applied prod resources (pre-existing, prod held). review-panel: no findings. Merged as `f943d4e`; ui `terraform-apply-dev` success. The agent's account can't read dev Cloud Run (`run.services.get`), so the env values weren't read back. |
 | 2026-11-04 | #85, layout editor follow-up and Selector config | Harry's feedback after #84: drop "Your file's columns" (column names typed, with suggestions), keep group-by, Order / Each product line as tabs with to-do counts, the Carrier account tab renamed Selector config. review-panel (frontend) findings fixed before merge: duplicate suggestions, unlabelled tab counts, blank grouping inputs piling up, every grouping input marked red. Merged as `c60d4ee`; ui `terraform-apply-dev` success. Prod held. |
 | 2026-11-03 ~23:30 | #84 C18, layout editor matches columns by name | Harry asked whether the CSV mapping UX was now good; it wasn't yet. Name matching (svc `POST /admin/mapping/suggest`, contract 5.1.0), to-dos instead of red errors, needed-for badges, direct If blank / Translate links. review-panel (backend, frontend, contract) findings fixed before merge: HS/customs columns went to SKU/name; a lone Weight made a half parcel; a matching race and a stuck status. Merged as `8d9a2dc`; svc and ui `terraform-apply-dev` success; prod jobs wait at the `terraform-prod` gate (held). Harry skipped screenshots: "better to experience these things in the browser". |
 | 2026-11-03 ~20:22 | #83 C15 P6, JSON orders | Harry: "P6, breaking changes, deployments: all fine". review-panel (backend+data, contract) found the following, all fixed before merge: a failed store left the file at processing (now finished as rejected); CSV wording in messages; untrimmed text; the decimal pattern stricter than the file path; an empty `lines` accepted; 422 `file_too_large` undocumented. Merged as `059a62a`; svc and gateway `terraform-apply-dev` success, both on `dev-059a62a`; the live `/openapi.json` is 1.2.0 with `/v1/orders`. |
