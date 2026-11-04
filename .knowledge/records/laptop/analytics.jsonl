@@ -1656,3 +1656,12 @@
 {"t":"view","at":"2026-11-04T15:10:24.501Z","visit":"f7d9abc2-53ee-49c1-91ec-45e1f5e0d7ba","route":"/"}
 {"t":"view","at":"2026-11-04T15:10:24.879Z","visit":"bc501d69-7a29-4414-abc1-a1ad0396f9b6","route":"/today"}
 {"t":"leave","at":"2026-11-04T15:11:48.736Z","visit":"bc501d69-7a29-4414-abc1-a1ad0396f9b6","activeMs":3000}
+{"t":"leave","at":"2026-11-04T15:26:52.016Z","visit":"c7d5a9c2-1dd2-4867-b2b6-e2703070f96c","activeMs":2000}
+{"t":"view","at":"2026-11-04T15:26:52.190Z","visit":"22c1f5c3-65af-4530-8d2e-44df59cd5a1e","route":"/puzzles","tab":"tango"}
+{"t":"leave","at":"2026-11-04T15:29:52.379Z","visit":"22c1f5c3-65af-4530-8d2e-44df59cd5a1e","activeMs":180000}
+{"t":"view","at":"2026-11-04T15:29:52.600Z","visit":"6be1939d-567d-464c-ac7d-269742920f84","route":"/puzzles","tab":"queens"}
+{"t":"leave","at":"2026-11-04T15:32:07.772Z","visit":"6be1939d-567d-464c-ac7d-269742920f84","activeMs":133000}
+{"t":"leave","at":"2026-11-04T15:33:55.446Z","visit":"6be1939d-567d-464c-ac7d-269742920f84","activeMs":209000}
+{"t":"leave","at":"2026-11-04T15:35:20.688Z","visit":"6be1939d-567d-464c-ac7d-269742920f84","activeMs":256000}
+{"t":"leave","at":"2026-11-04T15:36:36.328Z","visit":"6be1939d-567d-464c-ac7d-269742920f84","activeMs":326000}
+{"t":"leave","at":"2026-11-04T15:36:43.863Z","visit":"6be1939d-567d-464c-ac7d-269742920f84","activeMs":328000}
