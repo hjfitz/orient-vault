@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-04 — Make a customer's SFTP folder from its name instead of asking for one
+
+Make a customer's SFTP folder from its name instead of asking for one
+
+Harry, 4 Nov: SFTP users are locked to /inbound, so the folder (slug) should be generated. svc makes it on create from the name + 4 random chars (retry on clash); migration 016 backfills; New customer asks name only; Overview folder read-only. Contract 5.4.0. Stack 3/3 on #88.
+
+PR: ilg-merak/parcel-portal#89
+
 ## 2026-11-04 — Let a GFS admin soft-delete a customer and restore it
 
 Let a GFS admin soft-delete a customer and restore it
