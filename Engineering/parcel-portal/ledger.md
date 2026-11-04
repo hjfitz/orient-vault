@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-04 — Put a customer's users, SFTP logins and API keys on one Access tab
+
+Put a customer's users, SFTP logins and API keys on one Access tab
+
+Harry, 4 Nov: merge Users, SFTP users and API keys, make them intuitive, link the Swagger viewer and share the SFTP host. Access tab with Portal users / SFTP (host, port, /inbound, key-only) / API (address, docs link, bearer key) cards; old tab URLs redirect; stale 'not live yet' notes removed. ui Terraform: SFTP_HOST and CUSTOMER_API_URL env vars from dns_domain (plan to Harry before merge).
+
+PR: ilg-merak/parcel-portal#86
+
 ## 2026-11-04 — Type a layout's column names, put its fields in tabs, rename Carrier account to Selector config
 
 Type a layout's column names, put its fields in tabs, rename Carrier account to Selector config
