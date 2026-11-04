@@ -31,7 +31,7 @@ it is now. Regenerate this page with `wp index`; check health with `wp doctor`.
 | [[Engineering/distraction-dashboard/overview\|distraction-dashboard]] | frontend | 4 | 0 | 0 | — |
 | [[Engineering/fapi/overview\|fapi]] | backend | 3 | 0 | 0 | 2026-10-20 |
 | [[Engineering/fuse-devtools/overview\|fuse-devtools]] | backend | 3 | 0 | 0 | 2026-10-31 |
-| [[Engineering/fuse-mcp/overview\|fuse-mcp]] | backend | 4 | 0 | 0 | 2026-10-22 |
+| [[Engineering/fuse-mcp/overview\|fuse-mcp]] | backend | 4 | 0 | 0 | 2026-11-03 |
 | [[Engineering/fuse-mcp-server/overview\|fuse-mcp-server]] | backend | 0 | 0 | 0 | 2026-10-05 |
 | [[Engineering/fuse-mocker/overview\|fuse-mocker]] | backend | 4 | 0 | 0 | 2026-10-02 |
 | [[Engineering/fuse-ui/overview\|fuse-ui]] | frontend | 5 | 3 | 1 | 2026-10-29 |
@@ -43,12 +43,12 @@ it is now. Regenerate this page with `wp index`; check health with `wp doctor`.
 | [[Engineering/ilg-secure-notes/overview\|ilg-secure-notes]] | backend | 4 | 0 | 0 | — |
 | [[Engineering/images/overview\|images]] | backend | 0 | 0 | 1 | 2026-11-02 |
 | [[Engineering/merak-portal/overview\|merak-portal]] | backend | 0 | 0 | 0 | 2026-10-28 |
-| [[Engineering/observability/overview\|observability]] | backend | 0 | 0 | 0 | 2026-11-02 |
+| [[Engineering/observability/overview\|observability]] | backend | 0 | 0 | 0 | 2026-11-03 |
 | [[Engineering/observability-sdk/overview\|observability-sdk]] | library | 3 | 0 | 0 | — |
-| [[Engineering/orient/overview\|orient]] | frontend | 1 | 0 | 2 | 2026-11-03 |
-| [[Engineering/parcel-portal/overview\|parcel-portal]] | backend | 4 | 0 | 0 | 2026-11-02 |
+| [[Engineering/orient/overview\|orient]] | frontend | 1 | 0 | 1 | 2026-11-03 |
+| [[Engineering/parcel-portal/overview\|parcel-portal]] | backend | 4 | 0 | 0 | 2026-11-03 |
 | [[Engineering/pkg-node/overview\|pkg-node]] | library | 3 | 0 | 1 | 2026-11-02 |
-| [[Engineering/remote-compute/overview\|remote-compute]] | backend | 0 | 0 | 2 | 2026-11-02 |
+| [[Engineering/remote-compute/overview\|remote-compute]] | backend | 0 | 0 | 2 | 2026-11-03 |
 | [[Engineering/renovate-runner/overview\|renovate-runner]] | infra | 3 | 0 | 0 | — |
 | [[Engineering/replay-service/overview\|replay-service]] | backend | 4 | 0 | 0 | 2026-10-19 |
 | [[Engineering/repo-template/overview\|repo-template]] | ? | 0 | 0 | 0 | — |
