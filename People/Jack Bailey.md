@@ -82,6 +82,7 @@ title: Jack Bailey
 - ✍️ 
 
 ## Together (newest first)
+- 2026-11-04 — Mon 2 Nov email: partial-refund fulfillable-quantity requirement for Sistaco logged under the Shopify Jitterbit parity work, engineering to decide how to accommodate both, may come up at today's 13:00 update
 - 2026-11-02 — Leadership catch-up on Mon 2 Nov: he keeps the Iconic short-ship and raises it Wednesday; his Sistaco reply leaves the engineering decision to you → [[Meetings/Bifrost Leadership Catchup]]
 - 2026-11-02 — Replied to James Godsell on 30 Oct suggesting the SKU blacklist for Sistaco's 0-fulfillable lines; sent an updated Integrations Path Forward actions list on 30 Oct; 1:1 today → [[Meetings/1-1 Jack Bailey]]
 - 2026-10-29 — Told ILG CT DESADV routing needs a "complete rebuild of Fuse" and offered a Teams call; raised FUSE-1335 for Escentric stock updates
