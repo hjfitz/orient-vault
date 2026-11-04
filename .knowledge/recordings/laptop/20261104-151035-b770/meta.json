@@ -1,0 +1,18 @@
+{
+  "id": "20261104-151035-b770",
+  "title": "Recording Wed 4 Nov 15:10",
+  "status": "recording",
+  "startedAt": "2026-11-04T15:10:35.976563219Z",
+  "sources": {
+    "me": [
+      "JLAB TALK MICROPHONE Analog Stereo"
+    ],
+    "them": [
+      "Nightly",
+      "Slack",
+      "speech-dispatcher-dummy"
+    ]
+  },
+  "call": false,
+  "host": "laptop"
+}
