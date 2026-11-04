@@ -7,6 +7,14 @@ title: terraform-modules — work ledger
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-04 — Move SRE-309's module back to database/cloud-sql
+
+Move SRE-309's module back to database/cloud-sql
+
+Restored database/cloud-sql byte-identical to f6f24cd and removed database/cloud-sql-private. Only cloud-sql-iam's README cross-link changed, and the root docs were updated. Admin-merged as 649fabd; 0.1-affogato was force-moved to it. A code search found no callers of the interim path. Naming and a possible merge with cloud-sql-iam are still to be agreed with SRE.
+
+PR: ilg-platform/terraform-modules#7
+
 ## 2026-11-04 — Name the IAM-only module database/cloud-sql-iam and leave cloud-sql empty
 
 Name the IAM-only module database/cloud-sql-iam and leave cloud-sql empty
