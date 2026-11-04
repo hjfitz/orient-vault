@@ -7,6 +7,14 @@ title: config-service — work ledger
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-04 — Extend the bundled-npm undici ignores a week and drop the stale zod one
+
+Extend the bundled-npm undici ignores a week and drop the stale zod one
+
+The image scan was red on main and every PR: the CVE-2026-87018/CVE-2026-109383 ignores (undici 6.28.0 in the npm CLI bundled with node:24-alpine, never invoked at runtime) expired 2026-11-04. Re-checked: still 6.28.0, so extended to 2026-11-11. Removed the stale CVE-2026-54404 zod entry (we're on zod 4.6.7). Shipped to prod with #314 (run 41815502155, prod apply 0/2/0, image roll only).
+
+PR: gfs-bifrost/config-service#315
+
 ## 2026-11-04 — Size the Cloud SQL module by preset and stop it planning a disk shrink
 
 Size the Cloud SQL module by preset and stop it planning a disk shrink
