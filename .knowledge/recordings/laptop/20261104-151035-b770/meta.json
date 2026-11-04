@@ -1,7 +1,7 @@
 {
   "id": "20261104-151035-b770",
   "title": "Recording Wed 4 Nov 15:10",
-  "status": "transcribing",
+  "status": "done",
   "startedAt": "2026-11-04T15:10:35.976563219Z",
   "endedAt": "2026-11-04T15:36:33.284288158Z",
   "sources": {
@@ -13,6 +13,75 @@
       "speech-dispatcher-dummy"
     ]
   },
-  "call": false,
+  "call": true,
+  "summary": {
+    "tldr": [
+      "Speaker 1 and Harry synced on weekend on-call cover around tomorrow's (Thu 5 Nov) release, which fixes the carrier label provider issue rather than Snap itself.",
+      "The label provider gave the wrong format/spec to Snap's developers; this only surfaced at go-live, causing the Snap back-and-forth this week.",
+      "Weekend is the big Purdy and Fig weekend, so on-call is staffed as a fallback; no problems are expected.",
+      "Harry is sending an on-call/escalation doc, with references and the standard escalation path, so Speaker 1 can distribute it by about 2pm tomorrow.",
+      "Cover: Speaker 1's side has Milo and Joe on site (one each Sat/Sun) and Danny Williams on call as level one; Harry's side has fuse on-call developers at level three and Harry at level four."
+    ],
+    "decisions": [
+      "Both sides will treat urgency as equal: questions will be raised promptly and nobody will throw issues over the wall.",
+      "On-call tiers: Speaker 1's team covers level one (label printers, shipment issues); Fuse on-call developers level three; Harry level four as backstop.",
+      "Harry's side will provide a list of phone numbers and who is on call when."
+    ],
+    "actions": [
+      {
+        "owner": "Harry",
+        "text": "Send Speaker 1 the on-call and escalation document, with references and the standard escalation path.",
+        "due": "Before 2pm Thursday 5 Nov (Speaker 1 wants to distribute it by then; Speaker 1 is on leave Friday)"
+      },
+      {
+        "owner": "Harry",
+        "text": "Provide a list of phone numbers and who is on call when over the weekend.",
+        "due": ""
+      },
+      {
+        "owner": "Speaker 1",
+        "text": "Review Harry's document, raise any questions, and send the documentation to the on-call people.",
+        "due": "About 2pm Thursday 5 Nov"
+      },
+      {
+        "owner": "Harry",
+        "text": "Make sure the fuse on-call developers' technical explanations are pitched so level one staff can follow them.",
+        "due": ""
+      }
+    ],
+    "questions": [
+      "Whether tomorrow's release fully resolves the carrier label provider problem, which Speaker 1 only hopes is the end of it.",
+      "Whether anything in the on-call document will surprise Speaker 1; this is to be raised after they read it.",
+      "Whether level one cover is strong enough, since Joe has only been in the business four months."
+    ],
+    "speakers": [
+      {
+        "label": "Room 1",
+        "name": "Harry",
+        "basis": "Main voice on Harry's mic; Speaker 1 says goodbye to 'Harry' and Room 1 replies"
+      },
+      {
+        "label": "Speaker 1",
+        "name": "",
+        "basis": "Other side of call; runs the operations side with Danny, Milo and Joe on rota, on leave Friday. Name not given"
+      },
+      {
+        "label": "Room 3",
+        "name": "",
+        "basis": "Another voice in the room, briefly says their spreadsheet is similar; name unknown"
+      }
+    ],
+    "model": "sonnet",
+    "usd": 0.056368,
+    "durationMs": 7989,
+    "at": "2026-11-04T15:39:19.302003382Z"
+  },
+  "enhancement": {
+    "model": "sonnet",
+    "usd": 0.078234,
+    "durationMs": 15194,
+    "at": "2026-11-04T15:39:34.497058483Z",
+    "parts": 1
+  },
   "host": "laptop"
 }
