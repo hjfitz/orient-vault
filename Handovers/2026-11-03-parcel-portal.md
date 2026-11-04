@@ -8,7 +8,7 @@ from: laptop
 to: hjf.shell.platform.ilg.software
 session_id: 80a57909-179d-48c7-a6cb-da766abb7a8a
 resumed_by: 7652f0c7-9f02-4c64-b56f-a154250bb016
-updated: 2026-11-04T10:10Z
+updated: 2026-11-04T11:05Z
 ---
 # Handover: Parcel Portal
 
@@ -84,6 +84,7 @@ Checked 2026-11-03 ~16:40Z on `harry@hjf.shell.platform.ilg.software`; synced wi
 ## Closed since handover
 | When (UTC) | Work | Result |
 | --- | --- | --- |
+| 2026-11-04 ~11:00 | #90, demo customer and sample order file | Harry asked whether upload → pack → label was easy to test; it wasn't. On dev and local only (fake carrier; 403 elsewhere): **Try the portal → Create a demo customer** sets up a complete customer and switches you to acting for it on Orders, and **Download a sample file** gives ready, needs-packing and flagged orders with new references each time. Dev test checklist rewritten in the vault. review-panel findings fixed (a half-made demo is cleaned up; same-second refs). Merged as `a6b0bae` through more GitHub 5xx; svc and ui `terraform-apply-dev` success. **Waiting on Harry:** the browser smoke test needs a dedicated GFS admin login and a `DEV_SMOKE_ADMIN_PASSWORD` repo secret. |
 | 2026-11-04 ~10:05 | #87 + #88 + #89 (stack), user management, customer soft-delete, generated SFTP folders | Harry: "add the option for the gfs admin to manage users as well as (soft-) delete customers", then generate the SFTP folder from the name. #87: edit name/email, enable, set password (revokes sessions); disable revokes sessions; no self-disable. #88: `tenant.deleted_at` (migration 015). Sign-in, sessions, API keys, the SFTP snapshot, slug lookup and acting-as all refuse a deleted customer, and restore undoes it. #89: folder from the name + 4 random chars on create; migration 016 backfills (8 chars); the folder is read-only in the UI. review-panel (backend, frontend, security, data; then backend for #89) findings fixed before merge. Contract 5.4.0. Folded #89→#88→#87, then merged as `610f028` during a GitHub PR outage, retried until it landed. |
 | 2026-11-04 | #86, one Access tab | Harry: merge Users, SFTP users and API keys, make them intuitive, link Swagger and share the SFTP host. Access tab: Portal users / SFTP (host with copy, port 22, `/inbound`, key-only) / API (address, Swagger docs link, bearer key); old tab URLs redirect to `access#users|sftp|api`; stale "not live yet" notes removed. ui Terraform: `SFTP_HOST` (only where `sftp_host_enabled`) and `CUSTOMER_API_URL` env vars from `dns_domain`; Harry OK'd the dev plan (0/1/0, in-place on ui-parcel-dev). Prod plans fail on lookups of never-applied prod resources (pre-existing, prod held). review-panel: no findings. Merged as `f943d4e`; ui `terraform-apply-dev` success. The agent's account can't read dev Cloud Run (`run.services.get`), so the env values weren't read back. |
 | 2026-11-04 | #85, layout editor follow-up and Selector config | Harry's feedback after #84: drop "Your file's columns" (column names typed, with suggestions), keep group-by, Order / Each product line as tabs with to-do counts, the Carrier account tab renamed Selector config. review-panel (frontend) findings fixed before merge: duplicate suggestions, unlabelled tab counts, blank grouping inputs piling up, every grouping input marked red. Merged as `c60d4ee`; ui `terraform-apply-dev` success. Prod held. |
