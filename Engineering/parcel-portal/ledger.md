@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-04 — Let a GFS admin soft-delete a customer and restore it
+
+Let a GFS admin soft-delete a customer and restore it
+
+Harry, 4 Nov: (soft-) delete customers. tenant.deleted_at (migration 015); while deleted: sign-in, sessions, API keys, SFTP snapshot, slug lookup and admin upload all refuse; restore undoes it. Customers page splits deleted with Restore; Overview Delete customer; switcher skips deleted. Contract 5.3.0. Stack 2/2 on #87.
+
+PR: ilg-merak/parcel-portal#88
+
 ## 2026-11-04 — Let a GFS admin edit, re-enable and set the password of a user
 
 Let a GFS admin edit, re-enable and set the password of a user
