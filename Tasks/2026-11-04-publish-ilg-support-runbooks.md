@@ -1,7 +1,7 @@
 ---
 tags: [adhoc-task]
 date: 2026-11-04
-tldr: "Took the 8 ILG Support runbook/FAQ pages out of DRAFT to LIVE; drafted the out-of-hours callout page (unpublished, awaiting review)"
+tldr: "Took the 8 ILG Support runbook/FAQ pages out of DRAFT to LIVE; published the out-of-hours callout page; weekly on-call rota drafted, awaiting names and numbers"
 session_id: bf844e25-5aad-48c6-a1fe-061143be651a
 status: open
 ---
