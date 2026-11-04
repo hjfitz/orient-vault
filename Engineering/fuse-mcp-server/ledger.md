@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-04 — Add shopify-test-order tools to the MCP
+
+Add shopify-test-order tools to the MCP
+
+Three dev-only Go MCP tools, shopify-test-order-create, -get (read-only) and -delete, over shopify-connector's new /api/v1/test-orders routes. Agents can now create, read and delete a real paid order on GADG's ILG Test Store without a human in the Shopify admin. They use a staging-only SHOPIFY_CONNECTOR client, with URL and key from the connector's dev remote state behind try(). The data files gain shopify-connector's consumer API and the fuse-mcp-server -> shopify-connector dependency. The parity baseline gains the Go-only declarations and the refreshed payloads.
+
+PR: gfs-bifrost/fuse-mcp#62
+
 ## 2026-10-05 — Say how to reach consumers with a mocked goods-out
 
 Say how to reach consumers with a mocked goods-out

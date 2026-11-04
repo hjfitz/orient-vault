@@ -7,6 +7,14 @@ title: config-service — work ledger
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-04 — Size the Cloud SQL module by preset and stop it planning a disk shrink
+
+Size the Cloud SQL module by preset and stop it planning a disk shrink
+
+cloud-sql-iam: size = small|medium|large (db-f1-micro / db-custom-1-3840 / db-custom-2-7680) or a raw tier; edition derived. ignore_changes on settings[0].disk_size (autoresize + provider shrink = instance replacement, which deletion protection turns into failed applies). Plan-time guards: the migrator must be a user-managed .iam account; an app account can't be an impersonator. config-service: cloudsql_tier -> cloudsql_size (dev small, prod medium). terraform test 50/50, disk test red without the fix; targeted plans dev/prod No changes; dev apply 0/2/0 (image roll), module.db untouched. Precedes M2 (promotion), which Harry wants straight after.
+
+PR: gfs-bifrost/config-service#314
+
 ## 2026-11-03 — Give run.invoker one owner so prod plans stop flip-flopping
 
 Give run.invoker one owner so prod plans stop flip-flopping
