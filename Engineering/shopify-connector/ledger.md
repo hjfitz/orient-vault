@@ -7,6 +7,15 @@ title: shopify-connector — work ledger
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-04 — Add dev-only ILG Test Store order endpoints
+
+Add dev-only ILG Test Store order endpoints
+
+Added POST/GET/DELETE /api/v1/test-orders to shopify-connector, so an agent can create, read and delete a real paid order on GADG's ILG Test Store without a human in the Shopify admin. The first use is FUSE-1320's dev verification. The routes are mounted only in dev, via ConditionalModule on ENVIRONMENT=dev plus TEST_ORDER_CONNECTOR_ID. The store always comes from that configured connector. Every created order is tagged FUSE_TEST_ORDER, and fetch and delete refuse untagged orders. Auth is x-api-key only (ApiKeyOnlyGuard), because ApiKeyGuard's OIDC branch accepts any Google-signed token for the URL. Split into a two-PR native stack: core operations, then routes, mount and Terraform. The Fuse MCP tools follow in gfs-bifrost/fuse-mcp.
+
+PR: gfs-bifrost/shopify-connector#361
+PR: gfs-bifrost/shopify-connector#362
+
 ## 2026-11-02 — Raise the follow-redirects floor to 1.16.2
 
 Raise the follow-redirects floor to 1.16.2
