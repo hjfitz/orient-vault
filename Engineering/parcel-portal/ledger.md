@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-04 — Type a layout's column names, put its fields in tabs, rename Carrier account to Selector config
+
+Type a layout's column names, put its fields in tabs, rename Carrier account to Selector config
+
+Harry, 4 Nov feedback on the layout editor after #84: drop the 'Your file's columns' section (column names typed, with suggestions), keep group-by, Order / Each product line as tabs with to-do counts, sample fill as one button; the customer's Carrier account tab is Selector config.
+
+PR: ilg-merak/parcel-portal#85
+
 ## 2026-11-03 — Match a layout's columns by name and say what's still to map (C18)
 
 Match a layout's columns by name and say what's still to map (C18)
