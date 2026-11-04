@@ -8,7 +8,7 @@ from: laptop
 to: hjf.shell.platform.ilg.software
 session_id: 80a57909-179d-48c7-a6cb-da766abb7a8a
 resumed_by: 7652f0c7-9f02-4c64-b56f-a154250bb016
-updated: 2026-11-03T20:23Z
+updated: 2026-11-04T00:10Z
 ---
 # Handover: Parcel Portal
 
@@ -84,6 +84,7 @@ Checked 2026-11-03 ~16:40Z on `harry@hjf.shell.platform.ilg.software`; synced wi
 ## Closed since handover
 | When (UTC) | Work | Result |
 | --- | --- | --- |
+| 2026-11-03 ~23:30 | #84 C18, layout editor matches columns by name | Harry asked whether the CSV mapping UX was now good; it wasn't yet. Name matching (svc `POST /admin/mapping/suggest`, contract 5.1.0), to-dos instead of red errors, needed-for badges, direct If blank / Translate links. review-panel (backend, frontend, contract) findings fixed before merge: HS/customs columns went to SKU/name; a lone Weight made a half parcel; a matching race and a stuck status. Merged as `8d9a2dc`; svc and ui `terraform-apply-dev` success; prod jobs wait at the `terraform-prod` gate (held). Harry skipped screenshots: "better to experience these things in the browser". |
 | 2026-11-03 ~20:22 | #83 C15 P6, JSON orders | Harry: "P6, breaking changes, deployments: all fine". review-panel (backend+data, contract) found the following, all fixed before merge: a failed store left the file at processing (now finished as rejected); CSV wording in messages; untrimmed text; the decimal pattern stricter than the file path; an empty `lines` accepted; 422 `file_too_large` undocumented. Merged as `059a62a`; svc and gateway `terraform-apply-dev` success, both on `dev-059a62a`; the live `/openapi.json` is 1.2.0 with `/v1/orders`. |
 | 2026-11-03 ~19:55 | #81 C15 P5, the public gateway | Merged by the agent as `4aa7721` after Harry OK'd deployments in-session. The earlier attempt had been refused as an IaC apply. gateway, svc and sftp `terraform-apply-dev` all success. The plan applied as recorded (15 to add). The managed cert was live by about 20:20Z, and the HTTPS checks pass (see Where things stand). |
 | 2026-11-03 ~19:28 | #82, an API key revoke logged once | `RevokeAPIKey` reports whether this call revoked the key. Merged as `8ed8744`; svc `terraform-apply-dev` success, `dev-8ed8744`, revision 00035 applied migrations with no errors. |
