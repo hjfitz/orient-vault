@@ -8,8 +8,11 @@ impact: downtime
 scope: "all test DBs"
 window_start: "2026-11-04T09:00:00Z"
 sender: "Lee Simmons (ILG)"
+slack_url: "https://gfsdeliver-eng.slack.com/archives/C098LD5PS95/p1793783601130819"
+slack_ts: "1793783601.130819"
 message_id: "<D4727EA9-7A3C-4199-A44E-78F9188CF53A@ilguk.com>"
 notified_at: "2026-11-04T08:37:36Z"
+reminded: ["2026-11-04"]
 posted_at: "2026-11-04T09:13:14Z"
 session_id: 625609ea-4fa3-4504-9c81-64a1897d5e86
 ---
