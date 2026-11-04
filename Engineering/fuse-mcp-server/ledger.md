@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-04 — Clear the high findings failing the MCP dependency audit and image scan
+
+Clear the high findings failing the MCP dependency audit and image scan
+
+Cleared the secops dependency_audit and image_scan checks, red on master since at least 2026-11-02, in their own PR off master as the red-check rule requires. zod went to 4.6.6 and body-parser to 2.4.0. multer GHSA-q7qp-rjg7-q26m is allowlisted until 2026-11-11, because the fix only comes with Nest 12 and the server has no multipart route. Three undici CVEs in the npm CLI bundled in node:24 were trivyignored, since npm@latest still bundles 6.29.0. Follow-up owed: the Nest 12 upgrade before the multer allowlist expires.
+
+PR: gfs-bifrost/fuse-mcp#63
+
 ## 2026-11-04 — Add shopify-test-order tools to the MCP
 
 Add shopify-test-order tools to the MCP
