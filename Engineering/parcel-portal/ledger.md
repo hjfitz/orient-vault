@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-04 — Smoke-test dev in a browser after every deploy
+
+Smoke-test dev in a browser after every deploy
+
+Harry, 4 Nov: browser smoke test. e2e/ Playwright package; dev-smoke.yaml (reusable, nightly, manual) in the Playwright image signs in as a dedicated GFS admin (DEV_SMOKE_ADMIN_PASSWORD secret), makes a demo customer, uploads the sample, fixes, packs, dispatches 5, checks Shipments, always deletes the demo. Called after svc and ui dev applies; report-only.
+
+PR: ilg-merak/parcel-portal#91
+
 ## 2026-11-04 — Add a demo customer and a sample order file for trying the portal on dev
 
 Add a demo customer and a sample order file for trying the portal on dev
