@@ -1,0 +1,2425 @@
+{
+  "audio": "/home/hjf/Documents/obsidian/.knowledge/recordings/laptop/20261104-151035-b770/audio.wav",
+  "seconds": 1557.2195,
+  "config": {
+    "ModelDir": "/home/hjf/.local/share/orient-scribe/models",
+    "ASR": "parakeet",
+    "Embedding": "nemo_en_titanet_small.onnx",
+    "Threshold": 1,
+    "Speakers": 0,
+    "WindowShift": 0.1,
+    "VAD": 0.35,
+    "Threads": 4
+  },
+  "loadNs": 2294579771,
+  "call": true,
+  "echo": [
+    {
+      "channel": "me",
+      "speaker": 0,
+      "start": 7.654,
+      "end": 8.176,
+      "text": "Yeah."
+    },
+    {
+      "channel": "me",
+      "speaker": 0,
+      "start": 67.782,
+      "end": 68.368,
+      "text": "Yeah."
+    },
+    {
+      "channel": "me",
+      "speaker": 0,
+      "start": 214.502,
+      "end": 214.96,
+      "text": "Uh"
+    }
+  ],
+  "channels": {
+    "me": {
+      "gain": 1.8785913185913186,
+      "regions": [
+        {
+          "start": 3.334,
+          "end": 3.984
+        },
+        {
+          "start": 7.654,
+          "end": 8.176
+        },
+        {
+          "start": 11.366,
+          "end": 12.144
+        },
+        {
+          "start": 12.678,
+          "end": 14.832
+        },
+        {
+          "start": 18.95,
+          "end": 21.008
+        },
+        {
+          "start": 23.046,
+          "end": 24.816
+        },
+        {
+          "start": 27.366,
+          "end": 27.76
+        },
+        {
+          "start": 35.11,
+          "end": 36.528
+        },
+        {
+          "start": 45.286,
+          "end": 46.032
+        },
+        {
+          "start": 57.286,
+          "end": 57.904
+        },
+        {
+          "start": 60.006,
+          "end": 62.704
+        },
+        {
+          "start": 64.134,
+          "end": 65.392
+        },
+        {
+          "start": 67.782,
+          "end": 68.368
+        },
+        {
+          "start": 74.822,
+          "end": 79.28
+        },
+        {
+          "start": 93.35,
+          "end": 94.928
+        },
+        {
+          "start": 95.782,
+          "end": 101.232
+        },
+        {
+          "start": 111.526,
+          "end": 111.92
+        },
+        {
+          "start": 121.542,
+          "end": 123.472
+        },
+        {
+          "start": 125.03,
+          "end": 129.68
+        },
+        {
+          "start": 141.894,
+          "end": 144.784
+        },
+        {
+          "start": 157.03,
+          "end": 161.136
+        },
+        {
+          "start": 161.542,
+          "end": 165.168
+        },
+        {
+          "start": 165.734,
+          "end": 166.224
+        },
+        {
+          "start": 166.886,
+          "end": 172.272
+        },
+        {
+          "start": 173.83,
+          "end": 174.32
+        },
+        {
+          "start": 174.822,
+          "end": 179.824
+        },
+        {
+          "start": 184.326,
+          "end": 185.616
+        },
+        {
+          "start": 191.526,
+          "end": 192.24
+        },
+        {
+          "start": 192.934,
+          "end": 199.76
+        },
+        {
+          "start": 200.966,
+          "end": 201.584
+        },
+        {
+          "start": 206.278,
+          "end": 213.808
+        },
+        {
+          "start": 214.502,
+          "end": 214.96
+        },
+        {
+          "start": 223.814,
+          "end": 228.272
+        },
+        {
+          "start": 232.678,
+          "end": 242.928
+        },
+        {
+          "start": 244.454,
+          "end": 250.48
+        },
+        {
+          "start": 251.974,
+          "end": 252.688
+        },
+        {
+          "start": 266.214,
+          "end": 267.248
+        },
+        {
+          "start": 273.094,
+          "end": 273.936
+        },
+        {
+          "start": 283.59,
+          "end": 284.528
+        },
+        {
+          "start": 303.174,
+          "end": 306
+        },
+        {
+          "start": 324.934,
+          "end": 325.904
+        },
+        {
+          "start": 335.398,
+          "end": 341.616
+        },
+        {
+          "start": 342.726,
+          "end": 346.512
+        },
+        {
+          "start": 347.142,
+          "end": 350.64
+        },
+        {
+          "start": 352.838,
+          "end": 353.776
+        },
+        {
+          "start": 354.278,
+          "end": 358.736
+        },
+        {
+          "start": 362.598,
+          "end": 365.232
+        },
+        {
+          "start": 366.406,
+          "end": 367.344
+        },
+        {
+          "start": 736.614,
+          "end": 737.872
+        }
+      ],
+      "turns": [
+        {
+          "start": 3.287843704223633,
+          "end": 3.929093837738037,
+          "speaker": 0
+        },
+        {
+          "start": 7.624719142913818,
+          "end": 8.198469161987305,
+          "speaker": 0
+        },
+        {
+          "start": 11.168469429016113,
+          "end": 14.76284408569336,
+          "speaker": 0
+        },
+        {
+          "start": 18.897220611572266,
+          "end": 21.377845764160156,
+          "speaker": 0
+        },
+        {
+          "start": 22.964096069335938,
+          "end": 24.97222137451172,
+          "speaker": 0
+        },
+        {
+          "start": 24.97222137451172,
+          "end": 27.72284507751465,
+          "speaker": 1
+        },
+        {
+          "start": 35.06346893310547,
+          "end": 36.51472091674805,
+          "speaker": 0
+        },
+        {
+          "start": 45.23909378051758,
+          "end": 46.13346862792969,
+          "speaker": 0
+        },
+        {
+          "start": 57.254093170166016,
+          "end": 57.861595153808594,
+          "speaker": 0
+        },
+        {
+          "start": 59.70096969604492,
+          "end": 65.77597045898438,
+          "speaker": 0
+        },
+        {
+          "start": 74.77034759521484,
+          "end": 79.25909423828125,
+          "speaker": 0
+        },
+        {
+          "start": 80.8959732055664,
+          "end": 81.30097198486328,
+          "speaker": 0
+        },
+        {
+          "start": 93.33284759521484,
+          "end": 101.1459732055664,
+          "speaker": 0
+        },
+        {
+          "start": 111.47347259521484,
+          "end": 111.91222381591797,
+          "speaker": 0
+        },
+        {
+          "start": 121.53097534179688,
+          "end": 123.26909637451172,
+          "speaker": 0
+        },
+        {
+          "start": 124.87222290039062,
+          "end": 129.54660034179688,
+          "speaker": 0
+        },
+        {
+          "start": 141.84848022460938,
+          "end": 144.7003631591797,
+          "speaker": 0
+        },
+        {
+          "start": 156.9853515625,
+          "end": 179.49661254882812,
+          "speaker": 0
+        },
+        {
+          "start": 184.25535583496094,
+          "end": 185.52098083496094,
+          "speaker": 0
+        },
+        {
+          "start": 191.4778594970703,
+          "end": 193.97535705566406,
+          "speaker": 0
+        },
+        {
+          "start": 193.97535705566406,
+          "end": 201.5859832763672,
+          "speaker": 4
+        },
+        {
+          "start": 206.27723693847656,
+          "end": 214.96786499023438,
+          "speaker": 0
+        },
+        {
+          "start": 223.776611328125,
+          "end": 227.79286193847656,
+          "speaker": 0
+        },
+        {
+          "start": 232.0284881591797,
+          "end": 252.6328582763672,
+          "speaker": 0
+        },
+        {
+          "start": 263.5003662109375,
+          "end": 263.82098388671875,
+          "speaker": 0
+        },
+        {
+          "start": 266.0822448730469,
+          "end": 267.06097412109375,
+          "speaker": 0
+        },
+        {
+          "start": 273.0853576660156,
+          "end": 273.7940979003906,
+          "speaker": 0
+        },
+        {
+          "start": 283.5647277832031,
+          "end": 284.5097351074219,
+          "speaker": 0
+        },
+        {
+          "start": 294.3478698730469,
+          "end": 294.7191162109375,
+          "speaker": 0
+        },
+        {
+          "start": 303.0722351074219,
+          "end": 306.9703674316406,
+          "speaker": 0
+        },
+        {
+          "start": 308.1347351074219,
+          "end": 308.4891052246094,
+          "speaker": 0
+        },
+        {
+          "start": 317.46661376953125,
+          "end": 318.7659912109375,
+          "speaker": 1
+        },
+        {
+          "start": 324.8916015625,
+          "end": 325.9209899902344,
+          "speaker": 0
+        },
+        {
+          "start": 335.40472412109375,
+          "end": 350.6091003417969,
+          "speaker": 0
+        },
+        {
+          "start": 352.8197326660156,
+          "end": 358.67535400390625,
+          "speaker": 0
+        },
+        {
+          "start": 362.573486328125,
+          "end": 365.0541076660156,
+          "speaker": 0
+        },
+        {
+          "start": 366.33660888671875,
+          "end": 367.02850341796875,
+          "speaker": 0
+        },
+        {
+          "start": 405.7903747558594,
+          "end": 406.448486328125,
+          "speaker": 1
+        },
+        {
+          "start": 641.314697265625,
+          "end": 642.0571899414062,
+          "speaker": 5
+        },
+        {
+          "start": 645.0778198242188,
+          "end": 645.9722290039062,
+          "speaker": 5
+        },
+        {
+          "start": 653.819091796875,
+          "end": 656.0128173828125,
+          "speaker": 5
+        },
+        {
+          "start": 660.4847412109375,
+          "end": 660.9572143554688,
+          "speaker": 5
+        },
+        {
+          "start": 663.522216796875,
+          "end": 663.9778442382812,
+          "speaker": 5
+        },
+        {
+          "start": 674.5922241210938,
+          "end": 675.1491088867188,
+          "speaker": 5
+        },
+        {
+          "start": 676.2965698242188,
+          "end": 677.8828735351562,
+          "speaker": 5
+        },
+        {
+          "start": 736.5403442382812,
+          "end": 737.9409790039062,
+          "speaker": 4
+        }
+      ],
+      "utterances": [
+        {
+          "channel": "me",
+          "speaker": 0,
+          "start": 3.334,
+          "end": 3.984,
+          "text": "What's that, sorry?"
+        },
+        {
+          "channel": "me",
+          "speaker": 0,
+          "start": 11.366,
+          "end": 12.144,
+          "text": "Brilliant."
+        },
+        {
+          "channel": "me",
+          "speaker": 0,
+          "start": 12.678,
+          "end": 14.832,
+          "text": "Yeah"
+        },
+        {
+          "channel": "me",
+          "speaker": 0,
+          "start": 18.95,
+          "end": 21.008,
+          "text": "Yeah, fucking hell man, you doing it right."
+        },
+        {
+          "channel": "me",
+          "speaker": 0,
+          "start": 23.046,
+          "end": 24.816,
+          "text": "Oh my"
+        },
+        {
+          "channel": "me",
+          "speaker": 1,
+          "start": 27.366,
+          "end": 27.76,
+          "text": "Ah."
+        },
+        {
+          "channel": "me",
+          "speaker": 0,
+          "start": 35.11,
+          "end": 36.528,
+          "text": "Yeah, yeah fingers crossed."
+        },
+        {
+          "channel": "me",
+          "speaker": 0,
+          "start": 45.286,
+          "end": 46.032,
+          "text": "Uh yeah yeah."
+        },
+        {
+          "channel": "me",
+          "speaker": 0,
+          "start": 57.286,
+          "end": 57.904,
+          "text": "Oh, brilliant."
+        },
+        {
+          "channel": "me",
+          "speaker": 0,
+          "start": 60.006,
+          "end": 62.704,
+          "text": "Nice one. Kids guys? Yeah."
+        },
+        {
+          "channel": "me",
+          "speaker": 0,
+          "start": 64.134,
+          "end": 65.392,
+          "text": "software developers A."
+        },
+        {
+          "channel": "me",
+          "speaker": 0,
+          "start": 74.822,
+          "end": 79.28,
+          "text": "Uh yeah, I've just put a doc basically that summarise what we chat about, so"
+        },
+        {
+          "channel": "me",
+          "speaker": 0,
+          "start": 93.35,
+          "end": 94.928,
+          "text": "Yeah, yeah, we're gonna um"
+        },
+        {
+          "channel": "me",
+          "speaker": 0,
+          "start": 95.782,
+          "end": 101.232,
+          "text": "Get people over, I appreciate like, yeah, it's the big Purdy and Fig weekend so it'd be remiss not to have anybody up."
+        },
+        {
+          "channel": "me",
+          "speaker": 0,
+          "start": 111.526,
+          "end": 111.92,
+          "text": "Yeah."
+        },
+        {
+          "channel": "me",
+          "speaker": 0,
+          "start": 121.542,
+          "end": 123.472,
+          "text": "Yeah."
+        },
+        {
+          "channel": "me",
+          "speaker": 0,
+          "start": 125.03,
+          "end": 129.68,
+          "text": "Yeah, and I can't imagine I mean touch would but I can't imagine thing too on untoward."
+        },
+        {
+          "channel": "me",
+          "speaker": 0,
+          "start": 141.894,
+          "end": 144.784,
+          "text": "I fucking hell, okay. Yes, we'll get that over ASAP to you."
+        },
+        {
+          "channel": "me",
+          "speaker": 0,
+          "start": 157.03,
+          "end": 161.136,
+          "text": "Yeah yeah of course. Yeah, we'll we'll make sure you have it um way before then."
+        },
+        {
+          "channel": "me",
+          "speaker": 0,
+          "start": 161.542,
+          "end": 165.168,
+          "text": "I mean like I I don't think it'd be anything like too surprising. Um"
+        },
+        {
+          "channel": "me",
+          "speaker": 0,
+          "start": 165.734,
+          "end": 166.224,
+          "text": "Yeah, like"
+        },
+        {
+          "channel": "me",
+          "speaker": 0,
+          "start": 166.886,
+          "end": 172.272,
+          "text": "Standard escalation path, which like I don't don't think anyone's in agreement with."
+        },
+        {
+          "channel": "me",
+          "speaker": 0,
+          "start": 173.83,
+          "end": 174.32,
+          "text": "Like just"
+        },
+        {
+          "channel": "me",
+          "speaker": 0,
+          "start": 174.822,
+          "end": 179.824,
+          "text": "having all the references and everything there, um if like someone in the future's team does get called out."
+        },
+        {
+          "channel": "me",
+          "speaker": 0,
+          "start": 184.326,
+          "end": 185.616,
+          "text": "Yeah, and like"
+        },
+        {
+          "channel": "me",
+          "speaker": 0,
+          "start": 191.526,
+          "end": 192.24,
+          "text": "Um"
+        },
+        {
+          "channel": "me",
+          "speaker": 0,
+          "start": 192.934,
+          "end": 193.97535705566406,
+          "text": "Yeah, that's a good cross cube."
+        },
+        {
+          "channel": "me",
+          "speaker": 4,
+          "start": 193.97535705566406,
+          "end": 199.76,
+          "text": "Um I was hoping that like Mr Denton could deal with it, but I'm pretty sure ours is similar."
+        },
+        {
+          "channel": "me",
+          "speaker": 4,
+          "start": 200.966,
+          "end": 201.584,
+          "text": "Um"
+        },
+        {
+          "channel": "me",
+          "speaker": 0,
+          "start": 206.278,
+          "end": 213.808,
+          "text": "Yeah if it like yeah if we got a processor that's more useful I I have a feeling I've got a fucking spreadsheet as well you know."
+        },
+        {
+          "channel": "me",
+          "speaker": 0,
+          "start": 223.814,
+          "end": 228.272,
+          "text": "Yeah, yeah, I used to time sheet. Last month it uncle's awful."
+        },
+        {
+          "channel": "me",
+          "speaker": 0,
+          "start": 232.678,
+          "end": 242.928,
+          "text": "Um yeah, otherwise BAU. Um I think the only other thing is like just equal urgency from either side. Um'cause we're gonna flap if we don't have like if we need to ask you guys a question."
+        },
+        {
+          "channel": "me",
+          "speaker": 0,
+          "start": 244.454,
+          "end": 250.48,
+          "text": "Pretty sure, like, no one's gonna throw it over the wall and just fuck off for the evening. As tempted as I have been sometimes to do that."
+        },
+        {
+          "channel": "me",
+          "speaker": 0,
+          "start": 251.974,
+          "end": 252.688,
+          "text": "Yeah."
+        },
+        {
+          "channel": "me",
+          "speaker": 0,
+          "start": 266.214,
+          "end": 267.248,
+          "text": "Jesus."
+        },
+        {
+          "channel": "me",
+          "speaker": 0,
+          "start": 273.094,
+          "end": 273.936,
+          "text": "Uh yeah."
+        },
+        {
+          "channel": "me",
+          "speaker": 0,
+          "start": 283.59,
+          "end": 284.528,
+          "text": "Yeah, and I've guessed"
+        },
+        {
+          "channel": "me",
+          "speaker": 0,
+          "start": 303.174,
+          "end": 306,
+          "text": "Yeah, yeah, that was like my first tech support job."
+        },
+        {
+          "channel": "me",
+          "speaker": 0,
+          "start": 324.934,
+          "end": 325.904,
+          "text": "You could say that."
+        },
+        {
+          "channel": "me",
+          "speaker": 0,
+          "start": 335.398,
+          "end": 341.616,
+          "text": "Yeah, yeah no I get that. Well um so on on top of like the fuse on on cool um"
+        },
+        {
+          "channel": "me",
+          "speaker": 0,
+          "start": 342.726,
+          "end": 346.512,
+          "text": "you know, work with developers on call for like that level three, I'll be like"
+        },
+        {
+          "channel": "me",
+          "speaker": 0,
+          "start": 347.142,
+          "end": 350.64,
+          "text": "always available as that level four in case they get um they get stuck as well."
+        },
+        {
+          "channel": "me",
+          "speaker": 0,
+          "start": 352.838,
+          "end": 353.776,
+          "text": "But yeah. Yeah, we'll"
+        },
+        {
+          "channel": "me",
+          "speaker": 0,
+          "start": 354.278,
+          "end": 358.736,
+          "text": "We'll go for a list of phone numbers and that and who's on call when and yeah, it should be good to go from there."
+        },
+        {
+          "channel": "me",
+          "speaker": 0,
+          "start": 362.598,
+          "end": 365.232,
+          "text": "Yeah, catch you in a bit mate. Take care. Look after yourself."
+        },
+        {
+          "channel": "me",
+          "speaker": 0,
+          "start": 366.406,
+          "end": 367.344,
+          "text": "I think it's a"
+        },
+        {
+          "channel": "me",
+          "speaker": 4,
+          "start": 736.614,
+          "end": 737.872,
+          "text": "Oh, okay."
+        }
+      ],
+      "timings": {
+        "vad": 4490836127,
+        "diarization": 50548166524,
+        "asr": 10716935356
+      }
+    },
+    "them": {
+      "gain": 1.1570621468926552,
+      "regions": [
+        {
+          "start": 0.422,
+          "end": 2.064
+        },
+        {
+          "start": 5.926,
+          "end": 7.408
+        },
+        {
+          "start": 8.326,
+          "end": 10.896
+        },
+        {
+          "start": 16.518,
+          "end": 18.608
+        },
+        {
+          "start": 22.31,
+          "end": 23.76
+        },
+        {
+          "start": 27.686,
+          "end": 30.8
+        },
+        {
+          "start": 31.174,
+          "end": 34.704
+        },
+        {
+          "start": 35.462,
+          "end": 37.456
+        },
+        {
+          "start": 37.862,
+          "end": 41.648
+        },
+        {
+          "start": 43.142,
+          "end": 44.624
+        },
+        {
+          "start": 45.19,
+          "end": 46.192
+        },
+        {
+          "start": 47.366,
+          "end": 49.2
+        },
+        {
+          "start": 49.83,
+          "end": 51.248
+        },
+        {
+          "start": 52.422,
+          "end": 54.608
+        },
+        {
+          "start": 54.982,
+          "end": 57.616
+        },
+        {
+          "start": 58.246,
+          "end": 60.464
+        },
+        {
+          "start": 62.086,
+          "end": 62.704
+        },
+        {
+          "start": 66.534,
+          "end": 66.992
+        },
+        {
+          "start": 68.038,
+          "end": 68.56
+        },
+        {
+          "start": 69.158,
+          "end": 69.52
+        },
+        {
+          "start": 70.502,
+          "end": 74.032
+        },
+        {
+          "start": 74.566,
+          "end": 75.28
+        },
+        {
+          "start": 81.734,
+          "end": 82.128
+        },
+        {
+          "start": 82.694,
+          "end": 83.28
+        },
+        {
+          "start": 83.654,
+          "end": 84.08
+        },
+        {
+          "start": 84.614,
+          "end": 91.792
+        },
+        {
+          "start": 94.022,
+          "end": 94.512
+        },
+        {
+          "start": 103.398,
+          "end": 103.888
+        },
+        {
+          "start": 105.094,
+          "end": 107.472
+        },
+        {
+          "start": 107.846,
+          "end": 109.904
+        },
+        {
+          "start": 110.438,
+          "end": 111.376
+        },
+        {
+          "start": 111.942,
+          "end": 112.848
+        },
+        {
+          "start": 113.414,
+          "end": 122.032
+        },
+        {
+          "start": 131.878,
+          "end": 141.68
+        },
+        {
+          "start": 142.246,
+          "end": 142.928
+        },
+        {
+          "start": 143.814,
+          "end": 144.528
+        },
+        {
+          "start": 145.382,
+          "end": 148.656
+        },
+        {
+          "start": 149.222,
+          "end": 152.112
+        },
+        {
+          "start": 152.518,
+          "end": 153.136
+        },
+        {
+          "start": 154.758,
+          "end": 156.784
+        },
+        {
+          "start": 157.51,
+          "end": 158.096
+        },
+        {
+          "start": 184.902,
+          "end": 186.224
+        },
+        {
+          "start": 186.982,
+          "end": 188.4
+        },
+        {
+          "start": 189.126,
+          "end": 191.248
+        },
+        {
+          "start": 201.19,
+          "end": 206.992
+        },
+        {
+          "start": 207.814,
+          "end": 209.392
+        },
+        {
+          "start": 215.27,
+          "end": 216.08
+        },
+        {
+          "start": 216.71,
+          "end": 221.456
+        },
+        {
+          "start": 222.118,
+          "end": 223.6
+        },
+        {
+          "start": 251.942,
+          "end": 252.592
+        },
+        {
+          "start": 255.206,
+          "end": 256.112
+        },
+        {
+          "start": 257.126,
+          "end": 259.6
+        },
+        {
+          "start": 260.23,
+          "end": 260.688
+        },
+        {
+          "start": 261.286,
+          "end": 262.96
+        },
+        {
+          "start": 263.75,
+          "end": 273.904
+        },
+        {
+          "start": 274.63,
+          "end": 278.416
+        },
+        {
+          "start": 278.854,
+          "end": 282.128
+        },
+        {
+          "start": 283.878,
+          "end": 284.688
+        },
+        {
+          "start": 285.894,
+          "end": 289.712
+        },
+        {
+          "start": 290.31,
+          "end": 294.032
+        },
+        {
+          "start": 294.598,
+          "end": 295.216
+        },
+        {
+          "start": 296.102,
+          "end": 297.872
+        },
+        {
+          "start": 298.342,
+          "end": 299.184
+        },
+        {
+          "start": 299.622,
+          "end": 303.472
+        },
+        {
+          "start": 308.198,
+          "end": 311.6
+        },
+        {
+          "start": 312.198,
+          "end": 314.096
+        },
+        {
+          "start": 315.014,
+          "end": 318.8
+        },
+        {
+          "start": 319.206,
+          "end": 321.008
+        },
+        {
+          "start": 321.542,
+          "end": 324.912
+        },
+        {
+          "start": 326.566,
+          "end": 328.848
+        },
+        {
+          "start": 329.222,
+          "end": 336.272
+        },
+        {
+          "start": 351.462,
+          "end": 352.208
+        },
+        {
+          "start": 355.046,
+          "end": 355.568
+        },
+        {
+          "start": 359.622,
+          "end": 360.08
+        },
+        {
+          "start": 361.094,
+          "end": 362.512
+        },
+        {
+          "start": 364.518,
+          "end": 365.2
+        },
+        {
+          "start": 365.638,
+          "end": 366.544
+        },
+        {
+          "start": 391.046,
+          "end": 391.6
+        },
+        {
+          "start": 591.526,
+          "end": 592.944
+        },
+        {
+          "start": 608.454,
+          "end": 609.488
+        },
+        {
+          "start": 676.07,
+          "end": 676.72
+        },
+        {
+          "start": 1279.494,
+          "end": 1280.208
+        },
+        {
+          "start": 1379.622,
+          "end": 1380.496
+        },
+        {
+          "start": 1477.254,
+          "end": 1477.84
+        }
+      ],
+      "turns": [
+        {
+          "start": 0.03096874989569187,
+          "end": 2.0053439140319824,
+          "speaker": 0
+        },
+        {
+          "start": 5.92034387588501,
+          "end": 10.96596908569336,
+          "speaker": 0
+        },
+        {
+          "start": 13.564719200134277,
+          "end": 13.885344505310059,
+          "speaker": 0
+        },
+        {
+          "start": 15.52221965789795,
+          "end": 18.627220153808594,
+          "speaker": 0
+        },
+        {
+          "start": 22.289094924926758,
+          "end": 23.166595458984375,
+          "speaker": 0
+        },
+        {
+          "start": 27.638471603393555,
+          "end": 34.77659225463867,
+          "speaker": 0
+        },
+        {
+          "start": 35.417842864990234,
+          "end": 41.678470611572266,
+          "speaker": 0
+        },
+        {
+          "start": 43.095970153808594,
+          "end": 46.437217712402344,
+          "speaker": 0
+        },
+        {
+          "start": 47.264095306396484,
+          "end": 63.37971878051758,
+          "speaker": 0
+        },
+        {
+          "start": 66.50159454345703,
+          "end": 75.29347229003906,
+          "speaker": 0
+        },
+        {
+          "start": 81.6722183227539,
+          "end": 91.78034973144531,
+          "speaker": 0
+        },
+        {
+          "start": 94.00784301757812,
+          "end": 94.49722290039062,
+          "speaker": 0
+        },
+        {
+          "start": 103.39035034179688,
+          "end": 103.98097229003906,
+          "speaker": 0
+        },
+        {
+          "start": 104.6053466796875,
+          "end": 122.8303451538086,
+          "speaker": 0
+        },
+        {
+          "start": 130.67723083496094,
+          "end": 153.39097595214844,
+          "speaker": 0
+        },
+        {
+          "start": 153.96473693847656,
+          "end": 158.0822296142578,
+          "speaker": 0
+        },
+        {
+          "start": 182.58473205566406,
+          "end": 183.96847534179688,
+          "speaker": 0
+        },
+        {
+          "start": 184.84597778320312,
+          "end": 191.19097900390625,
+          "speaker": 0
+        },
+        {
+          "start": 201.13035583496094,
+          "end": 209.432861328125,
+          "speaker": 0
+        },
+        {
+          "start": 215.2041015625,
+          "end": 223.57411193847656,
+          "speaker": 0
+        },
+        {
+          "start": 230.00347900390625,
+          "end": 231.38723754882812,
+          "speaker": 0
+        },
+        {
+          "start": 244.83660888671875,
+          "end": 245.25848388671875,
+          "speaker": 0
+        },
+        {
+          "start": 251.92410278320312,
+          "end": 256.1091003417969,
+          "speaker": 0
+        },
+        {
+          "start": 257.0541076660156,
+          "end": 263.0953674316406,
+          "speaker": 0
+        },
+        {
+          "start": 263.6184997558594,
+          "end": 273.9966125488281,
+          "speaker": 0
+        },
+        {
+          "start": 274.5197448730469,
+          "end": 282.1134948730469,
+          "speaker": 0
+        },
+        {
+          "start": 283.8347473144531,
+          "end": 284.7291259765625,
+          "speaker": 0
+        },
+        {
+          "start": 285.8597412109375,
+          "end": 295.2928771972656,
+          "speaker": 0
+        },
+        {
+          "start": 296.01849365234375,
+          "end": 305.0803527832031,
+          "speaker": 0
+        },
+        {
+          "start": 308.1684875488281,
+          "end": 314.1084899902344,
+          "speaker": 0
+        },
+        {
+          "start": 314.9691162109375,
+          "end": 325.0097351074219,
+          "speaker": 0
+        },
+        {
+          "start": 325.6341247558594,
+          "end": 339.1003723144531,
+          "speaker": 0
+        },
+        {
+          "start": 351.41912841796875,
+          "end": 355.5534973144531,
+          "speaker": 0
+        },
+        {
+          "start": 359.620361328125,
+          "end": 362.4553527832031,
+          "speaker": 0
+        },
+        {
+          "start": 364.4635009765625,
+          "end": 366.4378662109375,
+          "speaker": 0
+        },
+        {
+          "start": 391.0416259765625,
+          "end": 391.531005859375,
+          "speaker": 0
+        },
+        {
+          "start": 591.4828491210938,
+          "end": 592.1072387695312,
+          "speaker": 0
+        },
+        {
+          "start": 608.4253540039062,
+          "end": 609.0497436523438,
+          "speaker": 0
+        },
+        {
+          "start": 676.0097045898438,
+          "end": 676.5328369140625,
+          "speaker": 0
+        },
+        {
+          "start": 1173.63671875,
+          "end": 1174.109130859375,
+          "speaker": 0
+        },
+        {
+          "start": 1192.1317138671875,
+          "end": 1192.941650390625,
+          "speaker": 0
+        },
+        {
+          "start": 1211.03173828125,
+          "end": 1211.8079833984375,
+          "speaker": 0
+        },
+        {
+          "start": 1279.544189453125,
+          "end": 1279.86474609375,
+          "speaker": 0
+        },
+        {
+          "start": 1368.54296875,
+          "end": 1369.1673583984375,
+          "speaker": 0
+        },
+        {
+          "start": 1477.2178955078125,
+          "end": 1477.80859375,
+          "speaker": 0
+        }
+      ],
+      "utterances": [
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 0.422,
+          "end": 2.064,
+          "text": "What's happening with speed now?"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 5.926,
+          "end": 7.408,
+          "text": "Yeah, now it now it works."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 8.326,
+          "end": 10.896,
+          "text": "Yeah, I had my head I had my headset, I don't want plugged in."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 16.518,
+          "end": 18.608,
+          "text": "You've seen all the stuff back and forth about Snap this week."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 22.31,
+          "end": 23.76,
+          "text": "Don't worry."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 27.686,
+          "end": 30.8,
+          "text": "Yeah, good heed what it is. I"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 31.174,
+          "end": 34.704,
+          "text": "Hopefully that's the end of it and after tomorrow's release it'll be all sorted."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 35.462,
+          "end": 37.456,
+          "text": "Right, which ultimate or which ultimately"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 37.862,
+          "end": 41.648,
+          "text": "Ultimately tomorrow's release is nothing to do with a sn snap, it is to do with our carrier."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 43.142,
+          "end": 44.624,
+          "text": "Label Laborable Provider."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 45.19,
+          "end": 46.192,
+          "text": "Basically they gave us"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 47.366,
+          "end": 49.2,
+          "text": "Hey, basically they gave us, um"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 49.83,
+          "end": 51.248,
+          "text": "Phil Dames's axe."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 52.422,
+          "end": 54.608,
+          "text": "We snap developed them as X."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 54.982,
+          "end": 57.616,
+          "text": "But when we all went live, they were, why? We're like, well,"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 58.246,
+          "end": 60.464,
+          "text": "Yeah, thanks for telling us."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 62.086,
+          "end": 62.704,
+          "text": "Yeah."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 66.534,
+          "end": 66.992,
+          "text": "Yeah."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 68.038,
+          "end": 68.56,
+          "text": "Uh yeah."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 69.158,
+          "end": 69.52,
+          "text": "Mm-hmm."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 70.502,
+          "end": 74.032,
+          "text": "Like, I obviously I don't know what you're you you're typing up oh yeah."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 74.566,
+          "end": 75.28,
+          "text": "But um"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 81.734,
+          "end": 82.128,
+          "text": "Mm-hmm."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 82.694,
+          "end": 83.28,
+          "text": "Yeah."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 83.654,
+          "end": 84.08,
+          "text": "Okay."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 84.614,
+          "end": 91.792,
+          "text": "Just like I'm happy to wait for the document. Ultimately, like the qu I take it as people on call this weekend sort of thing, just in case."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 94.022,
+          "end": 94.512,
+          "text": "Uh"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 103.398,
+          "end": 103.888,
+          "text": "'Cause yeah."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 105.094,
+          "end": 107.472,
+          "text": "It's one of them I don't actually anticipate any problems."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 107.846,
+          "end": 109.904,
+          "text": "It's just there as a fullback just."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 110.438,
+          "end": 111.376,
+          "text": "Just in case."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 111.942,
+          "end": 112.848,
+          "text": "Glommer like that."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 113.414,
+          "end": 122.032,
+          "text": "I've got Danny Wi Daddy Williams on call and I've I've I've I've literally said to him like, ultimately I don't think you're going to be used but you're there just in case."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 131.878,
+          "end": 141.68,
+          "text": "Fair enough. Yeah. So I'm happy to wait for your document then, to be honest with you, Ari. And then I'll go from there and raise any questions. The only reason why I was chasing because I'm actually on annual leave Friday."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 142.246,
+          "end": 142.928,
+          "text": "So um"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 143.814,
+          "end": 144.528,
+          "text": "This is like"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 145.382,
+          "end": 148.656,
+          "text": "Yes, c'cause yeah, I want to send the documentation out like"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 149.222,
+          "end": 152.112,
+          "text": "By about two o'clock tomorrow to the to the guys, or at least anyone."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 152.518,
+          "end": 153.136,
+          "text": "M"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 154.758,
+          "end": 156.784,
+          "text": "Uh questioning I think if you know what I mean."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 157.51,
+          "end": 158.096,
+          "text": "sort of thing."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 184.902,
+          "end": 186.224,
+          "text": "Yeah, I yeah."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 186.982,
+          "end": 188.4,
+          "text": "How are you belly doors?"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 189.126,
+          "end": 191.248,
+          "text": "I've got to do mine in a manual spreadsheet."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 201.19,
+          "end": 206.992,
+          "text": "Yeah, well I was hoping it I was hoping that you'd have built something that I can actually just like Nick, but okay."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 207.814,
+          "end": 209.392,
+          "text": "But"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 215.27,
+          "end": 216.08,
+          "text": "Yeah, like uh"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 216.71,
+          "end": 221.456,
+          "text": "Yeah, I've oh yeah, I've just got a menu spreadsheet that I have to fill in at the end of the month and then count out."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 222.118,
+          "end": 223.6,
+          "text": "But yeah, it is what it is."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 251.942,
+          "end": 252.592,
+          "text": "download."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 255.206,
+          "end": 256.112,
+          "text": "Obviously"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 257.126,
+          "end": 259.6,
+          "text": "Milo and Joe are in on on in on site on"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 260.23,
+          "end": 260.688,
+          "text": "And"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 261.286,
+          "end": 262.96,
+          "text": "Saturday and Sunday one each like"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 263.75,
+          "end": 273.904,
+          "text": "Joe's been in the business four months. So, from a technical point of view, he might not have the best idea, but Danny's on call, which is obviously like Danny's been."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 274.63,
+          "end": 278.416,
+          "text": "from it from the from the outset. So like we got we've got"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 278.854,
+          "end": 282.128,
+          "text": "different skilled people, if you know what I mean. So"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 283.878,
+          "end": 284.688,
+          "text": "Because oh yeah."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 285.894,
+          "end": 289.712,
+          "text": "It was one of them, because basically they wanted someone on call, and they wanted someone on call to fix."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 290.31,
+          "end": 294.032,
+          "text": "the um label printers and like shipment issues."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 294.598,
+          "end": 295.216,
+          "text": "And a right wall."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 296.102,
+          "end": 297.872,
+          "text": "That's good,'cause that'd be level one."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 298.342,
+          "end": 299.184,
+          "text": "'Cause Danny Carn out."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 299.622,
+          "end": 303.472,
+          "text": "with some of that'cause he wouldn't like he's like me aren't an adult to talk a printer these days."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 308.198,
+          "end": 311.6,
+          "text": "So but yeah. So just yeah, I'm just making you aware, like"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 312.198,
+          "end": 314.096,
+          "text": "I would mean like I totally like."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 315.014,
+          "end": 318.8,
+          "text": "Like Shu Sh Schuster is like always really good in detail, if you know what I mean."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 319.206,
+          "end": 321.008,
+          "text": "I'm really good at um"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 321.542,
+          "end": 324.912,
+          "text": "over I won't say over complicating things, but like uh"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 326.566,
+          "end": 328.848,
+          "text": "Yeah, being a bit more technical than I understand."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 329.222,
+          "end": 336.272,
+          "text": "So if I don't understand that, and I'm not saying he's on cool, it just might he might need to dumb it down for like the level one guys."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 351.462,
+          "end": 352.208,
+          "text": "Fair enough, that's good."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 355.046,
+          "end": 355.568,
+          "text": "Sounds good."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 359.622,
+          "end": 360.08,
+          "text": "No problem."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 361.094,
+          "end": 362.512,
+          "text": "Harry, I'll speak to you later."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 364.518,
+          "end": 365.2,
+          "text": "But"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 365.638,
+          "end": 366.544,
+          "text": "You too. But"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 391.046,
+          "end": 391.6,
+          "text": "Promise."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 591.526,
+          "end": 592.944,
+          "text": ""
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 608.454,
+          "end": 609.488,
+          "text": "Almost."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 676.07,
+          "end": 676.72,
+          "text": ""
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 1279.494,
+          "end": 1280.208,
+          "text": "Promise."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 1379.622,
+          "end": 1380.496,
+          "text": "I don't think."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 1477.254,
+          "end": 1477.84,
+          "text": "Um"
+        }
+      ],
+      "timings": {
+        "vad": 4612354631,
+        "diarization": 55072102320,
+        "asr": 16790911538
+      }
+    }
+  },
+  "lines": [
+    {
+      "who": "Speaker 1",
+      "start": 0.422,
+      "end": 2.064,
+      "text": "What's happening with speed now?"
+    },
+    {
+      "who": "Room 1",
+      "start": 3.334,
+      "end": 3.984,
+      "text": "What's that, sorry?"
+    },
+    {
+      "who": "Speaker 1",
+      "start": 5.926,
+      "end": 10.896,
+      "text": "Yeah, now it now it works. Yeah, I had my head I had my headset, I don't want plugged in."
+    },
+    {
+      "who": "Room 1",
+      "start": 11.366,
+      "end": 14.832,
+      "text": "Brilliant. Yeah"
+    },
+    {
+      "who": "Speaker 1",
+      "start": 16.518,
+      "end": 18.608,
+      "text": "You've seen all the stuff back and forth about Snap this week."
+    },
+    {
+      "who": "Room 1",
+      "start": 18.95,
+      "end": 21.008,
+      "text": "Yeah, fucking hell man, you doing it right."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 22.31,
+      "end": 23.76,
+      "text": "Don't worry."
+    },
+    {
+      "who": "Room 1",
+      "start": 23.046,
+      "end": 24.816,
+      "text": "Oh my"
+    },
+    {
+      "who": "Room 2",
+      "start": 27.366,
+      "end": 27.76,
+      "text": "Ah."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 27.686,
+      "end": 34.704,
+      "text": "Yeah, good heed what it is. I Hopefully that's the end of it and after tomorrow's release it'll be all sorted."
+    },
+    {
+      "who": "Room 1",
+      "start": 35.11,
+      "end": 36.528,
+      "text": "Yeah, yeah fingers crossed."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 35.462,
+      "end": 46.192,
+      "text": "Right, which ultimate or which ultimately Ultimately tomorrow's release is nothing to do with a sn snap, it is to do with our carrier. Label Laborable Provider. Basically they gave us"
+    },
+    {
+      "who": "Room 1",
+      "start": 45.286,
+      "end": 46.032,
+      "text": "Uh yeah yeah."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 47.366,
+      "end": 57.616,
+      "text": "Hey, basically they gave us, um Phil Dames's axe. We snap developed them as X. But when we all went live, they were, why? We're like, well,"
+    },
+    {
+      "who": "Room 1",
+      "start": 57.286,
+      "end": 57.904,
+      "text": "Oh, brilliant."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 58.246,
+      "end": 60.464,
+      "text": "Yeah, thanks for telling us."
+    },
+    {
+      "who": "Room 1",
+      "start": 60.006,
+      "end": 62.704,
+      "text": "Nice one. Kids guys? Yeah."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 62.086,
+      "end": 62.704,
+      "text": "Yeah."
+    },
+    {
+      "who": "Room 1",
+      "start": 64.134,
+      "end": 65.392,
+      "text": "software developers A."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 66.534,
+      "end": 75.28,
+      "text": "Yeah. Uh yeah. Mm-hmm. Like, I obviously I don't know what you're you you're typing up oh yeah. But um"
+    },
+    {
+      "who": "Room 1",
+      "start": 74.822,
+      "end": 79.28,
+      "text": "Uh yeah, I've just put a doc basically that summarise what we chat about, so"
+    },
+    {
+      "who": "Speaker 1",
+      "start": 81.734,
+      "end": 91.792,
+      "text": "Mm-hmm. Yeah. Okay. Just like I'm happy to wait for the document. Ultimately, like the qu I take it as people on call this weekend sort of thing, just in case."
+    },
+    {
+      "who": "Room 1",
+      "start": 93.35,
+      "end": 94.928,
+      "text": "Yeah, yeah, we're gonna um"
+    },
+    {
+      "who": "Speaker 1",
+      "start": 94.022,
+      "end": 94.512,
+      "text": "Uh"
+    },
+    {
+      "who": "Room 1",
+      "start": 95.782,
+      "end": 101.232,
+      "text": "Get people over, I appreciate like, yeah, it's the big Purdy and Fig weekend so it'd be remiss not to have anybody up."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 103.398,
+      "end": 111.376,
+      "text": "'Cause yeah. It's one of them I don't actually anticipate any problems. It's just there as a fullback just. Just in case."
+    },
+    {
+      "who": "Room 1",
+      "start": 111.526,
+      "end": 111.92,
+      "text": "Yeah."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 111.942,
+      "end": 122.032,
+      "text": "Glommer like that. I've got Danny Wi Daddy Williams on call and I've I've I've I've literally said to him like, ultimately I don't think you're going to be used but you're there just in case."
+    },
+    {
+      "who": "Room 1",
+      "start": 121.542,
+      "end": 123.472,
+      "text": "Yeah."
+    },
+    {
+      "who": "Room 1",
+      "start": 125.03,
+      "end": 129.68,
+      "text": "Yeah, and I can't imagine I mean touch would but I can't imagine thing too on untoward."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 131.878,
+      "end": 141.68,
+      "text": "Fair enough. Yeah. So I'm happy to wait for your document then, to be honest with you, Ari. And then I'll go from there and raise any questions. The only reason why I was chasing because I'm actually on annual leave Friday."
+    },
+    {
+      "who": "Room 1",
+      "start": 141.894,
+      "end": 144.784,
+      "text": "I fucking hell, okay. Yes, we'll get that over ASAP to you."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 142.246,
+      "end": 153.136,
+      "text": "So um This is like Yes, c'cause yeah, I want to send the documentation out like By about two o'clock tomorrow to the to the guys, or at least anyone. M"
+    },
+    {
+      "who": "Speaker 1",
+      "start": 154.758,
+      "end": 156.784,
+      "text": "Uh questioning I think if you know what I mean."
+    },
+    {
+      "who": "Room 1",
+      "start": 157.03,
+      "end": 161.136,
+      "text": "Yeah yeah of course. Yeah, we'll we'll make sure you have it um way before then."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 157.51,
+      "end": 158.096,
+      "text": "sort of thing."
+    },
+    {
+      "who": "Room 1",
+      "start": 161.542,
+      "end": 172.272,
+      "text": "I mean like I I don't think it'd be anything like too surprising. Um Yeah, like Standard escalation path, which like I don't don't think anyone's in agreement with."
+    },
+    {
+      "who": "Room 1",
+      "start": 173.83,
+      "end": 179.824,
+      "text": "Like just having all the references and everything there, um if like someone in the future's team does get called out."
+    },
+    {
+      "who": "Room 1",
+      "start": 184.326,
+      "end": 185.616,
+      "text": "Yeah, and like"
+    },
+    {
+      "who": "Speaker 1",
+      "start": 184.902,
+      "end": 191.248,
+      "text": "Yeah, I yeah. How are you belly doors? I've got to do mine in a manual spreadsheet."
+    },
+    {
+      "who": "Room 1",
+      "start": 191.526,
+      "end": 193.97535705566406,
+      "text": "Um Yeah, that's a good cross cube."
+    },
+    {
+      "who": "Room 3",
+      "start": 193.97535705566406,
+      "end": 201.584,
+      "text": "Um I was hoping that like Mr Denton could deal with it, but I'm pretty sure ours is similar. Um"
+    },
+    {
+      "who": "Speaker 1",
+      "start": 201.19,
+      "end": 206.992,
+      "text": "Yeah, well I was hoping it I was hoping that you'd have built something that I can actually just like Nick, but okay."
+    },
+    {
+      "who": "Room 1",
+      "start": 206.278,
+      "end": 213.808,
+      "text": "Yeah if it like yeah if we got a processor that's more useful I I have a feeling I've got a fucking spreadsheet as well you know."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 207.814,
+      "end": 209.392,
+      "text": "But"
+    },
+    {
+      "who": "Speaker 1",
+      "start": 215.27,
+      "end": 223.6,
+      "text": "Yeah, like uh Yeah, I've oh yeah, I've just got a menu spreadsheet that I have to fill in at the end of the month and then count out. But yeah, it is what it is."
+    },
+    {
+      "who": "Room 1",
+      "start": 223.814,
+      "end": 228.272,
+      "text": "Yeah, yeah, I used to time sheet. Last month it uncle's awful."
+    },
+    {
+      "who": "Room 1",
+      "start": 232.678,
+      "end": 242.928,
+      "text": "Um yeah, otherwise BAU. Um I think the only other thing is like just equal urgency from either side. Um'cause we're gonna flap if we don't have like if we need to ask you guys a question."
+    },
+    {
+      "who": "Room 1",
+      "start": 244.454,
+      "end": 250.48,
+      "text": "Pretty sure, like, no one's gonna throw it over the wall and just fuck off for the evening. As tempted as I have been sometimes to do that."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 251.942,
+      "end": 252.592,
+      "text": "download."
+    },
+    {
+      "who": "Room 1",
+      "start": 251.974,
+      "end": 252.688,
+      "text": "Yeah."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 255.206,
+      "end": 273.904,
+      "text": "Obviously Milo and Joe are in on on in on site on And Saturday and Sunday one each like Joe's been in the business four months. So, from a technical point of view, he might not have the best idea, but Danny's on call, which is obviously like Danny's been."
+    },
+    {
+      "who": "Room 1",
+      "start": 266.214,
+      "end": 267.248,
+      "text": "Jesus."
+    },
+    {
+      "who": "Room 1",
+      "start": 273.094,
+      "end": 273.936,
+      "text": "Uh yeah."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 274.63,
+      "end": 282.128,
+      "text": "from it from the from the outset. So like we got we've got different skilled people, if you know what I mean. So"
+    },
+    {
+      "who": "Room 1",
+      "start": 283.59,
+      "end": 284.528,
+      "text": "Yeah, and I've guessed"
+    },
+    {
+      "who": "Speaker 1",
+      "start": 283.878,
+      "end": 303.472,
+      "text": "Because oh yeah. It was one of them, because basically they wanted someone on call, and they wanted someone on call to fix. the um label printers and like shipment issues. And a right wall. That's good,'cause that'd be level one. 'Cause Danny Carn out. with some of that'cause he wouldn't like he's like me aren't an adult to talk a printer these days."
+    },
+    {
+      "who": "Room 1",
+      "start": 303.174,
+      "end": 306,
+      "text": "Yeah, yeah, that was like my first tech support job."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 308.198,
+      "end": 324.912,
+      "text": "So but yeah. So just yeah, I'm just making you aware, like I would mean like I totally like. Like Shu Sh Schuster is like always really good in detail, if you know what I mean. I'm really good at um over I won't say over complicating things, but like uh"
+    },
+    {
+      "who": "Room 1",
+      "start": 324.934,
+      "end": 325.904,
+      "text": "You could say that."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 326.566,
+      "end": 336.272,
+      "text": "Yeah, being a bit more technical than I understand. So if I don't understand that, and I'm not saying he's on cool, it just might he might need to dumb it down for like the level one guys."
+    },
+    {
+      "who": "Room 1",
+      "start": 335.398,
+      "end": 350.64,
+      "text": "Yeah, yeah no I get that. Well um so on on top of like the fuse on on cool um you know, work with developers on call for like that level three, I'll be like always available as that level four in case they get um they get stuck as well."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 351.462,
+      "end": 352.208,
+      "text": "Fair enough, that's good."
+    },
+    {
+      "who": "Room 1",
+      "start": 352.838,
+      "end": 358.736,
+      "text": "But yeah. Yeah, we'll We'll go for a list of phone numbers and that and who's on call when and yeah, it should be good to go from there."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 355.046,
+      "end": 355.568,
+      "text": "Sounds good."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 359.622,
+      "end": 362.512,
+      "text": "No problem. Harry, I'll speak to you later."
+    },
+    {
+      "who": "Room 1",
+      "start": 362.598,
+      "end": 365.232,
+      "text": "Yeah, catch you in a bit mate. Take care. Look after yourself."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 364.518,
+      "end": 366.544,
+      "text": "But You too. But"
+    },
+    {
+      "who": "Room 1",
+      "start": 366.406,
+      "end": 367.344,
+      "text": "I think it's a"
+    },
+    {
+      "who": "Speaker 1",
+      "start": 391.046,
+      "end": 391.6,
+      "text": "Promise."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 608.454,
+      "end": 609.488,
+      "text": "Almost."
+    },
+    {
+      "who": "Room 3",
+      "start": 736.614,
+      "end": 737.872,
+      "text": "Oh, okay."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 1279.494,
+      "end": 1280.208,
+      "text": "Promise."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 1379.622,
+      "end": 1380.496,
+      "text": "I don't think."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 1477.254,
+      "end": 1477.84,
+      "text": "Um"
+    }
+  ]
+}
