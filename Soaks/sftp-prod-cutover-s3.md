@@ -4,7 +4,7 @@ status: running
 programme: none
 unit: Plan C inc 4 (S3 dwell)
 started: "2026-11-03T09:46:30Z"
-next_checkpoint: "2026-11-03T17:00:00Z"
+next_checkpoint: "2026-11-18T00:00:00Z"
 subjects: [FUSE_033BE0B235, FUSE_15ADCA408F, FUSE_447A6A12D5, FUSE_84B6F5A152, FUSE_8B8F319605, FUSE_C062E5C41B, FUSE_C232BE3BCC, FUSE_DD2AF79592, FUSE_E5A356978A, FUSE_ABDAD7F392, FUSE_BF65660F94, FUSE_59DC37CB09]
 queued: []
 monitors: [335786575, 335786576, 335786578, 335786579, 335786581, 335786586, 335786587, 335786589, 335786590, 335786595, 335786600]
@@ -70,7 +70,8 @@ The kit is `~/sftp-cutover/` (laptop scratchpad or workstation `rc-hjf`). Start 
 - **2026-11-03 17:00Z (DM'd at 17:04Z): clean. Recommended keeping it overnight.** 2,585 logins accepted from 16 user/IP pairs (11 of 12 customers: ABDAD7F392 and 59DC37CB09 arrived after midday, and BF65660F94 is still unseen). 3 known-user failures, none new since midday (`support` scanner ×2, DD2AF79592 at 11:32Z with no repeat). 200 uploads, 0 failed. 2,590 audit events stored. All monitors OK, and the VM had 0 customer logins. The guard ran 13:58–17:00Z with 0 signals. Afternoon alerts, none breakglass: the dev canary cleanup `connection lost` at 15:45Z (1 in about 2,200 runs), ESCENTRIC CSV content validation ×3, and 1 invalid-type file.
 - **2026-11-04 08:23Z (overnight, 17:00Z → 08:23Z): clean, with no guard running.** 5,134 logins accepted from 13 user/IP pairs (per-pair counts sum exactly to `login.accepted`). FUSE_BF65660F94 seen at last (34.96.62.130), so all 12 baseline customers have now logged in to the host. Known-user failures: 4, all `support` closed_before_auth from 4 scanner IPs. 2 handshake failures, both from IPs that have never logged in. 0 upload, audit or session failures, and all monitors OK. The VM had 0 customer logins. The C062 poller moved from 3.64.142.243 to 3.64.131.199 around 00:00Z at the same rate. 145 commits against 144 connector files: the extra one is C062's daily `FUSE_BOMREP_EPARFUM_*` that its staff write into `from_ilg/sales_order_confirmations/` with a second RSA key (`kbTM8YB2…`) from India and its poller then archives. The VM journal shows the same on 11-03 at 03:19Z. It isn't ingest, so it's not a drop.
 - **2026-11-04 10:38Z: S4 done**, so the host provisions prod SFTP users (#394, #395). Backlog and DLT 0. Customers were clean across the MIG roll. The first new prod connector through the host is still to be seen.
-- **Next:** the first prod connector ACTIVE through the host closes S4's verify. The inc 5 gate (2 weeks after S4 with no rollback) opens 2026-11-18.
+- **2026-11-04 17:15Z: S4 verify closed in dev** (Harry's call). A new HJF dev connector went ACTIVE in ~10 s through the host on the image prod runs (`40c2285dce9e`). Its key logged in and uploaded through the dev LB. Prod's subscription has 3 open pulls, exactly-once on, backlog and DLT 0.
+- **Next:** the inc 5 gate (2 weeks after S4 with no rollback) opens 2026-11-18. Until then rollback-S4 stays available.
 
 ## Open
 

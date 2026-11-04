@@ -177,7 +177,7 @@ The VM then stays warm for two weeks before the SSH provisioning code and the VM
       - the VM's `auth.log` shows no new customer sessions after draining;
       - every baseline username has logged in to the host within 24 h;
       - host session count is about baseline;
-      - the first new prod SFTP connector goes ACTIVE through the host;
+      - the first new prod SFTP connector goes ACTIVE through the host (discharged by a dev test on the same image, Harry 2026-11-04);
       - `provisioning.failed` = 0 and the DLT backlog = 0.
 - [ ] 5. Shed the connector's SSH provisioning code. **One-way: this removes the rollback path** (AC 7).
       gate: two weeks after prod S4 with no rollback
@@ -212,6 +212,11 @@ The VM then stays warm for two weeks before the SSH provisioning code and the VM
 ### Evidence
 <!-- Newest first, dated. One bullet per check actually run, opening with what it discharges.
      "Suite green" alone is not evidence. Sign-off requires at least one dated bullet here. -->
+- 2026-11-04 [inc 4, S4 verify] **S4 verify closed in dev on the image prod runs** (Harry: "Happy for you to test this in dev to complete S4"). Dev and prod hosts both run `sftp-host:*-40c2285dce9e`.
+  - New HJF dev connector `conn_afe2a900c2c84d4b8a7e6a50d8b4ca57` (POST 17:12:00Z) went PENDING → ACTIVE in ~10 s. The host provisioned it (`qx8m`, 17:12:06Z, `keySource=generated`, `usersJson=appended`), as `FUSE_6920F20DE3`. `provisioning.succeeded` dev 1, `provisioning.failed` 0 in dev and prod.
+  - Its private key, read from config-service into a temporary agent, logged in twice through the dev LB 34.142.66.200 (host key pinned against Secret Manager) on a different instance (`mdgk`), so `users.json` reached the other instances. The fingerprint matched the provisioned one. `S4-PROD-VERIFY-DEV.EDI` in `to_ilg/create_sales_order/` reached the connector at 17:13:00Z and was routed to error for "no mapping", as expected for a bare connector (same as dev S4's 2026-10-28 test).
+  - Prod wiring, read-only at about 17:15Z: `create_sftp_user_prod.v1.cloud_run_sub` has no push endpoint, exactly-once on and the DLT attached; 3 open streaming pulls (one per host instance); backlog 0 on the sub and the DLT.
+  - Not covered by dev: prod's own config-service write and `customer_creation` publish. The first real prod connector will show them; the provisioning monitors cover a failure.
 - 2026-11-04 [inc 4, S4] **Prod S4 done: the host provisions prod SFTP users, live 10:38:29Z** (`cut.sh prod s4 --apply --pr 394 --pr 395`, log `s2-prod/prod-s4-*.log`). Harry agreed the expected plans before the run.
   - **#394** (`create_sftp_user_consumer = "host"`) merged 09:36:59Z as `7aaf3b0`. Connector run 41808929250 plan: `create_sftp_user_subscription` loses `push_config` and `enable_exactly_once_delivery` false→true (`pubsub.tf:190`, as dev's #370), and the Cloud Run image goes to `prod-7aaf3b0` (carrying Renovate #393) with the standing sidecar/env drift. Host run 41808929419: no changes. Gates approved 09:38–09:41Z. Push was off at 09:42:04Z.
   - **#395** (`sftp_host_provisioning = "live"`) merged 09:46:10Z as `c223aeb`. Host run 41809788791 plan: the instance template is replaced with the same image (`sftp-host:prod-40c2285dce9e`) and only `PROVISIONING_ENABLED=true`, `PROVISIONING_SUBSCRIPTION=…create_sftp_user_prod.v1.cloud_run_sub` and `CUSTOMER_CREATION_TOPIC=…bifrost.prod.customer_creation.v1` added. Also subscriber IAM on that subscription and publisher IAM on `customer_creation`, and the MIG version is updated (3 add, 1 change, 1 destroy). Connector run 41809788743: image `prod-c223aeb` plus drift. Gates approved 10:25–10:28Z.
@@ -376,6 +381,8 @@ The VM then stays warm for two weeks before the SSH provisioning code and the VM
      the plan in the same increment and record the correction here. Legitimately empty at plan
      time. A decision worth defending in a review six months out belongs in a durable record
      instead — `wp decide --record`. -->
+
+- **2026-11-04** — S4 verify by dev test (Harry, 2026-11-04): "the first new prod SFTP connector goes ACTIVE through the host" is discharged by a new dev connector on the same host image plus a read-only check of the prod subscription wiring, instead of waiting for a real prod connector or writing a test connector to prod config-service.
 
 - **2026-11-03** — S3 dwell guard: login failures for `support` closed_before_auth, and handshake failures from IPs with no successful login in 7 days (VM baseline or host), are treated as scanner noise and don't trigger rollback. That's the run sheet's 'from a customer IP'.
 
