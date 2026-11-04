@@ -7,6 +7,14 @@ title: fapi — work ledger
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-04 — Clear the November dependency and image advisories
+
+Clear the November dependency and image advisories
+
+The dependency audit and both image scans were red on master's nightly. Fixed each advisory at source instead of allowlisting: zod ^4.6.7 (reachable memory-exhaustion DoS on customer payloads; possible now the @gfs-bifrost packages take zod as ^4.4.3, so observability ^2.5.0, pubsub ^0.5.2, remote-config ^2.5.1), pnpm overrides for body-parser >=2.4.0, multer >=2.5.0 and follow-redirects >=1.16.2, and portal next 16.4.5. Removed npm from both runner images (neither CMD uses it), which clears the undici findings and every npm-bundled CVE the scans have raised, so .trivyignore is now empty. Overlaps Matt's #182 (FUSE-1314), which no longer clears these.
+
+PR: gfs-bifrost/fapi#185
+
 ## 2026-11-04 — FUSE-1153
 
 Capture the raw API request on ingress
