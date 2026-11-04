@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-04 — Let a GFS admin edit, re-enable and set the password of a user
+
+Let a GFS admin edit, re-enable and set the password of a user
+
+Harry, 4 Nov: GFS admins manage users. Edit name/email, enable, set password (revokes sessions); disable now revokes sessions; no self-disable in svc. Contract 5.2.0. Stack 1/2 with customer soft-delete.
+
+PR: ilg-merak/parcel-portal#87
+
 ## 2026-11-04 — Put a customer's users, SFTP logins and API keys on one Access tab
 
 Put a customer's users, SFTP logins and API keys on one Access tab
