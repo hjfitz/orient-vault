@@ -184,7 +184,7 @@ The VM then stays warm for two weeks before the SSH provisioning code and the VM
             [ ] confirmed
 
       - Delete the SSH adapter, `SFTPUserBuilder`, the crypto keygen, the `create_sftp_user` route and handler, `UserCreationResponse` producer code that's no longer used, the `SFTP_ADMIN_*` and `SFTP_ADMIN_HOST` schema fields, the compose env, and `node-ssh`/`ssh2`.
-      - Keep `SFTPUserBuilderException.ConnectorReadFailure`, or move it.
+      - Keep `SFTPUserBuilderException.ConnectorReadFailure` and `.UserCreation` (both thrown by the remaining PENDING publisher, `connector.config-handler.ts:58,473`) and the `errors.ts:89-160` branch that maps them, or move them. Drop only the `UserProvision` kind and the `isProvisionException` unwrap.
 
       — verify: suite green; dev deploy boots with `SFTP_ADMIN_*` still set but unused; a new dev SFTP connector provisions end to end through the host.
 - [ ] 6. Decommission the VM and update docs and data (AC 7,8).
@@ -381,6 +381,8 @@ The VM then stays warm for two weeks before the SSH provisioning code and the VM
      the plan in the same increment and record the correction here. Legitimately empty at plan
      time. A decision worth defending in a review six months out belongs in a durable record
      instead — `wp decide --record`. -->
+
+- **2026-11-04** — Inc 5 scope corrected (review of [[move-the-connector-onto-the-shared-remote-config]]): `SFTPUserBuilderException.UserCreation` is thrown by the PENDING publisher that stays (`connector.config-handler.ts:473`), so it survives inc 5 with `ConnectorReadFailure`.
 
 - **2026-11-04** — S4 verify by dev test (Harry, 2026-11-04): "the first new prod SFTP connector goes ACTIVE through the host" is discharged by a new dev connector on the same host image plus a read-only check of the prod subscription wiring, instead of waiting for a real prod connector or writing a test connector to prod config-service.
 
