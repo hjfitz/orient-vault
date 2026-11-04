@@ -12,3 +12,5 @@ status: open
 
 Later, same session: on-call PDF re-exported with a link to the Fuse Support board (FXS, project URL only, board ID not verified); Confluence source page not changed.
 Published "Legacy Selector: overview (current state, 4 Nov 2026)" (page 351764493, child of 351764483 in Merak Project / MPK) from the "Selector Deep Dives" artifact. Not checked against code; unverified items listed on the page. Owed: someone who owns Selector to sanity-check the figures.
+
+Later still: feature sheet (351764518) drafted, then both Selector pages (351764493, 351764518) rewritten for readability and corrected from Oliver Wilders's 4 Nov DM clarifications (CSS = ClientShipService; on VMs CSS labels and Client4 only does auto commit/upload; upload server URL hard-coded in Client4.exe; Pub/Sub published from main Firebird). V4 source (ADO org globalfreightsolutons-legacy) NOT reachable from the ado MCP (different org): pages say "not yet checked against code". Owed: Wilders review; read access to V4 repo then spot-check gazetteer pull, upload, GET_SHIP_SERVICE.
