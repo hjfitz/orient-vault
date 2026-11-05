@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-05 — Export a range of days, up to 31
+
+Export a range of days, up to 31
+
+GET /exports/shipments and /exports/shipments.csv take an optional to: the export covers the site-local days date to to, inclusive, at most 31 (to needs date and can't be before it; 400 otherwise). The summary returns to, the file is shipments-<date>-to-<to>.csv, and the contract is 5.8.0. The Export page replaces the toolkit dd/mm picker with native First day and Last day inputs in a GET form with Show, and the CSV fetch allows 60 s. Stack 3/3 of the Wilders DC-parity build (C21).
+
+PR: ilg-merak/parcel-portal#98
+
 ## 2026-11-05 — Link tracking from the Shipments pages, with a link per consignment
 
 Link tracking from the Shipments pages, with a link per consignment
