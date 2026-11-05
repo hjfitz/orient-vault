@@ -1,24 +1,38 @@
 # css — Waypoint index. Cheap orientation only, never documentation.
 # Every value is a fact, a path, or a command — never a sentence. Anything needing a sentence
-# belongs in a doc. (No line cap: the old ~25-line one was exceeded by 22 of 26 files.)
+# belongs in a doc.
 service: css
-type: backend            # backend | frontend | library | infra
-owner: bifrost
-language:
-framework:
-deploy:                  # cloud-run | vercel | vm | n/a
-observability:           # datadog | none
+system: selector
+repo: /home/hjf/code/selector/CSS
+ado: globalfreightsolutons-legacy/Legacy GFS Ticketing/CSS
+type: backend
+owner: jez-poppleton
+language: csharp
+framework: [asp.net asmx (.net framework 4.8.1), firebirdsql.data.firebirdclient]
+deploy: vm               # IIS on a GFS-hosted Windows box per customer
+observability: none      # file logs under C:\Temp, optional HTTP sink (Logging:Sinks)
 
 interfaces:
-  inbound: []            # http, pubsub, cron, sftp, webhook, cli
-  outbound: []           # service/system names
+  inbound: [soap]        # ClientShipService.asmx, 35 WebMethods
+  outbound: [site-firebird, carrier-proxies, carrier-apis, apiky]
 
-key_paths: []            # 3-6 entrypoints worth knowing: src/http, iac/, apps/api/cmd
+key_paths:
+  - vzClientSoapServer/ClientShipService.asmx.cs
+  - vzClientSoapServer/InternalProcedures
+  - vzClientSoapServer/Carriers
+  - vzClientSoapServer/Web.config
+  - SetupCSS/SetupCSS.vdproj
 
-# note: >          # optional. Durable orientation only — the thing that surprises someone
-#                  # arriving cold. NEVER machine state (branch, commits behind, dirty files)
-#                  # and never a dated snapshot: nothing here is staleness-checked, so an
-#                  # expiring claim rots invisibly. Point at the Bifrost/ vault for a
-#                  # programme rather than restating it.
+runtime:
+  host: <customer>.gfsdeliver.com/ClientServer/ClientShipService.asmx
+  db: site GFS.FDB via connection string GFSConn
+
+commands:
+  build: "msbuild vzClientSoapServer.sln (Windows + Visual Studio only)"
+  missing: [lint, build:check, build:check:tests, test]   # no CI, no automated tests; Test* projects are manual SOAP harnesses
+
+note: >
+  UploadShipments does not upload: it fires the Firebird event SHIP_COMMITED and Client4 on the
+  upload station does the work. A CSS-only customer still needs Client4 running.
 
 onboarded: 2026-11-05
