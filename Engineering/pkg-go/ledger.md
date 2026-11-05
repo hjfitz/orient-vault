@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-05 — Add the snap Go module
+
+Add the snap Go module
+
+New pkg-go snap module: Shipment, Product, StockTotal and Kit, the endpoints and outbound-queue codes generated from @gfs-bifrost/snap 0.4.1, plus wms-gateway's weak envelope decode, paged reader and typed reads behind a transport-agnostic Getter. Live-verified read-only against real Snap (GADG dev) and the fuse-mocker simulator (HJF). Found that Snap ignores $filter on /v2/shipments/{id}, so Shipment checks BizId on the result; wms-gateway's GetShipment has the same gap, flagged and not fixed.
+
+PR: gfs-bifrost/pkg-go#7
+
 ## 2026-11-05 — Add the audit Go module
 
 Add the audit Go module
