@@ -12,7 +12,7 @@ Let a GFS admin set a customer's export settings
 
 Wilders' DC-parity item 1 (tracking link), step 1/3. GET/PUT /admin/tenants/{id}/export-settings (IANA time zone, https tracking-link template with {tracking}, Excel-formula flag) + customer Export tab with preview. Nothing on by default. Contract 5.6.0.
 
-PR: ilg-merak/parcel-portal#92
+PR: ilg-merak/parcel-portal#96
 
 ## 2026-11-04 — Smoke-test dev in a browser after every deploy
 
