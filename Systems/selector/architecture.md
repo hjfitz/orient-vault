@@ -118,8 +118,8 @@ Client4 runs in both models. It is the uploader on a hosted VM too [9]. The mode
     { "id": "check", "label": "Auth and validate", "sub": "users, contracts, routes, gazetteer", "kind": "step", "ev": [7] },
     { "id": "num", "label": "Consignment number", "sub": "SHIP_RANGES", "kind": "step" },
     { "id": "local", "label": "Draw from template", "sub": "PDF_LABEL_TEMPLATES", "kind": "step", "ev": [8] },
-    { "id": "direct", "label": "Direct carrier API", "sub": "UPS, Parcelforce, DHL Freight", "kind": "external" },
-    { "id": "proxy", "label": "GFS carrier proxy", "sub": "Royal Mail, BJS, Amazon and others", "kind": "external" },
+    { "id": "direct", "label": "Direct carrier API", "sub": "Spring, Parcelforce, DHL Freight", "kind": "external" },
+    { "id": "proxy", "label": "GFS carrier proxy", "sub": "UPS, Royal Mail, BJS, Amazon and others", "kind": "external" },
     { "id": "save", "label": "Save to site DB", "kind": "store" },
     { "id": "reply", "label": "SOAP reply", "sub": "label bytes, or printed by CSS", "kind": "step" }
   ],
@@ -145,8 +145,8 @@ Client4 runs in both models. It is the uploader on a hosted VM too [9]. The mode
 | --- | --- | --- |
 | **Template**, no carrier call | Interlink/DPD Local, Parceline/DPD, ANC, Yodel/HDNL, Hermes, Nightfreight, Tuffnells, Palletforce, Panther, Clipper, City Sprint, GFS Mail, Collect+, WnDirect, the European posts, DHL Freight ship type 1 | `label_id = 0` means "use the carrier's PDF" for any carrier; CSS applies that only to Parcelforce and UK Mail |
 | **Template plus a carrier call** | DHL Express (AWB from DHL), I-Parcel, Doddle and P2P depots (routing call) | same |
-| **GFS carrier proxy** | Royal Mail, DPD NL, DPD DE, Coll8, Exelot, OCS, BJS, Amazon, `FEDEX`, `INPOST`, old Royal Mail API | `FEDEX` and `INPOST` go **direct** to the carrier |
-| **Direct carrier API** | UPS, Spring, DHL Freight, Aramex, Packeta, Chronopost, Hermes parcel shops, `FEDEX_OLD`; Parcelforce and UK Mail when `label_id = 0` | same; TNT exists only in Client4 |
+| **GFS carrier proxy** | UPS (UPS XML format, `UPS_URL` points at the GFS UPS proxy), Royal Mail, DPD NL, DPD DE, Coll8, Exelot, OCS, BJS, Amazon, `FEDEX`, `INPOST`, old Royal Mail API | `FEDEX` and `INPOST` go **direct** to the carrier |
+| **Direct carrier API** | Spring, DHL Freight, Aramex, Packeta, Chronopost, Hermes parcel shops, `FEDEX_OLD`; Parcelforce and UK Mail when `label_id = 0` | same; TNT exists only in Client4 |
 
 5. **Save.** It stores the shipment and label in the site DB.
 6. **Reply.** It returns the label as bytes (`Image`, base64 on the wire). With `PrintSpecification.PrintDocs` and a named `LabelPrinter`, CSS prints through `PrintPDFLib` instead. Client4 prints at the bench.
