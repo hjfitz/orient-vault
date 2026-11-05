@@ -10,7 +10,7 @@ worktree: /home/harry/code/merak/parcel-portal/.claude/worktrees/acting-safety
 branch: hjf/acting-safety
 base: origin/main
 base_sha: a8e92471c4e7cbef6860dcd20ed572c8403242d8
-pr: null
+pr: '100'
 tags:
 - waypoint
 - plan
