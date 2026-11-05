@@ -56,6 +56,7 @@ title: Oli Denton
 - ✍️ 
 
 ## Together (newest first)
+- 2026-11-04 — Merak and TCA huddle notes posted in #merak-tech-twats; the 5 Nov 1:1 moves to Thursdays → [[Meetings/1-1 Oli Denton]]
 - 2026-11-02 — Quick catch-up on Mon 2 Nov: backed your SFTP and Ionic handling on condition the data is deleted, agreed a coaching approach with the Bifrost team and to restart regular 1:1s
 - 2026-11-02 — Wrote up the Ionic short-ship resolution agreed in Friday's huddle with Lee Simmons
 - 2026-10-16 — "Senior Software Engineer - Peter Langley" email: he has delegated the pipeline to me, and the first-round interview date and outcome are unconfirmed

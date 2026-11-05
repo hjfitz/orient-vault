@@ -6,6 +6,53 @@ title: 1-1 Harry Humby
 ---
 # 1-1 Harry Humby
 
+
+## 2026-11-05
+_11:30–12:00 GMT · Teams · no agenda_
+
+### Context
+
+**Open PRs**
+- [shopify-connector#346](https://github.com/gfs-bifrost/shopify-connector/pull/346) (FUSE-1305): approved, green and mergeable, idle 5d
+- [config-service#206](https://github.com/gfs-bifrost/config-service/pull/206) (FUSE-1078): merge conflicts and CI failing, idle 51d
+- [snap-adapter#170](https://github.com/gfs-bifrost/snap-adapter/pull/170) and [pkg-node#201](https://github.com/gfs-bifrost/pkg-node/pull/201) (FUSE-1078): drafts, idle 86d
+
+**Active Jira**
+- [FUSE-1325](https://globalfreight.atlassian.net/browse/FUSE-1325) Spike: reducing GitHub Actions usage across gfs-bifrost (In Progress, no PR, which is normal for a spike)
+
+**Owed by you**
+- Answer his "priority?" on [FUSE-1325](https://globalfreight.atlassian.net/browse/FUSE-1325), the GitHub Actions usage spike; Jack called it "high if it blocks actions" and left the call to me — [Slack](https://gfsdeliver-eng.slack.com/archives/C098LD5PS95/p1792576768095089?thread_ts=1792576768.095089&cid=C098LD5PS95)
+- Approve his leave requests: 15–16 Oct (he is off today), 21–24 Dec and 29–31 Dec — [digest](../Digests/2026-10/2026-10-16.md)
+- Confirm who covers Sprint 15 Distraction Duty and hand over the 3 red nightlies: fuse-mocker, tracking-service and snap-mcp, no fix PR exists. Jira has [FUSE-1238](https://globalfreight.atlassian.net/browse/FUSE-1238) on [[Nylah Klasson]], who has resigned, not on him as yesterday's note said — [snap-mcp run](https://github.com/gfs-bifrost/snap-mcp/actions/runs/38356564636)
+- Review his [replay-service#116](https://github.com/gfs-bifrost/replay-service/pull/116), the [FUSE-1238](https://globalfreight.atlassian.net/browse/FUSE-1238) replay startup-probe fix: he asked for priority review, and Replay dev deployment failed 4 times on 12 Oct — [Slack thread](https://gfsdeliver-eng.slack.com/archives/C09PBES3MHT/p1791803919997439)
+- Run the Shopify "Line item" repair he is waiting on. Monitor 303425509 is Warn with 360 SAIRA failures in 24h; classify before repairing, since an interface-errored order is a poison record and must not be repaired — [monitor](https://app.datadoghq.com/monitors/303425509)
+- Review his [shopify-connector#295](https://github.com/gfs-bifrost/shopify-connector/pull/295) and [#296](https://github.com/gfs-bifrost/shopify-connector/pull/296) ([FUSE-1199](https://globalfreight.atlassian.net/browse/FUSE-1199)): awaiting review, CI green
+- Hold his start-of-year PDR meeting — [email](https://outlook.office365.com/owa/?ItemID=AAMkADVhYjUxODIyLWM5NTktNGJmOC1hN2FjLWFjMjllNWUzYmY4MwBGAAAAAAAEXHdKGOMeRLfpaU7ff8ChBwABLsgQpFdPTayXOZTVrraLAAAAAAEMAAABLsgQpFdPTayXOZTVrraLAAHCN1rQAAA%3D&exvsurl=1&viewmodel=ReadMessageItem)
+- Go/no-go on backfilling the Shopify "Line item has no fulfillment ID" orders (~15 stuck); 10-06: he said again in #bifrost-notifications (Mon 13:27) that running my repair skill should stop the alert — also — [thread](https://gfsdeliver-eng.slack.com/archives/C099WKQTE8G/p1790769656403539?thread_ts=1790768033.804159&cid=C099WKQTE8G) — 10-05: the loop stopped Fri and the ~15-order batch was cleared; confirm the question is closed
+- Look at his comment on PR 5-of-8 of my fuse-ui stack — he approved the stack but flagged that comment as possibly blocking, still unreplied — [Slack](https://gfsdeliver-eng.slack.com/archives/C09PBES3MHT/p1788514445586199?thread_ts=1788500428.906389&cid=C09PBES3MHT)
+- Chase his "IMS Basic Course 2026" training — overdue since 01 Sep per the Yusen Advance notification
+- Decide on the **ui-toolkit support proposal** (13/07 leadership huddle) — him helping on ui-toolkit while [[Nylah Klasson]] is out til mid-Aug; no formal decision yet
+- Have one coaching conversation about PR evidence expectations — 4 of his 5 open drafts are outstanding purely on uncaptured screenshots / dev e2e, so this is one conversation rather than five PR comments
+
+**Other context**
+- ⚠️ overlaps the 11:30 1:1 with [[Matt Shaw]]
+
+### To raise
+- [ ] shopify-connector#346 is approved, green and mergeable: why unmerged?
+- [ ] FUSE-1078 has three PRs open for 50 days or more (config-service#206 conflicting with CI red, and two drafts at 86d): revive or close?
+- [ ] How is he after being off sick on 28 Oct? (carried ×1)
+- [ ] config-service#206: rebase and fix, or close? (carried ×3)
+- [ ] snap-adapter#170 and pkg-node#201 are drafts idle 79d: finish or close? (carried ×3)
+- [ ] dedupe-service#160 has been approved and green for 8 days: why unmerged? (carried ×1)
+- [ ] FUSE-1314 is Matt's Distraction Duty ticket, but he opened two PRs on it: should they sit under their own tickets? (carried ×1)
+- [ ] His PDR meeting is owed (carried ×3)
+
+### Carried from last time
+- [ ] Chase his "IMS Basic Course 2026" training
+
+### Notes
+- ✍️ 
+
 ## 2026-10-29
 _11:30–12:00 GMT · Teams · no agenda · he was off sick on 28 Oct_
 

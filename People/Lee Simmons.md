@@ -64,6 +64,7 @@ title: Lee Simmons
 - ✍️ 
 
 ## Together (newest first)
+- 2026-11-04 — Test DB patch went onto DB2 only and the fix tested OK; emergency all-DB SNAP patch announced for 10:00 GMT on 5 Nov (45 to 60 minutes) → [email](https://outlook.office365.com/owa/?ItemID=AAMkADVhYjUxODIyLWM5NTktNGJmOC1hN2FjLWFjMjllNWUzYmY4MwBGAAAAAAAEXHdKGOMeRLfpaU7ff8ChBwABLsgQpFdPTayXOZTVrraLAAAAAAEMAAABLsgQpFdPTayXOZTVrraLAAHaGM3zAAA%3D&exvsurl=1&viewmodel=ReadMessageItem)
 - 2026-11-03 — emailed that customer IconicL is deleted from Fuse dev and prod (Ionic short-ship closure)
 - 2026-10-16 — "Migration thread: hypercare ownership": his L2 Projects team owns hypercare for FUSE migrations and new business, and the thread reads as closed with Ryan and Darren agreed
 - 2026-10-13 — goods-in confirmations thread: he is happy for James (ILG) to fix the blank SFTP status mapping and asks whether it applies to all SFTP customers or only Byoma

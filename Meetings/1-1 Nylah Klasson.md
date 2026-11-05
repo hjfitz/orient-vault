@@ -6,6 +6,51 @@ title: 1-1 Nylah Klasson
 ---
 # 1-1 Nylah Klasson
 
+
+## 2026-11-05
+_12:30–13:00 GMT · Slack huddle and the Epsilon House Office room · no agenda_
+
+### Context
+
+**Open PRs**
+- [fuse-ui#376](https://github.com/gfs-bifrost/fuse-ui/pull/376), [fuse-ui#378](https://github.com/gfs-bifrost/fuse-ui/pull/378) and [fuse-ui#379](https://github.com/gfs-bifrost/fuse-ui/pull/379): awaiting review, CI green, no ticket
+- [shopify-connector#360](https://github.com/gfs-bifrost/shopify-connector/pull/360): awaiting review, CI green
+- [fuse-ui#380](https://github.com/gfs-bifrost/fuse-ui/pull/380) and [fuse-ui#381](https://github.com/gfs-bifrost/fuse-ui/pull/381): drafts, no ticket
+- [fuse-ui#348](https://github.com/gfs-bifrost/fuse-ui/pull/348): draft "wip refresh", idle 7d, matched to a false "FUSE-1"
+
+**Active Jira**
+- [FUSE-1149](https://globalfreight.atlassian.net/browse/FUSE-1149) Shopify raw-payload capture on bulk-ingest (updated by her on 4 Nov at 12:41 UTC)
+
+**Owed by you**
+- Chase her Yusen Advance PDR online conversation assignment, now overdue since 10 Oct — [Yusen reminder](https://outlook.office365.com/owa/?ItemID=AAMkADVhYjUxODIyLWM5NTktNGJmOC1hN2FjLWFjMjllNWUzYmY4MwBGAAAAAAAEXHdKGOMeRLfpaU7ff8ChBwABLsgQpFdPTayXOZTVrraLAAAAAAEMAAABLsgQpFdPTayXOZTVrraLAAHLFMPcAAA%3D&exvsurl=1&viewmodel=ReadMessageItem) — [email](https://outlook.office365.com/owa/?ItemID=AAMkADVhYjUxODIyLWM5NTktNGJmOC1hN2FjLWFjMjllNWUzYmY4MwBGAAAAAAAEXHdKGOMeRLfpaU7ff8ChBwABLsgQpFdPTayXOZTVrraLAAAAAAEMAAABLsgQpFdPTayXOZTVrraLAAHExRL2AAA%3D&exvsurl=1&viewmodel=ReadMessageItem)
+- Chase her overdue mandatory training, Yusen Advance Manual Handling (carried ×13 on my todo)
+- Cover Sprint 16 Distraction Duty: [FUSE-1314](https://globalfreight.atlassian.net/browse/FUSE-1314) is assigned to her despite her resignation, and snap-mcp's nightly DevSecOps is red on a CRITICAL `proxy-addr` advisory with no fix PR — [nightly run](https://github.com/gfs-bifrost/snap-mcp/actions/runs/38691891467)
+- Sign and send on her start-of-year PDR once she finishes the form (due 10 Oct; check it's still needed given her resignation) — [email](https://outlook.office365.com/owa/?ItemID=AAMkADVhYjUxODIyLWM5NTktNGJmOC1hN2FjLWFjMjllNWUzYmY4MwBGAAAAAAAEXHdKGOMeRLfpaU7ff8ChBwABLsgQpFdPTayXOZTVrraLAAAAAAEMAAABLsgQpFdPTayXOZTVrraLAAHCN1rQAAA%3D&exvsurl=1&viewmodel=ReadMessageItem)
+- Complete the leaver form — Bakeerthana Mohankumar (ILG People) forwarded the resignation letter today (2026-09-16) with a direct ask to action it
+- Read her [resignation letter](https://outlook.office365.com/owa/?ItemID=AAMkADVhYjUxODIyLWM5NTktNGJmOC1hN2FjLWFjMjllNWUzYmY4MwBGAAAAAAAEXHdKGOMeRLfpaU7ff8ChBwABLsgQpFdPTayXOZTVrraLAAAAAAEMAAABLsgQpFdPTayXOZTVrraLAAG0S3v8AAA%3D&exvsurl=1&viewmodel=ReadMessageItem) end to end — confirm notice period + last working day
+- Line up the backfill with [[Oli Denton]] (he DM'd about the leaver/team backfill) — 09:00 1:1 today is the venue
+- Plan handover of her open work — [observability#28](https://github.com/gfs-bifrost/observability/pull/28) (🔴 conflicts), [collector#89](https://github.com/gfs-bifrost/collector/pull/89) ([FUSE-1058](https://globalfreight.atlassian.net/browse/FUSE-1058), draft) — and any live tickets before her last day
+- Kick off HR offboarding process once the last day is confirmed
+
+**Other context**
+- The five fuse-ui PRs sit on top of an existing 32-PR native stack, so they cannot be re-linked without the whole chain
+
+### To raise
+- [ ] Five fuse-ui PRs carry no ticket: which tickets should they sit under?
+- [ ] Three are awaiting review with CI green (#376, #378, #379): who is reviewing?
+- [ ] fuse-ui#348 is a "wip refresh" draft: ready, or close it?
+- [ ] Which of the 10 stacked fuse-ui drafts are meant to merge, and who is reviewing the four awaiting review? (carried ×1)
+- [ ] Could she take FUSE-1330, and what is left to hand over before she goes? (carried ×1)
+- [ ] Which of the 32 stacked fuse-ui drafts are meant to merge, and what is the plan for the `add-tf-plan-output / terragrunt` failure? (carried ×2)
+- [ ] What is her last working day, and what is left to hand over? (carried ×4)
+- [ ] Her two overdue Yusen Advance items: the PDR conversation (due 10 Oct) and Manual Handling (carried ×3)
+
+### Carried from last time
+- [ ] (nothing recorded)
+
+### Notes
+- ✍️ 
+
 ## 2026-11-03
 _11:30–12:00 GMT · Slack huddle / Epsilon House Office · ⚠️ no agenda (normal for a 1:1) · ⚠️ clashes with the Northstar all-hands · [event](https://outlook.office365.com/owa/?itemid=AAkBOQAICN85PWdfgAAuAAAAAB2EAxGqZhHNm8gAqgAvxFoNAAEuyBCkV09NrJc5lNWutosAAacMZ%2BwAABA%3D&exvsurl=1&path=/calendar/item)_
 

@@ -15,6 +15,7 @@ title: Ryan Ellis
 
 ## Open loops
 **I owe**
+- [ ] Send the weekend on-call and escalation document and the phone list by 14:00 on 5 Nov (the speaker on the 4 Nov 15:10 call is unnamed, very likely his side) — [recording](http://localhost:3000/recordings/20261104-151035-b770)
 - [ ] Agree Snap-slowness alerting and the weekend on-call gap (point monitors at #snap-wms, consider throttling Snap requests) — [DM](https://gfsdeliver-eng.slack.com/archives/D0ASPQ1QLTF/p1793719970560799)
 - [ ] Give him and [[Jake Smith]] a date and time for the Purdy & Figg load test on ILGSTG so Snap can monitor resources
 - [ ] Reply to him and [[Jake Smith]] with a date and time for the Purdy & Figg load test on ILGSTG. He asked 10-15 11:08 "are we good to make the change today so Harry can do the required testing?" and nothing is in Sent — [Fuse\Snap Call](https://outlook.office365.com/owa/?ItemID=AAMkADVhYjUxODIyLWM5NTktNGJmOC1hN2FjLWFjMjllNWUzYmY4MwBGAAAAAAAEXHdKGOMeRLfpaU7ff8ChBwABLsgQpFdPTayXOZTVrraLAAAAAAFcAAABLsgQpFdPTayXOZTVrraLAAHMCW1ZAAA%3D&exvsurl=1&viewmodel=ReadMessageItem)
