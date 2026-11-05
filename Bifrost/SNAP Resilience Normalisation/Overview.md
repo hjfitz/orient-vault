@@ -1,6 +1,6 @@
 ---
 title: "SNAP Resilience Normalisation — Overview"
-status: planning
+status: active
 verdict: go
 owner: "Harry Fitzgerald"
 services: ["pkg-node", "snap-adapter", "snap-queue-polling-service", "observability"]

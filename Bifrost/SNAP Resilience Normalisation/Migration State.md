@@ -1,7 +1,7 @@
 ---
 title: "SNAP Resilience Normalisation — Migration State"
 programme: "snap-resilience-normalisation"
-status: planning
+status: active
 owner: "Harry Fitzgerald"
 services: ["pkg-node", "snap-adapter", "snap-queue-polling-service", "observability"]
 created: "2026-11-05"
