@@ -109,6 +109,7 @@ Out-of-ticket; Harry asked for it on 2026-11-04, after prod cut S4 moved SFTP us
 
 - [ ] 3. Mapping rules for ingest, confirmations and stock through the package (AC 1,2,3,6,7).
       gate: `@gfs-bifrost/remote-config` 2.6.0 published ([[remote-config-2-6-2-7-opt-in-connector-handling-|pkg-node plan]], stack A), with `withConnectorSchema` applied to mapping resolves; the sweep on 2.6.0 with sftp's schema shows 0 failures in dev and prod
+            > 2026-11-05: 2.6.0 published (pkg-node#299/#300, `91fba57`). The sweep on 2.6.0 with sftp's schema is still owed, in dev and in prod.
             [ ] confirmed
 
       - Bump to 2.6.0. Add `'@gfs-bifrost/remote-config@2.6.0'` to `pnpm-workspace.yaml`'s release-age exclusions. Set `memTtl: MEM_CACHE_TTL` (30 s) and `requestHeaders` for `x-request-id`.
