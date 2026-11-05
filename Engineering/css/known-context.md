@@ -1,6 +1,8 @@
 ---
-tags: [waypoint, css]
-verified: 2026-11-05
+tags:
+- waypoint
+- css
+verified: '2026-11-05'
 ---
 # css — known context
 
