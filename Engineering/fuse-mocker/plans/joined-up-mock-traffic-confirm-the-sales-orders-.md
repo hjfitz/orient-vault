@@ -173,6 +173,8 @@ Every increment is its own direct commit to `main`, and each one auto-deploys to
      the plan in the same increment and record the correction here. Legitimately empty at plan
      time. A decision worth defending in a review six months out belongs in a durable record
      instead — `wp decide --record`. -->
+
+- **2026-11-05** — DeriveGoodsOutConfirmation takes (seed, order, r, now) with no Options: the order is the source of every value an option would override, so an options bag would only invite a mismatched confirmation.
 - 2026-11-05: Open questions settled with the recommended defaults (Harry: "let's action the plan"): accept broadcast fan-out in dev; capture handler skips `mock-` correlation ids (own commit before inc 6); load-run auto-confirms are counted on the run summary row, not one row each; a second manual confirm of the same order is 409 unless `?force=true`.
 - 2026-11-05: **The generator is derived, not reused.** `GenerateGoodsOutConfirmation` keeps its random behaviour for the free-form send path. The new derive is a separate function, so existing presets and fuse-mcp `mock-generate` output don't change.
 - 2026-11-05: **The simulator isn't driven.** Moving the order through the snap-api simulator so the real poller confirms it was rejected for now. It only works for simulator-backed businesses, and it would make `apps/api` call snap-api. It's a candidate follow-up.
