@@ -60,7 +60,7 @@ The arrow that surprises people runs from `fdb` to `client4`. CSS's `UploadShipm
 
 ## Where the reference lives
 - [[architecture]] covers data flow, set-up, the two front doors and the shared database. [[known-context]] covers ownership, hosting and fragility.
-- Confluence, MPK space, under *Legacy Selector* (page 351764483): the overview, the feature sheet, the carrier and proxy interface, carrier proxies, and customer data flow.
+- Confluence holds the long form under *Legacy Selector* in the MPK space (page 351764483). Customer data flow is page 352157700 [3].
 - Member internals: [[css]] and [[client4]] in `Engineering/`.
 
 ## What deliberately isn't here
