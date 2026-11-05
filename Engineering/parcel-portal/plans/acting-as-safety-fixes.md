@@ -226,6 +226,8 @@ That's eight increments, one over the guide's seven. Harry's 5 Nov answer added 
      the plan in the same increment and record the correction here. Legitimately empty at plan
      time. A decision worth defending in a review six months out belongs in a durable record
      instead — `wp decide --record`. -->
+
+- **2026-11-05** — Review of PR 1 (#100) changed four things. (1) /auth/* routes ignore both X-Acting-Tenant and X-Expected-Tenant (ownSessionOnly): a stale cookie naming a deleted customer turned sign-out into a 404 and left the session live. (2) 'Admin acting in another tenant' is logged only after the expected-tenant check, so a refused stale tab leaves no acting line. (3) Logout treats RevokeSession's NotFound as signed out rather than an undocumented 404; the store still reports NotFound for another tenant's session. (4) 'Each request with a matching header succeeds' is proved as 'Authorize lets it through': its acting line for that request id. A handler's own 4xx for the fixture's state isn't the guard's concern.
 - 2026-11-05 — Harry: guard every customer-facing write, not only the five tenant-wide requests (his answer to this plan's UNRESOLVED, "Every customer-facing write"). This adds AC 7 and increment 8. svc's check is unchanged, because it already applies to any request that sends `X-Expected-Tenant`; only the contract's 409s and the e2e table grow.
 - 2026-11-05 — Harry: acting stays per browser (the cookie), not per tab or in the URL. A request that acts on a whole customer carries the page's customer and is refused on a mismatch ("let's plan your two earlier prs", on my recommendation of 4 Nov).
 - 2026-11-05 — Plan-time choices from review:
