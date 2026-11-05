@@ -1,6 +1,6 @@
 {
   "id": "20261104-151035-b770",
-  "title": "Recording Wed 4 Nov 15:10",
+  "title": "Harry + Ryan on-call",
   "status": "done",
   "startedAt": "2026-11-04T15:10:35.976563219Z",
   "endedAt": "2026-11-04T15:36:33.284288158Z",
@@ -14,67 +14,68 @@
     ]
   },
   "call": true,
+  "speakers": {
+    "Room 1": "Harry",
+    "Speaker 1": "Ryan"
+  },
+  "merged": {
+    "Room 3": "Room 1"
+  },
   "summary": {
     "tldr": [
-      "Speaker 1 and Harry synced on weekend on-call cover around tomorrow's (Thu 5 Nov) release, which fixes the carrier label provider issue rather than Snap itself.",
-      "The label provider gave the wrong format/spec to Snap's developers; this only surfaced at go-live, causing the Snap back-and-forth this week.",
-      "Weekend is the big Purdy and Fig weekend, so on-call is staffed as a fallback; no problems are expected.",
-      "Harry is sending an on-call/escalation doc, with references and the standard escalation path, so Speaker 1 can distribute it by about 2pm tomorrow.",
-      "Cover: Speaker 1's side has Milo and Joe on site (one each Sat/Sun) and Danny Williams on call as level one; Harry's side has fuse on-call developers at level three and Harry at level four."
+      "Ryan and Harry covered weekend on-call cover for the big Purdy and Fig weekend, mainly as a precaution since no problems are expected.",
+      "Tomorrow's release is a fix for the label provider (carrier) and is unrelated to the Snap issues from this week. Ryan hopes it ends them.",
+      "Harry is writing an on-call document with the escalation path and references. Ryan needs it before about 2pm tomorrow so he can send it out, as he is on leave Friday.",
+      "Ryan's on-call: Danny Williams, plus Milo and Joe on site Saturday and Sunday. Joe is four months in, so level one needs plain-language answers.",
+      "Harry will be level four behind the Fuse developers on call (level three) and will send phone numbers and a rota."
     ],
     "decisions": [
-      "Both sides will treat urgency as equal: questions will be raised promptly and nobody will throw issues over the wall.",
-      "On-call tiers: Speaker 1's team covers level one (label printers, shipment issues); Fuse on-call developers level three; Harry level four as backstop.",
-      "Harry's side will provide a list of phone numbers and who is on call when."
+      "Fuse developers will be on call over the weekend as level three, with Harry as level four.",
+      "Both sides will treat on-call questions as equally urgent and respond quickly.",
+      "Ryan will send the on-call documentation to his team by about 2pm tomorrow."
     ],
     "actions": [
       {
         "owner": "Harry",
-        "text": "Send Speaker 1 the on-call and escalation document, with references and the standard escalation path.",
-        "due": "Before 2pm Thursday 5 Nov (Speaker 1 wants to distribute it by then; Speaker 1 is on leave Friday)"
+        "text": "Send Ryan the on-call document covering the escalation path and references.",
+        "due": "Before 2pm tomorrow (Thursday 5 November), ASAP"
       },
       {
         "owner": "Harry",
-        "text": "Provide a list of phone numbers and who is on call when over the weekend.",
+        "text": "Send Ryan a list of phone numbers and who is on call when.",
         "due": ""
       },
       {
-        "owner": "Speaker 1",
-        "text": "Review Harry's document, raise any questions, and send the documentation to the on-call people.",
-        "due": "About 2pm Thursday 5 Nov"
+        "owner": "Ryan",
+        "text": "Send the on-call documentation out to his team and raise any questions on Harry's document.",
+        "due": "About 2pm tomorrow (Thursday 5 November)"
       },
       {
-        "owner": "Harry",
-        "text": "Make sure the fuse on-call developers' technical explanations are pitched so level one staff can follow them.",
+        "owner": "Ryan",
+        "text": "Tell Danny Williams he is on call as a fallback for the weekend.",
         "due": ""
       }
     ],
     "questions": [
-      "Whether tomorrow's release fully resolves the carrier label provider problem, which Speaker 1 only hopes is the end of it.",
-      "Whether anything in the on-call document will surprise Speaker 1; this is to be raised after they read it.",
-      "Whether level one cover is strong enough, since Joe has only been in the business four months."
+      "How will on-call hours be tracked? Both Ryan and Harry use manual spreadsheets or timesheets, and Harry hoped a tool could handle it.",
+      "Will tomorrow's release fully end the Snap issues from this week? Ryan hopes so but it was not confirmed."
     ],
     "speakers": [
       {
         "label": "Room 1",
         "name": "Harry",
-        "basis": "Main voice on Harry's mic; Speaker 1 says goodbye to 'Harry' and Room 1 replies"
+        "basis": "Named by Harry as himself"
       },
       {
         "label": "Speaker 1",
-        "name": "",
-        "basis": "Other side of call; runs the operations side with Danny, Milo and Joe on rota, on leave Friday. Name not given"
-      },
-      {
-        "label": "Room 3",
-        "name": "",
-        "basis": "Another voice in the room, briefly says their spreadsheet is similar; name unknown"
+        "name": "Ryan",
+        "basis": "Named by Harry as Ryan"
       }
     ],
     "model": "sonnet",
-    "usd": 0.056368,
-    "durationMs": 7989,
-    "at": "2026-11-04T15:39:19.302003382Z"
+    "usd": 0.0414412,
+    "durationMs": 6359,
+    "at": "2026-11-05T14:33:14.263903423Z"
   },
   "enhancement": {
     "model": "sonnet",

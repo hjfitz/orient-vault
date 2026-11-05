@@ -1,0 +1,20 @@
+{
+  "id": "20261105-143224-c1da",
+  "title": "Recording Thu 5 Nov 14:32",
+  "status": "done",
+  "startedAt": "2026-11-05T14:32:24.229367112Z",
+  "endedAt": "2026-11-05T14:32:28.936907343Z",
+  "sources": {
+    "me": [
+      "C505 HD Webcam Mono"
+    ],
+    "them": [
+      "Nightly",
+      "speech-dispatcher-dummy"
+    ]
+  },
+  "call": false,
+  "summaryError": "the transcript is empty",
+  "enhanceError": "the transcript is empty",
+  "host": "laptop"
+}
