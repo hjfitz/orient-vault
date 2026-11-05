@@ -8,7 +8,7 @@ from: laptop
 to: hjf.shell.platform.ilg.software
 session_id: 80a57909-179d-48c7-a6cb-da766abb7a8a
 resumed_by: 7652f0c7-9f02-4c64-b56f-a154250bb016
-updated: 2026-11-05T11:43Z
+updated: 2026-11-05T11:52Z
 ---
 # Handover: Parcel Portal
 
@@ -84,6 +84,8 @@ Checked 2026-11-03 ~16:40Z on `harry@hjf.shell.platform.ilg.software`; synced wi
 ## Closed since handover
 | When (UTC) | Work | Result |
 | --- | --- | --- |
+| 2026-11-05 11:51 | #98, export a range of days (C21, stack 3/3) | Optional `to` on `/exports/shipments(.csv)`: site-local days `date`–`to`, inclusive, at most 31; `to` needs `date` and can't be before it (400); file `shipments-<date>-to-<to>.csv`; contract 5.8.0. Export page: native First/Last day inputs in a GET form with Show (Last day's min/max follow First day); a refused range keeps the form. review-panel fixes: the form survives a bad range, the e2e fixture covers a middle day, the last day's local evening and the day after. Merged as `acedab0`. C21's three PRs are all in. |
+| 2026-11-05 11:46 | #99, smoke test reports a refused sign-in at once | Polls for either outcome and fails with the account and the form's message instead of a 30 s URL timeout. Merged as `bef6878`. The login itself still needs fixing (Harry). |
 | 2026-11-05 11:41 | #97, tracking links on the Shipments pages (C21, stack 2/3) | `{consignment}` beside `{tracking}`: a template with only `{consignment}` gives one link per shipment (DC's GFS `ConsLink.asp` shape), `{tracking}` one per parcel; the export column follows the same rule. `GET /shipments` and `/shipments/{id}` return `trackingUrl` (contract 5.7.0); the list and detail link out; the Export tab has a one-click GFS preset; no default template. review-panel fixes: numbers escaped per position (path/query), a link's double-click no longer opens the row, an external-link icon, focus kept on the preset. Merged as `a400a0c`. |
 | 2026-11-05 11:26 | #96, customer export settings (C21, stack 1/3) | GFS admins set a customer's site time zone, tracking link template and Excel-formula flag on a new **Export** tab (`GET`/`PUT /admin/tenants/{id}/export-settings`, contract 5.6.0). review-panel fixes: split into get/set use-cases (AGENTS.md one job each), `{tracking}` refused in the link's host, 503s documented. Merged as `484be80`; svc, ui, sftp, gateway `terraform-apply-dev` success; prod jobs wait at the gate (held). Every deploy's `smoke-dev` fails at sign-in: the smoke login (Harry). |
 | 2026-11-05 ~11:00 | Acting-as plans C19 + C20 activated | Harry: guard every customer-facing write, not just the five tenant-wide requests ("Every customer-facing write"), so C19 gained AC 7 and increment 8; both plans activated. C20 starts once C19 merges. Plans in `Engineering/parcel-portal/plans/`. |
