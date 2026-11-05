@@ -38,7 +38,7 @@ impl_effort: high
 
 ## Intent
 <!-- What we are changing and why. Link the ticket. -->
-The 4 Nov audit of "acting as" found four bugs; this fixes them. **Stale tabs:** upload, manifest and export act for whichever customer the browser-wide cookie names at click time, not the one the page showed. **Stale cookie:** a cookie naming a deleted customer breaks every page. **Logout:** signing out while acting doesn't revoke the session in svc. **Audit:** logs often don't say which admin acted. Harry decided (4–5 Nov) that acting stays per browser, so a request that acts on a whole customer carries the customer its page showed, and svc refuses it on a mismatch. The plan also restores the documented rule that `X-Acting-Tenant` applies to session routes only. Sibling plan: [[acting-as-clearer-settings]] (C20).
+The 4 Nov audit of "acting as" found four bugs; this fixes them. **Stale tabs:** upload, manifest and export act for whichever customer the browser-wide cookie names at click time, not the one the page showed. **Stale cookie:** a cookie naming a deleted customer breaks every page. **Logout:** signing out while acting doesn't revoke the session in svc. **Audit:** logs often don't say which admin acted. Harry decided (4–5 Nov) that acting stays per browser, and (5 Nov) that every request a customer's page makes to act carries the customer the page showed, which svc refuses on a mismatch. That covers the five tenant-wide requests and every order, shipment and label action, so a stale tab always gets one plain message. The plan also restores the documented rule that `X-Acting-Tenant` applies to session routes only. Sibling plan: [[acting-as-clearer-settings]] (C20).
 
 ## Acceptance criteria
 <!-- Observable, checkable outcomes — not tasks. Numbered by order: increments cite them as
@@ -49,6 +49,11 @@ The 4 Nov audit of "acting as" found four bugs; this fixes them. **Stale tabs:**
 - [ ] 4. `POST /auth/logout` with `X-Acting-Tenant` set revokes the session: the next request with that token gets 401.
 - [ ] 5. Every log line of a signed-in request carries `actorId`, audit events and "Request completed" included. User-management events name their subject `targetUserId`.
 - [ ] 6. Tenant-less admin-only routes ignore `X-Acting-Tenant` and log no acting event: `/admin/tenants`, `/admin/mapping/*`, `/admin/layouts/*` and `/admin/demo-customer`.
+- [ ] 7. The same refusal covers every order, shipment and label action on a stale page, and each says what wasn't done ("nothing was dispatched"):
+  - dispatch, cancel, pack and Check, in bulk;
+  - edit, pack and dispatch one order;
+  - void a shipment;
+  - print or download labels.
 
 ## Affected boundaries
 <!-- Components, paths and contracts this touches. Wikilink existing explainers; do not restate
@@ -57,7 +62,9 @@ The 4 Nov audit of "acting as" found four bugs; this fixes them. **Stale tabs:**
 - **Contract** (`apps/svc/openapi.yaml`), all additive:
   - `info.description`: `X-Acting-Tenant` applies to `session` operations only, and the new `X-Expected-Tenant` precondition is described;
   - codes `acting_tenant_not_found` (404) and `tenant_changed` (409);
-  - a 409 `TenantChanged` response on `uploadImportFile`, `listImportFiles`, `manifestShipments`, `refreshShipmentStatus` and `downloadShipmentExport`, and a 404 on `getMe`.
+  - a 409 `TenantChanged` response on the fifteen guarded operations, and a 404 on `getMe`:
+    - AC 1's five: `uploadImportFile`, `listImportFiles`, `manifestShipments`, `refreshShipmentStatus` and `downloadShipmentExport`;
+    - AC 7's ten: `dispatchOrders`, `cancelOrders`, `packOrders`, `validateOrders`, `editOrder`, `packOrder`, `dispatchOrder`, `voidShipment`, `getShipmentLabels` and `getParcelLabel`.
 - **svc:**
   - `internal/http/middleware/authorize.go` (`Authorize`, `actingTenant`), `internal/exceptions`, `internal/http/respond`;
   - `internal/core/auth/logout.go`, `repositories/postgres/{queries/session.sql,sessions.go}`;
@@ -68,7 +75,12 @@ The 4 Nov audit of "acting as" found four bugs; this fixes them. **Stale tabs:**
   - `apps/ui/src/svc.ts` (`call`, `authed`, `getMe`, the upload pair, `manifestShipments`, `refreshShipmentStatus`, `downloadShipmentExport`), plus a new page-tenant module beside `zone.ts`;
   - `app/(app)/layout.tsx`, `app/(app)/actions.ts` (`signOutAction`);
   - new `app/error.tsx`, `app/(app)/error.tsx`, `app/(app)/acting/gone/route.ts`;
-  - orders (`page.tsx`, `upload-panel.tsx`, `upload/route.ts`), shipments (`page.tsx`, `manifest-bar.tsx`, `actions.ts`), export (`page.tsx`, `export-picker.tsx`, `download/route.ts`).
+  - orders (`page.tsx`, `upload-panel.tsx`, `upload/route.ts`), shipments (`page.tsx`, `manifest-bar.tsx`, `actions.ts`), export (`page.tsx`, `export-picker.tsx`, `download/route.ts`);
+  - for AC 7:
+    - orders (`actions.ts`, `orders-table.tsx`) and the order page (`[id]/actions.ts`, `order-form.tsx`, `lines-panel.tsx`);
+    - the shipment page (`[shipmentId]/void-panel.tsx`);
+    - labels: `shipments/labels/route.ts`, `shipments/[shipmentId]/parcels/[parcelId]/label/route.ts`, `shipments/links.ts` and `shipments/print/page.tsx`;
+    - printing: `printing/reasons.ts` and `printing/print-labels.ts`.
 - **Must keep working:** `e2e/smoke.spec.ts` (#91) relies on the following, so none may change:
   - the cookie name `pp_acting_tenant`;
   - the testids `upload-input` and `upload-result` and the text "imported with problems";
@@ -79,14 +91,16 @@ The 4 Nov audit of "acting as" found four bugs; this fixes them. **Stale tabs:**
 ## Assumptions & uncertainty
 <!-- One line each, with how it was established. A genuine product or domain question goes here
      as UNRESOLVED: and is raised with the user, never invented. -->
-- **UNRESOLVED (recommendation, needs Harry's yes):** guard only the five tenant-wide requests in AC 1.
-  - Requests addressed by an order or shipment id (dispatch, cancel, pack, edit, void, print) can't reach another customer's data: rule G1 scopes every query to the request's tenant, so a stale tab gets 404.
-  - Guarding them too means passing the page's customer through every action.
+- **Harry, 5 Nov: guard every customer-facing write, not only the five** (AC 7).
+  - Without the guard, an order or shipment action in a stale tab already fails safely: rule G1 scopes every query to the request's tenant, so it gets 404. The guard turns that 404 into the same plain message.
+  - Check (`validateOrders`) books nothing, but it is an action button and calls Selector for the page's orders, so it's guarded.
+  - Label printing and downloads are reads, but they're guarded because printing is an action.
+  - Requests that only render a page aren't guarded (`/me`, `/carrier`, the lists and details): a reload shows the acted-for customer anyway.
 - **Stale-cookie landing:** Orders' pick-a-customer, the state #65 made the landing for an admin acting for no one.
 - **The rename to `targetUserId` costs nothing now.**
   - No Datadog dashboard or live monitor reads parcel-portal log fields. The repo's monitors are off and key only on message, `@route`, `@httpStatus`, `@importStatus` and `@attemptState`; dashboards and monitors were searched on 5 Nov.
   - There are no users before D1 (Harry, 3 Nov).
-- **`X-Expected-Tenant` is optional:** it's a precondition only when sent. The UI sends it on all five requests; making it required (428) can be added later.
+- **`X-Expected-Tenant` is optional:** it's a precondition only when sent, so svc needs no per-route change beyond the documented 409. The UI sends it on all fifteen guarded requests; making it required (428) can be added later.
 - **The logout bug can't be hit through the portal UI:** `svc.ts` sends no acting header on `/auth/*`. It's fixed for direct svc clients and to keep the rule robust.
 - **Out of scope:**
   - a path `{tenantId}` that doesn't exist returns 200 `[]` on list reads (follow-up);
@@ -111,7 +125,9 @@ The 4 Nov audit of "acting as" found four bugs; this fixes them. **Stale tabs:**
                      [ ] confirmed
 -->
 
-**PR 1 (svc):** increments 1–4. **PR 2 (UI):** increment 5, off main, can ship first. **PR 3 (UI):** increments 6–7, verified once PR 1 is on dev.
+**PR 1 (svc):** increments 1–4. **PR 2 (UI):** increment 5, off main, can ship first. **PR 3 (UI):** increments 6–7, verified once PR 1 is on dev. **PR 4 (UI):** increment 8, stacked on PR 3.
+
+That's eight increments, one over the guide's seven. Harry's 5 Nov answer added the order, shipment and label actions. They touch a separate set of pages and need their own verification, so they're kept out of increment 7.
 
 - [ ] 1. svc: `X-Acting-Tenant` is read only on non-admin session routes; tenant-less admin-only routes scope to the admin's own tenant and log no acting event. A deleted or unknown acting tenant returns `ErrActingTenantNotFound`, which maps to 404 `acting_tenant_not_found`. Add header-taking variants of the e2e helpers (`do`, `send`, `act`, `get`), and parameterise the unit `actingRequest` by scopes and a chi `tenantId`. Update the README's Tenant scoping (AC 2,6) — verify:
   - unit (`authorize_test.go`): an admin-only route with an unknown header gives own scope and no "Admin acting" line; a stale acting tenant gives code `acting_tenant_not_found` (asserted on `ErrorBody.Code`, not just the status);
@@ -124,13 +140,14 @@ The 4 Nov audit of "acting as" found four bugs; this fixes them. **Stale tabs:**
   - unit: chain Correlation → Logger(`NewLogger`) → Authorize, and "Request completed" carries actorId;
   - e2e (`acting_e2e_test.go`), table-driven with one `t.Run` per event: create, disable, enable, update and set the password of a user, set a slug, delete and restore a tenant, and an upload while acting;
   - each audit line and its "Request completed" (matched by correlationId) carry the admin's actorId, and `/auth/login` carries none.
-- [ ] 4. svc: an `X-Expected-Tenant` precondition, checked in `Authorize` after the scope is resolved. A mismatch is 409 `tenant_changed`, plus a warn event `Tenant changed refused`; a malformed value is 400. Add the 409 `TenantChanged` response to the five operations, and the README Tenant scoping paragraph (AC 1) — verify:
+- [ ] 4. svc: an `X-Expected-Tenant` precondition, checked in `Authorize` after the scope is resolved. A mismatch is 409 `tenant_changed`, plus a warn event `Tenant changed refused`; a malformed value is 400. Add the 409 `TenantChanged` response to the fifteen guarded operations, and the README Tenant scoping paragraph (AC 1,7) — verify:
   - unit: a match passes, a mismatch gives code `tenant_changed`, a malformed value gives 400, and a customer naming another tenant gets 409;
   - e2e with an admin acting for globex while expecting acme:
     - upload returns 409 and no new object lands in the bucket;
     - the upload poll and refresh-status return 409;
     - manifest returns 409, the fake carrier records no commit, and the shipment stays booked;
     - the export CSV returns 409 with no body;
+    - a table over AC 7's ten: each returns 409 with a mismatched header and changes nothing (the order's or shipment's status and version are as before, and the fake carrier records no call); with a matching header each succeeds;
     - each request with a matching header succeeds.
 - [ ] 5. UI: error pages. A shared panel for `app/error.tsx` (errors in `(app)/layout.tsx`) and `app/(app)/error.tsx` (page errors), with the digest as a reference, Try again, Back to GFS (`actAsAction(null)` then a hard navigation) and Sign out. `signOutAction` retries `signOut` once after 1 s, then logs and still clears both cookies; `redirect()` stays outside every try (AC 3) — verify:
   - biome, `build:check` and `build`, in CI;
@@ -163,6 +180,21 @@ The 4 Nov audit of "acting as" found four bugs; this fixes them. **Stale tabs:**
     - screenshot each refusal for the PR, delete D1 and D2, and `dev-smoke` stays green.
       gate: the smoke login signs in and PR 1 is on dev
             [ ] confirmed
+- [ ] 8. UI: order, shipment and label actions carry the page's customer.
+  - These send `X-Expected-Tenant` from the page's customer, through increment 7's page-tenant helper:
+    - the Orders list's bulk dispatch, cancel, pack and Check;
+    - the order page's edit, edit lines, pack and dispatch;
+    - the shipment page's void;
+    - printing: `labelsUrl` and the print page's frame and download links add `expect=`, which the two label routes turn into the header.
+  - Each says what wasn't done: "You switched customer in another tab, so nothing was dispatched / cancelled / packed / checked / saved / voided / printed. Reload to see who you're acting for."
+  - On a 409, a WebUSB print falls back with a new reason, `customer_changed`, not `labels_unavailable`. The print-to-screen page says the same.
+  - (AC 7) — verify, with `acting.spec.ts` against dev:
+    - tab A opens D1's Orders, one of its orders and one of its shipments, then tab B switches to D2;
+    - in tab A each action is refused with its wording: bulk dispatch, cancel, pack and Check; edit, pack and dispatch one order; void; print and download labels;
+    - neither D1 nor D2 changes, and no label is printed;
+    - after a reload, tab A acts for D2.
+      gate: the smoke login signs in and PR 1 is on dev
+            [ ] confirmed
 
 ## Verification
 <!-- The single authority for evidence. Increment lines carry `— done: <sha>` and nothing else.
@@ -183,6 +215,7 @@ The 4 Nov audit of "acting as" found four bugs; this fixes them. **Stale tabs:**
      the plan in the same increment and record the correction here. Legitimately empty at plan
      time. A decision worth defending in a review six months out belongs in a durable record
      instead — `wp decide --record`. -->
+- 2026-11-05 — Harry: guard every customer-facing write, not only the five tenant-wide requests (his answer to this plan's UNRESOLVED, "Every customer-facing write"). This adds AC 7 and increment 8. svc's check is unchanged, because it already applies to any request that sends `X-Expected-Tenant`; only the contract's 409s and the e2e table grow.
 - 2026-11-05 — Harry: acting stays per browser (the cookie), not per tab or in the URL. A request that acts on a whole customer carries the page's customer and is refused on a mismatch ("let's plan your two earlier prs", on my recommendation of 4 Nov).
 - 2026-11-05 — Plan-time choices from review:
   - the stale-tab check lives in svc as a precondition header, not only in the UI, so svc e2e can prove it and new routes can't forget it;

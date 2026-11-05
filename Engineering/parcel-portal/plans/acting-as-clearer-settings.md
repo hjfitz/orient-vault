@@ -138,7 +138,7 @@ Harry found "acting as" confusing in Settings. Customer screens (Orders, Shipmen
     - a customer user's Printing page is unchanged.
 - [ ] 4. Bench per customer, in label-print 0.2.0.
   - `PrintSettings.benches: Record<account, bench>`, with `benchFor` and `saveBenchFor`; the old `bench` is ignored.
-  - `ownBenchPrintersAction` takes the page's customer and sends Plan A's `X-Expected-Tenant`; a mismatch gives a new reason, `customer_changed`.
+  - `ownBenchPrintersAction` takes the page's customer and sends Plan A's `X-Expected-Tenant`, with a 409 on `listOwnBenchPrinters` in the contract. A mismatch gives `customer_changed`, the reason Plan A increment 8 adds for the labels fetch.
   - `bench_unpicked` is not silent when a printer or the demo printer is set; only `not_paired` stays quiet.
   - Delete `silentPrintingConfigured`, which has no callers.
   - (AC 4) — verify:
