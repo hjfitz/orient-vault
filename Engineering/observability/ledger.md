@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-05 — Give Snap Maintainers ownership of the SNAP integration monitors and dashboard
+
+Give Snap Maintainers ownership of the SNAP integration monitors and dashboard
+
+Adopted the Snap Maintainers Datadog team. Tagged and routed all 23 snap-adapter/poller monitors and the Snap Adapter dashboard to it.
+
+PR: gfs-bifrost/observability#86
+
 ## 2026-11-05 — Alert on SNAP safety controls and repair the empty Snap Adapter dashboard widgets
 
 Alert on SNAP safety controls and repair the empty Snap Adapter dashboard widgets
