@@ -2,7 +2,7 @@
 ticket: none
 title: 'remote-config 2.6/2.7: opt-in connector handling for sftp-connector'
 service: pkg-node
-status: draft
+status: active
 created: '2026-11-05'
 updated: '2026-11-05'
 repo: /home/harry/code/fuse/pkg-node
