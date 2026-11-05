@@ -20,7 +20,7 @@ The two services also tag `snap_host` differently: the adapter uses the origin, 
 - **Chosen: `@gfs-bifrost/resilience` (pkg-node).**
   - Release 0.2.0 additively: the adapter's timeout `Semaphore`, `TokenBucket`, and a per-host breaker state readout.
   - Both apps plug the primitives into their own `AxiosBuilder` through axios's `adapter` hook, so cockatiel's `execute()` wraps the real request. Interceptor-only gating is why the adapter hand-rolled its breaker.
-  - The host key (origin, lowercased) and the transient rule (5xx, network error or 429) stay small and local to each app, pinned identical by tests.
+  - The transient rule (5xx, network error or 429) stays small and local to each app, pinned identical by tests. **Amended 2026-11-05:** the host key (origin, lowercased) moves into `@gfs-bifrost/resilience` as `normalizeHostKey`, because it is the per-host budget key, and a variant key doubles the budget.
 - **Rejected: an in-repo package in snap-adapter.** The repo isn't a workspace (no root `package.json` or `pnpm-workspace.yaml`); FUSE-1006 already chose pkg-node over in-repo packages; and it would be a fourth copy that snap-mcp and shopify-connector couldn't use.
 - **Deferred, the eventual target: both apps on `@gfs-bifrost/snap`** (Harry, 2026-11-05: "eventually"). Not part of the resilience step, because its response types are still largely unverified against live SNAP (about 28 entities never checked) and we haven't relied on hard response parsing in over a year of running.
   - Adopt it in layers: `client` helpers (endpoints, transient classification, write-envelope checks), then `http`, then `types`, one entity at a time as each is live-verified.
