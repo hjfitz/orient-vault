@@ -7,6 +7,14 @@ title: fapi — work ledger
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-05 — FUSE-1350
+
+Take remote-config 2.5.2 (connector index fix) to prod
+
+Renovate bump to @gfs-bifrost/remote-config ^2.5.2, merged and shipped under /ship FUSE-1350. Prod api-gateway-prod on 31de60d (revision 00044-zzv) from 10:47Z; plan was image-only plus standing drift; 11 parked ancestor Deploy runs cancelled. Fixes REST fan-out missing a business's other connectors after a connector backlink.
+
+PR: gfs-bifrost/fapi#187
+
 ## 2026-11-04 — Clear the November dependency and image advisories
 
 Clear the November dependency and image advisories
