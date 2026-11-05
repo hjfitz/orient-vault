@@ -1,19 +1,23 @@
 ---
-ticket: "none"
-title: "Acting-as: clearer Settings"
-service: "parcel-portal"
+ticket: none
+title: 'Acting-as: clearer Settings'
+service: parcel-portal
 status: draft
-created: "2026-11-05"
-updated: "2026-11-05"
-repo: "ilg-merak/parcel-portal"
-worktree: "/home/harry/code/merak/parcel-portal/.claude/worktrees/acting-settings"
-branch: "hjf/acting-settings"
-base: "origin/main"
-base_sha: "a8e92471c4e7cbef6860dcd20ed572c8403242d8"
-pr:
-tags: [waypoint, plan]
-programme: "Parcel Portal"
-unit: "C20"
+created: '2026-11-05'
+updated: '2026-11-05'
+repo: ilg-merak/parcel-portal
+worktree: /home/harry/code/merak/parcel-portal/.claude/worktrees/acting-settings
+branch: hjf/acting-settings
+base: origin/main
+base_sha: a8e92471c4e7cbef6860dcd20ed572c8403242d8
+pr: null
+tags:
+- waypoint
+- plan
+programme: Parcel Portal
+unit: C20
+impl_model: opus
+impl_effort: medium
 ---
 # none — Acting-as: clearer Settings
 
