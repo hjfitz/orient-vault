@@ -7,6 +7,14 @@ title: snap-adapter — work ledger
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-05 — Run snap-adapter on the golden runtime image
+
+Run snap-adapter on the golden runtime image
+
+Moved snap-adapter and snap-queue-polling-service onto ilg-platform's node24-runtime:0.1-affogato golden image and removed their Datadog serverless-init sidecars. The agent now runs in-container, with DD_* on the app container and the ILG dual-ship kept. snap-adapter gained a SIGTERM handler that closes the server and exits once in-flight creates finish. The poller's existing handler already keeps in-flight polls running through the grace. Both apps were deployed to dev and verified: HJF create via fuse-mocker, poller pickup of a simulator despatch, and a clean shutdown flushed to Datadog. Draft PR.
+
+PR: gfs-bifrost/snap-adapter#319
+
 ## 2026-10-19 — FUSE-1319
 
 Publish exhausted transient Snap failures as retryable
