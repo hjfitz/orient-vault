@@ -37,3 +37,14 @@ New security items (chat only):
 - collections-service plaintext LEGACY_COLLECTION_PASSWORD in the prod-uk1 repo
 - UPS stepping-stone/DPD-EU/InPost payload+PII logging
 Published: MPK page 352059403 "Legacy Selector - Carrier Proxies: Estate and Use Cases" (v2). Owed: fold items into the security ticket draft (awaiting Harry).
+
+## 5 Nov: customer data flow page
+Published MPK 352157700 "Legacy Selector - Customer Data Flow". Covers:
+- per-site tables
+- RegisterCustSite registration pull
+- tools-ui SQL pasted into site DBs
+- route codes vs postcode routing
+- Client4 vs CSS: CSS UploadShipments only fires SHIP_COMMITED, and Client4 on UPLOAD_STATION does the upload
+Open:
+- CUST_SCRIPTS registration table list (needs central DB read)
+- whether Manager pushes changes to registered sites
