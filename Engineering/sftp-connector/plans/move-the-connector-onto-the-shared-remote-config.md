@@ -10,7 +10,7 @@ worktree: /home/harry/code/fuse/.worktrees/sftp-connector-remote-config
 branch: hjf/sftp-connector-remote-config
 base: origin/master
 base_sha: c223aeb24
-pr: null
+pr: gfs-bifrost/sftp-connector#399
 tags:
 - waypoint
 - plan
@@ -121,6 +121,7 @@ Out-of-ticket; Harry asked for it on 2026-11-04, after prod cut S4 moved SFTP us
       — verify: mapping adapter spec (memory-mode provider plus nock) "a CONNECTOR_MAPPING revision then a read refetches", "RGA is invalidated", "duplicate dictionary names still resolve", "404 → MappingRulesException", "503 then 200 resolves", "503 ×3 rethrows"; confirmation-egress, stock-sync and stock-adjustment specs stay green; dev: edit a PO column mapping and ingest a PO with the new mapping; egress one confirmation of each type.
 
 - [ ] 4. Connector lookups and backlinks through the package; the old layer stays in the tree, unused (AC 1,2,4,5,6,7).
+      > 2026-11-05: the Plan C inc 5 part is met (sftp-connector#398, `6a4956c`, in prod 15:09Z; Harry waived its 2-week gate). The 2.7.0 and 7-day-shadow parts are still open, so the box stays unticked.
       gate: Plan C inc 5 merged and in prod (no earlier than 2026-11-18); remote-config 2.7.0 published (pkg-node plan stack B, including its dev proof of the username lookup); 7 days of prod shadow with 0 `shadow_dispatch_failed` and a prod sweep with 0 failures
             [ ] confirmed
 
@@ -163,11 +164,15 @@ Out-of-ticket; Harry asked for it on 2026-11-04, after prod cut S4 moved SFTP us
 ### Evidence
 <!-- Newest first, dated. One bullet per check actually run, opening with what it discharges.
      "Suite green" alone is not evidence. Sign-off requires at least one dated bullet here. -->
-- <YYYY-MM-DD> [inc <n>] <what was run, against what, and the observable result>
+- 2026-11-05 [inc 1] Dev, branch `f6f1a0e` (sftp-connector#399), on remote-config 2.5.2.
+  - `GET /debug/remote-config/sweep` resolved 73/73 SFTP connectors, 0 failures, in 0.6 s; config-service's own `?type=sftp` total is also 73. This is the 2.5.2 dev baseline. **The prod baseline is owed**, after the E3 gate.
+  - Shadow on real revisions: a CONNECTOR backlink (HJF test connector rename) gave 1 item, 0 failed, 30 ms; a `CONNECTOR_MAPPING` fragment (a mapping POSTed onto the HJF test connector) gave 1 item, 0 failed, 5 ms. No error logs on the revision.
+  - Suite 913/913. The specs the plan named pass: per-item dispatch, failure/timeout keeps the status, and TTL in ms. Dev was put back on master `fd66dfb` afterwards.
 
 ### Not verified
 <!-- Stated, not papered over. "(none)" is a deliberate claim, and a fine one. -->
-- <what remains unproven, and what would prove it>
+- [inc 1] The prod sweep and prod shadow: both wait on the E3 gate and the merge.
+- [inc 1] Shadow on a connector delete (`version -1`): expected to fail, because the package's refresh 404s. That's pkg-node 2.7.0's `evictOnDelete`.
 
 ## Rollout & rollback
 <!-- Added on demand. Written at plan time; amend in place as it changes.
@@ -218,6 +223,11 @@ Out-of-ticket; Harry asked for it on 2026-11-04, after prod cut S4 moved SFTP us
      time. A decision worth defending in a review six months out belongs in a durable record
      instead — `wp decide --record`. -->
 
+- **2026-11-05 (inc 1 build)** — Changes from the plan as written:
+  - **Concurrent shadow:** shadow items run concurrently, each with a 5 s bound, so the whole shadow is bounded at 5 s rather than N × 5 s against the 20 s ack deadline.
+  - **Uncached sweep:** the sweep uses its own `mode: "none"` provider, because cached reads aren't revalidated.
+  - **Package errors at warn:** the package's `error` logs go out at `warn` while it's only in shadow, so they don't show in the dashboard's "Error logs" widget.
+  - **Version:** pinned `^2.5.2`, not 2.5.1.
 - **2026-11-05** — Confirmation and stock mapping reads go through the cache (Harry: "I don't think we should be hitting the config service immediately - cache is fine"). The live per-confirmation GETs were a gap with no recorded reason, not a G3 contract safeguard. A mapping edit reaches confirmation output within the invalidation path (seconds) or, worst case, the 600 s network TTL.
 
 ## Learnings
