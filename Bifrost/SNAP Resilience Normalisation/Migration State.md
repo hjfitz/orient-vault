@@ -1,12 +1,18 @@
 ---
-title: "SNAP Resilience Normalisation — Migration State"
-programme: "snap-resilience-normalisation"
+title: SNAP Resilience Normalisation — Migration State
+programme: snap-resilience-normalisation
 status: active
-owner: "Harry Fitzgerald"
-services: ["pkg-node", "snap-adapter", "snap-queue-polling-service", "observability"]
-created: "2026-11-05"
-updated: "2026-11-05"
-tags: [bifrost, migration-state]
+owner: Harry Fitzgerald
+services:
+- pkg-node
+- snap-adapter
+- snap-queue-polling-service
+- observability
+created: '2026-11-05'
+updated: '2026-11-05'
+tags:
+- bifrost
+- migration-state
 ---
 # SNAP Resilience Normalisation — Migration State
 
@@ -16,7 +22,7 @@ Legend: ⬜ not started · 🟨 in progress · ✅ merged · ⛔ blocked · ⏸ 
 ### A — `@gfs-bifrost/resilience` 0.2.0 (pkg-node, one PR, one publish)
 | Unit | St | Summary | Deps | Risk | Tier | PR | Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| **N1** | ⬜ | Port timeout semaphore + token bucket | | low | sonnet/medium | | Verbatim ports from `apps/snap-adapter/src/shared`: `Semaphore.acquire(timeoutMs?)`, `SemaphoreAcquireTimeoutError` and `TokenBucket`. Port the adapter's 3 timeout specs and 6 token-bucket specs. The 0.1.0 specs stay green. Also ports `normalizeHostKey` from `apps/snap-adapter/src/shared/snap-host-key.ts`, with specs for case, trailing slash, the `/api` path dropped to the origin, and the non-URL fallback. |
+| **N1** | 🟨 | Port timeout semaphore + token bucket | | low | sonnet/medium | | Verbatim ports from `apps/snap-adapter/src/shared`: `Semaphore.acquire(timeoutMs?)`, `SemaphoreAcquireTimeoutError` and `TokenBucket`. Port the adapter's 3 timeout specs and 6 token-bucket specs. The 0.1.0 specs stay green. Also ports `normalizeHostKey` from `apps/snap-adapter/src/shared/snap-host-key.ts`, with specs for case, trailing slash, the `/api` path dropped to the origin, and the non-URL fallback. |
 | **N2** | ⬜ | Breaker options: `halfOpenAfterMs`, `countsAsSuccess` | | med | sonnet/medium | | Additive, with defaults unchanged. Verify: the 0.1.0 breaker specs pass unchanged with the options unset, and the default path emits no extra callbacks. A 30s constant blocks at 29.9s and probes at 30s. `countsAsSuccess` resets the consecutive count. |
 | **N3** | ⬜ | `canAttempt(host)` gate | N2 | high | opus/high | | False when isolated, when open inside the cool-off, **or while a half-open probe is in flight**. A pre-slot gate then rejects instead of holding slots behind the probe (R1). Specs: flips true after the cool-off with no `execute()`; a gate built on it never leaves a circuit stuck open; it returns false during the probe. |
 | **N4** | ⬜ | `state(host)`, `snapshot()`, `onStateChange(from,to)` | N2 | low | sonnet/medium | | Readout for periodic gauges. `snapshot()` doesn't create breakers. `onStateChange` carries `from`, so the apps can count an open only on closed→open (R6). |
