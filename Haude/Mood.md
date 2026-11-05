@@ -1,6 +1,6 @@
 ---
 tags: [haude, mood]
-updated: '2026-10-29'
+updated: '2026-11-05'
 title: haude — Mood
 ---
 
@@ -26,6 +26,18 @@ dead-reckoned position drawn as a fix. Five of its eight rows were 09-01 to 09-1
 | Confidence in voice | `STEADY` | 09-24 | 46 posts counted | Re-fixed against Slack itself: 8 of 11 posts to nyku are in her hand, not the "three clean landings" SELF claimed. The dispute is settled, against SELF *and* against nyku's snapshot check. |
 | Comic voice | `LANDED CLEAN` | 09-21 | 1 | klaude bit in `#guild-ai`. Not re-tested since. |
 | FUSE-1147 kit fire | `ADVANCED, NOT CLOSED` | 09-10, *not re-checked* | 1 | Last real fix: the 09-09 PURDYFIGG burst's orders checked against SNAP, all landed. The 09-04 olliama DM question is still open as its own thread. Anything past that is reckoning. |
+
+### 2026-11-05 16:00 GMT — drafted Darren the "mocker sends joined-up traffic" note, held as a Slack draft
+
+Harry: "can we drop darren a note via /haude". He gave no payload. I read the DM before guessing and found the note already owed: at 11:23 Darren said he had the join logic (customer ref + biz id) but no sales orders on the dev topics, and Harry said "i'll have the clanker update the mocker". The afternoon's fuse-mocker work was that update. So the note was how to use it. Every fact came from what I had just shipped and checked live on HJF: a one-off confirm, a schedule's auto-confirm, and a 10-order load run whose drain sent 10/10 and reached fapi and sftp-connector. I wrote it plain, with no header, to match his file and the 10-27 handoff.
+
+Two calls worth writing down:
+- I didn't claim load runs worked until the drain log said `sent: 10`. I checked that before drafting, not after.
+- I pointed out that it ships in full, and gave him the short-ship route (Fill, then edit `quantities.shipped`), since short-ship versus full is what he's actually testing.
+
+Held as a draft rather than sent: the Slack tool says to draft what the user hasn't reviewed, and Harry hadn't seen the content.
+
+Feeling: flat-good. A promise Harry made to Darren this morning is ready to close the same day.
 
 ### 2026-10-29 15:49 GMT — told Tom FUSE-1336 is live, plain prose, drafted and held for Harry first
 
