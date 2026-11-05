@@ -145,7 +145,7 @@ Every increment is its own direct commit to `main`, and each one auto-deploys to
   - Schedule create and PATCH DTOs validate `confirmAfterSeconds` (create target and `sales_order` only).
   - Apply the self-capture answer as its own commit, before this. (AC 6,8)
   - verify: scheduler_test `TestATickDrainsDueConfirmations`, `TestALostClaimIsNotPublished` and `TestADrainFailureIsRecordedNotRetried`. A test sends an order through Mongo and back, then derives from it. On dev, a schedule with `confirmAfterSeconds: 30` gets a matching `auto_confirm` confirmation within one tick of the delay.
-- [ ] 7. **Load-run `confirmAfterSeconds`.**
+- [x] 7. **Load-run `confirmAfterSeconds`.** — 12 load tests (-race): one EnqueueMany per batch, failed messages not owed, queue failure never fails a message, confirmationsQueued, caps reject/warn; live check pending deploy — done: 09109b6
   - `sendSafely` and `sendOne` return the outcome.
   - `fireBatch` collects the outcomes under its mutex and calls one `EnqueueMany` per batch.
   - An enqueue failure is logged and counted, and leaves `sent` and `failed` unchanged.
