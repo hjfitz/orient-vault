@@ -48,3 +48,6 @@ Published MPK 352157700 "Legacy Selector - Customer Data Flow". Covers:
 Open:
 - CUST_SCRIPTS registration table list (needs central DB read)
 - whether Manager pushes changes to registered sites
+
+## 5 Nov: Selector onboarded into Waypoint/orient
+System `Systems/selector/` (overview, architecture, known-context, design) with members `Engineering/css` (repo selector/CSS @414569b) and `Engineering/client4` (repo selector/V4 @73cfd69). Owner Jez Poppleton; GFS-hosted box per customer; being replaced by part of Merak's output (no programme yet). Release path, CUST_SCRIPTS table list, SITE_REG=2 left as Unknowns. No `commands` anchor: wp's manifest allowlist has no .NET/Delphi entries.
