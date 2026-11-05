@@ -7,6 +7,14 @@ title: sftp-connector — work ledger
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-05 — Run remote-config in shadow beside the connector's config layer (increment 1)
+
+Run remote-config in shadow beside the connector's config layer (increment 1)
+
+Increment 1 of move-the-connector-onto-the-shared-remote-config. Adds @gfs-bifrost/remote-config 2.5.2, dispatches every config_revision item to it after the in-repo layer (5 s bound per item, never changes the ack; remote_config.shadow_dispatch_failed on failure), and GET /debug/remote-config/sweep. Dev: sweep 73/73 resolved; connector and mapping revisions dispatched clean. Draft; prod is gated on the Cloud SQL E3 soak sign-off.
+
+PR: gfs-bifrost/sftp-connector#399
+
 ## 2026-11-05 — Remove the connector's SSH user provisioning (cutover step 5)
 
 Remove the connector's SSH user provisioning (cutover step 5)
