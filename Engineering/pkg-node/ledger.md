@@ -7,6 +7,14 @@ title: pkg-node — work ledger
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-05 — FUSE-1350
+
+Build a remote-config connector index only from a complete lookup (2.5.2)
+
+remote-config 2.5.2: caching one connector (backlink, connector-ID/username lookup, setInCache) only joins an existing business/storefront index; a business miss or resolveByType builds business indices from fetched summaries (failed connectors included), a storefront miss builds its storefront index; with no index to join, the business's/storefront's empty markers (own type + all) are cleared so a first connector is not hidden. Dev proof on DAZZA (8 sftp, 2 rest): 2.5.1 saw 1/8 and 0/2 after one backlink, 2.5.2 sees 8/8 and 2/2.
+
+PR: gfs-bifrost/pkg-node#297
+
 ## 2026-11-02 — Add Postgres metric and dependency names to observability
 
 Add Postgres metric and dependency names to observability
