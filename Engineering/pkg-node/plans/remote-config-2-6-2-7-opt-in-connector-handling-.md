@@ -152,7 +152,14 @@ Each stack is merged **in one sitting**, with the version bump on its last PR. #
 ### Evidence
 <!-- Newest first, dated. One bullet per check actually run, opening with what it discharges.
      "Suite green" alone is not evidence. Sign-off requires at least one dated bullet here. -->
-- <YYYY-MM-DD> [inc <n>] <what was run, against what, and the observable result>
+- 2026-11-05 [inc 1, AC 9] **FUSE-1350 fixed on the branch, PR [pkg-node#297](https://github.com/gfs-bifrost/pkg-node/pull/297).**
+  - **Dev proof:** the built package (`memory` mode) ran against dev config-service on business DAZZA, which has 8 SFTP and 2 REST connectors.
+    - After one SFTP backlink, 2.5.1 sees **1 of 8** SFTP and **0 of 2** REST connectors.
+    - 2.5.2 sees **8 of 8** and **2 of 2**.
+  - **Suite:** 199/199. 10 of the new specs fail on the 2.5.1 handler.
+  - **Mutation checks:** 13 mutations, all caught.
+  - **Public types:** the `.d.ts` public surface is identical to 2.5.1.
+  - **Self-review:** two rounds, findings and dispositions in the PR Notes. The blocking one: without marker clearing, a business's first connector would stay hidden behind the 2.2.0 empty marker.
 
 ### Not verified
 <!-- Stated, not papered over. "(none)" is a deliberate claim, and a fine one. -->
@@ -195,6 +202,11 @@ Each stack is merged **in one sitting**, with the version bump on its last PR. #
      time. A decision worth defending in a review six months out belongs in a durable record
      instead — `wp decide --record`. -->
 
+- **2026-11-05** — Inc 1's design changed during self-review, against the plan text:
+  - A single cached connector that has no index to join clears its business's and storefront's empty markers (own type and `all`). Without that, the 2.2.0 negative cache stops self-healing.
+  - Business lookups and `resolveByType` build only business indices, written straight after the summary fetch. Only a storefront miss builds a storefront index, because summaries carry no `storefrontId`.
+  - `resolveByType` also indexes failed connectors (2.3.0 contract).
+  - Still no key or shape change.
 - **2026-11-05** — FUSE-1350 is fixed as a default-behaviour patch (2.5.2) ahead of the opt-in series (Harry: "let's raise the defect and remediate it at the same time"). It's a correctness fix with no key or shape change, so making it opt-in would leave fapi and shopify exposed.
 - **2026-11-05** — (e) returns raw handler errors (which may carry the axios `cause` and its headers) rather than 2.4.0's message-and-status-only shape. shopify-egress classifies on `cause`, so stripping it would make the outcomes useless to the consumers most likely to adopt them. Containment is `serialiseError` (G6), which handles `AggregateError` members, and the README tells callers to use it. (Claude, from the history review; it changes no default.)
 
