@@ -27,7 +27,7 @@ it is now. Regenerate this page with `wp index`; check health with `wp doctor`.
 | [[Engineering/config-service/overview\|config-service]] | backend | 5 | 0 | 1 | 2026-11-03 |
 | [[Engineering/core-infra/overview\|core-infra]] | infra | 3 | 0 | 0 | 2026-09-21 |
 | [[Engineering/cx/overview\|cx]] | backend | 0 | 0 | 0 | 2026-10-12 |
-| [[Engineering/dedupe-service/overview\|dedupe-service]] | backend | 5 | 0 | 0 | 2026-10-28 |
+| [[Engineering/dedupe-service/overview\|dedupe-service]] | backend | 5 | 0 | 0 | 2026-11-04 |
 | [[Engineering/distraction-dashboard/overview\|distraction-dashboard]] | frontend | 4 | 0 | 0 | — |
 | [[Engineering/fapi/overview\|fapi]] | backend | 3 | 0 | 0 | 2026-10-20 |
 | [[Engineering/fuse-devtools/overview\|fuse-devtools]] | backend | 3 | 0 | 0 | 2026-10-31 |
