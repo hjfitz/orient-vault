@@ -7,6 +7,14 @@ title: shopify-connector — work ledger
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-05 — Run shopify-app on the golden runtime image
+
+Run shopify-app on the golden runtime image
+
+Moved apps/shopify-app onto ilg-platform's node24-runtime image with Datadog in-container. The sidecar, shared volume and file logger are gone. Prisma generate now runs at build time (debian-openssl-3.0.x), and a node start.mjs runs db push --accept-data-loss --skip-generate before serving. Node 22 -> 24, memory 1Gi. Verified on dev revision shopify-app-dev-00106-mhr.
+
+PR: gfs-bifrost/shopify-connector#367
+
 ## 2026-11-05 — Run shopify-connector on the golden runtime image
 
 Run shopify-connector on the golden runtime image
