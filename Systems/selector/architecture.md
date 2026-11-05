@@ -150,6 +150,8 @@ Three patterns, kept class-level here (details in the MPK *Carrier Proxies* page
   { "id": 3, "kind": "code", "ref": "V4/Client/Client.Alpha/dmClient.pas@73cfd69:L2096" },
   { "id": 4, "kind": "code", "ref": "V4/Client/Client.Alpha/uSoapUpload.pas@73cfd69:L506" },
   { "id": 5, "kind": "code", "ref": "CSS/vzClientSoapServer/InternalProcedures/ValidateProcedures.cs@414569b:L9101" },
-  { "id": 6, "kind": "doc", "ref": "knowledge-system vault/runbooks/carrier-contract-install.md" }
+  { "id": 6, "kind": "doc", "ref": "knowledge-system vault/runbooks/carrier-contract-install.md" },
+  { "id": 7, "kind": "code", "ref": "CSS/vzClientSoapServer/InternalProcedures/ValidateProcedures.cs@414569b:L2577" },
+  { "id": 8, "kind": "code", "ref": "CSS/vzClientSoapServer/InternalProcedures/ProcessShipProcedures.cs@414569b:L108-L130" }
 ] }
 ```
