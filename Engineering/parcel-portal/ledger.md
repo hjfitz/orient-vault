@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-05 — Link tracking from the Shipments pages, with a link per consignment
+
+Link tracking from the Shipments pages, with a link per consignment
+
+Tracking link templates take {consignment} as well as {tracking}. With {tracking} there's one link per parcel; a template with only {consignment} gives one per shipment, which is DC's GFS ConsLink.asp shape. The export column follows the same rule. GET /shipments and GET /shipments/{id} return trackingUrl (contract 5.7.0), the Shipments list and detail link out, and the Export tab has a one-click GFS preset. There's no default template. Stack 2/3 of the Wilders DC-parity build (C21).
+
+PR: ilg-merak/parcel-portal#97
+
 ## 2026-11-05 — Let a GFS admin set a customer's export settings
 
 Let a GFS admin set a customer's export settings
