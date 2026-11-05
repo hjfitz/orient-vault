@@ -108,9 +108,11 @@ Out-of-ticket; Harry asked for it on 2026-11-04, after prod cut S4 moved SFTP us
       — verify: adapter spec "returns rules", "[] on config-service failure, not cached", "[] on schema failure", "provider not ready nacks", "a failed DDP invalidation nacks"; the `sales-order.rule-manager` specs stay green; dev: change a routing rule, and the next sales-order file routes by it.
 
 - [ ] 3. Mapping rules for ingest, confirmations and stock through the package (AC 1,2,3,6,7).
-      gate: `@gfs-bifrost/remote-config` 2.6.0 published (the pkg-node plan below), with its lenient connector schema applied to mapping resolves; the sweep on 2.6.0 shows 0 failures in dev and prod
+      gate: `@gfs-bifrost/remote-config` 2.6.0 published ([[remote-config-2-6-2-7-opt-in-connector-handling-|pkg-node plan]], stack A), with `withConnectorSchema` applied to mapping resolves; the sweep on 2.6.0 with sftp's schema shows 0 failures in dev and prod
             [ ] confirmed
 
+      - Bump to 2.6.0. Add `'@gfs-bifrost/remote-config@2.6.0'` to `pnpm-workspace.yaml`'s release-age exclusions. Set `memTtl: MEM_CACHE_TTL` (30 s) and `requestHeaders` for `x-request-id`.
+      - The sftp connector schema passed to `withConnectorSchema` models the **flat** wire use case `{useCase, status, friendlyName, config?}`, `null` allowed. The current nested `{useCase, mapping?}` `GetConnectorDtoSchema` (`schema.ts:44-58`) would strip every use case through the package. It keeps the `ediEnvelope` preprocess.
       - Adapter: username → connectorId (still through the old connector config at this stage), then `handler(CONNECTOR_MAPPING).resolve`, then the in-repo `transformConfigRulesFromMappingResponse`.
       - Errors: a 404 cause → `MappingRulesException` for ingest, and `null` for the `getUserMappingRulesByUseCase` callers. 5xx and network errors are rethrown. Package calls are wrapped in the existing cockatiel policy (`handleWhen(transient)`).
       - Mapping dispatch propagates errors per item. The RGA invalidation gap is fixed (`bifrost.config.service.ts:26-31`).
@@ -119,9 +121,11 @@ Out-of-ticket; Harry asked for it on 2026-11-04, after prod cut S4 moved SFTP us
       — verify: mapping adapter spec (memory-mode provider plus nock) "a CONNECTOR_MAPPING revision then a read refetches", "RGA is invalidated", "duplicate dictionary names still resolve", "404 → MappingRulesException", "503 then 200 resolves", "503 ×3 rethrows"; confirmation-egress, stock-sync and stock-adjustment specs stay green; dev: edit a PO column mapping and ingest a PO with the new mapping; egress one confirmation of each type.
 
 - [ ] 4. Connector lookups and backlinks through the package; the old layer stays in the tree, unused (AC 1,2,4,5,6,7).
-      gate: Plan C inc 5 merged and in prod (no earlier than 2026-11-18); 2.6.0 published; 7 days of prod shadow with 0 `shadow_dispatch_failed` and a prod sweep with 0 failures
+      gate: Plan C inc 5 merged and in prod (no earlier than 2026-11-18); remote-config 2.7.0 published (pkg-node plan stack B, including its dev proof of the username lookup); 7 days of prod shadow with 0 `shadow_dispatch_failed` and a prod sweep with 0 failures
             [ ] confirmed
 
+      - Bump to 2.7.0 and opt in: `withConnectorHandling({ lookup: "server-filtered", evictOnDelete: true, backlinkTypes: [ConnectorType.SFTP] })`. Revisions go through `processRevisionSettled`, and `ConfigRevisionDispatchException.fromResult` throws for a nack. Outcomes are logged through `serialiseError`.
+      - Business lookups (`resolve`/`resolveWithUnresolved`) stay on the package's scan. The business-route lookup is pkg-node inc 6 and is not a dependency here.
       - `RemoteConfigConnectorAdapter` implements `IBacklinkConfig<GetConnectorDto[]>`.
         - An empty `getConfig` → `ConnectorConfigException` plus the metric.
         - A username lookup checks equality.
@@ -132,7 +136,7 @@ Out-of-ticket; Harry asked for it on 2026-11-04, after prod cut S4 moved SFTP us
         1. Parse the connector leniently, and if it is PENDING publish `create_sftp_user` (throwing `SFTPUserBuilderException` → 500 on failure).
         2. Then `processRevision`.
         3. A `-1` delete acks.
-        4. A non-SFTP or unparseable connector acks and logs, as `config.api.ts:663-669` does today. This keeps sftp-connector out of the "bump every consumer before a new type" list (EDI Support, Delivery Backends R1).
+        4. A non-SFTP connector acks (the package's `backlinkTypes`), and an unparseable one acks and logs, as `config.api.ts:663-669` does today. This keeps sftp-connector out of the "bump every consumer before a new type" list (EDI Support, Delivery Backends R1).
       - `selectTargets` (`confirmation-egress.service.ts:559`) and `stock-adjustment.service.ts:88` use `resolveWithUnresolved`. Each unresolved connector gets a retryable failed leg with its `connectorId`.
       - Double dispatch ends: the old connector handler is no longer called.
       — verify: adapter spec with one case per inventory row, plus "PENDING publishes before refresh", "a refresh failure still publishes", "deletion acks", "a non-SFTP connector acks", "a renamed username stops resolving", "an unresolved connector gets a failed leg", "503 then 200 on resolveByUsername ingests"; dev from a cold cache: one file per use case ingests; confirmations, a stock adjustment and a stock sync egress; a new PENDING connector goes ACTIVE through the host; deleting a connector is acked; a connector edit invalidates.
@@ -146,16 +150,10 @@ Out-of-ticket; Harry asked for it on 2026-11-04, after prod cut S4 moved SFTP us
       - Keep the config-API cockatiel builder only as the adapter's retry policy.
       — verify: `pnpm test`, `lint:fix` and `build:check` green with `knip` showing no unused exports in `src/config`; after the dev deploy, every monitor found by the gate's search still evaluates with data for 24 h; one file per use case still ingests in dev.
 
-**Separate plan, gate for inc 3 and inc 4:** pkg-node `@gfs-bifrost/remote-config` 2.6.0, additive. It gets its own Waypoint plan in pkg-node, to be planned next. What sftp-connector needs from it:
-- (a) `.withConnectorSchema(schema)`, used by `getConnector`, the backlink handler and the mapping handler, accepting `null` use cases;
-- (b) `resolveByUsername` via `?userName=&type=`;
-- (c) `resolve(businessId)` via the business storefront route instead of paging every connector;
-- (d) a `-1` backlink evicts the primary key and its indices, and a refresh removes stale username aliases;
-- (e) per-item error isolation in `processRevision` (opt-in), so one failing item can't skip the rest;
-- (f) a configurable `memTtl`, so sftp keeps 30 s;
-- (g) a request-headers callback for `x-request-id`.
-
-(b), (c) and (e) also help fapi and shopify-connector.
+**Separate plan, gate for inc 3 and inc 4:** [[remote-config-2-6-2-7-opt-in-connector-handling-|pkg-node: remote-config 2.6/2.7]]. Every item is opt-in, so fapi (`^2.5.1`) and shopify are unaffected.
+- **2.6.0** (`memTtl`, `requestHeaders`, `withConnectorSchema`) gates inc 3.
+- **2.7.0** (`evictOnDelete`, `backlinkTypes`, server-filtered `resolveByUsername`, `processRevisionSettled`) gates inc 4.
+- A business-route `resolve` is that plan's inc 6; this plan doesn't wait for it.
 
 ## Verification
 <!-- The single authority for evidence. Increment lines carry `— done: <sha>` and nothing else.
