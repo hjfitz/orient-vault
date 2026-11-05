@@ -75,7 +75,7 @@ SetupCSS/, MainSetupCSS/       Visual Studio installer projects
 | Data | `ImportAddressBook`, `ExportAddressBook`, `ImportGoods`, `ExportGoods`, `GetCAOrders` |
 | Admin | `UnlockService`, `CheckUpdates` |
 
-Every request carries `AuthenticationDetails` (with a `VersionId`) and gets back `ResponseDetails` with a status and coded notifications.
+`ProcessShipment` [1] is the most-called entry, and `UploadShipments` only posts the event [5]. Every request carries `AuthenticationDetails` (with a `VersionId`) and gets back `ResponseDetails` with a status and coded notifications.
 
 ## Interfaces out
 - **Site DB.** Firebird through `FirebirdSql.Data.FirebirdClient`, using the `GFSConn` connection string in `Web.config`. `AdmDB3.fdb`, in the same folder as `GFS.FDB`, holds `clientdb.UPD_START` [2].
