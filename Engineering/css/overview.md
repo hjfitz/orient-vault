@@ -1,9 +1,19 @@
 ---
-tags: [waypoint, css]
+tags:
+- waypoint
+- css
 title: css — overview
-thesis: "CSS (ClientShipService) is Selector's SOAP front door: an ASP.NET ASMX service on each customer's GFS-hosted box. It validates, labels, manifests and reports shipments against that site's GFS.FDB, so integrations can ship without Client4's screens. It doesn't upload: Client4 does."
+thesis: 'CSS (ClientShipService) is Selector''s SOAP front door: an ASP.NET ASMX service
+  on each customer''s GFS-hosted box. It validates, labels, manifests and reports
+  shipments against that site''s GFS.FDB, so integrations can ship without Client4''s
+  screens. It doesn''t upload: Client4 does.'
 confidence: high
-verified: 2026-11-05
+verified: '2026-11-05'
+verified_paths:
+- vzClientSoapServer/ClientShipService.asmx.cs
+- vzClientSoapServer/InternalProcedures/CommonProcedures.cs
+- vzClientSoapServer/InternalProcedures/ProcessShipProcedures.cs
+verified_sha: 414569b
 ---
 # css — overview
 
