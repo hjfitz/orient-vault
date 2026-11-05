@@ -174,6 +174,8 @@ Every increment is its own direct commit to `main`, and each one auto-deploys to
      time. A decision worth defending in a review six months out belongs in a durable record
      instead — `wp decide --record`. -->
 
+- **2026-11-05** — The recent-orders picker keeps listing purchase orders (the goods-in reference uses them); Fill/Confirm appear only for a sales_order. The UI offers both 'Fill from order' (editable, sent via /messages, not checked for repeats) and 'Confirm order now' (POST /confirm, 409 on a repeat). Rows written before inc 3 confirm with no connectorId: metadata.source was never stored, so the plan's 're-resolve from the stored channel prefix' had nothing to read.
+
 - **2026-11-05** — DeriveGoodsOutConfirmation takes (seed, order, r, now) with no Options: the order is the source of every value an option would override, so an options bag would only invite a mismatched confirmation.
 - 2026-11-05: Open questions settled with the recommended defaults (Harry: "let's action the plan"): accept broadcast fan-out in dev; capture handler skips `mock-` correlation ids (own commit before inc 6); load-run auto-confirms are counted on the run summary row, not one row each; a second manual confirm of the same order is 409 unless `?force=true`.
 - 2026-11-05: **The generator is derived, not reused.** `GenerateGoodsOutConfirmation` keeps its random behaviour for the free-form send path. The new derive is a separate function, so existing presets and fuse-mcp `mock-generate` output don't change.
