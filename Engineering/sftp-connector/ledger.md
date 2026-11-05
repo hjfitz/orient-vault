@@ -7,6 +7,14 @@ title: sftp-connector — work ledger
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-05 — Run sftp-connector on the golden runtime image
+
+Run sftp-connector on the golden runtime image
+
+Moved the connector Cloud Run app onto ilg-platform's node24-runtime:0.1-affogato golden image and dropped its Datadog serverless-init sidecar. The agent now runs in-container, and DD_* moved onto the app container with the sidecar's values. The SFTP host VM is unchanged. Verified on dev: one container and no volumes, logs tagged dd.datadog_init_version, a real DAZZA SFTP master_data ingest, and a goods-out confirmation egress. ssh2's native binding loads in the image, and SIGTERM drains under datadog-init.
+
+PR: gfs-bifrost/sftp-connector#397
+
 ## 2026-11-03 — Take the prod SFTP VM out of the backend service (cut S3)
 
 Take the prod SFTP VM out of the backend service (cut S3)
