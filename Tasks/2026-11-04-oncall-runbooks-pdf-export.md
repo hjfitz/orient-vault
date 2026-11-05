@@ -54,3 +54,6 @@ System `Systems/selector/` (overview, architecture, known-context, design) with 
 
 ## 5 Nov: getting a label
 Added "Getting a label" to Systems/selector/architecture.md (lint clean). Published MPK page 352157738 "Legacy Selector - Getting a Label". Finding: CSS draws labels from PDF_LABEL_TEMPLATES by default; a hard-coded carrier list (ProcessShipProcedures.cs:108-130) goes to proxies/direct APIs instead. Client4's split unverified.
+
+## 5 Nov: Selector gap investigation
+4 read-only agents (carrier split, registration/updates, release/logging, estate/Datadog), key claims spot-checked. Orient: system architecture rewritten (hosting models, packages-not-push, SITE_REG table, CSS users = gfs_users role 3, carrier path table incl. Client4 FEDEX/INPOST direct, releases, telemetry); known-context and css/client4 docs updated. Confluence: 352059403 v3 (Royal Mail ~29.6k labels, log lines mislabelled), 352157738 v2, 352157700 v2. Owed: central-DB reads (REG_STATUSES, CUST_SCRIPTS rows, AUTO_UPDATE), vault corrections (CSS vs CSS-Enterprise; "CSS writes main DB"), security ticket additions (UPS/Coll8 PII logs).
