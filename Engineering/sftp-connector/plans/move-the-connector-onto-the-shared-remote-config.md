@@ -73,7 +73,7 @@ Out-of-ticket; Harry asked for it on 2026-11-04, after prod cut S4 moved SFTP us
 - The package's network `ttl` is in ms since 2.5.0. fapi's `Math.floor(ttl/1000)` (fapi `remote-config-provider.service.ts:50`) would give 600 ms here. pkg-node `architecture.md:164` disagrees, so inc 1's factory spec pins the unit. Source read plus the history review.
 - `createCustomer` (`pubsub.controller.ts:680+`) is dead in dev and prod since S4: both tfvars have `create_sftp_user_consumer = "host"`. But a rollback-S4 still needs it, so it stays on the old layer until Plan C inc 5 deletes it. The PENDING → `create_sftp_user` publish is **not** provisioning and is ported (inc 4). `SFTPUserBuilderException` stays (with `ConnectorReadFailure` and `UserCreation`), because that publish throws it. Plan C inc 5 drops only the `UserProvision` kind. Source read plus Plan C.
 - No Express consumer of the package exists: shopify-connector and fapi are Nest, and snap-adapter has its own `RemoteConfigProvider`. The Nest wrappers are a pattern only. Org-wide code search.
-- UNRESOLVED (G3, raised with Harry 2026-11-04): confirmation and stock mapping reads (`confirmation-egress.service.ts:779`, `stock-sync.service.ts:244`, `stock-adjustment.service.ts:355`) are live GETs today. Through the package they'd be cached and invalidated, so a lost invalidation could leave customer-contract output on a stale mapping for up to 600 s. Ingest already reads mappings that way. Accept, or keep those reads live?
+- Confirmation and stock mapping reads (`confirmation-egress.service.ts:779`, `stock-sync.service.ts:244`, `stock-adjustment.service.ts:355`) move from live GETs to cached-and-invalidated, like ingest. Harry, 2026-11-05: "cache is fine". The live reads were a gap, not a deliberate contract choice. With inc 3's per-item dispatch, a failed invalidation nacks and is retried instead of being lost.
 
 ## Increments
 <!-- Each independently implementable AND verifiable. Cite the criteria it discharges as
@@ -114,7 +114,7 @@ Out-of-ticket; Harry asked for it on 2026-11-04, after prod cut S4 moved SFTP us
       - Adapter: username → connectorId (still through the old connector config at this stage), then `handler(CONNECTOR_MAPPING).resolve`, then the in-repo `transformConfigRulesFromMappingResponse`.
       - Errors: a 404 cause → `MappingRulesException` for ingest, and `null` for the `getUserMappingRulesByUseCase` callers. 5xx and network errors are rethrown. Package calls are wrapped in the existing cockatiel policy (`handleWhen(transient)`).
       - Mapping dispatch propagates errors per item. The RGA invalidation gap is fixed (`bifrost.config.service.ts:26-31`).
-      - Confirmation and stock mapping reads follow Harry's answer to the G3 question.
+      - Confirmation and stock mapping reads become cached, like ingest (decision 2026-11-05).
       - Delete `MappingRulesConfigHandler`, `invalidateMappingRulesCache` and `getUserMappingRulesByUseCase`. `getConnectorUseCaseMapping` stays as a thin raw reader, because `hasConfig: false` can't be represented through the package.
       — verify: mapping adapter spec (memory-mode provider plus nock) "a CONNECTOR_MAPPING revision then a read refetches", "RGA is invalidated", "duplicate dictionary names still resolve", "404 → MappingRulesException", "503 then 200 resolves", "503 ×3 rethrows"; confirmation-egress, stock-sync and stock-adjustment specs stay green; dev: edit a PO column mapping and ingest a PO with the new mapping; egress one confirmation of each type.
 
@@ -219,6 +219,8 @@ Out-of-ticket; Harry asked for it on 2026-11-04, after prod cut S4 moved SFTP us
      time. A decision worth defending in a review six months out belongs in a durable record
      instead — `wp decide --record`. -->
 
+- **2026-11-05** — Confirmation and stock mapping reads go through the cache (Harry: "I don't think we should be hitting the config service immediately - cache is fine"). The live per-confirmation GETs were a gap with no recorded reason, not a G3 contract safeguard. A mapping edit reaches confirmation output within the invalidation path (seconds) or, worst case, the 600 s network TTL.
+
 ## Learnings
 <!-- Durable facts about the service surfaced while planning, working or testing that are not
      already written anywhere in the vault — a gotcha, a constraint, a fragile edge, a confirmed
@@ -235,4 +237,5 @@ Out-of-ticket; Harry asked for it on 2026-11-04, after prod cut S4 moved SFTP us
 - **sftp-connector:**
   - In-repo `upsertAllBusinessConnectors` rewrites only businesses that still have a connector, so a business whose last connector is deleted keeps a stale cache entry until TTL.
   - The PENDING → `create_sftp_user` publish stays in the connector after Plan C inc 5. It is what triggers the host's provisioning, so `SFTPUserBuilderException` (`ConnectorReadFailure`, `UserCreation`) survives inc 5.
+- Confirmation and stock egress reading mappings live (one config-service GET per confirmation) was never a deliberate choice for G3; ingest has always used the cache. Confirmed by Harry 2026-11-05.
 - **To check:** pkg-node `architecture.md:164` says the remote-config Redis TTL is in ms and fapi gets about 604.8 s. The plan's reading of the 2.5.x source is that fapi's `Math.floor(ttl/1000)` now gives 600 ms. One of these is stale. Inc 1's factory spec settles it for sftp. If fapi really runs a 600 ms network TTL, that's a fapi defect worth its own fix.
