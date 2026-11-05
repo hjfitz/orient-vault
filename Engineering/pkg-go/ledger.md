@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-05 — Add the types Go module
+
+Add the types Go module
+
+New pkg-go types module: the twelve canonical record types, the stock position arms and the Snap backend DTO, generated from @gfs-bifrost/types 11.5.0. types.Date mirrors dateSchema. Cross-checked against Zod: 143/143 valid fuse-mocker fixtures round-trip through Go and parse again. Step 1 of the regenerate-on-publish pipeline.
+
+PR: gfs-bifrost/pkg-go#9
+
 ## 2026-11-05 — Add the resilience Go module
 
 Add the resilience Go module
