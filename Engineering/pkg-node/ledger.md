@@ -7,6 +7,14 @@ title: pkg-node — work ledger
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-05 — Add memTtl and a requestHeaders callback to remote-config
+
+Add memTtl and a requestHeaders callback to remote-config
+
+Stack A PR 1 of the remote-config 2.6/2.7 plan (increment 2). In-memory TTL option and a Config API request-headers callback that can't replace x-api-key or reach the feature-flag client; adds the 2.5.1 compat type test. No version bump (released by PR 2).
+
+PR: gfs-bifrost/pkg-node#299
+
 ## 2026-11-05 — FUSE-1350
 
 Build a remote-config connector index only from a complete lookup (2.5.2)
