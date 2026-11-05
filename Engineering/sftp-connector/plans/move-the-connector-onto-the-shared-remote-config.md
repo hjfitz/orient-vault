@@ -2,9 +2,9 @@
 ticket: none
 title: Move the connector onto the shared remote-config package
 service: sftp-connector
-status: draft
+status: active
 created: '2026-11-04'
-updated: '2026-11-04'
+updated: '2026-11-05'
 repo: /home/harry/code/fuse/sftp-connector
 worktree: /home/harry/code/fuse/.worktrees/sftp-connector-remote-config
 branch: hjf/sftp-connector-remote-config
