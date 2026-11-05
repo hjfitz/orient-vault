@@ -163,6 +163,17 @@ Every increment is its own direct commit to `main`, and each one auto-deploys to
 ### Evidence
 <!-- Newest first, dated. One bullet per check actually run, opening with what it discharges.
      "Suite green" alone is not evidence. Sign-off requires at least one dated bullet here. -->
+- 2026-11-05 [inc 4, parcels c84b172] Re-sent the same HJF confirmation with `?force=true` once the parcel fix was deployed. The preview carried 2 consignments (MOCK-SKU-1 ×9, MOCK-SKU-2 ×3), each with an 18-digit STU. In Datadog, sftp_connector 204 and rest_connector 204, and the replay inbox got a single new failure: the HJF REST webhook again. The sftp DESADV error did not recur.
+- 2026-11-05 [inc 4] Ran `POST /activity/6aec9bf80d453c9dc3deaeb8/confirm` against dev (HJF, sftp order MOCK-SO-JZOOIJR):
+  - HTTP 200, correlation id `mock-joinedup-inc3-confirm`, published on `bifrost.dev.confirmation_ready.v1`. A repeat got 409 "already has a published confirmation".
+  - The preview mirrored the order: salesOrder MOCK-SO-JZOOIJR, customerRef MOCK-2611051508-JHH, site 0006, lines 1/2 with solLineId 1/2, SKUs MOCK-SKU-1/2, shipped 9/3, unitPrice 12.2/31.35. Options were `{channel: sftp, connectorId: conn_1435…, broadcast: true}`.
+  - `/confirmations/sent` showed the row with sourceId set to the order row and the order's connectorId. It was captured under `sales_order_confirmation_ready`, the self-capture that 93a1d5e now skips.
+  - Datadog: sftp_connector, rest_connector (fapi) and collector all received it. The replay inbox got 2 failures:
+    - fapi webhook to HJF's REST connector failed after 3 attempts. This predates the change: the same failure hit a pick confirmation at 14:24.
+    - sftp DESADV "packages.0.lines.0.quantity undefined", caused by empty consignments. Fixed in c84b172.
+- 2026-11-05 [inc 2] On dev, `GET /activity/6ac9638568fdc540a4634b2a/confirmation` (a GADG order a schedule generated on 2026-10-09, stored with BSON datetimes) returned 200 with a derived confirmation. That re-parse failed before 08c82e0 with `expected date, received bson.DateTime`. Checked through the preview rather than a replay, so no GADG order was republished.
+- 2026-11-05 [inc 3] On dev, `mock-send` of an HJF sales_order with channel sftp (correlation id `mock-joinedup-inc3`) produced activity row 6aec9bf80d453c9dc3deaeb8 carrying `channel: sftp` and `connectorId: conn_1435ca939ecb4c65b728fb0888aae7eb`.
+- 2026-11-05 [inc 1] `TZ=UTC go test ./internal/core/generators/` passed with 25 derive tests, including generate → parse → derive → bulk-envelope gate. `make gen` brought the canonical layer to types 10.15 (additive only), and `make parity` agreed with Zod on all 216 fixtures.
 
 ### Not verified
 <!-- Stated, not papered over. "(none)" is a deliberate claim, and a fine one. -->
