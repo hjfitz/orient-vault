@@ -41,14 +41,14 @@ Out-of-ticket. Today the mocker can mock a sales order and, separately, a goods-
 ## Acceptance criteria
 <!-- Observable, checkable outcomes — not tasks. Numbered by order: increments cite them as
      (AC 2,4), and sign-off prints which criteria no increment claims. -->
-- [ ] 1. A goods-out confirmation derived from a generated sales order passes the canonical gate. Its salesOrder, customerRef, customer.order, line numbers, SKUs, soLineId/solLineId, quantities and site match the order.
-- [ ] 2. A sales order that a schedule generated can be re-parsed after it comes back out of Mongo. That fixes today's replay failure (`dates.created: expected date, received bson.DateTime`).
-- [ ] 3. Every activity row for a published send records the channel and connectorId it resolved.
-- [ ] 4. `POST /api/v1/activity/{id}/confirm` publishes the derived confirmation with `broadcast="true"`, the original `metadata.connectorId`, `source` `mock`/`mock-<channel>` and correlation id `<order corr>-confirm`. On dev, sftp-connector or fapi receives it.
+- [x] 1. A goods-out confirmation derived from a generated sales order passes the canonical gate. Its salesOrder, customerRef, customer.order, line numbers, SKUs, soLineId/solLineId, quantities and site match the order.
+- [x] 2. A sales order that a schedule generated can be re-parsed after it comes back out of Mongo. That fixes today's replay failure (`dates.created: expected date, received bson.DateTime`).
+- [x] 3. Every activity row for a published send records the channel and connectorId it resolved.
+- [x] 4. `POST /api/v1/activity/{id}/confirm` publishes the derived confirmation with `broadcast="true"`, the original `metadata.connectorId`, `source` `mock`/`mock-<channel>` and correlation id `<order corr>-confirm`. On dev, sftp-connector or fapi receives it.
 - [ ] 5. In the UI, picking a recent sales order fills in the whole derived confirmation (payload, target, broadcast, connector), not just the reference.
-- [ ] 6. A schedule with `confirmAfterSeconds` sends a matching confirmation once the delay is up, within one scheduler tick, recorded under activity source `auto_confirm`.
-- [ ] 7. A load run with `confirmAfterSeconds` sends one confirmation per published order, with enqueue failures counted and never failing the message.
-- [ ] 8. No change to the dev-only checks, to who owns the loops (G4), or to existing response shapes (G5). Every contract change is additive.
+- [x] 6. A schedule with `confirmAfterSeconds` sends a matching confirmation once the delay is up, within one scheduler tick, recorded under activity source `auto_confirm`.
+- [x] 7. A load run with `confirmAfterSeconds` sends one confirmation per published order, with enqueue failures counted and never failing the message.
+- [x] 8. No change to the dev-only checks, to who owns the loops (G4), or to existing response shapes (G5). Every contract change is additive.
 
 ## Affected boundaries
 <!-- Components, paths and contracts this touches. Wikilink existing explainers; do not restate
@@ -163,6 +163,11 @@ Every increment is its own direct commit to `main`, and each one auto-deploys to
 ### Evidence
 <!-- Newest first, dated. One bullet per check actually run, opening with what it discharges.
      "Suite green" alone is not evidence. Sign-off requires at least one dated bullet here. -->
+- 2026-11-05 [inc 7] On dev, started HJF load run 6aeca2f34df6aeb6392796c8 at 15:38:27: burst of 10 at 5/s, sales_order, channel sftp, confirmAfterSeconds 20, correlation id prefix `mock-joinedup-inc7`.
+  - It completed with sent 10, failed 0, confirmationsQueued 10.
+  - The activity log held only the single `load_run` summary row, no per-message rows.
+  - At 15:38:51 UTC one fuse-mocker "drained due confirmations" log recorded sent 10, failed 0, released 0.
+  - Datadog on the `-confirm` ids: sftp_connector 10×204, rest_connector 10×204, collector 30 events. replay_service got 10 confirmation-failures, all the known HJF REST webhook failure.
 - 2026-11-05 [inc 6 + review fixes 22f8e87] On dev, created HJF schedule 6aeca2bd4df6aeb6392796c3 (generated sales_order, channel sftp, confirmAfterSeconds 20) and fired it with run-now at 15:37:34; its order had correlation id `mock-6a9921ba-…`.
   - At 15:38:06 an `auto_confirm` activity row appeared: confirmation_ready / goods_out_confirmation, sourceId the schedule, connectorId conn_1435…, correlation id `mock-6a9921ba-…-confirm`, published. That is 32s, the 20s delay plus less than one 15s tick.
   - `POST /activity/<that order's schedule row>/confirm` then returned 409, so the repeat check now spans the auto and manual paths.
@@ -181,6 +186,10 @@ Every increment is its own direct commit to `main`, and each one auto-deploys to
 
 ### Not verified
 <!-- Stated, not papered over. "(none)" is a deliberate claim, and a fine one. -->
+- **shopify-connector's handling** of a derived confirmation. HJF has no Shopify connector. By source read, a mocked Shopify order ends in `confirmation_data_failure`.
+- **The release-on-shutdown path (22f8e87) under a real deploy.** It's unit-tested with a cancelled context, but no deploy has landed mid-drain yet.
+- **The UI Fill and Confirm buttons, and the schedule and load-run form fields, in a browser.** Lint, tests and the build pass, and the API calls behind them were exercised live with curl, but there are no screenshots.
+- **fuse-mcp.** Its `mock-activity` source filter still rejects `auto_confirm`, and it has no confirm tool. That's the separate fuse-mcp plan.
 
 ## Decisions & deviations
 <!-- Date-stamped, newest first — written by `wp decide`, and by hand when that is easier.
