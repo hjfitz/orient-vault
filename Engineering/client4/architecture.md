@@ -54,7 +54,7 @@ Client/
     fm*.pas                     one form per dialog: customs, options per carrier, import, manifest
     *Service*.pas               generated carrier SOAP clients
   BackupApp/, BackupRestore/    site DB backup tools (BackupApp is C#)
-  DailyPassword/                daily password generator
+  DailyPassword/                daily password tool
   UpdateUtil/                   updater
   ExportData/                   export tool
 Server/*                        README stubs pointing at the V4-Server-* repos
@@ -69,7 +69,7 @@ ImportDocumentation/            import file specs
 | `SHIP_COMMITED` | reloads the lists; the upload station starts an upload |
 | `SHIP_IMPORTED` | refreshes the import tab when auto-refresh is on |
 | `SHIP_PRINTED` | refreshes the shipment list |
-| `UPLOADED` | when the site uses ChannelAdvisor (`USE_CA`), posts shipped status back |
+| `SHIP_UPLOADED` | when the site uses ChannelAdvisor (`USE_CA`), posts shipped status back |
 | `UPD_DOWNLOAD` | the upload station starts an update download |
 | `SITE_UPDATE`, `LOCK_STATUS`, `NEW_STATION`, `UPDATE_DEFS` and others | site and station state changes |
 
