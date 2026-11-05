@@ -174,6 +174,8 @@ Every increment is its own direct commit to `main`, and each one auto-deploys to
      time. A decision worth defending in a review six months out belongs in a durable record
      instead — `wp decide --record`. -->
 
+- **2026-11-05** — Found live on dev in inc 4: HJF's sftp connector rejected the derived confirmation's EDIFACT DESADV (packages.0.lines.0.quantity undefined). It had empty consignments[], as the random generator always has, and sftp-connector builds packages from consignments (joined to lines by SKU; quantity and SSCC read from the consignment). Fixed in c84b172: one consignment (parcel) per line with a GS1-valid 18-digit STU. No despatches[] are generated, so there is no carrier or tracking on the DESADV.
+
 - **2026-11-05** — The recent-orders picker keeps listing purchase orders (the goods-in reference uses them); Fill/Confirm appear only for a sales_order. The UI offers both 'Fill from order' (editable, sent via /messages, not checked for repeats) and 'Confirm order now' (POST /confirm, 409 on a repeat). Rows written before inc 3 confirm with no connectorId: metadata.source was never stored, so the plan's 're-resolve from the stored channel prefix' had nothing to read.
 
 - **2026-11-05** — DeriveGoodsOutConfirmation takes (seed, order, r, now) with no Options: the order is the source of every value an option would override, so an options bag would only invite a mismatched confirmation.
