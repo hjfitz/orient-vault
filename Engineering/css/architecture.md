@@ -43,7 +43,7 @@ verified_sha: 414569b
 { "v": 1, "title": "A ProcessShipment call",
   "nodes": [
     { "id": "asmx", "label": "ClientShipService", "sub": "web method", "kind": "service" },
-    { "id": "auth", "label": "InternalConnection", "sub": "web_users, cust_sites", "kind": "step", "ev": [2] },
+    { "id": "auth", "label": "InternalConnection", "sub": "gfs_users or web_users", "kind": "step", "ev": [2] },
     { "id": "val", "label": "InternalValidateShipment", "sub": "service, options, address, customs, credit", "kind": "step", "ev": [3] },
     { "id": "carrier", "label": "Carrier code", "sub": "ICarrier or <Carrier>Procedures", "kind": "step", "ev": [4] },
     { "id": "fdb", "label": "Site GFS.FDB", "kind": "store" },
@@ -96,7 +96,7 @@ SetupCSS/, MainSetupCSS/       Visual Studio installer projects
 - **Logs.** `Logging:Sinks` picks `File` and/or `Http`. `Logging:HttpEndpoint` names the HTTP target.
 
 ## Runtime
-- IIS on the customer's GFS-hosted Windows box. .NET Framework 4.8.1.
+- IIS on the customer's hosted GCP Windows VM (project `gfs-cloud-selector-prod-uk1`). .NET Framework 4.8.1.
 - Built in Visual Studio from `vzClientSoapServer.sln`. No pipeline. Release is by `Release-4.50.x` branch merges.
 
 ## Evidence

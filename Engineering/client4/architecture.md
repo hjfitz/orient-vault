@@ -91,7 +91,7 @@ ImportDocumentation/            import file specs
 | --- | --- |
 | 0 | upload committed shipments |
 | 1, 2 | get carrier versions, download an update |
-| 3, 4 | register the site with a key, commit the registration |
+| 3, 4 | download the registration package (`GetCustSiteRegData`, the zip Manager stored at "get ready"), commit the registration |
 | 5 | re-upload |
 | 6 | register a department |
 | 7 | Royal Mail sales order |
@@ -100,6 +100,20 @@ ImportDocumentation/            import file specs
 | 10, 13 | Hermes update |
 | 11, 12 | site status, echo |
 | 14 | Royal Mail services |
+
+## Updates
+- **What arrives.** Every upload sends the site's versions, and the server answers with what's pending. `GetVersions`, `VerifyUpdates` and `GetVerUpdate3` then fetch:
+  - Manager "Site update" packages (upsert-only)
+  - global meta and route updates
+  - new Client4 exes, uploaded through Manager's Versions screen
+- **How it applies.** The packages are stored through `SAVE_DOWNLOAD`. Each station's `CheckBinUpdates` launches `updUtil.exe`, which waits for Client4 to exit and swaps the exe.
+- **When it runs.** Only on central `AUTO_UPDATE = 1`, an unlocked site, and the upload station.
+
+## Carrier paths that differ from CSS
+- **`FEDEX`** calls FedEx's old SOAP API directly (`uFedex.pas`), using `CUST_SITES.FEDEX_URL`. CSS sends `FEDEX` to the GFS FedEx proxy.
+- **`INPOST`** calls the old InPost API directly. The URL and token come from the contract's `CARR_KEY`/`CARR_PSW`. CSS uses the GFS InPost proxy.
+- **`products.label_id = 0`** means "use the carrier's PDF" for any carrier (`CheckPdfLabels`, `uFunc.pas:27448`). In CSS it does so only for Parcelforce and UK Mail.
+- **UPS** builds the UPS XML request itself (`uUPSClient.pas`) and sends it to `UPS_URL`, which is the GFS UPS proxy.
 
 ## Runtime
 - A Windows desktop install on each customer PC, with one PC per site marked as the upload station.

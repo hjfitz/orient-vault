@@ -20,7 +20,10 @@ Interview truth (Harry, 2026-11-05) and facts source can't give. System-wide con
 - **Very large units.** `fmMain.pas` is about 9.6k lines and `dmClient.pas` about 5.7k. Search by handler or dataset name.
 - **Carrier code duplicates CSS.** `Carriers/*.pas` mirrors the CSS `Carriers/*.cs` for the same carriers. A fix in one rarely lands in the other at the same time.
 
+- **A blank `FEDEX_URL` falls back to FedEx's test gateway** (`gatewaybeta.fedex.com`, `uFedex.pas:96`). A site set up without the column would ship to FedEx's beta environment.
+- **Re-registration wipes the site.** The registration script deletes shipments, routes, ranges and contracts before reloading. The menu only appears when the local `SITE_REG = 0`.
+
 ## Unknowns
-- How Client4 updates reach customer PCs. Is it `UpdateUtil`, the `UPD_DOWNLOAD` event and mode 2, or a manual install?
+- Who uploads new Client4 exes through Manager's Versions screen today, and how many sites have `AUTO_UPDATE` on.
 - Who holds a working Delphi 7 build environment, and whether it is reproducible.
 - How many sites run Client4 without any CSS use, and how many CSS customers have a live upload station.

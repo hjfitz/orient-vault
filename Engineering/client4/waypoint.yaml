@@ -9,7 +9,7 @@ type: frontend           # Windows desktop app
 owner: jez-poppleton
 language: delphi
 framework: [delphi 7 (vcl), interbase express (ibx), devexpress cx grids, soap (thttprio)]
-deploy: n/a              # installed on customer PCs at the site
+deploy: n/a              # desktop install on hosted GCP VMs and standalone customer PCs; updates via Manager Versions + updUtil
 observability: none
 
 interfaces:

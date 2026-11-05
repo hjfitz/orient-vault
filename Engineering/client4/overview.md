@@ -3,8 +3,7 @@ tags:
 - waypoint
 - client4
 title: client4 — overview
-thesis: 'Client4 (GFSClient4) is Selector''s Delphi 7 desktop app, installed on customer
-  PCs at each site. Staff enter, import, label and manifest shipments in it. On the
+thesis: 'Client4 (GFSClient4) is Selector''s Delphi 7 desktop app, installed on hosted VMs and customer PCs. Staff enter, import, label and manifest shipments in it. On the
   upload station it is also the site''s only link to GFS: it registers the site, pulls
   updates and uploads every committed shipment, CSS''s included.'
 confidence: high
@@ -17,7 +16,7 @@ verified_sha: 73cfd69
 # client4 — overview
 
 ```orient-bluf
-{ "v": 1, "bluf": "Client4 (GFSClient4) is Selector's Delphi 7 desktop app, installed on customer PCs at each site. Staff enter, import, label and manifest shipments in it. On the upload station it is also the site's only link to GFS: it registers the site, pulls updates and uploads every committed shipment, CSS's included.", "confidence": "high", "action": "Find the site's UPLOAD_STATION = 1 PC first when shipments aren't reaching GFS." }
+{ "v": 1, "bluf": "Client4 (GFSClient4) is Selector's Delphi 7 desktop app, installed on hosted VMs and customer PCs. Staff enter, import, label and manifest shipments in it. On the upload station it is also the site's only link to GFS: it registers the site, pulls updates and uploads every committed shipment, CSS's included.", "confidence": "high", "action": "Find the site's UPLOAD_STATION = 1 PC first when shipments aren't reaching GFS." }
 ```
 
 ## Responsibility

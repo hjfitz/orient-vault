@@ -4,7 +4,7 @@ tags:
 - css
 title: css — overview
 thesis: 'CSS (ClientShipService) is Selector''s SOAP front door: an ASP.NET ASMX service
-  on each customer''s GFS-hosted box. It validates, labels, manifests and reports
+  on each customer''s hosted GCP VM. It validates, labels, manifests and reports
   shipments against that site''s GFS.FDB, so integrations can ship without Client4''s
   screens. It doesn''t upload: Client4 does.'
 confidence: high
@@ -18,12 +18,12 @@ verified_sha: 414569b
 # css — overview
 
 ```orient-bluf
-{ "v": 1, "bluf": "CSS (ClientShipService) is Selector's SOAP front door: an ASP.NET ASMX service on each customer's GFS-hosted box. It validates, labels, manifests and reports shipments against that site's GFS.FDB, so integrations can ship without Client4's screens. It doesn't upload: Client4 does.", "confidence": "high", "action": "Check that a customer's upload-station Client4 is running before blaming CSS for missing shipments." }
+{ "v": 1, "bluf": "CSS (ClientShipService) is Selector's SOAP front door: an ASP.NET ASMX service on each customer's hosted GCP VM. It validates, labels, manifests and reports shipments against that site's GFS.FDB, so integrations can ship without Client4's screens. It doesn't upload: Client4 does.", "confidence": "high", "action": "Check that a customer's upload-station Client4 is running before blaming CSS for missing shipments." }
 ```
 
 ## Responsibility
 - Exposes 35 SOAP operations on `ClientShipService.asmx`: shipment processing, validation, manifests, carrier dispatch, lookups and address book or goods import and export [1].
-- Authenticates each call against the site's `web_users` table [2].
+- Authenticates each call against the site's API users: `gfs_users` with role 3 (set up in Client4), or `web_users` for API version 5.1.3 [2].
 - Validates a shipment against the site's contracts, services, routes and gazetteer, then gets a label from the carrier.
 - Stores shipments in the site DB and marks them committed. Committing fires `SHIP_COMMITED` for Client4 to upload [3].
 

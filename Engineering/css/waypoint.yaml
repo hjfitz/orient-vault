@@ -9,7 +9,7 @@ type: backend
 owner: jez-poppleton
 language: csharp
 framework: [asp.net asmx (.net framework 4.8.1), firebirdsql.data.firebirdclient]
-deploy: vm               # IIS on a GFS-hosted Windows box per customer
+deploy: vm               # IIS on a GCP Windows VM per customer (gfs-cloud-selector-prod-uk1); DLL copied by hand
 observability: none      # file logs under C:\Temp, optional HTTP sink (Logging:Sinks)
 
 interfaces:
