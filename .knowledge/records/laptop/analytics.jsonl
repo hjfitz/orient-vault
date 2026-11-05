@@ -1665,3 +1665,9 @@
 {"t":"leave","at":"2026-11-04T15:35:20.688Z","visit":"6be1939d-567d-464c-ac7d-269742920f84","activeMs":256000}
 {"t":"leave","at":"2026-11-04T15:36:36.328Z","visit":"6be1939d-567d-464c-ac7d-269742920f84","activeMs":326000}
 {"t":"leave","at":"2026-11-04T15:36:43.863Z","visit":"6be1939d-567d-464c-ac7d-269742920f84","activeMs":328000}
+{"t":"view","at":"2026-11-05T09:29:49.430Z","visit":"292bf2c1-ca41-461b-b56a-e12b507a03f6","route":"/"}
+{"t":"view","at":"2026-11-05T09:29:49.714Z","visit":"804f37b2-ccb6-4443-bbbe-5bcf62c8700a","route":"/today"}
+{"t":"leave","at":"2026-11-05T09:30:55.077Z","visit":"804f37b2-ccb6-4443-bbbe-5bcf62c8700a","activeMs":65000}
+{"t":"leave","at":"2026-11-05T09:44:42.345Z","visit":"804f37b2-ccb6-4443-bbbe-5bcf62c8700a","activeMs":91000}
+{"t":"leave","at":"2026-11-05T09:47:31.274Z","visit":"804f37b2-ccb6-4443-bbbe-5bcf62c8700a","activeMs":108000}
+{"t":"leave","at":"2026-11-05T10:09:06.260Z","visit":"804f37b2-ccb6-4443-bbbe-5bcf62c8700a","activeMs":109000}
