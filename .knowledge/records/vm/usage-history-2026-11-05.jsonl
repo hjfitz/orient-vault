@@ -1407,3 +1407,9 @@
 {"session_id": "a25bb30f-e3fe-44fe-885c-4e0ba8c2cc07", "model": "Opus 5.5", "cost_usd": 322.5292836000001, "ts": 1793881624}
 {"session_id": "a25bb30f-e3fe-44fe-885c-4e0ba8c2cc07", "model": "Opus 5.5", "cost_usd": 322.6792390000001, "ts": 1793881630}
 {"session_id": "a25bb30f-e3fe-44fe-885c-4e0ba8c2cc07", "model": "Opus 5.5", "cost_usd": 322.8122104000001, "ts": 1793881815}
+{"session_id": "7f84afae-380e-4959-8dc8-c8b0cbe9f19d", "model": "Sonnet 5.5", "cost_usd": 18.58431930000001, "ts": 1793882901}
+{"session_id": "7f84afae-380e-4959-8dc8-c8b0cbe9f19d", "model": "Sonnet 5.5", "cost_usd": 18.608119600000013, "ts": 1793882902}
+{"session_id": "7f84afae-380e-4959-8dc8-c8b0cbe9f19d", "model": "Sonnet 5.5", "cost_usd": 18.631762700000014, "ts": 1793883086}
+{"session_id": "7f84afae-380e-4959-8dc8-c8b0cbe9f19d", "model": "Sonnet 5.5", "cost_usd": 18.656752100000013, "ts": 1793884703}
+{"session_id": "7f84afae-380e-4959-8dc8-c8b0cbe9f19d", "model": "Sonnet 5.5", "cost_usd": 18.680472700000013, "ts": 1793884704}
+{"session_id": "7f84afae-380e-4959-8dc8-c8b0cbe9f19d", "model": "Sonnet 5.5", "cost_usd": 18.704151900000014, "ts": 1793884886}
