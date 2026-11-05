@@ -7,6 +7,14 @@ title: config-service — work ledger
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-05 — Run config-service on the golden runtime image
+
+Run config-service on the golden runtime image
+
+Moved config-service's Cloud Run image from node:24-alpine to ILG's node24-runtime:0.1-affogato and dropped the Datadog serverless-init sidecar: the agent now runs in-container, DD_* env moved onto the app container with the same values, ILG dual-ship kept. Added enableShutdownHooks so in-flight requests drain on SIGTERM. Cloud SQL connector env and the migrate/backfill jobs untouched. Dropped the npm-bundled .trivyignore entries. Verified on dev (rev 00393-pqw, one container, real business/connector reads, sftp_connector still resolving config). Draft; branch left deployed on dev.
+
+PR: gfs-bifrost/config-service#317
+
 ## 2026-11-03 — Give run.invoker one owner so prod plans stop flip-flopping
 
 Give run.invoker one owner so prod plans stop flip-flopping
