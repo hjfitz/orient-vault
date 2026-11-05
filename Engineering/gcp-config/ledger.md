@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-05 — Datadog GCP integration account for ilg-merak dev and prod
+
+Datadog GCP integration account for ilg-merak dev and prod
+
+Adds a datadog-integration SA per project: monitoring, compute and cloud asset viewer, plus browser. The GFS Datadog org's STS principal (ddgci-a9b25524d9a688f3633c@datadog-gci-sts-us1-prod) gets serviceAccountTokenCreator on that account only. Same shape as ilg-cx/cx-core-infra and gfs-bifrost/datadog-integration. parcel-portal registers it with Datadog (datadog_integration_gcp_sts). Plans: 6 to add in dev and in prod.
+
+PR: ilg-merak/gcp-config#9
+
 ## 2026-10-29 — Admit remote-compute: WIF, state prefix, runner instance IAM, logging APIs
 
 Admit remote-compute: WIF, state prefix, runner instance IAM, logging APIs
