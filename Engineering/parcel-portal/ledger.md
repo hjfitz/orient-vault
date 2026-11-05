@@ -6,6 +6,20 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-05 — Acting-as safety in svc: session-only acting, sign-out, actorId, stale-tab guard
+
+Acting-as safety in svc: session-only acting, sign-out, actorId, stale-tab guard
+
+C19 PR 1 (svc, plan increments 1–4).
+- X-Acting-Tenant is read on session routes only, and /auth/* ignores it. A gone customer is 404 acting_tenant_not_found.
+- Logout revokes in the session's own tenant (it silently revoked nothing while acting).
+- actorId is on every signed-in log line via a per-request slot (TrackActor in Correlation, SetActor in Authorize), Request completed included. User events name the subject targetUserId.
+- Optional X-Expected-Tenant: 409 tenant_changed is checked in Authorize after scope resolution, documented on 15 operations, and the acting line is logged only after it. Contract 5.9.0.
+- e2e: the stale-tab table refuses all 15 and changes nothing, and fails with the guard disabled.
+The UI halves are PRs 2–4.
+
+PR: ilg-merak/parcel-portal#100
+
 ## 2026-11-05 — Report a refused smoke sign-in at once, with its reason
 
 Report a refused smoke sign-in at once, with its reason
