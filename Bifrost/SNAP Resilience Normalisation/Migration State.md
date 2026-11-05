@@ -69,7 +69,7 @@ Legend: ⬜ not started · 🟨 in progress · ✅ merged · ⛔ blocked · ⏸ 
 - **R5 Inflated open count** — cockatiel's `onBreak` may re-fire on a failed half-open probe. Today's adapter counts once per open, and monitor 337501612 alerts on any open. Mitigation: count only closed→open (N4 `onStateChange`), with an A2a spec — open.
 - **R6 Request latency silently reads ~0** — In the adapter hook, `response.config` is the same object handed in, so a stamp written to a copy is lost. Mitigation: mutate in place, plus a latency spec (A2a) — open.
 - **R7 Poller timeout re-sends to a degraded SNAP** — A short timeout with 2 retries re-sends slow `$top=1000` reads to a struggling SNAP. Mitigation: 120s floor (Q1) — open.
-- **R8 Phase 2 strict parsing discards real errors** — Mitigation: the breaklass env var, strict only on 2xx bodies, the classifier branch first, shadow mode — standing.
+- **R8 Phase 2 strict parsing discards real errors** — Mitigation: the breakglass env var, strict only on 2xx bodies, the classifier branch first, shadow mode — standing.
 
 ## Decision log
 - **2026-11-05** — Phase 1 and the eventual `@gfs-bifrost/snap` target. Resilience goes through `@gfs-bifrost/resilience`, and a 429 trips the breaker. `@gfs-bifrost/snap` is the eventual target, behind a response-parsing breakglass env var (Harry). See the decision record linked in the Overview.
