@@ -76,7 +76,9 @@ Legend: ⬜ not started · 🟨 in progress · ✅ merged · ⛔ blocked · ⏸ 
 - **2026-11-05** — A programme, not one plan. Four services and about 20 units. Each unit gets its own plan when it's picked up.
 - **2026-11-05** — Wrap at axios's `adapter` hook rather than add an interceptor gate API to the package. That keeps cockatiel's real `execute()`, makes slot release automatic in `finally`, catches bare-axios retries, and keeps the package axios-free.
 - **2026-11-05** — Each app keeps its breaker counting level: the adapter per attempt, the poller per logical call. `fetchKits` stops at `consecutiveFailures − 1` kit failures and relies on per-call counting.
-- **2026-11-05** — Each behaviour change ships separately, behind a switch defaulting to today's behaviour, after G1.
+- **2026-11-05** — **Every behaviour change ships behind an env-var switch defaulting to today's behaviour. Code may go to prod before the peak is over; switches flip after G1** (Harry). This covers single-probe half-open (A2a, Q2), the poller timeout (Q1), the cap (Q3b), host-key merging (Q5) and 429 tripping (A2b).
+- **2026-11-05** — `normalizeHostKey` moves into `@gfs-bifrost/resilience` (N1), since it is the per-host budget key and two copies would drift. This amends the decision record, which had it app-local. It was my recommendation and Harry didn't object; revisit if he does.
+- **2026-11-05** — The poller's concurrency budget is set from measurement, not up front. Q3a ships as a no-op, and Q3b's values come from the poller's measured per-host concurrency.
 - **2026-11-05** — Doc staleness found by review, to fix when the first poller unit signs off: poller `architecture.md` G2 (the Redis claim was removed by #308) and `operations.md` ("trips only on 5xx/network"; it also trips on 429).
 
 ## Scar tissue
