@@ -34,6 +34,7 @@ impl_effort: medium
      One marker, always above, never inside. `wp decide` writes the dated entry in
      `## Decisions & deviations` that explains why. -->
 
+- **2026-11-05 (Harry)** — Inc 1 to prod now ("merge it up + deploy"), waiving its Cloud SQL E3 soak gate. The shadow adds one config-service read per connector backlink, and the sweep is on-demand. Shipped with #397 (golden image) and #396 (Renovate), which were already on master.
 ## Intent
 <!-- What we are changing and why. Link the ticket. -->
 Out-of-ticket; Harry asked for it on 2026-11-04, after prod cut S4 moved SFTP user provisioning to the host ([[sftp-host-c-prod-cutover-and-vm-decommission|Plan C]]). `apps/connector` still has its own hand-rolled config-service layer (`apps/connector/src/config/`, about 1,360 lines). It should read config through the shared `@gfs-bifrost/remote-config` package that shopify-connector and fapi use, so fixes to the package reach sftp-connector. **The package is not a drop-in replacement.** Its strict connector schema, its O(N) username and business lookups, and its error classes would each change what customers see. So the work is a pkg-node release first (its own plan), then an adapter behind the connector's existing interfaces, one config surface at a time. Done means: in dev and prod, files ingest and confirmations egress as before, config edits still invalidate the cache, and only a thin adapter remains in `src/config/`.
