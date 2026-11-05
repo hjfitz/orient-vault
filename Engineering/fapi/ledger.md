@@ -7,6 +7,14 @@ title: fapi — work ledger
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-05 — Run fapi on the golden runtime image
+
+Run fapi on the golden runtime image
+
+fapi's API and developer portal now run on ilg-platform's node24-runtime golden image, with the Datadog agent in-container. The API's serverless-init sidecar, its shared volume and DD_SERVERLESS_LOG_PATH are gone, and DD_* moved onto the app container. enableShutdownHooks was added because SIGTERM now reaches Node. The portal's node:22/alpine stages went to glibc node:24 and it gained DD_* env. Verified on dev: an HJF /api/v2/stock read, and a fuse-mocker pick confirmation through the webhook and failure path. Draft; the branch is left deployed in dev.
+
+PR: gfs-bifrost/fapi#189
+
 ## 2026-10-20 — Start fapi on a cache-less remote config when Redis is unreachable
 
 Start fapi on a cache-less remote config when Redis is unreachable
