@@ -7,6 +7,14 @@ title: shopify-connector — work ledger
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-05 — FUSE-1350
+
+Take remote-config 2.5.2 (connector index fix) to dev
+
+Renovate bump to @gfs-bifrost/remote-config 2.5.2 for shopify-connector and shopify-egress-service, merged under /ship FUSE-1350; dev on 2592b75. Prod gate held: approving it would also ship #361/#362 (ILG Test Store operations), awaiting Harry.
+
+PR: gfs-bifrost/shopify-connector#364
+
 ## 2026-11-04 — Add dev-only ILG Test Store order endpoints
 
 Add dev-only ILG Test Store order endpoints
