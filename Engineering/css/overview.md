@@ -23,7 +23,7 @@ verified_sha: 414569b
 
 ## Responsibility
 - Exposes 35 SOAP operations on `ClientShipService.asmx`: shipment processing, validation, manifests, carrier dispatch, lookups and address book or goods import and export [1].
-- Authenticates each call against the site's API users: `gfs_users` with role 3 (set up in Client4), or `web_users` for API version 5.1.3 [2].
+- Authenticates each call against the site's API users [2]. These are `gfs_users` with role 3, set up in Client4. API version 5.1.3 uses `web_users`.
 - Validates a shipment against the site's contracts, services, routes and gazetteer, then gets a label from the carrier.
 - Stores shipments in the site DB and marks them committed. Committing fires `SHIP_COMMITED` for Client4 to upload [3].
 
