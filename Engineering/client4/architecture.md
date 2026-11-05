@@ -1,9 +1,19 @@
 ---
-tags: [waypoint, client4]
+tags:
+- waypoint
+- client4
 title: client4 — architecture
-thesis: "A Delphi 7 VCL app: fmMain holds the screens, the dmClient data module holds the site DB connection and reacts to Firebird events, and uSoapUpload talks to the central upload server through one StartConnection call that switches on a mode number."
+thesis: 'A Delphi 7 VCL app: fmMain holds the screens, the dmClient data module holds
+  the site DB connection and reacts to Firebird events, and uSoapUpload talks to the
+  central upload server through one StartConnection call that switches on a mode number.'
 confidence: high
-verified: 2026-11-05
+verified: '2026-11-05'
+verified_paths:
+- Client/Client.Alpha/dmClient.pas
+- Client/Client.Alpha/uSoapUpload.pas
+- Client/Client.Alpha/gfsConst.pas
+- Client/Client.Alpha/Carriers
+verified_sha: 73cfd69
 ---
 # client4 — architecture
 
