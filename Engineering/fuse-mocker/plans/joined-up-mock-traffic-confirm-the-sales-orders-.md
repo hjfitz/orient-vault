@@ -1,17 +1,21 @@
 ---
-ticket: "none"
-title: "Joined-up mock traffic: confirm the sales orders the mocker mocked"
-service: "fuse-mocker"
+ticket: none
+title: 'Joined-up mock traffic: confirm the sales orders the mocker mocked'
+service: fuse-mocker
 status: draft
-created: "2026-11-05"
-updated: "2026-11-05"
-repo: "/home/harry/code/fuse/fuse-mocker"
-worktree: "/home/harry/code/fuse/fuse-mocker"
-branch: "main"
-base: "origin/main"
-base_sha: "847b9b725"
-pr:
-tags: [waypoint, plan]
+created: '2026-11-05'
+updated: '2026-11-05'
+repo: /home/harry/code/fuse/fuse-mocker
+worktree: /home/harry/code/fuse/fuse-mocker
+branch: main
+base: origin/main
+base_sha: 847b9b725
+pr: null
+tags:
+- waypoint
+- plan
+impl_model: sonnet
+impl_effort: medium
 ---
 # Joined-up mock traffic: confirm the sales orders the mocker mocked
 
