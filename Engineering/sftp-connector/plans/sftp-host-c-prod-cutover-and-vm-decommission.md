@@ -212,6 +212,7 @@ The VM then stays warm for two weeks before the SSH provisioning code and the VM
      Check-selection order lives in verification-menu.md — do not restate it here. -->
 
 ### Evidence
+- **2026-11-05: inc 5 dev verify** (sftp-connector#398, `21c695d`). The dev deploy booted with `SFTP_ADMIN_*` still set. New dev connector `conn_f405c159…` went PENDING → ACTIVE in about 10 s through the host (`qx8m`, `usersJson=appended`, `FUSE_20A1832621`), and its key logged in on `mdgk` through the dev LB. Suite 886/886. The prod merge is held for the inc 5 gate (2026-11-18).
 <!-- Newest first, dated. One bullet per check actually run, opening with what it discharges.
      "Suite green" alone is not evidence. Sign-off requires at least one dated bullet here. -->
 - 2026-11-04 [inc 4, S4 verify] **S4 verify closed in dev on the image prod runs** (Harry: "Happy for you to test this in dev to complete S4"). Dev and prod hosts both run `sftp-host:*-40c2285dce9e`.
