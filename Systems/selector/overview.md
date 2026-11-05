@@ -13,7 +13,7 @@ confidence: high
 { "v": 1, "bluf": "Selector is GFS's legacy shipping system. Each customer site runs its own copy: Client4, a Delphi desktop app, and CSS, a SOAP service, both working on one site-local Firebird database. Together they rate, label, manifest and upload shipments to GFS. Part of Merak's output is to replace it.", "confidence": "high", "action": "Treat a CSS-only customer as also needing Client4: CSS never uploads shipments itself." }
 ```
 
-**What it is.** A per-customer install. GFS hosts a Windows box for each customer. It runs CSS under IIS at `<customer>.gfsdeliver.com/ClientServer/ClientShipService.asmx`, next to that site's `GFS.FDB`. Client4 runs on the customer's PCs and opens the same database.
+**What it is.** A per-site install, in one of two models. **Hosted:** a GCP Windows VM per customer runs CSS under IIS at `<customer>.gfsdeliver.com/ClientServer/ClientShipService.asmx`, next to that site's `GFS.FDB`, with Client4 on the VM doing uploads. **Standalone:** Client4 on the customer's own PC, with a local database. In August 2026 there were 278 hosted VMs and about 1,000 registered sites.
 
 **Who uses it.** Warehouse staff ship through Client4's screens. Customer WMSes and integrators call CSS over SOAP, either directly or through selector-rest-proxy. Fuse's selector-adapter and Parcel Portal are CSS callers too.
 
