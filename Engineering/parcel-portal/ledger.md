@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-05 — Let a GFS admin set a customer's export settings
+
+Let a GFS admin set a customer's export settings
+
+Wilders' DC-parity item 1 (tracking link), step 1/3. GET/PUT /admin/tenants/{id}/export-settings (IANA time zone, https tracking-link template with {tracking}, Excel-formula flag) + customer Export tab with preview. Nothing on by default. Contract 5.6.0.
+
+PR: ilg-merak/parcel-portal#92
+
 ## 2026-11-04 — Smoke-test dev in a browser after every deploy
 
 Smoke-test dev in a browser after every deploy
