@@ -64,7 +64,7 @@ Legend: ⬜ not started · 🟨 in progress · ✅ merged · ⛔ blocked · ⏸ 
 ## Risks
 - **R1 ★ Half-open probe starves slots** — If waiters held slots behind a hung 120s probe, everything else would slot-time out and spend delivery attempts (the FUSE-1147 failure mode). Mitigation: `canAttempt` is false while a probe is in flight, and the gate sits before the slot. Covered by the A2a hung-probe spec — open.
 - **R2 ★ 429 opens the breaker under throttling** — A 429 storm opens the circuit and nacks a healthy backlog. Mitigation: A2b ships behind a switch defaulting off, flipped after G1, then 429s are compared with opens per host — open.
-- **R3 ★ Combined per-host SNAP load** — Adapter 15 per host, plus the uncapped poller, plus snap-mcp, against a comfortable ~10–20 fleet-wide. Mitigation: Q3b sets a cap and `max_instance_count` (UNRESOLVED-2) — open.
+- **R3 ★ Combined per-host SNAP load** — Adapter 15 per host, plus the uncapped poller, plus snap-mcp, against a comfortable ~10–20 fleet-wide. Mitigation: Q3a ships as a no-op, the poller's real per-host concurrency is measured, then Q3b sets the cap and `max_instance_count` from data — open.
 - **R4 Monitor blindness during the rename** — Mitigation: dual-emit, identical routing checked in O1's plan, and the G4 soak before any delete — open.
 - **R5 Inflated open count** — cockatiel's `onBreak` may re-fire on a failed half-open probe. Today's adapter counts once per open, and monitor 337501612 alerts on any open. Mitigation: count only closed→open (N4 `onStateChange`), with an A2a spec — open.
 - **R6 Request latency silently reads ~0** — In the adapter hook, `response.config` is the same object handed in, so a stamp written to a copy is lost. Mitigation: mutate in place, plus a latency spec (A2a) — open.
