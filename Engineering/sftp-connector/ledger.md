@@ -7,6 +7,14 @@ title: sftp-connector — work ledger
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-05 — Remove the connector's SSH user provisioning (cutover step 5)
+
+Remove the connector's SSH user provisioning (cutover step 5)
+
+Plan C step 5, built ahead of its gate and held as a draft until 2026-11-18. Deletes the create_sftp_user push route and handler, the SSH adapter, SFTPUserBuilder, key generation, and the user-creation response and sftp_user audit publishing (the host does all of these since S4), plus SFTP_ADMIN_* and two topic env vars and four dependencies. Merging removes the provisioning rollback to the VM.
+
+PR: gfs-bifrost/sftp-connector#398
+
 ## 2026-11-04 — Move prod SFTP provisioning to the host (cut S4)
 
 Move prod SFTP provisioning to the host (cut S4)
