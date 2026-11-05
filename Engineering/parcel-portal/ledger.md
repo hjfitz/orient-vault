@@ -6,6 +6,18 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-05 — Error pages instead of Application error; sign-out survives svc failing
+
+Error pages instead of Application error; sign-out survives svc failing
+
+C19 PR 2 (UI, plan increment 5).
+- A shared ErrorPanel backs app/(app)/error.tsx (page errors) and app/error.tsx (errors in the signed-in layout, e.g. /me failing for a stale acting cookie). It offers Try again (router.refresh and reset), Back to GFS (only while acting, via isActingAction since the cookie is httpOnly: clears acting, then a hard load of /orders) and Sign out, and shows the error digest as a support reference.
+- signOutAction retries svc once after 1 s, then clears both cookies anyway.
+- On /sign-in the panel offers only Try again.
+- The dev browser check (stale cookie in DevTools) is still owed: no credentials on rc-hjf.
+
+PR: ilg-merak/parcel-portal#101
+
 ## 2026-11-05 — Acting-as safety in svc: session-only acting, sign-out, actorId, stale-tab guard
 
 Acting-as safety in svc: session-only acting, sign-out, actorId, stale-tab guard
