@@ -63,7 +63,7 @@ Legend: ⬜ not started · 🟨 in progress · ✅ merged · ⛔ blocked · ⏸ 
 
 ## Gates
 - [ ] **G1 — Purdy & Figg peak over** — blocks **flipping** the behaviour switches in prod (A2a, A2b, Q1, Q2, Q3b, Q5). Clears when P&F daily orders are back near baseline (forecast ~12k by 2026-11-12) or on Harry's call. Code may deploy to prod with every switch at today's behaviour.
-- [ ] **G2 — resilience 0.2.0 and snap 0.4.2 published** — blocks A1 and Q3a. Clears when `npm view @gfs-bifrost/resilience@0.2.0 version` and `@gfs-bifrost/snap@0.4.2 version` both resolve.
+- [x] **G2 — resilience 0.2.0 and snap 0.4.2 published** — blocks A1 and Q3a. Clears when `npm view @gfs-bifrost/resilience@0.2.0 version` and `@gfs-bifrost/snap@0.4.2 version` both resolve.
 - [ ] **G3 — dual-emit live in prod** — blocks O1. Clears when A3, Q4 and Q5 are all deployed to prod. Q5 must be in, or the old and new series differ on tags alone.
 - [ ] **G4 — parity soak** — blocks O2. Clears after at least 7 days of O1 monitors firing in step with the old ones, **with at least one real breaker open per service**, or a notebook backtest of the new queries over the 19/21 Oct opens.
 
@@ -78,6 +78,7 @@ Legend: ⬜ not started · 🟨 in progress · ✅ merged · ⛔ blocked · ⏸ 
 - **R8 Phase 2 strict parsing discards real errors** — Mitigation: the breakglass env var, strict only on 2xx bodies, the classifier branch first, shadow mode — standing.
 
 ## Decision log
+- **2026-11-05** — N3 shipped as `tryAdmit(host)`, not `canAttempt`. The gate hands out one probe ticket per cool-off, which lapses after another cool-off. A pure check let every caller arriving between the gate and `execute()` through to wait on cockatiel's probe holding a slot (R1). `normalizeHostKey` also falls back for opaque `"null"` origins (scheme-less `host:port`). Published 15:57Z (pkg-node#302).
 - **2026-11-05** — Phase 1 and the eventual `@gfs-bifrost/snap` target. Resilience goes through `@gfs-bifrost/resilience`, and a 429 trips the breaker. `@gfs-bifrost/snap` is the eventual target, behind a response-parsing breakglass env var (Harry). See the decision record linked in the Overview.
 - **2026-11-05** — A programme, not one plan. Four services and about 20 units. Each unit gets its own plan when it's picked up.
 - **2026-11-05** — Wrap at axios's `adapter` hook rather than add an interceptor gate API to the package. That keeps cockatiel's real `execute()`, makes slot release automatic in `finally`, catches bare-axios retries, and keeps the package axios-free.
