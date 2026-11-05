@@ -118,7 +118,7 @@ Every increment is its own direct commit to `main`, and each one auto-deploys to
   - Formats: dates are `goodsOutISOLayout` strings, and numbers are plain floats.
   - Run `make gen-check && make parity` first. Regenerate if they're stale. (AC 1)
   - verify: `TZ=UTC go test ./internal/core/generators/` covers determinism with a seeded Rand and a fixed clock, and has one test per mirrored field. The decisive test runs `GenerateSalesOrder` → `Parse(SchemaSalesOrder)` → derive → `Parse(EnvelopeSchema(goods_out, bulk))` and expects zero issues; a variant does the same with a string quantity `"3"`.
-- [ ] 2. **BSON fix in `NormalisePayload`.** Convert `bson.DateTime` to `time.Time`, int32/int64 to numbers, and nested `bson.D`/`bson.M` to maps. (AC 2)
+- [x] 2. **BSON fix in `NormalisePayload`.** Convert `bson.DateTime` to `time.Time`, int32/int64 to numbers, and nested `bson.D`/`bson.M` to maps. (AC 2) — two BSON round-trip tests fail without the fix, pass with it; live replay check pending deploy — done: 08c82e0
   - verify: `payload_decode_test` round-trips a `GenerateSalesOrder` output through BSON and parses it with no issues. On dev, replaying a generated schedule send that fails today now publishes.
 - [ ] 3. **Activity provenance.** `buildMetadata` returns the `connectorID` it resolved. `ActivityEntry`, `ActivityDTO` and the spec's `ActivityDto` gain optional `channel` and `connectorId`. (AC 3,8)
   - verify: send_test `TestAChannelSendRecordsItsResolvedConnectorOnTheActivityRow` and `TestAnExplicitConnectorIDWinsOnTheActivityRow`. Run `mcp-contract-smoke.sh`. On dev, `mock-send` a `sales_order` with channel `sftp`; `GET /activity/{id}` then shows the connectorId.
