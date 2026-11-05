@@ -181,7 +181,7 @@ The VM then stays warm for two weeks before the SSH provisioning code and the VM
       - `provisioning.failed` = 0 and the DLT backlog = 0.
 - [ ] 5. Shed the connector's SSH provisioning code. **One-way: this removes the rollback path** (AC 7).
       gate: two weeks after prod S4 with no rollback
-            [ ] confirmed
+            [x] confirmed 2026-11-05: waived by Harry after the dev verify ("if we're happy in dev, merge it up"), 13 days early. No rollback since S4; rollback is now a revert of #398 plus `rollback-s4`, while the VM lives (until inc 6)
 
       - Delete the SSH adapter, `SFTPUserBuilder`, the crypto keygen, the `create_sftp_user` route and handler, `UserCreationResponse` producer code that's no longer used, the `SFTP_ADMIN_*` and `SFTP_ADMIN_HOST` schema fields, the compose env, and `node-ssh`/`ssh2`.
       - Keep `SFTPUserBuilderException.ConnectorReadFailure` and `.UserCreation` (both thrown by the remaining PENDING publisher, `connector.config-handler.ts:58,473`) and the `errors.ts:89-160` branch that maps them, or move them. Drop only the `UserProvision` kind and the `isProvisionException` unwrap.
@@ -380,6 +380,7 @@ The VM then stays warm for two weeks before the SSH provisioning code and the VM
 
 ## Decisions & deviations
 
+- **2026-11-05 (Harry), later** — Gate waived: merge #398 once dev verified, not on 2026-11-18. S4 had run 28 h clean in prod with 0 provisioning failures. Rollback path after merge: revert #398 (restores the connector route), then `cut.sh prod rollback-s4`; the VM stays until inc 6.
 - **2026-11-05 (Harry)** — Inc 5 is built now and held: draft PR, merged on or after 2026-11-18 once its gate is confirmed (no rollback since S4). Merging earlier would start a prod Deploy run anyone could approve, closing the rollback early. Scope grew by two items only the removed handler used: the audit-event publisher and the user-creation response topic (inc 5 bullets; their IaC goes in inc 6).
 <!-- Date-stamped, newest first — written by `wp decide`, and by hand when that is easier.
      Where implementation departed from this plan, and why. Source wins over the plan: correct

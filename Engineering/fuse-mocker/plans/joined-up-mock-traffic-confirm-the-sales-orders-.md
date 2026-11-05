@@ -6,8 +6,8 @@ status: active
 created: '2026-11-05'
 updated: '2026-11-05'
 repo: /home/harry/code/fuse/fuse-mocker
-worktree: /home/harry/code/fuse/fuse-mocker
-branch: main
+worktree: "/home/harry/code/fuse/fuse-mocker/.claude/worktrees/joined-up-confirmations"
+branch: "hjf/joined-up-confirmations"
 base: origin/main
 base_sha: 847b9b725
 pr: null
