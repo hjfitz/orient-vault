@@ -6,8 +6,8 @@ status: active
 created: '2026-11-05'
 updated: '2026-11-05'
 repo: /home/harry/code/fuse/fuse-mocker
-worktree: "/home/harry/code/fuse/fuse-mocker/.claude/worktrees/joined-up-confirmations"
-branch: "hjf/joined-up-confirmations"
+worktree: /home/harry/code/fuse/fuse-mocker/.claude/worktrees/joined-up-confirmations
+branch: hjf/joined-up-confirmations
 base: origin/main
 base_sha: 847b9b725
 pr: null
@@ -111,7 +111,7 @@ Out-of-ticket. Today the mocker can mock a sales order and, separately, a goods-
 
 Every increment is its own direct commit to `main`, and each one auto-deploys to dev with no CI gate. Run the local gates before every push. Any increment that changes `openapi.yaml` regenerates the UI client and updates `CLAUDE.md` in the same commit.
 
-- [ ] 1. **Pure generator.** Add `DeriveGoodsOutConfirmation(seed, order, opts, r, now)`. It takes a parsed sales order and nothing calls it yet.
+- [x] 1. **Pure generator.** Add `DeriveGoodsOutConfirmation(seed, order, opts, r, now)`. It takes a parsed sales order and nothing calls it yet. — 25 generator tests incl. generate→parse→derive→bulk-envelope gate; schema regenerated to types 10.15, make parity 216/216 — done: a83c598
   - IDs: `salesOrder` is `identifiers.salesOrder`, falling back to `shipmentId`, then `id`. Copy `customerRef`, `type` and `class`. Copy `customer.order` only when present. `customer.id` falls back to `ECOM`.
   - Site and warehouse: map `identifiers.site`/`warehouse` to `location.*` and to each line's `identifiers.siteId`/`warehouse`.
   - Lines: `solLineId` is `soLineId`, falling back to `atoi(line)`, then the index plus one. Every quantity equals `ordered`.
