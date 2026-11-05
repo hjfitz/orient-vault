@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-05 — Closed: Datadog integration account stays out of gcp-config
+
+Closed: Datadog integration account stays out of gcp-config
+
+Harry: gcp-config should be set-and-forget. ilg-merak/gcp-config#9 was closed unmerged and never applied. terraform-runner already holds iam.serviceAccountAdmin and resourcemanager.projectIamAdmin, so parcel-portal creates the datadog-integration account itself (iac/projects/svc/datadog_gcp.tf). Don't add app-level grants here.
+
+PR: ilg-merak/gcp-config#9
+
 ## 2026-11-05 — Datadog GCP integration account for ilg-merak dev and prod
 
 Datadog GCP integration account for ilg-merak dev and prod
