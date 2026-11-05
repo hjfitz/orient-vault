@@ -18,6 +18,9 @@
     "Room 1": "Matt",
     "Room 2": "Harry"
   },
+  "merged": {
+    "Room 3": "Room 2"
+  },
   "summary": {
     "tldr": [
       "Reviewed four candidates: Edward Savage, a referred candidate (name garbled, possibly 'Projector'), Darren Taylor and Matthew Shaw.",
