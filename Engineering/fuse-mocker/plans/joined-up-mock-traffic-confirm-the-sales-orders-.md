@@ -163,6 +163,10 @@ Every increment is its own direct commit to `main`, and each one auto-deploys to
 ### Evidence
 <!-- Newest first, dated. One bullet per check actually run, opening with what it discharges.
      "Suite green" alone is not evidence. Sign-off requires at least one dated bullet here. -->
+- 2026-11-05 [inc 6 + review fixes 22f8e87] On dev, created HJF schedule 6aeca2bd4df6aeb6392796c3 (generated sales_order, channel sftp, confirmAfterSeconds 20) and fired it with run-now at 15:37:34; its order had correlation id `mock-6a9921ba-…`.
+  - At 15:38:06 an `auto_confirm` activity row appeared: confirmation_ready / goods_out_confirmation, sourceId the schedule, connectorId conn_1435…, correlation id `mock-6a9921ba-…-confirm`, published. That is 32s, the 20s delay plus less than one 15s tick.
+  - `POST /activity/<that order's schedule row>/confirm` then returned 409, so the repeat check now spans the auto and manual paths.
+  - The schedule was deleted afterwards.
 - 2026-11-05 [inc 4, parcels c84b172] Re-sent the same HJF confirmation with `?force=true` once the parcel fix was deployed. The preview carried 2 consignments (MOCK-SKU-1 ×9, MOCK-SKU-2 ×3), each with an 18-digit STU. In Datadog, sftp_connector 204 and rest_connector 204, and the replay inbox got a single new failure: the HJF REST webhook again. The sftp DESADV error did not recur.
 - 2026-11-05 [inc 4] Ran `POST /activity/6aec9bf80d453c9dc3deaeb8/confirm` against dev (HJF, sftp order MOCK-SO-JZOOIJR):
   - HTTP 200, correlation id `mock-joinedup-inc3-confirm`, published on `bifrost.dev.confirmation_ready.v1`. A repeat got 409 "already has a published confirmation".
