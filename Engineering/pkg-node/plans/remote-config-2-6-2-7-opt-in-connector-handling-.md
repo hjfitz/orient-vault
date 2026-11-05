@@ -150,6 +150,11 @@ Each stack is merged **in one sitting**, with the version bump on its last PR. #
      Check-selection order lives in verification-menu.md — do not restate it here. -->
 
 ### Evidence
+- **2026-11-05: stack A released as 2.6.0** (pkg-node#299 `d9617ab`, #300 `91fba57`, one atomic stack merge, publish run 42055718681, `npm view @gfs-bifrost/remote-config@2.6.0` → cache 0.4.0).
+  - **Tests:** 228, with 29 new.
+  - **Release gate:** the packed tarball type-checks and passes the full suites in fapi `c0eef2d` (511), shopify-connector `cff1956` (900, including `__characterization__`) and shopify-egress-service (633).
+  - **Self-review panel** (backend, contract, tests) led to an end-to-end builder test, batch-path schema coverage, a header test on connector reads, a README correlation fix and type-test coverage of the consumer-used shapes.
+  - **Documented:** the schema must accept its own output.
 <!-- Newest first, dated. One bullet per check actually run, opening with what it discharges.
      "Suite green" alone is not evidence. Sign-off requires at least one dated bullet here. -->
 - 2026-11-05 [inc 1, AC 9] **FUSE-1350 fixed on the branch, PR [pkg-node#297](https://github.com/gfs-bifrost/pkg-node/pull/297).**
