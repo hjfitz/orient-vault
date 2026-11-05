@@ -15,10 +15,10 @@ verified: 2026-11-05
 - Exposes 35 SOAP operations on `ClientShipService.asmx`: shipment processing, validation, manifests, carrier dispatch, lookups and address book or goods import and export [1].
 - Authenticates each call against the site's `web_users` table [2].
 - Validates a shipment against the site's contracts, services, routes and gazetteer, then gets a label from the carrier.
-- Stores shipments in the site DB and marks them committed.
+- Stores shipments in the site DB and marks them committed. Committing fires `SHIP_COMMITED` for Client4 to upload [3].
 
 ## Why it exists separately
-Client4 is a desktop app. CSS gives a customer's WMS a machine interface to the same site database, so the WMS can book without a person at a screen. It shares the database and the business rules, but not the code. CSS is C# and carries its own copy of the carrier logic.
+Client4 is a desktop app. CSS gives a customer's WMS a machine interface to the same site database. The WMS can then book without a person at a screen. It shares the database and the business rules, but not the code. CSS is C# and carries its own copy of the carrier logic.
 
 ## Neighbours
 
