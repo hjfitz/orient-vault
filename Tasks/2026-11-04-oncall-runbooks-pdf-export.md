@@ -22,3 +22,18 @@ Then: published "Legacy Selector - Carrier and Proxy Interface" (351797252, MPK,
 ApiKy check (code only, no live data read): Client.profile is free-form JSON (Postgres via Prisma); keys are plaintext UUIDs looked up by equality, passed as ?token=; any project read-only key reads every client profile in that project. Consumers: selector-rest-proxy reads profile.upstream/username/password (Selector CSS creds in plaintext); exelot-proxy reads exelotPartnerId; api-host-framework calls ApiKy on every request, no cache, whole profile exposed via getApiKyProfile. Owed: field-name inventory of prod profiles (needs Harry's access); ApiKy section on the carrier interface page.
 
 ApiKy survey done: cloned 31 consumer repos to ~/code/apiky-survey (gh + ado, shallow). Profile fields found: bjsSecret (credential), username/password/upstream (selector-rest-proxy), royalmailCustomerId, exelotPartnerId, fedexCustomerId, CustomerId, accountCode, company, allowedReferrers, customerId, name. Added "ApiKy: what it holds and serves" to page 351797252 (v2), risks at class level only. Verified on apiky origin/main: client PUT/DELETE scoped by clientId only (cross-project write/delete; fix in open PR #7), PUT logs profile body, hard-coded SMTP creds in invite route; DB conn string public IP + sslmode typo. Owed (Harry): land/hotfix PR #7; rotate SMTP creds + plaintext cluster ApiKy values (droppoints, connect-gateway); move bjsSecret out of profiles; stop key logging; live profile field-name inventory.
+
+## 5 Nov: full carrier-proxy survey
+69 repos (GH + ADO) plus Datadog (~15 days of retention) plus cluster/Cloud Run manifests. Selector label creation is the main use, but not the only one. Live non-Selector uses:
+- ECM tracking via amazon-logistics-proxy-internal (unauthenticated) and evri-auth-facade
+- selector-rest-proxy serving external REST customers (2 logins, ~9k ProcessShipments)
+- checkout droppoints, plus a nightly import
+- collections-service for the portal/CCP, going to legacy SOAP and Firebird
+- RM cron and config UI
+Prod is mostly the ADO originals on GKE. The GH/monorepo copies are dev-only or idle (Exelot 0, new Amazon 0 prod, OCS test only, DPD-EU all failing).
+New security items (chat only):
+- amazon internal IS_SECURED=false
+- new amazon tracking route takes company from the URL
+- collections-service plaintext LEGACY_COLLECTION_PASSWORD in the prod-uk1 repo
+- UPS stepping-stone/DPD-EU/InPost payload+PII logging
+Owed: publish as a page plus fold into the security ticket draft (awaiting Harry).
