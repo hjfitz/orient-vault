@@ -91,7 +91,7 @@ Out-of-ticket; Harry asked for it on 2026-11-04, after prod cut S4 moved SFTP us
                      [ ] confirmed
 -->
 
-- [ ] 1. Wire the provider, dispatch in shadow, and sweep every connector (AC 3,8).
+- [x] 1. Wire the provider, dispatch in shadow, and sweep every connector (AC 3,8). — dev only: sweep 73/73, shadow clean on a connector and a mapping revision; prod sweep and merge wait on the E3 gate — done: f6f1a0e
       gate: Config Service Cloud SQL E3 soak signed off before inc 1 reaches prod (E3 checks a cache-miss read from sftp-connector on the old path; due about 2026-11-10). Dev can go first.
             [ ] confirmed
 
