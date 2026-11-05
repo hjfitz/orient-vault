@@ -1,9 +1,21 @@
 ---
-tags: [waypoint, css]
+tags:
+- waypoint
+- css
 title: css — architecture
-thesis: "One ASMX class, ClientShipService, holds 35 web methods and delegates to large static procedure files in InternalProcedures. Every call opens the site's Firebird DB through GFSConn. Older carriers live in per-carrier procedure files. Newer ones implement ICarrier and are picked by carrier name in ACarrier.NewCarrier."
+thesis: One ASMX class, ClientShipService, holds 35 web methods and delegates to large
+  static procedure files in InternalProcedures. Every call opens the site's Firebird
+  DB through GFSConn. Older carriers live in per-carrier procedure files. Newer ones
+  implement ICarrier and are picked by carrier name in ACarrier.NewCarrier.
 confidence: high
-verified: 2026-11-05
+verified: '2026-11-05'
+verified_paths:
+- vzClientSoapServer/ClientShipService.asmx.cs
+- vzClientSoapServer/Carriers/ICarrier.cs
+- vzClientSoapServer/InternalProcedures/CommonProcedures.cs
+- vzClientSoapServer/InternalProcedures/ProcessShipProcedures.cs
+- vzClientSoapServer/Web.config
+verified_sha: 414569b
 ---
 # css — architecture
 
