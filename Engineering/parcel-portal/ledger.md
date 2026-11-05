@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-05 — Report a refused smoke sign-in at once, with its reason
+
+Report a refused smoke sign-in at once, with its reason
+
+The dev smoke test waited 30 s for the URL to leave /sign-in and failed with a URL mismatch. It now polls for either outcome and fails at once when the sign-in form shows its error, naming the account and the message. The login itself still needs DEV_SMOKE_ADMIN_EMAIL or the password fixed (Harry).
+
+PR: ilg-merak/parcel-portal#99
+
 ## 2026-11-05 — Export a range of days, up to 31
 
 Export a range of days, up to 31
