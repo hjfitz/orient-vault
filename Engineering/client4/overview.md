@@ -1,9 +1,18 @@
 ---
-tags: [waypoint, client4]
+tags:
+- waypoint
+- client4
 title: client4 — overview
-thesis: "Client4 (GFSClient4) is Selector's Delphi 7 desktop app, installed on customer PCs at each site. Staff enter, import, label and manifest shipments in it. On the upload station it is also the site's only link to GFS: it registers the site, pulls updates and uploads every committed shipment, CSS's included."
+thesis: 'Client4 (GFSClient4) is Selector''s Delphi 7 desktop app, installed on customer
+  PCs at each site. Staff enter, import, label and manifest shipments in it. On the
+  upload station it is also the site''s only link to GFS: it registers the site, pulls
+  updates and uploads every committed shipment, CSS''s included.'
 confidence: high
-verified: 2026-11-05
+verified: '2026-11-05'
+verified_paths:
+- Client/Client.Alpha/dmClient.pas
+- Client/Client.Alpha/uSoapUpload.pas
+verified_sha: 73cfd69
 ---
 # client4 — overview
 
