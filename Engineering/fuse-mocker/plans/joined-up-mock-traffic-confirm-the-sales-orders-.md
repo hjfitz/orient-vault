@@ -88,10 +88,10 @@ Out-of-ticket. Today the mocker can mock a sales order and, separately, a goods-
 - **Rows from before increment 3 have no `connectorId`.** The confirm re-resolves it from the business's connectors using the stored channel prefix in `metadata.source`; with no channel, it sends without a connectorId. Defaulted, so existing dev rows stay confirmable.
 - **`confirmAfterSeconds` is an integer from 1 to 3600, matching `minIntervalSeconds`.** A claimed item that never got published (process restart) is marked failed, not retried. Defaulted.
 - **Replay stays unchanged.** A replayed confirm row goes out with no broadcast and reaches no consumer; re-confirming from the order is the supported path. Defaulted to keep replay's documented "drops the impersonation" behaviour.
-- UNRESOLVED: **Fan-out.** For a business with several goods-out connectors, accept that a broadcast confirmation goes to all of them (shopify ends in `confirmation_data_failure`, fapi may log an unresolvable connector)? Or refuse the confirm when the order had no connectorId? Recommended: accept; it's dev only.
-- UNRESOLVED: **Self-capture.** `capture_goods_out_confirmation` has no source filter, so the mocker captures its own confirmations, filed under `sales_order_confirmation_ready` because of the push-map quirk. At load-run volume that buries real producer captures (14-day TTL). Recommended: the capture handler skips envelopes whose correlation id starts with `mock-`. That is one small extra commit inside increment 6, before auto-confirm adds volume.
-- UNRESOLVED: **Load-run confirmation records.** One `auto_confirm` activity row per confirmation, or only counts on the run's summary row (the documented one-row-per-run design, Migration State E2)? Recommended: summary counts only, with per-order rows for schedules. Increment 7's check depends on this.
-- UNRESOLVED: **Idempotency.** Should a second manual confirm of the same order get a 409 (sftp would otherwise write a second file)? Recommended: 409 when a published confirm row already carries that `sourceId`, with `?force=true` to override.
+- RESOLVED 2026-11-05 (recommended default taken): **Fan-out.** For a business with several goods-out connectors, accept that a broadcast confirmation goes to all of them (shopify ends in `confirmation_data_failure`, fapi may log an unresolvable connector)? Or refuse the confirm when the order had no connectorId? Recommended: accept; it's dev only.
+- RESOLVED 2026-11-05 (recommended default taken): **Self-capture.** `capture_goods_out_confirmation` has no source filter, so the mocker captures its own confirmations, filed under `sales_order_confirmation_ready` because of the push-map quirk. At load-run volume that buries real producer captures (14-day TTL). Recommended: the capture handler skips envelopes whose correlation id starts with `mock-`. That is one small extra commit inside increment 6, before auto-confirm adds volume.
+- RESOLVED 2026-11-05 (recommended default taken): **Load-run confirmation records.** One `auto_confirm` activity row per confirmation, or only counts on the run's summary row (the documented one-row-per-run design, Migration State E2)? Recommended: summary counts only, with per-order rows for schedules. Increment 7's check depends on this.
+- RESOLVED 2026-11-05 (recommended default taken): **Idempotency.** Should a second manual confirm of the same order get a 409 (sftp would otherwise write a second file)? Recommended: 409 when a published confirm row already carries that `sourceId`, with `?force=true` to override.
 
 ## Increments
 <!-- Each independently implementable AND verifiable. Cite the criteria it discharges as
@@ -128,7 +128,7 @@ Every increment is its own direct commit to `main`, and each one auto-deploys to
   - Apply the idempotency answer.
   - Write the openapi entries in the same commit. (AC 4,8)
     gate: the Fan-out and Idempotency questions are answered
-          [ ] confirmed
+          [x] confirmed
   - verify: `routes_test`, controller tests for 400/404/502, and a core test with a fake publisher asserting `broadcast="true"`, `metadata.connectorId` and source `mock-sftp`. On dev, confirm the increment 3 order for HJF:
     - `GET /confirmations/sent` shows it.
     - The confirmation is captured under `sales_order_confirmation_ready`.
@@ -153,7 +153,7 @@ Every increment is its own direct commit to `main`, and each one auto-deploys to
   - `confirmAfter` doubles the effective rate in `Risk`, and `caps.const.ts` mirrors that.
   - Record per the load-run answer. (AC 7,8)
     gate: the Load-run confirmation records question is answered
-          [ ] confirmed
+          [x] confirmed
   - verify: loop_test `TestABatchEnqueuesOneBulkInsert` and `TestAnEnqueueFailureDoesNotFailTheMessage`. On dev, a 20-message burst with `confirmAfterSeconds: 30` produces 20 confirmations, counted in the Datadog `fuse.mocker.publish{recordType:goods_out_confirmation}` metric.
 
 ## Verification
