@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-05 — Add the resilience Go module
+
+Add the resilience Go module
+
+New pkg-go resilience module: wms-gateway's adapterclient lifted verbatim (a JSON GET client with retries, circuit breaker, shared limiter, single-flight, cache and Observer), with its 51 tests unchanged. Live-verified as snap v0.1.0's Getter against real Snap (GADG dev) and the fuse-mocker simulator (HJF). Merged on green under the no-review window.
+
+PR: gfs-bifrost/pkg-go#8
+
 ## 2026-11-05 — Add the snap Go module
 
 Add the snap Go module
