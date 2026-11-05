@@ -86,6 +86,11 @@ proved on the fuse-mocker simulator only.
   took about 3 s through the pager. Size the snapshot build timeout against the slower figure.
 - **The fuse-mocker simulator's fault injection fails only writes**, so it cannot fail a read. Exercise read
   failures against a local fake upstream.
+- **SNAP ignores `$filter` on the keyed `/v2/shipments/{id}` route** (2026-11-05, GADG dev and the simulator). A read
+  with `Owner eq 'ZZNOTTHEOWNER'` still returned GADG's shipment. On the **list** route `Owner eq` is a 400, and
+  `BizId eq` is honoured. `GetShipment` (`adapters/snap/request.go`, behind the sales-order route) relies on that
+  `Owner` filter, so it is **not scoped to the business**. pkg-go `snap` v0.1.0's `Shipment` checks the result's
+  `BizId` instead.
 
 ## SNAP kits
 
