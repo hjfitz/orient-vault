@@ -380,6 +380,7 @@ The VM then stays warm for two weeks before the SSH provisioning code and the VM
 
 ## Decisions & deviations
 
+- **2026-11-05 (Harry)** — Prod VM stopped (not deleted) at 15:15Z after inc 5 reached prod; inc 6 (delete) still holds for the first real prod connector provisioned through the host. Rollback now starts with `gcloud compute instances start`.
 - **2026-11-05 (Harry), later** — Gate waived: merge #398 once dev verified, not on 2026-11-18. S4 had run 28 h clean in prod with 0 provisioning failures. Rollback path after merge: revert #398 (restores the connector route), then `cut.sh prod rollback-s4`; the VM stays until inc 6.
 - **2026-11-05 (Harry)** — Inc 5 is built now and held: draft PR, merged on or after 2026-11-18 once its gate is confirmed (no rollback since S4). Merging earlier would start a prod Deploy run anyone could approve, closing the rollback early. Scope grew by two items only the removed handler used: the audit-event publisher and the user-creation response topic (inc 5 bullets; their IaC goes in inc 6).
 <!-- Date-stamped, newest first — written by `wp decide`, and by hand when that is easier.
