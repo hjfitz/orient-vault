@@ -2,7 +2,7 @@
 ticket: none
 title: 'Joined-up mock traffic: confirm the sales orders the mocker mocked'
 service: fuse-mocker
-status: draft
+status: active
 created: '2026-11-05'
 updated: '2026-11-05'
 repo: /home/harry/code/fuse/fuse-mocker
