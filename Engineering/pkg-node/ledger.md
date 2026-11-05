@@ -7,6 +7,14 @@ title: pkg-node — work ledger
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-05 — @gfs-bifrost/resilience 0.2.0: timeout semaphore, token bucket, host key and breaker gating
+
+@gfs-bifrost/resilience 0.2.0: timeout semaphore, token bucket, host key and breaker gating
+
+Programme units N1-N5. Additive 0.2.0: Semaphore acquire timeout, TokenBucket, normalizeHostKey, PerHostCircuitBreaker halfOpenAfterMs/countsAsSuccess/tryAdmit/state/snapshot/onStateChange. snap 0.4.2 refreezes its resilience dependency.
+
+PR: gfs-bifrost/pkg-node#302
+
 ## 2026-11-05 — Add withConnectorSchema to remote-config and release 2.6.0
 
 Add withConnectorSchema to remote-config and release 2.6.0
