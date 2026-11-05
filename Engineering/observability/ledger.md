@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-05 — Alert on SNAP safety controls and repair the empty Snap Adapter dashboard widgets
+
+Alert on SNAP safety controls and repair the empty Snap Adapter dashboard widgets
+
+Three monitors: poller breaker opened, adapter retry budget exhausted, and sustained slot timeouts (backtested on 30d prod). A Safety controls tab on the Snap Adapter Overview. 16 empty widgets repaired. Prompted by the P&F ~10x weekend peak.
+
+PR: gfs-bifrost/observability#85
+
 ## 2026-11-03 — Alert on config-service's Cloud SQL instance
 
 Alert on config-service's Cloud SQL instance
