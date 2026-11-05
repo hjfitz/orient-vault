@@ -89,6 +89,47 @@ confidence: high
 
 The two hold separate carrier code in two languages, so a carrier fix often lands twice.
 
+## Getting a label
+
+```orient-flow
+{ "v": 1, "title": "A CSS ProcessShipment, from request to label",
+  "nodes": [
+    { "id": "call", "label": "Caller", "sub": "WMS, proxy, Fuse, Parcel Portal", "kind": "external" },
+    { "id": "check", "label": "Auth and validate", "sub": "web_users, contracts, routes, gazetteer", "kind": "step", "ev": [7] },
+    { "id": "num", "label": "Consignment number", "sub": "SHIP_RANGES", "kind": "step" },
+    { "id": "local", "label": "Draw from template", "sub": "PDF_LABEL_TEMPLATES", "kind": "step", "ev": [8] },
+    { "id": "direct", "label": "Direct carrier API", "sub": "Parcelforce, UK Mail, DHL Freight", "kind": "external" },
+    { "id": "proxy", "label": "GFS carrier proxy", "sub": "UPS, Royal Mail, FedEx and others", "kind": "external" },
+    { "id": "save", "label": "Save to site DB", "kind": "store" },
+    { "id": "reply", "label": "SOAP reply", "sub": "label bytes, or printed by CSS", "kind": "step" }
+  ],
+  "edges": [
+    { "from": "call", "to": "check" },
+    { "from": "check", "to": "num" },
+    { "from": "num", "to": "local", "label": "most carriers" },
+    { "from": "num", "to": "direct" },
+    { "from": "num", "to": "proxy", "label": "base64 label back" },
+    { "from": "local", "to": "save" },
+    { "from": "direct", "to": "save" },
+    { "from": "proxy", "to": "save" },
+    { "from": "save", "to": "reply" }
+  ] }
+```
+
+1. **Auth.** CSS checks the `AuthConnDetails` header against `web_users`.
+2. **Validate.** It checks the service, options, address and postcode, customs and credit against the site DB. Routing comes from the gazetteer `GET_*_DEPOT` procedures [7].
+3. **Number.** It allocates the consignment number from the contract's `SHIP_RANGES` row.
+4. **Label.** There are three paths:
+   - **Selector draws it.** This is the default. CSS fills a template from `PDF_LABEL_TEMPLATES`, `pdf_label_commands`, `PDF_LABEL_BARCODES` and `PDF_LABEL_IMAGES` as a PDF or thermal label. `products.label_id` for the carrier and service picks the template. No carrier call happens at label time, and the carrier gets the data later in the manifest.
+   - **Carrier-made.** CSS skips the template for a fixed list in `ProcessShipProcedures.cs` [8]. The list is FedEx (both integrations), Spring, DHL Freight, Aramex, Amazon, DPD NL, DPD DE, OCS, Coll8, Exelot, BJS, Packeta, Chronopost, UPS, Royal Mail, RMS and GFS InPost. Parcelforce and UK Mail join it when the service has no template (`label_id = 0`). These labels come from a direct carrier API, or from a GFS proxy returning a base64 label.
+   - **DHL Express** goes through the template path with its own "arc" label variant.
+5. **Save.** It stores the shipment and label in the site DB.
+6. **Reply.** It returns the label as bytes (`Image`, base64 on the wire) for the caller to print. With `PrintSpecification.PrintDocs` and a named `LabelPrinter`, CSS prints it itself through `PrintPDFLib`. That only works if the printer is reachable from the CSS box.
+
+Client4 prints at the bench itself. **UNKNOWN**: whether Client4's carrier split matches CSS's list. Only the CSS side has been read.
+
+The shipment reaches GFS only after commit, when the upload station's Client4 sends it (G1).
+
 ## Carrier credentials
 
 Three patterns, kept class-level here (details in the MPK *Carrier Proxies* page):
