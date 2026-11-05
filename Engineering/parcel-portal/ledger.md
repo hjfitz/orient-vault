@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-05 — Let the UI write Next's prerender cache
+
+Let the UI write Next's prerender cache
+
+The UI runtime stage copied .next as root and ran as nonroot, so Next logged an EACCES error on every prerender cache write (28 in dev over 3 days). It now copies with --chown=nonroot:nonroot. Found via the observability work (#102).
+
+PR: ilg-merak/parcel-portal#103
+
 ## 2026-11-05 — Observability in Terraform: tabbed dashboard, log metrics, GCP integration, monitors on in dev
 
 Observability in Terraform: tabbed dashboard, log metrics, GCP integration, monitors on in dev
