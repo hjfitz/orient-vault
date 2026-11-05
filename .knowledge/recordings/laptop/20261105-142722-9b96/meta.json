@@ -1,0 +1,18 @@
+{
+  "id": "20261105-142722-9b96",
+  "title": "scribe ignore test (delete me)",
+  "status": "recording",
+  "startedAt": "2026-11-05T14:27:22.095005288Z",
+  "sources": {
+    "me": [
+      "C505 HD Webcam Mono"
+    ],
+    "them": [
+      "Nightly",
+      "pw-play",
+      "speech-dispatcher-dummy"
+    ]
+  },
+  "call": false,
+  "host": "laptop"
+}
