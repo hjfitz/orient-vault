@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-05 — Run tracking-service on the golden runtime image
+
+Run tracking-service on the golden runtime image
+
+Moved the API image from distroless/static to ILG go-runtime:0.1-affogato (Datadog serverless-init as entrypoint, CMD only) and dropped the serverless-init sidecar, shared volume and container-dependencies annotation; DD_* moved onto the app container with the sidecar's values. The API now logs to stdout only (the /shared-volume file sink is removed). manual-deploy announces failures only. Verified on dev revision tracking-service-api-dev-00018-qxg: one container, no volumes, logs tagged dd.datadog_init_version:1.11.2, metrics and Pub/Sub pushes flowing. Draft; dev left on the branch.
+
+PR: gfs-bifrost/tracking-service#17
+
 ## 2026-10-19 — Stop republished copies writing the shared stats docs
 
 Stop republished copies writing the shared stats docs
