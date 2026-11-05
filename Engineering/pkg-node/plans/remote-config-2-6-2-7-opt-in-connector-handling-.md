@@ -14,6 +14,8 @@ pr: null
 tags:
 - waypoint
 - plan
+impl_model: opus
+impl_effort: medium
 ---
 # none — remote-config 2.6/2.7: opt-in connector handling for sftp-connector
 
