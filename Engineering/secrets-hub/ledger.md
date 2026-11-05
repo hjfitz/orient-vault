@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-05 — Run secrets-hub on the golden runtime image
+
+Run secrets-hub on the golden runtime image
+
+Runtime image moves from node:22-alpine to node24-runtime:0.1-affogato (glibc node:24 build stages), Datadog serverless-init sidecar and shared volume removed with DD_* moved onto the hub container, Node 22 -> 24, dev deploys announce failures only. Verified on dev revision secrets-hub-dev-00022-k89 (one container, datadog_init_version logs, OIDC smoke 200). Draft, left deployed on dev.
+
+PR: gfs-bifrost/secrets-hub#26
+
 ## 2026-11-02 — Clear the next and zod advisories failing the dependency audit and image scan
 
 Clear the next and zod advisories failing the dependency audit and image scan
