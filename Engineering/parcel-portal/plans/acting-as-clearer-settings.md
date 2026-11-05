@@ -2,7 +2,7 @@
 ticket: none
 title: 'Acting-as: clearer Settings'
 service: parcel-portal
-status: draft
+status: active
 created: '2026-11-05'
 updated: '2026-11-05'
 repo: ilg-merak/parcel-portal
