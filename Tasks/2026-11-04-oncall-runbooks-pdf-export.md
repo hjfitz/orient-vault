@@ -36,4 +36,4 @@ New security items (chat only):
 - new amazon tracking route takes company from the URL
 - collections-service plaintext LEGACY_COLLECTION_PASSWORD in the prod-uk1 repo
 - UPS stepping-stone/DPD-EU/InPost payload+PII logging
-Owed: publish as a page plus fold into the security ticket draft (awaiting Harry).
+Published: MPK page 352059403 "Legacy Selector - Carrier Proxies: Estate and Use Cases" (v2). Owed: fold items into the security ticket draft (awaiting Harry).
