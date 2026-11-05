@@ -115,6 +115,12 @@ proved on the fuse-mocker simulator only.
 
 ## Unknowns
 
+- **Banked fix (Harry, 2026-11-05): `GetShipment` should check `BizId` on the result**, returning not-found for
+  another business's shipment, because SNAP ignores the `Owner` filter (see SNAP behaviour). It's a few lines, or it
+  comes for free when the gateway adopts pkg-go `snap`. How exposed it is depends on something unverified: whether
+  any shared SNAP host uses one SNAP account for several businesses. If it does, one business can read another's
+  shipment by id through the sales-order route.
+
 - Multi-site: backend config is one per business with no site field. The stock snapshot sums across sites and takes an optional `site` filter, so it does not need to know; whether a multi-site customer ends up as several `businessId`s is still open.
 - Whether SNAP's own kit figure excludes components that are non-W or UNLINK (see SNAP kits); the gateway applies those filters itself.
 - Who besides fapi will query it, and how they would authenticate. Today there is a single shared `x-api-key`
