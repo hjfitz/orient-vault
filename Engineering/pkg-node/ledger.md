@@ -7,6 +7,14 @@ title: pkg-node — work ledger
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-05 — Add withConnectorSchema to remote-config and release 2.6.0
+
+Add withConnectorSchema to remote-config and release 2.6.0
+
+Stack A PR 2 (increment 3). Caller-supplied connector schema for getConnector, backlinks and the mapping handler's connector read, with cached connectors validated and refetched on failure; generic over ConnectorLike. Release gate: fapi, shopify-connector and shopify-egress-service type-check and pass their suites on the packed 2.6.0.
+
+PR: gfs-bifrost/pkg-node#300
+
 ## 2026-11-05 — Add memTtl and a requestHeaders callback to remote-config
 
 Add memTtl and a requestHeaders callback to remote-config
