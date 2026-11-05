@@ -203,6 +203,7 @@ That's eight increments, one over the guide's seven. Harry's 5 Nov answer added 
 ### Evidence
 <!-- Newest first, dated. One bullet per check actually run, opening with what it discharges.
      "Suite green" alone is not evidence. Sign-off requires at least one dated bullet here. -->
+- 2026-11-05 [inc 5] PR 2 (#101) merged as `8748900`. Biome is clean locally. CI is green on `3f61cef` (31 checks, including the UI's lint, `build:check` and `build`). review-panel: security had no findings; the frontend's three findings (one main landmark, no sign-out on `/sign-in`, buttons disabled while leaving) are fixed. The increment stays unticked until the browser check below is done.
 - 2026-11-05 [inc 1–4] PR 1 merged as `bf161a5` (#100). svc `terraform-apply-dev` succeeded and `svc-parcel-dev` runs `dev-bf161a5`. Datadog shows the revision serving (`version: bf161a5`, `/health/readiness` 200 at 12:25Z). Review-panel fixes are in. CI is green (32 checks).
 - 2026-11-05 [inc 1–4] `make check` (fmt, vet, race, golangci-lint 0 issues, gen-check), the integration suite against local Postgres, and contract-check (5.8.0 → 5.9.0, no breaking changes) all pass on `hjf/acting-safety` after merging main.
 - 2026-11-05 [inc 4] e2e `stale_tab_e2e_test.go`, an admin acting for globex while the page showed acme:
@@ -218,7 +219,8 @@ That's eight increments, one over the guide's seven. Harry's 5 Nov answer added 
 
 ### Not verified
 <!-- Stated, not papered over. "(none)" is a deliberate claim, and a fine one. -->
-- The svc changes aren't yet exercised from the UI. That needs PRs 2–4, and increments 6–8 are gated on the smoke login.
+- [inc 5] The dev browser check hasn't run. Signed in as an admin, with `pp_acting_tenant` set to a random UUID in DevTools, `/orders` should show the panel instead of "Application error", and Back to GFS and Sign out should both work. rc-hjf can't sign in to dev: the dev admin credentials file is on the laptop only, and the repo has no `DEV_SMOKE_ADMIN_EMAIL` variable, only the password secret. Harry, or `acting.spec.ts` once the smoke login works.
+- The svc changes aren't yet exercised from the UI. That needs PRs 3–4, and increments 6–8 are gated on the smoke login.
 - `actorId` hasn't been read back from Datadog on dev. No signed-in request reached dev between the deploy (12:25Z) and the last check. The first real use will show it under `service:svc-parcel @actorId:*`.
 
 ## Decisions & deviations

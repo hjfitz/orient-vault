@@ -8,7 +8,7 @@ from: laptop
 to: hjf.shell.platform.ilg.software
 session_id: 80a57909-179d-48c7-a6cb-da766abb7a8a
 resumed_by: 7652f0c7-9f02-4c64-b56f-a154250bb016
-updated: 2026-11-05T12:22Z
+updated: 2026-11-05T14:31Z
 ---
 # Handover: Parcel Portal
 
@@ -84,6 +84,7 @@ Checked 2026-11-03 ~16:40Z on `harry@hjf.shell.platform.ilg.software`; synced wi
 ## Closed since handover
 | When (UTC) | Work | Result |
 | --- | --- | --- |
+| 2026-11-05 14:29 | #101, error pages; sign-out survives svc failing (C19 PR 2, plan increment 5) | Harry: "go ahead with the error pages". A shared panel for `app/(app)/error.tsx` and `app/error.tsx` (Try again, Back to GFS only while acting, Sign out, digest as a reference); `signOutAction` retries svc once, then clears both cookies anyway; only Try again on `/sign-in`. review-panel: security none; frontend's three fixed. Merged as `8748900`. **Owed:** the dev browser check (stale `pp_acting_tenant` in DevTools) — rc-hjf has no dev credentials (`~/parcel-portal-dev-admin.txt` is on the laptop only) and the repo has no `DEV_SMOKE_ADMIN_EMAIL` **variable** (only the password secret). |
 | 2026-11-05 12:21 | #100, acting-as safety in svc (C19 PR 1, plan increments 1–4) | `X-Acting-Tenant` on session routes only, and `/auth/*` ignores it; a gone customer is 404 `acting_tenant_not_found`; logout revokes in the session's own tenant; `actorId` on every signed-in log line (Request completed included), user events name `targetUserId`; optional `X-Expected-Tenant` refuses a stale tab with 409 `tenant_changed`, on 15 operations (contract 5.9.0). review-panel (backend, security, contract+tests) fixes: sign-out ignores acting headers, acting line only once a request runs, idempotent logout, stronger stale-tab e2e. Merged as `bf161a5`. UI halves (PRs 2–4) next; 6–8 gated on the smoke login. |
 | 2026-11-05 11:51 | #98, export a range of days (C21, stack 3/3) | Optional `to` on `/exports/shipments(.csv)`: site-local days `date`–`to`, inclusive, at most 31; `to` needs `date` and can't be before it (400); file `shipments-<date>-to-<to>.csv`; contract 5.8.0. Export page: native First/Last day inputs in a GET form with Show (Last day's min/max follow First day); a refused range keeps the form. review-panel fixes: the form survives a bad range, the e2e fixture covers a middle day, the last day's local evening and the day after. Merged as `acedab0`. C21's three PRs are all in. |
 | 2026-11-05 11:46 | #99, smoke test reports a refused sign-in at once | Polls for either outcome and fails with the account and the form's message instead of a 30 s URL timeout. Merged as `bef6878`. The login itself still needs fixing (Harry). |
