@@ -125,7 +125,7 @@ Out-of-ticket; Harry asked for it on 2026-11-04, after prod cut S4 moved SFTP us
             [ ] confirmed
 
       - Bump to 2.7.0 and opt in: `withConnectorHandling({ lookup: "server-filtered", evictOnDelete: true, backlinkTypes: [ConnectorType.SFTP] })`. Revisions go through `processRevisionSettled`, and `ConfigRevisionDispatchException.fromResult` throws for a nack. Outcomes are logged through `serialiseError`.
-      - Business lookups (`resolve`/`resolveWithUnresolved`) stay on the package's scan. The business-route lookup is pkg-node inc 6 and is not a dependency here.
+      - Business lookups (`resolve`/`resolveWithUnresolved`) stay on the package's scan. The business-route lookup is pkg-node inc 7 and is not a dependency here.
       - `RemoteConfigConnectorAdapter` implements `IBacklinkConfig<GetConnectorDto[]>`.
         - An empty `getConfig` → `ConnectorConfigException` plus the metric.
         - A username lookup checks equality.
@@ -151,9 +151,10 @@ Out-of-ticket; Harry asked for it on 2026-11-04, after prod cut S4 moved SFTP us
       — verify: `pnpm test`, `lint:fix` and `build:check` green with `knip` showing no unused exports in `src/config`; after the dev deploy, every monitor found by the gate's search still evaluates with data for 24 h; one file per use case still ingests in dev.
 
 **Separate plan, gate for inc 3 and inc 4:** [[remote-config-2-6-2-7-opt-in-connector-handling-|pkg-node: remote-config 2.6/2.7]]. Every item is opt-in, so fapi (`^2.5.1`) and shopify are unaffected.
+- **2.5.2** fixes FUSE-1350 (a business's cached connector list built from one connector) by default.
 - **2.6.0** (`memTtl`, `requestHeaders`, `withConnectorSchema`) gates inc 3.
 - **2.7.0** (`evictOnDelete`, `backlinkTypes`, server-filtered `resolveByUsername`, `processRevisionSettled`) gates inc 4.
-- A business-route `resolve` is that plan's inc 6; this plan doesn't wait for it.
+- A business-route `resolve` is that plan's inc 7; this plan doesn't wait for it.
 
 ## Verification
 <!-- The single authority for evidence. Increment lines carry `— done: <sha>` and nothing else.
