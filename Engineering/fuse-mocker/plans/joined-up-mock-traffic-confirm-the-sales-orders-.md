@@ -135,7 +135,7 @@ Every increment is its own direct commit to `main`, and each one auto-deploys to
     - A Datadog search on `<corr>-confirm` shows sftp-connector or fapi receiving it, and shows what any other connector did with it.
 - [x] 5. **UI picker pre-fills the derived confirmation.** `RecentOrder` gains `id`, `channel` and `connectorId` (additive). The picker only lists `sales_order` rows. Selecting one calls the preview endpoint through a server action, fills the editor, sets the target to `confirmation_ready`/`goods_out_confirmation`, and sets broadcast and the connector. Sending still goes through `/messages`. (AC 5) — 7 action specs (derive path/JSON/connector/issues; confirm path/force/corr); lint+64 tests+build green; live UI check pending — done: 593b597
   - verify: a derive-action case in `apps/ui/src/modules/send/__test__/send.action.spec.ts`, then `pnpm lint && pnpm test && pnpm build`. On dev, screenshot the filled-in editor, then send it.
-- [ ] 6. **Queue, drain and schedule `confirmAfterSeconds`.**
+- [x] 6. **Queue, drain and schedule `confirmAfterSeconds`.** — 12 scheduler + 15 AutoConfirmer tests (-race x3), repo shape tests, 6 controller validation tests, 3 UI action specs; capture skip 93a1d5e; live check pending deploy — done: ff943e8
   - New `pending_confirmations` collection with indexes `{status, dueAt}` plus a TTL on `createdAt`. A shared `EnqueueMany`.
   - Normalisation runs on read.
   - `Outcome.Record` carries the parsed order out of the send.
