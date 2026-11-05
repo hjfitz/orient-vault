@@ -78,8 +78,9 @@ SetupCSS/, MainSetupCSS/       Visual Studio installer projects
 Every request carries `AuthenticationDetails` (with a `VersionId`) and gets back `ResponseDetails` with a status and coded notifications.
 
 ## Interfaces out
-- **Site DB.** Firebird through `FirebirdSql.Data.FirebirdClient`, using the `GFSConn` connection string in `Web.config`. A second "admin" DB (`adminDb`) holds `clientdb.UPD_START`.
-- **Carriers.** Direct SOAP clients under `Web References/` and `Service References/` (DHL, Parcelforce, UPS and others), plus REST calls to the GFS carrier proxies. The proxy URLs come from `CUST_SITES` columns.
+- **Site DB.** Firebird through `FirebirdSql.Data.FirebirdClient`, using the `GFSConn` connection string in `Web.config`. `AdmDB3.fdb`, in the same folder as `GFS.FDB`, holds `clientdb.UPD_START` [2].
+- **GFS carrier proxies.** Generated clients under `Service References/`: `GFSAmazon`, `GFSBJS`, `GFSColl8API`, `GFSDPDApi`, `GFSExelot`, `GFSFedexAPI`, `GFSInPost`, `GFSOcsApi`, `GFSRMApi`. The proxy URLs come from `CUST_SITES` columns.
+- **Direct carrier and third-party SOAP.** Under `Web References/`: Parcelforce, DHL Freight, the older FedEx services, Hermes parcel shops, UK Mail, Spring, DPD shops, ChannelAdvisor, and GFS's credit-manager and carrier-routes services.
 - **Logs.** `Logging:Sinks` picks `File` and/or `Http`. `Logging:HttpEndpoint` names the HTTP target.
 
 ## Runtime
