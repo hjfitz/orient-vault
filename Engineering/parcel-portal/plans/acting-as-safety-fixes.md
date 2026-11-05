@@ -203,11 +203,22 @@ That's eight increments, one over the guide's seven. Harry's 5 Nov answer added 
 ### Evidence
 <!-- Newest first, dated. One bullet per check actually run, opening with what it discharges.
      "Suite green" alone is not evidence. Sign-off requires at least one dated bullet here. -->
-- <YYYY-MM-DD> [inc <n>] <what was run, against what, and the observable result>
+- 2026-11-05 [inc 1–4] `make check` (fmt, vet, race, golangci-lint 0 issues, gen-check), the integration suite against local Postgres, and contract-check (5.8.0 → 5.9.0, no breaking changes) all pass on `hjf/acting-safety` after merging main.
+- 2026-11-05 [inc 4] e2e `stale_tab_e2e_test.go`, an admin acting for globex while the page showed acme:
+  - all 15 guarded requests give 409 `tenant_changed`;
+  - after them, acme's order and shipment (raw GET bodies), the bucket's object count and the fake carrier's bookings, deletes, commits and validations are unchanged. With `expectTenant` disabled the same test fails (the upload and globex's manifest go through);
+  - acting for acme and expecting acme, all 15 get past the guard (no `tenant_changed`).
+- 2026-11-05 [inc 3] e2e `acting_e2e_test.go`, one `x-request-id` per event:
+  - user create, disable, enable, update and password set, slug set, tenant delete and restore, and an upload while acting: each audit line and its "Request completed" carry the admin's `actorId`;
+  - `targetUserId` names the changed user;
+  - `/auth/login`'s "Request completed" has no `actorId`.
+- 2026-11-05 [inc 2] e2e `TestSigningOutWhileActingEndsTheSession`: `/me` is 401 after signing out while acting. With the old scope it was 200, so the test fails without the fix.
+- 2026-11-05 [inc 1] e2e: with a deleted customer in `X-Acting-Tenant`, `/admin/tenants`, `/admin/mapping/fields` and `/admin/layouts/dc-layout` give 200, and `/me` gives 404 `acting_tenant_not_found`.
 
 ### Not verified
 <!-- Stated, not papered over. "(none)" is a deliberate claim, and a fine one. -->
-- <what remains unproven, and what would prove it>
+- The svc changes aren't yet exercised from the UI. That needs PRs 2–4, and increments 6–8 are gated on the smoke login.
+- The `actorId` field hasn't been read back from Datadog on dev yet. A query for `service:svc-parcel env:dev @actorId:*` after PR 1 deploys would prove it.
 
 ## Decisions & deviations
 <!-- Date-stamped, newest first — written by `wp decide`, and by hand when that is easier.
