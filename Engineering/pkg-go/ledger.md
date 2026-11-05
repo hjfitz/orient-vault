@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-05 — Add the Regenerate workflow for generated modules
+
+Add the Regenerate workflow for generated modules
+
+Regenerate workflow plus .github/scripts/regenerate.sh and release-version.sh: on a package-published dispatch, daily, or by hand, it moves audit/snap/types to the new pkg-node release, regenerates, versions from a gorelease API diff, and self-merges and tags compatible releases (breaking ones wait for a human). Scripts are verified locally across the no-op, bump, patch, minor and breaking cases. The PR's dry run is blocked on two admin grants: pkg-go read access on the three npm packages, and contents:write for the PLATFORM_CI app.
+
+PR: gfs-bifrost/pkg-go#10
+
 ## 2026-11-05 — Add the types Go module
 
 Add the types Go module
