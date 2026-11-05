@@ -1,6 +1,8 @@
 ---
-tags: [waypoint, client4]
-verified: 2026-11-05
+tags:
+- waypoint
+- client4
+verified: '2026-11-05'
 ---
 # client4 — known context
 
