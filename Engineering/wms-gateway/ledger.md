@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-05 — Run wms-gateway on the golden runtime image
+
+Run wms-gateway on the golden runtime image
+
+Moved the gateway image from distroless/static to ilg-platform's go-runtime:0.1-affogato (Datadog serverless-init as entrypoint) and dropped the Datadog sidecar, shared volume and the held-file log sink; DD_* env moved onto the app container with the same values, logs stdout-only, boot metrics emitted immediately. Fleet golden-image migration, following audit-service#16 / dedupe-service#167. Draft; branch deployed to dev and verified (one container, dd.datadog_init_version logs, coldstart/request metrics, stock reads 200).
+
+PR: gfs-bifrost/wms-gateway#42
+
 ## 2026-10-09 — FUSE-1036
 
 Return kits beside products with a derived potentialKitQty, and drop the kits-only route
