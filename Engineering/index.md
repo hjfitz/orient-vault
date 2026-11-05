@@ -30,13 +30,14 @@ it is now. Regenerate this page with `wp index`; check health with `wp doctor`.
 | [[Engineering/css/overview\|css]] | backend | 3 | 0 | 0 | — |
 | [[Engineering/cx/overview\|cx]] | backend | 0 | 0 | 0 | 2026-10-12 |
 | [[Engineering/dedupe-service/overview\|dedupe-service]] | backend | 5 | 0 | 0 | 2026-11-04 |
-| [[Engineering/distraction-dashboard/overview\|distraction-dashboard]] | frontend | 4 | 0 | 0 | — |
+| [[Engineering/distraction-dashboard/overview\|distraction-dashboard]] | frontend | 4 | 0 | 0 | 2026-11-05 |
 | [[Engineering/fapi/overview\|fapi]] | backend | 3 | 0 | 0 | 2026-11-05 |
+| [[Engineering/fuse-billing/overview\|fuse-billing]] | backend | 0 | 0 | 0 | 2026-11-05 |
 | [[Engineering/fuse-devtools/overview\|fuse-devtools]] | backend | 3 | 0 | 0 | 2026-10-31 |
 | [[Engineering/fuse-mcp/overview\|fuse-mcp]] | backend | 4 | 0 | 0 | 2026-11-03 |
 | [[Engineering/fuse-mcp-server/overview\|fuse-mcp-server]] | backend | 0 | 0 | 0 | 2026-11-05 |
 | [[Engineering/fuse-mocker/overview\|fuse-mocker]] | backend | 4 | 0 | 0 | 2026-11-05 |
-| [[Engineering/fuse-ui/overview\|fuse-ui]] | frontend | 5 | 3 | 1 | 2026-10-29 |
+| [[Engineering/fuse-ui/overview\|fuse-ui]] | frontend | 5 | 3 | 1 | 2026-11-05 |
 | [[Engineering/gcp-config/overview\|gcp-config]] | backend | 0 | 0 | 0 | 2026-10-29 |
 | [[Engineering/github-actions/overview\|github-actions]] | infra | 3 | 0 | 0 | 2026-10-27 |
 | [[Engineering/github-config/overview\|github-config]] | infra | 3 | 0 | 0 | 2026-10-27 |
@@ -56,7 +57,7 @@ it is now. Regenerate this page with `wp index`; check health with `wp doctor`.
 | [[Engineering/replay-service/overview\|replay-service]] | backend | 4 | 0 | 0 | 2026-11-05 |
 | [[Engineering/repo-template/overview\|repo-template]] | ? | 0 | 0 | 0 | — |
 | [[Engineering/secops-reporting/overview\|secops-reporting]] | backend | 4 | 0 | 1 | 2026-09-14 |
-| [[Engineering/secrets-hub/overview\|secrets-hub]] | backend | 0 | 0 | 2 | 2026-11-02 |
+| [[Engineering/secrets-hub/overview\|secrets-hub]] | backend | 0 | 0 | 2 | 2026-11-05 |
 | [[Engineering/selector-adapter/overview\|selector-adapter]] | backend | 3 | 0 | 0 | 2026-11-05 |
 | [[Engineering/selector-rest-proxy/overview\|selector-rest-proxy]] | backend | 3 | 0 | 0 | — |
 | [[Engineering/sftp-connector/overview\|sftp-connector]] | backend | 5 | 1 | 2 | 2026-11-05 |
