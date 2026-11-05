@@ -6,6 +6,16 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-05 — Observability in Terraform: tabbed dashboard, log metrics, GCP integration, monitors on in dev
+
+Observability in Terraform: tabbed dashboard, log metrics, GCP integration, monitors on in dev
+
+Adds a [Parcel <env>] dashboard with 7 tabs (dashboard.json.tftpl, validated against Datadog's API), 13 parcel.<env>.* log-based metrics, the GCP integration registration, and datadog_monitors_enabled in dev. The Datadog provider moves to ~> 4.4 for tabs.
+Found: the shared ilg-platform cloud-run module hardcodes DD_ENV=serverless, so env:dev log queries (monitors, runbook) matched nothing. Switched to @env. A platform fix is owed.
+Needs the DATADOG_APP_KEY org secret, and gcp-config#9 applied first.
+
+PR: ilg-merak/parcel-portal#102
+
 ## 2026-11-05 — Error pages instead of Application error; sign-out survives svc failing
 
 Error pages instead of Application error; sign-out survives svc failing
