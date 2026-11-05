@@ -7,6 +7,14 @@ title: snap-adapter — work ledger
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-05 — Give transiently failing SNAP creates about four hours of retries, and never ack a create whose failure wasn't published
+
+Give transiently failing SNAP creates about four hours of retries, and never ack a create whose failure wasn't published
+
+SNAP_MAX_TRANSIENT_DELIVERY_ATTEMPTS (Terraform 30, up from a hard-coded 10). The create_record DLQ now derives from it at budget + 5. A failed create_data_failure publish now nacks instead of silently dropping the record. Ahead of the P&F ~10x peak.
+
+PR: gfs-bifrost/snap-adapter#318
+
 ## 2026-10-19 — FUSE-1319
 
 Publish exhausted transient Snap failures as retryable

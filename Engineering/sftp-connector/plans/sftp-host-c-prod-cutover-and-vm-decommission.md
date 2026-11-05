@@ -185,6 +185,7 @@ The VM then stays warm for two weeks before the SSH provisioning code and the VM
 
       - Delete the SSH adapter, `SFTPUserBuilder`, the crypto keygen, the `create_sftp_user` route and handler, `UserCreationResponse` producer code that's no longer used, the `SFTP_ADMIN_*` and `SFTP_ADMIN_HOST` schema fields, the compose env, and `node-ssh`/`ssh2`.
       - Keep `SFTPUserBuilderException.ConnectorReadFailure` and `.UserCreation` (both thrown by the remaining PENDING publisher, `connector.config-handler.ts:58,473`) and the `errors.ts:89-160` branch that maps them, or move them. Drop only the `UserProvision` kind and the `isProvisionException` unwrap.
+      - Also delete what only the `create_sftp_user` handler used: the `AuditEventPublisher` (the host publishes the `sftp_user` audit itself) with `PUBSUB_TOPIC__AUDIT_EVENT` and `@gfs-bifrost/audit`, and the user-creation response publish with `PUBSUB_TOPIC__CUSTOMER_CREATION`. Neither was in the original list (found 2026-11-05).
 
       — verify: suite green; dev deploy boots with `SFTP_ADMIN_*` still set but unused; a new dev SFTP connector provisions end to end through the host.
 - [ ] 6. Decommission the VM and update docs and data (AC 7,8).
@@ -195,6 +196,7 @@ The VM then stays warm for two weeks before the SSH provisioning code and the VM
       - Remove the `vm_backend` variable.
       - Re-scope the port 22 firewall to the host tag.
       - Remove the `push_config` branch and the `create_sftp_user_consumer` variable. The subscription stays.
+      - Remove the connector's now-unread env vars from `cloud-run.tf` (`PUBSUB_TOPIC__CUSTOMER_CREATION`, `PUBSUB_TOPIC__AUDIT_EVENT`, alongside `SFTP_ADMIN_*`) and its publisher grants on the `customer_creation` and audit topics, if nothing else in the connector publishes there.
       - Delete `sftp-login-audit.tf` and the `sftp_login_audit_stage` variable (both environments are `off` by then).
       - Rewrite `CLAUDE.md` "SFTP users & SSH keys", both skills and the codex copy, the vault docs and fuse-mcp data, pushed straight to `master` with a parity accept.
 
@@ -376,6 +378,8 @@ The VM then stays warm for two weeks before the SSH provisioning code and the VM
   - after S3, MIG health shows 3 healthy instances across 3 zones.
 
 ## Decisions & deviations
+
+- **2026-11-05 (Harry)** — Inc 5 is built now and held: draft PR, merged on or after 2026-11-18 once its gate is confirmed (no rollback since S4). Merging earlier would start a prod Deploy run anyone could approve, closing the rollback early. Scope grew by two items only the removed handler used: the audit-event publisher and the user-creation response topic (inc 5 bullets; their IaC goes in inc 6).
 <!-- Date-stamped, newest first — written by `wp decide`, and by hand when that is easier.
      Where implementation departed from this plan, and why. Source wins over the plan: correct
      the plan in the same increment and record the correction here. Legitimately empty at plan
