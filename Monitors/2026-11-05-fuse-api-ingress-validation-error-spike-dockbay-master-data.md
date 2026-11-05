@@ -27,7 +27,7 @@ Monitor 302685719 (priority 3, Terraform-managed, tags service:rest_connector): 
 - **Not the hourly poll:** the connector's hourly POSTs to /api/v2/master-data returned 202 (e.g. 10:01:30-31Z, 09:00:15Z). The rejected push arrived at 10:21:08Z, off the hour.
 - **fapi version differs from 4 Nov, but the same rejection occurs on both:** api-gateway-prod version 09ac2c3c (first log 4 Nov 17:19:46Z; last log of the previous 1d72173 at 17:18:05Z). The 4 Nov 12:12Z rejection and today's both reject on nmfcCode null, so the version change does not explain it.
 - **Loss / resend:** replay-service (production) lists no DOCKBAY failure after 4 Nov 22:02:27Z (a sales_order ShipAddress.City cause), and the only DOCKBAY master_data failures held are 4 from 28-29 Sep (SKUId too long, unrelated). Across all businesses, replay-service holds nothing created on 5 Nov except PURDYFIGG goods_out_confirmation failures (07:24Z/07:00Z). rest_connector logged nothing for the connector after 10:21:08.134Z up to the 10:24Z check. No HTTP status log exists for the rejected POST, so the status returned is not confirmed.
-- **Flapping:** monitor events show Warn/Alert then Recovered for 2 Nov, 3 Nov, 4 Nov, each one firing per day; this is the fourth consecutive day, each tied to DOCKBAY nmfcCode/validation rejections on this connector.
+- **Flapping:** monitor events show Warn/Alert then Recovered for 2 Nov, 3 Nov, 4 Nov, each one firing per day; this is the fourth consecutive day. The causes of the 2 Nov and 3 Nov firings were not checked in this triage.
 
 ## Not established
 - Whether DOCKBAY/Fulfil.io resends the 136 products (only 3 min of logs after the rejection when checked); which SKUs they are (the log carries indices only).
