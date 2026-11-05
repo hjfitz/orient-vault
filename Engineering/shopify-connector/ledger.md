@@ -7,6 +7,14 @@ title: shopify-connector — work ledger
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-05 — Run shopify-connector on the golden runtime image
+
+Run shopify-connector on the golden runtime image
+
+Moved shopify-connector and shopify-egress-service onto ilg-platform's node24-runtime:0.1-affogato golden image and dropped their Datadog serverless-init sidecars, so the agent runs in-container (DD_* moved onto the app containers with the sidecar's values, shared volume removed, base-image-only .trivyignore entries dropped, dev deploys announce failures only). Both verified in dev: single container, datadog_init_version on logs, a real poll cycle on the connector, and a stock_sync_sku subscription push handled by egress. shopify-app was not migrated: it runs prisma generate + db push via pnpm at container start, which a shell-less image can't do.
+
+PR: gfs-bifrost/shopify-connector#366
+
 ## 2026-11-02 — Raise the follow-redirects floor to 1.16.2
 
 Raise the follow-redirects floor to 1.16.2
