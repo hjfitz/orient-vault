@@ -51,3 +51,6 @@ Open:
 
 ## 5 Nov: Selector onboarded into Waypoint/orient
 System `Systems/selector/` (overview, architecture, known-context, design) with members `Engineering/css` (repo selector/CSS @414569b) and `Engineering/client4` (repo selector/V4 @73cfd69). Owner Jez Poppleton; GFS-hosted box per customer; being replaced by part of Merak's output (no programme yet). Release path, CUST_SCRIPTS table list, SITE_REG=2 left as Unknowns. No `commands` anchor: wp's manifest allowlist has no .NET/Delphi entries.
+
+## 5 Nov: getting a label
+Added "Getting a label" to Systems/selector/architecture.md (lint clean). Published MPK page 352157738 "Legacy Selector - Getting a Label". Finding: CSS draws labels from PDF_LABEL_TEMPLATES by default; a hard-coded carrier list (ProcessShipProcedures.cs:108-130) goes to proxies/direct APIs instead. Client4's split unverified.
