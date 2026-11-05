@@ -9,6 +9,7 @@
     ],
     "them": [
       "Nightly",
+      "Slack",
       "speech-dispatcher-dummy"
     ]
   },
