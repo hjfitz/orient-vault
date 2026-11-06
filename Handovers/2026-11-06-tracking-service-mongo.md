@@ -8,7 +8,7 @@ from: laptop
 to: hjf.shell.platform.ilg.software
 session_id: c36659b6-edee-4035-ab29-ffd89416a0e8
 resumed_by: ""
-updated: 2026-11-06T15:10Z
+updated: 2026-11-06T15:18Z
 ---
 # Handover: tracking-service Firestore → MongoDB (group D)
 
@@ -73,7 +73,14 @@ Stale local worktrees on the laptop (nothing unpushed matters): `agent-*`, `exem
 - **Background agents can't merge** (auto-mode classifier denial, a memory). Merge in the foreground.
 
 ## On the target
-Checked by **ship** (see below). The VM needs `gfs-bifrost/tracking-service` cloned under `~/code/fuse/`, `gcloud` logged in with access to `bifrost-dev-global1` and `bifrost-prod-global1`, `gh` able to approve `terraform-prod`, plus docker, `mise`, go 1.26.9 and terraform 1.9.0.
+Checked 2026-11-06 ~15:15Z on `hjf.shell.platform.ilg.software` (kernel 7.2.14):
+- **Tools:** claude 2.1.319, gh, gcloud, git, go, node, docker, python3, jq and mise are present. pnpm isn't, and isn't needed. terraform 1.9.0 and go 1.26.9 come through `mise install` in the repo.
+- **Accounts:** `gh` is logged in as `harry-fitzgerald_gfsdev` and sees the merged PRs #18–#23 and pending run 42239748734. `gcloud` is `harry.fitzgerald@gfsdeliver.com` and can read `bifrost-prod-global1`.
+- **Repo:** `~/code/fuse/tracking-service` was **cloned during the handover** (at `a97baca`), with `mise.toml` trusted.
+- **Unattended running:** `~/.claude/.credentials.json` is present and `defaultMode` is `auto`.
+- **Sync:** the vault, skills and memories were synced, and this record, the Migration State, the ledger and session-handover match by hash. The draft-design, the dedupe script and the D1 plan match after the sync's `/home/hjf` → `/home/harry` rewrite.
+- **MCP:** the `fuse` and `ado-local-mcp` servers were kept with the VM's own config. OAuth servers (Atlassian, datadog, slack, ado-remote-mcp) need `/mcp` once there if they aren't already signed in. **Restart Claude on the VM** to load them.
+- **Not there:** the laptop's worktrees and background agents. All their work is pushed and merged; nothing is unpushed.
 
 ## Gotchas
 - **`tf-plan` PR checks fail on the dev state lock** whenever a Deploy dev apply or another `tf-plan` is running. Re-run them **one at a time** (`gh run rerun <id> --failed`).
