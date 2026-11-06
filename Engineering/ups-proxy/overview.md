@@ -1,9 +1,18 @@
 ---
-tags: [waypoint, ups-proxy]
+tags:
+- waypoint
+- ups-proxy
 title: ups-proxy — overview
-thesis: "ups-proxy is the UPS 'stepping stone': Selector still builds UPS's legacy XML, and the proxy forwards it unchanged to UPS under GFS's own OAuth token. That kept old Selector sites working when UPS moved to OAuth. It also mounts JSON V2 routes that get no traffic."
+thesis: 'ups-proxy is the UPS ''stepping stone'': Selector still builds UPS''s legacy
+  XML, and the proxy forwards it unchanged to UPS under GFS''s own OAuth token. That
+  kept old Selector sites working when UPS moved to OAuth. It also mounts JSON V2
+  routes that get no traffic.'
 confidence: high
-verified: 2026-11-06
+verified: '2026-11-06'
+verified_paths:
+- src/startup.js
+- src/auth.js
+verified_sha: bacc881
 ---
 # ups-proxy — overview
 
