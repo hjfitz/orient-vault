@@ -6,8 +6,9 @@ owner: carrier-integrations
 purpose: >
   How GFS exchanges data with carriers. Ingress (GFS to carrier): one proxy per carrier that Selector
   calls for labels, cancels, manifests and status. Egress (carrier to GFS): polling connectors on
-  tracking-core, tracking webhooks and SFTP tracking files, all publishing to raw_tracking.v1.
+  tracking-core (Evri token via evri-auth-facade), tracking webhooks and SFTP tracking files, all
+  publishing to raw_tracking.v1. On request: gfs-pod-service fetches proofs of delivery from carriers live.
   Out: Selector itself and its V4-Server-IE pre-advice files (system selector), the ECM pipeline after
-  raw_tracking.v1, selector-rest-proxy, gfs-pod-service, evri-auth-facade, the carrier-playground mocks.
+  raw_tracking.v1, selector-rest-proxy, gfs-smart-pod-service (disabled), the carrier-playground mocks.
 confluence: MPK 353468499 Carrier Services (children 353697822 Ingress, 353206337 Egress)
 created: 2026-11-06
