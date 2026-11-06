@@ -10,7 +10,7 @@ worktree: /home/hjf/code/fuse/tracking-service/.claude/worktrees/exempt-unquerie
 branch: hjf/exempt-unqueried-firestore-fields
 base: origin/main
 base_sha: b12d0a630
-pr: null
+pr: '18'
 tags:
 - waypoint
 - plan
