@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-06 — Add a mock InPost proxy at inpost.mocks.merak.freightops.dev
+
+Add a mock InPost proxy at inpost.mocks.merak.freightops.dev
+
+Ship: SHIP-1106-carrier-playground. Mirrors GitHub gfs-hybrid-services/inpost-proxy (prod Cloud Run, inpost.gfsdeliver.com) with its prod settings. Prod logging risks confirmed in source: LOG_CARRIER_PAYLOAD=true (TEMPORARY) logs full payloads to Datadog; the caller's ApiKy key on rejection; InPost Basic Authorization header on token failure. The mock logs none. Smoke green, Datadog clean. Smoke's InPost no-key check lost in merge, restored in the next PR.
+
+PR: ilg-merak/carrier-playground#10
+
 ## 2026-11-06 — Add a mock BJS proxy at bjs.mocks.merak.freightops.dev
 
 Add a mock BJS proxy at bjs.mocks.merak.freightops.dev
