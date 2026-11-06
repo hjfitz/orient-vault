@@ -1,0 +1,8 @@
+# carrier-integrations — Waypoint system index. Cheap orientation only, never documentation.
+# Members are NOT listed here: a service joins by declaring `system: carrier-integrations` in its
+# own waypoint.yaml, so there is one source of truth. `wp system status carrier-integrations` reads it.
+system: carrier-integrations
+owner: carrier-integrations
+purpose: >
+  TODO one or two lines: what this system is for, and what is out of scope.
+created: 2026-11-06
