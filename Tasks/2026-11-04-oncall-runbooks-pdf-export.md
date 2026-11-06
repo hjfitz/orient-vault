@@ -63,3 +63,6 @@ Built ilg-merak/carrier-playground PR #1: mock Royal Mail, UPS and Coll8 proxies
 
 ## 6 Nov: Carrier Proxies pages (MPK)
 Researched volumes, integration methods and uses (3 read-only agents, spot-checked), then wrote MPK 353697822 Carrier Proxies (what a proxy is, why, estate) with children 353566754 Carriers and Volumes, 353697842 Carrier Integration Methods, 353206310 Carrier Integration Uses. Corrections: Client4 has no outbound FTP (the "FTP" hits were ZeroLeftPad); pre-advice is V4-Server-IE over plain FTP. Owed: central-DB reads (per-carrier volumes, live IE jobs); connectors deep dive is next.
+
+## 6 Nov: tracking egress deep dive (connectors + webhooks)
+3 read-only agents, spot-checked in Datadog and gh. 15d: ~6.25M raw_tracking.v1 events; ~5.44M from 11 polling connectors (~142M carrier calls), ~215k from the Royal Mail webhook (only live publisher), ~54k from SFTP files. Evri webhook in monorepo since 15 Oct but shadow (CID-315 In Progress); RM and InPost monorepo PRs #3/#2 open. No pages written yet; proposal sent to Harry.
