@@ -1,9 +1,16 @@
 ---
-tags: [waypoint, connectors-yodel]
+tags:
+- waypoint
+- connectors-yodel
 title: connectors-yodel — overview
-thesis: "connectors-yodel is the polling tracking connector for Yodel. It runs on tracking-core's shared connector framework, and its new events reach raw_tracking.v1 through tracking-core's response-publisher."
+thesis: connectors-yodel is the polling tracking connector for Yodel. It runs on tracking-core's
+  shared connector framework, and its new events reach raw_tracking.v1 through tracking-core's
+  response-publisher.
 confidence: high
-verified: 2026-11-06
+verified: '2026-11-06'
+verified_paths:
+- src
+verified_sha: d8467ad
 ---
 # connectors-yodel — overview
 
