@@ -1,9 +1,16 @@
 ---
-tags: [waypoint, connectors-tuffnells]
+tags:
+- waypoint
+- connectors-tuffnells
 title: connectors-tuffnells — overview
-thesis: "connectors-tuffnells is the polling tracking connector for Tuffnells. It runs on tracking-core's shared connector framework, and its new events reach raw_tracking.v1 through tracking-core's response-publisher."
+thesis: connectors-tuffnells is the polling tracking connector for Tuffnells. It runs
+  on tracking-core's shared connector framework, and its new events reach raw_tracking.v1
+  through tracking-core's response-publisher.
 confidence: high
-verified: 2026-11-06
+verified: '2026-11-06'
+verified_paths:
+- src
+verified_sha: 3a97d2f
 ---
 # connectors-tuffnells — overview
 
