@@ -1,6 +1,8 @@
 ---
-tags: [waypoint, royal-mail-proxy]
-verified: 2026-11-06
+tags:
+- waypoint
+- royal-mail-proxy
+verified: '2026-11-06'
 ---
 # royal-mail-proxy — known context
 
