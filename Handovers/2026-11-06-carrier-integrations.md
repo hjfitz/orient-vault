@@ -117,7 +117,7 @@ None. All background agents finished (orient MCP fix, carrier-integrations onboa
 Checked 15:10Z:
 - **Has:** Claude 2.1.319, credentials present, auto mode on; MCP servers Atlassian, ado-local-mcp, ado-remote-mcp, datadog, fuse, github, orient, slack, snap and terraform. Atlassian and Datadog may need `/mcp` OAuth if not already signed in.
 - **Repos present:** `~/projects/orient`, `~/code/merak/carrier-playground`, `~/code/fuse/selector-adapter` (cloned now).
-- **Missing:** `~/code/apiky-survey/*` and `~/code/selector/*` (laptop only). **No Azure DevOps SSH access:** `git clone` of `globalfreightsolutions/GFS POD` was denied. Next up 1 doesn't need code.
+- **Missing:** `~/code/apiky-survey/*` and `~/code/selector/*` (laptop only). **No Azure DevOps SSH access:** `git clone` of `globalfreightsolutions/GFS POD` was denied. Next up 1 doesn't need code. **But** `ado-local-mcp` `repo_file` reads GFS POD on the VM (checked 6 Nov, session 9ef32451). `master` is at `269bec2`, while the docs are anchored at `811007e`. The API won't take short shas, so whether master has moved past the docs needs `git log` from the laptop.
 
 ## Gotchas
 - **Azure DevOps:** `git ls-remote` against a non-existent ADO repo hangs, so list repos with the ADO MCP instead. The `ado-local-mcp` org is `globalfreightsolutions`; the Selector repos live in `globalfreightsolutons-legacy`, which it can't reach.
