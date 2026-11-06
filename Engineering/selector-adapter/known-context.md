@@ -54,6 +54,14 @@ Decisions from Harry (2026-10-27) and facts that source can't give you. Claims m
 - **The canonical has no packages.** One package per order is a placeholder until a package model exists.
 - **No dead-letter policy.** An order that can never succeed retries until the 7-day retention lapses;
   prod needs tracking-service's DLT plus a `.dlt.sub` hold subscription.
+- **Fuse shipments reach billing only if the Selector site commits and uploads them.** The adapter
+  calls `ProcessShipment` only (`booker.go:24`), and leaves manifesting to Selector. Billing bills from
+  central Selector `SHIPMENTS` rows, which exist only after a commit and a Client4 upload from the
+  site's upload station. So each target site needs auto-commit (`AUTO_COMMIT`/`AC_TIME`) and
+  auto-upload on, and a running upload station. Nothing alerts when a booked shipment never reaches
+  billing. Check this per business before Delivery Backends takes real traffic. Parcel Portal commits
+  explicitly (`CommitShipments`), for comparison. Source: MPK *Legacy Selector - Day End and Billing
+  Handoff* (353566845), 2026-11-06.
 
 ## Unknowns
 
