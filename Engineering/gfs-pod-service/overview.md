@@ -13,7 +13,7 @@ verified: 2026-11-06
 
 ## Responsibility
 - Keeps its own copy of each shipment (carrier, consignment, parcels, address) from `shipments.v2.identified`, plus BJS tracking from `raw_tracking.v1` [1].
-- On request, fetches the POD from the carrier's API and normalises it per carrier, with signee, delivery time, GPS, images and comments [2].
+- On request, fetches the POD from the carrier's API and normalises it: signee, delivery time, GPS, images, comments [2].
 - Serves POD images and emails a POD on request through SendGrid.
 
 ## Why it exists separately
