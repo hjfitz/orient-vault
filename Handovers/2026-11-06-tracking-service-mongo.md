@@ -8,7 +8,7 @@ from: laptop
 to: hjf.shell.platform.ilg.software
 session_id: c36659b6-edee-4035-ab29-ffd89416a0e8
 resumed_by: "3aa25172-6c08-47b7-801e-82d3744ffce2"
-updated: 2026-11-06T15:22Z
+updated: 2026-11-06T15:44Z
 ---
 # Handover: tracking-service Firestore → MongoDB (group D)
 
@@ -94,4 +94,5 @@ Checked 2026-11-06 ~15:15Z on `hjf.shell.platform.ilg.software` (kernel 7.2.14):
 ## Closed since handover
 | When (UTC) | Work | Result |
 |---|---|---|
+| 2026-11-06 15:41 | D1 prod apply (run 42226342798) | **Success**, 14:34:18–15:40:40Z (66 min, ~7.4 min/field). All 9 fields at 0 indexes in `bifrost-prod-global1/tracking-service`; `stageTimes.despatched` inherits; `updatedAt` keeps 3. Prod serves `44734ac`; API reads 200. Evidence in the D1 plan (inc 3). **G3 soak started 15:40:40Z**, read no earlier than 2026-11-08T15:41Z (recorded on G3). Today's baseline also has a second burst: 486 at 11:20–11:22Z. Resumed on rc-hjf by session 3aa25172. |
 | 2026-11-06 15:15 | Dedupe verification (workflow wf_f7a34f8a-8de, 11 agents, every claim challenged by a skeptic) | **Live data:** 0 duplicate businessId + customerRef groups, 0 fallback-keyed docs and 0 businessId case variants, in dev and prod. **Code:** the doc id is a pure function of the normalised businessId + key, and nothing re-keys. **Latent:** splits via a missing ref, the Shopify raw `name` or replay edits (R14), and redrive's new messageId (R13). **Mongo:** 7 must-haves added to the D5 row, and hard-cut must-haves added to G9. Findings: `Handovers/2026-11-06-tracking-service-mongo.dedupe-findings.md`. |

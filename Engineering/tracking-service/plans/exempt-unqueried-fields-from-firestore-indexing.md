@@ -127,7 +127,10 @@ The leading hypothesis is an index write hotspot. Every copy rewrites indexed fi
 
 ### Not verified
 <!-- Stated, not papered over. "(none)" is a deliberate claim, and a fine one. -->
+> SUPERSEDED 2026-11-06 — AC 1 is verified in prod (Evidence, inc 3). Only AC 3 remains.
+
 - AC 1 in prod and AC 3 (the 48 h soak) — pending the prod apply and two days of bursts.
+- AC 3: the 48 h soak runs 2026-11-06T15:40:40Z → no earlier than 2026-11-08T15:41Z. Read it then against the baseline above; tick inc 3 only after.
 
 ## Decisions & deviations
 <!-- Date-stamped, newest first — written by `wp decide`, and by hand when that is easier.
