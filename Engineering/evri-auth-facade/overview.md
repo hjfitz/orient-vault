@@ -14,7 +14,8 @@ verified: 2026-11-06
 ## Responsibility
 - **`GET /token`** returns the current Evri access token (client-credentials, audience `client-tracking-api`). It fetches a new token from Evri's OAuth endpoint only when the cached one has expired [1].
 - **Cache:** first in memory, then in Redis (Upstash), with a TTL of 3,500 seconds. Over 15 days it served 1,347 token requests: 1,346 from memory, 1 from Redis, and 15 refreshes from Evri.
-- **A general proxy route** to Evri's API also exists, but is switched off in prod (`FEATURE_FLAG_EVRI_PROXY=false`).
+- **A general proxy route** to Evri's API also exists, but prod sets `FEATURE_FLAG_EVRI_PROXY=false`.
+- **Callers:** both Evri polling connectors point at `http://evri-auth-facade:3000/token` [2].
 
 ## Neighbours
 
