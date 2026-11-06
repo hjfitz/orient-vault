@@ -28,8 +28,10 @@ confidence: high
 | Ingress rewrite (dev only) | [[carrier-proxies]] | Cloud Run dev |
 | Polling engine | [[tracking-core]] | GKE, namespace fenghuang |
 | Polling connectors | `connectors-*`: amazon, dhlparcel, dpd (also DPD Local), hermes, hermesps, international, ups, dhlexpress, inpost, fedex, plus idle collectplus, panther, yodel, and switched-off hdnl, tuffnells | GKE, namespace fenghuang |
+| Connector support | [[evri-auth-facade]]: one cached Evri token for connectors-hermes and connectors-hermesps | GKE prod-uk1, from Azure DevOps |
 | Webhooks | [[tracking-webhooks]], [[tracking-webhook-royal-mail-sapient]] | Cloud Run |
 | Files | [[file-ingestion-ftp-proxy]], [[tracking-file-processor]] | GKE |
+| On-request POD | [[gfs-pod-service]]: API and subscriber, one module per carrier | GKE prod-uk1, from Azure DevOps project GFS POD |
 
 ## Neighbours
 
