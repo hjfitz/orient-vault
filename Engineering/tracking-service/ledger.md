@@ -6,6 +6,22 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-06 — Provision Atlas clusters for tracking-service
+
+Provision Atlas clusters for tracking-service
+
+D6: mongodbatlas M10 per env (termination protection in prod, backup + PIT, 8.0), readWrite user, connection string local for D7; Atlas keys via tf_var_extra_* in deploy, tf-plan and manual-deploy. No network resources: no Fuse Atlas stack declares any (project-level access); D7 must confirm Cloud Run egress is allowed. Draft; merge creates real clusters, plan to Harry first.
+
+PR: gfs-bifrost/tracking-service#19
+
+## 2026-11-06 — Run the store tests against every backend
+
+Run the store tests against every backend
+
+D3: portable store tests (firestore_*_test.go → store_*_test.go) run through an eachBackend factory against memory and the Firestore emulator; 13 live-counter stats cases gated by backend.liveCounters for D2's marks semantics. Memory passes every portable case. Emulator RUN count 161 → 307.
+
+PR: gfs-bifrost/tracking-service#20
+
 ## 2026-11-06 — Exempt unqueried fields from Firestore indexing
 
 Exempt unqueried fields from Firestore indexing
