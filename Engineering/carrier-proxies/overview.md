@@ -1,9 +1,16 @@
 ---
-tags: [waypoint, carrier-proxies]
+tags:
+- waypoint
+- carrier-proxies
 title: carrier-proxies — overview
-thesis: "carrier-proxies is the GitHub monorepo that rewrites GFS's UPS, OCS, Coll8 and Exelot proxies onto the shared api-host-framework, keeping success responses byte for byte. It runs in dev only: production still runs the Azure DevOps originals."
+thesis: 'carrier-proxies is the GitHub monorepo that rewrites GFS''s UPS, OCS, Coll8
+  and Exelot proxies onto the shared api-host-framework, keeping success responses
+  byte for byte. It runs in dev only: production still runs the Azure DevOps originals.'
 confidence: high
-verified: 2026-11-06
+verified: '2026-11-06'
+verified_paths:
+- apps
+verified_sha: a996061
 ---
 # carrier-proxies — overview
 
