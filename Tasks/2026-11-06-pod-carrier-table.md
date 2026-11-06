@@ -12,4 +12,5 @@ status: done
 - Added the same table to MPK 353206310 Carrier Integration Uses as v4.
 - Swapped ingress/egress to GFS's side: 353697822 is now Carrier Egress Services and 353206337 Carrier Ingress Services. Link text updated on 5 more pages, and the vault system docs updated.
 - New MPK page *Proof of Delivery Service* (353861642) under Ingress. The POD detail on the Uses page moved there.
+- Stored Harry's POD-at-ingress design as a kept Waypoint idea with a draft stub, `gfs-pod-service/plans/capture-pods-at-ingress-and-serve-them-from-a-st`. It's an idea only: carriers own the service.
 - Handover record: [[Handovers/2026-11-06-carrier-integrations]].
