@@ -116,6 +116,7 @@ Out-of-ticket.
             [x] confirmed
       gate: Harry signs off the hot-spot decision against the threshold
             [x] confirmed
+> SUPERSEDED 2026-11-06 — tracking-service moves to MongoDB with stats aggregated over per-record marks (programme Tracking Service, group D), which removes every shared counter write. Not built.
 - [ ] 4. **Conditional: fix the `_all_` hot spot** for stats and insights, both record types (AC 7). The design (sharded counter docs summed at read, or `_all_` computed on read from per-business docs) is chosen from inc 3's numbers.
   - Reason codes stay unsharded, because `reasonSlot`'s 50-per-day cap reads the doc.
   - If the counter layout changes, a human runs `recompute-stats` in prod (dry-run first, ingest held).
