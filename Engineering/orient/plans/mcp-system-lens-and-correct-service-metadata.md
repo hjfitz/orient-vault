@@ -116,6 +116,8 @@ stale flag.
      time. A decision worth defending in a review six months out belongs in a durable record
      instead — `wp decide --record`. -->
 
+- **2026-11-06** — Left active, not complete: the sole sign-off blocker is 2 uncommitted desk/gnome-extension paths owned by another session in this shared checkout (signoff has no path scope). Everything else passes (all 5 ACs and increments, diff vs ad04890ed reconciled, evidence filled, learning promoted, ledger written). Complete it with: wp plan set-status orient --plan mcp-system-lens-and-correct-service-metadata --status complete, once those desk edits are committed.
+
 - **2026-11-06** — Re-index ran as a one-off scratch sweep (watcher stopped, then restarted), not a schema rebuild: startup only catches up changed files and the backstop sweep is 6h. No migration or data loss: sidecar is a JSON column rewritten in place. Systems get no stale flag: wp doctor covers Engineering/ only and system docs carry no verified_sha.
 - 2026-11-06 — Planned without the Step 2 draft agent and Step 3 review trio. Harry asked for a proportionate plan for a small change. Factual grounding was done by reading the source directly, and history by grepping orient's design.md/ledger (no prior entry touches the sidecar merge or orient-entity).
 
