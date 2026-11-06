@@ -1,17 +1,21 @@
 ---
-ticket: "none"
-title: "MCP system lens and correct service metadata"
-service: "orient"
+ticket: none
+title: MCP system lens and correct service metadata
+service: orient
 status: draft
-created: "2026-11-06"
-updated: "2026-11-06"
-repo: "/home/hjf/projects/orient"
-worktree: "/home/hjf/projects/orient"
-branch: "master"
-base: "origin/master"
-base_sha: "ad04890ed"
-pr:
-tags: [waypoint, plan]
+created: '2026-11-06'
+updated: '2026-11-06'
+repo: /home/hjf/projects/orient
+worktree: /home/hjf/projects/orient
+branch: master
+base: origin/master
+base_sha: ad04890ed
+pr: null
+tags:
+- waypoint
+- plan
+impl_model: sonnet
+impl_effort: medium
 ---
 # none — MCP system lens and correct service metadata
 
