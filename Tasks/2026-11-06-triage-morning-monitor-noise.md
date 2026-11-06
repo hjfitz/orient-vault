@@ -16,3 +16,6 @@ Underlying error is Firestore commit RESOURCE_EXHAUSTED (536 = 536 InvalidArgume
 
 ## Programme
 Harry chose MongoDB (2026-11-06), superseding the 10-19 "stay on Firestore" call. Group D (D1–D13) added to Bifrost/Tracking Service Migration State with gates G3–G11 and risks R7–R12; counters plan inc 4 superseded. D1 stopgap plan drafted (`exempt-unqueried-fields-from-firestore-indexing`, worktree `hjf/exempt-unqueried-firestore-fields`). Spare worktree `hjf/tracking-service-mongo` reserved for D2+.
+
+## Handover
+Group D handed to the VM: [[Handovers/2026-11-06-tracking-service-mongo]]. D1–D4, D6 merged (#18–#23, #19); D1 prod apply + a97baca deploy in flight.
