@@ -17,6 +17,8 @@ confidence: high
 
 **Egress (carrier to GFS).** Three paths publish to one topic, `raw_tracking.v1`. Polling connectors on [[tracking-core]] carry about 5.44M events in 15 days. Webhooks carry about 215k (Royal Mail only). SFTP files carry about 54k (snapshot 2026-11-06).
 
+**On request (proof of delivery).** [[gfs-pod-service]] calls the carrier live when the portal, Connect API or Nexus asks for a POD: about 21k requests in 15 days.
+
 ## Members
 
 | Family | Services | Where they run |
