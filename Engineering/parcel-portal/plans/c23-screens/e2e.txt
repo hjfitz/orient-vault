@@ -1,0 +1,17 @@
+before before Dispatch: summaries 0, products cards 1, Save products 1, address form 1, address summary 0, Dispatch button 1
+before after Dispatch: summaries 2, products cards 2, Save products 1, address form 0, address summary 1, Dispatch button 0
+before summary positions (px from top): 204, 463
+before after reload: summaries 1, products cards 1, Save products 0, address form 0, address summary 1, Dispatch button 0
+before summary positions after reload: 204
+before console errors and warnings: error: Failed to load resource: the server responded with a status of 404 (Not Found)after before Dispatch: summaries 0, products cards 1, Save products 1, address form 1, address summary 0, Dispatch button 1
+after after Dispatch: summaries 1, products cards 1, Save products 0, address form 0, address summary 1, Dispatch button 0
+after summary positions (px from top): 252
+after after reload: summaries 1, products cards 1, Save products 0, address form 0, address summary 1, Dispatch button 0
+after summary positions after reload: 252
+after console errors and warnings: error: Failed to load resource: the server responded with a status of 404 (Not Found)pack-unfixed needs packing: summaries 0, packing panels 1, products cards 1, Save products 1, Dispatch button 0
+pack-unfixed after packing: summaries 0, packing panels 2, products cards 2, Save products 2, Dispatch button 1
+pack-unfixed after packing then Dispatch: summaries 2, packing panels 1, products cards 3, Save products 2, Dispatch button 0
+pack-unfixed after reload: summaries 1, packing panels 0, products cards 1, Save products 0, Dispatch button 0pack-fixed needs packing: summaries 0, packing panels 1, products cards 1, Save products 1, Dispatch button 0
+pack-fixed after packing: summaries 0, packing panels 1, products cards 1, Save products 1, Dispatch button 1
+pack-fixed after packing then Dispatch: summaries 1, packing panels 0, products cards 1, Save products 0, Dispatch button 0
+pack-fixed after reload: summaries 1, packing panels 0, products cards 1, Save products 0, Dispatch button 0

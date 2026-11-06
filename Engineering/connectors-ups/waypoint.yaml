@@ -1,0 +1,22 @@
+# connectors-ups — Waypoint index. Cheap orientation only, never documentation.
+# Every value is a fact, a path, or a command — never a sentence. Anything needing a sentence
+# belongs in a doc.
+service: connectors-ups
+system: carrier-integrations
+repo: /home/harry/code/apiky-survey/ado/connectors-ups
+ado: globalfreightsolutions/fenghuang/connectors-ups
+type: backend
+owner: ecm               # inferred, see Systems/carrier-integrations/known-context.md
+language: csharp
+framework: [.NET, Gfs.Fenghuang.Tracking.Core.Frameworks.Connector]
+deploy: k8s
+observability: datadog
+
+interfaces:
+  inbound: [grpc]
+  outbound: [tracking-core, ups-api]
+
+key_paths:
+  - src
+
+onboarded: 2026-11-06

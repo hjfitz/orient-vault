@@ -6,6 +6,78 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-06 — Keep a batch's results on screen when it empties the orders list
+
+Keep a batch's results on screen when it empties the orders list
+
+C24. orders/page.tsx rendered 'No orders match' in OrdersTable's place when the list was empty, so dispatching every order on a filtered page (all of Ready) unmounted the table on the refresh and lost its batch results, the only way to print a batch's labels (batch dispatch doesn't auto-print). OrdersTable is now always rendered with the empty message inside, one return with stable child slots (bar, cancel dialog, results, table|empty) so the results card isn't remounted (an early return remounted it, re-enabling an in-flight Print: duplicate labels risk), and keyed by the acting customer so its longer-lived state never crosses customers (fixes C25's batch half). Smoke test dispatches from the Ready list and expects the results to survive. Gotcha: React matches unkeyed children by index; a conditional early return that reorders siblings remounts the ones that moved.
+
+PR: ilg-merak/parcel-portal#112
+
+## 2026-11-06 — Show each panel once on an order's page: unique keys, one dispatch summary
+
+Show each panel once on an order's page: unique keys, one dispatch summary
+
+C23, wider than reported. PackingPanel and LinesPanel were sibling elements keyed by the same order id; React's keyed reconciliation (mapRemainingChildren keeps one fiber per key) never matched or deleted the earlier one, so every OrderForm re-render on the keyed path left a stale panel on screen: one products card per keystroke in an address field, doubled packing forms after packing, a live Save products on a dispatched order, 'Saved' never shown. Fixed with per-panel keys; the problems alert and file problem rows had the same class (svc repeats row/field/code) and now include the index. The dispatch summary had two owners (page.tsx after revalidatePath's refresh, DispatchPanel's own result): OrderForm now holds the dispatched shipment and shows one ShipmentSummary for it or the server's copy. Smoke test asserts one products card after editing City (fails on main, passes now). Gotcha: production React prints no duplicate-key warning; only the dev build does. Follow-ups from the sweep are in Migration State.
+
+PR: ilg-merak/parcel-portal#111
+
+## 2026-11-06 — Show labels as a thermal bench will print them before printing
+
+Show labels as a thermal bench will print them before printing
+
+C22 increment 3. At a ZPL/EPL bench (or the demo printer) the Preview dialog draws each PDF page in the 1-bit dots the printer gets at the browser's DPI (pager, one-pixel-per-dot zoom, As supplied tab), and its Print sends exactly those bitmaps (label-print 0.3.0 printBitmaps; printPdf = render + printBitmaps, bytes pinned by SHA-256 from 0.2.1). renderPdfToBitmaps gained onPage (errors pass through unwrapped) and signal (the dialog aborts drawing on close). Review fixes: the print-dialog fallback prints a frame only once its PDF has loaded and only once; leaving the PDF drops a waiting print. Demo panel no longer downscales nearest-neighbour, which had dropped thin strokes ('PRFVIFW') and wrongly implicated the rasteriser: no threshold tuning needed. Gotcha for e2e: a blob PDF loads before Playwright's next click, so load-order races need a test-page shim that re-dispatches a fresh load event (Chrome clears a dispatched event's target).
+
+PR: ilg-merak/parcel-portal#110
+
+## 2026-11-06 — Rasterise PDF labels with pdf.js's legacy build, which runs on older Chrome
+
+Rasterise PDF labels with pdf.js's legacy build, which runs on older Chrome
+
+label-print 0.2.1: loadPdfjs imports pdfjs-dist/legacy/build/pdf.mjs + legacy worker. pdfjs-dist 6.4.299's modern build needs Uint8Array.prototype.toHex and Map.prototype.getOrInsertComputed; without them (Chromium 131 and 141) a PDF label at a thermal bench couldn't be rasterised and silent printing fell back with render_failed. Verified locally on both Chromium versions: 2 labels to the demo printer. Separate finding: 1-bit rendering at 203 dpi drops thin strokes in small text (threshold may need tuning).
+
+PR: ilg-merak/parcel-portal#109
+
+## 2026-11-06 — Split silent printing into finding the bench printer and sending
+
+Split silent printing into finding the bench printer and sending
+
+C22 increment 2, no behaviour change. print-labels.ts: silentPrinter() (bench, narrowed PrinterLanguage, target, demo, dpi — or the fallback reason, fetching nothing) + sendLabels(). Same check order, same parallel bench+USB lookups. Verified locally: ZPL one-click bytes identical, auto-print after dispatch toast, not_paired fallback tab. Found: pdfjs-dist 6.4.299's modern build needs Uint8Array.prototype.toHex and Map.prototype.getOrInsertComputed, so PDF rasterising fails (render_failed → dialog) on Chromium 131/141; fix via the legacy build in a separate PR.
+
+PR: ilg-merak/parcel-portal#108
+
+## 2026-11-06 — Send the carrier's ZPL to the printer as bytes, not text
+
+Send the carrier's ZPL to the printer as bytes, not text
+
+C22 increment 4. The UI's silent ZPL print read res.text() (UTF-8) and printZpl re-encoded it, so non-UTF-8 bytes under a carrier's ^CI (accents, ^GFB graphics) reached the printer as U+FFFD. label-print 0.2.0: printZpl takes Uint8Array/ArrayBuffer and sends bytes as given, counting labels via Latin-1; UI passes res.arrayBuffer(). Local e2e: demo printer job bytes identical to the label route (493 B). apps/ui lockfile doesn't pin the file: label-print version, so bumping it needs no lockfile commit.
+
+PR: ilg-merak/parcel-portal#107
+
+## 2026-11-06 — Show labels before printing: on the shipment page, and Preview beside each Print
+
+Show labels before printing: on the shipment page, and Preview beside each Print
+
+C22 increment 1. Shipment page shows its labels inline (PDF in an iframe); Preview (src/printing/label-preview.tsx) beside the order summary, Shipments and batch-results print buttons opens a shadcn Dialog with Print/Download; nothing fetched until opened; one-click print and post-dispatch auto-print untouched. printLabels gains a fallback option so the dialog never opens a tab. print-frame.tsx moved to src/printing and split into useLabels/LabelFrame/PrintFrame (also: a non-PDF 200 such as a sign-in page is now an error). Gotcha: headless Chromium's PDF viewer lays a label out wider than a narrow iframe, so the dialog is sm:max-w-6xl. Local e2e (fake carrier, Playwright container) screenshots in plans/c22-screens.
+
+PR: ilg-merak/parcel-portal#106
+
+## 2026-11-06 — Forward only the customer API's declared routes, not all of /v1
+
+Forward only the customer API's declared routes, not all of /v1
+
+Harry: be declarative about gateway routes, not a /v1 wildcard. internal/gateway/gateway.go now has an unexported routes list (POST /v1/order-files, GET /v1/order-files/{orderFileId}, POST /v1/orders) registered by method+path on the mux; any other /v1 path or method is the gateway's JSON 404. TestTheRoutesAreThePublicContractsOperations holds routes equal to public-openapi.yaml's operations (via publicapi.GetSpec), so a new customer API operation must be added to both. forwardable() stays as a second guard (an encoded .. in {orderFileId}). svc's APIKey group is unchanged.
+
+PR: ilg-merak/parcel-portal#105
+
+## 2026-11-05 — Fix what the dev check of the Parcel dashboard and monitors found
+
+Fix what the dev check of the Parcel dashboard and monitors found
+
+Follow-up to #102 after a verification workflow plus critic on dev. SFTP statsd series now carry instance: (two hosts overwrote one untagged series). Dashboard: instances sum instance_count, p95 tile aggregator percentile, canary bars .rollup(sum) (gcp.logging.user.* metrics are untyped in Datadog, so .as_count() is a no-op), 5xx tiles read gcp.run.request_count, admin list +4 events, canary _canary/ lines excluded. Monitors: SFTP unhealthy counts previous_state:healthy only; new stuck-rollout monitor on !previous_state:healthy > 4/30m; canary message points at Cloud Logging (the job has no agent). Logs: Import finished uses importSource (a second source key overrode source:go). A gateway hang-up reclassification was tried and reverted in review: callers timing out on a slow svc are the forward-failed monitor's only slowness signal; its message now explains `context canceled` instead. Also removes ILG dual-shipping (third commit; Harry 6 Nov: "we don't need the ilg api key for datadog"): DATADOG_API_KEY_ILG held a GFS-org key, so every log line landed twice in the GFS org. Parcel ships to the GFS org only now.
+
+PR: ilg-merak/parcel-portal#104
+
 ## 2026-11-05 — Let the UI write Next's prerender cache
 
 Let the UI write Next's prerender cache

@@ -1,0 +1,26 @@
+# file-ingestion-ftp-proxy — Waypoint index. Cheap orientation only, never documentation.
+# Every value is a fact, a path, or a command — never a sentence. Anything needing a sentence
+# belongs in a doc.
+service: file-ingestion-ftp-proxy
+system: carrier-integrations
+repo: /home/harry/code/apiky-survey/ado/fenghuang-ftp-proxy
+ado: globalfreightsolutions/fenghuang/fenghuang-ftp-proxy
+type: backend
+owner: ecm               # inferred, see Systems/carrier-integrations/known-context.md
+language: javascript
+framework: [express]
+deploy: k8s
+observability: datadog
+
+interfaces:
+  inbound: [cron]
+  outbound: [carrier-sftp, gcs, file_tracking.v1]
+
+key_paths:
+  - index.js
+  - README.md
+
+note: >
+  Deployed as CronJob file-ingestion-ftp-proxy (every 20 minutes) from image fenghuang-ftp-proxy. Its README still says the project is being archived.
+
+onboarded: 2026-11-06

@@ -4,9 +4,9 @@ title: Stop republished copies contending on the shared stats docs
 service: tracking-service
 status: active
 created: '2026-10-19'
-updated: '2026-10-19'
-repo: /home/hjf/code/fuse/tracking-service
-worktree: /home/hjf/code/fuse/tracking-service/.claude/worktrees/skip-identical-republishes
+updated: '2026-11-06'
+repo: /home/harry/code/fuse/tracking-service
+worktree: /home/harry/code/fuse/tracking-service/.claude/worktrees/skip-identical-republishes
 branch: hjf/skip-identical-republishes
 base: origin/main
 base_sha: 6f6259620
@@ -116,6 +116,7 @@ Out-of-ticket.
             [x] confirmed
       gate: Harry signs off the hot-spot decision against the threshold
             [x] confirmed
+> SUPERSEDED 2026-11-06 — tracking-service moves to MongoDB with stats aggregated over per-record marks (programme Tracking Service, group D), which removes every shared counter write. Not built.
 - [ ] 4. **Conditional: fix the `_all_` hot spot** for stats and insights, both record types (AC 7). The design (sharded counter docs summed at read, or `_all_` computed on read from per-business docs) is chosen from inc 3's numbers.
   - Reason codes stay unsharded, because `reasonSlot`'s 50-per-day cap reads the doc.
   - If the counter layout changes, a human runs `recompute-stats` in prod (dry-run first, ingest held).
@@ -219,6 +220,8 @@ Out-of-ticket.
      the plan in the same increment and record the correction here. Legitimately empty at plan
      time. A decision worth defending in a review six months out belongs in a durable record
      instead — `wp decide --record`. -->
+
+- **2026-11-06 (Harry)** — Inc 4 superseded, not built: persistence moves to MongoDB with stats aggregated over per-record marks (Tracking Service programme group D, 2026-11-06), which removes the shared-counter writes it existed to relieve. AC 7's bar (served stats identical, recompute agrees) carries into D9/D10 parity.
 
 - **2026-10-19** — Inc 3 decision (agent, delegated by Harry): fix needed before 6x, not urgent today. Genuine (non-copy) commits cap at ~40/s on the shared businesses/stats docs; today's peak is ~8/s (5x headroom), 6x reaches ~46/s in the peak minute. Do inc 4 before PURDYFIGG's full move. Inc 4 is a counter-layout change, a new storage pattern for this service, so it goes through its own design review rather than straight in. Second finding: at 6x the copies path itself showed ~0.4 s average commit (fresh database, one business's sequential keys and lastSeenAt index, possibly a fresh-DB artifact). The deferred zero-write skip is the fix if it recurs in prod.
 

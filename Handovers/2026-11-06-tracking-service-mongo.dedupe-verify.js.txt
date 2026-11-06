@@ -1,0 +1,164 @@
+export const meta = {
+  name: 'tracking-dedupe-verify',
+  description: 'Verify tracking-service never duplicates a record for a businessId + customer ref, in code, in live data, and in the Mongo design',
+  phases: [
+    { title: 'Investigate', detail: 'identity code paths, message dedupe, live data scan, Mongo design' },
+    { title: 'Challenge', detail: 'skeptics try to refute guarantees and confirm risks' },
+    { title: 'Critic', detail: 'what was not checked' },
+  ],
+}
+
+const SRC = '/home/harry/code/fuse/tracking-service/.claude/worktrees/exempt-unqueried-firestore-fields'
+const SCRATCH = '/tmp/claude-1000/-home-hjf/c36659b6-edee-4035-ab29-ffd89416a0e8/scratchpad/dedupe'
+const COMMON = `
+Context: tracking-service (Go, ${SRC}/apps/api; current main) folds Pub/Sub events into one record per order in Firestore and is about to move to MongoDB.
+Harry's rule: **businessId + customer reference is the unique key** for a shipment (returns: businessId + RGA number).
+The service subscribes BEFORE the deduper (create_record_request) as well as after it (create_record, create_acknowledge, confirmations), so it sees every resend.
+READ-ONLY: do not edit, commit, push, or write to any database. Cite file:line for every code claim.
+Mongo design under review (not built yet): documents keep today's doc id as _id; every write is one multi-document transaction over a single record's docs (record, event doc, marks); a new "seen" collection holds every applied Pub/Sub messageId (copies included) under a unique key with an 8-day TTL; the cutover is a hard cut (prod ingest held so Firestore stops changing, import with an idempotent upsert on _id, parity, flip STORE, release the hold), with rollback subscriptions created before the hold.`
+
+const FINDINGS = {
+  type: 'object',
+  properties: {
+    lens: { type: 'string' },
+    claims: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          id: { type: 'string', description: 'short slug, unique within this lens' },
+          claim: { type: 'string', description: 'one sentence' },
+          status: { type: 'string', enum: ['holds', 'broken', 'risk'] },
+          severity: { type: 'string', enum: ['high', 'medium', 'low'] },
+          evidence: { type: 'string', description: 'file:line citations or query results' },
+          scenario: { type: 'string', description: 'for broken/risk: the concrete input that produces a duplicate or a lost record' },
+        },
+        required: ['id', 'claim', 'status', 'severity', 'evidence'],
+      },
+    },
+    numbers: { type: 'string', description: 'data lens only: counts found, else empty' },
+  },
+  required: ['lens', 'claims'],
+}
+
+const LENSES = [
+  {
+    key: 'shipment-identity',
+    prompt: `${COMMON}
+
+Lens: SHIPMENT IDENTITY. Prove or disprove: every message that refers to the same order (same businessId + customer ref) lands in exactly one shipment document, and no message can create a second document for an order that already has one.
+Read core/extract.go, core/snapid.go, the ingest path (core/ingest.go), decode, and how the doc id is built ({BUSINESSID}__{base64url(key)}).
+Hunt specifically for:
+- normalisation gaps: case, whitespace, unicode, leading '#' (Shopify order names), businessId casing or aliases;
+- the fallback keys (~SO:{salesOrder}, then ~SNAP:{snapShipmentId}) used when the customer ref is missing. Can one order end up under a fallback key on one message and under its customer ref on another, giving two docs? Is there any re-keying or merge?
+- confirmations (pick/pack/goods-out, ready/made/failure) and failures from fapi, sftp-connector, snap-adapter and shopify-connector: do they all resolve to the same key as the create?
+- create_record_request vs create_record vs create_acknowledge for the same order.
+Report each as holds/broken/risk.`,
+  },
+  {
+    key: 'return-identity',
+    prompt: `${COMMON}
+
+Lens: RETURN IDENTITY. Same question for returns: businessId + RGA number → one return document. Read core/returns_*.go and the store return paths.
+Also check the return → shipment link: can linking create or duplicate a shipment, or attach to the wrong one?
+Check the fallbacks when the RGA number is missing.`,
+  },
+  {
+    key: 'message-dedupe',
+    prompt: `${COMMON}
+
+Lens: MESSAGE-LEVEL DEDUPE INSIDE A RECORD. Map every mechanism that stops a message being applied twice:
+- event doc id = messageId, or messageId-i for bulk and wrapped failures; Apply is a no-op when it exists;
+- content-hash dedupe groups for republished copies (core/dedupe.go), Timeline.CountedIDs capped at 64, maxSeenPerGroup;
+- the transaction boundary in store/firestore.go Apply.
+Answer:
+- (a) What exactly is deduped, and on what key?
+- (b) The same order arriving on create_record_request (pre-deduper) AND create_record (post-deduper): are those different messageIds folded into one record without double counting?
+- (c) Every path where a redelivery or a replay (redrive, a backlog drained after a hold, the import) could double count. Does the proposed "seen" collection (every messageId, unique, 8-day TTL) close each one? Does Pub/Sub's 7-day retention make 8 days sufficient? What about cmd/redrive replaying from a DLT hold sub (also 7-day)?
+- (d) Can the seen collection itself cause a LOST update? For example, a messageId recorded as seen in a transaction that then aborts, or bulk messageId-i items.`,
+  },
+  {
+    key: 'live-data',
+    prompt: `${COMMON}
+
+Lens: LIVE DATA, read-only. Check whether the identity rule already holds in the stored data, in BOTH dev (project bifrost-dev-global1) and prod (project bifrost-prod-global1). The Firestore database is named "tracking-service", with collections "shipments" and "returns".
+Use the Firestore REST API runQuery with a select/fieldMask, so you fetch only these fields:
+- shipments: id, businessId, key, keySource, customerRefNorm, salesOrderNorm, snapShipmentId, createdAt;
+- returns: id, businessId, key, keySource, rgaNumberNorm.
+Page through all documents with an access token from \`gcloud auth print-access-token\`. Write any helper script under ${SCRATCH}/ (mkdir it) and run Python with -I.
+Report:
+- (1) document counts by keySource, per env;
+- (2) any two documents with the same businessId + customerRefNorm (non-empty), and the same for returns with rgaNumberNorm. These must be zero;
+- (3) "split identity": a fallback-keyed doc (~SO: or ~SNAP:) whose salesOrderNorm or snapShipmentId also appears on a customerRef-keyed doc of the same business;
+- (4) any businessId that differs only in case or whitespace from another.
+Output counts and document ids only. NEVER print customer names, addresses or payloads. Strictly read-only: no writes, no deletes, no index changes.`,
+  },
+  {
+    key: 'mongo-design',
+    prompt: `${COMMON}
+
+Lens: MONGO ENFORCEMENT. Given the design above, specify what the Mongo store and cmd/import-mongo must do so that a duplicate for a businessId + customer ref is impossible at the DATABASE level, not just in code.
+- _id semantics.
+- Candidate unique indexes: e.g. a partial unique index on {businessId, customerRefNorm} where keySource is the customer-ref source. Read the code for the real keySource values and field names (store/firestore.go fsShipment, firestore_returns.go).
+- The seen collection's key: {_id: messageId}, or {recordId, messageId}? Consider whether the same messageId can legitimately apply to two records: bulk items messageId-i, and a return's write that also touches its linked shipment.
+- Import upsert semantics: replace vs upsert, and how a re-run stays idempotent.
+- How the hard cut interacts with all of this.
+Also say whether each enforcement would reject any document the live data lens might find today (fallback keys, empty refs).
+Report the concrete index specs and failure behaviour as 'holds' claims (design guarantees) or 'risk' claims (gaps).`,
+  },
+]
+
+phase('Investigate')
+const results = await pipeline(
+  LENSES,
+  (l) => agent(l.prompt, { label: `investigate:${l.key}`, phase: 'Investigate', schema: FINDINGS }),
+  async (r, l) => {
+    if (!r) return null
+    const toCheck = r.claims.filter(c => c.status !== 'holds' || c.severity === 'high')
+    if (toCheck.length === 0) return { lens: l.key, result: r, verdicts: [] }
+    const v = await agent(`${COMMON}
+
+You are a SKEPTIC. Another reviewer made the claims below about tracking-service deduplication (lens: ${l.key}). For EACH claim, try to refute it by reading the code (or, for data claims, by checking how the numbers were derived; a re-query is fine, read-only). Default to "refuted" only with evidence; default to "unverified" when you cannot check.
+- For a "holds" claim, look for a counterexample input that breaks the guarantee.
+- For a "broken" or "risk" claim, check that the scenario really reproduces and isn't already prevented elsewhere.
+
+Claims:
+${JSON.stringify(toCheck, null, 1)}`, {
+      label: `challenge:${l.key}`,
+      phase: 'Challenge',
+      schema: {
+        type: 'object',
+        properties: {
+          verdicts: {
+            type: 'array',
+            items: {
+              type: 'object',
+              properties: {
+                id: { type: 'string' },
+                verdict: { type: 'string', enum: ['confirmed', 'refuted', 'unverified'] },
+                reason: { type: 'string' },
+              },
+              required: ['id', 'verdict', 'reason'],
+            },
+          },
+        },
+        required: ['verdicts'],
+      },
+    })
+    return { lens: l.key, result: r, verdicts: v ? v.verdicts : [] }
+  },
+)
+
+const done = results.filter(Boolean)
+const dropped = LENSES.map(l => l.key).filter(k => !done.find(d => d.lens === k))
+if (dropped.length) log(`lenses with no result: ${dropped.join(', ')}`)
+
+phase('Critic')
+const critic = await agent(`${COMMON}
+
+You are the COMPLETENESS CRITIC for a dedupe verification of tracking-service. Below are the findings and skeptic verdicts from five lenses. Don't repeat them. List only what was NOT checked that could still produce a duplicate record for a businessId + customer ref, or a double-counted event, during normal running or during the Mongo hard-cut migration. For example: a producer path no lens read, a store method that writes without the identity function (notes, refresh, backfills, redrive), concurrency between two first-creates, or clock and ordering assumptions. For each gap, give the file or path to read and why it matters. If you can check a gap cheaply, read-only, do so and say what you found. Be terse.
+
+Findings:
+${JSON.stringify(done, null, 1).slice(0, 60000)}`, { label: 'critic', phase: 'Critic' })
+
+return { lenses: done, critic }

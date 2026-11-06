@@ -7,6 +7,14 @@ title: core-infra — work ledger
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-06 — Record ilg-merak's merak.<domain> DNS namespace
+
+Record ilg-merak's merak.<domain> DNS namespace
+
+Comment-only: ilg-merak's DNS-writer entries in iac/env/{dev,prod}.tfvars now list *.merak.<domain> alongside *.delivery.<domain> (first use: <carrier>.mocks.merak.freightops.dev, ilg-merak/carrier-playground#2). Dev applied 0/0/0; prod plan No changes, apply-prod left at the terraform-prod gate (run 42211892488).
+
+PR: ilg-platform/core-infra#18
+
 ## 2026-09-21 — FUSE-1194
 
 Provision the GCS bucket for stock sync export files

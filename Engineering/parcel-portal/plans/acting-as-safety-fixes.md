@@ -35,6 +35,7 @@ impl_effort: high
 
      One marker, always above, never inside. `wp decide` writes the dated entry in
      `## Decisions & deviations` that explains why. -->
+- 2026-11-06 — Browser checks for increments 5–8 can run on the local harness (local svc on a fresh database, the built UI, and the Playwright container), not only dev. This machine can't sign in to dev, and the smoke login still lacks `DEV_SMOKE_ADMIN_EMAIL`. The gates on 6–8 stay until Harry says otherwise.
 
 ## Intent
 <!-- What we are changing and why. Link the ticket. -->
@@ -149,7 +150,7 @@ That's eight increments, one over the guide's seven. Harry's 5 Nov answer added 
     - the export CSV returns 409 with no body;
     - a table over AC 7's ten: each returns 409 with a mismatched header and changes nothing (the order's or shipment's status and version are as before, and the fake carrier records no call); with a matching header each succeeds;
     - each request with a matching header succeeds.
-- [ ] 5. UI: error pages. A shared panel for `app/error.tsx` (errors in `(app)/layout.tsx`) and `app/(app)/error.tsx` (page errors), with the digest as a reference, Try again, Back to GFS (`actAsAction(null)` then a hard navigation) and Sign out. `signOutAction` retries `signOut` once after 1 s, then logs and still clears both cookies; `redirect()` stays outside every try (AC 3) — verify:
+- [x] 5. UI: error pages. A shared panel for `app/error.tsx` (errors in `(app)/layout.tsx`) and `app/(app)/error.tsx` (page errors), with the digest as a reference, Try again, Back to GFS (`actAsAction(null)` then a hard navigation) and Sign out. `signOutAction` retries `signOut` once after 1 s, then logs and still clears both cookies; `redirect()` stays outside every try (AC 3) — verify: — local browser check 6 Nov: stale cookie shows the panel; Back to GFS and Sign out work (c19-screens) — done: 8748900
   - biome, `build:check` and `build`, in CI;
   - on today's dev, a branch deploy where DevTools sets `pp_acting_tenant` to a random UUID shows the panel instead of "Application error", and both Sign out and Back to GFS work;
   - capture a screenshot through `acting.spec.ts` when its gate is open.
@@ -203,6 +204,7 @@ That's eight increments, one over the guide's seven. Harry's 5 Nov answer added 
 ### Evidence
 <!-- Newest first, dated. One bullet per check actually run, opening with what it discharges.
      "Suite green" alone is not evidence. Sign-off requires at least one dated bullet here. -->
+- 2026-11-06 [inc 5] **Browser check, done locally** (svc on a fresh database plus the built UI; Playwright 1.49.1 in its official container) because this machine can't sign in to dev. Signed in as the GFS admin with `pp_acting_tenant` set to a random UUID, `/orders` shows the error panel (`error-panel`; no "Application error"), with Try again, Back to GFS and Sign out (`c19-screens/5-error-panel.png`). Back to GFS lands on `/orders` with the acting cookie cleared and no panel. Sign out reaches `/sign-in` with no `pp_*` cookies left.
 - 2026-11-05 [inc 5] PR 2 (#101) merged as `8748900`. Biome is clean locally. CI is green on `3f61cef` (31 checks, including the UI's lint, `build:check` and `build`). review-panel: security had no findings; the frontend's three findings (one main landmark, no sign-out on `/sign-in`, buttons disabled while leaving) are fixed. ui `terraform-apply-dev` succeeded and `ui-parcel-dev` runs `dev-8748900`. `/sign-in` is 200, and `/orders` without a session is 307 to `/sign-in`, as before. The increment stays unticked until the browser check below is done.
 - 2026-11-05 [inc 1–4] PR 1 merged as `bf161a5` (#100). svc `terraform-apply-dev` succeeded and `svc-parcel-dev` runs `dev-bf161a5`. Datadog shows the revision serving (`version: bf161a5`, `/health/readiness` 200 at 12:25Z). Review-panel fixes are in. CI is green (32 checks).
 - 2026-11-05 [inc 1–4] `make check` (fmt, vet, race, golangci-lint 0 issues, gen-check), the integration suite against local Postgres, and contract-check (5.8.0 → 5.9.0, no breaking changes) all pass on `hjf/acting-safety` after merging main.

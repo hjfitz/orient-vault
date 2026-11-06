@@ -1,0 +1,29 @@
+# royal-mail-proxy — Waypoint index. Cheap orientation only, never documentation.
+# Every value is a fact, a path, or a command — never a sentence. Anything needing a sentence
+# belongs in a doc.
+service: royal-mail-proxy
+system: carrier-integrations
+repo: /home/harry/code/apiky-survey/ado/gfs-royal-mail-proxy
+ado: globalfreightsolutions/GFS Royal Mail Intergration/gfs-royal-mail-proxy
+type: backend
+owner: carrier-integrations               # inferred, see Systems/carrier-integrations/known-context.md
+language: javascript
+framework: [express, openapi-backend, mongodb]
+deploy: k8s
+observability: datadog
+
+interfaces:
+  inbound: [http]
+  outbound: [apiky, royal-mail-sapient, mongodb]
+
+key_paths:
+  - index.js
+  - api/royalmail-integration-api.yaml
+  - src/integrations/royalmail-integration.js
+  - src/services/royalmail-service.js
+  - src/stores/royalmail-mongo.js
+
+note: >
+  Log messages name the wrong operation: 'Incoming request received' is create-label, 'Incoming create label request received' is manifest.
+
+onboarded: 2026-11-06

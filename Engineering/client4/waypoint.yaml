@@ -1,0 +1,36 @@
+# client4 — Waypoint index. Cheap orientation only, never documentation.
+# Every value is a fact, a path, or a command — never a sentence. Anything needing a sentence
+# belongs in a doc.
+service: client4
+system: selector
+repo: /home/harry/code/selector/V4
+ado: globalfreightsolutons-legacy/Legacy GFS Ticketing/V4
+type: frontend           # Windows desktop app
+owner: jez-poppleton
+language: delphi
+framework: [delphi 7 (vcl), interbase express (ibx), devexpress cx grids, soap (thttprio)]
+deploy: n/a              # desktop install on hosted GCP VMs and standalone customer PCs; updates via Manager Versions + updUtil
+observability: none
+
+interfaces:
+  inbound: [desktop-ui, firebird-events, file-import]
+  outbound: [site-firebird, upload-server-soap, carrier-apis]
+
+key_paths:
+  - Client/Client.Alpha/GFSClient4.dpr
+  - Client/Client.Alpha/dmClient.pas
+  - Client/Client.Alpha/uSoapUpload.pas
+  - Client/Client.Alpha/gfsUploadServer.pas
+  - Client/Client.Alpha/Carriers
+  - Client/Client.Alpha/fmMain.pas
+
+commands:
+  build: "Delphi 7 IDE, open Client/Client.Alpha/GFSClient4.dpr (Windows only)"
+  missing: [lint, build:check, build:check:tests, test]   # no CI, no tests
+
+note: >
+  The repo is named V4 but only Client/ is live code; Server/* are stubs pointing at the
+  V4-Server-* repos. Client/ also holds BackupApp, BackupRestore, DailyPassword, UpdateUtil
+  and ExportData side tools.
+
+onboarded: 2026-11-05

@@ -1,0 +1,12 @@
+# selector — Waypoint system index. Cheap orientation only, never documentation.
+# Members are NOT listed here: a service joins by declaring `system: selector` in its
+# own waypoint.yaml, so there is one source of truth. `wp system status selector` reads it.
+system: selector
+owner: jez-poppleton
+purpose: >
+  GFS's legacy shipping system: one site-local install per customer (Client4 desktop app plus
+  the CSS SOAP service over a local Firebird GFS.FDB) that rates, labels, manifests and uploads
+  shipments to GFS. Out: the central V4-Server-* estate, the carrier proxies, selector-rest-proxy.
+  Part of Merak's output is to replace it.
+confluence: MPK space, Legacy Selector (page 351764483 and children)
+created: 2026-11-05

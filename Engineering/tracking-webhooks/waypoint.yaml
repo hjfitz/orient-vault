@@ -1,0 +1,28 @@
+# tracking-webhooks — Waypoint index. Cheap orientation only, never documentation.
+# Every value is a fact, a path, or a command — never a sentence. Anything needing a sentence
+# belongs in a doc.
+service: tracking-webhooks
+system: carrier-integrations
+repo: /home/harry/code/apiky-survey/gh/gfs-hybrid-services_tracking-webhooks
+github: gfs-hybrid-services/tracking-webhooks
+type: backend
+owner: carrier-integrations               # inferred, see Systems/carrier-integrations/known-context.md
+language: typescript
+framework: [express, pnpm monorepo]
+deploy: cloud-run
+observability: datadog
+
+interfaces:
+  inbound: [webhook, pubsub]
+  outbound: [raw_tracking.v1, mongodb]
+
+key_paths:
+  - monorepoplan.md
+  - packages/tracking-webhook-core
+  - apps/evri
+  - iac/modules/tracking-webhook
+
+note: >
+  Evri deploys from here (shadow, publish off). InPost (PR #2) and the Royal Mail import (PR #3) are open.
+
+onboarded: 2026-11-06

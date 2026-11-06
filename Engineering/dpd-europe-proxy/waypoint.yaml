@@ -1,0 +1,25 @@
+# dpd-europe-proxy — Waypoint index. Cheap orientation only, never documentation.
+# Every value is a fact, a path, or a command — never a sentence. Anything needing a sentence
+# belongs in a doc.
+service: dpd-europe-proxy
+system: carrier-integrations
+repo: /home/harry/code/apiky-survey/ado/dpd-europe-proxy
+ado: globalfreightsolutions/GFS DPD-Europe Integration/dpd-europe-proxy
+type: backend
+owner: carrier-integrations               # inferred, see Systems/carrier-integrations/known-context.md
+language: javascript
+framework: [strong-soap, mongodb]
+deploy: k8s
+observability: datadog
+
+interfaces:
+  inbound: [http]
+  outbound: [apiky, dpd-de-soap, dpd-nl-soap, mongodb, kms]
+
+key_paths:
+  - src/controllers/Labelling.js
+
+note: >
+  REST to Selector, SOAP to DPD DE and NL. All prod calls fail validation.
+
+onboarded: 2026-11-06

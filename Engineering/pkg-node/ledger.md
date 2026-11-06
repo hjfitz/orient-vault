@@ -7,37 +7,13 @@ title: pkg-node — work ledger
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
-## 2026-11-05 — @gfs-bifrost/resilience 0.2.0: timeout semaphore, token bucket, host key and breaker gating
+## 2026-11-06 — Dispatch pkg-node-published to pkg-go after a publish
 
-@gfs-bifrost/resilience 0.2.0: timeout semaphore, token bucket, host key and breaker gating
+Dispatch pkg-node-published to pkg-go after a publish
 
-Programme units N1-N5. Additive 0.2.0: Semaphore acquire timeout, TokenBucket, normalizeHostKey, PerHostCircuitBreaker halfOpenAfterMs/countsAsSuccess/tryAdmit/state/snapshot/onStateChange. snap 0.4.2 refreezes its resilience dependency.
+The publish template now also sends pkg-node-published to gfs-bifrost/pkg-go (its own Renovate-app token, continue-on-error), so pkg-go's Regenerate workflow releases the Go modules generated from audit/snap/types on every publish. Ship: SHIP-1105-go-regenerate-pipeline
 
-PR: gfs-bifrost/pkg-node#302
-
-## 2026-11-05 — Add withConnectorSchema to remote-config and release 2.6.0
-
-Add withConnectorSchema to remote-config and release 2.6.0
-
-Stack A PR 2 (increment 3). Caller-supplied connector schema for getConnector, backlinks and the mapping handler's connector read, with cached connectors validated and refetched on failure; generic over ConnectorLike. Release gate: fapi, shopify-connector and shopify-egress-service type-check and pass their suites on the packed 2.6.0.
-
-PR: gfs-bifrost/pkg-node#300
-
-## 2026-11-05 — Add memTtl and a requestHeaders callback to remote-config
-
-Add memTtl and a requestHeaders callback to remote-config
-
-Stack A PR 1 of the remote-config 2.6/2.7 plan (increment 2). In-memory TTL option and a Config API request-headers callback that can't replace x-api-key or reach the feature-flag client; adds the 2.5.1 compat type test. No version bump (released by PR 2).
-
-PR: gfs-bifrost/pkg-node#299
-
-## 2026-11-05 — FUSE-1350
-
-Build a remote-config connector index only from a complete lookup (2.5.2)
-
-remote-config 2.5.2: caching one connector (backlink, connector-ID/username lookup, setInCache) only joins an existing business/storefront index; a business miss or resolveByType builds business indices from fetched summaries (failed connectors included), a storefront miss builds its storefront index; with no index to join, the business's/storefront's empty markers (own type + all) are cleared so a first connector is not hidden. Dev proof on DAZZA (8 sftp, 2 rest): 2.5.1 saw 1/8 and 0/2 after one backlink, 2.5.2 sees 8/8 and 2/2.
-
-PR: gfs-bifrost/pkg-node#297
+PR: gfs-bifrost/pkg-node#303
 
 ## 2026-11-02 — Add Postgres metric and dependency names to observability
 

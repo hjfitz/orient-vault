@@ -1,0 +1,25 @@
+# connectors-collectplus — Waypoint index. Cheap orientation only, never documentation.
+# Every value is a fact, a path, or a command — never a sentence. Anything needing a sentence
+# belongs in a doc.
+service: connectors-collectplus
+system: carrier-integrations
+repo: /home/harry/code/apiky-survey/ado/connectors-collectPlus
+ado: globalfreightsolutions/fenghuang/connectors-collectPlus
+type: backend
+owner: ecm               # inferred, see Systems/carrier-integrations/known-context.md
+language: csharp
+framework: [.NET, Gfs.Fenghuang.Tracking.Core.Frameworks.Connector]
+deploy: k8s
+observability: datadog
+
+interfaces:
+  inbound: [grpc]
+  outbound: [tracking-core, collect+-api]
+
+key_paths:
+  - src
+
+note: >
+  The pod runs but only logs start-up: no batches in 15 days.
+
+onboarded: 2026-11-06

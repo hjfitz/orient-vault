@@ -13,7 +13,8 @@ relationship: external
 
 ## Open loops
 **I owe**
-- [ ] Decide whether to interview the Senior Developer candidates she sent: Edward Savage (23 Oct) and Darren Taylor (29 Oct) — [email](https://outlook.office365.com/owa/?ItemID=AAMkADVhYjUxODIyLWM5NTktNGJmOC1hN2FjLWFjMjllNWUzYmY4MwBGAAAAAAAEXHdKGOMeRLfpaU7ff8ChBwABLsgQpFdPTayXOZTVrraLAAAAAAEMAAABLsgQpFdPTayXOZTVrraLAAHUCm4sAAA%3D&exvsurl=1&viewmodel=ReadMessageItem)
+- [ ] Reply with interview slots: Matthew Shaw and Darren Taylor for Mon 9 or Tue 10 Nov if possible (she says Matthew is free any time Wed or Thu and may be gone by Wednesday), Edward Savage on a separate day; her availability mail is from 6 Nov 08:21 UTC — [email](https://outlook.office365.com/owa/?ItemID=AAMkADVhYjUxODIyLWM5NTktNGJmOC1hN2FjLWFjMjllNWUzYmY4MwBGAAAAAAAEXHdKGOMeRLfpaU7ff8ChBwABLsgQpFdPTayXOZTVrraLAAAAAAEMAAABLsgQpFdPTayXOZTVrraLAAHaYrDpAAA%3D&exvsurl=1&viewmodel=ReadMessageItem)
+- [x] Decide whether to interview the Senior Developer candidates she sent: Edward Savage (23 Oct) and Darren Taylor (29 Oct) — [email](https://outlook.office365.com/owa/?ItemID=AAMkADVhYjUxODIyLWM5NTktNGJmOC1hN2FjLWFjMjllNWUzYmY4MwBGAAAAAAAEXHdKGOMeRLfpaU7ff8ChBwABLsgQpFdPTayXOZTVrraLAAAAAAEMAAABLsgQpFdPTayXOZTVrraLAAHUCm4sAAA%3D&exvsurl=1&viewmodel=ReadMessageItem)
 
 **Owed to me**
 - nothing
@@ -23,6 +24,7 @@ relationship: external
 - ✍️
 
 ## Together (newest first)
+- 2026-11-06 — sent candidate interview availability for Matthew, Darren and Edward → [[Digests/2026-11/2026-11-06]]
 - 2026-10-29 — Second agency CV (Darren Taylor, Senior Developer) arrived, unread
 
 ## Links

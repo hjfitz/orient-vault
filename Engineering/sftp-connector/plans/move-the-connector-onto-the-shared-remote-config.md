@@ -101,7 +101,7 @@ Out-of-ticket; Harry asked for it on 2026-11-04, after prod cut S4 moved SFTP us
       - Sweep: `GET /debug/remote-config/sweep` (behind `/debug`'s existing `run.invoker` restriction, G4). It calls `resolveByConnectorId` for every SFTP connector and returns failures grouped by cause. Run in dev and prod and record the 2.5.1 baseline in Evidence.
       — verify: `pubsub.controller.spec` "dispatches each revision item to remote-config", "a remote-config failure or timeout does not change the status code"; `factory.spec` "builds the provider with the TTL in ms"; a dev mapping edit logs a shadow dispatch with no failure; the sweep runs in dev and prod.
 
-- [ ] 2. DDP rules and warehouse routing through the package (AC 1,2,6).
+- [x] 2. DDP rules and warehouse routing through the package (AC 1,2,6). — prod 00127: real STUBBLE/EPARFUM files archived with sites and dutyPaid matching the old revision; dev live routing change applied without deploy — done: b4195b0
       - `RemoteConfigFragmentAdapter` implements `IFragmentConfig<DDPRule[]>`/`<RoutingRule[]>`, wired into `buildRuleManagers` and `DebugController`.
       - A config-service failure → `[]` and a logged `FetchFailed`, as today. That `[]` is no longer cached, which is a deliberate fix. Provider not ready → throw (nack), not `[]`.
       - Dispatch for DDP and routing fragments now propagates errors per item: a failed invalidation nacks. `deriveFragmentKey` makes those cases no-ops instead of throws.
@@ -111,7 +111,9 @@ Out-of-ticket; Harry asked for it on 2026-11-04, after prod cut S4 moved SFTP us
 - [ ] 3. Mapping rules for ingest, confirmations and stock through the package (AC 1,2,3,6,7).
       gate: `@gfs-bifrost/remote-config` 2.6.0 published ([[remote-config-2-6-2-7-opt-in-connector-handling-|pkg-node plan]], stack A), with `withConnectorSchema` applied to mapping resolves; the sweep on 2.6.0 with sftp's schema shows 0 failures in dev and prod
             > 2026-11-05: 2.6.0 published (pkg-node#299/#300, `91fba57`). The sweep on 2.6.0 with sftp's schema is still owed, in dev and in prod.
-            [ ] confirmed
+            > 2026-11-06: dev half met: on #401 `9851537` the sweep resolved 73/73 connectors and 201/201 mappings with sftp's schema. The prod sweep is owed after #401 merges. The sweep now covers mappings, because 2.6.0's mapping read is strict on duplicate dictionary names and keys, which `withConnectorSchema` doesn't reach.
+            > 2026-11-06: prod met: on `b4195b0` (revision `00127-2hm`) the sweep resolved 30/30 connectors and 113/113 mappings, 0 failed. No prod mapping trips the strict mapping schema, so 3b needs no package mapping-schema override today.
+            [x] confirmed
 
       - Bump to 2.6.0. Add `'@gfs-bifrost/remote-config@2.6.0'` to `pnpm-workspace.yaml`'s release-age exclusions. Set `memTtl: MEM_CACHE_TTL` (30 s) and `requestHeaders` for `x-request-id`.
       - The sftp connector schema passed to `withConnectorSchema` models the **flat** wire use case `{useCase, status, friendlyName, config?}`, `null` allowed. The current nested `{useCase, mapping?}` `GetConnectorDtoSchema` (`schema.ts:44-58`) would strip every use case through the package. It keeps the `ediEnvelope` preprocess.
@@ -164,12 +166,31 @@ Out-of-ticket; Harry asked for it on 2026-11-04, after prod cut S4 moved SFTP us
      Check-selection order lives in verification-menu.md — do not restate it here. -->
 
 ### Evidence
+- **2026-11-05: inc 1 in prod** (sftp-connector#399 `1089b9a`, deployed in `ca658a7` with #396/#400 at 16:30Z, revision `sftp-connector-prod-cr-00126-cbj`; Harry waived the E3 gate).
+  - **Review fixes before merge** (backend/security/tests panel): the ack no longer waits for the shadow, `dispatch` never rejects, a failed init disposes its provider, a single in-flight sweep, endpoint-pattern grouping, and errors reported by name only.
+  - **Dev re-verified:** the ack at 15:45:42Z came before the shadow finished at 15:45:43Z; sweep 73/73.
+  - **Prod:** remote-config initialised, 29 acks all 204, no warnings or errors on the revision, logs in Datadog via the in-container agent.
+  - **Prod sweep baseline:** 30/30 resolved, 0 failed, in 253 ms. config-service's own `?type=sftp` total is also 30.
 <!-- Newest first, dated. One bullet per check actually run, opening with what it discharges.
      "Suite green" alone is not evidence. Sign-off requires at least one dated bullet here. -->
 - 2026-11-05 [inc 1] Dev, branch `f6f1a0e` (sftp-connector#399), on remote-config 2.5.2.
   - `GET /debug/remote-config/sweep` resolved 73/73 SFTP connectors, 0 failures, in 0.6 s; config-service's own `?type=sftp` total is also 73. This is the 2.5.2 dev baseline. **The prod baseline is owed**, after the E3 gate.
   - Shadow on real revisions: a CONNECTOR backlink (HJF test connector rename) gave 1 item, 0 failed, 30 ms; a `CONNECTOR_MAPPING` fragment (a mapping POSTed onto the HJF test connector) gave 1 item, 0 failed, 5 ms. No error logs on the revision.
   - Suite 913/913. The specs the plan named pass: per-item dispatch, failure/timeout keeps the status, and TTL in ms. Dev was put back on master `fd66dfb` afterwards.
+
+- 2026-11-06 [inc 3a] Dev, sftp-connector#401 `9851537` (revision `00913-slw`), on remote-config 2.6.0 with `RemoteConfigConnectorSchema`.
+  - `GET /debug/remote-config/sweep`: 73/73 connectors and 201/201 mappings resolved, 0 failed, in 3.2 s. A local read-only run before the deploy matched.
+  - The revision's logs show no warnings or errors. The package's per-request lines are at `debug` (AC 8).
+  - Review-panel caught that an SFTP-only schema would fail every Shopify or REST connector backlink, since `config_revision` is unfiltered. Fixed with a union that sends non-SFTP connectors through the package's own schema.
+- 2026-11-06 [inc 2] Dev, stack #401 + #402 `3cec982` (revision `00914-722`). Files went into the dev bucket under DAZZA `FUSE_2ACED20A9B` (no Snap backend in dev, so records fail downstream and files go to `error/`, as on 10-20).
+  - Rules were read through the package: its "Resolving DDP rules / warehouse routing from config API" lines appear. A second file within the TTL made no fetch.
+  - Routing: FI → `42069`, AT → `00090`, and GB matched no rule so kept the mapping default `0006`.
+  - DDP: AD with Class A came out duty-paid; the Class B control did not. The FI rule's class and effective-date conditions correctly kept a classless order unpaid.
+  - Live change (AC 6): a PUT adding AD to DAZZA's `0010` rule was acked 200 on `config/revision`, and the package saved `warehouse_routing:DAZZA`; the shadow skipped the item. The next AD order routed to `0010` without a redeploy. DAZZA's rules were then restored and diffed equal, and the restore was applied the same way.
+  - No warnings or errors from the change. The `MappingRulesException` came from the debug translate route's hard-coded `sftp_user`, which has no dev connector (pre-existing).
+- 2026-11-06 [inc 2 + 3a] Prod, stack merged as `fb482fd` (#401) and `b4195b0` (#402); Deploy run 42231060718. The prod plan was the image plus the standing sensitive-env reorder (0/1/0). Both gates were approved, and prod is live on `b4195b0`, revision `00127-2hm`.
+  - Prod sweep with sftp's schema: 30/30 connectors and 113/113 mappings, 0 failed, 1.4 s.
+  - First real batch on the new revision (14:20Z): 5 sales-order files (STUBBLE, EPARFUM) archived. Sites (all `0010`) and the STUBBLE duty-paid mix match the old revision `00126` for the same businesses. No warnings or errors; 12 file events 200 and 78 acks 204.
 
 ### Not verified
 <!-- Stated, not papered over. "(none)" is a deliberate claim, and a fine one. -->
@@ -225,6 +246,7 @@ Out-of-ticket; Harry asked for it on 2026-11-04, after prod cut S4 moved SFTP us
      time. A decision worth defending in a review six months out belongs in a durable record
      instead — `wp decide --record`. -->
 
+- **2026-11-06** — Inc 3 ships as two PRs (Harry agreed). **3a** is behaviour-neutral: the 2.6.0 bump, `memTtl`, `requestHeaders` and sftp's flat connector schema, with the shadow and sweep switched to that schema and nothing reading through the package. Its dev and prod sweep clears inc 3's gate. **3b** is the mapping switch-over itself. Why: the gate's sweep needs 3a's code, and one PR would exceed ~700 lines. Inc 2 and 3a are built in parallel; dev verification is sequenced, since dev is shared.
 - **2026-11-05 (inc 1 build)** — Changes from the plan as written:
   - **Concurrent shadow:** shadow items run concurrently, each with a 5 s bound, so the whole shadow is bounded at 5 s rather than N × 5 s against the 20 s ack deadline.
   - **Uncached sweep:** the sweep uses its own `mode: "none"` provider, because cached reads aren't revalidated.

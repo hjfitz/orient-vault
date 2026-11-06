@@ -1,0 +1,25 @@
+# connectors-amazon — Waypoint index. Cheap orientation only, never documentation.
+# Every value is a fact, a path, or a command — never a sentence. Anything needing a sentence
+# belongs in a doc.
+service: connectors-amazon
+system: carrier-integrations
+repo: /home/harry/code/apiky-survey/ado/connectors-amazon
+ado: globalfreightsolutions/fenghuang/connectors-amazon
+type: backend
+owner: ecm               # inferred, see Systems/carrier-integrations/known-context.md
+language: csharp
+framework: [.NET, Gfs.Fenghuang.Tracking.Core.Frameworks.Connector]
+deploy: k8s
+observability: datadog
+
+interfaces:
+  inbound: [grpc]
+  outbound: [tracking-core, amazon-logistics-uk-api]
+
+key_paths:
+  - src
+
+note: >
+  Runs on .NET 6, the others on .NET Core 3.1. Re-polled 2.6M delivered parcels. Fills the signatory from proof of delivery.
+
+onboarded: 2026-11-06

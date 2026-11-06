@@ -1,0 +1,25 @@
+# exelot-proxy — Waypoint index. Cheap orientation only, never documentation.
+# Every value is a fact, a path, or a command — never a sentence. Anything needing a sentence
+# belongs in a doc.
+service: exelot-proxy
+system: carrier-integrations
+repo: /home/harry/code/apiky-survey/ado/GFS_Exelot_Integration
+ado: globalfreightsolutions/GFS Exelot Integration/GFS Exelot Integration
+type: backend
+owner: carrier-integrations               # inferred, see Systems/carrier-integrations/known-context.md
+language: javascript
+framework: [express, openapi-backend, mongodb]
+deploy: k8s
+observability: datadog
+
+interfaces:
+  inbound: [http]
+  outbound: [apiky, exelot-api, mongodb]
+
+key_paths:
+  - src/integrations/apiky-integration.js
+
+note: >
+  No prod traffic. ApiKy URL config is ignored (process.sourceMapsEnabled typo).
+
+onboarded: 2026-11-06

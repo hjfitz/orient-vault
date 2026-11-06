@@ -1,0 +1,25 @@
+# connectors-dhlexpress — Waypoint index. Cheap orientation only, never documentation.
+# Every value is a fact, a path, or a command — never a sentence. Anything needing a sentence
+# belongs in a doc.
+service: connectors-dhlexpress
+system: carrier-integrations
+repo: /home/harry/code/apiky-survey/ado/connectors-dhlexpress
+ado: globalfreightsolutions/fenghuang/connectors-dhlexpress
+type: backend
+owner: ecm               # inferred, see Systems/carrier-integrations/known-context.md
+language: csharp
+framework: [.NET, Gfs.Fenghuang.Tracking.Core.Frameworks.Connector]
+deploy: k8s
+observability: datadog
+
+interfaces:
+  inbound: [grpc]
+  outbound: [tracking-core, dhl-express-api]
+
+key_paths:
+  - src
+
+note: >
+  About 10% of calls are rate-limited.
+
+onboarded: 2026-11-06

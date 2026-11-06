@@ -1,0 +1,8 @@
+unfixed Ready filter before: results card 0, print-booked 0, preview-booked 0, order rows 6, empty card 0
+unfixed after Dispatch and the refresh: results card 0, print-booked 0, preview-booked 0, order rows 0, empty card 1fixed Ready filter before: results card 0, print-booked 0, preview-booked 0, order rows 4, empty card 0
+fixed after Dispatch and the refresh: results card 1, print-booked 1, preview-booked 1, order rows 0, empty card 1
+fixed print button reads: "Print labels for everything booked (4)"
+fixed after switching to Demo 6 Nov 14:12:31 UTC: results card 0, print-booked 0, preview-booked 0, order rows 1, empty card 0fixed-print Ready filter before: results card 0, print-booked 0, preview-booked 0, order rows 2, empty card 0
+fixed-print after Dispatch and the refresh: results card 1, print-booked 1, preview-booked 1, order rows 0, empty card 1
+fixed-print print button reads: "Print labels for everything booked (2)"
+fixed-print printing from the kept results: toast "Demo printer: 2 labels for Bench 1. Nothing was sent to a printer."

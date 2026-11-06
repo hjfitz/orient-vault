@@ -1,0 +1,25 @@
+# bjs-proxy — Waypoint index. Cheap orientation only, never documentation.
+# Every value is a fact, a path, or a command — never a sentence. Anything needing a sentence
+# belongs in a doc.
+service: bjs-proxy
+system: carrier-integrations
+repo: /home/harry/code/apiky-survey/ado/bjs-proxy
+ado: globalfreightsolutions/GFS Hybrid Services and Carrier Integrations/bjs-proxy
+type: backend
+owner: carrier-integrations               # inferred, see Systems/carrier-integrations/known-context.md
+language: javascript
+framework: [express, openapi-backend, mongodb]
+deploy: k8s
+observability: datadog
+
+interfaces:
+  inbound: [http]
+  outbound: [apiky, bjs-api]
+
+key_paths:
+  - src/integrations/bjs-integration.js
+
+note: >
+  BJS's carrier secret lives in the ApiKy profile (bjsSecret). The GitHub copy gfs-hybrid-services/bjs-proxy is behind.
+
+onboarded: 2026-11-06

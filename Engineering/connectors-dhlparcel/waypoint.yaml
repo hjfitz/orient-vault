@@ -1,0 +1,25 @@
+# connectors-dhlparcel — Waypoint index. Cheap orientation only, never documentation.
+# Every value is a fact, a path, or a command — never a sentence. Anything needing a sentence
+# belongs in a doc.
+service: connectors-dhlparcel
+system: carrier-integrations
+repo: /home/harry/code/apiky-survey/ado/connectors-dhlparcel
+ado: globalfreightsolutions/fenghuang/connectors-dhlparcel
+type: backend
+owner: ecm               # inferred, see Systems/carrier-integrations/known-context.md
+language: csharp
+framework: [.NET, Gfs.Fenghuang.Tracking.Core.Frameworks.Connector]
+deploy: k8s
+observability: datadog
+
+interfaces:
+  inbound: [grpc]
+  outbound: [tracking-core, dhl-parcel-uk-api]
+
+key_paths:
+  - src
+
+note: >
+  The invalid-credentials error (3002) is thrown as a generic error, so it never pauses. Parses POD data.
+
+onboarded: 2026-11-06

@@ -1,0 +1,32 @@
+# gfs-pod-service — Waypoint index. Cheap orientation only, never documentation.
+# Every value is a fact, a path, or a command — never a sentence. Anything needing a sentence
+# belongs in a doc.
+service: gfs-pod-service
+system: carrier-integrations
+repo: /home/harry/code/apiky-survey/ado/gfs-pod
+ado: globalfreightsolutions/GFS POD/GFS POD
+type: backend
+owner: carriers          # ECM repos.json team "carriers"; John Finney makes most 2026 commits
+language: javascript
+framework: [node 18, express, mongodb, redis, pubsub]
+deploy: k8s              # prod-uk1, two Deployments from one image (API, subscriber), 3 replicas each
+observability: datadog
+
+interfaces:
+  inbound: [http, pubsub]          # v1 :30001 (pod:read JWT, public via pod.gfsdeliver.com), v2 :30002 (in-cluster, no auth); shipments.v2.identified, raw_tracking.v1
+  outbound: [carrier-pod-apis, gfs-carrier-credentials, sendgrid, google-maps]
+
+key_paths:
+  - src/api-v2/router.js
+  - src/api-v1/router.js
+  - src/pod-service
+  - src/subscriber
+  - src/config.js
+
+note: >
+  Source lives in its own Azure DevOps project, "GFS POD", not fenghuang. AGENTS.md in the repo is the
+  best reference. Credentials come from the legacy gfs-carrier-credentials service (CCS_URL), not
+  carrier-credentials-manager, plus per-carrier SealedSecrets for UPS, DHL eCommerce UK, FedEx and the
+  Amazon proxy.
+
+onboarded: 2026-11-06

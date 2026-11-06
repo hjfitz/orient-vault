@@ -1,0 +1,25 @@
+# inpost-proxy — Waypoint index. Cheap orientation only, never documentation.
+# Every value is a fact, a path, or a command — never a sentence. Anything needing a sentence
+# belongs in a doc.
+service: inpost-proxy
+system: carrier-integrations
+repo: /home/harry/code/apiky-survey/gh/gfs-hybrid-services_inpost-proxy
+github: gfs-hybrid-services/inpost-proxy
+type: backend
+owner: carrier-integrations               # inferred, see Systems/carrier-integrations/known-context.md
+language: typescript
+framework: [express, openapi-backend, mongodb]
+deploy: cloud-run
+observability: datadog
+
+interfaces:
+  inbound: [http]
+  outbound: [apiky, inpost-api, mongodb]
+
+key_paths:
+  - code/src/integrations/inpost-integration.ts
+
+note: >
+  Cloud Run is its only home.
+
+onboarded: 2026-11-06

@@ -1,0 +1,27 @@
+# tracking-core — Waypoint index. Cheap orientation only, never documentation.
+# Every value is a fact, a path, or a command — never a sentence. Anything needing a sentence
+# belongs in a doc.
+service: tracking-core
+system: carrier-integrations
+repo: /home/harry/code/apiky-survey/ado/tracking-core
+ado: globalfreightsolutions/fenghuang/tracking-core
+type: backend
+owner: ecm               # inferred, see Systems/carrier-integrations/known-context.md
+language: csharp
+framework: [.NET Core 3.1, gRPC, MongoDB, etcd]
+deploy: k8s
+observability: datadog
+
+interfaces:
+  inbound: [pubsub, grpc]
+  outbound: [raw_tracking.v1, mongodb, etcd, tracking-mapper]
+
+key_paths:
+  - src
+  - schema/tracking-event-schema.json
+  - agents.md
+
+note: >
+  Holds consignment-manager, batch-creator, response-publisher and the NuGet connector framework every connector uses.
+
+onboarded: 2026-11-06

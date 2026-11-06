@@ -6,6 +6,55 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-06 — Record each record's marks on every write
+
+Record each record's marks on every write
+
+D2 (stacked): #22 adds store.Marks (core.Counters shape) to Write/ReturnWrite at all 7 write sites from Contribution of the written record (sorted, so equal records give equal marks); CapReasons and Tally move into store and recompute-stats uses them. Firestore ignores marks. #23 makes the memory store serve stats/insights by summing marks (ErrNoMarks on a non-noop write without them). Golden test pins the only G5 divergence (stage day); redelivery_test pins why Mongo writes must be atomic with the event insert.
+
+PR: gfs-bifrost/tracking-service#22
+PR: gfs-bifrost/tracking-service#23
+
+## 2026-11-06 — Open the store through internal/storeopen
+
+Open the store through internal/storeopen
+
+D4: storeopen.Open builds the store from STORE/MONGODB_URI/MONGODB_DATABASE for all 5 binaries; Backend = store.Store + Maintenance (ShipmentIDs, ReturnIDs, ReadCounters, ReplaceCounters), which D5's Mongo store must implement. STORE=mongodb errors 'not implemented yet'. Mongo 8.0 replica-set harness (docker-compose.integration.yaml, make test-mongo) with a transaction smoke test; non-required api-mongo CI job. Gotcha: compose files in apps/api need an explicit name: — project 'api' collided with another local repo's containers.
+
+PR: gfs-bifrost/tracking-service#21
+
+## 2026-11-06 — Provision Atlas clusters for tracking-service
+
+Provision Atlas clusters for tracking-service
+
+D6: mongodbatlas M10 per env (termination protection in prod, backup + PIT, 8.0), readWrite user, connection string local for D7; Atlas keys via tf_var_extra_* in deploy, tf-plan and manual-deploy. No network resources: no Fuse Atlas stack declares any (project-level access); D7 must confirm Cloud Run egress is allowed. Draft; merge creates real clusters, plan to Harry first.
+
+PR: gfs-bifrost/tracking-service#19
+
+## 2026-11-06 — Run the store tests against every backend
+
+Run the store tests against every backend
+
+D3: portable store tests (firestore_*_test.go → store_*_test.go) run through an eachBackend factory against memory and the Firestore emulator; 13 live-counter stats cases gated by backend.liveCounters for D2's marks semantics. Memory passes every portable case. Emulator RUN count 161 → 307.
+
+PR: gfs-bifrost/tracking-service#20
+
+## 2026-11-06 — Exempt unqueried fields from Firestore indexing
+
+Exempt unqueried fields from Firestore indexing
+
+D1 stopgap: 9 single-field index exemptions (lastSeenAt, totalDuplicates, stageTimes, confirmations; returns adds confirmation, linkedShipmentJson) after 536 RESOURCE_EXHAUSTED commits in the 2026-11-06 reap bursts. Tests the index-hotspot hypothesis; bar is zero resource_exhausted in burst minutes over 48h.
+
+PR: gfs-bifrost/tracking-service#18
+
+## 2026-11-05 — Run tracking-service on the golden runtime image
+
+Run tracking-service on the golden runtime image
+
+Moved the API image from distroless/static to ILG go-runtime:0.1-affogato (Datadog serverless-init as entrypoint, CMD only) and dropped the serverless-init sidecar, shared volume and container-dependencies annotation; DD_* moved onto the app container with the sidecar's values. The API now logs to stdout only (the /shared-volume file sink is removed). manual-deploy announces failures only. Verified on dev revision tracking-service-api-dev-00018-qxg: one container, no volumes, logs tagged dd.datadog_init_version:1.11.2, metrics and Pub/Sub pushes flowing. Draft; dev left on the branch.
+
+PR: gfs-bifrost/tracking-service#17
+
 ## 2026-10-19 — Stop republished copies writing the shared stats docs
 
 Stop republished copies writing the shared stats docs

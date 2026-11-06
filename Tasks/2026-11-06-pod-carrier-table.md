@@ -1,0 +1,15 @@
+---
+tags: [adhoc-task]
+date: 2026-11-06
+tldr: "Resumed the carrier-integrations handover on rc-hjf. Added the POD carrier table, gave gfs-pod-service its own MPK page under Carrier Ingress Services, and swapped the ingress/egress naming to GFS's side across MPK and the vault"
+session_id: 9ef32451-f6a6-429e-88df-add8e5d83ddf
+status: done
+---
+# Add the POD service carrier table
+
+## Outcome
+- Added the per-carrier POD table to `Engineering/gfs-pod-service/known-context.md` and pointed the architecture's Interfaces out at it. Lint is clean, no re-anchor, `wp index` rebuilt.
+- Added the same table to MPK 353206310 Carrier Integration Uses as v4.
+- Swapped ingress/egress to GFS's side: 353697822 is now Carrier Egress Services and 353206337 Carrier Ingress Services. Link text updated on 5 more pages, and the vault system docs updated.
+- New MPK page *Proof of Delivery Service* (353861642) under Ingress. The POD detail on the Uses page moved there.
+- Handover record: [[Handovers/2026-11-06-carrier-integrations]].

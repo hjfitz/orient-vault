@@ -1,0 +1,14 @@
+# carrier-integrations — Waypoint system index. Cheap orientation only, never documentation.
+# Members are NOT listed here: a service joins by declaring `system: carrier-integrations` in its
+# own waypoint.yaml, so there is one source of truth. `wp system status carrier-integrations` reads it.
+system: carrier-integrations
+owner: carrier-integrations
+purpose: >
+  How GFS exchanges data with carriers, named from GFS's side. Egress (GFS to carrier): one proxy per
+  carrier that Selector calls for labels, cancels, manifests and status. Ingress (carrier to GFS): polling
+  connectors on tracking-core (Evri token via evri-auth-facade), tracking webhooks and SFTP tracking files,
+  all publishing to raw_tracking.v1; and gfs-pod-service, which fetches proofs of delivery live on request.
+  Out: Selector itself and its V4-Server-IE pre-advice files (system selector), the ECM pipeline after
+  raw_tracking.v1, selector-rest-proxy, gfs-smart-pod-service (disabled), the carrier-playground mocks.
+confluence: MPK 353468499 Carrier Services (children 353697822 Egress, 353206337 Ingress; POD page 353861642 under Ingress)
+created: 2026-11-06

@@ -1,0 +1,24 @@
+# tracking-file-processor — Waypoint index. Cheap orientation only, never documentation.
+# Every value is a fact, a path, or a command — never a sentence. Anything needing a sentence
+# belongs in a doc.
+service: tracking-file-processor
+system: carrier-integrations
+repo: /home/harry/code/apiky-survey/ado/tracking-file-processor
+ado: globalfreightsolutions/fenghuang/tracking-file-processor
+type: backend
+owner: ecm               # inferred, see Systems/carrier-integrations/known-context.md
+language: javascript
+framework: [mongodb]
+deploy: k8s
+observability: datadog
+
+interfaces:
+  inbound: [pubsub]
+  outbound: [raw_tracking.v1]
+
+key_paths: []
+
+note: >
+  Turns carrier tracking files (file_tracking.v1) into raw_tracking.v1, matching rows against shipments.v2.identified.
+
+onboarded: 2026-11-06

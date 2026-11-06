@@ -7,6 +7,38 @@ title: snap-adapter — work ledger
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-06 — Emit snap.breaker.opened, .state and .rejected beside snap.circuit_opened
+
+Emit snap.breaker.opened, .state and .rejected beside snap.circuit_opened
+
+Programme unit A3. Both transport modes now dual-emit the shared breaker metrics: snap.breaker.opened (closed->open, alongside the unchanged snap.circuit_opened), snap.breaker.rejected (each request an open circuit turns away) and a per-host snap.breaker.state gauge (closed 0, half-open 0.5, open 1) on every request and transition. Metrics only, no behaviour change. Dev verified live in both modes under an injected 429 (opened matched circuit_opened exactly; gauge 1 -> 0.5 -> 0 on recovery). Ship: SHIP-1106-snap-breaker-metrics
+
+PR: gfs-bifrost/snap-adapter#325
+
+## 2026-11-06 — Let a 429 trip the SNAP breaker behind SNAP_CB_TRIP_ON_429
+
+Let a 429 trip the SNAP breaker behind SNAP_CB_TRIP_ON_429
+
+Programme unit A2b. New env switch SNAP_CB_TRIP_ON_429 (default off; not set in Terraform, so prod is unchanged on deploy). On, a SNAP 429 counts as an outage in both transport modes via one shared predicate; other 4xx still reset. Dev verified off and on; with the threshold temporarily at 2 the breaker opened live in both transport modes under an injected 429 (first live breaker-open of the adapter transport). Flip after G1 with SNAP_TRANSPORT_GUARD and the 337501612 message update. Ship: SHIP-1106-snap-cb-trip-on-429
+
+PR: gfs-bifrost/snap-adapter#323
+
+## 2026-11-06 — Gate SNAP requests at the axios adapter on the shared breaker, behind SNAP_TRANSPORT_GUARD
+
+Gate SNAP requests at the axios adapter on the shared breaker, behind SNAP_TRANSPORT_GUARD
+
+Programme unit A2a. New env switch SNAP_TRANSPORT_GUARD (interceptors|adapter, default interceptors; not set in Terraform, so prod is unchanged on deploy). Adapter mode runs breaker admission -> token -> slot -> request inside @gfs-bifrost/resilience's PerHostCircuitBreaker at the axios adapter hook, with today's trip rules (5xx/network trip, any 4xx incl 429 resets) and opens counted closed->open only. Intended adapter-mode differences: single half-open probe, no caller waits on a probe holding a slot, closed-admitted callers reaching an opened circuit are turned away. Self-review found and fixed a cockatiel stale-failure clobbering a half-open probe. Dev verified in both modes; switch flips after G1. Ship: SHIP-1106-snap-transport-guard
+
+PR: gfs-bifrost/snap-adapter#322
+
+## 2026-11-05 — Take the semaphore, token bucket and host key from @gfs-bifrost/resilience
+
+Take the semaphore, token bucket and host key from @gfs-bifrost/resilience
+
+Programme unit A1. Deletes the local copies and imports them from @gfs-bifrost/resilience 0.2.0; snap goes to ^0.4.2 so one resilience copy resolves. No behaviour change.
+
+PR: gfs-bifrost/snap-adapter#321
+
 ## 2026-11-05 — Give transiently failing SNAP creates about four hours of retries, and never ack a create whose failure wasn't published
 
 Give transiently failing SNAP creates about four hours of retries, and never ack a create whose failure wasn't published

@@ -15,6 +15,8 @@ title: Ryan Ellis
 
 ## Open loops
 **I owe**
+- [x] Send the weekend on-call and escalation document and the phone list by 14:00 on 5 Nov (the speaker on the 4 Nov 15:10 call is unnamed, very likely his side) — [recording](http://localhost:3000/recordings/20261104-151035-b770)
+- [ ] Agree Snap-slowness alerting and the weekend on-call gap (point monitors at #snap-wms, consider throttling Snap requests) — [DM](https://gfsdeliver-eng.slack.com/archives/D0ASPQ1QLTF/p1793719970560799)
 - [ ] Give him and [[Jake Smith]] a date and time for the Purdy & Figg load test on ILGSTG so Snap can monitor resources
 - [ ] Reply to him and [[Jake Smith]] with a date and time for the Purdy & Figg load test on ILGSTG. He asked 10-15 11:08 "are we good to make the change today so Harry can do the required testing?" and nothing is in Sent — [Fuse\Snap Call](https://outlook.office365.com/owa/?ItemID=AAMkADVhYjUxODIyLWM5NTktNGJmOC1hN2FjLWFjMjllNWUzYmY4MwBGAAAAAAAEXHdKGOMeRLfpaU7ff8ChBwABLsgQpFdPTayXOZTVrraLAAAAAAFcAAABLsgQpFdPTayXOZTVrraLAAHMCW1ZAAA%3D&exvsurl=1&viewmodel=ReadMessageItem)
 - [ ] Reply to his 10-08 follow-up: do I still see Snap timeouts after Snap's changes last week? He offers a call with Snap's Anish and Jake, and CT's load test is next week — [Ryan's 10-08 email](https://outlook.office365.com/owa/?ItemID=AAMkADVhYjUxODIyLWM5NTktNGJmOC1hN2FjLWFjMjllNWUzYmY4MwBGAAAAAAAEXHdKGOMeRLfpaU7ff8ChBwABLsgQpFdPTayXOZTVrraLAAAAAAEMAAABLsgQpFdPTayXOZTVrraLAAHHiU5oAAA%3D&exvsurl=1&viewmodel=ReadMessageItem)
@@ -29,6 +31,8 @@ title: Ryan Ellis
 - ✍️
 
 ## Together (newest first)
+- 2026-11-06 — his 4 Nov peak-support mail names me Fuse On Call for 24 hours on Sat 7 and Sun 8 Nov; he sent the playbook link and contacts himself, so the weekend document I was to send by 14:00 on 5 Nov looks covered → [[Digests/2026-11/2026-11-06]]
+- 2026-11-04 — DM: wants alerting for Snap slowness and order intake, and said "lets discuss tomorrow" on on-call; his Snap API update window (3 Nov 10:00) had no completion mail
 - 2026-11-03 — Snap API update today 10:00 (ingest paused from 09:30); you owe him a support-model call with Dennis today
 - 2026-10-22 — his outcome note on the 21 Oct Snap cluster change: BM2 down from about 08:15 BST, a critical ticket with Snap, a second Snap change at 16:00, maintenance complete about 16:14; Vajk Komora's 21:17 question on whether the fix resolved the outage and the slowness is unanswered. No meeting invite for him and Dennis exists yet
 - 2026-10-21 — his 08:00 BST Snap cluster change notice (low-risk, some degradation possible); on 10-20 he told Vajk Komora ILG is logging every Snap outage and challenging Snap to fix them before Peak. The Purdy & Figg load test time is still owed

@@ -7,6 +7,30 @@ title: sftp-connector — work ledger
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-06 — Read DDP rules and warehouse routing through remote-config
+
+Read DDP rules and warehouse routing through remote-config
+
+Plan inc 2: a fragment adapter feeds the sales-order rule managers from the package; read failures degrade to [] uncached with status-only logs; DDP/routing revision items apply live first and a failed apply nacks. Old DDP/routing config handlers deleted. Stacked on #401.
+
+PR: gfs-bifrost/sftp-connector#402
+
+## 2026-11-06 — Move sftp-connector onto remote-config 2.6.0 with its own connector schema
+
+Move sftp-connector onto remote-config 2.6.0 with its own connector schema
+
+Behaviour-neutral first half of plan inc 3: remote-config 2.6.0, memTtl 30 s, x-request-id per request, and sftp's lenient connector schema (union with the package schema for non-SFTP connectors) on the shadow and sweep providers. The sweep now also resolves every configured mapping, because 2.6.0's mapping read is strict on duplicate dictionary names/keys and withConnectorSchema doesn't cover it. Dev sweep on 9851537: 73/73 connectors, 201/201 mappings.
+
+PR: gfs-bifrost/sftp-connector#401
+
+## 2026-11-05 — Describe users.json as served by the SFTP host, not the VM
+
+Describe users.json as served by the SFTP host, not the VM
+
+Connector notes corrected after the cutover: the host polls users.json every 20 s and re-reads on an unknown username; the VM sync script is pre-cutover and the prod VM is stopped. Also re-triggers the prod Deploy that #399's merge push didn't start.
+
+PR: gfs-bifrost/sftp-connector#400
+
 ## 2026-11-05 — Run remote-config in shadow beside the connector's config layer (increment 1)
 
 Run remote-config in shadow beside the connector's config layer (increment 1)

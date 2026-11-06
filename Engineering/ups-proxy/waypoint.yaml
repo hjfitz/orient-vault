@@ -1,0 +1,29 @@
+# ups-proxy — Waypoint index. Cheap orientation only, never documentation.
+# Every value is a fact, a path, or a command — never a sentence. Anything needing a sentence
+# belongs in a doc.
+service: ups-proxy
+system: carrier-integrations
+repo: /home/harry/code/apiky-survey/ado/GFS_UPS_Integration
+ado: globalfreightsolutions/GFS UPS Integration/GFS UPS Integration
+type: backend
+owner: carrier-integrations               # inferred, see Systems/carrier-integrations/known-context.md
+language: javascript
+framework: [express, express-openapi-validator]
+deploy: k8s
+observability: datadog
+
+interfaces:
+  inbound: [http]
+  outbound: [apiky, ups-oauth, ups-xml-api, ups-json-api]
+
+key_paths:
+  - index.js
+  - src/api/routes/stepping-stone.js
+  - src/api/routesV2
+  - src/auth.js
+  - api/swagger.yaml
+
+note: >
+  Stepping stone: Selector's legacy UPS XML forwarded unchanged under GFS's OAuth token. Dev rewrite lives in carrier-proxies/apps/ups-proxy.
+
+onboarded: 2026-11-06

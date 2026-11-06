@@ -1,0 +1,25 @@
+# tracking-webhook-royal-mail-sapient — Waypoint index. Cheap orientation only, never documentation.
+# Every value is a fact, a path, or a command — never a sentence. Anything needing a sentence
+# belongs in a doc.
+service: tracking-webhook-royal-mail-sapient
+system: carrier-integrations
+repo: /home/harry/code/apiky-survey/gh/gfs-hybrid-services_tracking-webhook-royal-mail-sapient
+github: gfs-hybrid-services/tracking-webhook-royal-mail-sapient
+type: backend
+owner: carrier-integrations               # inferred, see Systems/carrier-integrations/known-context.md
+language: typescript
+framework: [express, mongodb]
+deploy: cloud-run
+observability: datadog
+
+interfaces:
+  inbound: [webhook, pubsub]
+  outbound: [raw_tracking.v1, mongodb]
+
+key_paths:
+  - handler
+
+note: >
+  The only live publishing webhook. Moving into tracking-webhooks (PR #3 there).
+
+onboarded: 2026-11-06

@@ -1,0 +1,24 @@
+# ocs-proxy — Waypoint index. Cheap orientation only, never documentation.
+# Every value is a fact, a path, or a command — never a sentence. Anything needing a sentence
+# belongs in a doc.
+service: ocs-proxy
+system: carrier-integrations
+repo: /home/harry/code/apiky-survey/ado/ocs-proxy
+ado: globalfreightsolutions/GFS Hybrid Services and Carrier Integrations/ocs-proxy
+type: backend
+owner: carrier-integrations               # inferred, see Systems/carrier-integrations/known-context.md
+language: javascript
+framework: [express, openapi-backend, mongodb]
+deploy: k8s
+observability: datadog
+
+interfaces:
+  inbound: [http]
+  outbound: [apiky, ocs-api]
+
+key_paths: []
+
+note: >
+  Prod traffic is the Test2 client only.
+
+onboarded: 2026-11-06

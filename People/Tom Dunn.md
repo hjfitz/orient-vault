@@ -16,6 +16,7 @@ title: Tom Dunn
 
 ## Open loops
 **I owe**
+- [ ] Reply to his 5 Nov DM: Indu wants to go live next week or the week after pending testing, a channel is being set up, and he is picking up from [[Lee Simmons]]; his "Morning bud" of 6 Nov is also unanswered — [DM](https://gfsdeliver-eng.slack.com/archives/D0AM9957WTS/p1793896444420819)
 - [ ] Review his works-order test (he asks for 2 minutes): his POST to the dev Works Order Ingest API returns 204 and shows in the SNAP host interface but not the Works Orders GUI. He also asks what CT's behaviour has to do with Fuse's API (DM `D0AM9957WTS`) — [Tom's email](https://outlook.office365.com/owa/?ItemID=AAMkADVhYjUxODIyLWM5NTktNGJmOC1hN2FjLWFjMjllNWUzYmY4MwBGAAAAAAAEXHdKGOMeRLfpaU7ff8ChBwABLsgQpFdPTayXOZTVrraLAAAAAAFcAAABLsgQpFdPTayXOZTVrraLAAHMCW1PAAA%3D&exvsurl=1&viewmodel=ReadMessageItem)
 - [x] Be free this morning to talk through the work-order testing with him — [Slack DM](https://gfsdeliver-eng.slack.com/archives/D0AM9957WTS/p1791999406308939)
 - [x] Reply on works-order SFTP testing: the header-level default is `identifiers.carrierId`, which shipped in [FUSE-1238](https://globalfreight.atlassian.net/browse/FUSE-1238). Still open: the confirmation line number and FGR `WorksOrderRef` from his DM. Slack shows my reply last, and his Goods-in email thread is unread — [Tom's email](https://outlook.office365.com/owa/?ItemID=AAMkADVhYjUxODIyLWM5NTktNGJmOC1hN2FjLWFjMjllNWUzYmY4MwBGAAAAAAAEXHdKGOMeRLfpaU7ff8ChBwABLsgQpFdPTayXOZTVrraLAAAAAAEMAAABLsgQpFdPTayXOZTVrraLAAHLFMPeAAA%3D&exvsurl=1&viewmodel=ReadMessageItem)
@@ -68,6 +69,7 @@ title: Tom Dunn
 - ✍️ 
 
 ## Together (newest first)
+- 2026-11-06 — heads-up that Indu wants to go live next week or the week after → [[Digests/2026-11/2026-11-06]]
 - 2026-11-02 — Forwarded Darren Cobby's Q1 Fuse migration timeline to you alone at 09:17 ("FYI mate"); he and Jack are asked to write up the customer-facing technical changes
 - 2026-10-23 — Escentric UK and PL go-live set for Tue 27 at about 09:30, the same slot as the Poland Snap upgrade; Phlur smoke orders shipped on 23 Oct and he added you and Matt to the thread for visibility
 - 2026-10-19 — replied "please proceed" on the Fuse\Snap call thread, clearing the Purdy & Figg load test on ILGSTG
