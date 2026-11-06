@@ -128,7 +128,8 @@ No tracking source: Click & Collect, Parcelforce, Palletforce. Idle connectors: 
 - **Per customer, in MongoDB,** keyed by an ID in the ApiKy profile: Royal Mail, FedEx, InPost, Exelot, DPD Europe (KMS-encrypted).
 - **Per customer, in the ApiKy profile itself:** BJS.
 - **One GFS account for everyone:** UPS, OCS, Coll8.
-- **Connectors:** a SealedSecret per connector; DPD, DPD Local, Panther and FedEx fetch per-contract credentials from `carrier-credentials-manager`.
+- **Connectors:** a SealedSecret per connector; DPD, DPD Local, Panther and FedEx fetch per-contract credentials from `carrier-credentials-manager`. The two Evri connectors take a shared token from [[evri-auth-facade]].
+- **POD:** the legacy `gfs-carrier-credentials` service, plus SealedSecrets for UPS, DHL eCommerce UK, FedEx and the Amazon proxy.
 
 ## Evidence
 ```orient-evidence
