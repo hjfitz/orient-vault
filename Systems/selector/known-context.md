@@ -58,6 +58,11 @@ Interview truth (Harry, 2026-11-05), the Tech Services vault, Datadog, and facts
   - full recipient PII at info level in the UPS and Coll8 proxy logs
 
 ## Unknowns
+- **Billing:**
+  - Which billing run program and timetable are live, and whether split runs are on.
+  - How `BILL_ON_SCAN = 2` (GFS International) works.
+  - What the `REG_WILKO_*` procedures de-duplicate on.
+  - Whether the October double billing came from Manager's recycle-replace, Slipway or DataBridge. FID-211 is related.
 - **The label for `SITE_REG = 2` and which sites have it.** Needs a read of the central DB: `REG_STATUSES`, and `CUST_SITES WHERE SITE_REG = 2`.
 - **Which `CUST_SCRIPTS` rows are live** for registration (type 0) and site update (types 1 and 5), and whether a non-tuned type-0 row exists. Needs a central read.
 - **Which sites auto-update.** Needs `CUST_SITES.AUTO_UPDATE`, `CUST_SITE_UPDATES` and the live `UploadServer.ini`.
