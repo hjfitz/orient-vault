@@ -7,6 +7,14 @@ title: snap-queue-polling-service — work ledger
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-06 — Add an optional per-host SNAP concurrency cap, SNAP_MAX_CONCURRENT_REQUESTS
+
+Add an optional per-host SNAP concurrency cap, SNAP_MAX_CONCURRENT_REQUESTS
+
+Programme unit Q3a. Optional env SNAP_MAX_CONCURRENT_REQUESTS (unset = no cap, no wrapper; not in Terraform). Set, the poller's SNAP requests per host (per instance, across businesses) are capped by wrapping the axios adapter, so bare-axios retries queue again, backoff holds no slot, latency is timed from slot acquisition, and the slot wait is bounded by SNAP_REQUEST_TIMEOUT_MS, which the config requires. Dev verified with a cap of 2. Q3b sets the value from measurement. Ship: SHIP-1106-poller-concurrency-cap
+
+PR: gfs-bifrost/snap-adapter#330
+
 ## 2026-11-06 — Admit one half-open probe per cool-off behind SNAP_BREAKER_SINGLE_PROBE
 
 Admit one half-open probe per cool-off behind SNAP_BREAKER_SINGLE_PROBE
