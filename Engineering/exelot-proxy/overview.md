@@ -1,9 +1,15 @@
 ---
-tags: [waypoint, exelot-proxy]
+tags:
+- waypoint
+- exelot-proxy
 title: exelot-proxy — overview
-thesis: "exelot-proxy is GFS's proxy between Selector and Exelot. It creates labels with a generated commercial invoice. It had no prod traffic in 15 days."
+thesis: exelot-proxy is GFS's proxy between Selector and Exelot. It creates labels
+  with a generated commercial invoice. It had no prod traffic in 15 days.
 confidence: high
-verified: 2026-11-06
+verified: '2026-11-06'
+verified_paths:
+- src
+verified_sha: b21a47d
 ---
 # exelot-proxy — overview
 
