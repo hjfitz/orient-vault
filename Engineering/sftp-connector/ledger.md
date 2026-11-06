@@ -7,6 +7,14 @@ title: sftp-connector — work ledger
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-06 — Read mapping rules through @gfs-bifrost/remote-config
+
+Read mapping rules through @gfs-bifrost/remote-config
+
+Inc 3b of the remote-config plan: ingest, confirmation, stock-sync and stock-adjustment mapping reads go through the package's CONNECTOR_MAPPING handler; mapping revisions are applied live as an eviction before the ack; MappingRulesConfigHandler and getUserMappingRulesByUseCase deleted. Dev-verified (live mapping edit on DAZZA ingest; GADG pick/RGA/stock-adjustment egress; sweep 73/73, 201/201).
+
+PR: gfs-bifrost/sftp-connector#404
+
 ## 2026-11-06 — Read DDP rules and warehouse routing through remote-config
 
 Read DDP rules and warehouse routing through remote-config
