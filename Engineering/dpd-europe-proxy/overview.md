@@ -1,9 +1,16 @@
 ---
-tags: [waypoint, dpd-europe-proxy]
+tags:
+- waypoint
+- dpd-europe-proxy
 title: dpd-europe-proxy — overview
-thesis: "dpd-europe-proxy is GFS's proxy between Selector and DPD in the Netherlands and Germany. It speaks REST to Selector and SOAP to DPD. Every prod call in 15 days failed validation."
+thesis: dpd-europe-proxy is GFS's proxy between Selector and DPD in the Netherlands
+  and Germany. It speaks REST to Selector and SOAP to DPD. Every prod call in 15 days
+  failed validation.
 confidence: high
-verified: 2026-11-06
+verified: '2026-11-06'
+verified_paths:
+- src
+verified_sha: 67ad24f
 ---
 # dpd-europe-proxy — overview
 
