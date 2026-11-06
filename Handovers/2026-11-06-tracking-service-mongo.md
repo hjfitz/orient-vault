@@ -8,7 +8,7 @@ from: laptop
 to: hjf.shell.platform.ilg.software
 session_id: c36659b6-edee-4035-ab29-ffd89416a0e8
 resumed_by: ""
-updated: 2026-11-06T15:18Z
+updated: 2026-11-06T15:20Z
 ---
 # Handover: tracking-service Firestore → MongoDB (group D)
 
@@ -16,7 +16,7 @@ updated: 2026-11-06T15:18Z
 
 - **Why this started.** On 2026-11-06 at 09:10–09:16Z, prod Firestore throttled 536 commits with `RESOURCE_EXHAUSTED` during PURDYFIGG's 5-minute reap bursts. They surfaced as `InvalidArgument: transaction has expired`, because the gapic Commit retry reuses the dead transaction id. Pub/Sub redelivery healed it and nothing was dead-lettered. Harry decided to move persistence to MongoDB Atlas. That supersedes his 2026-10-19 "stay on Firestore" decision, and it's recorded in [[Bifrost/Tracking Service/Migration State]].
 - **`main` is `a97baca`.** It carries D1 (#18), D2 (#22, #23), D3 (#20), D4 (#21) and D6 (#19).
-- **Prod and dev both serve image `44734ac` (D1).** D1's prod Terraform apply (Deploy run 42226342798) is still running its field operations: 4 of 9 were exempt at 15:08Z, at about 6 min each.
+- **Prod and dev both serve image `44734ac` (D1).** D1's prod Terraform apply (Deploy run 42226342798) is still running its field operations: 6 of 9 were exempt at 15:19Z, at about 6 min each.
 - **One Deploy run, 42239748734 for `a97baca`, is pending behind it.** It ships D2–D4 code (inert in prod: `STORE` defaults to `firestore`, Firestore ignores marks) **and creates the Atlas clusters** (D6).
 
 | Unit | Delivered | PR | State |
@@ -33,13 +33,12 @@ updated: 2026-11-06T15:18Z
 | D1 prod apply | run 42226342798 (`44734ac`) | `terraform-apply-prod` in progress, field operations running | Wait for success, then run `gcloud firestore indexes fields describe <field> --collection-group=<c> --database=tracking-service --project=bifrost-prod-global1` for all 9 fields: each should show 0 indexes. Write the evidence into plan `tracking-service/plans/exempt-unqueried-fields-from-firestore-indexing` (inc 3), then `wp tick` inc 3 after the soak. |
 | D1 soak (G3) | — | starts when the prod apply completes | 48 h of reap bursts. **Bar (agreed): zero `resource_exhausted`** on `gcp.firestore.api.request_count{database_id:tracking-service}` in burst minutes. Baseline: 536 at 09:10–09:16Z on 2026-11-06. Record the result on G3 in the Migration State, then sign off the D1 plan (`waypoint-work`, Step 5). |
 | Batch deploy | run 42239748734 (`a97baca`) | pending behind D1 | When it reaches `terraform-prod`, read the `terraform-plan-prod` log. It must show **only** `mongodbatlas_advanced_cluster.tracking` (`tracking-service-prod`, `termination_protection_enabled = true`), `mongodbatlas_database_user.tracking`, `random_password.mongodb_user_password`, and the Cloud Run image bump; **0 destroy**. Then approve through `gh api -X POST repos/gfs-bifrost/tracking-service/actions/runs/<id>/pending_deployments -F "environment_ids[]=23493256883" -f state=approved`. Harry agreed this chain on 2026-11-06. If the plan differs, stop and ask. Afterwards tick D6 done (`wp programme tick "Tracking Service" --unit D6 --status done --pr "tracking-service#19"`) and D1 too once its soak passes. |
-| Dedupe verification | workflow script `Handovers/2026-11-06-tracking-service-mongo.dedupe-verify.js.txt` | **was running on the laptop; results will NOT reach the VM** | Re-run it on the VM (Workflow tool, script inline; it's read-only, and its data lens reads dev and prod Firestore with field masks). Its answers feed D5's unique indexes. Harry asked "are we deduping? businessId + customer ref are the unique keys": answer him from the verified findings. |
 
 Stale local worktrees on the laptop (nothing unpushed matters): `agent-*`, `exempt-unqueried-firestore-fields`, `skip-identical-republishes`, `tracking-service-mongo`. All branches are merged or unused, so they're safe to remove later.
 
 ## Waiting on Harry
 - **Nothing blocking.** Already decided: Mongo, not Postgres; G4 (import the frozen `duplicates` history as a frozen collection); G5 (served stats recompute-equivalent); G6 (two M10s, connection string as a Terraform env var); G7 (`internal/storeopen`, `cmd/import-mongo`, `cmd/parity` approved); a **hard-cut** cutover; and a **`seen` collection**.
-- **Answer his dedupe question** from the workflow re-run, with the D5 index proposal.
+- **Give Harry the dedupe answer** (already verified, see Closed). Bottom line: the businessId + customer ref rule holds today. **Prod: 89,156 shipments, all keyed by customer ref, 0 duplicate groups, 0 fallback docs; dev: 34,294, same.** Prod has **no returns collection at all**. The latent split paths are in R14, and the Mongo must-haves are in the D5 row.
 - **Owed by a human, not blocking:** a prod `recompute-stats -dry-run` to size G5's drift (G5 policy: a human runs prod tools).
 - **Before D7:** confirm the shared Atlas project allows Cloud Run egress. No Fuse Atlas stack declares an access list or PrivateLink.
 
@@ -53,7 +52,8 @@ Stale local worktrees on the laptop (nothing unpushed matters): `agent-*`, `exem
      - marks aggregation copied **exactly** from the memory store (`store/memory_marks.go`, `store/marks.go` `CapReasons`/`Tally`);
      - implement `storeopen.Backend`: `Store` plus `Maintenance` (`ShipmentIDs`, `ReturnIDs`, `ReadCounters`, `ReplaceCounters`);
      - add a Mongo entry to `store/backend_test.go`;
-     - unique indexes from the dedupe findings: `_id` = today's doc id `{BIZ}__{base64url(key)}`, and probably a partial unique index on `{businessId, customerRefNorm}` where the record is keyed by its customer ref.
+     - **the 7 must-haves in the D5 row** (the `seen` key is the per-item event id; the insert goes in the transaction; skip it for an empty eventID; composite events `_id`; retry on DuplicateKey; return transactions patch linked shipments with `upsert:false`; no shared docs), plus `_id` = `{BIZ}__base64url(key)` and a partial unique `{businessId, customerRefNorm}`;
+     - read the evidence in `Handovers/2026-11-06-tracking-service-mongo.dedupe-findings.md`.
    - Sub-increments a–e are in the D5 row.
 2. **D7 rollback stack plus hard-cut runbook.** It can start in parallel once D6 is in prod.
 3. **D8 `cmd/import-mongo`, D9 `cmd/parity`** (after D5).
@@ -94,3 +94,4 @@ Checked 2026-11-06 ~15:15Z on `hjf.shell.platform.ilg.software` (kernel 7.2.14):
 ## Closed since handover
 | When (UTC) | Work | Result |
 |---|---|---|
+| 2026-11-06 15:15 | Dedupe verification (workflow wf_f7a34f8a-8de, 11 agents, every claim challenged by a skeptic) | **Live data:** 0 duplicate businessId + customerRef groups, 0 fallback-keyed docs and 0 businessId case variants, in dev and prod. **Code:** the doc id is a pure function of the normalised businessId + key, and nothing re-keys. **Latent:** splits via a missing ref, the Shopify raw `name` or replay edits (R14), and redrive's new messageId (R13). **Mongo:** 7 must-haves added to the D5 row, and hard-cut must-haves added to G9. Findings: `Handovers/2026-11-06-tracking-service-mongo.dedupe-findings.md`. |
