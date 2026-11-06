@@ -98,11 +98,16 @@ stale flag.
 ### Evidence
 <!-- Newest first, dated. One bullet per check actually run, opening with what it discharges.
      "Suite green" alone is not evidence. Sign-off requires at least one dated bullet here. -->
-- <YYYY-MM-DD> [inc <n>] <what was run, against what, and the observable result>
+- 2026-11-06 [inc 5] `pnpm deploy:web`. `/service/css`, `/service/client4` and `/service/parcel-portal` return 200, and `/service/css` now renders `jez-poppleton`. The rebuilt `mcp/bin/orient-mcp` (the path `~/.claude.json` launches) answers over stdio with `service css`: `type=backend system=selector owner=jez-poppleton language=csharp framework=[asp.net asmx (.net framework 4.8.1), firebirdsql.data.firebirdclient] deploy=vm`. client4 shows `owner=jez-poppleton language=delphi system=selector`, and parcel-portal shows `owner=hjf language=[go, typescript] deploy=cloud-run`.
+- 2026-11-06 [inc 3] Live `orient-entity system selector` over stdio returns owner=jez-poppleton, PURPOSE, `MEMBERS 2` (`backend: css (jez-poppleton)`, `frontend: client4 (jez-poppleton)`), matching `wp system status selector`. It also lists the 4 docs with `verified 2026-11-05`, and `UNKNOWNS 9`: the first 8, with the Billing group folded in, then "+1 more". Before this change the same call returned `kind "system" is not person, service or customer`.
+- 2026-11-06 [inc 4] Live `orient-entity service orient` shows `design.md verified 2026-11-03@11aaab0 STALE`, matching `wp context orient` (STALE:1).
+- 2026-11-06 [inc 2] Stopped `orient-index`, then ran one sweep (1115 docs) plus the attention stamp (79 flagged) against the live index, and restarted the watcher. Before, 7 services had `entities.sidecar` diverging from `sidecars.json` (tracking-service, css, client4, selector-rest-proxy, selector-adapter, parcel-portal, fuse-devtools); css had `owner bifrost`, null language/framework/deploy and no system. After, 0 diverge.
+- 2026-11-06 [inc 1,3,4] review-panel (backend + tests, sonnet). Folded in: a missing `Systems/` dir now maps to not-found instead of a raw path error, a quoted ` #` and `null`/`~` are read correctly, non-not-exist read errors surface, membership drops a service whose folder no longer holds a live doc (the `sidecars` table is never pruned), a group bullet in Unknowns carries its children, and multi-assert tests were split. `go vet/test`, golangci-lint (0 issues), `pnpm typecheck`, biome, and vitest (247 files, 4736 tests) are green.
 
 ### Not verified
 <!-- Stated, not papered over. "(none)" is a deliberate claim, and a fine one. -->
-- <what remains unproven, and what would prove it>
+- The in-session `mcp__orient__orient-entity` tool. Running Claude Code sessions keep the old orient-mcp process until restarted, so verification went through the same binary over stdio instead.
+- A yaml-only rewrite flowing through the running watcher end to end. This is covered by the writer test plus the watcher's existing force-reparse on sidecar change. It would be proved by the next `wp onboard` that fills in a skeleton.
 
 ## Decisions & deviations
 <!-- Date-stamped, newest first — written by `wp decide`, and by hand when that is easier.
