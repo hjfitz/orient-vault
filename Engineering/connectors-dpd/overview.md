@@ -1,9 +1,16 @@
 ---
-tags: [waypoint, connectors-dpd]
+tags:
+- waypoint
+- connectors-dpd
 title: connectors-dpd — overview
-thesis: "connectors-dpd is the polling tracking connector for DPD, and DPD Local through a second deployment of the same image. It runs on tracking-core's shared connector framework, and its new events reach raw_tracking.v1 through tracking-core's response-publisher."
+thesis: connectors-dpd is the polling tracking connector for DPD, and DPD Local through
+  a second deployment of the same image. It runs on tracking-core's shared connector
+  framework, and its new events reach raw_tracking.v1 through tracking-core's response-publisher.
 confidence: high
-verified: 2026-11-06
+verified: '2026-11-06'
+verified_paths:
+- src
+verified_sha: fad40eb
 ---
 # connectors-dpd — overview
 
