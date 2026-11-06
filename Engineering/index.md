@@ -62,7 +62,7 @@ it is now. Regenerate this page with `wp index`; check health with `wp doctor`.
 | [[Engineering/fuse-mocker/overview\|fuse-mocker]] | backend | 4 | 0 | 1 | 2026-11-05 |
 | [[Engineering/fuse-ui/overview\|fuse-ui]] | frontend | 5 | 3 | 1 | 2026-10-29 |
 | [[Engineering/gcp-config/overview\|gcp-config]] | backend | 0 | 0 | 0 | 2026-11-05 |
-| [[Engineering/gfs-pod-service/overview\|gfs-pod-service]] | backend | 3 | 0 | 0 | — |
+| [[Engineering/gfs-pod-service/overview\|gfs-pod-service]] | backend | 3 | 0 | 1 | 2026-11-06 |
 | [[Engineering/github-actions/overview\|github-actions]] | infra | 3 | 0 | 2 | 2026-11-03 |
 | [[Engineering/github-config/overview\|github-config]] | infra | 3 | 0 | 0 | 2026-10-27 |
 | [[Engineering/ilg-merak/overview\|ilg-merak]] | backend | 0 | 0 | 0 | 2026-10-28 |
