@@ -1,9 +1,18 @@
 ---
-tags: [waypoint, royal-mail-proxy]
+tags:
+- waypoint
+- royal-mail-proxy
 title: royal-mail-proxy — architecture
-thesis: "An Express app routed by openapi-backend against api/royalmail-integration-api.yaml. Each call resolves the ApiKy profile, maps the GFS service code to a Royal Mail product through MongoDB, gets a cached Sapient token, and calls Sapient. Four operations, four error classes."
+thesis: An Express app routed by openapi-backend against api/royalmail-integration-api.yaml.
+  Each call resolves the ApiKy profile, maps the GFS service code to a Royal Mail
+  product through MongoDB, gets a cached Sapient token, and calls Sapient. Four operations,
+  four error classes.
 confidence: high
-verified: 2026-11-06
+verified: '2026-11-06'
+verified_paths:
+- src
+- api
+verified_sha: 361de96
 ---
 # royal-mail-proxy — architecture
 
