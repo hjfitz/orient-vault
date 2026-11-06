@@ -13,7 +13,8 @@ confidence: high
 
 > Companion: [[2026-11-06-ecm-event-world-where-its-a-mess]] diagnoses the design. Volumes cover the 15 days to 2026-11-06.
 
-## The path
+## Situation
+- **CONFIRMED** Twelve stages carry one Selector shipment from label to invoice. The table below gives each stage's services and the shipment's shape. [1][2][4][5]
 
 ```orient-flow
 { "v": 1, "title": "One Selector shipment, label to POD",
@@ -49,7 +50,7 @@ confidence: high
   ] }
 ```
 
-## Stage by stage
+### Stage by stage
 
 | Stage | Services | The shipment is | What changes |
 |---|---|---|---|
@@ -66,7 +67,8 @@ confidence: high
 | 10 POD | portal or Connect, then `gfs-pod-service` | `{signee, deliveryDateTime, images, deliveryAddress}`, cached 1 h | Fetched from the carrier on read. Never published |
 | 11 Invoice | billing app on Firebird, `legacy-invoice-translator`, CCDIS | `invoiced_shipments_published.v1`: `{shipmentId, invoiceNumber, shipmentCost}` | CCIS, ICIS, claims and SUS add invoice fields |
 
-## What it means for carrier integrations
+## Assessment
+> What the journey means for carrier integrations.
 - **CONFIRMED** The label side emits no events. No proxy publishes a label, manifest or "Picked" event. ECM first hears of a shipment after upload. [1][4]
 - **CONFIRMED** A labelled shipment that never uploads gets no ECM tracking, portal view or POD record. Fuse's commit gap (R5) lands here. [2]
 - **CONFIRMED** A new carrier needs an almanac entry first. `gfs-modernizer` dead-letters a shipment whose carrier it cannot resolve. [2]
