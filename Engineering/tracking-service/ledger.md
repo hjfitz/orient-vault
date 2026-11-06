@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-06 — Exempt unqueried fields from Firestore indexing
+
+Exempt unqueried fields from Firestore indexing
+
+D1 stopgap: 9 single-field index exemptions (lastSeenAt, totalDuplicates, stageTimes, confirmations; returns adds confirmation, linkedShipmentJson) after 536 RESOURCE_EXHAUSTED commits in the 2026-11-06 reap bursts. Tests the index-hotspot hypothesis; bar is zero resource_exhausted in burst minutes over 48h.
+
+PR: gfs-bifrost/tracking-service#18
+
 ## 2026-11-05 — Run tracking-service on the golden runtime image
 
 Run tracking-service on the golden runtime image
