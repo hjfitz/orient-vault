@@ -56,6 +56,6 @@ verified_sha: e6da4bf
 ## Evidence
 ```orient-evidence
 { "v": 1, "items": [
-  { "id": 1, "kind": "code", "ref": "README.md@e6da4bf" }
+  { "id": 1, "kind": "code", "ref": "index.js@e6da4bf" }
 ] }
 ```
