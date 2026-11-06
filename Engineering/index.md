@@ -69,7 +69,7 @@ it is now. Regenerate this page with `wp index`; check health with `wp doctor`.
 | [[Engineering/svc-template/overview\|svc-template]] | backend | 0 | 0 | 0 | 2026-10-28 |
 | [[Engineering/tech-services-manager/overview\|tech-services-manager]] | ? | 0 | 0 | 0 | — |
 | [[Engineering/terraform-modules/overview\|terraform-modules]] | infra | 3 | 0 | 0 | 2026-10-28 |
-| [[Engineering/tracking-service/overview\|tracking-service]] | backend | 4 | 0 | 1 | 2026-11-05 |
+| [[Engineering/tracking-service/overview\|tracking-service]] | backend | 4 | 0 | 2 | 2026-11-06 |
 | [[Engineering/ui-toolkit/overview\|ui-toolkit]] | library | 4 | 0 | 0 | — |
 | [[Engineering/wms-gateway/overview\|wms-gateway]] | backend | 4 | 0 | 0 | 2026-11-05 |
 | [[Engineering/workspace-kit/overview\|workspace-kit]] | backend | 0 | 0 | 0 | 2026-10-28 |
