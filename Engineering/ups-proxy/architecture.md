@@ -1,9 +1,17 @@
 ---
-tags: [waypoint, ups-proxy]
+tags:
+- waypoint
+- ups-proxy
 title: ups-proxy — architecture
-thesis: "An Express app with two routers: /api/stepping-stone passes Selector's UPS XML through with a bearer token, and /api/v2 maps JSON requests onto UPS's JSON APIs through seven ordered transformers. Both sit behind ApiKy key validation."
+thesis: 'An Express app with two routers: /api/stepping-stone passes Selector''s UPS
+  XML through with a bearer token, and /api/v2 maps JSON requests onto UPS''s JSON
+  APIs through seven ordered transformers. Both sit behind ApiKy key validation.'
 confidence: high
-verified: 2026-11-06
+verified: '2026-11-06'
+verified_paths:
+- src/api
+- src/auth.js
+verified_sha: bacc881
 ---
 # ups-proxy — architecture
 
