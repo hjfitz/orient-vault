@@ -1,6 +1,8 @@
 ---
-tags: [waypoint, tracking-core]
-verified: 2026-11-06
+tags:
+- waypoint
+- tracking-core
+verified: '2026-11-06'
 ---
 # tracking-core — known context
 
