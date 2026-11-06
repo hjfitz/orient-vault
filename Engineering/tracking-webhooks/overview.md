@@ -1,9 +1,18 @@
 ---
-tags: [waypoint, tracking-webhooks]
+tags:
+- waypoint
+- tracking-webhooks
 title: tracking-webhooks — overview
-thesis: "tracking-webhooks is the monorepo for GFS's carrier tracking webhooks: carriers push events, and a shared core matches them to GFS shipments and publishes to raw_tracking.v1. Evri deploys from it in shadow, with publishing off. InPost and the Royal Mail import are open PRs."
+thesis: 'tracking-webhooks is the monorepo for GFS''s carrier tracking webhooks: carriers
+  push events, and a shared core matches them to GFS shipments and publishes to raw_tracking.v1.
+  Evri deploys from it in shadow, with publishing off. InPost and the Royal Mail import
+  are open PRs.'
 confidence: high
-verified: 2026-11-06
+verified: '2026-11-06'
+verified_paths:
+- packages/tracking-webhook-core
+- iac/modules
+verified_sha: 9777dd4
 ---
 # tracking-webhooks — overview
 
