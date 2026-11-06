@@ -95,7 +95,7 @@ it is now. Regenerate this page with `wp index`; check health with `wp doctor`.
 | [[Engineering/terraform-modules/overview\|terraform-modules]] | infra | 3 | 0 | 0 | 2026-11-04 |
 | [[Engineering/tracking-core/overview\|tracking-core]] | backend | 3 | 0 | 0 | — |
 | [[Engineering/tracking-file-processor/overview\|tracking-file-processor]] | backend | 1 | 0 | 0 | — |
-| [[Engineering/tracking-service/overview\|tracking-service]] | backend | 4 | 0 | 2 | 2026-11-06 |
+| [[Engineering/tracking-service/overview\|tracking-service]] | backend | 4 | 0 | 3 | 2026-11-06 |
 | [[Engineering/tracking-webhook-royal-mail-sapient/overview\|tracking-webhook-royal-mail-sapient]] | backend | 1 | 0 | 0 | — |
 | [[Engineering/tracking-webhooks/overview\|tracking-webhooks]] | backend | 3 | 0 | 0 | — |
 | [[Engineering/ui-toolkit/overview\|ui-toolkit]] | library | 4 | 0 | 0 | — |
