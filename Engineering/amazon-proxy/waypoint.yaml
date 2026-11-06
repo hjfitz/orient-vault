@@ -1,24 +1,26 @@
 # amazon-proxy — Waypoint index. Cheap orientation only, never documentation.
 # Every value is a fact, a path, or a command — never a sentence. Anything needing a sentence
-# belongs in a doc. (No line cap: the old ~25-line one was exceeded by 22 of 26 files.)
+# belongs in a doc.
 service: amazon-proxy
-type: backend            # backend | frontend | library | infra
-owner: bifrost
-language:
-framework:
-deploy:                  # cloud-run | vercel | vm | n/a
-observability:           # datadog | none
+system: carrier-integrations
+repo: /home/hjf/code/apiky-survey/gh/gfs-hybrid-services_amazon-proxy
+github: gfs-hybrid-services/amazon-proxy
+type: backend
+owner: carrier-integrations               # inferred, see Systems/carrier-integrations/known-context.md
+language: typescript
+framework: [openapi-backend, mongodb]
+deploy: k8s
+observability: datadog
 
 interfaces:
-  inbound: []            # http, pubsub, cron, sftp, webhook, cli
-  outbound: []           # service/system names
+  inbound: [http]
+  outbound: [apiky, amazon-logistics-api, mongodb]
 
-key_paths: []            # 3-6 entrypoints worth knowing: src/http, iac/, apps/api/cmd
+key_paths:
+  - code/src/handlers/labelling.handler.ts
+  - code/src/handlers/tracking.handler.ts
 
-# note: >          # optional. Durable orientation only — the thing that surprises someone
-#                  # arriving cold. NEVER machine state (branch, commits behind, dirty files)
-#                  # and never a dated snapshot: nothing here is staleness-checked, so an
-#                  # expiring claim rots invisibly. Point at the Bifrost/ vault for a
-#                  # programme rather than restating it.
+note: >
+  Prod amazon.gfsdeliver.com runs image gfs-amazon-logistics-proxy (Azure DevOps, repo not located). This GitHub copy is deployed with no prod traffic.
 
 onboarded: 2026-11-06

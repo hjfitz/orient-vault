@@ -1,24 +1,26 @@
 # file-ingestion-ftp-proxy — Waypoint index. Cheap orientation only, never documentation.
 # Every value is a fact, a path, or a command — never a sentence. Anything needing a sentence
-# belongs in a doc. (No line cap: the old ~25-line one was exceeded by 22 of 26 files.)
+# belongs in a doc.
 service: file-ingestion-ftp-proxy
-type: backend            # backend | frontend | library | infra
-owner: bifrost
-language:
-framework:
-deploy:                  # cloud-run | vercel | vm | n/a
-observability:           # datadog | none
+system: carrier-integrations
+repo: /home/hjf/code/apiky-survey/ado/fenghuang-ftp-proxy
+ado: globalfreightsolutions/fenghuang/fenghuang-ftp-proxy
+type: backend
+owner: ecm               # inferred, see Systems/carrier-integrations/known-context.md
+language: javascript
+framework: [express]
+deploy: k8s
+observability: datadog
 
 interfaces:
-  inbound: []            # http, pubsub, cron, sftp, webhook, cli
-  outbound: []           # service/system names
+  inbound: [cron]
+  outbound: [carrier-sftp, gcs, file_tracking.v1]
 
-key_paths: []            # 3-6 entrypoints worth knowing: src/http, iac/, apps/api/cmd
+key_paths:
+  - index.js
+  - README.md
 
-# note: >          # optional. Durable orientation only — the thing that surprises someone
-#                  # arriving cold. NEVER machine state (branch, commits behind, dirty files)
-#                  # and never a dated snapshot: nothing here is staleness-checked, so an
-#                  # expiring claim rots invisibly. Point at the Bifrost/ vault for a
-#                  # programme rather than restating it.
+note: >
+  Deployed as CronJob file-ingestion-ftp-proxy (every 20 minutes) from image fenghuang-ftp-proxy. Its README still says the project is being archived.
 
 onboarded: 2026-11-06

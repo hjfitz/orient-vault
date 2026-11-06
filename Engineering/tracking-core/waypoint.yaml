@@ -1,24 +1,27 @@
 # tracking-core — Waypoint index. Cheap orientation only, never documentation.
 # Every value is a fact, a path, or a command — never a sentence. Anything needing a sentence
-# belongs in a doc. (No line cap: the old ~25-line one was exceeded by 22 of 26 files.)
+# belongs in a doc.
 service: tracking-core
-type: backend            # backend | frontend | library | infra
-owner: bifrost
-language:
-framework:
-deploy:                  # cloud-run | vercel | vm | n/a
-observability:           # datadog | none
+system: carrier-integrations
+repo: /home/hjf/code/apiky-survey/ado/tracking-core
+ado: globalfreightsolutions/fenghuang/tracking-core
+type: backend
+owner: ecm               # inferred, see Systems/carrier-integrations/known-context.md
+language: csharp
+framework: [.NET Core 3.1, gRPC, MongoDB, etcd]
+deploy: k8s
+observability: datadog
 
 interfaces:
-  inbound: []            # http, pubsub, cron, sftp, webhook, cli
-  outbound: []           # service/system names
+  inbound: [pubsub, grpc]
+  outbound: [raw_tracking.v1, mongodb, etcd, tracking-mapper]
 
-key_paths: []            # 3-6 entrypoints worth knowing: src/http, iac/, apps/api/cmd
+key_paths:
+  - src
+  - schema/tracking-event-schema.json
+  - agents.md
 
-# note: >          # optional. Durable orientation only — the thing that surprises someone
-#                  # arriving cold. NEVER machine state (branch, commits behind, dirty files)
-#                  # and never a dated snapshot: nothing here is staleness-checked, so an
-#                  # expiring claim rots invisibly. Point at the Bifrost/ vault for a
-#                  # programme rather than restating it.
+note: >
+  Holds consignment-manager, batch-creator, response-publisher and the NuGet connector framework every connector uses.
 
 onboarded: 2026-11-06

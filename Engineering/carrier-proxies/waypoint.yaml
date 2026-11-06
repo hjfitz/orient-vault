@@ -2,11 +2,14 @@
 # Every value is a fact, a path, or a command — never a sentence. Anything needing a sentence
 # belongs in a doc. (No line cap: the old ~25-line one was exceeded by 22 of 26 files.)
 service: carrier-proxies
+system: carrier-integrations
+repo: /home/hjf/code/fuse/carrier-proxies
+github: gfs-hybrid-services/carrier-proxies
 type: backend            # backend | frontend | library | infra
 owner: bifrost
-language:
-framework:
-deploy:                  # cloud-run | vercel | vm | n/a
+language: typescript
+framework: [api-host-framework]
+deploy: cloud-run                # cloud-run | vercel | vm | n/a
 observability:           # datadog | none
 
 interfaces:

@@ -1,24 +1,25 @@
 # dpd-europe-proxy — Waypoint index. Cheap orientation only, never documentation.
 # Every value is a fact, a path, or a command — never a sentence. Anything needing a sentence
-# belongs in a doc. (No line cap: the old ~25-line one was exceeded by 22 of 26 files.)
+# belongs in a doc.
 service: dpd-europe-proxy
-type: backend            # backend | frontend | library | infra
-owner: bifrost
-language:
-framework:
-deploy:                  # cloud-run | vercel | vm | n/a
-observability:           # datadog | none
+system: carrier-integrations
+repo: /home/hjf/code/apiky-survey/ado/dpd-europe-proxy
+ado: globalfreightsolutions/GFS DPD-Europe Integration/dpd-europe-proxy
+type: backend
+owner: carrier-integrations               # inferred, see Systems/carrier-integrations/known-context.md
+language: javascript
+framework: [strong-soap, mongodb]
+deploy: k8s
+observability: datadog
 
 interfaces:
-  inbound: []            # http, pubsub, cron, sftp, webhook, cli
-  outbound: []           # service/system names
+  inbound: [http]
+  outbound: [apiky, dpd-de-soap, dpd-nl-soap, mongodb, kms]
 
-key_paths: []            # 3-6 entrypoints worth knowing: src/http, iac/, apps/api/cmd
+key_paths:
+  - src/controllers/Labelling.js
 
-# note: >          # optional. Durable orientation only — the thing that surprises someone
-#                  # arriving cold. NEVER machine state (branch, commits behind, dirty files)
-#                  # and never a dated snapshot: nothing here is staleness-checked, so an
-#                  # expiring claim rots invisibly. Point at the Bifrost/ vault for a
-#                  # programme rather than restating it.
+note: >
+  REST to Selector, SOAP to DPD DE and NL. All prod calls fail validation.
 
 onboarded: 2026-11-06

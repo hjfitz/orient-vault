@@ -1,24 +1,26 @@
 # coll8-proxy — Waypoint index. Cheap orientation only, never documentation.
 # Every value is a fact, a path, or a command — never a sentence. Anything needing a sentence
-# belongs in a doc. (No line cap: the old ~25-line one was exceeded by 22 of 26 files.)
+# belongs in a doc.
 service: coll8-proxy
-type: backend            # backend | frontend | library | infra
-owner: bifrost
-language:
-framework:
-deploy:                  # cloud-run | vercel | vm | n/a
-observability:           # datadog | none
+system: carrier-integrations
+repo: /home/hjf/code/apiky-survey/ado/GFS_Coll8_Integration
+ado: globalfreightsolutions/GFS Coll8 Integration/GFS Coll8 Integration
+type: backend
+owner: carrier-integrations               # inferred, see Systems/carrier-integrations/known-context.md
+language: javascript
+framework: [express, express-openapi-validator]
+deploy: k8s
+observability: datadog
 
 interfaces:
-  inbound: []            # http, pubsub, cron, sftp, webhook, cli
-  outbound: []           # service/system names
+  inbound: [http]
+  outbound: [apiky, coll8-api, coll8-auth0, ecm-pdf-converter]
 
-key_paths: []            # 3-6 entrypoints worth knowing: src/http, iac/, apps/api/cmd
-
-# note: >          # optional. Durable orientation only — the thing that surprises someone
-#                  # arriving cold. NEVER machine state (branch, commits behind, dirty files)
-#                  # and never a dated snapshot: nothing here is staleness-checked, so an
-#                  # expiring claim rots invisibly. Point at the Bifrost/ vault for a
-#                  # programme rather than restating it.
+key_paths:
+  - src/startup.js
+  - src/code.js
+  - src/map
+  - src/token-manager.js
+  - src/swagger.json
 
 onboarded: 2026-11-06
