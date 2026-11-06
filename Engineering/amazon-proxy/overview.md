@@ -1,9 +1,16 @@
 ---
-tags: [waypoint, amazon-proxy]
+tags:
+- waypoint
+- amazon-proxy
 title: amazon-proxy — overview
-thesis: "amazon-proxy is GFS's Amazon Logistics proxy, used by Selector for labels and by ECM's Amazon connector for tracking. Prod runs an Azure DevOps copy that hasn't been located; this GitHub copy is deployed but gets no prod traffic."
+thesis: amazon-proxy is GFS's Amazon Logistics proxy, used by Selector for labels
+  and by ECM's Amazon connector for tracking. Prod runs an Azure DevOps copy that
+  hasn't been located; this GitHub copy is deployed but gets no prod traffic.
 confidence: high
-verified: 2026-11-06
+verified: '2026-11-06'
+verified_paths:
+- code/src
+verified_sha: be40413
 ---
 # amazon-proxy — overview
 
