@@ -95,7 +95,7 @@ The leading hypothesis is an index write hotspot. Every copy rewrites indexed fi
                      [ ] confirmed
 -->
 
-- [ ] 1. **Declare the 9 exemptions** (AC 1,2). Add them to `fieldOverrides` in `firestore.indexes.json` and as `google_firestore_field` resources with `index_config {}`, each `depends_on` the previous, appended after `events_errors_json`, plus `local.declared_field_overrides`. — verify:
+- [x] 1. **Declare the 9 exemptions** (AC 1,2). Add them to `fieldOverrides` in `firestore.indexes.json` and as `google_firestore_field` resources with `index_config {}`, each `depends_on` the previous, appended after `events_errors_json`, plus `local.declared_field_overrides`. — verify: — gates green; dev plan via PR tf-plan — done: c52f644
   - `terraform fmt -check -recursive iac` passes;
   - `make fmt-check vet lint test-race test-emulator` passes;
   - `indexes_test.go` passes;
