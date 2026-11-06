@@ -60,3 +60,6 @@ Added "Getting a label" to Systems/selector/architecture.md (lint clean). Publis
 
 ## 5 Nov: carrier-playground mock proxies, handed over to the VM
 Built ilg-merak/carrier-playground PR #1: mock Royal Mail, UPS and Coll8 proxies with mock-upstreams, dev Cloud Run IaC (mock-*-cp-dev), golden image, observability SDK and dd-trace; 374 tests, docker smoke passed. Handed over to hjf.shell (tmux main:carrier-playground) to watch CI and summarise plans. Record: [[Handovers/2026-11-05-carrier-playground]]. Owed: Harry's merge/deploy call after the plans; Amazon and DPD Europe decision.
+
+## 6 Nov: Carrier Proxies pages (MPK)
+Researched volumes, integration methods and uses (3 read-only agents, spot-checked), then wrote MPK 353697822 Carrier Proxies (what a proxy is, why, estate) with children 353566754 Carriers and Volumes, 353697842 Carrier Integration Methods, 353206310 Carrier Integration Uses. Corrections: Client4 has no outbound FTP (the "FTP" hits were ZeroLeftPad); pre-advice is V4-Server-IE over plain FTP. Owed: central-DB reads (per-carrier volumes, live IE jobs); connectors deep dive is next.
