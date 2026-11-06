@@ -68,7 +68,7 @@ Fuse's selector-adapter and Parcel Portal reach the proxies only through Selecto
 - **Selector and pre-advice files.** System [[selector]].
 - **The ECM pipeline after `raw_tracking.v1`.** Status derivation, consignment stores, portals.
 - **selector-rest-proxy.** It fronts CSS, not a carrier.
-- **gfs-smart-pod-service.** Its repo is disabled and prod config comments it out.
+- **gfs-smart-pod-service.** Azure DevOps marks its repo disabled, and prod config comments it out.
 - **Mock copies.** `ilg-merak/carrier-playground`.
 
 ## Evidence
