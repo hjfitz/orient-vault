@@ -1,9 +1,16 @@
 ---
-tags: [waypoint, connectors-dhlparcel]
+tags:
+- waypoint
+- connectors-dhlparcel
 title: connectors-dhlparcel — overview
-thesis: "connectors-dhlparcel is the polling tracking connector for DHL Parcel UK (UK Mail). It runs on tracking-core's shared connector framework, and its new events reach raw_tracking.v1 through tracking-core's response-publisher."
+thesis: connectors-dhlparcel is the polling tracking connector for DHL Parcel UK (UK
+  Mail). It runs on tracking-core's shared connector framework, and its new events
+  reach raw_tracking.v1 through tracking-core's response-publisher.
 confidence: high
-verified: 2026-11-06
+verified: '2026-11-06'
+verified_paths:
+- src
+verified_sha: cc1f132
 ---
 # connectors-dhlparcel — overview
 
