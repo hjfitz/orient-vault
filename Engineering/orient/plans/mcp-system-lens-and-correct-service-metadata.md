@@ -87,7 +87,7 @@ stale flag.
 
 - [x] 1. Writer prefers the freshly parsed sidecar over the stored one (AC 2). Verify with a writer test (re-index with a changed sidecar replaces it), plus `pnpm typecheck`, `pnpm lint` and `pnpm test`. — writer tests + typecheck/lint/4736 tests green — done: b6e3fa7
 - [x] 2. Re-index the live index (restart `orient-index` and sweep) (AC 1). Verify that no service's `entities.sidecar` differs from `sidecars.json`. — stopped watcher, one-off sweep (1115 docs) + attention stamp; 0 services where entities.sidecar != sidecars.json — done: 38061ee
-- [ ] 3. MCP `system` kind: store `SystemMembers`, vault `ReadSystem` (yaml + Unknowns), and `renderSystem` in the `renderFolder` style. Also update the description, jsonschema, Instructions and mcp-spec (AC 3,5). Verify with go tests in the existing style, `make vet test fmt-check lint`, and the live binary over stdio.
+- [x] 3. MCP `system` kind: store `SystemMembers`, vault `ReadSystem` (yaml + Unknowns), and `renderSystem` in the `renderFolder` style. Also update the description, jsonschema, Instructions and mcp-spec (AC 3,5). Verify with go tests in the existing style, `make vet test fmt-check lint`, and the live binary over stdio. — go vet/test/lint/fmt green; live binary over stdio shows selector members/docs/unknowns — done: 38061ee
 - [ ] 4. Per-doc stale marker from `meta.attention` on service doc lines (AC 4). Verify with a render test, and live with `orient` (design.md is STALE).
 - [ ] 5. Rebuild `mcp/bin/orient-mcp` and `pnpm deploy:web` after the `/sprint` check (AC 1,5). Verify `orient-entity` live output for system selector and service css, and curl `/service/css`.
 
