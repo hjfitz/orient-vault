@@ -1,9 +1,16 @@
 ---
-tags: [waypoint, fedex-proxy]
+tags:
+- waypoint
+- fedex-proxy
 title: fedex-proxy — overview
-thesis: "fedex-proxy is GFS's proxy between CSS and FedEx, on Cloud Run. It creates shipments with customs and cancels them. Client4 doesn't use it: Client4 calls FedEx's old API directly."
+thesis: 'fedex-proxy is GFS''s proxy between CSS and FedEx, on Cloud Run. It creates
+  shipments with customs and cancels them. Client4 doesn''t use it: Client4 calls
+  FedEx''s old API directly.'
 confidence: high
-verified: 2026-11-06
+verified: '2026-11-06'
+verified_paths:
+- code/src
+verified_sha: 1d246f8
 ---
 # fedex-proxy — overview
 
