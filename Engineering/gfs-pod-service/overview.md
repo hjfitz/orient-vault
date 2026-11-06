@@ -1,9 +1,20 @@
 ---
-tags: [waypoint, gfs-pod-service]
+tags:
+- waypoint
+- gfs-pod-service
 title: gfs-pod-service — overview
-thesis: "gfs-pod-service returns a proof of delivery on request: it looks up the shipment, calls the carrier's own POD or tracking API live, and returns one normalised POD with signature, safe-place photo and GPS. It serves the customer portal, Connect API and staff tools, about 21k requests in 15 days, mostly DHL Parcel UK."
+thesis: 'gfs-pod-service returns a proof of delivery on request: it looks up the shipment,
+  calls the carrier''s own POD or tracking API live, and returns one normalised POD
+  with signature, safe-place photo and GPS. It serves the customer portal, Connect
+  API and staff tools, about 21k requests in 15 days, mostly DHL Parcel UK.'
 confidence: high
-verified: 2026-11-06
+verified: '2026-11-06'
+verified_paths:
+- src/subscriber
+- src/pod-service
+- src/api-v2
+- src/api-v1
+verified_sha: 811007e
 ---
 # gfs-pod-service — overview
 
