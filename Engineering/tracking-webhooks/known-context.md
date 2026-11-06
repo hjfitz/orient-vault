@@ -1,6 +1,8 @@
 ---
-tags: [waypoint, tracking-webhooks]
-verified: 2026-11-06
+tags:
+- waypoint
+- tracking-webhooks
+verified: '2026-11-06'
 ---
 # tracking-webhooks — known context
 
