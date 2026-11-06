@@ -22,6 +22,7 @@ it is now. Regenerate this page with `wp index`; check health with `wp doctor`.
 | [[Engineering/apiky/overview\|apiky]] | backend | 0 | 0 | 0 | 2026-10-09 |
 | [[Engineering/audit-service/overview\|audit-service]] | backend | 4 | 1 | 0 | 2026-10-27 |
 | [[Engineering/bifrost-pubsub/overview\|bifrost-pubsub]] | infra | 3 | 0 | 0 | 2026-10-14 |
+| [[Engineering/carrier-playground/overview\|carrier-playground]] | backend | 0 | 0 | 0 | 2026-11-05 |
 | [[Engineering/carrier-proxies/overview\|carrier-proxies]] | backend | 0 | 0 | 0 | 2026-10-08 |
 | [[Engineering/client4/overview\|client4]] | frontend | 3 | 0 | 0 | — |
 | [[Engineering/collector/overview\|collector]] | backend | 3 | 1 | 0 | 2026-11-05 |
