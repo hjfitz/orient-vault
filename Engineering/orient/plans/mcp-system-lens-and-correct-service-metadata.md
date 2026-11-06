@@ -114,3 +114,4 @@ stale flag.
      or refuted hypothesis. Not restated doc content. Sign-off promotes each confirmed one into
      the matching durable doc, then clears it from here; a refuted one moves to ## Handback
      rather than being deleted. Legitimately empty. -->
+- `entities.sidecar` was write-once: any service onboarded through a `wp onboard` skeleton showed the skeleton's facts (owner bifrost, nulls) in the web `/service` header and the MCP, while the `sidecars` table was current.
