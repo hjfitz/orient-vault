@@ -1,6 +1,8 @@
 ---
-tags: [waypoint, ups-proxy]
-verified: 2026-11-06
+tags:
+- waypoint
+- ups-proxy
+verified: '2026-11-06'
 ---
 # ups-proxy — known context
 
