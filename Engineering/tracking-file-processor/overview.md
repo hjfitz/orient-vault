@@ -10,7 +10,7 @@ thesis: tracking-file-processor turns carrier tracking files into tracking event
 confidence: high
 verified: '2026-11-06'
 verified_paths:
-- src
+- index.js
 verified_sha: e6da4bf
 ---
 # tracking-file-processor — overview
