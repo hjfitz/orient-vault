@@ -65,8 +65,9 @@ Legend: ⬜ not started · 🟨 in progress · ✅ merged · ⛔ blocked · ⏸ 
 | **S4** | ⏸ | Delete `@gfs-bifrost/types`' legacy `snap/` | S3 | med | sonnet/low | | A `types` major. Check fleet consumers first. |
 
 ## Gates
-- [ ] **G1 — Purdy & Figg peak over** — blocks **flipping** the behaviour switches in prod (A2a, A2b, Q1, Q2, Q3b, Q5). Clears when P&F daily orders are back near baseline (forecast ~12k by 2026-11-12) or on Harry's call. Code may deploy to prod with every switch at today's behaviour.
+- [ ] **G1 — Purdy & Figg peak over** — blocks X1, Q3b. Flipping the behaviour switches in prod (A2a, A2b, Q1, Q2b, Q3a, Q5) happens in X1. Clears when P&F daily orders are back near baseline (forecast ~12k by 2026-11-12) or on Harry's call. Code may deploy to prod with every switch at today's behaviour.
 - [x] **G2 — resilience 0.2.0 and snap 0.4.2 published** — blocks A1 and Q3a. Clears when `npm view @gfs-bifrost/resilience@0.2.0 version` and `@gfs-bifrost/snap@0.4.2 version` both resolve.
+> SUPERSEDED 2026-11-06 — Q5 shipped behind `SNAP_NORMALISE_HOST_KEY` (off). G3 clears only once that switch is **on** in prod (X1), not merely once Q5 is deployed.
 - [ ] **G3 — dual-emit live in prod** — blocks O1. Clears when A3, Q4 and Q5 are all deployed to prod. Q5 must be in, or the old and new series differ on tags alone.
 - [ ] **G4 — parity soak** — blocks O2. Clears after at least 7 days of O1 monitors firing in step with the old ones, **with at least one real breaker open per service**, or a notebook backtest of the new queries over the 19/21 Oct opens.
 
