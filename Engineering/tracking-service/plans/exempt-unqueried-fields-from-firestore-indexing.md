@@ -105,7 +105,7 @@ The leading hypothesis is an index write hotspot. Every copy rewrites indexed fi
   - the wall-clock time per field operation is recorded;
   - dev `/api/v1` list, search, attention and stats calls still answer.
       gate: Harry agrees the prod Terraform plan (plan-then-proceed) and the G3 threshold
-            [ ] confirmed
+            [x] confirmed
 - [ ] 3. **Apply to prod and soak** (AC 1,3). Approve `terraform-prod`. The run stays open for roughly 9 × the dev per-field time. — verify:
   - `gcloud ... describe` on the prod database;
   - 48 h of burst minutes: `resource_exhausted` count, Cloud Run 5xx and commit latency, against 09:10–09:16 on 2026-11-06;
@@ -117,13 +117,15 @@ The leading hypothesis is an index write hotspot. Every copy rewrites indexed fi
      Check-selection order lives in verification-menu.md — do not restate it here. -->
 
 ### Evidence
+- 2026-11-06 [inc 2] **Dev applied and verified.** Deploy run 42226342798 (merge `44734ac`, PR #18); `terraform-apply-dev` ran 13:34:24–14:30:45Z, **56 min for 9 field ops (~6.3 min each on the populated dev database)**. `gcloud firestore indexes fields describe` on `bifrost-dev-global1/tracking-service`: all 9 fields report 0 indexes; the map subfield `shipments.stageTimes.despatched` inherits from `stageTimes` (ancestorField `.../shipments/fields/stageTimes`, 0 indexes), so the map-inheritance assumption holds; control `shipments.updatedAt` keeps its 3. Dev API with an ID token: `/health`, `/api/v1/shipments?limit=1`, `?lane=action`, `?search=HJF`, `/api/v1/returns?limit=1`, `/api/v1/stats`, `/api/v1/stats/businesses` all 200. (AC 1, dev)
+- 2026-11-06 [inc 2] **Prod plan checked before approval** (`terraform-plan-prod` job 127949642667): `Plan: 9 to add, 1 to change, 0 to destroy`, the same 9 `google_firestore_field` adds plus the routine Cloud Run image (`prod-b12d0a6…` → `prod-44734ac…`) and masked Datadog env bump. Harry agreed the plan and the G3 bar (zero `resource_exhausted` commits in reap-burst minutes over 48 h, `gcp.firestore.api.request_count{database_id:tracking-service}`) on 2026-11-06 ("yes, ship it"); `terraform-prod` approved 14:3xZ.
 <!-- Newest first, dated. One bullet per check actually run, opening with what it discharges.
      "Suite green" alone is not evidence. Sign-off requires at least one dated bullet here. -->
 
 
 ### Not verified
 <!-- Stated, not papered over. "(none)" is a deliberate claim, and a fine one. -->
-- Everything. Nothing has been run yet.
+- AC 1 in prod and AC 3 (the 48 h soak) — pending the prod apply and two days of bursts.
 
 ## Decisions & deviations
 <!-- Date-stamped, newest first — written by `wp decide`, and by hand when that is easier.
