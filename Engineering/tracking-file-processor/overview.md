@@ -1,9 +1,17 @@
 ---
-tags: [waypoint, tracking-file-processor]
+tags:
+- waypoint
+- tracking-file-processor
 title: tracking-file-processor — overview
-thesis: "tracking-file-processor turns carrier tracking files into tracking events. It reads file_tracking.v1, matches each row to a GFS shipment, and publishes to raw_tracking.v1. It carried about 54k events in 15 days, the third and smallest tracking path."
+thesis: tracking-file-processor turns carrier tracking files into tracking events.
+  It reads file_tracking.v1, matches each row to a GFS shipment, and publishes to
+  raw_tracking.v1. It carried about 54k events in 15 days, the third and smallest
+  tracking path.
 confidence: high
-verified: 2026-11-06
+verified: '2026-11-06'
+verified_paths:
+- src
+verified_sha: e6da4bf
 ---
 # tracking-file-processor — overview
 
