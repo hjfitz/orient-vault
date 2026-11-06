@@ -1,9 +1,16 @@
 ---
-tags: [waypoint, coll8-proxy]
+tags:
+- waypoint
+- coll8-proxy
 title: coll8-proxy — overview
-thesis: "coll8-proxy is GFS's proxy between Selector and Coll8. It creates labels, cancels shipments and sends the end-of-day manifest, using one GFS Coll8 account for every customer."
+thesis: coll8-proxy is GFS's proxy between Selector and Coll8. It creates labels,
+  cancels shipments and sends the end-of-day manifest, using one GFS Coll8 account
+  for every customer.
 confidence: high
-verified: 2026-11-06
+verified: '2026-11-06'
+verified_paths:
+- src
+verified_sha: 44a05c3
 ---
 # coll8-proxy — overview
 
