@@ -81,8 +81,11 @@ stale flag.
                      [ ] confirmed
 -->
 
-- [ ] 1. <increment> — verify: <how>
-- [ ] 2. <increment> — verify: <how>
+- [ ] 1. Writer prefers the freshly parsed sidecar over the stored one (AC 2). Verify with a writer test (re-index with a changed sidecar replaces it), plus `pnpm typecheck`, `pnpm lint` and `pnpm test`.
+- [ ] 2. Re-index the live index (restart `orient-index` and sweep) (AC 1). Verify that no service's `entities.sidecar` differs from `sidecars.json`.
+- [ ] 3. MCP `system` kind: store `SystemMembers`, vault `ReadSystem` (yaml + Unknowns), and `renderSystem` in the `renderFolder` style. Also update the description, jsonschema, Instructions and mcp-spec (AC 3,5). Verify with go tests in the existing style, `make vet test fmt-check lint`, and the live binary over stdio.
+- [ ] 4. Per-doc stale marker from `meta.attention` on service doc lines (AC 4). Verify with a render test, and live with `orient` (design.md is STALE).
+- [ ] 5. Rebuild `mcp/bin/orient-mcp` and `pnpm deploy:web` after the `/sprint` check (AC 1,5). Verify `orient-entity` live output for system selector and service css, and curl `/service/css`.
 
 ## Verification
 <!-- The single authority for evidence. Increment lines carry `— done: <sha>` and nothing else.
