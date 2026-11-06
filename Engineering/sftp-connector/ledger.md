@@ -7,6 +7,14 @@ title: sftp-connector — work ledger
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-06 — Stop counting redelivery deferrals and customer rejections as request failures
+
+Stop counting redelivery deferrals and customer rejections as request failures
+
+request.failure counted every errorHandler path, so the overview dashboard's request success rate showed ~92% since 06:00 on 2026-11-06 with no fault: 13 of 16 failures were deliberate routing deferrals, 3 were customer input/config. Deferrals now emit file_routing.deferred{trigger}, customer-input errors emit request.rejected, /health no longer counts towards fuse.request. Dashboard widget (Datadog UI) still to be changed to (request - failure) / request after deploy.
+
+PR: gfs-bifrost/sftp-connector#405
+
 ## 2026-11-05 — Run sftp-connector on the golden runtime image
 
 Run sftp-connector on the golden runtime image
