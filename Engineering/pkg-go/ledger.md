@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-06 — Push regenerated modules with the app token
+
+Push regenerated modules with the app token
+
+Fix found by the first live publish-path run: actions/checkout's persisted github.token extraheader outranked the app token, so the bot's push got a 403. persist-credentials: false. Re-verified live: a forced breaking types regeneration pushed and opened #13 as ilg-platform-ci, held as designed, then closed. Also tagged snap/v0.1.1 (Renovate's untagged snap 0.4.2, #11). Ship: SHIP-1105-go-regenerate-pipeline
+
+PR: gfs-bifrost/pkg-go#12
+
 ## 2026-11-05 — Add the Regenerate workflow for generated modules
 
 Add the Regenerate workflow for generated modules
