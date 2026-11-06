@@ -51,6 +51,7 @@ it is now. Regenerate this page with `wp index`; check health with `wp doctor`.
 | [[Engineering/dedupe-service/overview\|dedupe-service]] | backend | 5 | 0 | 0 | 2026-11-04 |
 | [[Engineering/distraction-dashboard/overview\|distraction-dashboard]] | frontend | 4 | 0 | 0 | 2026-11-05 |
 | [[Engineering/dpd-europe-proxy/overview\|dpd-europe-proxy]] | backend | 1 | 0 | 0 | — |
+| [[Engineering/evri-auth-facade/overview\|evri-auth-facade]] | backend | 1 | 0 | 0 | — |
 | [[Engineering/exelot-proxy/overview\|exelot-proxy]] | backend | 1 | 0 | 0 | — |
 | [[Engineering/fapi/overview\|fapi]] | backend | 3 | 0 | 0 | 2026-11-05 |
 | [[Engineering/fedex-proxy/overview\|fedex-proxy]] | backend | 1 | 0 | 0 | — |
@@ -62,6 +63,7 @@ it is now. Regenerate this page with `wp index`; check health with `wp doctor`.
 | [[Engineering/fuse-mocker/overview\|fuse-mocker]] | backend | 4 | 0 | 0 | 2026-11-05 |
 | [[Engineering/fuse-ui/overview\|fuse-ui]] | frontend | 5 | 3 | 1 | 2026-11-05 |
 | [[Engineering/gcp-config/overview\|gcp-config]] | backend | 0 | 0 | 0 | 2026-10-29 |
+| [[Engineering/gfs-pod-service/overview\|gfs-pod-service]] | backend | 3 | 0 | 0 | — |
 | [[Engineering/github-actions/overview\|github-actions]] | infra | 3 | 0 | 0 | 2026-10-27 |
 | [[Engineering/github-config/overview\|github-config]] | infra | 3 | 0 | 0 | 2026-10-27 |
 | [[Engineering/ilg-merak/overview\|ilg-merak]] | backend | 0 | 0 | 0 | 2026-10-28 |
@@ -75,8 +77,8 @@ it is now. Regenerate this page with `wp index`; check health with `wp doctor`.
 | [[Engineering/ocs-proxy/overview\|ocs-proxy]] | backend | 1 | 0 | 0 | — |
 | [[Engineering/orient/overview\|orient]] | frontend | 1 | 0 | 2 | 2026-11-06 |
 | [[Engineering/parcel-portal/overview\|parcel-portal]] | backend | 4 | 0 | 0 | 2026-11-03 |
-| [[Engineering/pkg-go/overview\|pkg-go]] | backend | 0 | 0 | 0 | 2026-11-05 |
-| [[Engineering/pkg-node/overview\|pkg-node]] | library | 3 | 0 | 1 | 2026-11-02 |
+| [[Engineering/pkg-go/overview\|pkg-go]] | backend | 0 | 0 | 0 | 2026-11-06 |
+| [[Engineering/pkg-node/overview\|pkg-node]] | library | 3 | 0 | 1 | 2026-11-06 |
 | [[Engineering/remote-compute/overview\|remote-compute]] | backend | 0 | 0 | 2 | 2026-11-03 |
 | [[Engineering/renovate-runner/overview\|renovate-runner]] | infra | 3 | 0 | 0 | 2026-11-06 |
 | [[Engineering/replay-service/overview\|replay-service]] | backend | 4 | 0 | 0 | 2026-11-05 |
