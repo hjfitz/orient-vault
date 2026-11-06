@@ -14,6 +14,11 @@ Interview truth (Harry, 2026-11-05), the Tech Services vault, Datadog, and facts
 - Work runs on **SMXI** Jira tickets: one branch per ticket, merged into a `Release-4.50.x` branch, then into master/main.
 - **Chris Cumings** builds, tests and announces each GFS Enterprise (CSS) release, and is the contact for manifest semantics.
 - **Tech Services** (Kyle) supports it day to day and keeps the team vault (`ilg-tech-services/knowledge-system`).
+- **Billing is Finance's, not Selector's.** It's a separate Delphi billing app that reads central `SHIPMENTS`.
+  - George Vavoulogiannis develops it.
+  - George Renshaw-Fox answers operational questions; William Valentine sets customers up.
+  - Ben Turvey is the BA, and Neil Janman owns the Billing Confluence space.
+  - Billing 2.0 / carrier invoice tracking is Jira FID. It plans a unique source ID per shipment (FID-196), which may change the handoff.
 - Oliver Wilders is due to review the MPK *Legacy Selector* pages (snapshot 2026-11-05).
 
 ## Direction
