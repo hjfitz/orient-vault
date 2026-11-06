@@ -1,9 +1,18 @@
 ---
-tags: [waypoint, evri-auth-facade]
+tags:
+- waypoint
+- evri-auth-facade
 title: evri-auth-facade — overview
-thesis: "evri-auth-facade holds one Evri OAuth token and hands it to the Evri polling connectors, so they don't each log in to Evri. It's a small Express service with an in-memory and Redis cache, called at /token about 1,350 times in 15 days."
+thesis: evri-auth-facade holds one Evri OAuth token and hands it to the Evri polling
+  connectors, so they don't each log in to Evri. It's a small Express service with
+  an in-memory and Redis cache, called at /token about 1,350 times in 15 days.
 confidence: high
-verified: 2026-11-06
+verified: '2026-11-06'
+verified_paths:
+- src/adaptors/evri.adaptor.js
+- src/controllers
+- src/middleware
+verified_sha: 7bc8861
 ---
 # evri-auth-facade — overview
 
