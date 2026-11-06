@@ -50,7 +50,7 @@ POD isn't part of the tracking event stream. Most carriers only return signature
 
 ## What deliberately isn't here
 - **Tracking events.** Those come through connectors, webhooks and files into `raw_tracking.v1`; see system [[carrier-integrations]].
-- **gfs-smart-pod-service.** Its repo is disabled and it's commented out of prod config.
+- **gfs-smart-pod-service.** Azure DevOps marks its repo disabled, and prod config comments it out.
 
 ## Evidence
 ```orient-evidence
