@@ -34,6 +34,13 @@ impl_effort: medium
      One marker, always above, never inside. `wp decide` writes the dated entry in
      `## Decisions & deviations` that explains why. -->
 
+- **2026-11-06 (inc 3b build)** — Changes from the plan as written:
+  - **Mapping revisions evict, they don't cache the payload.** `handle()` has no version check, so an out-of-order or redelivered revision would re-cache an older mapping. The old path only deleted.
+  - **Confirmations read by connectorId,** not by username.
+  - **Only a schema failure on `/mappings/` reads as "no mapping".** A connector-level schema failure is rethrown.
+  - **No package mapping-schema override.** The "duplicate dictionary names still resolve" spec became "… read as no mapping", because the gate's sweeps found no duplicates.
+  - **A failed cache write still acks.** This is parity: `SaveFailure` is a `ConfigApiException`, which is acked with a 202.
+
 - **2026-11-05 (Harry)** — Inc 1 to prod now ("merge it up + deploy"), waiving its Cloud SQL E3 soak gate. The shadow adds one config-service read per connector backlink, and the sweep is on-demand. Shipped with #397 (golden image) and #396 (Renovate), which were already on master.
 ## Intent
 <!-- What we are changing and why. Link the ticket. -->
@@ -191,6 +198,11 @@ Out-of-ticket; Harry asked for it on 2026-11-04, after prod cut S4 moved SFTP us
 - 2026-11-06 [inc 2 + 3a] Prod, stack merged as `fb482fd` (#401) and `b4195b0` (#402); Deploy run 42231060718. The prod plan was the image plus the standing sensitive-env reorder (0/1/0). Both gates were approved, and prod is live on `b4195b0`, revision `00127-2hm`.
   - Prod sweep with sftp's schema: 30/30 connectors and 113/113 mappings, 0 failed, 1.4 s.
   - First real batch on the new revision (14:20Z): 5 sales-order files (STUBBLE, EPARFUM) archived. Sites (all `0010`) and the STUBBLE duty-paid mix match the old revision `00126` for the same businesses. No warnings or errors; 12 file events 200 and 78 acks 204.
+
+- 2026-11-06 [inc 3b] Dev, sftp-connector#404 `3f6d833` (revision `00916-74p`).
+  - **Ingest, live edit (AC 6):** DAZZA's sales-order `order.customerRef` was repointed to `Addresses_Postcode`. The revision was applied as an eviction (14 use cases evicted, shadow 0 items, `config/revision` 200), and the next file logged reference `AD500`. After the restore, the next file logged `RC403D154340`, and the restored mapping deep-equals the original. The first file after each revision refetched from config-service inside the cache TTL.
+  - **Egress (AC 1):** GADG pick, RGA and stock-adjustment confirmations, sent through the fuse-mocker API as broadcasts, each read their mapping through the package. Each wrote files with the mapped columns.
+  - **Sweep:** 73/73 connectors and 201/201 mappings. No errors on the revision.
 
 ### Not verified
 <!-- Stated, not papered over. "(none)" is a deliberate claim, and a fine one. -->
