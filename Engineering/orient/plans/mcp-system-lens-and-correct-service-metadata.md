@@ -106,6 +106,7 @@ stale flag.
      the plan in the same increment and record the correction here. Legitimately empty at plan
      time. A decision worth defending in a review six months out belongs in a durable record
      instead — `wp decide --record`. -->
+- 2026-11-06 — Planned without the Step 2 draft agent and Step 3 review trio. Harry asked for a proportionate plan for a small change. Factual grounding was done by reading the source directly, and history by grepping orient's design.md/ledger (no prior entry touches the sidecar merge or orient-entity).
 
 ## Learnings
 <!-- Durable facts about the service surfaced while planning, working or testing that are not
