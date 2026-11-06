@@ -20,7 +20,7 @@ verified: 2026-11-06
 - **Credentials:** MongoDB, per customer.
 - **Runs on:** Cloud Run, from GitHub.
 
-**Quirks.** `log_carrier_payload` is marked TEMPORARY and logs carrier payloads (class-level; on the security list).
+**Quirks.** A code comment marks `log_carrier_payload` TEMPORARY, and it logs carrier payloads (class-level; on the security list).
 
 ## Where the reference lives
 - The system view, with every proxy side by side: `Systems/carrier-integrations/`.

@@ -13,7 +13,8 @@ verified: 2026-11-06
 
 ## Responsibility
 - Polls Evri ParcelShop for tracking events through legacy hermesworld REST API in the repo; prod runs the connectors-hermes image [1].
-- Takes batches of due parcels from tracking-core's batch-creator over gRPC, calls the carrier for each, and streams results back to the response-publisher [2].
+- Takes batches of due parcels from tracking-core's batch-creator over gRPC and calls the carrier for each.
+- Streams results back to tracking-core's response-publisher [2].
 
 ## In prod (snapshot 2026-11-06)
 
@@ -21,7 +22,7 @@ verified: 2026-11-06
 | --- | --- | --- | --- |
 | 1 | 799k | 55k | 2024-07-02 |
 
-**Quirks.** The repo is not what runs. To be retired with connectors-hermes (CID-315).
+**Quirks.** The repo is not what runs. The Evri webhook cutover (CID-315) retires it with connectors-hermes.
 
 ## Where the reference lives
 - The shared mechanism (batching, dedupe, mapping, stop rules) is in [[tracking-core]].

@@ -12,8 +12,10 @@ verified: 2026-11-06
 ```
 
 ## Responsibility
-- Polls DPD, and DPD Local through a second deployment of the same image for tracking events through XML (geopostuk); a JSON client exists but is unused [1].
-- Takes batches of due parcels from tracking-core's batch-creator over gRPC, calls the carrier for each, and streams results back to the response-publisher [2].
+- Polls DPD for tracking events through the geopostuk XML API [1]. A second deployment of the same image polls DPD Local.
+- The repo also holds a JSON client that nothing calls.
+- Takes batches of due parcels from tracking-core's batch-creator over gRPC and calls the carrier for each.
+- Streams results back to tracking-core's response-publisher [2].
 
 ## In prod (snapshot 2026-11-06)
 

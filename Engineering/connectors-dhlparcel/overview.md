@@ -13,7 +13,8 @@ verified: 2026-11-06
 
 ## Responsibility
 - Polls DHL Parcel UK (UK Mail) for tracking events through SOAP .asmx, one shared account [1].
-- Takes batches of due parcels from tracking-core's batch-creator over gRPC, calls the carrier for each, and streams results back to the response-publisher [2].
+- Takes batches of due parcels from tracking-core's batch-creator over gRPC and calls the carrier for each.
+- Streams results back to tracking-core's response-publisher [2].
 
 ## In prod (snapshot 2026-11-06)
 

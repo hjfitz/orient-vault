@@ -20,7 +20,7 @@ verified: 2026-11-06
 - **Credentials:** MongoDB, per customer.
 - **Runs on:** GKE (prod-uk1-primary-cluster).
 
-**Quirks.** `process.sourceMapsEnabled.APIKY_AUTH_URI` is a typo, so the configured ApiKy URL is ignored and the default host is always used [1]. Its spec names the GFS International Hub as a second caller; none seen.
+**Quirks.** `process.sourceMapsEnabled.APIKY_AUTH_URI` is a typo, so the proxy ignores the configured ApiKy URL and always uses the default host [1]. Its spec names the GFS International Hub as a second caller; none seen.
 
 ## Where the reference lives
 - The system view, with every proxy side by side: `Systems/carrier-integrations/`.

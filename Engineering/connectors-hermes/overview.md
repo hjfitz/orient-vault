@@ -13,7 +13,8 @@ verified: 2026-11-06
 
 ## Responsibility
 - Polls Evri for tracking events through REST api.evri.com, OAuth through evri-auth-facade [1].
-- Takes batches of due parcels from tracking-core's batch-creator over gRPC, calls the carrier for each, and streams results back to the response-publisher [2].
+- Takes batches of due parcels from tracking-core's batch-creator over gRPC and calls the carrier for each.
+- Streams results back to tracking-core's response-publisher [2].
 
 ## In prod (snapshot 2026-11-06)
 
@@ -21,7 +22,7 @@ verified: 2026-11-06
 | --- | --- | --- | --- |
 | 4 in the manifest, about 2.5 running | 13.9M | 982k, including 598k 403s | 2025-11-04 |
 
-**Quirks.** Also fetches signatures and ETAs. Its image also runs the connectors-hermesps deployment. To be retired when the Evri webhook goes live (CID-315).
+**Quirks.** Also fetches signatures and ETAs. Its image also runs the connectors-hermesps deployment. The Evri webhook cutover (CID-315) retires it.
 
 ## Where the reference lives
 - The shared mechanism (batching, dedupe, mapping, stop rules) is in [[tracking-core]].

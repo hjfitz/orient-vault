@@ -21,7 +21,7 @@ verified: 2026-11-06
 - **Credentials:** MongoDB per customer (in this copy).
 - **Runs on:** GKE (prod-uk1-primary-cluster).
 
-**Quirks.** The new tracking route takes the customer from the URL path, not from the caller's key, so any valid key can read any customer (class-level; on the security list) [1]. The internal in-cluster copy runs with IS_SECURED=false.
+**Quirks.** The new tracking route takes the customer from the URL path, not the caller's key [1]. So any valid key can read any customer (class-level; on the security list). The internal in-cluster copy runs with IS_SECURED=false.
 
 ## Where the reference lives
 - The system view, with every proxy side by side: `Systems/carrier-integrations/`.
