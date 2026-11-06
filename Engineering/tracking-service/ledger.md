@@ -6,6 +6,15 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-06 — Record each record's marks on every write
+
+Record each record's marks on every write
+
+D2 (stacked): #22 adds store.Marks (core.Counters shape) to Write/ReturnWrite at all 7 write sites from Contribution of the written record (sorted, so equal records give equal marks); CapReasons and Tally move into store and recompute-stats uses them. Firestore ignores marks. #23 makes the memory store serve stats/insights by summing marks (ErrNoMarks on a non-noop write without them). Golden test pins the only G5 divergence (stage day); redelivery_test pins why Mongo writes must be atomic with the event insert.
+
+PR: gfs-bifrost/tracking-service#22
+PR: gfs-bifrost/tracking-service#23
+
 ## 2026-11-06 — Open the store through internal/storeopen
 
 Open the store through internal/storeopen
