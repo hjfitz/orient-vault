@@ -63,6 +63,7 @@ Fuse's selector-adapter and Parcel Portal reach the proxies only through Selecto
 ## Where the reference lives
 - [[architecture]] covers the proxy anatomy, the three tracking paths, coverage by carrier and credential patterns. [[known-context]] covers owners, volumes, the Evri cutover and risks.
 - Confluence MPK *Carrier Services* (353468499) and its children [2]. Egress is 353697822 and Ingress is 353206337, with *Proof of Delivery Service* (353861642) under Ingress.
+- How a shipment moves through ECM's events, label to POD: [[2026-11-06-life-of-a-shipment-through-ecm]]. Why that event world is hard to change: [[2026-11-06-ecm-event-world-where-its-a-mess]].
 
 ## What deliberately isn't here
 - **Selector and pre-advice files.** System [[selector]].

@@ -40,13 +40,14 @@ confidence: high
 - **CONFIRMED** No topic or subscription retains acked messages. `gfs-deadletter-register` stores dead letters but cannot replay them. [5]
 
 ### Dead weight
-- **CONFIRMED** `tracking-patina-service` consumes the whole firehose and drops every event: prod sets `CARRIERS=NONE`. [6]
+- **CONFIRMED** `tracking-patina-service` consumes the whole firehose and drops every event: prod sets `CARRIERS=NONE`. Its Dataflow sibling, `patina-service-2`, does the real write-back. [6]
 - **CONFIRMED** Four dead or orphaned subscriptions sit on `raw_tracking.v1`, each holding up to 7 days of backlog. [1]
 - **CONFIRMED** `shipment-update-service` maps 3.0M events a week into a field nothing reads. Every status consumer drops its synthetic `GFS_DELIVERED_EVENT`. [5]
 
 ### Split ownership
 - **CONFIRMED** The carriers team owns the connectors, `tracking-core`, the status deriver, `gfs-pod` and the file processor. The cx team owns CCIS, ICIS, identity and claims. `gfs-modernizer` and patina are cross-team. [7]
 - **CONFIRMED** The webhooks live in `gfs-hybrid-services`. Their grants on ECM topics sit in their own Terraform, outside ECM's. [2][4]
+- **CONFIRMED** No team owns the write-back to Firebird. It runs through a Dataflow job, a staging-project topic and an on-prem injector that stops overnight. [6]
 
 ## Open items
 | Item | Owner | By |
@@ -63,7 +64,7 @@ confidence: high
   { "id": 3, "kind": "log", "ref": "Datadog, 2026-10-22T21:30Z to 2026-11-06T21:30Z: sum of *.pubsub.*.handled_messages; shipment_identity_service.ids_created; fenghuang.tracking.connector_response_service.responses.count; service:connector_dhlparcel status:error" },
   { "id": 4, "kind": "code", "ref": "tracking-core/ResponsePublisher/ConnectorResponseHandler.cs@c081108" },
   { "id": 5, "kind": "doc", "ref": "Research track 'consumers', 2026-11-06: STSD@a3dc446, CCIS@b2af452, ICIS@3d125f5, SUS@ccec388, claims@584d827, connect@6c6d527, tracking-mapper@44cfbf2; Datadog *.tracking_mapping.requests" },
-  { "id": 6, "kind": "doc", "ref": "ADO fenghuang/tracking-patina-service@8edfb3e src/subscriber/tracking-handler.js; prod-uk1-primary-cluster deploy/k8s/fenghuang/tracking/tracking-patina-service.yaml" },
+  { "id": 6, "kind": "doc", "ref": "ADO fenghuang/tracking-patina-service@8edfb3e src/subscriber/tracking-handler.js; ADO GFS Legacy Migration/patina-service-2 (Dataflow); Datadog gfs.doppelganger.* (Scan Injector, MEDC-APP-01-P)" },
   { "id": 7, "kind": "doc", "ref": "gfs-ecm/ecm-development@b2b67df repos.json (team field)" }
 ] }
 ```

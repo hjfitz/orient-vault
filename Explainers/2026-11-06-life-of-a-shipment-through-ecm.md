@@ -43,6 +43,7 @@ confidence: high
     { "from": "idn", "to": "pod", "label": "own copy" },
     { "from": "trk", "to": "raw" },
     { "from": "raw", "to": "stsd" },
+    { "from": "raw", "to": "fb", "label": "patina-2, Scan Injector", "style": "dashed" },
     { "from": "raw", "to": "ccis", "label": "events" },
     { "from": "stsd", "to": "ccis", "label": "status" },
     { "from": "ccis", "to": "out" },
@@ -63,6 +64,7 @@ confidence: high
 | 6 Scan | connector over gRPC to `tracking-core`; Royal Mail webhook; file processor | `raw_tracking.v1` `TrackingEvent`: `id`, `parcel{…}`, carrier `statusCode`, `reportedDate`, `delivery`, `signatory`, `rawData` | `tracking-core` dedupes on date plus code. Its GFS mapping stays in Mongo |
 | 7 Derive | each consumer's mapper; status deriver | `shipment_tracking_status.v2`: `{code, text, groupId, eta}`; exception status | ETA comes from the carrier's delivery window |
 | 8 Show | CCIS, ICIS, `connect-hooks`, reporting | CCIS consignment: lowercased `attributes[]`, `parcels[].tracking.events`, `trackingStatus` | Customers see status and ETA. 6.5% of scans become customer webhooks |
+| 8b Write-back | `patina-service-2` (Dataflow), staging topic, on-prem Scan Injector | `scanners.consignments.V1`: one consignment, `parcels[].states[]{carrCode, scanDate, scanText, signBy}` | Seeker and bill-on-scan see the scans. The injector runs 06:00 to 23:01 UTC |
 | 9 Delivered | same path | `trackingStatus` DELIVERED, with `signatory` in place of `eta` | Claims records `deliveredDate`. Each service decides "delivered" itself |
 | 10 POD | portal or Connect, then `gfs-pod-service` | `{signee, deliveryDateTime, images, deliveryAddress}`, cached 1 h | Fetched from the carrier on read. Never published |
 | 11 Invoice | billing app on Firebird, `legacy-invoice-translator`, CCDIS | `invoiced_shipments_published.v1`: `{shipmentId, invoiceNumber, shipmentCost}` | CCIS, ICIS, claims and SUS add invoice fields |
@@ -73,15 +75,18 @@ confidence: high
 - **CONFIRMED** A labelled shipment that never uploads gets no ECM tracking, portal view or POD record. Fuse's commit gap (R5) lands here. [2]
 - **CONFIRMED** A new carrier needs an almanac entry first. `gfs-modernizer` dead-letters a shipment whose carrier it cannot resolve. [2]
 - **CONFIRMED** A tracking source must set `id`, `parcel.shipmentId` and `parcel.company`. CCIS, ICIS and `connect-hooks` drop events without them. Both webhooks set all three. [4][5]
-- **CONFIRMED** ECM scans never flow back to Firebird: patina runs with `CARRIERS=NONE` and legacy publishing is off. [7]
-- **UNKNOWN** What moves central `STATUS` for bill-on-scan contracts. A separate legacy scanner path is under investigation.
+- **CONFIRMED** ECM scans flow back to Firebird. `patina-service-2` on Dataflow reads `raw_tracking.v1` and publishes legacy scans to a topic in the staging project. [7]
+- **CONFIRMED** An on-prem Scan Injector writes them into `SHIP_PIECES_HIST` from 06:00 to 23:01 UTC: 4.51M messages in 15 days. No team claims it in any source checked. [8]
+- **CONFIRMED** The Kubernetes `tracking-patina-service` and `tracking-core`'s legacy publisher are both off. They are not the write-back path. [7]
+- **ASSESSED** The injector's `SET_PARCEL_HIST` procedure moves central `STATUS`, so bill-on-scan billing depends on ECM tracking. Its source sits in the unreachable legacy org. [8]
 - **CONFIRMED** Manual mark-as-delivered updates Firebird, but every ECM status consumer drops its synthetic event. [5]
 - **CONFIRMED** Signatories already ride `raw_tracking.v1` for the Evri connector and BJS files. No POD image does. [4]
 
 ## Open items
 | Item | Owner | By |
 |---|---|---|
-| Establish what writes carrier statuses into central Firebird | Harry | UNKNOWN |
+| Name an owner for `patina-service-2` and the Scan Injector, and read `SET_PARCEL_HIST` | Harry | UNKNOWN |
+| Read patina-2's supported-carrier list (ADO variable group 141) | Harry | UNKNOWN |
 | Measure how often a re-insert wipes STSD's parcel history | carriers team | UNKNOWN |
 | Decide Evri cutover dedupe: consumers key on `id`, so connector plus webhook doubles history | carriers team | UNKNOWN |
 
@@ -94,6 +99,7 @@ confidence: high
   { "id": 4, "kind": "doc", "ref": "Research track 'producers', 2026-11-06: tracking-core@c081108, tracking-webhook-royal-mail-sapient@3c880bf handler/src/services/tracking.service.ts, tracking-webhooks@9777dd4, tracking-file-processor@e6da4bf" },
   { "id": 5, "kind": "doc", "ref": "Research track 'consumers', 2026-11-06: STSD@a3dc446, CCIS@b2af452, ICIS@3d125f5, SUS@ccec388, claims@584d827, connect@6c6d527" },
   { "id": 6, "kind": "doc", "ref": "Engineering/gfs-pod-service/architecture.md; MPK 353861642 Proof of Delivery Service" },
-  { "id": 7, "kind": "doc", "ref": "ADO fenghuang/tracking-patina-service@8edfb3e; prod-uk1-primary-cluster@39fa64c deploy/k8s/fenghuang/tracking/tracking-core.yaml (ShouldPublishToLegacy=false)" }
+  { "id": 7, "kind": "doc", "ref": "ADO GFS Legacy Migration/patina-service-2 pipeline/aggregate/filter.go and README; pipeline patina-service-2-prod build 57328 (2026-11-03); gfs-ecm-prod-uk1 main.tf fenghuang-dataflow-legacy-tracking-service; tracking-patina-service@8edfb3e (CARRIERS=NONE)" },
+  { "id": 8, "kind": "log", "ref": "Datadog gfs.doppelganger.received / injected, host MEDC-APP-01-P, 2026-10-22 to 2026-11-06; service gfs.doppelganger.scan-injector errors citing SET_PARCEL_HIST and FK_SHIP_PIECES_HIST" }
 ] }
 ```
