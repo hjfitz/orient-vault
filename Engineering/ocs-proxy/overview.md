@@ -1,9 +1,15 @@
 ---
-tags: [waypoint, ocs-proxy]
+tags:
+- waypoint
+- ocs-proxy
 title: ocs-proxy — overview
-thesis: "ocs-proxy is GFS's proxy between Selector and OCS. It creates labels only, using one GFS OCS account. In prod only a test client calls it."
+thesis: ocs-proxy is GFS's proxy between Selector and OCS. It creates labels only,
+  using one GFS OCS account. In prod only a test client calls it.
 confidence: high
-verified: 2026-11-06
+verified: '2026-11-06'
+verified_paths:
+- src
+verified_sha: 29eeaa6
 ---
 # ocs-proxy — overview
 
