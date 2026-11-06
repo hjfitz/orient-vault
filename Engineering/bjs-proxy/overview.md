@@ -1,9 +1,15 @@
 ---
-tags: [waypoint, bjs-proxy]
+tags:
+- waypoint
+- bjs-proxy
 title: bjs-proxy — overview
-thesis: "bjs-proxy is GFS's proxy between Selector and BJS. It creates labels and cancels shipments, taking BJS's carrier secret straight from the caller's ApiKy profile."
+thesis: bjs-proxy is GFS's proxy between Selector and BJS. It creates labels and cancels
+  shipments, taking BJS's carrier secret straight from the caller's ApiKy profile.
 confidence: high
-verified: 2026-11-06
+verified: '2026-11-06'
+verified_paths:
+- src
+verified_sha: ed56a53
 ---
 # bjs-proxy — overview
 
