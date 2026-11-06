@@ -7,6 +7,14 @@ title: pkg-node — work ledger
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-06 — Dispatch pkg-node-published to pkg-go after a publish
+
+Dispatch pkg-node-published to pkg-go after a publish
+
+The publish template now also sends pkg-node-published to gfs-bifrost/pkg-go (its own Renovate-app token, continue-on-error), so pkg-go's Regenerate workflow releases the Go modules generated from audit/snap/types on every publish. Ship: SHIP-1105-go-regenerate-pipeline
+
+PR: gfs-bifrost/pkg-node#303
+
 ## 2026-11-02 — Add Postgres metric and dependency names to observability
 
 Add Postgres metric and dependency names to observability
