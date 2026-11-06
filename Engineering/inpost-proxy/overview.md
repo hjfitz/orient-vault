@@ -1,9 +1,16 @@
 ---
-tags: [waypoint, inpost-proxy]
+tags:
+- waypoint
+- inpost-proxy
 title: inpost-proxy — overview
-thesis: "inpost-proxy is GFS's proxy between CSS and InPost, on Cloud Run. It creates labels and return labels. Client4 doesn't use it: Client4 calls InPost's old API directly."
+thesis: 'inpost-proxy is GFS''s proxy between CSS and InPost, on Cloud Run. It creates
+  labels and return labels. Client4 doesn''t use it: Client4 calls InPost''s old API
+  directly.'
 confidence: high
-verified: 2026-11-06
+verified: '2026-11-06'
+verified_paths:
+- code/src
+verified_sha: 64656dc
 ---
 # inpost-proxy — overview
 
