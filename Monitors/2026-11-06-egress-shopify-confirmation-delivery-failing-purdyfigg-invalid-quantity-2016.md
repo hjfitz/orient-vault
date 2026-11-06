@@ -41,3 +41,18 @@ Real, minor: one order despatched in SNAP but not marked fulfilled in Fuse track
 ## Links
 - Slack thread: https://gfsdeliver-eng.slack.com/archives/C099WKQTE8G/p1793996283726359
 - Monitor: https://app.datadoghq.com/monitors/303425509
+
+## Re-check 20:51Z (second firing, thread https://gfsdeliver-eng.slack.com/archives/C099WKQTE8G/p1793998205257039)
+Monitor went Warn again at 20:48:49Z, value 3.
+- Metric since 20:30Z: fuse.confirmation.forward.failure = 3, all businessid purdyfigg; fuse.order.tags.update.failure = none (get_datadog_metric scalar).
+- Error logs since 20:17Z: 6 lines, all 20:48:45-47Z, correlation 73dd2884-9243-46ae-aaf0-5e1365308281: "Shopify fulfillment creation returned errors" userError "Invalid fulfillment order line item quantity requested." plus "Confirmation dispatch failed", for 3 Shopify records 14650167722364 (#6672868, SNAP PURD04AEF6FAF2B), 14650419806588 (#6675091, PURDA4F2F767CE2), 14650485375356 (#6675725, PURD65BC2640924). One attempt each; no errors after 20:48:47Z through ~20:51Z. Same userError text as the 20:16Z order, not auth, rate limit, 5xx or order-tag.
+- Dispatch outcomes since 20:30Z: 245 "Confirmation dispatched successfully", 3 "Confirmation dispatch failed".
+- SNAP (ilg005, read-only): PURDA4F2F767CE2 and PURD04AEF6FAF2B Stage 90, despatched 20:47:53-56Z; Level 00 line ordered 1 shipped 1 on both (FG1209D_V2, FG1527D_V1), plus Level 20 kit components. Replay record of PURD65BC2640924 shows the same shape (Level 00 ordered 1 shipped 1). So NOT the 20:16Z over-ship (ordered 1 shipped 2). Only common point: each has one Level 00 line carrying extensions.shopify.fulfillmentId plus kit_component lines (and the 20:16Z order had a line FG1569X_V1; #6672868 carries FG1569X_V1 as a component qty 3, the other two do not).
+- Replay (production): 3 new holds goods_out_confirmation, failurePoint confirmation.delivery_shopify, attempts 0, replayable true (ids fea8467b-f11c-4c19-854f-052ea138c231, 3561f93c-0f14-4a83-9579-8a19a4c05006, 63901b23-f80e-437f-941f-6ecd3041cba6). Replay now holds 5 such records for 2026-11-06 (4 orders), 2 for 2 Nov, plus older ones from 20 Oct (66 matching in total).
+- Platform monitor 180072217 (thread p1793998243770429) fired 20:49:37Z on these same 6 lines (its query for 20:45-20:52Z returns exactly them, 20:48Z bucket only).
+- Not retried, released or replayed.
+
+### Not established (re-check)
+- Shopify-side fulfilment order line quantities for the 3 new orders (no Shopify read tool), so why Shopify rejected them is unknown; the SNAP over-ship explanation does not fit these.
+- Why 245 other confirmations in the same window succeeded.
+- Whether more orders will fail in later batches.
