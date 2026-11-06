@@ -1,9 +1,18 @@
 ---
-tags: [waypoint, tracking-webhooks]
+tags:
+- waypoint
+- tracking-webhooks
 title: tracking-webhooks — architecture
-thesis: "A carrier POSTs to a Cloud Run service behind a load balancer. A per-carrier adapter authenticates it, the core publishes it to an interim topic and acknowledges, then a push handler matches it to a stored GFS shipment and publishes to raw_tracking.v1. Unmatched events wait in Mongo for up to 90 days."
+thesis: A carrier POSTs to a Cloud Run service behind a load balancer. A per-carrier
+  adapter authenticates it, the core publishes it to an interim topic and acknowledges,
+  then a push handler matches it to a stored GFS shipment and publishes to raw_tracking.v1.
+  Unmatched events wait in Mongo for up to 90 days.
 confidence: high
-verified: 2026-11-06
+verified: '2026-11-06'
+verified_paths:
+- packages/tracking-webhook-core
+- iac
+verified_sha: 9777dd4
 ---
 # tracking-webhooks — architecture
 
