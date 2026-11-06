@@ -1,9 +1,16 @@
 ---
-tags: [waypoint, connectors-hermes]
+tags:
+- waypoint
+- connectors-hermes
 title: connectors-hermes — overview
-thesis: "connectors-hermes is the polling tracking connector for Evri. It runs on tracking-core's shared connector framework, and its new events reach raw_tracking.v1 through tracking-core's response-publisher."
+thesis: connectors-hermes is the polling tracking connector for Evri. It runs on tracking-core's
+  shared connector framework, and its new events reach raw_tracking.v1 through tracking-core's
+  response-publisher.
 confidence: high
-verified: 2026-11-06
+verified: '2026-11-06'
+verified_paths:
+- src
+verified_sha: f733fc4
 ---
 # connectors-hermes — overview
 
