@@ -41,6 +41,9 @@ From the 5–6 Nov 2026 carrier surveys (code, prod manifests, Cloud Run, Datado
 - Coll8 echoes upstream error detail back to the caller.
 - Two proxies ignore their configured ApiKy URL through a typo.
 - One connector reaches its service over plain HTTP.
+- gfs-pod-service's v2 API checks no token. It's safe only while no ingress routes to it.
+- The POD ingress path rule isn't bound to its host.
+- evri-auth-facade's caller auth is off by flag, with a placeholder key. It has no ingress.
 
 ## Duplicates and dev copies
 - **Seven carriers have two codebases.** The Azure DevOps copy serves prod; GitHub copies are dev only, behind, or idle.
@@ -52,5 +55,8 @@ From the 5–6 Nov 2026 carrier surveys (code, prod manifests, Cloud Run, Datado
 - The prod etcd polling values and the `untracked` list.
 - Who owns the connectors and tracking-core.
 - The feed list for `file-ingestion-ftp-proxy`.
-- `gfs-pod-service` (live POD lookups, about 21k requests in 15 days) and `evri-auth-facade`: their source hasn't been surveyed.
+- Why POD request errors (25.9k) exceed requests (21.0k); not-found PODs are a likely part.
+- Whether anything still calls the public POD v1 API.
+- When gfs-pod-service moves from the legacy `gfs-carrier-credentials` to `carrier-credentials-manager`.
+- Whether evri-auth-facade retires with the Evri connectors at CID-315 go-live.
 - Which GFS customer is behind each Royal Mail, BJS and FedEx account ID.
