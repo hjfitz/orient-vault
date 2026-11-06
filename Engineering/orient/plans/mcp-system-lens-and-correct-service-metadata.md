@@ -2,7 +2,7 @@
 ticket: none
 title: MCP system lens and correct service metadata
 service: orient
-status: draft
+status: active
 created: '2026-11-06'
 updated: '2026-11-06'
 repo: /home/hjf/projects/orient
