@@ -1,21 +1,23 @@
 ---
-ticket: "none"
-title: "Mongo store"
-service: "tracking-service"
+ticket: none
+title: Mongo store
+service: tracking-service
 status: draft
-created: "2026-11-06"
-updated: "2026-11-06"
-repo: "/home/harry/code/fuse/tracking-service"
-worktree: "/home/harry/code/fuse/tracking-service/.claude/worktrees/tracking-service-mongo-store"
-branch: "hjf/tracking-service-mongo-store"
-base: "origin/main"
-base_sha: "a97baca06"
-pr:
-tags: [waypoint, plan]
-programme: "Tracking Service"
-unit: "D5"
-impl_model: "opus"
-impl_effort: "high"
+created: '2026-11-06'
+updated: '2026-11-06'
+repo: /home/harry/code/fuse/tracking-service
+worktree: /home/harry/code/fuse/tracking-service/.claude/worktrees/tracking-service-mongo-store
+branch: hjf/tracking-service-mongo-store
+base: origin/main
+base_sha: a97baca06
+pr: null
+tags:
+- waypoint
+- plan
+programme: Tracking Service
+unit: D5
+impl_model: opus
+impl_effort: high
 ---
 # none — Mongo store
 
