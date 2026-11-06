@@ -253,6 +253,7 @@ Every merge rolls prod, so never merge while a Deploy run is in flight (Scar tis
 ### Evidence
 <!-- Newest first, dated. One bullet per check actually run, opening with what it discharges.
      "Suite green" alone is not evidence. Sign-off requires at least one dated bullet here. -->
+- 2026-11-06 [baseline] **Today's Firestore-served latencies, for Gate A context:** prod `/api/v1/stats` 0.15–0.26 s and `/api/v1/stats/businesses` **8.5–9.0 s** (single curls at 15:41Z and 17:59Z); dev `/stats/businesses` 3.7 s. The Mongo Businesses `$group` should beat this, not match it.
 - 2026-11-06 [plan] **Drafted and reviewed, not implemented.** A planning agent drafted 5 increments over worktree `a97baca`. Three independent reviewers (history, factual grounding, increment structure) checked it. Their findings are folded in, and the plan is now 7 increments with the benchmark first. The factual reviewer ran `go test ./internal/store/` (memory backend): it passes with 0 skips. No code has been written.
 
 ### Not verified
