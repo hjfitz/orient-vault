@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-06 — Add a mock OCS proxy at ocs.mocks.merak.freightops.dev
+
+Add a mock OCS proxy at ocs.mocks.merak.freightops.dev
+
+Ship: SHIP-1106-carrier-playground. Mirrors ADO GFS Hybrid Services and Carrier Integrations/ocs-proxy main 29eeaa6 (= prod image prod-57357, ADO build 57357; prod GKE ocs.gfsdeliver.com). Mirrored prod bugs: every OCS rejection a 599, GRAM weight x1000, contactName from address.Name, VAT/EORI never sent, multi-page PNG keeps the last page, one shared OCS account, schema metaData spread into an object. Review fixed a log-safety test gap and the metaData shape.
+
+PR: ilg-merak/carrier-playground#11
+
 ## 2026-11-06 — Add a mock InPost proxy at inpost.mocks.merak.freightops.dev
 
 Add a mock InPost proxy at inpost.mocks.merak.freightops.dev
