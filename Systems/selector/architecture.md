@@ -153,6 +153,51 @@ Client4 runs in both models. It is the uploader on a hosted VM too [9]. The mode
 
 For template carriers the carrier first hears of the shipment at pre-advice, after upload.
 
+## Day end and billing handoff
+
+Billing has no intake interface. A separate Delphi billing app, owned by Finance and outside the Selector repos, bills straight from central `SHIPMENTS` rows [14][15]. The handoff is a correct row there, written exactly once.
+
+```orient-flow
+{ "v": 1, "title": "From commit to invoice",
+  "nodes": [
+    { "id": "commit", "label": "Commit", "sub": "CSS or Client4", "kind": "step" },
+    { "id": "upl", "label": "Client4 upload", "sub": "upload station", "kind": "step" },
+    { "id": "usv2", "label": "upload-service collection", "sub": "manifests, CSVs, Slipway", "kind": "store" },
+    { "id": "db", "label": "DataBridge", "sub": "every 10 minutes", "kind": "service" },
+    { "id": "ship", "label": "Central SHIPMENTS", "sub": "INVOICE_NUMBER empty", "kind": "store", "tone": "accent" },
+    { "id": "bill", "label": "Billing app", "sub": "per-customer schedule", "kind": "external" },
+    { "id": "edi", "label": "Carrier EDI charges", "sub": "supplementary invoices", "kind": "external" },
+    { "id": "pub", "label": "invoices_published.v1", "sub": "after Finance publishes", "kind": "topic" }
+  ],
+  "edges": [
+    { "from": "commit", "to": "upl", "label": "SHIP_COMMITED" },
+    { "from": "upl", "to": "ship", "label": "REG_SHIPMENTS", "ev": [16] },
+    { "from": "usv2", "to": "db" },
+    { "from": "db", "to": "ship", "label": "REG_WILKO_*", "ev": [17] },
+    { "from": "ship", "to": "bill" },
+    { "from": "edi", "to": "bill", "label": "matched on cons no + carrier" },
+    { "from": "bill", "to": "pub", "label": "legacy-invoice-translator" }
+  ] }
+```
+
+- **What billing needs:** one row per (`CONS_NO`, `CARRIER`), with parcels in `SHIP_PIECES`. The fields are customer, site, contract, service, package, `DESPATCH_DATE`, packs, weight, receiver postcode and country, reference and surcharge flags. `INVOICE_NUMBER` must be empty or -1, and the contract must be GFS-billed (`BILL_TYPE = 1`).
+- **When:** each customer has its own schedule (daily, weekly defaulting to Monday, or monthly). There's no hard cut-off: each run bills everything not yet invoiced, so a late shipment lands on the next invoice.
+- **Bill trigger, set per contract (`BILL_ON_SCAN`):**
+  - 0: on upload, any status except 100.
+  - 1: after the carrier scan, status above 200 and not 310. Carrier tracking is part of the handoff for these contracts.
+  - 2: GFS International. Billed, but the mechanism is **UNKNOWN**.
+- **After the run:**
+  - Carrier EDI charges are billed as supplementary invoices.
+  - Finance publishes separately, because runs get rolled back. `legacy-invoice-translator` then writes the invoice files to Cloud Storage and publishes `invoices_published.v1`.
+  - CCDIS matches invoice lines on consignment number plus carrier, against `shipments.v2.identified`.
+- **What breaks it:**
+  - A shipment never arrives: the upload station is off, a CSS booker never commits, a Slipway export fails, or DataBridge skips a row.
+  - A shipment arrives twice: Manager's recycle-replace inserts a fresh copy, or the upload server commits a partial batch and the client re-sends.
+  - A delete after upload never reaches central.
+  - About 57.5k shipments with negative invoice numbers are never selected.
+
+Full write-up: MPK *Legacy Selector - Day End and Billing Handoff* (page 353566845).
+
 ## Releases
 - **Client4 and DB updates:** someone uploads the zipped exe in Manager's Versions screen into central `CUST_SITE_UPDATES`. Upload stations on auto-update download it over SOAP, and `updUtil.exe` swaps the exe on each station [13]. The manual route is SQL scripts plus a hand-copied exe.
 - **CSS:** only `vzClientSoapServer.dll` ships, copied by hand into the `ClientServer` IIS app on each VM. Releases go out as "GFS Enterprise" from GFSIT SharePoint, announced by Chris Cumings, and only to the sites that need them. The repo's `Web.config` never reaches production.
