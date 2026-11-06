@@ -1,9 +1,20 @@
 ---
-tags: [waypoint, gfs-pod-service]
+tags:
+- waypoint
+- gfs-pod-service
 title: gfs-pod-service — architecture
-thesis: "One Node image runs as two Deployments: a subscriber that copies shipments into Mongo, and an API that answers POD requests by calling the carrier live, caching the normalised result in Redis. v2, keyed on shipmentId, is the only API anything calls; it has no auth and stays in-cluster. The public v1 needs a pod:read token."
+thesis: 'One Node image runs as two Deployments: a subscriber that copies shipments
+  into Mongo, and an API that answers POD requests by calling the carrier live, caching
+  the normalised result in Redis. v2, keyed on shipmentId, is the only API anything
+  calls; it has no auth and stays in-cluster. The public v1 needs a pod:read token.'
 confidence: high
-verified: 2026-11-06
+verified: '2026-11-06'
+verified_paths:
+- src/api-v2/router.js
+- src/api-v1/router.js
+- src/pod-service
+- src/config.js
+verified_sha: 811007e
 ---
 # gfs-pod-service — architecture
 
