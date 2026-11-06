@@ -1,0 +1,28 @@
+# evri-auth-facade — Waypoint index. Cheap orientation only, never documentation.
+# Every value is a fact, a path, or a command — never a sentence. Anything needing a sentence
+# belongs in a doc.
+service: evri-auth-facade
+system: carrier-integrations
+repo: /home/hjf/code/apiky-survey/ado/GFS_Evri_Integration
+ado: globalfreightsolutions/GFS Evri Integration/GFS Evri Integration
+type: backend
+owner: ecm               # inferred; Harry wrote the only commit (2025-05-15)
+language: javascript
+framework: [node, express, redis]
+deploy: k8s              # prod-uk1, 1 replica, Service evri-auth-facade:3000, no ingress
+observability: datadog
+
+interfaces:
+  inbound: [http]        # GET /token (used); proxy route behind FEATURE_FLAG_EVRI_PROXY=false
+  outbound: [evri-oauth]
+
+key_paths:
+  - src/adaptors/evri.adaptor.js
+  - src/controllers/token.controller.js
+  - src/controllers/evri.controller.js
+
+note: >
+  Holds one Evri OAuth token and hands it to connectors-hermes and connectors-hermesps at
+  http://evri-auth-facade:3000/token, so the connectors don't each fetch their own.
+
+onboarded: 2026-11-06
