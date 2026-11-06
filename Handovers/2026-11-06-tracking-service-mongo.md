@@ -8,7 +8,7 @@ from: laptop
 to: hjf.shell.platform.ilg.software
 session_id: c36659b6-edee-4035-ab29-ffd89416a0e8
 resumed_by: "3aa25172-6c08-47b7-801e-82d3744ffce2"
-updated: 2026-11-06T15:44Z
+updated: 2026-11-06T15:52Z
 ---
 # Handover: tracking-service Firestore → MongoDB (group D)
 
@@ -37,6 +37,10 @@ updated: 2026-11-06T15:44Z
 Stale local worktrees on the laptop (nothing unpushed matters): `agent-*`, `exempt-unqueried-firestore-fields`, `skip-identical-republishes`, `tracking-service-mongo`. All branches are merged or unused, so they're safe to remove later.
 
 ## Waiting on Harry
+- **2026-11-06 15:51Z, session 3aa25172 stopped (usage limit): batch deploy run 42239748734 NOT approved.** It was still in `terraform-apply-dev` (Atlas dev cluster). Next: read `terraform-plan-prod`, approve only if it is exactly the agreed set (Atlas cluster `tracking-service-prod` with termination protection, db user, random_password, Cloud Run image/env bump, 0 destroy) via `pending_deployments` env 23493256883; verify prod+dev serve `a97baca` and API 200; tick D6.
+- **D5 Gate A latency bar:** recommend p95 ≤ 1 s for the 30-day insights read set and ≤ 500 ms for 7-day stats at ~600k marks on dev Atlas M10.
+- **Make `api-mongo` a required check** once D5 inc 2 lands (branch protection; human). Recommend yes.
+- **Note freeze during the hard-cut hold (G9)** is owned by no unit; recommend D7 owns it. **fuse-mcp `database-collections.json`** for the 11 Mongo collections: recommend D11.
 - **Nothing blocking.** Already decided: Mongo, not Postgres; G4 (import the frozen `duplicates` history as a frozen collection); G5 (served stats recompute-equivalent); G6 (two M10s, connection string as a Terraform env var); G7 (`internal/storeopen`, `cmd/import-mongo`, `cmd/parity` approved); a **hard-cut** cutover; and a **`seen` collection**.
 - **Give Harry the dedupe answer** (already verified, see Closed). Bottom line: the businessId + customer ref rule holds today. **Prod: 89,156 shipments, all keyed by customer ref, 0 duplicate groups, 0 fallback docs; dev: 34,294, same.** Prod has **no returns collection at all**. The latent split paths are in R14, and the Mongo must-haves are in the D5 row.
 - **Owed by a human, not blocking:** a prod `recompute-stats -dry-run` to size G5's drift (G5 policy: a human runs prod tools).
@@ -94,5 +98,6 @@ Checked 2026-11-06 ~15:15Z on `hjf.shell.platform.ilg.software` (kernel 7.2.14):
 ## Closed since handover
 | When (UTC) | Work | Result |
 |---|---|---|
+| 2026-11-06 15:51 | D5 plan (draft) | [[tracking-service/plans/mongo-store]]: 7 increments, three-way reviewed (history, factual, structure), marks benchmark first as Gate A. Left **draft**; linked from the D5 row. Worktree `hjf/tracking-service-mongo-store` (no commits). |
 | 2026-11-06 15:41 | D1 prod apply (run 42226342798) | **Success**, 14:34:18–15:40:40Z (66 min, ~7.4 min/field). All 9 fields at 0 indexes in `bifrost-prod-global1/tracking-service`; `stageTimes.despatched` inherits; `updatedAt` keeps 3. Prod serves `44734ac`; API reads 200. Evidence in the D1 plan (inc 3). **G3 soak started 15:40:40Z**, read no earlier than 2026-11-08T15:41Z (recorded on G3). Today's baseline also has a second burst: 486 at 11:20–11:22Z. Resumed on rc-hjf by session 3aa25172. |
 | 2026-11-06 15:15 | Dedupe verification (workflow wf_f7a34f8a-8de, 11 agents, every claim challenged by a skeptic) | **Live data:** 0 duplicate businessId + customerRef groups, 0 fallback-keyed docs and 0 businessId case variants, in dev and prod. **Code:** the doc id is a pure function of the normalised businessId + key, and nothing re-keys. **Latent:** splits via a missing ref, the Shopify raw `name` or replay edits (R14), and redrive's new messageId (R13). **Mongo:** 7 must-haves added to the D5 row, and hard-cut must-haves added to G9. Findings: `Handovers/2026-11-06-tracking-service-mongo.dedupe-findings.md`. |
