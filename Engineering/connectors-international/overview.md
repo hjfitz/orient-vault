@@ -1,9 +1,16 @@
 ---
-tags: [waypoint, connectors-international]
+tags:
+- waypoint
+- connectors-international
 title: connectors-international — overview
-thesis: "connectors-international is the polling tracking connector for GFS International. It runs on tracking-core's shared connector framework, and its new events reach raw_tracking.v1 through tracking-core's response-publisher."
+thesis: connectors-international is the polling tracking connector for GFS International.
+  It runs on tracking-core's shared connector framework, and its new events reach
+  raw_tracking.v1 through tracking-core's response-publisher.
 confidence: high
-verified: 2026-11-06
+verified: '2026-11-06'
+verified_paths:
+- src
+verified_sha: '3047702'
 ---
 # connectors-international — overview
 
