@@ -1,9 +1,17 @@
 ---
-tags: [waypoint, tracking-core]
+tags:
+- waypoint
+- tracking-core
 title: tracking-core — overview
-thesis: "tracking-core is the engine behind every polling connector. It decides which parcels to track, hands each connector batches of due parcels, and dedupes, maps and publishes their results to raw_tracking.v1. About 5.44M of the 6.25M tracking events in 15 days came through it."
+thesis: tracking-core is the engine behind every polling connector. It decides which
+  parcels to track, hands each connector batches of due parcels, and dedupes, maps
+  and publishes their results to raw_tracking.v1. About 5.44M of the 6.25M tracking
+  events in 15 days came through it.
 confidence: high
-verified: 2026-11-06
+verified: '2026-11-06'
+verified_paths:
+- src
+verified_sha: c081108
 ---
 # tracking-core — overview
 
