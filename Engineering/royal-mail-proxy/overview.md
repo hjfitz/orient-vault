@@ -1,9 +1,18 @@
 ---
-tags: [waypoint, royal-mail-proxy]
+tags:
+- waypoint
+- royal-mail-proxy
 title: royal-mail-proxy — overview
-thesis: "royal-mail-proxy is GFS's busiest carrier proxy: Selector calls it to create Royal Mail labels through Royal Mail's Sapient API, about 29.6k in 15 days for 19 accounts. It also manifests, changes shipment status, returns customs documents and serves service codes."
+thesis: 'royal-mail-proxy is GFS''s busiest carrier proxy: Selector calls it to create
+  Royal Mail labels through Royal Mail''s Sapient API, about 29.6k in 15 days for
+  19 accounts. It also manifests, changes shipment status, returns customs documents
+  and serves service codes.'
 confidence: high
-verified: 2026-11-06
+verified: '2026-11-06'
+verified_paths:
+- src/integrations
+- src/stores
+verified_sha: 361de96
 ---
 # royal-mail-proxy — overview
 
