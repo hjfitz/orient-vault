@@ -7,6 +7,14 @@ title: snap-queue-polling-service — work ledger
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-06 — Admit one half-open probe per cool-off behind SNAP_BREAKER_SINGLE_PROBE
+
+Admit one half-open probe per cool-off behind SNAP_BREAKER_SINGLE_PROBE
+
+Programme unit Q2b. New env switch SNAP_BREAKER_SINGLE_PROBE (default off; prod unchanged on deploy). On: tryAdmit single probe per cool-off (others turned away as CircuitOpen, counted on snap.breaker.rejected) plus the late-failure guard. Config refuses to start with it on and no SNAP_REQUEST_TIMEOUT_MS (a hung probe would wedge the host); verified live on dev (revision refused to start, traffic stayed put). Ship: SHIP-1106-poller-single-probe
+
+PR: gfs-bifrost/snap-adapter#329
+
 ## 2026-11-06 — Key the SNAP breaker and snap_host by origin behind SNAP_NORMALISE_HOST_KEY
 
 Key the SNAP breaker and snap_host by origin behind SNAP_NORMALISE_HOST_KEY
