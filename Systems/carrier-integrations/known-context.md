@@ -12,6 +12,8 @@ From the 5–6 Nov 2026 carrier surveys (code, prod manifests, Cloud Run, Datado
 ## Owners
 - **Proxies and webhooks:** changed on CID tickets by Carrier Integrations: Daniel Grzenia, Chris Mulder, John Finney. John Finney owns the Evri webhook work (CID-315). The `owner: carrier-integrations` in each `waypoint.yaml` is inferred.
 - **Connectors, tracking-core and the file path:** the fenghuang / ECM side. Owner unconfirmed; `owner: ecm` is inferred.
+- **gfs-pod-service:** team "carriers" in ECM's `repos.json`, in its own Azure DevOps project, GFS POD. John Finney makes most commits.
+- **evri-auth-facade:** one commit, by Harry Fitzgerald (2025-05). `owner: ecm` is inferred.
 
 ## Volumes (snapshot 2026-11-06, 15 days)
 - **Ingress:** Royal Mail about 29.6k labels; UPS about 6.1k. Most GFS volume never touches a proxy: Selector draws the label and pre-advises by file.
@@ -20,6 +22,8 @@ From the 5–6 Nov 2026 carrier surveys (code, prod manifests, Cloud Run, Datado
   - DHL Parcel UK's invalid-credentials error never pauses (368k wasted calls);
   - Evri returned 598k 403s;
   - DHL Express is rate-limited on about 10% of calls.
+- **POD:** 20,978 requests, 17,607 of them DHL Parcel UK; 25,878 request errors. The POD subscriber read about 7.8M messages.
+- **Evri token:** the facade served 1,347 token requests and refreshed from Evri 15 times.
 
 ## Polling to webhooks
 - Royal Mail has always been webhook-only.
