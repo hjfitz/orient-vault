@@ -1,17 +1,21 @@
 ---
-ticket: "none"
-title: "Exempt unqueried fields from Firestore indexing"
-service: "tracking-service"
+ticket: none
+title: Exempt unqueried fields from Firestore indexing
+service: tracking-service
 status: draft
-created: "2026-11-06"
-updated: "2026-11-06"
-repo: "/home/hjf/code/fuse/tracking-service"
-worktree: "/home/hjf/code/fuse/tracking-service/.claude/worktrees/exempt-unqueried-firestore-fields"
-branch: "hjf/exempt-unqueried-firestore-fields"
-base: "origin/main"
-base_sha: "b12d0a630"
-pr:
-tags: [waypoint, plan]
+created: '2026-11-06'
+updated: '2026-11-06'
+repo: /home/hjf/code/fuse/tracking-service
+worktree: /home/hjf/code/fuse/tracking-service/.claude/worktrees/exempt-unqueried-firestore-fields
+branch: hjf/exempt-unqueried-firestore-fields
+base: origin/main
+base_sha: b12d0a630
+pr: null
+tags:
+- waypoint
+- plan
+impl_model: sonnet
+impl_effort: medium
 ---
 # none — Exempt unqueried fields from Firestore indexing
 
