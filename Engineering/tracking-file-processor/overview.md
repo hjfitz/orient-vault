@@ -16,7 +16,7 @@ verified: 2026-11-06
 - Publishes matched rows to `raw_tracking.v1`. A retry job re-processes rows that failed.
 
 ## In prod (snapshot 2026-11-06, 15 days)
-- About 54k events published: DX Freight 30.2k, BJS 15.7k, DPD NL 9.7k, Coll8 3.9k, OCS 1.4k.
+- About 54k events published, by its own count. On `raw_tracking.v1` the file carriers total 61k: DX Freight 30.2k, BJS 15.7k, DPD NL 9.7k, Coll8 3.9k, OCS 1.4k. **ASSESSED:** the gap is retries and events also arriving another way.
 - 12.4k processing errors logged, of which the retry job later published 7.0k.
 - Exelot and DPD DE have feeds configured, but sent no files.
 
