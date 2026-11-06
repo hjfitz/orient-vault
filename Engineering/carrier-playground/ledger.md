@@ -6,6 +6,15 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-06 — Add a mock Exelot proxy at exelot.mocks.merak.freightops.dev; spread metaData like the sources
+
+Add a mock Exelot proxy at exelot.mocks.merak.freightops.dev; spread metaData like the sources
+
+Ship: SHIP-1106-carrier-playground. Mirrors ADO GFS Exelot Integration main b21a47d (prod GKE exelot.gfsdeliver.com). Mirrored prod bugs: GRAM x1000, contactName from address.Name, every failure a 599 with no 401 retry, parcel created then 500 without labelSpecification, invoice counter returns the pre-increment value, ApiKy URL read from process.sourceMapsEnabled (always the real ApiKy). Also fixed metaData shape in the merged BJS and FedEx mocks (sources spread Ajv's array into an object). #13 restored a smoke helper the merge dropped and type-checks scripts/ in CI. Smoke 33/33 across eleven names.
+
+PR: ilg-merak/carrier-playground#12
+PR: ilg-merak/carrier-playground#13
+
 ## 2026-11-06 — Add a mock OCS proxy at ocs.mocks.merak.freightops.dev
 
 Add a mock OCS proxy at ocs.mocks.merak.freightops.dev

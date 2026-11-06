@@ -1,22 +1,22 @@
 ---
 tags: [handover]
 status: resumed
-workstream: Mock carrier proxies (Royal Mail, UPS, Coll8, FedEx, DPD Europe, Amazon SFP, Amazon Logistics) with dev IaC and DNS in ilg-merak/carrier-playground
+workstream: Eleven mock carrier proxies with dev IaC and DNS in ilg-merak/carrier-playground
 programme: none
 repo: ilg-merak/carrier-playground
 from: laptop
 to: hjf.shell.platform.ilg.software
 session_id: 945d0e77-3787-450a-a8e6-3635e238a5c9
 resumed_by: 9d74d588-1876-4a16-907d-7470c90d25d5
-updated: 2026-11-06T15:24Z
+updated: 2026-11-06T18:16Z
 ---
 # Handover: mock carrier proxies (carrier-playground)
 
 ## Where things stand
-`main` is deployed to ilg-merak dev (SHIP-1106-carrier-playground). Seven mocks are live at
-`https://{royalmail,ups,coll8,fedex,dpdeu,amazon-sfp,amazon}.mocks.merak.freightops.dev` (one HTTPS LB, `iac/projects/mock-edge`, which maps
-Cloud Run key -> host label). All ship logs to GFS Datadog only (ILG dropped, #6). `amazon` is the Amazon Logistics mock (#8, ADO
-`gfs-amazon-logistics-proxy`). Smoke 19/19.
+`main` is deployed to ilg-merak dev (SHIP-1106-carrier-playground). Eleven mocks are live at
+`https://{royalmail,ups,coll8,fedex,dpdeu,amazon-sfp,amazon,bjs,inpost,ocs,exelot}.mocks.merak.freightops.dev` (one HTTPS LB,
+`iac/projects/mock-edge`; records in core-infra's dev zone). All on the golden node24-runtime, GFS Datadog only. Smoke 33/33 through
+the names (`scripts/smoke.mts`, now type-checked in CI); Datadog shows no keys, tokens or addresses.
 
 | PR | What | State |
 | --- | --- | --- |
@@ -28,26 +28,23 @@ Cloud Run key -> host label). All ship logs to GFS Datadog only (ILG dropped, #6
 | #6 | That mock is the SFP proxy -> `apps/amazon-sfp-proxy`, `mock-amazonsfp`, `amazon-sfp` name; GFS Datadog only | merged, deployed (edge step failed, fixed by #7) |
 | #7 | Keep `amazon` on the edge, drop the mock-amazon teardown | merged, deployed |
 | #8 | Amazon Logistics (ADO `gfs-amazon-logistics-proxy`) into `mock-amazon` | merged `23a822f`, deployed |
+| #9 | BJS (ADO `bjs-proxy`) | merged, deployed |
+| #10 | InPost (GitHub `inpost-proxy`) | merged, deployed |
+| #11 | OCS (ADO `ocs-proxy`) | merged, deployed |
+| #12 | Exelot (ADO `GFS Exelot Integration`); metaData spread fixed in BJS/FedEx | merged, deployed |
+| #13 | Restore smoke `isPng`; type-check `scripts/` in CI | merged |
 
 ## In flight
-Four more mocks, approved by Harry 6 Nov ("BJS down to OCS"). Sources confirmed against the prod cluster ingresses and DNS. Shared builder brief: scratchpad `brief-common.md` (not synced; the rules mirror the FedEx/DPD pattern).
-
-| Mock | Source (prod) | Port / name | State |
-| --- | --- | --- | --- |
-| BJS | ADO `GFS Hybrid Services and Carrier Integrations/bjs-proxy` (GKE, `bjs.gfsdeliver.com`; GitHub `bjs-proxy` is an unused newer copy) | 4108 / `bjs` | builder running, worktree `mock-bjs` |
-| InPost | GitHub `gfs-hybrid-services/inpost-proxy` (Cloud Run, `inpost.gfsdeliver.com`) | 4109 / `inpost` | builder running, worktree `mock-inpost` |
-| Exelot | ADO `GFS Exelot Integration/GFS Exelot Integration` (GKE, `exelot.gfsdeliver.com`) | 4110 / `exelot` | queued |
-| OCS | ADO `GFS Hybrid Services and Carrier Integrations/ocs-proxy` (GKE, `ocs.gfsdeliver.com`) | 4111 / `ocs` | queued |
-
-Each: 2-dim review, merge main, PR, merge, deploy (edge adds only), smoke through the name, Datadog check, ledger.
+None.
 
 ## Waiting on Harry
 - None blocking. Tech Services repos: leave them alone (Harry, 5 Nov).
 
 ## Next up
-1. Optional: fix the platform `networking/load-balancer` module so a removed service is detached before deletion (URL map needs a real dependency on the backends) — ilg-platform/terraform-modules, not this repo.
-2. Optional follow-ups from the self-reviews (each PR's Notes): shared PNG encoder (coll8/fedex/amazon) into mock-kit; UPS body-parse errors log `RequestId undefined`; no max-instance cap (module lacks the input); `env:serverless` on dd-trace.
-3. Likely prod bugs the mocks surfaced (unconfirmed against prod logs): DPD Europe validation (phone `+`, nulls, KG/CM, float weights; #4); Amazon Logistics `notes` -> 200 `{}`, PDF refused, `-SIG` refused (#8).
+1. Optional: Veho (`carrier-proxies/apps/veho-proxy`) once it is live; a DHL mock behind Selector's `DHL_URL` (no proxy exists).
+2. Optional: fix the platform `networking/load-balancer` module (removed services are deleted before being detached) — ilg-platform/terraform-modules.
+3. Optional mock cleanups (PR Notes): shared PNG encoder (coll8/fedex/amazon/dpd/inpost import across carriers) into mock-kit; UPS `RequestId undefined`; `env:serverless` on dd-trace; no max-instance cap.
+4. Prod findings the mocks surfaced (code-read, not confirmed against prod logs) — see each PR's "mirrored on purpose" section. Highest-impact: **InPost prod logs full payloads (LOG_CARRIER_PAYLOAD=true, marked TEMPORARY), callers' ApiKy keys, and its InPost Basic Authorization header** (#10); Exelot/OCS log whole axios errors incl. carrier tokens (#11/#12); Exelot always calls the real ApiKy whatever its env says (#12); DPD Europe validation rejects every Selector call (#4); Amazon Logistics refuses PDF labels (#8); GRAM weights ×1000 in OCS/Exelot.
 
 ## How work is done here
 - **Harry, 6 Nov:** be pragmatic, only ask if something breaks; otherwise full steam ahead (memory `feedback-ship-pragmatic`).
@@ -65,6 +62,7 @@ Checked 16:10Z:
 - **Repo:** cloned to `~/code/merak/carrier-playground` during the handover.
 
 ## Gotchas
+- Merging parallel mock branches: git interleaves smoke.mts sections that share lines; rebuild smoke.mts from main and add the new section rather than trusting a textual merge. `pnpm typecheck` now catches a broken smoke script.
 - **Never remove a name from `mock-edge`.** The platform `networking/load-balancer` module (0.1-affogato) deletes a removed service's backend and cert before detaching them from the URL map/HTTPS proxy; GCP refuses (`resourceInUseByAnotherResource`) and every retry fails identically. Add/update only, or fix the module first (URL map needs a real dependency on the backends).
 - A monitor or background watch on a deploy must stop on the first failed job, not wait for a downstream signal (cost 45 min on #6).
 - Plain `pnpm install` can drop `optional: true` markers from the lockfile; follow with `pnpm install --lockfile-only --fix-lockfile`.
@@ -79,6 +77,7 @@ Checked 16:10Z:
 ## Closed since handover
 | When (UTC) | Work | Result |
 | --- | --- | --- |
+| 2026-11-06 18:20 | BJS, InPost, OCS, Exelot (#9–#13) | Sources confirmed against prod ingress/DNS; 4 builders, 8 reviews (3 blockers fixed: OCS log test gap, metaData shape in OCS/Exelot + BJS/FedEx); a merge-resolver bug fused two smoke rows and dropped a helper, both fixed and scripts/ now type-checked. Smoke 33/33 across eleven names. |
 | 2026-11-06 15:45 | Amazon Logistics mock (#8) | From ADO `gfs-amazon-logistics-proxy` (access granted by Harry); 2-dim review, no blockers, 3 fixes; deployed into `mock-amazon`; smoke 19/19 across seven names; Datadog clean. |
 | 2026-11-06 14:40 | #6 + #7 | Amazon mock repositioned as SFP; GFS Datadog only; edge removal bug hit and worked around by keeping `amazon`. Smoke 16/16. |
 | 2026-11-06 12:55 | Amazon Logistics mock (PR #5) | Prod located via the k8s config (`amazon-logistics-proxy`, image from ADO project `GFS Amazon Logistics Integration`, unreadable here). Built from the GitHub modernised copy; 2-dim review, no blockers, flag/cap/doc fixes. Deployed `5737fee`; cert served; smoke 16/16. |
