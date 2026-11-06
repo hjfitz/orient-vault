@@ -100,7 +100,7 @@ The leading hypothesis is an index write hotspot. Every copy rewrites indexed fi
   - `make fmt-check vet lint test-race test-emulator` passes;
   - `indexes_test.go` passes;
   - the dev `terragrunt plan` shows exactly 9 resources to add and nothing else.
-- [ ] 2. **Apply to dev and time it** (AC 1). Merge, which applies dev and then parks the prod apply behind `terraform-prod`. Don't push to `main` while the Deploy run is in flight. — verify:
+- [x] 2. **Apply to dev and time it** (AC 1). Merge, which applies dev and then parks the prod apply behind `terraform-prod`. Don't push to `main` while the Deploy run is in flight. — verify: — dev 9/9 exempt, 56 min; API 200s — done: c52f644
   - `gcloud firestore indexes fields describe` reports the 9 fields, plus one map subfield, as exempt on the dev database;
   - the wall-clock time per field operation is recorded;
   - dev `/api/v1` list, search, attention and stats calls still answer.
