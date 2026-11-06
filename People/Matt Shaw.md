@@ -79,6 +79,7 @@ title: Matt Shaw
 - ✍️ 
 
 ## Together (newest first)
+- 2026-11-05 — candidate review (37m recording): Matthew Shaw to be interviewed first, Edward Savage and Darren Taylor in → [recording](http://localhost:3000/recordings/20261105-132921-2bf2)
 - 2026-11-05 — Back from leave (2 to 4 Nov); 1:1 at 11:30 → [[Meetings/1-1 Matt Shaw]]
 - 2026-11-03 — on leave 2 to 4 Nov, so today's 1:1 is probably moot; four of his five FUSE-1314 duty drafts are still unmerged, fapi#181 and shopify-connector#351 (FUSE-1324) are approved and green, and a Spectrum IT CV shares his name → [[Meetings/1-1 Matt Shaw]]
 - 2026-11-02 — Back from sick leave and reviewing two Senior Developer CVs with the recruiter; his 2 to 4 Nov leave starts today and he holds Sprint 16 Distraction Duty (FUSE-1314)
