@@ -1085,6 +1085,13 @@ live slice of the same work.
   "Other" group at the bottom of the sidebar until it is fixed.
 - **Config is memoised at boot.** Editing `.knowledge/config.yaml` needs the dev server
   restarted (`pkill` by PID, not `-f`, which matches your own shell), not just a reload.
+- **An entity fact copied from a file must take the fresh value on re-index.** `entities.sidecar` used to
+  keep the first `waypoint.yaml` it saw (`found.sidecar ?? sidecar` in `src/index/writer.ts`). `wp onboard`
+  writes a skeleton first, so every service onboarded that way showed `owner=bifrost` and nulls on
+  `/service` and in the MCP, while the `sidecars` table was current. The fresh sidecar now wins, and only
+  a reference that carries none (a mention from another folder) keeps the stored one. The `sidecars`
+  table itself is never pruned, so a reader must check the folder still has live documents (the MCP's
+  `SystemMembers` does).
 - **`QUERY_LIMIT_MAX` clamps every query.** A domain module asking for more gets silently
   cut; check it before trusting any count on a page.
 - The vault is authoritative and belongs to `wp.py` / `cust.py`. orient only ever adds
