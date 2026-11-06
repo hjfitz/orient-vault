@@ -87,6 +87,25 @@ Snapshot 2026-11-06 [1].
   ] }
 ```
 
+## On request: proof of delivery
+
+POD sits outside the event stream. [[gfs-pod-service]] keeps a copy of each shipment from `shipments.v2.identified`. When a caller asks, it fetches the POD from the carrier live. It normalises the result and caches it in Redis.
+
+```orient-flow
+{ "v": 1, "title": "One POD request",
+  "nodes": [
+    { "id": "c", "label": "public-gateway, Connect, Nexus", "kind": "external" },
+    { "id": "p", "label": "gfs-pod-service", "sub": "v2, in-cluster", "kind": "service", "tone": "accent" },
+    { "id": "cr", "label": "gfs-carrier-credentials", "sub": "legacy", "kind": "external" },
+    { "id": "car", "label": "Carrier POD API", "kind": "external" }
+  ],
+  "edges": [
+    { "from": "c", "to": "p", "label": "GET /pod/:shipmentId" },
+    { "from": "p", "to": "cr" },
+    { "from": "p", "to": "car", "label": "signature, photo, GPS" }
+  ] }
+```
+
 ## Coverage by carrier (15 days to 6 Nov 2026)
 
 | Carrier | Path | Events |
