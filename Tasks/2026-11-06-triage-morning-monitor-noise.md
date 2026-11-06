@@ -13,3 +13,6 @@ Only real signal: tracking-service ~540 "store failed; nacking for redelivery" (
 ## Tracking-service dig
 Underlying error is Firestore commit RESOURCE_EXHAUSTED (536 = 536 InvalidArgument): the gapic Commit retry (RE/Unavailable) reuses the dead txn id, so the surfaced error is "transaction has expired"; RunTransaction only retries Aborted. Not Cloud Run scaling (CPU p99 21%, mem 35%, commit latency ~20 ms) and not the #16 hot-doc contention. Bursts are the PURDYFIGG 5-min reap (~2k pushes/min, growing through the morning). Leading hypothesis, unconfirmed: index write hotspot on the monotonic `lastSeenAt` that every copy rewrites; it is never queried but carries default single-field indexes. Confirm in Firestore Key Visualizer. Nothing dead-lettered. Owed: exempt lastSeenAt from indexing, map RE to a throttle response, consider skipping identical-copy writes / spreading the reap.
 
+
+## Programme
+Harry chose MongoDB (2026-11-06), superseding the 10-19 "stay on Firestore" call. Group D (D1–D13) added to Bifrost/Tracking Service Migration State with gates G3–G11 and risks R7–R12; counters plan inc 4 superseded. D1 stopgap plan drafted (`exempt-unqueried-fields-from-firestore-indexing`, worktree `hjf/exempt-unqueried-firestore-fields`). Spare worktree `hjf/tracking-service-mongo` reserved for D2+.

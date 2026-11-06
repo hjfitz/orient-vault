@@ -32,24 +32,48 @@ tags: [waypoint, plan]
 
 ## Intent
 <!-- What we are changing and why. Link the ticket. -->
-<the change, and the observable outcome that proves it, in 2-4 sentences>
+Out-of-ticket. Programme unit **D1** of [[Bifrost/Tracking Service/Migration State|Tracking Service]] group D: a cheap stopgap while persistence moves to MongoDB.
+
+On 2026-11-06 at 09:10–09:16 UTC, 536 Firestore commits failed with `RESOURCE_EXHAUSTED` during PURDYFIGG's 5-minute reap bursts, which peaked at about 2,385 pushes a minute. Each of them then failed again as `InvalidArgument: The referenced transaction has expired`: the gapic Commit retry reuses the dead transaction id, and `RunTransaction` only retries `Aborted`. Pub/Sub redelivery healed it and nothing reached a DLT.
+
+The leading hypothesis is an index write hotspot. Every copy rewrites indexed fields that nothing queries, starting with `lastSeenAt`, which only ever increases. This change exempts every such field from single-field indexing. Proof: bursts stop producing `RESOURCE_EXHAUSTED`.
 
 ## Acceptance criteria
 <!-- Observable, checkable outcomes — not tasks. Numbered by order: increments cite them as
      (AC 2,4), and sign-off prints which criteria no increment claims. -->
-- [ ] <observable outcome>
+- [ ] 1. In both databases, these fields report no single-field indexes:
+  - `shipments`: `lastSeenAt`, `totalDuplicates`, `stageTimes`, `confirmations`;
+  - `returns`: `lastSeenAt`, `totalDuplicates`, `stageTimes`, `confirmation`, `linkedShipmentJson`.
+  - Every existing query still serves: the composite indexes and the other fields' automatic indexes are untouched.
+- [ ] 2. `firestore.indexes.json` and `firestore.tf` declare the same overrides (the `declared_field_overrides` precondition passes), and the emulator suite is green.
+- [ ] 3. In prod, over at least 48 h of reap bursts, `gcp.firestore.api.request_count{database_id:tracking-service,response_code:resource_exhausted}` and Cloud Run 5xx are compared against the 2026-11-06 baseline, and the result is recorded against programme gate G3. It counts either way: if the throttling persists, the hypothesis is refuted, and that is also a result.
 
 ## Affected boundaries
 <!-- Components, paths and contracts this touches. Wikilink existing explainers; do not restate
      their contents. If this names a topic, endpoint, canonical type, collection, inter-service
      dependency or shared package, sign-off will prompt for the Fuse MCP data file too. -->
-- <component / path / contract>
+- `apps/api/firestore.indexes.json` `fieldOverrides`, plus 9 `google_firestore_field` resources appended to the end of the `depends_on` chain in `iac/projects/tracking-service/firestore.tf`, plus `local.declared_field_overrides`.
+- No Go code. No contract change: served fields are unchanged; only their indexing changes.
+- `database-collections` in fuse-mcp describes collections, not index config, so it needs no change. Confirm at sign-off.
 
 ## Assumptions & uncertainty
 <!-- One line each, with how it was established. A genuine product or domain question goes here
      as UNRESOLVED: and is raised with the user, never invented. -->
-- <assumption> — <how it was established: source read, ticket, asked>
-- UNRESOLVED: <question that needs a human decision>
+- **None of the 9 fields is filtered or ordered by any query, and none is in a composite index.**
+  - Established 2026-11-06 by two independent source reads.
+  - The queried fields are `businessId`, `status`, `failed`, `orphan`, `channel`, `searchKeys`, `attentionAt`, `actionNeeded`, `customerRefNorm`, `rgaNumberNorm`, `createdAt`, `updatedAt` and `day`.
+  - `orderedQuery` sorts only on `updatedAt`/`createdAt`.
+- **Which copies this covers.**
+  - A reap copy (received, deduplicated, in_wms) moves `lastSeenAt`, `totalDuplicates` and unindexed `*Json` blobs, so this removes all of its index writes.
+  - Confirmation re-announce copies also move `confirmations.*.lastDeliveredAt`, `.deliveryFailedAt` and `.queueIdKeyJson` (`reduce.go:112-127`), and `stageTimes.despatched` (`reduce.go:521-522`). All of those are covered too.
+  - Not covered, because the fields are queried:
+    - a create-failed copy can flip `failed`/`status`/`attentionAt` (`reduce.go:104,533-537`);
+    - an out-of-order earlier copy can lower `updatedAt` (`dedupe.go:160,207`).
+  - Established by the factual review, 2026-11-06.
+- **Exempting a map field (`stageTimes`, `confirmations`, `confirmation`) exempts its subfields.** This is Firestore's documented inheritance, not checked on this database. Verify on dev with `gcloud firestore indexes fields describe` on one subfield.
+- **Firestore applies an exemption by rewriting the index entries of existing docs.** So on populated `shipments`/`returns` each field operation takes longer than the ~6 min measured on the empty database at cutover. Unmeasured; dev times it first.
+- **The hotspot is the cause of the 11-06 `RESOURCE_EXHAUSTED`.** UNPROVEN. Key Visualizer was not checked, and on 2026-10-29 a 4,497-push minute caused no throttling. AC 3 tests it.
+- UNRESOLVED: the G3 threshold, i.e. what drop in `resource_exhausted` during bursts counts as "fixed". It needs agreeing with Harry before merge, or the soak can't decide anything.
 
 ## Increments
 <!-- Each independently implementable AND verifiable. Cite the criteria it discharges as
@@ -67,8 +91,22 @@ tags: [waypoint, plan]
                      [ ] confirmed
 -->
 
-- [ ] 1. <increment> — verify: <how>
-- [ ] 2. <increment> — verify: <how>
+- [ ] 1. **Declare the 9 exemptions** (AC 1,2). Add them to `fieldOverrides` in `firestore.indexes.json` and as `google_firestore_field` resources with `index_config {}`, each `depends_on` the previous, appended after `events_errors_json`, plus `local.declared_field_overrides`. — verify:
+  - `terraform fmt -check -recursive iac` passes;
+  - `make fmt-check vet lint test-race test-emulator` passes;
+  - `indexes_test.go` passes;
+  - the dev `terragrunt plan` shows exactly 9 resources to add and nothing else.
+- [ ] 2. **Apply to dev and time it** (AC 1). Merge, which applies dev and then parks the prod apply behind `terraform-prod`. Don't push to `main` while the Deploy run is in flight. — verify:
+  - `gcloud firestore indexes fields describe` reports the 9 fields, plus one map subfield, as exempt on the dev database;
+  - the wall-clock time per field operation is recorded;
+  - dev `/api/v1` list, search, attention and stats calls still answer.
+      gate: Harry agrees the prod Terraform plan (plan-then-proceed) and the G3 threshold
+            [ ] confirmed
+- [ ] 3. **Apply to prod and soak** (AC 1,3). Approve `terraform-prod`. The run stays open for roughly 9 × the dev per-field time. — verify:
+  - `gcloud ... describe` on the prod database;
+  - 48 h of burst minutes: `resource_exhausted` count, Cloud Run 5xx and commit latency, against 09:10–09:16 on 2026-11-06;
+  - the result is written to G3 in the Migration State.
+  - Use GCP-side metrics, not `fuse.tracking.*`, which undercounts.
 
 ## Verification
 <!-- The single authority for evidence. Increment lines carry `— done: <sha>` and nothing else.
@@ -77,11 +115,11 @@ tags: [waypoint, plan]
 ### Evidence
 <!-- Newest first, dated. One bullet per check actually run, opening with what it discharges.
      "Suite green" alone is not evidence. Sign-off requires at least one dated bullet here. -->
-- <YYYY-MM-DD> [inc <n>] <what was run, against what, and the observable result>
+
 
 ### Not verified
 <!-- Stated, not papered over. "(none)" is a deliberate claim, and a fine one. -->
-- <what remains unproven, and what would prove it>
+- Everything. Nothing has been run yet.
 
 ## Decisions & deviations
 <!-- Date-stamped, newest first — written by `wp decide`, and by hand when that is easier.
@@ -96,3 +134,8 @@ tags: [waypoint, plan]
      or refuted hypothesis. Not restated doc content. Sign-off promotes each confirmed one into
      the matching durable doc, then clears it from here; a refuted one moves to ## Handback
      rather than being deleted. Legitimately empty. -->
+- **The 2026-11-06 burst errors are `RESOURCE_EXHAUSTED` underneath.** The surfaced `InvalidArgument: transaction has expired` comes from the gapic Commit retry (`firestore/apiv1` v1.25.0 retries Commit on ResourceExhausted/Unavailable, reusing the transaction id). `RunTransaction` retries only `Aborted`. Every throttled commit therefore shows up as 1 RE plus 1 IA in `gcp.firestore.api.request_count`. This is the first store-error incident on the new stack.
+- **Copy-redelivery protection is capped.** `CountedIDs` keeps 64 ids per record (`dedupe.go:22`), which is about 1.5–2 h of PURDYFIGG resends. Older redelivered copies count again.
+- **Prod Firestore has point-in-time recovery disabled** (`firestore.tf:9`). There is no backup of the `tracking-service` database.
+- **`api-emulator` is one of the 8 required checks on `main`.**
+
