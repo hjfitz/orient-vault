@@ -1,9 +1,16 @@
 ---
-tags: [waypoint, connectors-fedex]
+tags:
+- waypoint
+- connectors-fedex
 title: connectors-fedex — overview
-thesis: "connectors-fedex is the polling tracking connector for FedEx. It runs on tracking-core's shared connector framework, and its new events reach raw_tracking.v1 through tracking-core's response-publisher."
+thesis: connectors-fedex is the polling tracking connector for FedEx. It runs on tracking-core's
+  shared connector framework, and its new events reach raw_tracking.v1 through tracking-core's
+  response-publisher.
 confidence: high
-verified: 2026-11-06
+verified: '2026-11-06'
+verified_paths:
+- src
+verified_sha: acd36c5
 ---
 # connectors-fedex — overview
 
