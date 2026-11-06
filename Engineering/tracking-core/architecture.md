@@ -1,9 +1,18 @@
 ---
-tags: [waypoint, tracking-core]
+tags:
+- waypoint
+- tracking-core
 title: tracking-core — architecture
-thesis: "Four .NET Core 3.1 parts around one Mongo collection: consignment-manager fills active-parcels from shipments.v2.identified, batch-creator leases due parcels to connectors over gRPC, response-publisher dedupes, maps and publishes, and a NuGet framework runs each connector's loop. Polling config lives in prod etcd."
+thesis: 'Four .NET Core 3.1 parts around one Mongo collection: consignment-manager
+  fills active-parcels from shipments.v2.identified, batch-creator leases due parcels
+  to connectors over gRPC, response-publisher dedupes, maps and publishes, and a NuGet
+  framework runs each connector''s loop. Polling config lives in prod etcd.'
 confidence: high
-verified: 2026-11-06
+verified: '2026-11-06'
+verified_paths:
+- src
+- schema
+verified_sha: c081108
 ---
 # tracking-core — architecture
 
