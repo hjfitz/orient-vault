@@ -191,8 +191,8 @@ Billing has no intake interface. A separate Delphi billing app, owned by Finance
   - Finance publishes separately, because runs get rolled back. `legacy-invoice-translator` then writes the invoice files to Cloud Storage and publishes `invoices_published.v1`.
   - CCDIS matches invoice lines on consignment number plus carrier, against `shipments.v2.identified`.
 - **What breaks it:**
-  - A shipment never arrives: the upload station is off, a CSS booker never commits, a Slipway export fails, or DataBridge skips a row.
-  - A shipment arrives twice: Manager's recycle-replace inserts a fresh copy, or the upload server commits a partial batch and the client re-sends.
+  - A shipment never arrives: the upload station is off, a CSS booker never commits, a Slipway export fails, or DataBridge skips a row [17].
+  - A shipment arrives twice: Manager's recycle-replace inserts a fresh copy, or the upload server commits a partial batch and the client re-sends [16].
   - A delete after upload never reaches central.
   - About 57.5k shipments with negative invoice numbers are never selected.
 
