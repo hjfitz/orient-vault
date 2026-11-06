@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-06 — Add a mock BJS proxy at bjs.mocks.merak.freightops.dev
+
+Add a mock BJS proxy at bjs.mocks.merak.freightops.dev
+
+Ship: SHIP-1106-carrier-playground. Mirrors ADO GFS Hybrid Services and Carrier Integrations/bjs-proxy (prod GKE, bjs.gfsdeliver.com), not the GitHub copy (bjs-proxy.gfsdeliver.com, ~no traffic). Mirrored prod bugs: absent fields sent as "undefined", every BJS failure a 500, label format ignored, labels paired by position, account taken from the request. Mock BJS form limit raised to 2mb. Smoke green, Datadog clean.
+
+PR: ilg-merak/carrier-playground#9
+
 ## 2026-11-06 — Add a mock Amazon Logistics proxy at amazon.mocks.merak.freightops.dev
 
 Add a mock Amazon Logistics proxy at amazon.mocks.merak.freightops.dev
