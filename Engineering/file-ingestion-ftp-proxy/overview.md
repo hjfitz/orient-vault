@@ -1,9 +1,17 @@
 ---
-tags: [waypoint, file-ingestion-ftp-proxy]
+tags:
+- waypoint
+- file-ingestion-ftp-proxy
 title: file-ingestion-ftp-proxy — overview
-thesis: "file-ingestion-ftp-proxy is a CronJob that, every 20 minutes, collects carriers' tracking files from their SFTP servers into Cloud Storage and announces each on file_tracking.v1. It runs the fenghuang-ftp-proxy image, whose README still says the project is being archived."
+thesis: file-ingestion-ftp-proxy is a CronJob that, every 20 minutes, collects carriers'
+  tracking files from their SFTP servers into Cloud Storage and announces each on
+  file_tracking.v1. It runs the fenghuang-ftp-proxy image, whose README still says
+  the project is being archived.
 confidence: moderate
-verified: 2026-11-06
+verified: '2026-11-06'
+verified_paths:
+- index.js
+verified_sha: 6c5e9fa
 ---
 # file-ingestion-ftp-proxy — overview
 
