@@ -231,6 +231,10 @@ Three patterns, kept class-level here (details in the MPK *Carrier Proxies* page
   { "id": 10, "kind": "code", "ref": "V4-Server-UploadServer/IUploadServerImpl.pas@5773b8e:L442-L480" },
   { "id": 11, "kind": "code", "ref": "CSS/vzClientSoapServer/InternalProcedures/CommonProcedures.cs@414569b:L76-L88" },
   { "id": 12, "kind": "code", "ref": "V4/Client/Client.Alpha/uFunc.pas@73cfd69:L27448" },
-  { "id": 13, "kind": "code", "ref": "V4/Client/UpdateUtil/uUpd.pas@73cfd69" }
+  { "id": 13, "kind": "code", "ref": "V4/Client/UpdateUtil/uUpd.pas@73cfd69" },
+  { "id": 14, "kind": "doc", "ref": "Confluence Billing 311394359 Legacy Billing – Invoicing & Scheduling" },
+  { "id": 15, "kind": "doc", "ref": "Confluence MPK 353566845 Legacy Selector - Day End and Billing Handoff" },
+  { "id": 16, "kind": "code", "ref": "V4-Server-Database/Updates/update_284.sql@82dde6b:L3-L204" },
+  { "id": 17, "kind": "doc", "ref": "gfs-hybrid-services/UploadServiceV2DataBridge ShipmentProcessor.cs" }
 ] }
 ```
