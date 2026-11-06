@@ -32,24 +32,38 @@ tags: [waypoint, plan]
 
 ## Intent
 <!-- What we are changing and why. Link the ticket. -->
-<the change, and the observable outcome that proves it, in 2-4 sentences>
+Out-of-ticket, asked for by Harry 2026-11-06. The orient MCP's `orient-entity` cannot look up a
+Waypoint **system**, and its **service** header is wrong for every service onboarded through a
+`wp onboard` skeleton (it shows `owner=bifrost`, no language/framework/deploy/system). The goal is
+`orient-entity kind=system` for purpose, owner, members by type, docs and open unknowns. The service
+header should show the real `waypoint.yaml` facts, and each service doc should carry the `wp doctor`
+stale flag.
 
 ## Acceptance criteria
 <!-- Observable, checkable outcomes — not tasks. Numbered by order: increments cite them as
      (AC 2,4), and sign-off prints which criteria no increment claims. -->
-- [ ] <observable outcome>
+- [ ] 1. After a re-index, `entities.sidecar` equals the `sidecars` table row for every service. In particular, `orient-entity service css` shows `owner=jez-poppleton language=csharp … system=selector`, and client4 and parcel-portal show their real yaml values.
+- [ ] 2. When a `waypoint.yaml` is rewritten after its entity row exists, re-indexing replaces the entity's sidecar. A writer test covers this.
+- [ ] 3. `orient-entity system selector` returns the purpose and owner from `system.yaml`, the members grouped by type with owners (css backend, client4 frontend, matching `wp system status selector`), the docs with verified dates, and the open `## Unknowns`.
+- [ ] 4. Service doc lines carry a stale marker when `wp doctor` flagged them (`documents.meta.attention`).
+- [ ] 5. The tool description, jsonschema, server instructions and `docs/mcp-spec.md` say person, service, system or customer, and the rebuilt binary is the one Claude Code launches.
 
 ## Affected boundaries
 <!-- Components, paths and contracts this touches. Wikilink existing explainers; do not restate
      their contents. If this names a topic, endpoint, canonical type, collection, inter-service
      dependency or shared package, sign-off will prompt for the Fuse MCP data file too. -->
-- <component / path / contract>
+- `src/index/writer.ts` `writeDocument` entity merge (indexer, run by `orient-index.service` via tsx). It also feeds the web `/service` header (`src/domain/overviews.ts`).
+- `mcp/internal/store/entity.go` (new `SystemMembers`, `Doc.Attention`), `mcp/internal/vault/` (new `system.go`: system.yaml + Unknowns), `mcp/internal/tools/entity.go`, `mcp/internal/bootstrap/server.go` (Instructions).
+- `docs/mcp-spec.md` `orient-entity`. `src/domain/headless.ts` lists tool names only, so it gets a comment wording update only.
+- Read-only throughout. No schema change: `sidecars` and `documents.meta` already hold what's needed.
 
 ## Assumptions & uncertainty
 <!-- One line each, with how it was established. A genuine product or domain question goes here
      as UNRESOLVED: and is raised with the user, never invented. -->
-- <assumption> — <how it was established: source read, ticket, asked>
-- UNRESOLVED: <question that needs a human decision>
+- Root cause is `sidecar: found.sidecar ?? sidecar` (writer.ts). The first sidecar seen wins forever. The `sidecars` table holds the real yaml and 7 services diverge from it. Established by reading the source and diffing the live index.
+- Membership lives only in each service's `waypoint.yaml` (`system:`), which the `sidecars` table already indexes. That is the same source as `wp system status`. Established from wp.py l.448 and the live query (2 members, matching wp).
+- `system.yaml` is not indexed (only `.md`/`.mdx` and waypoint/customer yaml are), so the MCP reads it via its `vault` layer. That layer already exists for "things the index does not hold". A minimal top-level-scalar reader is enough: all 5 system.yaml files use plain scalars plus `purpose: >`. There is no Go yaml dependency.
+- The stale flag uses the `wp doctor` verdict the watcher already stamps into `meta.attention`, so no git is needed in the MCP. It covers `Engineering/` docs only. System docs carry no `verified_sha` and are never stamped, so systems get no stale flag.
 
 ## Increments
 <!-- Each independently implementable AND verifiable. Cite the criteria it discharges as
