@@ -1,9 +1,16 @@
 ---
-tags: [waypoint, connectors-amazon]
+tags:
+- waypoint
+- connectors-amazon
 title: connectors-amazon — overview
-thesis: "connectors-amazon is the polling tracking connector for Amazon Logistics UK. It runs on tracking-core's shared connector framework, and its new events reach raw_tracking.v1 through tracking-core's response-publisher."
+thesis: connectors-amazon is the polling tracking connector for Amazon Logistics UK.
+  It runs on tracking-core's shared connector framework, and its new events reach
+  raw_tracking.v1 through tracking-core's response-publisher.
 confidence: high
-verified: 2026-11-06
+verified: '2026-11-06'
+verified_paths:
+- src
+verified_sha: de1abab
 ---
 # connectors-amazon — overview
 
