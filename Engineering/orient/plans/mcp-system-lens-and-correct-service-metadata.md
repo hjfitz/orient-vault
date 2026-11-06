@@ -8,7 +8,7 @@ updated: '2026-11-06'
 repo: /home/hjf/projects/orient
 worktree: /home/hjf/projects/orient
 branch: master
-base: origin/master
+base: ad04890ed
 base_sha: ad04890ed
 pr: null
 tags:
@@ -46,11 +46,11 @@ stale flag.
 ## Acceptance criteria
 <!-- Observable, checkable outcomes — not tasks. Numbered by order: increments cite them as
      (AC 2,4), and sign-off prints which criteria no increment claims. -->
-- [ ] 1. After a re-index, `entities.sidecar` equals the `sidecars` table row for every service. In particular, `orient-entity service css` shows `owner=jez-poppleton language=csharp … system=selector`, and client4 and parcel-portal show their real yaml values.
-- [ ] 2. When a `waypoint.yaml` is rewritten after its entity row exists, re-indexing replaces the entity's sidecar. A writer test covers this.
-- [ ] 3. `orient-entity system selector` returns the purpose and owner from `system.yaml`, the members grouped by type with owners (css backend, client4 frontend, matching `wp system status selector`), the docs with verified dates, and the open `## Unknowns`.
-- [ ] 4. Service doc lines carry a stale marker when `wp doctor` flagged them (`documents.meta.attention`).
-- [ ] 5. The tool description, jsonschema, server instructions and `docs/mcp-spec.md` say person, service, system or customer, and the rebuilt binary is the one Claude Code launches.
+- [x] 1. After a re-index, `entities.sidecar` equals the `sidecars` table row for every service. In particular, `orient-entity service css` shows `owner=jez-poppleton language=csharp … system=selector`, and client4 and parcel-portal show their real yaml values.
+- [x] 2. When a `waypoint.yaml` is rewritten after its entity row exists, re-indexing replaces the entity's sidecar. A writer test covers this.
+- [x] 3. `orient-entity system selector` returns the purpose and owner from `system.yaml`, the members grouped by type with owners (css backend, client4 frontend, matching `wp system status selector`), the docs with verified dates, and the open `## Unknowns`.
+- [x] 4. Service doc lines carry a stale marker when `wp doctor` flagged them (`documents.meta.attention`).
+- [x] 5. The tool description, jsonschema, server instructions and `docs/mcp-spec.md` say person, service, system or customer, and the rebuilt binary is the one Claude Code launches.
 
 ## Affected boundaries
 <!-- Components, paths and contracts this touches. Wikilink existing explainers; do not restate
@@ -125,4 +125,4 @@ stale flag.
      or refuted hypothesis. Not restated doc content. Sign-off promotes each confirmed one into
      the matching durable doc, then clears it from here; a refuted one moves to ## Handback
      rather than being deleted. Legitimately empty. -->
-- `entities.sidecar` was write-once: any service onboarded through a `wp onboard` skeleton showed the skeleton's facts (owner bifrost, nulls) in the web `/service` header and the MCP, while the `sidecars` table was current.
+(promoted to design.md ## Traps on 2026-11-06)

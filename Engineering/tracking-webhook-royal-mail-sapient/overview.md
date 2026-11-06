@@ -1,9 +1,17 @@
 ---
-tags: [waypoint, tracking-webhook-royal-mail-sapient]
+tags:
+- waypoint
+- tracking-webhook-royal-mail-sapient
 title: tracking-webhook-royal-mail-sapient — overview
-thesis: "tracking-webhook-royal-mail-sapient receives Royal Mail's tracking events pushed through Sapient and publishes them to raw_tracking.v1. It is the only live publishing webhook and Royal Mail's only tracking source: about 340.6k events in, 215.9k published in 15 days."
+thesis: 'tracking-webhook-royal-mail-sapient receives Royal Mail''s tracking events
+  pushed through Sapient and publishes them to raw_tracking.v1. It is the only live
+  publishing webhook and Royal Mail''s only tracking source: about 340.6k events in,
+  215.9k published in 15 days.'
 confidence: high
-verified: 2026-11-06
+verified: '2026-11-06'
+verified_paths:
+- handler
+verified_sha: 3c880bf
 ---
 # tracking-webhook-royal-mail-sapient — overview
 
