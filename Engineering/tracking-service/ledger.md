@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-06 — Open the store through internal/storeopen
+
+Open the store through internal/storeopen
+
+D4: storeopen.Open builds the store from STORE/MONGODB_URI/MONGODB_DATABASE for all 5 binaries; Backend = store.Store + Maintenance (ShipmentIDs, ReturnIDs, ReadCounters, ReplaceCounters), which D5's Mongo store must implement. STORE=mongodb errors 'not implemented yet'. Mongo 8.0 replica-set harness (docker-compose.integration.yaml, make test-mongo) with a transaction smoke test; non-required api-mongo CI job. Gotcha: compose files in apps/api need an explicit name: — project 'api' collided with another local repo's containers.
+
+PR: gfs-bifrost/tracking-service#21
+
 ## 2026-11-06 — Provision Atlas clusters for tracking-service
 
 Provision Atlas clusters for tracking-service
