@@ -28,7 +28,7 @@ nav:
     - label: Prod
       slugs: [health, incidents, support, maintenance, soaks]
     - label: Knowledge
-      slugs: [systems, people, explainers, digests, archive]
+      slugs: [systems, people, explainers, notes, diagrams, digests, archive]
     - label: Claude
       slugs: [runs, tasks, history, usage, skills, tools, haude, analytics]
 # Whose vault this is, by People/ note name: the Org chart opens on the route to your team.
