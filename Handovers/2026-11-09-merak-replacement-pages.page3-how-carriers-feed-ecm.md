@@ -5,7 +5,7 @@ Carrier proxies are not a route. They serve Selector for labels, cancels and man
 ## In short
 
 - **Polling does almost all the work.** It brought about 5.44M of about 6.25M events, from about 142M carrier calls. Webhooks brought about 215k, all from Royal Mail. Files brought about 54k.
-- **The routes do not produce the same message.** Webhook services leave `rawData` empty. `rawData` is optional on the topic, and whether each connector fills it is not confirmed.
+- **The routes do not produce the same message.** Webhook services leave `rawData` empty. The companion page, Tracking Events and Webhooks: What v1 Needs, reports that `tracking-core` attaches the full raw carrier response to polled events. Whether each connector fills it is not confirmed.
 - **Nothing deduplicates across routes.** Each route dedupes on its own, so a carrier that is polled and also sends webhooks feeds the topic twice.
 - **The 12 mocked carriers produce about 9% of events.** Evri, DHL Parcel UK, DPD Local and DPD, none of which is mocked, produce about 89%.
 
@@ -16,17 +16,17 @@ Carrier proxies are not a route. They serve Selector for labels, cancels and man
 | **Who starts it** | A connector asks the carrier's API about each due parcel | The carrier sends `POST /tracking` to a Cloud Run service | `file-ingestion-ftp-proxy` polls the carrier's SFTP every 20 minutes and publishes `file_tracking.v1` |
 | **What is tracked** | GFS decides. `tracking-core` fills `active-parcels` from `shipments.v2.identified` for every carrier, unless the contract is on the `untracked` list. A parcel expires after 90 days | The carrier decides what it sends. Evri sends about 25% of its volume today | The carrier's file decides |
 | **How an event meets its shipment** | The parcel was chosen from `active-parcels`, so it is already matched | The service matches carrier plus consignment number, then parcel. Unmatched events wait in Mongo for up to 90 days | `tracking-file-processor` matches each row against `shipments.v2.identified` |
-| **Carrier credentials and auth** | The connector holds them. Most use one GFS account in a SealedSecret. DPD, DPD Local, Panther and FedEx fetch per-contract credentials from `carrier-credentials-manager` | Evri sends an API key header. InPost signs the body (HMAC). Royal Mail uses an OAuth client-credentials token, checked as a JWT | `[??]` |
-| **Deduplication** | `response-publisher` dedupes against stored events on date plus status code | Local to each service | `[??]` |
-| **What the message carries** | A parcel block, dates, status code and description. Optional: signatory, location, depot, delivery window, raw carrier payload | The same shape, with `rawData` empty and a `carrierIdV2` attribute | `[??]` |
+| **Carrier credentials and auth** | The connector holds them. Most use one GFS account in a SealedSecret. DPD, DPD Local, Panther and FedEx fetch per-contract credentials from `carrier-credentials-manager` | Evri sends an API key header. InPost signs the body (HMAC). Royal Mail uses an OAuth client-credentials token, checked as a JWT | Not confirmed |
+| **Deduplication** | `response-publisher` dedupes against stored events on date plus status code | Local to each service | Not confirmed |
+| **What the message carries** | A parcel block, dates, status code and description. Optional: signatory, location, depot, delivery window, raw carrier payload | The same shape, with `rawData` empty and a `carrierIdV2` attribute | Not confirmed |
 | **When it fails** | No retry and no dead-letter queue. The parcel is picked again next cycle. There is no rate limit or backoff. Only DPD and DPD Local pause a contract after a credential error | The service publishes to an interim topic and then acknowledges. The depth of the dead-letter topics is not known | 12.4k processing errors were logged. A retry job later published 7.0k of them |
 | **Volume (15 days)** | About 5.44M events from about 142M calls. About 7M calls failed | Royal Mail about 215k published. Evri about 561k received and 0 published | About 54k by the processor's count, 61k on the topic |
-| **Delay** | Set per carrier by `TargetPollingMinutes` in prod etcd. No repo holds the values | `[??]` | 20-minute poll, then `[??]` |
+| **Delay** | Set per carrier by `TargetPollingMinutes` in prod etcd. No repo holds the values | Not confirmed | 20-minute poll, then not confirmed |
 
 ## Where the routes differ in what ECM gets
 
 - **Who chooses what is tracked.** For polling, GFS chooses the parcels and asks for them. For webhooks and files, the carrier chooses what to send, and ECM holds or drops what it cannot match.
-- **The raw carrier payload.** The topic's `rawData` is optional. The webhook services leave it empty. A consumer that needs the carrier's own words for an event cannot rely on it.
+- **The raw carrier payload.** The topic's `rawData` is optional. The webhook services leave it empty, and `tracking-core` attaches the raw carrier response to polled events. A consumer that needs the carrier's own words cannot rely on webhook events for them.
 - **Cost grows differently.** Polling cost follows parcels still being asked about: about 26 calls for each new event. Where a connector's DELIVERED state is on, delivered parcels keep being polled. Amazon re-polled 2.6M of them. Webhook cost follows events.
 - **Dedupe stops at the route.** Consumers dedupe on the event `id` alone, and each publisher mints its own. The same scan from a connector and a webhook lands twice. See requirement 2 on Tracking Events and Webhooks: What v1 Needs.
 - **A cutover between routes is manual.** A webhook in shadow mode records events but publishes none, and turning publish on does not backfill. Evri's plan has five steps:
@@ -52,7 +52,7 @@ Carrier proxies are not a route. They serve Selector for labels, cancels and man
 | InPost | Polling | 305 | The webhook was not deployed on 6 Nov, and its pull request was open |
 | FedEx | Polling | 21 | |
 | Exelot | SFTP feed set up | 0 | No files arrived |
-| Amazon SFP | `[??]` | `[??]` | Slipway publishes these shipments straight to `fb.shipments.v1`. No page says how their tracking arrives |
+| Amazon SFP | Not confirmed | Not confirmed | Slipway publishes these shipments straight to `fb.shipments.v1`. No page says how their tracking arrives |
 | Veho | None | 0 | Tracking webhooks are planned (CID-347). Nothing is built |
 
 These carriers add up to about 579k events, about 9% of the total. The four largest sources are not mocked:
