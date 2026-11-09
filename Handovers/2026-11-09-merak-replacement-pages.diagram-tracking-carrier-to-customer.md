@@ -76,7 +76,7 @@ Source for the two manifest-only arrows: `connect/connect-hooks.yaml` sets `TRAC
 
 ## Layout hint
 
-Read left to right. Put E1 and E2 in a left column, the three route lanes in the middle (polling on top, webhooks in the middle, files at the bottom) and E14 as the join on the right of them. Consumers E15 to E19 go in a final column.
+Read left to right. Put E1 and E2 in a left column. Put the three route lanes in the middle: polling on top, webhooks in the middle, files at the bottom. E14 joins them on the right, and consumers E15 to E19 follow in a final column.
 
 Run the shipment path along the top: E2, E3, E4, E5. Draw E3 to E10 and E3 to E13 as long arrows that drop down to their lanes.
 
@@ -96,6 +96,6 @@ Run the shipment path along the top: E2, E3, E4, E5. Draw E3 to E10 and E3 to E1
 - **The namespace is `default`, not `fenghuang`.** The vault says `fenghuang`, but that is the manifest folder. The manifests say `namespace: default`.
 - **The deriver's output topic is not on the page.** The explainer names `shipment_tracking_status.v2`, which is a vault source only.
 - **How portal, Connect API and staff tools read CCIS and ICIS is not stated.** The arrow shows data direction only.
-- **Not drawn, on purpose:** Amazon SFP shipments via Slipway, the webhook interim topic and Mongo, BigQuery for unmatched events, Cloud Storage in the file proxy, and the standalone `fenghuang-tracking-mapper` Deployment.
+- **Not drawn, on purpose:** Amazon SFP shipments via Slipway, the webhook interim topic and Mongo, and BigQuery for unmatched events. Also Cloud Storage in the file proxy.
 - **The standalone tracking-mapper Deployment has no explanation on the page.** It reads a raw-tracking input subscription and publishes a mapped-tracking topic. Its role is Not confirmed.
 - **The untracked list's contents are Not confirmed**, as the page already says.

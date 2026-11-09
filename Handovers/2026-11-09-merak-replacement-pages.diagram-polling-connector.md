@@ -32,7 +32,7 @@ The pod group sits inside the tracking-core group. Both sit inside the cluster g
 | E9 | tracking-mapper | container | GKE workload (sidecar) | Turns carrier codes into GFS statuses. Listens on localhost port 10000. | Response-publisher pod | Page: Output row; tracking-core.yaml | Verified in page |
 | E10 | shipment-tracking-status-deriver | container | GKE workload (sidecar) | Derives the parcel's status, so the loop knows when a parcel is delivered. Listens on localhost port 11000. | Response-publisher pod | tracking-core.yaml; TrackingStatusManager.cs | Verified in source, not on page |
 | E11 | etcd | datastore | | Holds each connector's batch options: carrier, state, batch limit and polling minutes. | GKE cluster | Page: Trigger and Polling interval rows; connectors-dhlparcel.yaml | Verified in page |
-| E12 | tracking-configuration-distribution-service | container | GKE workload | Serves the mapping config that the tracking-mapper sidecar fetches. | GKE cluster | Page: hop table (other page); tracking-core.yaml | Verified in page |
+| E12 | tracking-configuration-distribution-service | container | GKE workload | Serves the mapping config that the tracking-mapper sidecar fetches. | GKE cluster | Carrier Tracking page: hop table; tracking-core.yaml | Verified in page |
 | E13 | raw_tracking.v1 | container | Pub/Sub topic | One message per new tracking event. Shared with the webhook and file routes. | none (external) | Page: How a connector works | Verified in page |
 
 Type note: E9 and E10 are separate container images in the pod, so they are `container`. E2, E4, E5, E6 and E8 are components of tracking-core or the connector.
@@ -79,9 +79,9 @@ Place E3 in the middle, between the two groups, so E2, E4 and E8 reach it withou
 ## Gaps
 
 - **The page omits the status-deriver sidecar.** The response-publisher pod runs three containers: the app, tracking-mapper and shipment-tracking-status-deriver. The page names only the mapper. The deriver's result sets the parcel's expiry and delivered state, so it matters for "Stopping".
-- **The page says "up to 100 due parcels" but also says the batch size is Not confirmed.** The batch limit comes from each connector's etcd key, so 100 is unproven. This diagram says "up to the batch limit".
+- **The page says "up to 100 due parcels" yet lists batch size as Not confirmed.** The limit is an etcd key, so 100 is unproven. The diagram says "up to the batch limit".
 - **The connector, not the batch-creator, reads etcd for limit and polling minutes.** The connector sends both in the `GetBatch` request. The vault's flow diagram agrees.
-- **The page does not say the publisher writes to Mongo.** Source shows it reads stored events for dedupe and writes events, mapped events, status and expiry back.
+- **The page does not say the publisher writes to Mongo.** Source shows it reads stored events for dedupe. It writes events, mapped events, status and expiry back.
 - **MongoDB hosting for `active-parcels` is not confirmed.** The page says only "Mongo". The box has no GCP icon until someone confirms where it runs.
 - **The namespace is `default`, not `fenghuang`.** The vault says `fenghuang`, but that is the manifest folder.
 - **Not drawn, on purpose:** `carrier-credentials-manager` for DPD, DPD Local, Panther and FedEx, the BigQuery sink for unmatched events, and the legacy publish path, which is off (`ShouldPublishToLegacy=false`).
