@@ -47,7 +47,7 @@ Arrows point from the caller for gRPC, HTTP and HTTPS, and the way messages trav
 | E2 | E3 | Upserts one record per parcel to track | MongoDB | Verified in page |
 | E11 | E5 | Supplies batch limit, polling minutes and which states are switched on | etcd keys, one set per carrier | Verified in page |
 | E5 | E4 | Asks for the next batch for its carrier and state | gRPC `TrackingBatchServiceV1.GetBatch` | Verified in page |
-| E4 | E3 | Picks the oldest-due parcels and stamps `LastRequestedAt` | MongoDB `FindOneAndUpdate` | Verified in source, not on page |
+| E4 | E3 | Picks the oldest-due parcels, older than `TargetPollingMinutes`, and stamps `LastRequestedAt` | MongoDB `FindOneAndUpdate` | Verified in source, not on page |
 | E4 | E5 | Streams the due parcels back, up to the batch limit | gRPC server stream | Verified in page |
 | E5 | E6 | Hands each parcel to the carrier client | In-process call, `TrackParcel()` | Verified in page |
 | E6 | E7 | Asks the carrier about every parcel in the batch at once | HTTPS, SOAP or XML by carrier | Verified in page |

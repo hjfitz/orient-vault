@@ -22,7 +22,7 @@ The topics' project is inferred from one subscription path, `projects/gfs-ecm-pr
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | E1 | Carriers | system | | Carrier APIs that connectors poll, webhook senders (Royal Mail, Evri) and SFTP servers holding tracking files. | none (external) | Page: In short; Coverage by carrier | Verified in page |
 | E2 | Upstream shipment path | system | | Selector or Hub booking, Firebird, gfs-modernizer and shipment-identity-service. Publishes identified shipments. Not drawn in detail. | none (external) | Page: From carrier to customer | Verified in page |
-| E3 | shipments.v2.identified | container | Pub/Sub topic | Shipments with their GFS IDs. Every tracking path matches carrier events against it. | ECM Pub/Sub topics | Page: hop table | Verified in page |
+| E3 | shipments.v2.identified | container | Pub/Sub topic | Shipments with their GFS IDs, about 675k in 15 days. Every tracking path matches carrier events against it. | ECM Pub/Sub topics | Page: hop table | Verified in page |
 | E4 | consignment-manager | container | GKE workload | Subscribes to identified shipments and decides which parcels get tracked. Skips contracts on the untracked list. | GKE cluster | Page: hop table; tracking-core.yaml | Verified in page |
 | E5 | active-parcels | datastore | MongoDB (hosting Not confirmed) | Parcels being tracked, with 90-day expiry. The untracked list is also in Mongo. | none | Page: From carrier to customer, hop table | Verified in page |
 | E6 | batch-creator | container | GKE workload | Hands each connector a batch of parcels due for polling, oldest first, over gRPC. | GKE cluster | Page: How a connector works (Polling Connectors) | Verified in page |
@@ -33,10 +33,10 @@ The topics' project is inferred from one subscription path, `projects/gfs-ecm-pr
 | E11 | file-ingestion-ftp-proxy | container | GKE workload (CronJob) | Collects carrier tracking files over SFTP every 20 minutes and announces each file. | GKE cluster | Page: From carrier to customer; file-ingestion-ftp-proxy/overview.md | Verified in page |
 | E12 | file_tracking.v1 | container | Pub/Sub topic | One message per collected carrier tracking file. | ECM Pub/Sub topics | Page: From carrier to customer | Verified in page |
 | E13 | tracking-file-processor | container | GKE workload | Parses carrier files, matches rows to shipments and publishes events. A retry job reprocesses failed rows. | GKE cluster | Page: Health; tracking-file-processor/overview.md | Verified in page |
-| E14 | raw_tracking.v1 | container | Pub/Sub topic | One message per new tracking event, from all three routes. About 6.25M in 15 days. | ECM Pub/Sub topics | Page: In short; The raw_tracking.v1 contract | Verified in page |
+| E14 | raw_tracking.v1 | container | Pub/Sub topic | One message per new tracking event, from all three routes. About 6.29M in 15 days. | ECM Pub/Sub topics | Page: In short; The raw_tracking.v1 contract | Verified in page |
 | E15 | shipment-tracking-status-deriver | container | GKE workload | Derives each shipment's status, exceptions and ETA from raw events. | GKE cluster | Page: hop table; shipment-tracking-status-deriver.yaml | Verified in page |
 | E16 | CCIS and ICIS | container | GKE workload | Customer and internal consignment stores. They hold consignment records, events and tracking status. | GKE cluster | Page: From carrier to customer | Verified in page |
-| E17 | connect-hooks | container | GKE workload | Sends tracking events to customer webhooks. About 404k sent in 15 days. | GKE cluster | Page: From carrier to customer; connect-hooks.yaml | Verified in page |
+| E17 | connect-hooks | container | GKE workload | Sends tracking events to customer webhooks. About 406k sent in 15 days. | GKE cluster | Page: From carrier to customer; connect-hooks.yaml | Verified in page |
 | E18 | Portal, Connect API and staff tools | system | | Customer portal, Connect API and staff tools (Nexus, CCP) that show tracking to users. | none (external) | Page: From carrier to customer | Verified in page |
 | E19 | Customer webhook receivers | system | | Customer systems that receive tracking webhooks. | none (external) | Page: From carrier to customer | Verified in page |
 
@@ -46,7 +46,7 @@ Arrows point from the caller for gRPC, HTTP and SFTP, and the way messages trave
 
 | From | To | Label | Technology or message | Status |
 | --- | --- | --- | --- | --- |
-| E2 | E3 | Publishes each identified shipment (about 665k in 15 days) | Pub/Sub, `shipments.v2.identified` | Verified in page |
+| E2 | E3 | Publishes each identified shipment | Pub/Sub, `shipments.v2.identified` | Verified in page |
 | E3 | E4 | Delivers shipments so one record per parcel can be opened | Pub/Sub subscription | Verified in page |
 | E4 | E5 | Upserts the parcels to track, with 90-day expiry | MongoDB | Verified in page |
 | E7 | E6 | Asks for the next batch of due parcels, which stream back on the same call | gRPC `GetBatch` | Verified in page |
@@ -68,7 +68,7 @@ Arrows point from the caller for gRPC, HTTP and SFTP, and the way messages trave
 | E14 | E17 | Delivers every event for customer webhook rules | Pub/Sub subscription | Verified in source, not on page |
 | E15 | E16 | Publishes status, exceptions and ETA | Pub/Sub (topic not named on page) | Verified in page |
 | E16 | E18 | Serves consignment status and events to users and staff | Mechanism not stated | Verified in page |
-| E17 | E19 | Sends customer webhooks (about 404k in 15 days) | HTTPS webhook | Verified in page |
+| E17 | E19 | Sends customer webhooks | HTTPS webhook | Verified in page |
 
 Counts: 19 elements, 23 relationships.
 
@@ -90,7 +90,7 @@ Run the shipment path along the top: E2, E3, E4, E5. Draw E3 to E10 and E3 to E1
 ## Gaps
 
 - **The page puts connect-hooks after CCIS and ICIS.** The manifest shows connect-hooks has its own subscription to `raw_tracking.v1`. This draws the manifest version. The page text needs fixing.
-- **The page's path counts do not add up.** Polling 5.44M, webhooks 215k and SFTP 54k sum to about 5.71M, not 6.25M. The per-carrier table sums to about 6.25M, with polling carriers at about 5.97M. This diagram quotes only the 6.25M total.
+- **Volumes are one window.** Every figure covers 23 Oct to the end of 6 Nov 2026 (UTC), from `numbers-canonical.md`. That gives about 6.29M events on `raw_tracking.v1`, about 675k new shipments (`ids_created`) and about 406k customer webhooks. The page's path split (polling about 6.01M, webhooks about 218k, files about 62k) sums to the 6.29M total. The 713,297 IDs on the Shipment Identity page are a different quantity, so they are not used.
 - **MongoDB hosting for `active-parcels` is not confirmed.** The page says only "Mongo". The box has no GCP icon until someone confirms where it runs.
 - **Topic ownership is inferred.** Only the `raw_tracking.v1` subscription path names a project. The cluster's own project is also not confirmed.
 - **The namespace is `default`, not `fenghuang`.** The vault says `fenghuang`, but that is the manifest folder. The manifests say `namespace: default`.

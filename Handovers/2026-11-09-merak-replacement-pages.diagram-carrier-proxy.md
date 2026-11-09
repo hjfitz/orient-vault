@@ -20,9 +20,9 @@ Everything else sits outside the group. The credential stores (E9, E10) are draw
 
 | ID | Name | C4 type | Technology or GCP product | Description | Group | Evidence | Status |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| E1 | Selector site (CSS or Client4) | system | | Legacy Selector at a customer site. Calls the proxy URL held in the site's CUST_SITES row. | none | Page 353697822, "What a proxy does", Caller row | Verified in page |
+| E1 | Selector site (CSS or Client4) | system | | Legacy Selector at a customer site. Calls the proxy URL held in the site's CUST_SITES row. Stores the shipment and prints the label from the response. | none | Page 353697822, "What a proxy does", Caller row | Verified in page |
 | E2 | ApiKy | system | | GFS service that checks an API key and returns the customer's profile. | none | Page 353697822, Auth row | Verified in page |
-| E3 | Request handler and key check | component | Node.js, Express | Receives the POST, reads x-api-key and asks ApiKy who the customer is. | Carrier proxy | Page 353697822, "What a proxy does" step 1 | Verified in page |
+| E3 | Request handler and key check | component | Node.js, Express | Receives the POST, reads x-api-key (the ApiKy key on the customer's contract) and asks ApiKy who the customer is. | Carrier proxy | Page 353697822, "What a proxy does" step 1 | Verified in page |
 | E4 | Credentials lookup | component | Node.js | Turns the customer profile into the customer's carrier account, or GFS's shared account. | Carrier proxy | Page 353697822, step 2 and Credentials row | Verified in page |
 | E5 | Carrier token handler | component | OAuth | Gets an OAuth token from the carrier and caches it. Only carriers that use OAuth need it. | Carrier proxy | Page 353697822, step 3. `Engineering/ups-proxy/overview.md` (cached for its lifetime minus 60 seconds) | Verified in page |
 | E6 | Request mapper | component | Node.js | Maps Selector's request into the carrier's API format. UPS forwards Selector's old XML unchanged. | Carrier proxy | Page 353697822, step 4 and "Why they exist" (UPS) | Verified in page |
