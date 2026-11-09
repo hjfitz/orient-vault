@@ -28,7 +28,8 @@ Two design pages for MPK "1. Architecture & Design" (page 351502339) are drafted
 | POD docs and idea | Address and cache correction. POD-at-ingress idea kept as a draft plan | `Engineering/gfs-pod-service/` (`ideas-log.md`, `plans/`) | Done. The plan stub counts as open for `wp doctor`. To drop it: `wp plan set-status gfs-pod-service --plan capture-pods-at-ingress-and-serve-them-from-a-st --status abandoned` |
 | Draft page 1 | **Selector and ECM Coupling**: six seams, what breaks if either goes first, duties nobody wrote down, three cut points | `Handovers/2026-11-09-merak-replacement-pages.page1-selector-ecm-coupling.md` | Drafted, unverified. No lint errors, 4 long-sentence warnings open |
 | Draft page 2 | **Tracking Events and Webhooks: What v1 Needs**: ten requirements from ECM's failures | `Handovers/2026-11-09-merak-replacement-pages.page2-tracking-events-webhooks.md` | Drafted, unverified. No lint errors, 1 long-sentence warning open |
-| Page 3 | Dropped. It only answered MKP-9, a Parcel Portal gate | n/a | Hidden duties moved into page 1 |
+| Page 3 (old) | Dropped. It only answered MKP-9, a Parcel Portal gate | n/a | Hidden duties moved into page 1 |
+| Draft page 3 (new) | **How Carriers Feed ECM**: polling, webhooks and files compared, plus the 12 mocked carriers by route (about 9% of events; Evri, DHL Parcel UK, DPD Local and DPD about 89%) | `Handovers/2026-11-09-merak-replacement-pages.page3-how-carriers-feed-ecm.md` | Drafted on the laptop, unverified. No lint errors. 7 `[??]` gaps listed on the page |
 
 ## In flight
 None of this session's workflows or agents is running (checked 2026-11-09 11:53Z). The sessions `ListAgents` shows are Harry's other sessions: leave them alone.
