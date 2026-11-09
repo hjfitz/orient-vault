@@ -99,5 +99,5 @@ Put Slipway above the Transfer Service to modernizer arrow. Put the portals, See
 - **Billing interfaces.** The note does not say how the billing app hands invoices to the translator, who owns the translator, or who publishes `invoiced_shipments_published.v1`. The consumers of `invoices_published.v1` are not named, so E15 is a best fit. How `BILL_ON_SCAN = 2` works is unknown.
 - **Procedures.** The `SET_SHIPMENT_HIST` behaviour comes from a December 2025 dump and Scan Injector error logs. The live database may differ.
 - **Hosting.** The note does not give the Firebird host or the hosting of the ECM services. No GCP product is shown for them.
-- **Left out to stay under 20 boxes.** Carriers, connectors, webhooks, SUS, MQP, SeekerAPI, DataBridge, upload-service v2, the status deriver, gfs-pod-service, claims, the carrier almanac, and the callers of CSS (selector-adapter, parcel-portal, selector-rest-proxy).
+- **Left out to stay at 20 boxes.** Carriers, connectors, webhooks, SUS, MQP, SeekerAPI, DataBridge, upload-service v2, the status deriver, gfs-pod-service, claims and the carrier almanac. Also the callers of CSS: selector-adapter, parcel-portal and selector-rest-proxy.
 - **Owners.** No team owns `patina-service-2` or the Scan Injector. The lists of bill-on-scan carriers and of carriers written back are not available.
