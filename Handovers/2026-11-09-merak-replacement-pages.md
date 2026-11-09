@@ -140,3 +140,10 @@ Checked on `rc-hjf` (`uname -n`) at 2026-11-09T11:57Z:
 ## Closed since handover
 | When (UTC) | Work | Result |
 | --- | --- | --- |
+
+## Where this now lives
+The durable, indexed copy of these findings is the system [[Systems/ecm/overview|ecm]]. This record stays the transient handover.
+- [[Systems/ecm/overview]]: the MPK page index and states, the nine Lucid document ids and their text twins.
+- [[Systems/ecm/architecture]]: the Firebird contract, six seams, three cut points (hypothetical) and the carrier facts settled from code.
+- [[Systems/ecm/known-context]]: standing decisions, the canonical figures and window, and every unconfirmed item.
+- [[Systems/selector/known-context]] points to it, and the follow-ups are in the 9 Nov digest Todo.

@@ -76,7 +76,7 @@ The vault copies are the source for edits. Change the live page first, then the 
 - [[Handovers/2026-11-09-merak-replacement-pages.page5-pod-by-carrier]]
 
 ## Neighbours
-- [[selector]] owns the label, the upload and central Firebird's set-up. [[ecm]] and Selector meet at Firebird (see [[architecture]]).
+- [[selector]] owns the label, the upload and central Firebird's set-up. ECM and Selector meet at Firebird (see [[Systems/ecm/architecture]]).
 - [[carrier-integrations]] owns the proxies, the polling connectors, the webhooks, the file path and `gfs-pod-service`. Those services feed ECM's `raw_tracking.v1`.
 - These ECM services have no vault folder yet:
   - `gfs-modernizer`, `shipment-identity-service` and `patina-service-2`
