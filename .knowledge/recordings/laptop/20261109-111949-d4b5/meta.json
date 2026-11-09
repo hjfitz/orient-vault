@@ -8,7 +8,7 @@
     "href": "/meeting/bifrost-leadership-catchup"
   },
   "context": "11:15–12:00 GMT · no location on the invite · calendar title \"Fuse Leadership Catchup\" · organiser Harry · w/ Jack Bailey, Oli Denton, Matt Shaw · ⚠️ no agenda\n\nContext:\n**Owed by you**\n- Reply-all with call-outs on Darren Cobby's Q1 Fuse migration timeline\n- Agree the Peak on-call route, then tell Ryan Ellis\n- Confirm owners and dates on the Integrations Path Forward workshop actions, or say they stand\n\n**Other context**\n- Snap applied its software release to staging on Friday; the performance testing you said had not been run can now go ahead — [thread](https://outlook.office365.com/owa/?ItemID=AAMkADVhYjUxODIyLWM5NTktNGJmOC1hN2FjLWFjMjllNWUzYmY4MwBGAAAAAAAEXHdKGOMeRLfpaU7ff8ChBwABLsgQpFdPTayXOZTVrraLAAAAAAEMAAABLsgQpFdPTayXOZTVrraLAAHaYrD0AAA%3D\u0026exvsurl=1\u0026viewmodel=ReadMessageItem)\n- Senior Developer hiring: Matt Shaw is scheduling with Ruby Calver (Matthew Wed 11:30, Darren Wed 14:00, Edward Fri 13:30); a new CV for Turgut Torun is addressed to you, and Edward's salary ask moved from £70k to £75k; Oli Denton is cc'd\n- Oli Denton wants to go over the formal strategy today and run it past Mulder on Tuesday, and says you are taking the reins of the platform and backend team\n- Black Friday and Cyber Monday volumes from ILG, and Purdy and Figg at about 33k orders a day\n\nTo raise:\n- [ ] Peak on-call route and the support-model meeting with Ryan and Dennis (carried ×3)\n- [ ] Workshop actions: who owns what, and by when (carried ×3)\n- [ ] CT GLN ownership for the Edicom/EDIFACT config: still unowned in ILG (carried ×2)\n- [ ] Hiring: who joins the first-round calls, and who decides on Turgut Torun and Edward's £75k ask?\n\nCarried from last time:\n- [ ] Harry: Organise a small meeting with Ryan and Dennis on the support model and on-call route\n- [ ] Harry: Produce the triage flow chart and runbooks for escalating issues to the Fuse team\n- [ ] Harry: Send meeting notes to Jack and Oli\n- [ ] Harry: Talk to Testy about moving CT config work to Danny and Steve\n- [ ] Jack Bailey: Put together a design for an SFTP-style browser view in Fuse\n- [ ] Jack Bailey: Talk to Baron about Fuse representation at the Bifrost operational workshop",
-  "status": "transcribing",
+  "status": "done",
   "startedAt": "2026-11-09T11:19:49.935109152Z",
   "endedAt": "2026-11-09T12:01:43.872616963Z",
   "sources": {
@@ -21,6 +21,92 @@
       "speech-dispatcher-dummy"
     ]
   },
-  "call": false,
+  "call": true,
+  "summary": {
+    "tldr": [
+      "Peak weekend went cleanly: nothing dropped. The ~500k Purdy and Figg order requests are polling duplicates (90-minute window, 5-minute polls) that the deduper removes. Team is fine leaving it for now.",
+      "CT is quiet and not ready: they are still to send files, formal SIT is on the 16th and unlikely to be met, and the order split is the biggest risk. Harry's team will quietly stress test with the sample files already on the epic.",
+      "Hiring: stay with one senior hire, with a second penciled in for later. Tighten the CV filter because a second agency will start sending candidates and Spectrum becomes non-exclusive. Three first-round calls this week.",
+      "Support handover to Ryan's team looks fine: no on-call issues and no support noise since handover. Snap is still blippy but the queue drains and latency is well inside its limit.",
+      "Roadmap to year end is CT and Jitterbit parity (Shopify, SFTP). API extensions and webhook rework come in January, then new greenfield work. Migrations are Darren's project and dates are awaited."
+    ],
+    "decisions": [
+      "Do not chase outbound order tagging for Purdy and Figg now; current duplicate polling is acceptable, and tagging on the bulk side is a parity item for later in the year.",
+      "Hire one senior developer now, with a second head penciled in for later.",
+      "Be stricter on the CV filter given more agency candidates are coming.",
+      "Harry's team will do quiet end-to-end stress testing of the CT Edicom files without telling the integrations team."
+    ],
+    "actions": [
+      {
+        "owner": "Harry",
+        "text": "Have your team stress test the CT EDIFACT/Edicom sample files from the epic, quietly and outside the integrations team's work",
+        "due": ""
+      },
+      {
+        "owner": "Jack Bailey",
+        "text": "Check the latest CT example files are attached to the epic",
+        "due": ""
+      },
+      {
+        "owner": "Jack Bailey",
+        "text": "Check with Steph on the status of the posting of your job description",
+        "due": ""
+      },
+      {
+        "owner": "Matt Shaw",
+        "text": "Run the first-round candidate interviews with live checks and report whether one or two should go to the next round",
+        "due": "This week (Wednesday and Thursday)"
+      },
+      {
+        "owner": "Oli Denton",
+        "text": "Tell Spectrum that Fuse is now non-exclusive on recruitment",
+        "due": ""
+      },
+      {
+        "owner": "Jack Bailey",
+        "text": "Work with Matt on making outbound order tagging available on the bulk side",
+        "due": "Towards the end of the year"
+      },
+      {
+        "owner": "Harry",
+        "text": "Decide how to handle creating the missing folders on the two CT SFTPs and tell Jack",
+        "due": ""
+      }
+    ],
+    "questions": [
+      "Can the missing Edicom folders be created on the two CT SFTPs, given the new non-VM approach? Harry said yes and no and it was not settled.",
+      "How will the CT order split be solved if SAP or Edicom cannot do it? Fuse is not the right place, and a bespoke connector was floated with maintenance concerns.",
+      "Should the client be asked about retrieval conditions or outbound tagging for Purdy and Figg to cut the polling volume?",
+      "Should the dashboard surface distinct orders more clearly, with a custom TV view, so the raw order numbers are not misread?",
+      "Will the secondary ILG-specific SFTP on the dev customer be set up for CT example files? Lee's team has not acted yet.",
+      "Will Matt Shaw's top candidate still be available, given a second or final interview elsewhere, and how to handle Edward Savage's salary ask?"
+    ],
+    "speakers": [
+      {
+        "label": "Harry",
+        "name": "Harry",
+        "basis": "Harry's own mic label"
+      },
+      {
+        "label": "Speaker 1",
+        "name": "Jack Bailey",
+        "basis": "By elimination among attendees; covers customer onboarding, CT and migrations"
+      },
+      {
+        "label": "Speaker 2",
+        "name": "Oli Denton",
+        "basis": "Addressed as Ollie; chairs the call, runs the agenda and closes"
+      },
+      {
+        "label": "Speaker 3",
+        "name": "Matt Shaw",
+        "basis": "Handed the candidates and interviews topic by name; runs hiring"
+      }
+    ],
+    "model": "sonnet",
+    "usd": 0.1194098,
+    "durationMs": 19150,
+    "at": "2026-11-09T12:09:51.843193182Z"
+  },
   "host": "laptop"
 }
