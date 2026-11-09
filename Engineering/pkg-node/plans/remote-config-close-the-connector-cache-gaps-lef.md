@@ -99,6 +99,14 @@ tags:
   cross-repo IaC — or "(none)", which is a deliberate claim>
 - **Proof in prod:** <the metric or log line that shows this working, and its pre-deploy baseline>
 
+## Options considered
+<!-- Added on demand. Why this approach and not the others — the thing the planning agent is
+     asked for and the plan has otherwise had nowhere to put. Promote to a durable record with
+     `wp decide --record` when it is worth defending in a review six months out. -->
+
+- **Chosen — <approach>** — <why>
+- **Rejected — <approach>** — <why not>
+
 ## Decisions & deviations
 <!-- Date-stamped, newest first — written by `wp decide`, and by hand when that is easier.
      Where implementation departed from this plan, and why. Source wins over the plan: correct
