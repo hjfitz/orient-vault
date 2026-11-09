@@ -1,6 +1,6 @@
 ECM receives carrier events by three routes: polling connectors, webhooks and SFTP files. All three publish to one topic, `raw_tracking.v1`. They differ in who starts the exchange, how an event is matched to a shipment, what is deduplicated and what each message carries. This page sets out how each route feeds ECM, where they differ, and which route each of the 12 carriers in `carrier-playground` uses.
 
-Carrier proxies are not a route. They serve Selector for labels, cancels and manifests. The one link is Amazon Logistics, whose polling connector calls the Amazon proxy. Volumes cover the 15 days to 6 Nov 2026. The requirements that follow from ECM's failures are on [Tracking Events and Webhooks: What v1 Needs](https://globalfreight.atlassian.net/wiki/spaces/MPK/pages/351502339/1.+Architecture+Design). The path of one shipment is on [Shipment Journey Through ECM](https://globalfreight.atlassian.net/wiki/spaces/MPK/pages/354975746/Shipment+Journey+Through+ECM).
+Carrier proxies are not a route. They serve Selector for labels, cancels and manifests. The one link is Amazon Logistics, whose polling connector calls the Amazon proxy. Volumes cover the 15 days to 6 Nov 2026. The requirements that follow from ECM's failures are on the companion page, Tracking Events and Webhooks: What v1 Needs. The path of one shipment is on [Shipment Journey Through ECM](https://globalfreight.atlassian.net/wiki/spaces/MPK/pages/354975746/Shipment+Journey+Through+ECM).
 
 ## In short
 
@@ -28,8 +28,15 @@ Carrier proxies are not a route. They serve Selector for labels, cancels and man
 - **Who chooses what is tracked.** For polling, GFS chooses the parcels and asks for them. For webhooks and files, the carrier chooses what to send, and ECM holds or drops what it cannot match.
 - **The raw carrier payload.** The topic's `rawData` is optional. The webhook services leave it empty. A consumer that needs the carrier's own words for an event cannot rely on it.
 - **Cost grows differently.** Polling cost follows parcels still being asked about: about 26 calls for each new event. Where a connector's DELIVERED state is on, delivered parcels keep being polled. Amazon re-polled 2.6M of them. Webhook cost follows events.
-- **Dedupe stops at the route.** Consumers dedupe on the event `id` alone, and each publisher mints its own. The same scan from a connector and a webhook lands twice. See requirement 2 on [What v1 Needs](https://globalfreight.atlassian.net/wiki/spaces/MPK/pages/351502339/1.+Architecture+Design).
-- **Moving a carrier between routes is a manual cutover.** A webhook in shadow mode records events but publishes none, and turning publish on does not backfill. Evri's plan has five steps: Evri enables webhooks for all GFS customers, GFS reconciles the account IDs Evri sends, the team reviews the mapping, publish goes on, and both routes run for about 2 hours before the connectors are switched off. Evri's terms forbid running both for long.
+- **Dedupe stops at the route.** Consumers dedupe on the event `id` alone, and each publisher mints its own. The same scan from a connector and a webhook lands twice. See requirement 2 on Tracking Events and Webhooks: What v1 Needs.
+- **A cutover between routes is manual.** A webhook in shadow mode records events but publishes none, and turning publish on does not backfill. Evri's plan has five steps:
+    1. Evri enables webhooks for all GFS customers.
+    2. GFS reconciles the account IDs Evri sends.
+    3. The team reviews the mapping.
+    4. Publish goes on.
+    5. Both routes run for about 2 hours, then the connectors are switched off.
+
+  Evri's terms forbid running both routes for long.
 
 ## The 12 mocked carriers, by route
 
@@ -42,7 +49,7 @@ Carrier proxies are not a route. They serve Selector for labels, cancels and man
 | DPD Europe | SFTP files (DPD NL) | 9,730 | DPD DE has a feed set up and sent no files |
 | Coll8 | SFTP files | 3,929 | |
 | OCS | SFTP files | 1,409 | |
-| InPost | Polling | 305 | The webhook is not deployed, and its pull request is open |
+| InPost | Polling | 305 | The webhook was not deployed on 6 Nov, and its pull request was open |
 | FedEx | Polling | 21 | |
 | Exelot | SFTP feed set up | 0 | No files arrived |
 | Amazon SFP | `[??]` | `[??]` | Slipway publishes these shipments straight to `fb.shipments.v1`. No page says how their tracking arrives |
