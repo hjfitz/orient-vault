@@ -39,6 +39,36 @@ _11:15–12:00 GMT · no location on the invite · calendar title "Fuse Leadersh
 ### Notes
 - ✍️
 
+**Recording** · [Fuse Leadership Catchup](http://localhost:3000/recordings/20261109-111949-d4b5) · 41m
+- Peak weekend went cleanly: nothing dropped. The ~500k Purdy and Figg order requests are polling duplicates (90-minute window, 5-minute polls) that the deduper removes. Team is fine leaving it for now.
+- CT is quiet and not ready: they are still to send files, formal SIT is on the 16th and unlikely to be met, and the order split is the biggest risk. Harry's team will quietly stress test with the sample files already on the epic.
+- Hiring: stay with one senior hire, with a second penciled in for later. Tighten the CV filter because a second agency will start sending candidates and Spectrum becomes non-exclusive. Three first-round calls this week.
+- Support handover to Ryan's team looks fine: no on-call issues and no support noise since handover. Snap is still blippy but the queue drains and latency is well inside its limit.
+- Roadmap to year end is CT and Jitterbit parity (Shopify, SFTP). API extensions and webhook rework come in January, then new greenfield work. Migrations are Darren's project and dates are awaited.
+
+**Decisions**
+- Do not chase outbound order tagging for Purdy and Figg now; current duplicate polling is acceptable, and tagging on the bulk side is a parity item for later in the year.
+- Hire one senior developer now, with a second head penciled in for later.
+- Be stricter on the CV filter given more agency candidates are coming.
+- Harry's team will do quiet end-to-end stress testing of the CT Edicom files without telling the integrations team.
+
+**Actions**
+- [ ] Harry: Have your team stress test the CT EDIFACT/Edicom sample files from the epic, quietly and outside the integrations team's work
+- [ ] Harry: Decide how to handle creating the missing folders on the two CT SFTPs and tell Jack
+- [ ] [[Jack Bailey]]: Check the latest CT example files are attached to the epic
+- [ ] [[Jack Bailey]]: Check with Steph on the status of the posting of your job description
+- [ ] [[Matt Shaw]]: Run the first-round candidate interviews with live checks and report whether one or two should go to the next round (due This week (Wednesday and Thursday))
+- [ ] [[Oli Denton]]: Tell Spectrum that Fuse is now non-exclusive on recruitment
+- [ ] [[Jack Bailey]]: Work with Matt on making outbound order tagging available on the bulk side (due Towards the end of the year)
+
+**Left open**
+- Can the missing Edicom folders be created on the two CT SFTPs, given the new non-VM approach? Harry said yes and no and it was not settled.
+- How will the CT order split be solved if SAP or Edicom cannot do it? Fuse is not the right place, and a bespoke connector was floated with maintenance concerns.
+- Should the client be asked about retrieval conditions or outbound tagging for Purdy and Figg to cut the polling volume?
+- Should the dashboard surface distinct orders more clearly, with a custom TV view, so the raw order numbers are not misread?
+- Will the secondary ILG-specific SFTP on the dev customer be set up for CT example files? Lee's team has not acted yet.
+- Will Matt Shaw's top candidate still be available, given a second or final interview elsewhere, and how to handle Edward Savage's salary ask?
+
 ## 2026-11-02
 _11:15–12:00 GMT · no location on the invite · calendar title "Fuse Leadership Catchup" · organiser Harry · w/ [[Jack Bailey]], [[Oli Denton]], [[Matt Shaw]] · ⚠️ no agenda_
 
