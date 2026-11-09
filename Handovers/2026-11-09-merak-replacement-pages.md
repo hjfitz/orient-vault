@@ -8,7 +8,7 @@ from: rc-hjf
 to: next session, any machine
 session_id: 9ef32451-f6a6-429e-88df-add8e5d83ddf
 resumed_by: 4ff6c302-4da3-4b14-bf3c-fc976c0ec75b   # laptop (freightops), 2026-11-09T12:14Z
-updated: 2026-11-09T12:14Z
+updated: 2026-11-09T12:22Z
 ---
 # Handover: Merak replacement pages (continues the carrier-integrations research)
 
@@ -81,8 +81,8 @@ In my 2026-11-09 view, two things are not worth writing. More per-service ECM pa
 | "142M carrier calls" on the Polling Connectors and Ingress pages, against the 115M parcel polls the review measured | Nobody has reconciled them. They may be different measures |
 
 ## Next up
-1. Finish pages 1 and 2: verify, fix, lint, show Harry the text, publish on his word.
-2. Ask Harry which further pages he wants (see Waiting).
+1. Finish pages 1, 2 and 3: verify, fix, lint, show Harry the text, publish on his word. The verify script covers pages 1 and 2 only: add page 3.
+2. Ask Harry which further pages he wants (see Waiting). Harry asked for the carrier page and the connectors page on 2026-11-09; both are now draft page 3.
 
 ## How work is done here
 - **Confluence pages:** use the `plainly` skill. British English, no em dashes, sentences of 25 words or fewer, tables for state, security findings at class level only. Publish only when asked.
@@ -101,6 +101,8 @@ Checked on `rc-hjf` (`uname -n`) at 2026-11-09T11:57Z:
 - **Not part of the handover:** this session's scratchpad under `/tmp/claude-2001/`. The checked facts live in the two explainers and the MPK pages.
 
 ## Gotchas
+- **Carrier proxies are not in the event flow.** Selector calls them for labels, cancels and manifests. Events arrive by polling connectors, webhooks or SFTP files. The one link is `connectors-amazon`, which polls through the Amazon proxy.
+- **The laptop clone of `carrier-playground` was stale** (3 apps, branch gone upstream). Read `origin/main` with `git show`. It has 12 proxies plus `mock-upstreams`.
 - **Datadog logs keep about 15 days.** Use metrics for longer windows. `gcp.pubsub.*` isn't collected for ECM prod.
 - **Don't use ADO `search_code` as evidence.** Its index lags both repos' heads and it missed matches. Read the file with `repo_file`.
 - **The ECM catalogue's carrier values are swapped.** `carrier.id` holds the legacy name ("DPD") and `carrier.idV2` holds the almanac number ("10").
