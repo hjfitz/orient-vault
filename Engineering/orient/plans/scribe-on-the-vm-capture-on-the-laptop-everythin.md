@@ -157,7 +157,7 @@ Since 2026-11-09 the VM (`rc-hjf`) is orient's home. The laptop reaches it throu
     - Decode a recent `audio.ogg` to WAV, then `orient-scribe handoff … -hub http://127.0.0.1:3014`, with `systemctl --user restart orient-tunnel` partway through. This also drops the terminal, which is expected. The upload resumes, and the recording reaches `done` and is enhanced on `localhost:3000/recordings`, with `capturedOn: laptop`. `curl -sI localhost:3000/api/recordings/<id>/audio` returns 200 `audio/ogg`.
     - Run `eval/wer.py` on ES2004a raw and on a FLAC round-trip; the word error rates match within noise.
     - A Go test: `PruneAudio` removes an unkept recording older than 14 days and leaves a kept one. A `prune -dry-run` on the VM lists the kept recording as skipped. Toggling Keep on the page persists across a reload.
-- [ ] 4. **The laptop becomes a recorder only and hands each call off automatically.** (AC 2,3,5)
+- [x] 4. **The laptop becomes a recorder only and hands each call off automatically.** (AC 2,3,5) — recorder live: dry run then real delete-on-receipt; outage holds uploading+lastError, drains 2s after; laptop MCP reads VM — done: ffb44e4
   - In recorder role, the store lives in a spool outside the vault, `~/.local/state/orient/scribe-spool/laptop/<id>/`.
     - A `Handoff` step replaces Transcribe, Summarise and Enhance in `process()`.
     - `Resume()` drains the spool at start.
@@ -214,6 +214,15 @@ Follow-up plans, not in this one:
 ### Evidence
 <!-- Newest first, dated. One bullet per check actually run, opening with what it discharges.
      "Suite green" alone is not evidence. Sign-off requires at least one dated bullet here. -->
+- 2026-11-09 [inc 4] **The laptop is a recorder** (`ffb44e4`, live since 12:11). The switch waited until a live meeting ("Fuse Leadership Catchup", 42 min) had finished processing the old way.
+  - The log reads `serving on 127.0.0.1:3013 as recorder, recordings in ~/.local/state/orient/scribe-spool` and `handing recordings off to http://127.0.0.1:3014`.
+- 2026-11-09 [inc 4] **Dry run first** (`-handoff-dry-run`). A 15 s capture went `uploading` at stop, then "handed off; dry run, so …/scribe-spool/laptop/20261109-121107-596a is kept". The spool held `audio.wav`, `audio.flac` and `meta.json`; the VM had it with `host=vm`, `capturedOn=laptop` and length 15 s. The music warning still fired on a Firefox mix, so recorders keep it.
+- 2026-11-09 [inc 4] **Real handoff deletes the laptop copy** (AC 3). With `SCRIBE_ARGS=-role recorder`, a 15 s capture logged "handed off, local copy deleted" 16 s after stop. The spool was empty, the VM had it with length 15 s, and nothing new appeared under the vault's `recordings/laptop/`.
+- 2026-11-09 [inc 4] **Server unreachable** (AC 2, 3). The VM's scribe was stopped, then a 10 s capture was taken.
+  - The client retried at 1 s, 2 s, … up to 1 min within its 2-minute bound, then the recorder recorded `attempts=1` and `lastError=context deadline exceeded (… read tcp …3014 …)` and kept it `uploading`.
+  - VM scribe restarted: drained 2 s later ("handed off, local copy deleted"). The VM had it at 10 s.
+- 2026-11-09 [inc 4] **The laptop orient MCP reads the VM's scribe** (AC 5). `~/.claude.json` `mcpServers.orient.env.ORIENT_SCRIBE_URL=http://127.0.0.1:3014` (backup `~/.claude.json.bak-orient-mcp-*`). Driving `orient-mcp` over stdio with that env, `orient-recordings` answered "10 recordings of 21", including "Fuse Leadership Catchup" and the handed-off tests. Running sessions pick it up on `/mcp` reconnect.
+- 2026-11-09 [inc 4] **Cleanup:** the three test recordings were deleted on the VM (204 each). `recordings/vm/`, `scribe-uploads/` and the laptop spool are all empty. Two had empty transcripts (music only), so their summary and enhancement reported "the transcript is empty"; that's expected.
 - 2026-11-09 [inc 4] **Gate: the handoff works on a real laptop recording.** A copy of `20261029-153138-d1e2` ("SFTP Folder Discussion", 443 s, 48 kHz stereo Opus from the laptop recorder) was handed off as `20261109-120000-3e14`.
   - 17,459,949 bytes; the sha256 matched.
   - On the VM: `done`, enhanced, `call=true`, 45 transcript lines (the original has 41), and the same tl;dr gist.
@@ -267,7 +276,7 @@ Follow-up plans, not in this one:
 
 ### Not verified
 <!-- Stated, not papered over. "(none)" is a deliberate claim, and a fine one. -->
-- <what remains unproven, and what would prove it>
+- [inc 4] **A recording started from a reminder's Record button** wasn't driven live; the reminder calls the same `s.Start` as `POST /api/recordings`, which was. Prove it at the next reminded meeting.
 
 ## Decisions & deviations
 <!-- Date-stamped, newest first — written by `wp decide`, and by hand when that is easier.
