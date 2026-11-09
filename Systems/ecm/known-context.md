@@ -56,7 +56,11 @@ Each item has a source that says one thing and a source that says another, or no
 **Claims with no evidence yet**
 - **Which parcel callers ask for on the v2 POD route.** The service does not pick the delivered parcel for DPD Local. Who does is open.
 - **The live billing timetable.** Each customer has its own schedule. Which run program is live, and whether split runs are on, is open.
-- **Whether the `shipment-identity-service` repo matches the deployed service.** Only a legacy copy was read.
+- **Whether the `shipment-identity-service` repo matches the deployed service.** Largely settled: the GitHub repo at `7454a4e` has one publish run and no source change since, and Datadog shows the service live. Still open: the live Mongo expiry value (init skips an existing index), whether duplicate IDs exist, and the live manifest (the publish workflow header still says "not deployed").
+- **Why the invoice-matching service carries a 13,398-entry fix map,** and when it was added. Stated by the identity research, not on any earlier page.
+- **Whether two customers can hold the same consignment number on one carrier.** The identity key leaves out the customer.
+- **Whether a live parcel changes ID at day 31.** Inferred: the expiry is 30 days and tracking runs about 90.
+- **Source of tracking-core, CCIS, ICIS and claims,** so how they use the ID is stated, not read.
 - **The "12 mocked carriers" row on How Carriers Feed ECM.** Its table has 12 rows. Amazon SFP is not resolved, and Veho and Exelot sent nothing.
 - **The DHL Express POD module claim.** Page 5 says the module is not loaded and does not work. The cleanup pass did not re-check it.
 - **Nightline.** The Selector Interface page says Nightline. Four pages name only Nightfreight. They are two carriers, so those pages cover only one.
