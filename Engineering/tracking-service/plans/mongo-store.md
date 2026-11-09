@@ -2,12 +2,12 @@
 ticket: none
 title: Mongo store
 service: tracking-service
-status: active
+status: complete
 created: '2026-11-06'
-updated: '2026-11-06'
+updated: '2026-11-09'
 repo: /home/harry/code/fuse/tracking-service
-worktree: "/home/harry/code/fuse/tracking-service/.claude/worktrees/mongo-store-opener-binaries"
-branch: "hjf/mongo-store-opener-binaries"
+worktree: /home/harry/code/fuse/tracking-service/.claude/worktrees/mongo-store-opener-binaries
+branch: hjf/mongo-store-opener-binaries
 base: origin/main
 base_sha: a97baca06
 pr: '30'
