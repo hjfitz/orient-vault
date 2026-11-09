@@ -1,17 +1,21 @@
 ---
-ticket: "none"
-title: "Phone recorder: in-person meetings from the iPhone, offline-first"
-service: "orient"
+ticket: none
+title: 'Phone recorder: in-person meetings from the iPhone, offline-first'
+service: orient
 status: draft
-created: "2026-11-09"
-updated: "2026-11-09"
-repo: "/home/hjf/projects/orient"
-worktree: "/home/hjf/projects/orient"
-branch: "master"
-base: "origin/master"
-base_sha: "41c98708f"
-pr:
-tags: [waypoint, plan]
+created: '2026-11-09'
+updated: '2026-11-09'
+repo: /home/hjf/projects/orient
+worktree: /home/hjf/projects/orient
+branch: master
+base: origin/master
+base_sha: 41c98708f
+pr: null
+tags:
+- waypoint
+- plan
+impl_model: opus
+impl_effort: high
 ---
 # none — Phone recorder: in-person meetings from the iPhone, offline-first
 
