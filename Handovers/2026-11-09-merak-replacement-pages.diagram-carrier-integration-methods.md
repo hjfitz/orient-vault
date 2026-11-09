@@ -34,7 +34,7 @@ E1, E6 and E7 sit outside the group. The page says V4-Server-IE is central, but 
 | E6 | V4-Server-IE | container | Delphi | Runs one export job for one carrier and product group (`products.FTP_FILE_PREF`). Marks the shipments, builds the carrier's file and sends it. Release 10.0.0.12 shipped in Sep 2026. | none | Page: block, Jobs, Grouping and Upkeep bullets. Sources list `uItemThread.pas` | Verified in page |
 | E7 | Carrier FTP server | system | FTP | The carrier's server that receives the pre-advice file. Plain FTP only. Hosts live in `CARRIER_FTP_ACCESS` rows. | none | Page: block, Transport bullet | Verified in page |
 
-Counts: 7 elements, made up of 2 systems or containers at the edge (E1, E7), 2 further containers (E2, E6) and 3 datastores (E3, E4, E5). E1, E2 and E6 are containers, E7 is a system.
+Counts: 7 elements. Three are containers (E1, E2, E6), one is a system (E7) and three are datastores (E3, E4, E5).
 
 ## Relationships
 

@@ -10,7 +10,7 @@ confidence_reason: "Every in-repo component was read in source; the framework in
 ---
 # connectors-dpd: C4 components
 
-connectors-dpd is a .NET polling connector: it pulls batches of due parcels from tracking-core's batch-creator over gRPC, asks DPD (or DPD Local, the same image with different config) for each parcel's tracking, and streams the results to tracking-core's response-publisher over gRPC.
+connectors-dpd is a .NET polling connector for DPD and DPD Local (one image, two configs). It pulls due parcels from batch-creator over gRPC, asks DPD about each, and streams results to response-publisher.
 
 ```orient-flow
 {
@@ -116,13 +116,13 @@ connectors-dpd is a .NET polling connector: it pulls batches of due parcels from
 
 ## Not confirmed / open questions
 
-- **JSON client use in prod (edge `json` to `dpdapi`).** `Program.cs:171-176` selects the JSON client when `System:DPDApiVersion` is `json`; the default is `xml` (`SystemSettings.cs`). The e2e config never sets it. Which value prod uses is config, and the repo does not hold it. The Waypoint overview says nothing calls the JSON client; the source contradicts that, since it is wired in.
-- **Kubernetes probes (node `kube` and its edge).** The repo has no deployment manifest. The probe endpoints exist in code; who calls them is inferred from the Waypoint `deploy: k8s` field only.
-- **Framework internals.** Read in tracking-core at c081108, not in the NuGet package the connector builds against. Both are version 0.6.2, so the match is probable but not proven.
-- **Credential pause.** Waypoint says this is the only connector that pauses a contract after a credential error. In this repo the connector only returns a `CREDENTIALS_ERROR` response (framework `TrackingRequestHandler.cs:58`). Any pause happens downstream and is not drawn.
-- **Prod endpoints and DPD host.** DPD URL, DPD Local URL and collection names are config; only e2e values were visible. The Waypoint claim "geopostuk XML API" cannot be seen in source.
-- **Fuse MCP.** `lookup-service connectors-dpd` returns not found, so no neighbour fact was cross-checked there.
-- **Left out on purpose.** Datadog logging and StatsD metrics (`Program.cs:198-223`) and the Pub/Sub topics downstream of response-publisher, to stay inside the container boundary and the 20-node cap.
+- **UNKNOWN** **JSON client use in prod (edge `json` to `dpdapi`).** `Program.cs:171-176` selects the JSON client when `System:DPDApiVersion` is `json`; the default is `xml` (`SystemSettings.cs`). The e2e config never sets it. The repo does not hold the prod value. The Waypoint overview says nothing calls the JSON client; the source contradicts that, because the host registers it.
+- **UNKNOWN** **Kubernetes probes (node `kube` and its edge).** The repo has no deployment manifest. The probe endpoints exist in code; the only hint at a caller is the Waypoint `deploy: k8s` field.
+- **UNKNOWN** **Framework internals.** Read in tracking-core at c081108, not in the NuGet package the connector builds against. Both are version 0.6.2, so the match is probable but not proven.
+- **UNKNOWN** **Credential pause.** Waypoint says this is the only connector that pauses a contract after a credential error. In this repo the connector only returns a `CREDENTIALS_ERROR` response (framework `TrackingRequestHandler.cs:58`). Any pause happens downstream and is not drawn.
+- **UNKNOWN** **Prod endpoints and DPD host.** DPD URL, DPD Local URL and collection names are config; only e2e values were visible. The Waypoint claim "geopostuk XML API" does not appear in source.
+- **UNKNOWN** **Fuse MCP.** `lookup-service connectors-dpd` returns not found, so no neighbour fact was cross-checked there.
+- **UNKNOWN** **Left out on purpose.** Datadog logs and StatsD metrics (`Program.cs:198-223`), and the topics downstream of response-publisher. This keeps the diagram inside the container boundary and the 20-node cap.
 
 ## Sources
 
