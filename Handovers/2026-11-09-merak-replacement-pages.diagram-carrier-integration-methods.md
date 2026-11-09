@@ -12,7 +12,7 @@ It replaces the ASCII block in "Pre-advice by file" on the page "Carrier Integra
 
 Status values: `Verified in page` means the page states it. `Verified in vault` means a Tech Services vault note states it, not the page. `Not confirmed` means no source settles it.
 
-Lucid document: see the link on the page. Nothing is drawn dashed, because every item below is stated by a source.
+Lucid document: `5c1c552d-27ef-430b-addd-6cc3cf894aea` (folder "Merak research diagrams"), linked from the page under the ASCII block. Nothing is drawn dashed, because every item below is stated by a source.
 
 ## Groups
 
