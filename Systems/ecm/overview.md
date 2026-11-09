@@ -75,6 +75,7 @@ The vault copies are the source for edits. Change the live page first, then the 
 - [[Handovers/2026-11-09-merak-replacement-pages.page3-how-carriers-feed-ecm]]
 - [[Handovers/2026-11-09-merak-replacement-pages.page4-label-to-invoice]]
 - [[Handovers/2026-11-09-merak-replacement-pages.page5-pod-by-carrier]]
+- [[Handovers/2026-11-09-merak-replacement-pages.page6-shipment-identity]]
 
 ## Neighbours
 - [[selector]] owns the label, the upload and central Firebird's set-up. ECM and Selector meet at Firebird (see [[Systems/ecm/architecture]]).
