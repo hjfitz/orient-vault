@@ -1,0 +1,167 @@
+export const meta = {
+  name: 'verify-merak-pages-1-2',
+  description: 'Adversarially fact-check two draft Confluence pages (Selector and ECM Coupling; Tracking Events and Webhooks) and cross-check them against published pages',
+  whenToUse: 'Checking draft MPK architecture pages before they are shown to Harry',
+  phases: [
+    { title: 'Verify', detail: 'two Sonnet verifiers per page (source and runtime lenses), high effort', model: 'sonnet' },
+    { title: 'Judge', detail: 'one Opus judge per page, high effort, tie-breaks disagreements' },
+    { title: 'Critic', detail: 'Opus cross-page consistency and stance check against published pages' },
+  ],
+}
+
+const PAGES = [
+  {
+    id: 'P1',
+    title: 'Selector and ECM Coupling',
+    path: '/home/harry/Documents/obsidian/Handovers/2026-11-09-merak-replacement-pages.page1-selector-ecm-coupling.md',
+    source: 'Primary evidence: code, Terraform, manifests, the December 2025 Firebird procedure dump (GitHub gfs-data-services/gfs-pipelines, path gfs-data-iac/DEV/_planning/Sisense/FIREBIRD_DDL/procedures.sql), and clones of gfs-ecm repos and gfs-hybrid-services/slipway. Azure DevOps (via ado-local-mcp): node-modernizer, Firebird Transfer Service, patina-service-2, tracking-core, legacy-shipment-update-service, action-manager-api (SeekerAPI), GFS Cloud Infrastructure (gfs-ecm-prod-uk1, gfs-ecm-staging) and prod-uk1-primary-cluster. Cite repo@sha path:line.',
+    runtime: 'Primary evidence: Datadog (metrics and logs, 2026-10-22 to 2026-11-09), Confluence pages Legacy Selector - Day End and Billing Handoff (353566845) and the Billing space (pages 311394359 and 311164981), and Jira. Recompute every number you can. A figure within 10% is CONFIRMED with the new figure noted.',
+  },
+  {
+    id: 'P2',
+    title: 'Tracking Events and Webhooks: What v1 Needs',
+    path: '/home/harry/Documents/obsidian/Handovers/2026-11-09-merak-replacement-pages.page2-tracking-events-webhooks.md',
+    source: 'Primary evidence: code. ADO fenghuang: tracking-core, tracking-file-processor, gfs-deadletter-register, connectors-hermes, connectors-dhlparcel. GitHub gfs-ecm: shipment-tracking-status-deriver, customer-consignment-information-service, internal-consignment-information-service, shipment-update-service, claims-service, connect (apps/connect-hooks), tracking-mapper, gfs-node-pubsub-subscriber. GitHub gfs-hybrid-services: tracking-webhooks, tracking-webhook-royal-mail-sapient. Terraform in ADO GFS Cloud Infrastructure/gfs-ecm-prod-uk1 (subscription defaults). Cite repo@sha path:line.',
+    runtime: 'Primary evidence: Datadog (metrics and logs, 2026-10-22 to 2026-11-09) for volumes and behaviours, Jira CID-315 and CID-317 (read-only), and the prod manifests in ADO GFS Cluster Configurations/prod-uk1-primary-cluster. Recompute every number you can. A figure within 10% is CONFIRMED with the new figure noted.',
+  },
+]
+
+const CONTEXT = `## Context
+Harry, an engineering manager at GFS, will publish two draft Confluence pages in the MPK space (Merak Project). Merak is a new despatch and shipping platform that could replace GFS's legacy Selector (labelling and shipping, on per-customer Windows VMs with a central Firebird database) and ECM (the GCP Pub/Sub event platform that tracks shipments and serves the portals). The pages are evidence and requirements for the people designing the replacement. Getting them right matters more than speed or cost.
+
+Earlier in the session a claim-by-claim review of a related page found about half of its claims partly wrong: overstated, stale, or too absolute. Assume these drafts hide the same kinds of error. Try to refute each claim before you accept it.
+
+## Access
+- Azure DevOps: ado-local-mcp tools (load with ToolSearch '+ado-local-mcp'), org globalfreightsolutions. repo_file get_content and list_directory work with a branch name or a full 40-character sha. search_code lags HEAD, so confirm hits with repo_file. git clone from Azure DevOps is denied. The org globalfreightsolutons-legacy (Selector, Client4, Seeker, Firebird procedure source) is NOT reachable.
+- GitHub: gh works for gfs-ecm, gfs-hybrid-services, gfs-customer-care, gfs-sre, gfs-data-services, gfs-bifrost. Shallow-clone only into a new empty directory under /tmp/claude-2001/-home-harry/9ef32451-f6a6-429e-88df-add8e5d83ddf/scratchpad/verify2/<your label>/.
+- Existing read-only code copies you may reuse (check their sha if it matters): /tmp/claude-2001/-home-harry/9ef32451-f6a6-429e-88df-add8e5d83ddf/scratchpad/{consumers,producers,bridges,mutators,xproj,infra,review}/. ECM workspace docs: .../scratchpad/ecm-dev (secondary only).
+- Leads, not proof: the earlier review result at /tmp/claude-2001/-home-harry/9ef32451-f6a6-429e-88df-add8e5d83ddf/scratchpad/review-result.json (judged claims, gap research, critic). You may read it for leads and for where to look. A claim you mark CONFIRMED must rest on primary evidence you read or measured in this run.
+- Datadog MCP: read-only. Run its skill discovery first and prefer execute_code. Atlassian MCP (Confluence, Jira) and Slack MCP: read-only. gcloud: read-only; this account has no Pub/Sub access to the gfs-ecm-* projects.
+
+## Rules
+- Read-only everywhere. Never create, edit, comment, post or alert in any system. Never run code from a clone.
+- Never print a secret value. Keep security findings class-level.
+- Privacy: no customer names beyond what the page already contains, no addresses, emails or phone numbers.
+- Not evidence: the draft pages under test, the Confluence pages under MPK Carrier Services (353468499 and its children), and the vault explainers.`
+
+const VERDICTS = {
+  type: 'object',
+  properties: {
+    verdicts: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          id: { type: 'string', description: 'C1, C2 ... numbered in page order' },
+          claim: { type: 'string', description: 'the claim, quoted or closely paraphrased from the page, with its section' },
+          verdict: { type: 'string', enum: ['CONFIRMED', 'PARTLY', 'REFUTED', 'UNVERIFIABLE'] },
+          evidence: { type: 'string', description: 'what you read or measured: repo@sha path:line, Terraform resource, manifest path, Datadog query and window, or page id' },
+          correction: { type: 'string', description: 'for PARTLY or REFUTED: what is true, in one or two sentences' },
+        },
+        required: ['id', 'claim', 'verdict', 'evidence'],
+      },
+    },
+  },
+  required: ['verdicts'],
+}
+
+const JUDGED = {
+  type: 'object',
+  properties: {
+    claims: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          id: { type: 'string' },
+          claim: { type: 'string' },
+          final: { type: 'string', enum: ['CONFIRMED', 'PARTLY', 'REFUTED', 'UNVERIFIABLE'] },
+          disagreement: { type: 'boolean' },
+          tiebreak: { type: 'string', description: 'what you checked yourself to settle it, if anything' },
+          evidence: { type: 'string' },
+          page_wording: { type: 'string', description: 'for anything not CONFIRMED: replacement wording for the page, plain British English, 25 words or fewer per sentence, no em dashes' },
+        },
+        required: ['id', 'claim', 'final', 'disagreement', 'evidence'],
+      },
+    },
+  },
+  required: ['claims'],
+}
+
+const CRITIC = {
+  type: 'object',
+  properties: {
+    contradictions: { type: 'array', items: { type: 'object', properties: { pages: { type: 'string' }, detail: { type: 'string' }, fix: { type: 'string' } }, required: ['pages', 'detail', 'fix'] } },
+    stance: { type: 'array', items: { type: 'object', properties: { page: { type: 'string' }, where: { type: 'string' }, problem: { type: 'string' }, fix: { type: 'string' } }, required: ['page', 'where', 'problem', 'fix'] }, description: 'places a page makes a product decision, recommends, or overstates certainty' },
+    omissions: { type: 'array', items: { type: 'object', properties: { page: { type: 'string' }, topic: { type: 'string' }, grounded_in: { type: 'string' }, suggested_text: { type: 'string' } }, required: ['page', 'topic', 'grounded_in'] } },
+    reader_test: { type: 'array', items: { type: 'object', properties: { page: { type: 'string' }, can_act_from_first_screen: { type: 'boolean' }, notes: { type: 'string' } }, required: ['page', 'can_act_from_first_screen', 'notes'] } },
+  },
+  required: ['contradictions', 'stance', 'omissions', 'reader_test'],
+}
+
+const verifyPrompt = (p, lens, lensText) => `${CONTEXT}
+
+## Your job: adversarially verify the draft page "${p.title}"
+Read the draft at ${p.path}. Number every checkable factual claim C1, C2 ... in page order. That covers numbers, named systems and what they do, directions of data flow, who reads or writes what, volumes, dates and negatives such as "nothing" or "only". Include claims inside tables. Skip pure opinion and the "Not confirmed yet" and "Decisions" lists, except check that nothing listed there has in fact been settled.
+
+Your lens is ${lens.toUpperCase()}. ${lensText}
+
+For each claim give one verdict:
+- CONFIRMED: you read or measured primary evidence that it is true as written.
+- PARTLY: true in substance, but a detail is wrong, stale or overstated. Give the corrected statement.
+- REFUTED: primary evidence says otherwise. Give what is true.
+- UNVERIFIABLE: you could not reach evidence either way. Say exactly what blocked you.
+Watch for absolutes ("only", "nothing", "never", "every", "all"). Overstated wording is PARTLY.`
+
+const judgePrompt = (p, a, b) => `${CONTEXT}
+
+## Your job: judge the claims in draft page "${p.title}"
+Two independent verifiers checked the draft at ${p.path}, one through source evidence, one through runtime evidence. Decide a final verdict per claim.
+
+Verifier A (source lens):
+${JSON.stringify(a, null, 1)}
+
+Verifier B (runtime lens):
+${JSON.stringify(b, null, 1)}
+
+Rules:
+- The verifiers number claims independently. Merge them by claim text, not by number, and keep the page order.
+- Where they agree and cite primary evidence, accept it.
+- Where they disagree, or either says PARTLY, REFUTED or UNVERIFIABLE, check the disputed point yourself against the primary source, and record what you checked in "tiebreak".
+- A claim is CONFIRMED only when primary evidence supports every part of it as written.
+- Also list any claim that neither verifier covered, and check it yourself.
+- For anything not CONFIRMED, write replacement wording for the page: plain British English, 25 words or fewer per sentence, no em dashes, keeping the hedge only where doubt is real.`
+
+const verifyRun = pipeline(
+  PAGES,
+  p => parallel([
+    () => agent(verifyPrompt(p, 'source', p.source), { label: `verify:${p.id}:source`, phase: 'Verify', schema: VERDICTS, model: 'sonnet', effort: 'high' }),
+    () => agent(verifyPrompt(p, 'runtime', p.runtime), { label: `verify:${p.id}:runtime`, phase: 'Verify', schema: VERDICTS, model: 'sonnet', effort: 'high' }),
+  ]),
+  (pair, p) => agent(judgePrompt(p, pair[0], pair[1]), { label: `judge:${p.id}`, phase: 'Judge', schema: JUDGED, effort: 'high' })
+    .then(j => (j ? { page: p.id, title: p.title, ...j } : null)),
+)
+
+const judged = (await verifyRun).filter(Boolean)
+log(`Judged ${judged.length}/${PAGES.length} pages`)
+
+phase('Critic')
+const critic = await agent(`${CONTEXT}
+
+## Your job: cross-page critic
+Read both drafts:
+- ${PAGES[0].path} ("${PAGES[0].title}")
+- ${PAGES[1].path} ("${PAGES[1].title}")
+Then fetch these published Confluence pages as markdown (Atlassian MCP getConfluencePage, cloudId globalfreight.atlassian.net, read-only): 354975746 (Shipment Journey Through ECM), 353566845 (Legacy Selector - Day End and Billing Handoff), 349110455 (Idea: Developer promise), 353533985 (Tracking Webhook Services), 353206337 (Carrier Ingress Services).
+
+Find:
+1. Contradictions: between the two drafts, and between either draft and a published page (numbers, subscription counts, names, directions, dates). Give the fix.
+2. Stance problems: the pages must give evidence and requirements, not make product decisions, and must not recommend a replacement strategy. Flag any sentence that decides, recommends or overstates certainty.
+3. Omissions: something a designer replacing Selector and ECM would expect on these pages that is grounded in the research and missing. Give suggested text.
+4. Reader test: can a Merak engineer act from the first screen of each page?
+Do not repeat factual errors the judges below already found; this is about consistency, stance and gaps.
+
+Judged verdicts so far:
+${JSON.stringify(judged, null, 1)}`, { label: 'critic', phase: 'Critic', schema: CRITIC, effort: 'high' })
+
+return { judged, critic }
