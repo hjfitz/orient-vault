@@ -4,7 +4,7 @@ This C4 level 2 diagram shows how one customer's set-up reaches their Selector s
 
 It replaces the ASCII block in "The flow" on the page "Legacy Selector - Customer Data Flow" (352157700, space MPK, version 5). Researched 9 Nov 2026 from that page, `Systems/selector/architecture.md` and `known-context.md`, and the Selector repos in `~/code/selector`.
 
-Split decision: one diagram, not two. It has 16 boxes against a limit of 20, and the set-up and shipping paths share five boxes (Client4, the site database, the upload server, the central database and CSS's neighbours). Splitting would draw those twice. The Gaps section says where to cut if it proves crowded.
+Split decision: one diagram, not two. It has 16 boxes against a limit of 20, and the set-up and shipping paths share four boxes: Client4, the site database, the upload server and the central database. Splitting would draw those twice. The Gaps section says where to cut if it proves crowded.
 
 Status values: `Verified in page` means the page states it. `Verified in source, not on page` means the vault notes or repos show it but the page does not. `Not confirmed` means no source settles it, so draw it dashed.
 
