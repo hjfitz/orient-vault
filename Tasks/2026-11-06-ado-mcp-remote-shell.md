@@ -1,7 +1,7 @@
 ---
 tags: [adhoc-task]
 date: 2026-11-06
-tldr: "ado-local-mcp working on hjf.shell; orient synced at 1b8ffbf on laptop/VM/GitHub; VM vault (diverged since 3 Nov) merged as e37445d and syncing again; handover no longer copies the vault"
+tldr: "ADO MCP on hjf.shell; orient + vault synced laptop/VM; orient now hosted on the VM, reached via orient-tunnel (3000/3011); laptop orient on :3001 for recordings only"
 session_id: 0fb571d0-d903-483b-9e8b-1198b51d571f
 status: done
 ---
@@ -12,3 +12,5 @@ ado-local-mcp was already synced to harry@hjf.shell.platform.ilg.software but fa
 
 orient: VM had unpushed 567df31 (usage by machine); cherry-picked onto laptop master as 1b8ffbf, tests green, pushed; VM rebased onto it. Both machines redeployed (web, index; VM orient-mcp rebuilt).
 Vault (VM): sync failing since 5 Nov 16:04 — handover vault copy dropped laptop recordings into a sparse-excluded path. Moved them to ~/.local/state/orient/quarantined-recordings-20261106 on the VM (one audio.ogg is the only remaining copy), reapplied sparse rules. 2026-11-09: merged VM history (399 ahead / 319 behind) as e37445d — 59 conflicts: 40 path-only (laptop kept), 17 VM-newer (taken, paths normalised), People notes + this record from laptop. Both vault syncs green. Root cause (vault copied by sync-claude-config --folder) removed from session-handover ship step and from ~/.config/systemd/user/sync-claude-config.service (timer was already disabled). Quarantined recordings remain on the VM.
+
+2026-11-09: orient moved to the VM as the main instance. Laptop runs `orient-tunnel.service` (ssh -L 3000, 3011 to the VM; terminal verified against VM tmux); laptop orient-pty disabled; laptop orient-web moved to :3001 by drop-in `orient-web.service.d/recordings-only-port.conf`, for Recordings only. desk/scribe hit :3000 (the VM) unchanged. No reverse forward for scribe: the remote-compute image sets `AllowTcpForwarding local` (ilg-platform/images, smoke-tested). Missing GitHub fuse repos cloned to the VM for headless runs; 13 ADO repos not (no ADO SSH on the VM). Vault keeps backing up through orient-vault-sync on both sides.
