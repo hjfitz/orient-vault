@@ -1,0 +1,13 @@
+# ecm — Waypoint system index. Cheap orientation only, never documentation.
+# Members are NOT listed here: a service joins by declaring `system: ecm` in its
+# own waypoint.yaml, so there is one source of truth. `wp system status ecm` reads it.
+system: ecm
+owner: unconfirmed
+purpose: >
+  ECM is the name GFS teams use for the event-driven platform that learns of each shipment from
+  central Firebird, tracks it through raw_tracking.v1, derives its status, tells customers and
+  fetches proofs of delivery. It runs in the gfs-ecm GCP projects. Out: Selector and central
+  Firebird (system selector), the carrier proxies and carrier ingress services (system
+  carrier-integrations), billing, Parcel Portal.
+confluence: MPK space, 1. Research into Existing Services (page 351502339 and children)
+created: 2026-11-09
