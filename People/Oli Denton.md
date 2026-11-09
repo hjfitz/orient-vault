@@ -16,6 +16,7 @@ title: Oli Denton
 
 ## Open loops
 **I owe** (from the 15/06 huddle)
+- [ ] Talk to him after Monday's standup about the formal strategy (he runs it past Mulder on Tuesday; he says you are "taking the reins" of the platform and backend team) — [Slack DM](https://gfsdeliver-eng.slack.com/archives/D098LM4517H/p1793982319473049)
 - [x] Confirm the Senior Software Engineer pipeline he delegated to me: [[Matt Shaw]] has the first-round interview with Peter Langley, and the interview date and outcome are unconfirmed. The [[Chris Lynes]] (SpectrumIT) reply is still unsent — [Oli's email](https://outlook.office365.com/owa/?ItemID=AAMkADVhYjUxODIyLWM5NTktNGJmOC1hN2FjLWFjMjllNWUzYmY4MwBGAAAAAAAEXHdKGOMeRLfpaU7ff8ChBwABLsgQpFdPTayXOZTVrraLAAAMjLMxAAABLsgQpFdPTayXOZTVrraLAAHMCkAcAAA%3D&exvsurl=1&viewmodel=ReadMessageItem)
 - [ ] Agree the Peak on-call route with him, then tell [[Ryan Ellis]], who is arranging a Peak readiness call. Jack asked him and me by name, and he shared a "Fuse peak on-call proposal" with comment access. Sale is 7–8 Nov, about 60k orders — [Jack's mail](https://outlook.office365.com/owa/?ItemID=AAMkADVhYjUxODIyLWM5NTktNGJmOC1hN2FjLWFjMjllNWUzYmY4MwBGAAAAAAAEXHdKGOMeRLfpaU7ff8ChBwABLsgQpFdPTayXOZTVrraLAAAAAAEMAAABLsgQpFdPTayXOZTVrraLAAHKIgqkAAA%3D&exvsurl=1&viewmodel=ReadMessageItem)
 - [x] Agree owner and date for workshop action S18 (hourly ingest monitoring for high-volume customers, with him, before the 1 Nov peak freeze) by EOD Wed 14 Oct — [Jack's workshop mail](https://outlook.office365.com/owa/?ItemID=AAMkADVhYjUxODIyLWM5NTktNGJmOC1hN2FjLWFjMjllNWUzYmY4MwBGAAAAAAAEXHdKGOMeRLfpaU7ff8ChBwABLsgQpFdPTayXOZTVrraLAAAAAAEMAAABLsgQpFdPTayXOZTVrraLAAHLFMPfAAA%3D&exvsurl=1&viewmodel=ReadMessageItem)
@@ -56,6 +57,7 @@ title: Oli Denton
 - ✍️ 
 
 ## Together (newest first)
+- 2026-11-06 — DM: wants to go over the formal strategy on Monday and run it past Mulder on Tuesday → [[Digests/2026-11/2026-11-09]]
 - 2026-11-04 — Merak and TCA huddle notes posted in #merak-tech-twats; the 5 Nov 1:1 moves to Thursdays → [[Meetings/1-1 Oli Denton]]
 - 2026-11-02 — Quick catch-up on Mon 2 Nov: backed your SFTP and Ionic handling on condition the data is deleted, agreed a coaching approach with the Bifrost team and to restart regular 1:1s
 - 2026-11-02 — Wrote up the Ionic short-ship resolution agreed in Friday's huddle with Lee Simmons

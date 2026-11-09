@@ -6,6 +6,39 @@ title: Bifrost Leadership Catchup
 # Bifrost Leadership Catchup
 
 
+## 2026-11-09
+_11:15–12:00 GMT · no location on the invite · calendar title "Fuse Leadership Catchup" · organiser Harry · w/ [[Jack Bailey]], [[Oli Denton]], [[Matt Shaw]] · ⚠️ no agenda_
+
+### Context
+
+**Owed by you**
+- Reply-all with call-outs on [[Darren Cobby]]'s Q1 Fuse migration timeline
+- Agree the Peak on-call route, then tell [[Ryan Ellis]]
+- Confirm owners and dates on the Integrations Path Forward workshop actions, or say they stand
+
+**Other context**
+- Snap applied its software release to staging on Friday; the performance testing you said had not been run can now go ahead — [thread](https://outlook.office365.com/owa/?ItemID=AAMkADVhYjUxODIyLWM5NTktNGJmOC1hN2FjLWFjMjllNWUzYmY4MwBGAAAAAAAEXHdKGOMeRLfpaU7ff8ChBwABLsgQpFdPTayXOZTVrraLAAAAAAEMAAABLsgQpFdPTayXOZTVrraLAAHaYrD0AAA%3D&exvsurl=1&viewmodel=ReadMessageItem)
+- Senior Developer hiring: [[Matt Shaw]] is scheduling with Ruby Calver (Matthew Wed 11:30, Darren Wed 14:00, Edward Fri 13:30); a new CV for Turgut Torun is addressed to you, and Edward's salary ask moved from £70k to £75k; [[Oli Denton]] is cc'd
+- [[Oli Denton]] wants to go over the formal strategy today and run it past Mulder on Tuesday, and says you are taking the reins of the platform and backend team
+- Black Friday and Cyber Monday volumes from ILG, and Purdy and Figg at about 33k orders a day
+
+### To raise
+- [ ] Peak on-call route and the support-model meeting with Ryan and Dennis (carried ×3)
+- [ ] Workshop actions: who owns what, and by when (carried ×3)
+- [ ] CT GLN ownership for the Edicom/EDIFACT config: still unowned in ILG (carried ×2)
+- [ ] Hiring: who joins the first-round calls, and who decides on Turgut Torun and Edward's £75k ask?
+
+### Carried from last time
+- [ ] Harry: Organise a small meeting with Ryan and Dennis on the support model and on-call route
+- [ ] Harry: Produce the triage flow chart and runbooks for escalating issues to the Fuse team
+- [ ] Harry: Send meeting notes to Jack and Oli
+- [ ] Harry: Talk to Testy about moving CT config work to Danny and Steve
+- [ ] [[Jack Bailey]]: Put together a design for an SFTP-style browser view in Fuse
+- [ ] [[Jack Bailey]]: Talk to Baron about Fuse representation at the Bifrost operational workshop
+
+### Notes
+- ✍️
+
 ## 2026-11-02
 _11:15–12:00 GMT · no location on the invite · calendar title "Fuse Leadership Catchup" · organiser Harry · w/ [[Jack Bailey]], [[Oli Denton]], [[Matt Shaw]] · ⚠️ no agenda_
 

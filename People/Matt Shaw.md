@@ -17,6 +17,7 @@ title: Matt Shaw
 
 ## Open loops
 **I owe**
+- [ ] Tell him whether you join the first-round interview calls he proposed to Ruby (Matthew Wed 11:30, Darren Wed 14:00, Edward Fri 13:30) — [Slack DM](https://gfsdeliver-eng.slack.com/archives/D09A702MDQF/p1793964694402199)
 - [ ] Approve his holiday request for 2–4 Nov (3 days) — starts Monday
 - [x] Place [FUSE-1296](https://globalfreight.atlassian.net/browse/FUSE-1296) (Ready for QA, the only in-flight ticket with no assignee). He has the FUSE-1292 spike open on the same stock sync — [Jira](https://globalfreight.atlassian.net/browse/FUSE-1296)
 - [x] Decide who clears the merge conflicts on [shopify-connector#305](https://github.com/gfs-bifrost/shopify-connector/pull/305) (FUSE-1198 stack 1/7): he is off today and Mon 12 Oct, and it went conflicted after Renovate #324 merged this morning — [#305](https://github.com/gfs-bifrost/shopify-connector/pull/305) — merged 10-09 14:35Z
@@ -79,6 +80,7 @@ title: Matt Shaw
 - ✍️ 
 
 ## Together (newest first)
+- 2026-11-09 — has taken over Senior Developer interview scheduling with Ruby; asked whether you join the first-round calls → [[Digests/2026-11/2026-11-09]]
 - 2026-11-05 — candidate review (37m recording): Matthew Shaw to be interviewed first, Edward Savage and Darren Taylor in → [recording](http://localhost:3000/recordings/20261105-132921-2bf2)
 - 2026-11-05 — Back from leave (2 to 4 Nov); 1:1 at 11:30 → [[Meetings/1-1 Matt Shaw]]
 - 2026-11-03 — on leave 2 to 4 Nov, so today's 1:1 is probably moot; four of his five FUSE-1314 duty drafts are still unmerged, fapi#181 and shopify-connector#351 (FUSE-1324) are approved and green, and a Spectrum IT CV shares his name → [[Meetings/1-1 Matt Shaw]]

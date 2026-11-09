@@ -9,6 +9,7 @@ relationship: external
 
 ## Open loops
 **I owe**
+- [ ] Reply to his Fri 6 Nov note that the Snap software release is on STAGING: give a window for the performance testing, and raise the weekend production latency — [email](https://outlook.office365.com/owa/?ItemID=AAMkADVhYjUxODIyLWM5NTktNGJmOC1hN2FjLWFjMjllNWUzYmY4MwBGAAAAAAAEXHdKGOMeRLfpaU7ff8ChBwABLsgQpFdPTayXOZTVrraLAAAAAAEMAAABLsgQpFdPTayXOZTVrraLAAHaYrD0AAA%3D&exvsurl=1&viewmodel=ReadMessageItem)
 - [ ] Give him a date and time for the Purdy & Figg load test on ILGSTG (ILG Pre-Production) so Snap can staff monitoring — [email](https://outlook.office365.com/owa/?ItemID=AAMkADVhYjUxODIyLWM5NTktNGJmOC1hN2FjLWFjMjllNWUzYmY4MwBGAAAAAAAEXHdKGOMeRLfpaU7ff8ChBwABLsgQpFdPTayXOZTVrraLAAAAAAEMAAABLsgQpFdPTayXOZTVrraLAAHMCWFvAAA%3D&exvsurl=1&viewmodel=ReadMessageItem)
 
 ## Standing context
@@ -16,6 +17,7 @@ relationship: external
 - ✍️
 
 ## Together (newest first)
+- 2026-11-06 — confirmed the Snap software release is applied to staging (Jack Bailey and Lee Simmons cc'd) → [[Digests/2026-11/2026-11-09]]
 - 2026-11-02 — Chased on 30 Oct for a date and time to test against Snap's ready staging environment; nothing sent from your side
 - 2026-10-15 — emailed that the Pre-Production copy is ready and he is waiting on your date. [[Lee Simmons]] and [[Jack Bailey]] are cc'd → [[Meetings/Fuse-Snap Call]]
 
