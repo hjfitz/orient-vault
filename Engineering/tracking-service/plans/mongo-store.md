@@ -260,6 +260,19 @@ Every merge rolls prod, so never merge while a Deploy run is in flight (Scar tis
 ### Evidence
 <!-- Newest first, dated. One bullet per check actually run, opening with what it discharges.
      "Suite green" alone is not evidence. Sign-off requires at least one dated bullet here. -->
+- 2026-11-09 [W1/W2] **Drafts open, not merged (merges are Harry's; the agent is denied).**
+  - **#24, the CVE fix:** `x/net` 0.62.0. The base-image `datadog-init` copy is allowlisted to 2026-11-16. 14/14 checks green.
+  - **#25, W2 marks aggregation:**
+    - matches memory's `serve(tallyMarks)` by `reflect.DeepEqual` on a seeded 600-record corpus (70 codes, so the cap bites);
+    - 6 mutation checks fail as they should;
+    - the explain check shows IXSCAN.
+  - **#26 + #27, W1 scaffold and shipment write path (stack #28):**
+    - 6 conformance cases run on Mongo, and 22 Mongo-only tests;
+    - review-panel (backend, data, tests): looks good after the fixes in `d5b9f4c`.
+    - **`d5b9f4c` fixes:** a test that redelivers after the seen row is gone and asserts no copy is counted (it fails with the event-doc fallback removed); a start barrier on the concurrent tests; `Events` checks existence with a projection.
+    - **Gates on `d5b9f4c`:** `make fmt-check vet lint test-race` 0 issues; `make test-emulator` all ok; `make mongo-test` ok.
+  - **Integration branch** `hjf/mongo-store-integration` = main + #24 + #25 + #27. W3 and W4 build on it.
+  - **`make test-mongo` needs `docker compose`,** which the workstation lacks. Locally the tests run `mongo:8.0.13 --replSet` via `docker run` plus `make mongo-test MONGO_PORT=…`; CI uses compose.
 - 2026-11-06 [baseline] **Today's Firestore-served latencies, for Gate A context:** prod `/api/v1/stats` 0.15–0.26 s and `/api/v1/stats/businesses` **8.5–9.0 s** (single curls at 15:41Z and 17:59Z); dev `/stats/businesses` 3.7 s. The Mongo Businesses `$group` should beat this, not match it.
 - 2026-11-06 [plan] **Drafted and reviewed, not implemented.** A planning agent drafted 5 increments over worktree `a97baca`. Three independent reviewers (history, factual grounding, increment structure) checked it. Their findings are folded in, and the plan is now 7 increments with the benchmark first. The factual reviewer ran `go test ./internal/store/` (memory backend): it passes with 0 skips. No code has been written.
 
