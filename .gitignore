@@ -5,7 +5,7 @@
 .obsidian/workspace*.json
 .trash/
 
-# Meeting audio stays on the machine that recorded it; transcripts and summaries sync.
+# Meeting audio never syncs: it lives on the machine that keeps recordings (the VM); transcripts and summaries sync.
 .knowledge/recordings/**/audio.*
 .knowledge/recordings/**/transcript.log
 .knowledge/recordings/**/*.tmp
