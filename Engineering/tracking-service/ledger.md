@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-09 — Write and serve returns from the MongoDB store
+
+Write and serve returns from the MongoDB store
+
+Mongo store W3, stack 2/2: ApplyReturn in one transaction with a session-scoped ShipmentReader and a linked-shipment patch that must match one shipment, return reads/queries/counts, uniq_business_rga. The AC 3 differential (memory vs Mongo, in order and shuffled) is DeepEqual on every served stat, insight, per-day view and business count. Measured: a return beside its shipment's uncommitted first insert links on its next event.
+
+PR: gfs-bifrost/tracking-service#32
+
 ## 2026-11-09 — Serve shipment queries and stats from the MongoDB store
 
 Serve shipment queries and stats from the MongoDB store
