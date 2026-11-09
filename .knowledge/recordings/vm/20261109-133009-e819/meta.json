@@ -1,0 +1,27 @@
+{
+  "id": "20261109-133009-e819",
+  "title": "relay test",
+  "status": "done",
+  "startedAt": "2026-11-09T13:30:09.547205601Z",
+  "endedAt": "2026-11-09T13:30:19.699217933Z",
+  "sources": {
+    "me": [
+      "JLAB TALK MICROPHONE Analog Stereo"
+    ],
+    "them": [
+      "Nightly",
+      "speech-dispatcher-dummy"
+    ]
+  },
+  "pausedSeconds": 3.046793814,
+  "call": false,
+  "summaryError": "the transcript is empty",
+  "enhanceError": "the transcript is empty",
+  "host": "vm",
+  "capturedOn": "laptop",
+  "received": {
+    "sha256": "e7ed3c65ab70af8cdfd9b7f4ef54779bc642a50a57e5b7de7121d006d5e5174e",
+    "bytes": 253285,
+    "at": "2026-11-09T13:30:19.840463092Z"
+  }
+}
