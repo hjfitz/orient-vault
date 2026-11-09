@@ -1,0 +1,25 @@
+{
+  "id": "20261109-111949-d4b5",
+  "title": "Fuse Leadership Catchup",
+  "meeting": {
+    "docId": "d_bwakabtompjo",
+    "series": "Bifrost Leadership Catchup",
+    "date": "2026-11-09",
+    "href": "/meeting/bifrost-leadership-catchup"
+  },
+  "context": "11:15–12:00 GMT · no location on the invite · calendar title \"Fuse Leadership Catchup\" · organiser Harry · w/ Jack Bailey, Oli Denton, Matt Shaw · ⚠️ no agenda\n\nContext:\n**Owed by you**\n- Reply-all with call-outs on Darren Cobby's Q1 Fuse migration timeline\n- Agree the Peak on-call route, then tell Ryan Ellis\n- Confirm owners and dates on the Integrations Path Forward workshop actions, or say they stand\n\n**Other context**\n- Snap applied its software release to staging on Friday; the performance testing you said had not been run can now go ahead — [thread](https://outlook.office365.com/owa/?ItemID=AAMkADVhYjUxODIyLWM5NTktNGJmOC1hN2FjLWFjMjllNWUzYmY4MwBGAAAAAAAEXHdKGOMeRLfpaU7ff8ChBwABLsgQpFdPTayXOZTVrraLAAAAAAEMAAABLsgQpFdPTayXOZTVrraLAAHaYrD0AAA%3D\u0026exvsurl=1\u0026viewmodel=ReadMessageItem)\n- Senior Developer hiring: Matt Shaw is scheduling with Ruby Calver (Matthew Wed 11:30, Darren Wed 14:00, Edward Fri 13:30); a new CV for Turgut Torun is addressed to you, and Edward's salary ask moved from £70k to £75k; Oli Denton is cc'd\n- Oli Denton wants to go over the formal strategy today and run it past Mulder on Tuesday, and says you are taking the reins of the platform and backend team\n- Black Friday and Cyber Monday volumes from ILG, and Purdy and Figg at about 33k orders a day\n\nTo raise:\n- [ ] Peak on-call route and the support-model meeting with Ryan and Dennis (carried ×3)\n- [ ] Workshop actions: who owns what, and by when (carried ×3)\n- [ ] CT GLN ownership for the Edicom/EDIFACT config: still unowned in ILG (carried ×2)\n- [ ] Hiring: who joins the first-round calls, and who decides on Turgut Torun and Edward's £75k ask?\n\nCarried from last time:\n- [ ] Harry: Organise a small meeting with Ryan and Dennis on the support model and on-call route\n- [ ] Harry: Produce the triage flow chart and runbooks for escalating issues to the Fuse team\n- [ ] Harry: Send meeting notes to Jack and Oli\n- [ ] Harry: Talk to Testy about moving CT config work to Danny and Steve\n- [ ] Jack Bailey: Put together a design for an SFTP-style browser view in Fuse\n- [ ] Jack Bailey: Talk to Baron about Fuse representation at the Bifrost operational workshop",
+  "status": "recording",
+  "startedAt": "2026-11-09T11:19:49.935109152Z",
+  "sources": {
+    "me": [
+      "JLAB TALK MICROPHONE Analog Stereo"
+    ],
+    "them": [
+      "Nightly",
+      "Slack",
+      "speech-dispatcher-dummy"
+    ]
+  },
+  "call": false,
+  "host": "laptop"
+}
