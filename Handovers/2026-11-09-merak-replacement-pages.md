@@ -60,7 +60,7 @@ None of this session's workflows or agents is running (checked 2026-11-09 11:53Z
 ### Further pages proposed
 | Page | Merak decision it was meant to feed | State |
 | --- | --- | --- |
-| Carrier layer for the five carriers | Which carriers Merak can lean on | Evidence in hand, plus the CID Jira project |
+| Carrier layer for the five carriers | Which carriers Merak can lean on | **Reshaped 2026-11-09.** "Five" was never defined. `ilg-merak/carrier-playground` mocks 12 proxies. Proxies serve Selector for labels and are not in the event flow, so this became draft page 3 (event routes). Existing MPK pages already hold the proxy estate and volumes |
 | Proof of delivery for UPS and FedEx | The account-holder row on passing POD through | UK code read; carrier terms need outside research. Check the hook is not Parcel Portal only |
 | Exceptions, queries and claims today | The Exceptions and Claims portals; the AI query-automation brainstorm | Evidence in hand |
 | Identity and tenancy lessons from ECM | MKP-32 (shipper or warehouse operator as tenant) | MKP-32 is a Parcel Portal gate, so re-anchor on Merak or drop. Evidence: ECM keys tenancy on the company name, which is write-once, so a rename orphans data across about twelve services |
