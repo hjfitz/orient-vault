@@ -8,7 +8,7 @@ updated: '2026-11-09'
 repo: /home/hjf/projects/orient
 worktree: /home/hjf/projects/orient
 branch: master
-base: origin/master
+base: 1b8ffbf28
 base_sha: 1b8ffbf28
 pr: null
 tags:
@@ -41,13 +41,13 @@ Since 2026-11-09 the VM (`rc-hjf`) is orient's home. The laptop reaches it throu
 ## Acceptance criteria
 <!-- Observable, checkable outcomes — not tasks. Numbered by order: increments cite them as
      (AC 2,4), and sign-off prints which criteria no increment claims. -->
-- [ ] 1. The VM runs `orient-scribe` in a server role: it transcribes, compresses, enhances and summarises, never records, and serves the Recordings page at `localhost:3000`. Its vault checkout includes `.knowledge/recordings/`. `Bifrost/HR`, `Bifrost/Team` and `Interviews` stay excluded.
-- [ ] 2. A finished laptop capture reaches the VM intact, confirmed by sha256, through a resumable upload. A dropped tunnel delays the upload but loses nothing, and the recording ends `done` and enhanced on the VM with playable audio.
-- [ ] 3. The laptop writes no new recordings into the vault and never transcribes. Its local copy is deleted as soon as the VM confirms receipt (sha256 matched, file synced to disk). While the VM is unreachable, captures queue on the laptop and you get a notification.
-- [ ] 4. From `localhost:3000/recordings` on the laptop: start, pause, resume, stop and ignore act on the laptop's capture within about 2 s. With the recorder disconnected, Start is refused and the page says why.
-- [ ] 5. The laptop runs no orient-web. The top-bar widget, the reminders and the laptop's orient MCP all show and control recordings through the VM. Re-running `install-units.sh` on the laptop doesn't bring orient-web back.
-- [ ] 6. The upload ingest accepts a recording whose total size isn't known until the end, appended from a reported offset. This is what the phone recorder needs.
-- [ ] 7. Audio is pruned after 14 days unless the recording is marked **keep**. A kept recording's audio survives the prune, and the mark can be set and cleared from its page.
+- [x] 1. The VM runs `orient-scribe` in a server role: it transcribes, compresses, enhances and summarises, never records, and serves the Recordings page at `localhost:3000`. Its vault checkout includes `.knowledge/recordings/`. `Bifrost/HR`, `Bifrost/Team` and `Interviews` stay excluded.
+- [x] 2. A finished laptop capture reaches the VM intact, confirmed by sha256, through a resumable upload. A dropped tunnel delays the upload but loses nothing, and the recording ends `done` and enhanced on the VM with playable audio.
+- [x] 3. The laptop writes no new recordings into the vault and never transcribes. Its local copy is deleted as soon as the VM confirms receipt (sha256 matched, file synced to disk). While the VM is unreachable, captures queue on the laptop and you get a notification.
+- [x] 4. From `localhost:3000/recordings` on the laptop: start, pause, resume, stop and ignore act on the laptop's capture within about 2 s. With the recorder disconnected, Start is refused and the page says why.
+- [x] 5. The laptop runs no orient-web. The top-bar widget, the reminders and the laptop's orient MCP all show and control recordings through the VM. Re-running `install-units.sh` on the laptop doesn't bring orient-web back.
+- [x] 6. The upload ingest accepts a recording whose total size isn't known until the end, appended from a reported offset. This is what the phone recorder needs.
+- [x] 7. Audio is pruned after 14 days unless the recording is marked **keep**. A kept recording's audio survives the prune, and the mark can be set and cleared from its page.
 
 ## Affected boundaries
 <!-- Components, paths and contracts this touches. Wikilink existing explainers; do not restate
@@ -200,8 +200,9 @@ Since 2026-11-09 the VM (`rc-hjf`) is orient's home. The laptop reaches it throu
     - `ss -ltn | grep -c ':3001 '` gives 0.
     - The top bar shows a live recording and Pause from its menu works.
     - Re-running `SCRIBE=recorder HEADLESS=1 scripts/install-units.sh` leaves orient-web disabled.
-      gate: at least 3 real meetings recorded and controlled from the VM page after inc 5
-          [ ] confirmed
+      > SUPERSEDED 2026-11-09 — Harry said "go ahead" after inc 5, waiving the three-meeting wait. The original gate was "at least 3 real meetings recorded and controlled from the VM page after inc 5". The relay was proven live instead, and every step here is reversible: the retired drop-ins are kept in `~/.local/state/orient/retired-dropins/`.
+      gate: Harry's go-ahead to retire :3001 before three real meetings (given 2026-11-09)
+            [x] confirmed
 
 Follow-up plans, not in this one:
 - **Laptop vault writes land on the VM promptly.** The laptop's skills (digest, ledger, Tasks, People) keep writing markdown locally. Proposed: an event-driven sync, not rsync. A systemd path unit runs `vault-sync.sh` a few seconds after a change instead of waiting for the 90 s timer, then asks the VM to sync (`ssh … systemctl --user start orient-vault-sync`, started from the laptop). Git stays the only transport.
@@ -216,6 +217,14 @@ Follow-up plans, not in this one:
 ### Evidence
 <!-- Newest first, dated. One bullet per check actually run, opening with what it discharges.
      "Suite green" alone is not evidence. Sign-off requires at least one dated bullet here. -->
+- 2026-11-09 [inc 6] **`:3001` retired** (`4e0902e`; AC 5). The two interim drop-ins were moved to `~/.local/state/orient/retired-dropins/`, and `orient-web` is `inactive/disabled`, with no `:3001` listener.
+- 2026-11-09 [inc 6] **The top bar reads and presses the VM's orient.**
+  - The desk logs `reading http://127.0.0.1:3000`, and its recording widget comes from the VM ("Not recording", Record "Harry/Jack"), no longer "orient-scribe is not running".
+  - The VM had never minted a write token; a POST to `/api/desk/act` without one made it mint `~/.local/state/orient/write-token`. That was copied to the laptop's `~/.config/orient/peer-write-token` (600, sha256 matches), and `desk.env` is `DESK_ARGS=-token …/peer-write-token`.
+  - With the copied token, an act with an unknown action reached the handler ("Nothing is recording."); a wrong token got 401.
+  - Pressing Record was not tried: Harry's Harry/Jack meeting (13:30–14:15) was in progress, and a test would have recorded it.
+- 2026-11-09 [inc 6] **Re-running `scripts/install-units.sh` on the laptop** left `orient-web` and `orient-pty` disabled and scribe's PID unchanged, and kept the existing `scribe.env` (`-role recorder`) and `desk.env`.
+- 2026-11-09 [inc 6] **Docs:** CLAUDE.md (security line, Scribe section, read-only unless adopted), scribe/README.md (a new *Roles* section, storage and keep), docs/INSTALL.md (`SPARSE`, `SCRIBE=server`, tokens, the laptop setup, moving audio), desk/README.md (`desk.env`), and the vault `.gitignore` comment.
 - 2026-11-09 [inc 5] **The relay is live** (`39e7fb8`). The VM was deployed first, then the laptop's recorder, which polls `127.0.0.1:3014` every second. The VM's list reads `"recorders":[{"name":"laptop","connected":true}]`.
 - 2026-11-09 [inc 5] **Every control through the VM's API, as orient calls it** (AC 4). Timed with curl against `127.0.0.1:3014`:
   - Start: 201 in 795 ms. The laptop went live with the same id, and `localhost:3000/recordings` showed it.
@@ -297,6 +306,8 @@ Follow-up plans, not in this one:
 ### Not verified
 <!-- Stated, not papered over. "(none)" is a deliberate claim, and a fine one. -->
 - [inc 4] **A recording started from a reminder's Record button** wasn't driven live; the reminder calls the same `s.Start` as `POST /api/recordings`, which was. Prove it at the next reminded meeting.
+- [inc 5] **Ignore an app through the relay**, live: no app was on the call side when it was tried. Same relay path as stop and pause; `Relayable` and the route tests cover it. Try it on the next call with an app to ignore.
+- [inc 6] **The top bar's Record button pressed through the VM**: skipped because a real meeting was in progress. The token and act route were proven with an unknown action instead; press it at the next meeting.
 
 ## Decisions & deviations
 <!-- Date-stamped, newest first — written by `wp decide`, and by hand when that is easier.
