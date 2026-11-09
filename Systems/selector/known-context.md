@@ -24,6 +24,7 @@ Interview truth (Harry, 2026-11-05), the Tech Services vault, Datadog, and facts
 ## Direction
 - **Selector is being replaced.** Part of what Merak delivers will replace it.
 - No programme folder or Jira epic tracks the replacement yet (snapshot 2026-11-05). The MPK *Legacy Selector* pages are the survey feeding it.
+- The ECM side of the same research, and the Firebird contract Selector and ECM share, are in system [[ecm]]. The MPK pages are *Selector and ECM Coupling* (354418743) and *From Label to Invoice* (354353232).
 - Until then, Fuse's [[selector-adapter]], [[parcel-portal]] and [[selector-rest-proxy]] all book through CSS. A replacement has to reproduce the CSS contract they rely on.
 
 ## Estate (snapshot 2026-08-06, Tech Services vault)
