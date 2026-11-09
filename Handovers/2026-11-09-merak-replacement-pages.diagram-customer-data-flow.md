@@ -33,7 +33,7 @@ Outside all groups: E1, E8, E9, E10, E11, E12, E13, E14, E15, E16.
 | E10 | Pack bench operator | person | | Imports a CSV or keys in a shipment in Client4, then prints the label. | none | Page: The two front doors, Who uses it | Verified in page |
 | E11 | GFS carrier proxy | container | | Turns a label request into the carrier's own call, using the customer's ApiKy key. | none | Page: The flow; One shipment, step 5 | Verified in page |
 | E12 | ApiKy | system | | Checks the customer's key and returns the profile that leads to the carrier credentials. | none | Page: What one customer needs; The flow | Verified in page |
-| E13 | Carriers | system | | Carrier APIs and FTP servers that receive labels requests and pre-advice files. | none | Page: One shipment, steps 5, 8 | Verified in page |
+| E13 | Carriers | system | | Carrier APIs and FTP servers that answer label requests and receive pre-advice files. | none | Page: One shipment, steps 5, 8 | Verified in page |
 | E14 | V4-Server-IE | container | | Sends pre-advice files over FTP to carriers that Selector did not call live. | none | Page: One shipment, step 8 | Verified in page |
 | E15 | ECM | system | | Receives queued changes from the central database and tracks shipments. Its internals are not drawn. | none | Page: The flow; How the data reaches the site, step 1 | Verified in page |
 | E16 | Billing app | system | | Finance's separate Delphi app. Bills from what reached the central database, on each customer's schedule. | none | Page: One shipment, step 8. `Systems/selector/known-context.md`: People and ownership | Verified in source, not on page |
