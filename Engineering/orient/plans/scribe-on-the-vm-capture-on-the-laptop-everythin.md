@@ -174,7 +174,7 @@ Since 2026-11-09 the VM (`rc-hjf`) is orient's home. The laptop reaches it throu
     - `systemctl --user stop orient-tunnel`, record and stop: the recording sits at `uploading` with `lastError`. Restart the tunnel and it drains within a minute.
     - The laptop's `orient-recordings` MCP tool returns the new recording.
       gate: inc 3's handoff has worked on at least one real recording
-          [ ] confirmed
+          [x] confirmed
 - [ ] 5. **The VM relays start, stop, pause, resume and ignore to the laptop's recorder. `:3001` stays up alongside.** (AC 4)
   - `scribe/internal/server/agents.go`:
     - The recorder short-polls `POST /api/agents/laptop/poll` every 1–2 s. Each poll carries a snapshot (the live recording, pending uploads, the answer to the last command) and gets back the next command, if any. The recorder counts as disconnected after about 10 s of silence.
@@ -214,6 +214,11 @@ Follow-up plans, not in this one:
 ### Evidence
 <!-- Newest first, dated. One bullet per check actually run, opening with what it discharges.
      "Suite green" alone is not evidence. Sign-off requires at least one dated bullet here. -->
+- 2026-11-09 [inc 4] **Gate: the handoff works on a real laptop recording.** A copy of `20261029-153138-d1e2` ("SFTP Folder Discussion", 443 s, 48 kHz stereo Opus from the laptop recorder) was handed off as `20261109-120000-3e14`.
+  - 17,459,949 bytes; the sha256 matched.
+  - On the VM: `done`, enhanced, `call=true`, 45 transcript lines (the original has 41), and the same tl;dr gist.
+  - The copy was deleted (204).
+  - It exposed a bug, now fixed in `a325b35`: the manual handoff sent no `endedAt`, so the length came out at −2331 s. `handoff` now ends the recording at start plus the audio's `ffprobe` duration.
 - 2026-11-09 [inc 3] **Live handoff over the tunnel** (`0dae982`, `-chunk` in `eb626ea`; AC 2, 6).
   - The full meeting: `orient-scribe handoff -i ES2004a.stereo-me0.wav` (public AMI audio, not a real meeting) sent 16,811,508 bytes of FLAC through `127.0.0.1:3014`. The receipt sha256 `786665a8…` matched.
   - The VM stored it as `vm/20261109-113000-5f55` with `capturedOn: laptop` and `received.bytes` 16811508. It went `queued`, then `transcribing`, then `done`, and was enhanced, with a summary.
