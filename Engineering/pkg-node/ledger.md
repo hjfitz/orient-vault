@@ -7,6 +7,16 @@ title: pkg-node — work ledger
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-09 — Add opt-in connector handling and settled dispatch to remote-config (2.7.0)
+
+Add opt-in connector handling and settled dispatch to remote-config (2.7.0)
+
+Stack B of the remote-config 2.6/2.7 plan, gating sftp-connector step 4. withConnectorHandling({ evictOnDelete, backlinkTypes, lookup: "server-filtered" }), all off by default; dispatcher.processRevisionSettled + ConfigRevisionDispatchException.fromResult. Review panel (backend/data/contract/tests) led to primary-last retry-safe eviction that rejects on failed cache writes, a stale-alias check, rejecting a typeless backlink response, and an exact-username check on the filtered lookup. Dev proof: server-filtered == scan for all 70 SFTP usernames (2 vs ~42 requests each). Packed tarball green in fapi (529), shopify-connector (902), shopify-egress (634). Known limits documented: index RMW race, refresh/delete race, expired-primary cleanup. Open, not merged: merging publishes 2.7.0 (fapi auto-bumps).
+
+PR: gfs-bifrost/pkg-node#304
+PR: gfs-bifrost/pkg-node#305
+PR: gfs-bifrost/pkg-node#306
+
 ## 2026-11-06 — Dispatch pkg-node-published to pkg-go after a publish
 
 Dispatch pkg-node-published to pkg-go after a publish
