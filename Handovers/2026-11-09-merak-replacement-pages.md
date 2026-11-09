@@ -8,7 +8,7 @@ from: rc-hjf
 to: next session, any machine
 session_id: 9ef32451-f6a6-429e-88df-add8e5d83ddf
 resumed_by: 4ff6c302-4da3-4b14-bf3c-fc976c0ec75b   # laptop (freightops), 2026-11-09T12:14Z
-updated: 2026-11-09T13:44Z
+updated: 2026-11-09T13:48Z
 ---
 # Handover: Merak replacement pages (continues the carrier-integrations research)
 
@@ -58,7 +58,7 @@ None of this session's workflows or agents is running (checked 2026-11-09 11:53Z
   - committed Terraform state in `gfs-pipelines`;
   - project-wide Pub/Sub editor for two identities, one unclaimed (`tracking-dump@`);
   - a personal Gmail address with `pubsub.admin` on `gfs-ecm`, being revoked under SRE-305.
-- **DHL Parcel UK (CID-317, blocked).** DHL rejects about 15 accounts with error 3002, and one contract causes 92% of the errors. CID-317 already tracks it, and its monitor only emails individuals. The hand-off to the carriers team is owed from the 11-06 record. Nothing was sent.
+- **DHL Parcel UK (CID-317, blocked): dropped (Harry, 2026-11-09: "not an us issue for now").** Nothing was sent and nothing is owed. If it comes back: the 11-06 record never listed this hand-off, the 92% and monitor claims are unverified, and the ticket's ~19 accounts, our ~15 contracts and the 368k wasted calls in 15 days don't agree.
 - **Carry-over from the 11-06 record.** Whiteboards need a Confluence API token. The orient plan sign-off is `wp plan set-status orient --plan mcp-system-lens-and-correct-service-metadata --status complete`. The Datadog MCP should move to `/v1/mcp`. R5 (Fuse billing) is open.
 
 ### Further pages proposed
@@ -87,7 +87,7 @@ In my 2026-11-09 view, two things are not worth writing. More per-service ECM pa
 ## Next up
 0. (Done 2026-11-09) The POD per-carrier page is published as MPK 354877489.
 1. Apply Harry's feedback on the published pages when it arrives: live page first, then the vault copy. No verification run was wanted.
-2. DHL Parcel UK follow-up (CID-317): draft a comment for Harry to approve. See Waiting on Harry. Nothing else is queued.
+2. Nothing else is queued. Wait for Harry's feedback on the five published pages.
 
 ## How work is done here
 - **Confluence pages:** use the `plainly` skill. British English, no em dashes, sentences of 25 words or fewer, tables for state, security findings at class level only. Publish only when asked.
