@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-09 — Sum marks in Mongo as the memory store does
+
+Sum marks in Mongo as the memory store does
+
+Mongo marks aggregation (tallyMarksOn/tallyAllMarks: $match, $unwind with entry index, $group with $min first entry, rows added in record-id then entry order) as pure functions over a marks collection, plus the memory store's served-stats helpers moved to shared code with no behaviour change. A seeded differential test proves it DeepEquals memory's tally; make mongo-test now covers internal/store. The store type and wiring follow in the later Mongo store PRs.
+
+PR: gfs-bifrost/tracking-service#25
+
 ## 2026-11-09 — Clear CVE-2026-78661 from the api image
 
 Clear CVE-2026-78661 from the api image
