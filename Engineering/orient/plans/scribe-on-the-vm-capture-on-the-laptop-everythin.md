@@ -2,7 +2,7 @@
 ticket: none
 title: 'Scribe on the VM: capture on the laptop, everything else on the VM'
 service: orient
-status: draft
+status: active
 created: '2026-11-09'
 updated: '2026-11-09'
 repo: /home/hjf/projects/orient
