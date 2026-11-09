@@ -81,7 +81,7 @@ Laptop writes reach GitHub within seconds already: the `vault-sync-kick.sh` Post
   - verify: on the laptop, write a file under `Tasks/`, kick, and time its arrival on the VM (≤10 s). A sync with nothing new appends no line. With the peer unreachable, the sync still finishes `ok synced`.
 - [x] 2. **The laptop follows the VM's pushes.** `scripts/vault-follow.sh` runs `ssh … 'tail -n0 -F ~/Documents/obsidian/.git/orient-pushed'` and kicks a local sync for each line; `systemd/orient-vault-follow.service` restarts it. (AC 2,3,4) — VM->laptop 4.6s; no ping-pong; survives tunnel restart — done: 0adaec9
   - verify: write a file on the VM, kick, and time its arrival on the laptop (≤10 s). Each machine's `orient-pushed` gains one line per real change and stops there. `systemctl --user restart orient-tunnel` leaves the follower running, since it uses its own connection.
-- [ ] 3. **Install it and document it.** `install-units.sh` installs the follower when `sync-peer` exists. Add `docs/INSTALL.md` steps for a laptop that reaches orient on the VM: the tunnel, `sync-peer`, the follower. (AC 1,2)
+- [x] 3. **Install it and document it.** `install-units.sh` installs the follower when `sync-peer` exists. Add `docs/INSTALL.md` steps for a laptop that reaches orient on the VM: the tunnel, `sync-peer`, the follower. (AC 1,2) — install-units peer mode on laptop: no web/pty, tunnel+follower — done: 93e74f7
   - verify: `systemctl --user is-enabled orient-vault-follow` on the laptop; `bash -n` on both scripts.
 
 ## Verification
