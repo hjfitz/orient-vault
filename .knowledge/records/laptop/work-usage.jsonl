@@ -288,3 +288,5 @@
 {"ts": 1793977150, "kind": "programme_tick", "session_id": "c36659b6-edee-4035-ab29-ffd89416a0e8", "programme": "Tracking Service", "unit": "D3", "status": "done"}
 {"ts": 1793977428, "kind": "programme_tick", "session_id": "c36659b6-edee-4035-ab29-ffd89416a0e8", "programme": "Tracking Service", "unit": "D4", "status": "done"}
 {"ts": 1793984519, "kind": "ledger", "session_id": "0b378024-4b31-43ce-82a8-c62ce19bf048", "service": "sftp-connector", "ticket": null, "programme": null, "heading": "## 2026-11-06 \u2014 Stop counting redelivery deferrals and customer rejections as request failures", "prs": ["gfs-bifrost/sftp-connector#405"]}
+{"ts": 1794233624, "kind": "ledger", "session_id": "0fb571d0-d903-483b-9e8b-1198b51d571f", "service": "orient", "ticket": null, "programme": null, "heading": "## 2026-11-09 \u2014 Scribe on the VM: the laptop captures, the VM keeps and processes recordings", "prs": []}
+{"ts": 1794233624, "kind": "ledger", "session_id": "0fb571d0-d903-483b-9e8b-1198b51d571f", "service": "orient", "ticket": null, "programme": null, "heading": "## 2026-11-09 \u2014 Vault sync on push: each machine pulls the other's changes in about 5 s", "prs": []}
