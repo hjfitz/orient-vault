@@ -6,6 +6,258 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-06 — Keep a batch's results on screen when it empties the orders list
+
+Keep a batch's results on screen when it empties the orders list
+
+C24. orders/page.tsx rendered 'No orders match' in OrdersTable's place when the list was empty, so dispatching every order on a filtered page (all of Ready) unmounted the table on the refresh and lost its batch results, the only way to print a batch's labels (batch dispatch doesn't auto-print). OrdersTable is now always rendered with the empty message inside, one return with stable child slots (bar, cancel dialog, results, table|empty) so the results card isn't remounted (an early return remounted it, re-enabling an in-flight Print: duplicate labels risk), and keyed by the acting customer so its longer-lived state never crosses customers (fixes C25's batch half). Smoke test dispatches from the Ready list and expects the results to survive. Gotcha: React matches unkeyed children by index; a conditional early return that reorders siblings remounts the ones that moved.
+
+PR: ilg-merak/parcel-portal#112
+
+## 2026-11-06 — Show each panel once on an order's page: unique keys, one dispatch summary
+
+Show each panel once on an order's page: unique keys, one dispatch summary
+
+C23, wider than reported. PackingPanel and LinesPanel were sibling elements keyed by the same order id; React's keyed reconciliation (mapRemainingChildren keeps one fiber per key) never matched or deleted the earlier one, so every OrderForm re-render on the keyed path left a stale panel on screen: one products card per keystroke in an address field, doubled packing forms after packing, a live Save products on a dispatched order, 'Saved' never shown. Fixed with per-panel keys; the problems alert and file problem rows had the same class (svc repeats row/field/code) and now include the index. The dispatch summary had two owners (page.tsx after revalidatePath's refresh, DispatchPanel's own result): OrderForm now holds the dispatched shipment and shows one ShipmentSummary for it or the server's copy. Smoke test asserts one products card after editing City (fails on main, passes now). Gotcha: production React prints no duplicate-key warning; only the dev build does. Follow-ups from the sweep are in Migration State.
+
+PR: ilg-merak/parcel-portal#111
+
+## 2026-11-06 — Show labels as a thermal bench will print them before printing
+
+Show labels as a thermal bench will print them before printing
+
+C22 increment 3. At a ZPL/EPL bench (or the demo printer) the Preview dialog draws each PDF page in the 1-bit dots the printer gets at the browser's DPI (pager, one-pixel-per-dot zoom, As supplied tab), and its Print sends exactly those bitmaps (label-print 0.3.0 printBitmaps; printPdf = render + printBitmaps, bytes pinned by SHA-256 from 0.2.1). renderPdfToBitmaps gained onPage (errors pass through unwrapped) and signal (the dialog aborts drawing on close). Review fixes: the print-dialog fallback prints a frame only once its PDF has loaded and only once; leaving the PDF drops a waiting print. Demo panel no longer downscales nearest-neighbour, which had dropped thin strokes ('PRFVIFW') and wrongly implicated the rasteriser: no threshold tuning needed. Gotcha for e2e: a blob PDF loads before Playwright's next click, so load-order races need a test-page shim that re-dispatches a fresh load event (Chrome clears a dispatched event's target).
+
+PR: ilg-merak/parcel-portal#110
+
+## 2026-11-06 — Rasterise PDF labels with pdf.js's legacy build, which runs on older Chrome
+
+Rasterise PDF labels with pdf.js's legacy build, which runs on older Chrome
+
+label-print 0.2.1: loadPdfjs imports pdfjs-dist/legacy/build/pdf.mjs + legacy worker. pdfjs-dist 6.4.299's modern build needs Uint8Array.prototype.toHex and Map.prototype.getOrInsertComputed; without them (Chromium 131 and 141) a PDF label at a thermal bench couldn't be rasterised and silent printing fell back with render_failed. Verified locally on both Chromium versions: 2 labels to the demo printer. Separate finding: 1-bit rendering at 203 dpi drops thin strokes in small text (threshold may need tuning).
+
+PR: ilg-merak/parcel-portal#109
+
+## 2026-11-06 — Split silent printing into finding the bench printer and sending
+
+Split silent printing into finding the bench printer and sending
+
+C22 increment 2, no behaviour change. print-labels.ts: silentPrinter() (bench, narrowed PrinterLanguage, target, demo, dpi — or the fallback reason, fetching nothing) + sendLabels(). Same check order, same parallel bench+USB lookups. Verified locally: ZPL one-click bytes identical, auto-print after dispatch toast, not_paired fallback tab. Found: pdfjs-dist 6.4.299's modern build needs Uint8Array.prototype.toHex and Map.prototype.getOrInsertComputed, so PDF rasterising fails (render_failed → dialog) on Chromium 131/141; fix via the legacy build in a separate PR.
+
+PR: ilg-merak/parcel-portal#108
+
+## 2026-11-06 — Send the carrier's ZPL to the printer as bytes, not text
+
+Send the carrier's ZPL to the printer as bytes, not text
+
+C22 increment 4. The UI's silent ZPL print read res.text() (UTF-8) and printZpl re-encoded it, so non-UTF-8 bytes under a carrier's ^CI (accents, ^GFB graphics) reached the printer as U+FFFD. label-print 0.2.0: printZpl takes Uint8Array/ArrayBuffer and sends bytes as given, counting labels via Latin-1; UI passes res.arrayBuffer(). Local e2e: demo printer job bytes identical to the label route (493 B). apps/ui lockfile doesn't pin the file: label-print version, so bumping it needs no lockfile commit.
+
+PR: ilg-merak/parcel-portal#107
+
+## 2026-11-06 — Show labels before printing: on the shipment page, and Preview beside each Print
+
+Show labels before printing: on the shipment page, and Preview beside each Print
+
+C22 increment 1. Shipment page shows its labels inline (PDF in an iframe); Preview (src/printing/label-preview.tsx) beside the order summary, Shipments and batch-results print buttons opens a shadcn Dialog with Print/Download; nothing fetched until opened; one-click print and post-dispatch auto-print untouched. printLabels gains a fallback option so the dialog never opens a tab. print-frame.tsx moved to src/printing and split into useLabels/LabelFrame/PrintFrame (also: a non-PDF 200 such as a sign-in page is now an error). Gotcha: headless Chromium's PDF viewer lays a label out wider than a narrow iframe, so the dialog is sm:max-w-6xl. Local e2e (fake carrier, Playwright container) screenshots in plans/c22-screens.
+
+PR: ilg-merak/parcel-portal#106
+
+## 2026-11-06 — Forward only the customer API's declared routes, not all of /v1
+
+Forward only the customer API's declared routes, not all of /v1
+
+Harry: be declarative about gateway routes, not a /v1 wildcard. internal/gateway/gateway.go now has an unexported routes list (POST /v1/order-files, GET /v1/order-files/{orderFileId}, POST /v1/orders) registered by method+path on the mux; any other /v1 path or method is the gateway's JSON 404. TestTheRoutesAreThePublicContractsOperations holds routes equal to public-openapi.yaml's operations (via publicapi.GetSpec), so a new customer API operation must be added to both. forwardable() stays as a second guard (an encoded .. in {orderFileId}). svc's APIKey group is unchanged.
+
+PR: ilg-merak/parcel-portal#105
+
+## 2026-11-05 — Fix what the dev check of the Parcel dashboard and monitors found
+
+Fix what the dev check of the Parcel dashboard and monitors found
+
+Follow-up to #102 after a verification workflow plus critic on dev. SFTP statsd series now carry instance: (two hosts overwrote one untagged series). Dashboard: instances sum instance_count, p95 tile aggregator percentile, canary bars .rollup(sum) (gcp.logging.user.* metrics are untyped in Datadog, so .as_count() is a no-op), 5xx tiles read gcp.run.request_count, admin list +4 events, canary _canary/ lines excluded. Monitors: SFTP unhealthy counts previous_state:healthy only; new stuck-rollout monitor on !previous_state:healthy > 4/30m; canary message points at Cloud Logging (the job has no agent). Logs: Import finished uses importSource (a second source key overrode source:go). A gateway hang-up reclassification was tried and reverted in review: callers timing out on a slow svc are the forward-failed monitor's only slowness signal; its message now explains `context canceled` instead. Also removes ILG dual-shipping (third commit; Harry 6 Nov: "we don't need the ilg api key for datadog"): DATADOG_API_KEY_ILG held a GFS-org key, so every log line landed twice in the GFS org. Parcel ships to the GFS org only now.
+
+PR: ilg-merak/parcel-portal#104
+
+## 2026-11-05 — Let the UI write Next's prerender cache
+
+Let the UI write Next's prerender cache
+
+The UI runtime stage copied .next as root and ran as nonroot, so Next logged an EACCES error on every prerender cache write (28 in dev over 3 days). It now copies with --chown=nonroot:nonroot. Found via the observability work (#102).
+
+PR: ilg-merak/parcel-portal#103
+
+## 2026-11-05 — Observability in Terraform: tabbed dashboard, log metrics, GCP integration, monitors on in dev
+
+Observability in Terraform: tabbed dashboard, log metrics, GCP integration, monitors on in dev
+
+Adds a [Parcel <env>] dashboard with 7 tabs (dashboard.json.tftpl, validated against Datadog's API), 13 parcel.<env>.* log-based metrics, the GCP integration registration, and datadog_monitors_enabled in dev. The Datadog provider moves to ~> 4.4 for tabs.
+Found: the shared ilg-platform cloud-run module hardcodes DD_ENV=serverless, so env:dev log queries (monitors, runbook) matched nothing. Switched to @env. A platform fix is owed.
+Needs the DATADOG_APP_KEY org secret, and gcp-config#9 applied first.
+
+PR: ilg-merak/parcel-portal#102
+
+## 2026-11-05 — Error pages instead of Application error; sign-out survives svc failing
+
+Error pages instead of Application error; sign-out survives svc failing
+
+C19 PR 2 (UI, plan increment 5).
+- A shared ErrorPanel backs app/(app)/error.tsx (page errors) and app/error.tsx (errors in the signed-in layout, e.g. /me failing for a stale acting cookie). It offers Try again (router.refresh and reset), Back to GFS (only while acting, via isActingAction since the cookie is httpOnly: clears acting, then a hard load of /orders) and Sign out, and shows the error digest as a support reference.
+- signOutAction retries svc once after 1 s, then clears both cookies anyway.
+- On /sign-in the panel offers only Try again.
+- The dev browser check (stale cookie in DevTools) is still owed: no credentials on rc-hjf.
+
+PR: ilg-merak/parcel-portal#101
+
+## 2026-11-05 — Acting-as safety in svc: session-only acting, sign-out, actorId, stale-tab guard
+
+Acting-as safety in svc: session-only acting, sign-out, actorId, stale-tab guard
+
+C19 PR 1 (svc, plan increments 1–4).
+- X-Acting-Tenant is read on session routes only, and /auth/* ignores it. A gone customer is 404 acting_tenant_not_found.
+- Logout revokes in the session's own tenant (it silently revoked nothing while acting).
+- actorId is on every signed-in log line via a per-request slot (TrackActor in Correlation, SetActor in Authorize), Request completed included. User events name the subject targetUserId.
+- Optional X-Expected-Tenant: 409 tenant_changed is checked in Authorize after scope resolution, documented on 15 operations, and the acting line is logged only after it. Contract 5.9.0.
+- e2e: the stale-tab table refuses all 15 and changes nothing, and fails with the guard disabled.
+The UI halves are PRs 2–4.
+
+PR: ilg-merak/parcel-portal#100
+
+## 2026-11-05 — Report a refused smoke sign-in at once, with its reason
+
+Report a refused smoke sign-in at once, with its reason
+
+The dev smoke test waited 30 s for the URL to leave /sign-in and failed with a URL mismatch. It now polls for either outcome and fails at once when the sign-in form shows its error, naming the account and the message. The login itself still needs DEV_SMOKE_ADMIN_EMAIL or the password fixed (Harry).
+
+PR: ilg-merak/parcel-portal#99
+
+## 2026-11-05 — Export a range of days, up to 31
+
+Export a range of days, up to 31
+
+GET /exports/shipments and /exports/shipments.csv take an optional to: the export covers the site-local days date to to, inclusive, at most 31 (to needs date and can't be before it; 400 otherwise). The summary returns to, the file is shipments-<date>-to-<to>.csv, and the contract is 5.8.0. The Export page replaces the toolkit dd/mm picker with native First day and Last day inputs in a GET form with Show, and the CSV fetch allows 60 s. Stack 3/3 of the Wilders DC-parity build (C21).
+
+PR: ilg-merak/parcel-portal#98
+
+## 2026-11-05 — Link tracking from the Shipments pages, with a link per consignment
+
+Link tracking from the Shipments pages, with a link per consignment
+
+Tracking link templates take {consignment} as well as {tracking}. With {tracking} there's one link per parcel; a template with only {consignment} gives one per shipment, which is DC's GFS ConsLink.asp shape. The export column follows the same rule. GET /shipments and GET /shipments/{id} return trackingUrl (contract 5.7.0), the Shipments list and detail link out, and the Export tab has a one-click GFS preset. There's no default template. Stack 2/3 of the Wilders DC-parity build (C21).
+
+PR: ilg-merak/parcel-portal#97
+
+## 2026-11-05 — Let a GFS admin set a customer's export settings
+
+Let a GFS admin set a customer's export settings
+
+Wilders' DC-parity item 1 (tracking link), step 1/3. GET/PUT /admin/tenants/{id}/export-settings (IANA time zone, https tracking-link template with {tracking}, Excel-formula flag) + customer Export tab with preview. Nothing on by default. Contract 5.6.0.
+
+PR: ilg-merak/parcel-portal#96
+
+## 2026-11-04 — Smoke-test dev in a browser after every deploy
+
+Smoke-test dev in a browser after every deploy
+
+Harry, 4 Nov: browser smoke test. e2e/ Playwright package; dev-smoke.yaml (reusable, nightly, manual) in the Playwright image signs in as a dedicated GFS admin (DEV_SMOKE_ADMIN_PASSWORD secret), makes a demo customer, uploads the sample, fixes, packs, dispatches 5, checks Shipments, always deletes the demo. Called after svc and ui dev applies; report-only.
+
+PR: ilg-merak/parcel-portal#91
+
+## 2026-11-04 — Add a demo customer and a sample order file for trying the portal on dev
+
+Add a demo customer and a sample order file for trying the portal on dev
+
+Harry, 4 Nov: make upload → pack → label easy to test. Dev/local only (fake carrier): POST /admin/demo-customer sets up a ready customer (DC layout, fake Selector, presets, demo printer); GET /sample-orders.csv gives ready/needs-packing/flagged orders with fresh refs. UI: Try the portal card (acts for it, opens Orders) and Download a sample file. Contract 5.5.0. Checklist rewritten.
+
+PR: ilg-merak/parcel-portal#90
+
+## 2026-11-04 — Make a customer's SFTP folder from its name instead of asking for one
+
+Make a customer's SFTP folder from its name instead of asking for one
+
+Harry, 4 Nov: SFTP users are locked to /inbound, so the folder (slug) should be generated. svc makes it on create from the name + 4 random chars (retry on clash); migration 016 backfills; New customer asks name only; Overview folder read-only. Contract 5.4.0. Stack 3/3 on #88.
+
+PR: ilg-merak/parcel-portal#89
+
+## 2026-11-04 — Let a GFS admin soft-delete a customer and restore it
+
+Let a GFS admin soft-delete a customer and restore it
+
+Harry, 4 Nov: (soft-) delete customers. tenant.deleted_at (migration 015); while deleted: sign-in, sessions, API keys, SFTP snapshot, slug lookup and admin upload all refuse; restore undoes it. Customers page splits deleted with Restore; Overview Delete customer; switcher skips deleted. Contract 5.3.0. Stack 2/2 on #87.
+
+PR: ilg-merak/parcel-portal#88
+
+## 2026-11-04 — Let a GFS admin edit, re-enable and set the password of a user
+
+Let a GFS admin edit, re-enable and set the password of a user
+
+Harry, 4 Nov: GFS admins manage users. Edit name/email, enable, set password (revokes sessions); disable now revokes sessions; no self-disable in svc. Contract 5.2.0. Stack 1/2 with customer soft-delete.
+
+PR: ilg-merak/parcel-portal#87
+
+## 2026-11-04 — Put a customer's users, SFTP logins and API keys on one Access tab
+
+Put a customer's users, SFTP logins and API keys on one Access tab
+
+Harry, 4 Nov: merge Users, SFTP users and API keys, make them intuitive, link the Swagger viewer and share the SFTP host. Access tab with Portal users / SFTP (host, port, /inbound, key-only) / API (address, docs link, bearer key) cards; old tab URLs redirect; stale 'not live yet' notes removed. ui Terraform: SFTP_HOST and CUSTOMER_API_URL env vars from dns_domain (plan to Harry before merge).
+
+PR: ilg-merak/parcel-portal#86
+
+## 2026-11-04 — Type a layout's column names, put its fields in tabs, rename Carrier account to Selector config
+
+Type a layout's column names, put its fields in tabs, rename Carrier account to Selector config
+
+Harry, 4 Nov feedback on the layout editor after #84: drop the 'Your file's columns' section (column names typed, with suggestions), keep group-by, Order / Each product line as tabs with to-do counts, sample fill as one button; the customer's Carrier account tab is Selector config.
+
+PR: ilg-merak/parcel-portal#85
+
+## 2026-11-03 — Match a layout's columns by name and say what's still to map (C18)
+
+Match a layout's columns by name and say what's still to map (C18)
+
+C18, Harry 3 Nov ('lets give it a whirl') after asking whether the CSV mapping/defaults/formatting UX was now good. svc: POST /admin/mapping/suggest matches a file's columns to fields by name (word-based, family words rule fields out, tested against DC's 49 columns and a non-DC header set); MappingField.neededFor (us_address, cross_border, parcel) kept equal to stage 2 by test; contract 5.1.0. UI: reading a sample matches columns and marks them 'Matched: check it' with undo; required fields unmapped are an amber to-do rather than red; US/cross-border fields listed with badges; If blank and Translate values are direct links; a parcels note.
+
+PR: ilg-merak/parcel-portal#84
+
+## 2026-11-03 — Take orders as JSON over the customer API (C15 P6)
+
+Take orders as JSON over the customer API (C15 P6)
+
+C15 P6. POST /v1/orders (customer API 1.2.0): up to 100 JSON orders; one request = one import file (source api, object never written); service.requested mapped via the layout's carrier/carrierService lookups (miss = unmapped_service); then the import's own plan + ApplyImport, so validation, statuses, replace-if-undispatched by shipRef, refuse-if-dispatched and duplicates behave as a file's. Per-order created/replaced/refused with status and problems (no file column). Harry, 3 Nov evening: 'P6, breaking changes, deployments: all fine'; the design calls (one request one file, resend replaces, no Idempotency-Key) were made here.
+
+PR: ilg-merak/parcel-portal#83
+
+## 2026-11-03 — Log an API key's revocation once (C15 P2 follow-up)
+
+Log an API key's revocation once (C15 P2 follow-up)
+
+RevokeAPIKey reports found and newly (the query reads the previous revoked_at FOR UPDATE), so revoking a revoked key stays a 204 with its first time but no longer logs 'API key revoked' again. UploadPanel's tenantId/tenantName props were left: they still choose the admin upload route.
+
+PR: ilg-merak/parcel-portal#82
+
+## 2026-11-03 — Put the customer API behind a public gateway (C15 P5)
+
+Put the customer API behind a public gateway (C15 P5)
+
+C15 P5. cmd/gateway forwards /v1 to private svc signed with an ID token for svc as its own SA (X-Serverless-Authorization; caller's dropped), passes x-request-id, serves Swagger UI at /docs over the embedded public spec (/openapi.json); anything else JSON 404, unclean paths not forwarded. iac/projects/gateway: Cloud Run (LB-only ingress, allUsers invoker), run.invoker on svc for its SA (as the UI has), own HTTPS LB + managed cert, A record api.parcel.delivery.<domain>. gateway-on-push/manual-deploy; plan matrix and scans include it. Harry OK'd P5 dev Terraform overnight in-session (3 Nov) on a purely additive plan.
+
+PR: ilg-merak/parcel-portal#81
+
+## 2026-11-03 — Take order files over the customer API, idempotently (C15 P4b, draft)
+
+Take order files over the customer API, idempotently (C15 P4b, draft)
+
+C15 P4b. POST /v1/order-files (customer API 1.1.0): CSV stored as <slug>/inbound/api-<token>-<name> with metadata source=api, api-key, import-file-id, content-sha256; recorded as received and answered 202 with its id before the import runs, which keeps the id. Idempotency-Key: token = hash(tenant, key), conditional GCS create; same file replays, different file 409. A clashing import-file-id falls back to a new id. Portal contract 5.0.0: ImportFile.source x-extensible-enum [sftp, browser, api] (oasdiff calls both enum-add and enum->x-extensible-enum breaking; no 4.x was ever released). Held as a draft for Harry's yes on 5.0.0.
+
+PR: ilg-merak/parcel-portal#80
+
+## 2026-11-03 — Serve the customer API's first route behind API keys (C15 P4a)
+
+Serve the customer API's first route behind API keys (C15 P4a)
+
+C15 P4a. public-openapi.yaml 1.0.0 is the customer API's own contract, generated into internal/http/publicapi and served on svc's router beside the portal routes, each with its own validator. middleware.APIKey (Bearer ppk_...) runs in a chi group before path binding, so a keyless request is always 401; it scopes to the key's tenant and ignores X-Acting-Tenant. GET /v1/order-files/{id} reads one of the customer's files (no bucket path or uploader ids). make public-contract-check in CI. P4b (CSV upload, source=api) waits on Harry's internal ImportFile.source enum call. svc stays private until P5's gateway (Terraform).
+
+PR: ilg-merak/parcel-portal#79
+
 ## 2026-11-03 — Pack and cancel ticked orders from the Orders page (C16 G, UI)
 
 Pack and cancel ticked orders from the Orders page (C16 G, UI)
@@ -18,7 +270,7 @@ PR: ilg-merak/parcel-portal#77
 
 Cancel pending orders and pack them into a preset in bulk (C16 G, svc)
 
-Harry asked to bulk-change the status of pending orders (3 Nov) and agreed two actions. POST /orders/cancel voids pending orders that no dispatch holds, recorded under the user and audited; a later file with the same reference imports the order afresh. POST /orders/pack gives each needs_packing order one preset parcel holding all its lines, through the single-order pack. Both return per-order results and work for an acting admin. Contract 4.7.0; no migration. Verified locally as a customer and as an acting admin.
+Harry asked to bulk-change the status of pending orders (3 Nov) and agreed two actions. POST /orders/cancel voids pending orders that no dispatch holds, recorded under the user and audited; a later file with the same reference imports the order afresh. POST /orders/pack gives each needs_packing order one preset parcel holding all its lines, through the single-order pack. Both return per-order results and work for an acting admin. Contract 4.9.0 (renumbered after #68 took 4.8.0); no migration. Verified locally as a customer and as an acting admin. Pre-merge review fixes: portal-side per-order faults are logged ('Bulk order action failed'), a held order (dispatch running or outcome unknown) says to dispatch it again to settle it, stale-read is order_changed. Merged with #77 as 6b12b7d via the async stack merge API.
 
 PR: ilg-merak/parcel-portal#76
 

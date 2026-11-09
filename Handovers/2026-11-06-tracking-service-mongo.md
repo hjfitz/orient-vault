@@ -1,14 +1,14 @@
 ---
 tags: [handover]
-status: open
+status: resumed
 workstream: tracking-service Firestore → MongoDB Atlas (Tracking Service programme, group D)
 programme: Tracking Service
 repo: gfs-bifrost/tracking-service
 from: laptop
 to: hjf.shell.platform.ilg.software
 session_id: c36659b6-edee-4035-ab29-ffd89416a0e8
-resumed_by: ""
-updated: 2026-11-06T15:20Z
+resumed_by: "3aa25172-6c08-47b7-801e-82d3744ffce2"
+updated: 2026-11-06T18:01Z
 ---
 # Handover: tracking-service Firestore → MongoDB (group D)
 
@@ -16,6 +16,8 @@ updated: 2026-11-06T15:20Z
 
 - **Why this started.** On 2026-11-06 at 09:10–09:16Z, prod Firestore throttled 536 commits with `RESOURCE_EXHAUSTED` during PURDYFIGG's 5-minute reap bursts. They surfaced as `InvalidArgument: transaction has expired`, because the gapic Commit retry reuses the dead transaction id. Pub/Sub redelivery healed it and nothing was dead-lettered. Harry decided to move persistence to MongoDB Atlas. That supersedes his 2026-10-19 "stay on Firestore" decision, and it's recorded in [[Bifrost/Tracking Service/Migration State]].
 - **`main` is `a97baca`.** It carries D1 (#18), D2 (#22, #23), D3 (#20), D4 (#21) and D6 (#19).
+> SUPERSEDED 2026-11-06 18:01Z — prod and dev now serve `a97baca` (D1–D4 + D6 live; `STORE` unset, so still Firestore). D1 prod apply finished 15:40:40Z, the batch deploy 17:58:16Z. D6 ✅. Only the D1 soak (G3, read from 2026-11-08T15:41Z) and the D5 plan (draft) remain open.
+
 - **Prod and dev both serve image `44734ac` (D1).** D1's prod Terraform apply (Deploy run 42226342798) is still running its field operations: 6 of 9 were exempt at 15:19Z, at about 6 min each.
 - **One Deploy run, 42239748734 for `a97baca`, is pending behind it.** It ships D2–D4 code (inert in prod: `STORE` defaults to `firestore`, Firestore ignores marks) **and creates the Atlas clusters** (D6).
 
@@ -28,6 +30,8 @@ updated: 2026-11-06T15:20Z
 | D6 | Atlas M10 per env (backup and PIT on, termination protection in prod), `readWrite` user, connection string as a Terraform local (not wired to the service yet) | #19 | merged; dev plan agreed by Harry; prod plan to be checked in run 42239748734 |
 
 ## In flight
+> SUPERSEDED 2026-11-06 18:01Z — the D1 prod apply and the batch deploy are both closed (see Closed since handover). Still open: **D1 soak (G3)** until 2026-11-08T15:41Z, and **D5 plan** `[[tracking-service/plans/mongo-store]]` (draft, worktree `hjf/tracking-service-mongo-store` with no commits).
+
 | Work | PR / branch | State | To close it |
 |---|---|---|---|
 | D1 prod apply | run 42226342798 (`44734ac`) | `terraform-apply-prod` in progress, field operations running | Wait for success, then run `gcloud firestore indexes fields describe <field> --collection-group=<c> --database=tracking-service --project=bifrost-prod-global1` for all 9 fields: each should show 0 indexes. Write the evidence into plan `tracking-service/plans/exempt-unqueried-fields-from-firestore-indexing` (inc 3), then `wp tick` inc 3 after the soak. |
@@ -37,7 +41,16 @@ updated: 2026-11-06T15:20Z
 Stale local worktrees on the laptop (nothing unpushed matters): `agent-*`, `exempt-unqueried-firestore-fields`, `skip-identical-republishes`, `tracking-service-mongo`. All branches are merged or unused, so they're safe to remove later.
 
 ## Waiting on Harry
+> SUPERSEDED 2026-11-06 17:42Z — the session resumed after the limit reset, read the prod plan (exactly the agreed set) and approved `terraform-prod`. See Closed since handover.
+
+- **2026-11-06 15:51Z, session 3aa25172 stopped (usage limit): batch deploy run 42239748734 NOT approved.** It was still in `terraform-apply-dev` (Atlas dev cluster). Next: read `terraform-plan-prod`, approve only if it is exactly the agreed set (Atlas cluster `tracking-service-prod` with termination protection, db user, random_password, Cloud Run image/env bump, 0 destroy) via `pending_deployments` env 23493256883; verify prod+dev serve `a97baca` and API 200; tick D6.
+- **D1 soak (G3):** read from 2026-11-08T15:41Z against the baseline on G3; then tick D1 inc 3 and sign off the D1 plan.
+- **D5 Gate A latency bar:** recommend p95 ≤ 1 s for the 30-day insights read set and ≤ 500 ms for 7-day stats at ~600k marks on dev Atlas M10.
+- **Make `api-mongo` a required check** once D5 inc 2 lands (branch protection; human). Recommend yes.
+- **Note freeze during the hard-cut hold (G9)** is owned by no unit; recommend D7 owns it. **fuse-mcp `database-collections.json`** for the 11 Mongo collections: recommend D11.
 - **Nothing blocking.** Already decided: Mongo, not Postgres; G4 (import the frozen `duplicates` history as a frozen collection); G5 (served stats recompute-equivalent); G6 (two M10s, connection string as a Terraform env var); G7 (`internal/storeopen`, `cmd/import-mongo`, `cmd/parity` approved); a **hard-cut** cutover; and a **`seen` collection**.
+> SUPERSEDED 2026-11-06 — sent to Harry by Bifrost Support Bot DM at 15:52Z.
+
 - **Give Harry the dedupe answer** (already verified, see Closed). Bottom line: the businessId + customer ref rule holds today. **Prod: 89,156 shipments, all keyed by customer ref, 0 duplicate groups, 0 fallback docs; dev: 34,294, same.** Prod has **no returns collection at all**. The latent split paths are in R14, and the Mongo must-haves are in the D5 row.
 - **Owed by a human, not blocking:** a prod `recompute-stats -dry-run` to size G5's drift (G5 policy: a human runs prod tools).
 - **Before D7:** confirm the shared Atlas project allows Cloud Run egress. No Fuse Atlas stack declares an access list or PrivateLink.
@@ -78,7 +91,7 @@ Checked 2026-11-06 ~15:15Z on `hjf.shell.platform.ilg.software` (kernel 7.2.14):
 - **Accounts:** `gh` is logged in as `harry-fitzgerald_gfsdev` and sees the merged PRs #18–#23 and pending run 42239748734. `gcloud` is `harry.fitzgerald@gfsdeliver.com` and can read `bifrost-prod-global1`.
 - **Repo:** `~/code/fuse/tracking-service` was **cloned during the handover** (at `a97baca`), with `mise.toml` trusted.
 - **Unattended running:** `~/.claude/.credentials.json` is present and `defaultMode` is `auto`.
-- **Sync:** the vault, skills and memories were synced, and this record, the Migration State, the ledger and session-handover match by hash. The draft-design, the dedupe script and the D1 plan match after the sync's `/home/hjf` → `/home/harry` rewrite.
+- **Sync:** the vault, skills and memories were synced, and this record, the Migration State, the ledger and session-handover match by hash. The draft-design, the dedupe script and the D1 plan match after the sync's `/home/hjf` → `/home/hjf` rewrite.
 - **MCP:** the `fuse` and `ado-local-mcp` servers were kept with the VM's own config. OAuth servers (Atlassian, datadog, slack, ado-remote-mcp) need `/mcp` once there if they aren't already signed in. **Restart Claude on the VM** to load them.
 - **Not there:** the laptop's worktrees and background agents. All their work is pushed and merged; nothing is unpushed.
 
@@ -94,4 +107,8 @@ Checked 2026-11-06 ~15:15Z on `hjf.shell.platform.ilg.software` (kernel 7.2.14):
 ## Closed since handover
 | When (UTC) | Work | Result |
 |---|---|---|
+| 2026-11-06 17:59 | Batch deploy prod apply (run 42239748734) + D6 | **Success** 17:42:22–17:58:16Z: `Apply complete! Resources: 3 added, 1 changed, 0 destroyed.` Atlas `tracking-service-prod` created in 15m11s. Prod serves `a97baca` (revision `00016-tcd`, 100%), dev serves `a97baca`; prod API reads 200; neither service has `STORE`/`MONGODB_*` env (still Firestore). **D6 ticked ✅.** |
+| 2026-11-06 17:42 | Batch deploy prod gate (run 42239748734, `a97baca`) | `terraform-plan-prod` (job 127995893364): **Plan: 3 to add, 1 to change, 0 to destroy**: `mongodbatlas_advanced_cluster.tracking` (`tracking-service-prod`, `termination_protection_enabled = true`, M10×3 GCP EUROPE_WEST_2, autoscale to M20, backup + PIT, 8.0), `mongodbatlas_database_user.tracking` (`tracking-service-user-prod`, readWrite), `random_password.mongodb_user_password`, Cloud Run image `44734ac`→`a97baca` plus one masked env swap. Matched the agreed set, so `terraform-prod` was approved 17:42:20Z. Dev already serves `a97baca` (API 200; `STORE` unset, so Firestore). |
+| 2026-11-06 15:51 | D5 plan (draft) | [[tracking-service/plans/mongo-store]]: 7 increments, three-way reviewed (history, factual, structure), marks benchmark first as Gate A. Left **draft**; linked from the D5 row. Worktree `hjf/tracking-service-mongo-store` (no commits). |
+| 2026-11-06 15:41 | D1 prod apply (run 42226342798) | **Success**, 14:34:18–15:40:40Z (66 min, ~7.4 min/field). All 9 fields at 0 indexes in `bifrost-prod-global1/tracking-service`; `stageTimes.despatched` inherits; `updatedAt` keeps 3. Prod serves `44734ac`; API reads 200. Evidence in the D1 plan (inc 3). **G3 soak started 15:40:40Z**, read no earlier than 2026-11-08T15:41Z (recorded on G3). Today's baseline also has a second burst: 486 at 11:20–11:22Z. Resumed on rc-hjf by session 3aa25172. |
 | 2026-11-06 15:15 | Dedupe verification (workflow wf_f7a34f8a-8de, 11 agents, every claim challenged by a skeptic) | **Live data:** 0 duplicate businessId + customerRef groups, 0 fallback-keyed docs and 0 businessId case variants, in dev and prod. **Code:** the doc id is a pure function of the normalised businessId + key, and nothing re-keys. **Latent:** splits via a missing ref, the Shopify raw `name` or replay edits (R14), and redrive's new messageId (R13). **Mongo:** 7 must-haves added to the D5 row, and hard-cut must-haves added to G9. Findings: `Handovers/2026-11-06-tracking-service-mongo.dedupe-findings.md`. |

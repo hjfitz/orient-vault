@@ -1,0 +1,225 @@
+---
+ticket: none
+title: 'Joined-up mock traffic: confirm the sales orders the mocker mocked'
+service: fuse-mocker
+status: active
+created: '2026-11-05'
+updated: '2026-11-05'
+repo: /home/harry/code/fuse/fuse-mocker
+worktree: /home/harry/code/fuse/fuse-mocker/.claude/worktrees/joined-up-confirmations
+branch: hjf/joined-up-confirmations
+base: origin/main
+base_sha: 847b9b725
+pr: null
+tags:
+- waypoint
+- plan
+impl_model: sonnet
+impl_effort: medium
+---
+# Joined-up mock traffic: confirm the sales orders the mocker mocked
+
+<!-- Guidance in this file is written as HTML comments: Obsidian hides them, agents read them,
+     and `wp signoff` ignores them. Only <angle spans> are treated as unfilled placeholders, so
+     they mark the places a human or agent must actually type something. Leave the comments in
+     place — deleting them costs the next reader the guidance and gains nothing at the gate.
+
+     SUPERSEDING A STATEMENT. This file is edited by several sessions over days. When something
+     here stops being true, do NOT strike it through, delete it, or bury a correction inside it.
+     Put one blockquote immediately ABOVE the stale text and leave the text alone:
+
+         > SUPERSEDED 2026-09-04 — the monitor now lives in `gfs-bifrost/observability`.
+         > Everything below is kept as the record of how it was first built here.
+
+     One marker, always above, never inside. `wp decide` writes the dated entry in
+     `## Decisions & deviations` that explains why. -->
+
+## Intent
+<!-- What we are changing and why. Link the ticket. -->
+Out-of-ticket. Today the mocker can mock a sales order and, separately, a goods-out confirmation, but nothing ties the two together. The recent-orders picker copies the reference and nothing else, and load-run orders can't be picked at all. This change lets the mocker confirm sales orders it mocked itself. Each confirmation mirrors its order: `order.salesOrder`, `customerRef`, `customer.order`, lines, SKUs and line ids, the ordered quantity fully shipped, and the site. It publishes on `confirmation_ready` / `goods_out_confirmation` with `broadcast` set and the original `metadata.connectorId`, and is still mock-marked. A confirmation can be sent straight from an activity row, or automatically after `confirmAfterSeconds` on schedules and load runs.
+
+## Acceptance criteria
+<!-- Observable, checkable outcomes — not tasks. Numbered by order: increments cite them as
+     (AC 2,4), and sign-off prints which criteria no increment claims. -->
+- [x] 1. A goods-out confirmation derived from a generated sales order passes the canonical gate. Its salesOrder, customerRef, customer.order, line numbers, SKUs, soLineId/solLineId, quantities and site match the order.
+- [x] 2. A sales order that a schedule generated can be re-parsed after it comes back out of Mongo. That fixes today's replay failure (`dates.created: expected date, received bson.DateTime`).
+- [x] 3. Every activity row for a published send records the channel and connectorId it resolved.
+- [x] 4. `POST /api/v1/activity/{id}/confirm` publishes the derived confirmation with `broadcast="true"`, the original `metadata.connectorId`, `source` `mock`/`mock-<channel>` and correlation id `<order corr>-confirm`. On dev, sftp-connector or fapi receives it.
+- [ ] 5. In the UI, picking a recent sales order fills in the whole derived confirmation (payload, target, broadcast, connector), not just the reference.
+- [x] 6. A schedule with `confirmAfterSeconds` sends a matching confirmation once the delay is up, within one scheduler tick, recorded under activity source `auto_confirm`.
+- [x] 7. A load run with `confirmAfterSeconds` sends one confirmation per published order, with enqueue failures counted and never failing the message.
+- [x] 8. No change to the dev-only checks, to who owns the loops (G4), or to existing response shapes (G5). Every contract change is additive.
+
+## Affected boundaries
+<!-- Components, paths and contracts this touches. Wikilink existing explainers; do not restate
+     their contents. If this names a topic, endpoint, canonical type, collection, inter-service
+     dependency or shared package, sign-off will prompt for the Fuse MCP data file too. -->
+- **Publish path:** `apps/api/internal/core/send/send.go` (`buildMetadata` resolves `connectorID` and then throws it away). See [[architecture#The publish path — the canonical validation gate publishes the PARSED envelope]].
+- **Generators:** new `apps/api/internal/core/generators/goods_out_from_sales_order.go`. The existing `goods_out_confirmation.go` keeps its SNAP comments.
+- **Payload round-trip:** `apps/api/internal/repositories/payload.go` (`NormalisePayload`) and `models/canonical/interpret.go` (`deriveDate`). Read only; the generated layer is not edited (G3).
+- **New package `apps/api/internal/core/confirm`.** It's a sibling of `core/replay`, which re-sends the same target and payload and drops Options, so it can't be reused for this.
+- **Scheduler:** `core/scheduler/{scheduler,execute}.go`. `fire` wraps `Send` in `runResult`, and `ClaimDue` claims every due item with no limit through `FindOneAndUpdate` in a bounded errgroup.
+- **Load runs:** `core/load/loop.go` (`fireBatch` → `sendSafely` → `sendOne`, with panic recovery) and `core/load/caps.go`. `apps/ui/src/lib/load/caps.const.ts` duplicates the tiers.
+- **Repositories:** new `repositories/pending_confirmations.go` and `indexes.go`. This becomes the API's sixth collection.
+- **HTTP:**
+  - controllers: `controllers/{activity,reference,schedules,loadruns}.go`
+  - DTOs: `dto/{recent_orders,run_requests}.go`, which list request fields one by one, so a new field must be added by hand
+  - `bootstrap/{app,factory}.go`
+  - `bootstrap/routes_test.go` checks the routes against the spec in both directions
+- **Contract:** `apps/api/openapi.yaml` (G5, fuse-mcp), the `ActivitySource` enum, and `apps/api/scripts/mcp-contract-smoke.sh`.
+- **UI:**
+  - `apps/ui/src/modules/send/{send.action.ts,components/send-view.tsx}`
+  - `apps/ui/src/lib/send/recent-orders.ts`
+  - `apps/ui/src/modules/activity/components/activity-view.tsx` (hard-coded `SOURCE_OPTIONS`)
+  - the generated `apps/ui/src/lib/gen/mocker-api.client.d.ts` (regenerate with `pnpm gen-mocker-api-client`)
+- **Downstream, read only:** consumers of `confirmation_ready` / `goods_out_confirmation`. fapi, sftp-connector and shopify-connector all filter on `source=<own> OR broadcast="true"`.
+- **Mocker's own capture subscription:** `iac/projects/fuse-mocker/pubsub-capture.tf` (`capture_goods_out_confirmation`, filtered on recordType only).
+- **Out of scope:** the fuse-mcp `mock-*` tools (Go and TS) get their own plan in fuse-mcp-server. That covers the `auto_confirm` filter value, `confirmAfter` arguments, and the `data/api-endpoints.json` and `data/database-collections.json` files.
+
+## Assumptions & uncertainty
+<!-- One line each, with how it was established. A genuine product or domain question goes here
+     as UNRESOLVED: and is raised with the user, never invented. -->
+- **Use target `confirmation_ready` with recordType `goods_out_confirmation`.** `sales_order_confirmation_ready` has no `PlannedAttributes`, so it can't carry `broadcast`. All three confirmation topic env vars point at the same topic (`cloud-run-api.tf:120-131`). Established by reading source; checked by the grounding reviewer.
+- **Downstream matching uses `order.salesOrder`, `order.customerRef` and `customer.order`.** It doesn't use `identifiers.shipmentId`: on real confirmations that is snap-adapter's hash. fapi and sftp-connector pass the references through without a lookup. shopify-connector looks up the Shopify fulfillment order from `customer.order`, so a mocked Shopify order always ends in `confirmation_data_failure`. Established from a cross-repo source read this session.
+- **`broadcast="true"` reaches every goods-out consumer subscribed for the business.** No attribute can target a single connector. Established from each consumer's `pubsub.tf`.
+- **The BSON date bug is real and live today.** It reproduced with a throwaway `go test -overlay`: `GenerateSalesOrder` emits `time.Time`, which comes back from Mongo as `bson.DateTime`, and `deriveDate` rejects it.
+- **`gen_schema.go` was generated at `@gfs-bifrost/types` 10.2.0, while `canonschema` resolves 10.15.0.** Increment 1 runs `make gen-check` and `make parity` first, so the "passes the gate" check runs against the current schema. Established from the history review.
+- **Manual confirms record source `one_off` with `sourceId` = the order's activity id; automatic ones record `auto_confirm`.** Defaulted: this follows replay and needs no new value for manual confirms.
+- **Rows from before increment 3 have no `connectorId`.** The confirm re-resolves it from the business's connectors using the stored channel prefix in `metadata.source`; with no channel, it sends without a connectorId. Defaulted, so existing dev rows stay confirmable.
+- **`confirmAfterSeconds` is an integer from 1 to 3600, matching `minIntervalSeconds`.** A claimed item that never got published (process restart) is marked failed, not retried. Defaulted.
+- **Replay stays unchanged.** A replayed confirm row goes out with no broadcast and reaches no consumer; re-confirming from the order is the supported path. Defaulted to keep replay's documented "drops the impersonation" behaviour.
+- RESOLVED 2026-11-05 (recommended default taken): **Fan-out.** For a business with several goods-out connectors, accept that a broadcast confirmation goes to all of them (shopify ends in `confirmation_data_failure`, fapi may log an unresolvable connector)? Or refuse the confirm when the order had no connectorId? Recommended: accept; it's dev only.
+- RESOLVED 2026-11-05 (recommended default taken): **Self-capture.** `capture_goods_out_confirmation` has no source filter, so the mocker captures its own confirmations, filed under `sales_order_confirmation_ready` because of the push-map quirk. At load-run volume that buries real producer captures (14-day TTL). Recommended: the capture handler skips envelopes whose correlation id starts with `mock-`. That is one small extra commit inside increment 6, before auto-confirm adds volume.
+- RESOLVED 2026-11-05 (recommended default taken): **Load-run confirmation records.** One `auto_confirm` activity row per confirmation, or only counts on the run's summary row (the documented one-row-per-run design, Migration State E2)? Recommended: summary counts only, with per-order rows for schedules. Increment 7's check depends on this.
+- RESOLVED 2026-11-05 (recommended default taken): **Idempotency.** Should a second manual confirm of the same order get a 409 (sftp would otherwise write a second file)? Recommended: 409 when a published confirm row already carries that `sourceId`, with `?force=true` to override.
+
+## Increments
+<!-- Each independently implementable AND verifiable. Cite the criteria it discharges as
+     (AC n,n). Tick with `wp tick`, which stamps `— done: <sha>` from HEAD; never hand-write it.
+     Prefer 3-7 — more usually means the ticket is too big, so say that rather than splitting
+     hairs.
+
+     A PRECONDITION THAT IS NOT CODE goes on its own indented `gate:` line, with a confirmation
+     box under it. Sign-off blocks on a ticked increment sitting above an unconfirmed gate, and
+     `wp brief` shows unmet gates in its NEXT block — so "do not action this yet" stops being
+     bold prose a fresh session can miss:
+
+         - [ ] 6. Widen the subscription filter (AC 6) — verify: filter matches in dev
+               gate: FUSE-1052 AND FUSE-1053 confirmed in prod
+                     [ ] confirmed
+-->
+
+Every increment is its own direct commit to `main`, and each one auto-deploys to dev with no CI gate. Run the local gates before every push. Any increment that changes `openapi.yaml` regenerates the UI client and updates `CLAUDE.md` in the same commit.
+
+- [x] 1. **Pure generator.** Add `DeriveGoodsOutConfirmation(seed, order, opts, r, now)`. It takes a parsed sales order and nothing calls it yet. — 25 generator tests incl. generate→parse→derive→bulk-envelope gate; schema regenerated to types 10.15, make parity 216/216 — done: a83c598
+  - IDs: `salesOrder` is `identifiers.salesOrder`, falling back to `shipmentId`, then `id`. Copy `customerRef`, `type` and `class`. Copy `customer.order` only when present. `customer.id` falls back to `ECOM`.
+  - Site and warehouse: map `identifiers.site`/`warehouse` to `location.*` and to each line's `identifiers.siteId`/`warehouse`.
+  - Lines: `solLineId` is `soLineId`, falling back to `atoi(line)`, then the index plus one. Every quantity equals `ordered`.
+  - Formats: dates are `goodsOutISOLayout` strings, and numbers are plain floats.
+  - Run `make gen-check && make parity` first. Regenerate if they're stale. (AC 1)
+  - verify: `TZ=UTC go test ./internal/core/generators/` covers determinism with a seeded Rand and a fixed clock, and has one test per mirrored field. The decisive test runs `GenerateSalesOrder` → `Parse(SchemaSalesOrder)` → derive → `Parse(EnvelopeSchema(goods_out, bulk))` and expects zero issues; a variant does the same with a string quantity `"3"`.
+- [x] 2. **BSON fix in `NormalisePayload`.** Convert `bson.DateTime` to `time.Time`, int32/int64 to numbers, and nested `bson.D`/`bson.M` to maps. (AC 2) — two BSON round-trip tests fail without the fix, pass with it; live replay check pending deploy — done: 08c82e0
+  - verify: `payload_decode_test` round-trips a `GenerateSalesOrder` output through BSON and parses it with no issues. On dev, replaying a generated schedule send that fails today now publishes.
+- [x] 3. **Activity provenance.** `buildMetadata` returns the `connectorID` it resolved. `ActivityEntry`, `ActivityDTO` and the spec's `ActivityDto` gain optional `channel` and `connectorId`. (AC 3,8) — send_test: channel + resolved/explicit connectorId recorded, none on a plain send; DTO field tests; live check pending deploy — done: bc084c6
+  - verify: send_test `TestAChannelSendRecordsItsResolvedConnectorOnTheActivityRow` and `TestAnExplicitConnectorIDWinsOnTheActivityRow`. Run `mcp-contract-smoke.sh`. On dev, `mock-send` a `sales_order` with channel `sftp`; `GET /activity/{id}` then shows the connectorId.
+- [x] 4. **`core/confirm` and the two endpoints.** Add `GET /api/v1/activity/{id}/confirmation` (preview) and `POST /api/v1/activity/{id}/confirm`. — routes_test both directions; 13 controller + 23 core tests incl. real send path asserting broadcast=true, metadata.connectorId, source mock-sftp; live check pending deploy — done: b499ceb
+  - Checks on the row: it was published, it's a create target, its recordType is `sales_order`, and it has a payload. A missing row is a 404. A malformed id, a non-sales-order row or a row with no payload is a 400. A publish failure is a 502.
+  - Derive: re-parse the stored payload, re-resolve a missing connectorId, then send with `broadcast` and the connectorId.
+  - Apply the idempotency answer.
+  - Write the openapi entries in the same commit. (AC 4,8)
+    gate: the Fan-out and Idempotency questions are answered
+          [x] confirmed
+  - verify: `routes_test`, controller tests for 400/404/502, and a core test with a fake publisher asserting `broadcast="true"`, `metadata.connectorId` and source `mock-sftp`. On dev, confirm the increment 3 order for HJF:
+    - `GET /confirmations/sent` shows it.
+    - The confirmation is captured under `sales_order_confirmation_ready`.
+    - A Datadog search on `<corr>-confirm` shows sftp-connector or fapi receiving it, and shows what any other connector did with it.
+- [x] 5. **UI picker pre-fills the derived confirmation.** `RecentOrder` gains `id`, `channel` and `connectorId` (additive). The picker only lists `sales_order` rows. Selecting one calls the preview endpoint through a server action, fills the editor, sets the target to `confirmation_ready`/`goods_out_confirmation`, and sets broadcast and the connector. Sending still goes through `/messages`. (AC 5) — 7 action specs (derive path/JSON/connector/issues; confirm path/force/corr); lint+64 tests+build green; live UI check pending — done: 593b597
+  - verify: a derive-action case in `apps/ui/src/modules/send/__test__/send.action.spec.ts`, then `pnpm lint && pnpm test && pnpm build`. On dev, screenshot the filled-in editor, then send it.
+- [x] 6. **Queue, drain and schedule `confirmAfterSeconds`.** — 12 scheduler + 15 AutoConfirmer tests (-race x3), repo shape tests, 6 controller validation tests, 3 UI action specs; capture skip 93a1d5e; live check pending deploy — done: ff943e8
+  - New `pending_confirmations` collection with indexes `{status, dueAt}` plus a TTL on `createdAt`. A shared `EnqueueMany`.
+  - Normalisation runs on read.
+  - `Outcome.Record` carries the parsed order out of the send.
+  - `fire` splits out the outcome and enqueues when OK, which covers run-now too.
+  - `Engine.Tick` drains after schedules fire: a claim guarded on `status: pending`, a per-tick cap, and bounded concurrency, deriving at drain time.
+  - New `auto_confirm` source: in `ActivitySources`, the spec enum and the activity-view `SOURCE_OPTIONS`.
+  - Schedule create and PATCH DTOs validate `confirmAfterSeconds` (create target and `sales_order` only).
+  - Apply the self-capture answer as its own commit, before this. (AC 6,8)
+  - verify: scheduler_test `TestATickDrainsDueConfirmations`, `TestALostClaimIsNotPublished` and `TestADrainFailureIsRecordedNotRetried`. A test sends an order through Mongo and back, then derives from it. On dev, a schedule with `confirmAfterSeconds: 30` gets a matching `auto_confirm` confirmation within one tick of the delay.
+- [x] 7. **Load-run `confirmAfterSeconds`.** — 12 load tests (-race): one EnqueueMany per batch, failed messages not owed, queue failure never fails a message, confirmationsQueued, caps reject/warn; live check pending deploy — done: 09109b6
+  - `sendSafely` and `sendOne` return the outcome.
+  - `fireBatch` collects the outcomes under its mutex and calls one `EnqueueMany` per batch.
+  - An enqueue failure is logged and counted, and leaves `sent` and `failed` unchanged.
+  - Add the field to the load-run request DTO by hand.
+  - `confirmAfter` doubles the effective rate in `Risk`, and `caps.const.ts` mirrors that.
+  - Record per the load-run answer. (AC 7,8)
+    gate: the Load-run confirmation records question is answered
+          [x] confirmed
+  - verify: loop_test `TestABatchEnqueuesOneBulkInsert` and `TestAnEnqueueFailureDoesNotFailTheMessage`. On dev, a 20-message burst with `confirmAfterSeconds: 30` produces 20 confirmations, counted in the Datadog `fuse.mocker.publish{recordType:goods_out_confirmation}` metric.
+
+## Verification
+<!-- The single authority for evidence. Increment lines carry `— done: <sha>` and nothing else.
+     Check-selection order lives in verification-menu.md — do not restate it here. -->
+
+### Evidence
+<!-- Newest first, dated. One bullet per check actually run, opening with what it discharges.
+     "Suite green" alone is not evidence. Sign-off requires at least one dated bullet here. -->
+- 2026-11-05 [inc 7] On dev, started HJF load run 6aeca2f34df6aeb6392796c8 at 15:38:27: burst of 10 at 5/s, sales_order, channel sftp, confirmAfterSeconds 20, correlation id prefix `mock-joinedup-inc7`.
+  - It completed with sent 10, failed 0, confirmationsQueued 10.
+  - The activity log held only the single `load_run` summary row, no per-message rows.
+  - At 15:38:51 UTC one fuse-mocker "drained due confirmations" log recorded sent 10, failed 0, released 0.
+  - Datadog on the `-confirm` ids: sftp_connector 10×204, rest_connector 10×204, collector 30 events. replay_service got 10 confirmation-failures, all the known HJF REST webhook failure.
+- 2026-11-05 [inc 6 + review fixes 22f8e87] On dev, created HJF schedule 6aeca2bd4df6aeb6392796c3 (generated sales_order, channel sftp, confirmAfterSeconds 20) and fired it with run-now at 15:37:34; its order had correlation id `mock-6a9921ba-…`.
+  - At 15:38:06 an `auto_confirm` activity row appeared: confirmation_ready / goods_out_confirmation, sourceId the schedule, connectorId conn_1435…, correlation id `mock-6a9921ba-…-confirm`, published. That is 32s, the 20s delay plus less than one 15s tick.
+  - `POST /activity/<that order's schedule row>/confirm` then returned 409, so the repeat check now spans the auto and manual paths.
+  - The schedule was deleted afterwards.
+- 2026-11-05 [inc 4, parcels c84b172] Re-sent the same HJF confirmation with `?force=true` once the parcel fix was deployed. The preview carried 2 consignments (MOCK-SKU-1 ×9, MOCK-SKU-2 ×3), each with an 18-digit STU. In Datadog, sftp_connector 204 and rest_connector 204, and the replay inbox got a single new failure: the HJF REST webhook again. The sftp DESADV error did not recur.
+- 2026-11-05 [inc 4] Ran `POST /activity/6aec9bf80d453c9dc3deaeb8/confirm` against dev (HJF, sftp order MOCK-SO-JZOOIJR):
+  - HTTP 200, correlation id `mock-joinedup-inc3-confirm`, published on `bifrost.dev.confirmation_ready.v1`. A repeat got 409 "already has a published confirmation".
+  - The preview mirrored the order: salesOrder MOCK-SO-JZOOIJR, customerRef MOCK-2611051508-JHH, site 0006, lines 1/2 with solLineId 1/2, SKUs MOCK-SKU-1/2, shipped 9/3, unitPrice 12.2/31.35. Options were `{channel: sftp, connectorId: conn_1435…, broadcast: true}`.
+  - `/confirmations/sent` showed the row with sourceId set to the order row and the order's connectorId. It was captured under `sales_order_confirmation_ready`, the self-capture that 93a1d5e now skips.
+  - Datadog: sftp_connector, rest_connector (fapi) and collector all received it. The replay inbox got 2 failures:
+    - fapi webhook to HJF's REST connector failed after 3 attempts. This predates the change: the same failure hit a pick confirmation at 14:24.
+    - sftp DESADV "packages.0.lines.0.quantity undefined", caused by empty consignments. Fixed in c84b172.
+- 2026-11-05 [inc 2] On dev, `GET /activity/6ac9638568fdc540a4634b2a/confirmation` (a GADG order a schedule generated on 2026-10-09, stored with BSON datetimes) returned 200 with a derived confirmation. That re-parse failed before 08c82e0 with `expected date, received bson.DateTime`. Checked through the preview rather than a replay, so no GADG order was republished.
+- 2026-11-05 [inc 3] On dev, `mock-send` of an HJF sales_order with channel sftp (correlation id `mock-joinedup-inc3`) produced activity row 6aec9bf80d453c9dc3deaeb8 carrying `channel: sftp` and `connectorId: conn_1435ca939ecb4c65b728fb0888aae7eb`.
+- 2026-11-05 [inc 1] `TZ=UTC go test ./internal/core/generators/` passed with 25 derive tests, including generate → parse → derive → bulk-envelope gate. `make gen` brought the canonical layer to types 10.15 (additive only), and `make parity` agreed with Zod on all 216 fixtures.
+
+### Not verified
+<!-- Stated, not papered over. "(none)" is a deliberate claim, and a fine one. -->
+- **shopify-connector's handling** of a derived confirmation. HJF has no Shopify connector. By source read, a mocked Shopify order ends in `confirmation_data_failure`.
+- **The release-on-shutdown path (22f8e87) under a real deploy.** It's unit-tested with a cancelled context, but no deploy has landed mid-drain yet.
+- **The UI Fill and Confirm buttons, and the schedule and load-run form fields, in a browser.** Lint, tests and the build pass, and the API calls behind them were exercised live with curl, but there are no screenshots.
+- **fuse-mcp.** Its `mock-activity` source filter still rejects `auto_confirm`, and it has no confirm tool. That's the separate fuse-mcp plan.
+
+## Decisions & deviations
+<!-- Date-stamped, newest first — written by `wp decide`, and by hand when that is easier.
+     Where implementation departed from this plan, and why. Source wins over the plan: correct
+     the plan in the same increment and record the correction here. Legitimately empty at plan
+     time. A decision worth defending in a review six months out belongs in a durable record
+     instead — `wp decide --record`. -->
+
+- **2026-11-05** — Review-panel fixes 22f8e87: the repeat-confirm 409 keys on the '<order corr>-confirm' correlation id, because auto-confirm rows carry the schedule as sourceId; a drain has a 10s deadline and releases unsent claims to pending on timeout or shutdown, with outcomes written on an uncancelled context; ClaimDue returns partial claims; capture skips only derived (-confirm) mock confirmations. Knowingly left: (a) a config-service seed error fails a queued confirmation for good, matching the agreed 'recorded, not retried', and a schedule's order can still be re-confirmed by hand with POST /confirm; (b) the 409 check-then-send is not atomic, so a true double-click can send twice; (c) a partial EnqueueMany error under-counts confirmationsQueued; (d) the UI never passes force=true (available on the API).
+
+- **2026-11-05** — Load runs (inc 7) differ from the plan in four ways. (1) No rate doubling in Risk: the drain caps confirmations at about 13/s (200 per 15s tick), so a run faster than that gets a warning that they will trail, and the tiers, and with them the UI's caps.const.ts, are unchanged. (2) The 'summary counts' live on the load run as confirmationsQueued, not on the summary activity row, which has no field for them; the outcome of each drained confirmation is in pending_confirmations.status and the fuse.mocker.publish metric. (3) The queue stores the payload as sent plus the run's or schedule's send options, so Outcome.Record was not needed. (4) A stranded claim is not marked failed; it ages out with the 7-day TTL and is never re-sent.
+
+- **2026-11-05** — Found live on dev in inc 4: HJF's sftp connector rejected the derived confirmation's EDIFACT DESADV (packages.0.lines.0.quantity undefined). It had empty consignments[], as the random generator always has, and sftp-connector builds packages from consignments (joined to lines by SKU; quantity and SSCC read from the consignment). Fixed in c84b172: one consignment (parcel) per line with a GS1-valid 18-digit STU. No despatches[] are generated, so there is no carrier or tracking on the DESADV.
+
+- **2026-11-05** — The recent-orders picker keeps listing purchase orders (the goods-in reference uses them); Fill/Confirm appear only for a sales_order. The UI offers both 'Fill from order' (editable, sent via /messages, not checked for repeats) and 'Confirm order now' (POST /confirm, 409 on a repeat). Rows written before inc 3 confirm with no connectorId: metadata.source was never stored, so the plan's 're-resolve from the stored channel prefix' had nothing to read.
+
+- **2026-11-05** — DeriveGoodsOutConfirmation takes (seed, order, r, now) with no Options: the order is the source of every value an option would override, so an options bag would only invite a mismatched confirmation.
+- 2026-11-05: Open questions settled with the recommended defaults (Harry: "let's action the plan"): accept broadcast fan-out in dev; capture handler skips `mock-` correlation ids (own commit before inc 6); load-run auto-confirms are counted on the run summary row, not one row each; a second manual confirm of the same order is 409 unless `?force=true`.
+- 2026-11-05: **The generator is derived, not reused.** `GenerateGoodsOutConfirmation` keeps its random behaviour for the free-form send path. The new derive is a separate function, so existing presets and fuse-mcp `mock-generate` output don't change.
+- 2026-11-05: **The simulator isn't driven.** Moving the order through the snap-api simulator so the real poller confirms it was rejected for now. It only works for simulator-backed businesses, and it would make `apps/api` call snap-api. It's a candidate follow-up.
+
+## Learnings
+<!-- Durable facts about the service surfaced while planning, working or testing that are not
+     already written anywhere in the vault — a gotcha, a constraint, a fragile edge, a confirmed
+     or refuted hypothesis. Not restated doc content. Sign-off promotes each confirmed one into
+     the matching durable doc, then clears it from here; a refuted one moves to ## Handback
+     rather than being deleted. Legitimately empty. -->
+- **Replaying a schedule-generated sales order fails today.** Its `time.Time` dates come back from Mongo as `bson.DateTime`, which `deriveDate` rejects. `TestARoundTrippedPayloadStillParsesCanonically` only covers string dates.
+- **All three goods-out consumers accept own-source or broadcast.** fapi (`rest`), sftp-connector and shopify-connector each gate on their own source or `broadcast="true"`. No attribute targets one connector, so a mock confirmation reaches consumers only when it's broadcast.
+- **The mocker captures its own goods-out confirmations.** Its capture subscription has no source filter, and the push-map quirk files them under `sales_order_confirmation_ready`.
+- **Replay can't deliver a confirmation.** Both replay paths drop channel, connectorId and broadcast, so a replayed confirmation reaches no consumer.
+- **`operations.md` is stale on logging.** Since 847b9b7, `ResolveSink` writes to stdout with the Datadog agent in the container, so the sidecar `/shared-volume` paragraph is wrong.
+- **`gen_schema.go` is 13 minor versions behind `@gfs-bifrost/types`.** It is still at 10.2.0, while `canonschema` resolves 10.15.0.

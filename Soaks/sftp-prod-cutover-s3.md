@@ -4,7 +4,7 @@ status: running
 programme: none
 unit: Plan C inc 4 (S3 dwell)
 started: "2026-11-03T09:46:30Z"
-next_checkpoint: "2026-11-03T17:00:00Z"
+next_checkpoint: "2026-11-18T00:00:00Z"
 subjects: [FUSE_033BE0B235, FUSE_15ADCA408F, FUSE_447A6A12D5, FUSE_84B6F5A152, FUSE_8B8F319605, FUSE_C062E5C41B, FUSE_C232BE3BCC, FUSE_DD2AF79592, FUSE_E5A356978A, FUSE_ABDAD7F392, FUSE_BF65660F94, FUSE_59DC37CB09]
 queued: []
 monitors: [335786575, 335786576, 335786578, 335786579, 335786581, 335786586, 335786587, 335786589, 335786590, 335786595, 335786600]
@@ -67,12 +67,19 @@ The kit is `~/sftp-cutover/` (laptop scratchpad or workstation `rc-hjf`). Start 
 - **2026-11-03 11:45Z (midday DM):** clean. 710 logins accepted from 12 user/IP pairs (9 customers). 41 uploads, 0 failed. 712 audit events stored. The guard woke three times (`support` scanner, DD2AF79592 closed before auth after a good 10:24Z login, a scanner handshake), none for a customer failure. The host's ED25519, ECDSA and RSA keys are identical to the VM's.
 - **2026-11-03 13:52Z:** clean on both the laptop and the workstation guards. VM idle since 09:47Z.
 - **2026-11-03 13:57Z:** clean. The watch moved from the laptop to the workstation `rc-hjf`. The laptop guard stopped after its 13:57Z check, and its log was copied to `~/sftp-cutover/s2-prod/guard.log` there.
-- **Next: 2026-11-03 17:00Z.** DM Harry the keep-overnight-or-roll-back recommendation. Keep is the default if clean. Update Plan C evidence.
+- **2026-11-03 17:00Z (DM'd at 17:04Z): clean. Recommended keeping it overnight.** 2,585 logins accepted from 16 user/IP pairs (11 of 12 customers: ABDAD7F392 and 59DC37CB09 arrived after midday, and BF65660F94 is still unseen). 3 known-user failures, none new since midday (`support` scanner ×2, DD2AF79592 at 11:32Z with no repeat). 200 uploads, 0 failed. 2,590 audit events stored. All monitors OK, and the VM had 0 customer logins. The guard ran 13:58–17:00Z with 0 signals. Afternoon alerts, none breakglass: the dev canary cleanup `connection lost` at 15:45Z (1 in about 2,200 runs), ESCENTRIC CSV content validation ×3, and 1 invalid-type file.
+- **2026-11-04 08:23Z (overnight, 17:00Z → 08:23Z): clean, with no guard running.** 5,134 logins accepted from 13 user/IP pairs (per-pair counts sum exactly to `login.accepted`). FUSE_BF65660F94 seen at last (34.96.62.130), so all 12 baseline customers have now logged in to the host. Known-user failures: 4, all `support` closed_before_auth from 4 scanner IPs. 2 handshake failures, both from IPs that have never logged in. 0 upload, audit or session failures, and all monitors OK. The VM had 0 customer logins. The C062 poller moved from 3.64.142.243 to 3.64.131.199 around 00:00Z at the same rate. 145 commits against 144 connector files: the extra one is C062's daily `FUSE_BOMREP_EPARFUM_*` that its staff write into `from_ilg/sales_order_confirmations/` with a second RSA key (`kbTM8YB2…`) from India and its poller then archives. The VM journal shows the same on 11-03 at 03:19Z. It isn't ingest, so it's not a drop.
+- **2026-11-04 10:38Z: S4 done**, so the host provisions prod SFTP users (#394, #395). Backlog and DLT 0. Customers were clean across the MIG roll. The first new prod connector through the host is still to be seen.
+- **2026-11-04 17:15Z: S4 verify closed in dev** (Harry's call). A new HJF dev connector went ACTIVE in ~10 s through the host on the image prod runs (`40c2285dce9e`). Its key logged in and uploaded through the dev LB. Prod's subscription has 3 open pulls, exactly-once on, backlog and DLT 0.
+- **2026-11-05 14:25Z (since 11-04 17:15Z): clean.** About 7.1k accepted prod logins. 12 failed, every one `support` closed_before_auth from scanner IPs, and none for a customer username. 1 handshake failure (192.241.157.197, never logged in). No sftp_host warnings or errors. The 11 monitors are OK; "backend went unhealthy" shows No Data, which is expected because that metric only emits on an unhealthy event (notify_no_data off, since the 11-04 10:00Z MIG roll). sftp_connector warnings are at baseline ("invalid path" about 290/day). "File routing deferred to an in-flight claim" ran 36 in 21 h against about 19/day before the cut, every one redelivered and none erroring. Prod `sftp-connector-prod-cr` is on `c223aeb` (#395, master tip); the host is on `prod-40c2285dce9e`; nothing is parked.
+- **2026-11-05 15:09Z: inc 5 in prod** (sftp-connector#398, `6a4956c`, gate waived by Harry). The connector no longer provisions users. Smoke over 5 min: file events 200, confirmations 204, 0 errors.
+- **2026-11-05 15:15Z: prod VM `sftp-connector-prod-sftp` stopped** (Harry). TERMINATED, its 10 GB disk kept. Terraform doesn't manage its status, it's in no backend service, and no monitor watches it. **Rollback is now:** `gcloud compute instances start sftp-connector-prod-sftp --zone europe-west2-b --project bifrost-prod-global1`, disable `sftp-sync-users.timer` once it boots, revert #398 and deploy it, then `cut.sh prod rollback-s4` / `rollback-s3`.
+- **Next:** the inc 5 gate (2 weeks after S4 with no rollback) opens 2026-11-18. Until then rollback-S4 stays available.
 
 ## Open
 
 - Watch for DD2AF79592 failing again with no login in between.
 - S4 (provisioning moves to the host) is not today.
-- **After S4 (Plan C inc 4 follow-ons):** re-run the VM startup script (sftp-connector#376), which also reverts the 2026-11-02 `sftp-server -l INFO` subsystem logging, and add the daily `users.json` sync timer on the VM.
+- **S4 prep done 2026-11-04 (before S4, per Plan C inc 4):** VM startup script re-run at 09:05Z (rc=0; #376's `getent` fix live; 41 users resynced; the 2026-11-02 `sftp-server -l INFO` logging reverted in the file), and a daily `sftp-sync-users.timer` (03:30Z) on the VM. **If the VM ever serves customers again (rollback-S3), disable that timer first**, because each run remounts every user. S4 PRs: sftp-connector#394 (consumer → host) and #395 (host provisioning live), via `cut.sh prod s4`.
 - **Plan C inc 2 verify items still owed:** ingest rates, and the first provisioning through `SFTP_ADMIN_HOST`.
 - **Not verified:** a real login as `support`, which needs Harry's key.

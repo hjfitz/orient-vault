@@ -6,7 +6,7 @@ verified: '2026-11-06'
 ---
 # tracking-webhooks — known context
 
-From the 2026-11-06 egress deep dive (code, GitHub, Cloud Run, Jira, Datadog). No interview.
+From the 2026-11-06 tracking (ingress) deep dive (code, GitHub, Cloud Run, Jira, Datadog). No interview.
 
 ## Cutover state (snapshot 2026-11-06)
 - **Evri:** moved into the monorepo 15 Oct; deploys on push to `main`. The old repo's workflows are off; it needs archiving. Publish is off in prod.

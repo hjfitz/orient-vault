@@ -71,9 +71,10 @@ verified_sha: 811007e
 - **Carrier APIs, one module per carrier** in `src/pod-service/`:
   - Amazon Logistics, through the GFS Amazon proxy;
   - BJS, by page scrape;
-  - DHL eCommerce UK (UK Mail), DHL Express, DPD, DPD Local, Evri (Hermes), FedEx, Panther, Tuffnells, UPS, Yodel.
+  - DHL eCommerce UK (UK Mail), DPD, DPD Local, Evri (Hermes), FedEx, Panther, Tuffnells, UPS, Yodel;
+  - a DHL Express module exists but isn't loaded (no prod URL), and the test carrier `MOCKCARRIER` is.
 
-  Parcel-level POD applies to DPD, Evri, DPD Local and UPS; the rest are consignment-level.
+  Parcel-level POD applies to DPD, Evri, DPD Local and UPS; the rest are consignment-level. The per-carrier table (API used, requests) is in known-context, under Carriers.
 - **Credentials:** `gfs-carrier-credentials` (`getCredential`), with OAuth tokens cached until expiry. There are also per-carrier secrets for UPS, DHL eCommerce UK, FedEx and the Amazon proxy key.
 - **Other services:** SendGrid for POD emails, a geocode service, and Google Maps static maps.
 

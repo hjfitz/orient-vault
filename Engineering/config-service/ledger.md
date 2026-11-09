@@ -14,6 +14,21 @@ Run config-service on the golden runtime image
 Moved config-service's Cloud Run image from node:24-alpine to ILG's node24-runtime:0.1-affogato and dropped the Datadog serverless-init sidecar: the agent now runs in-container, DD_* env moved onto the app container with the same values, ILG dual-ship kept. Added enableShutdownHooks so in-flight requests drain on SIGTERM. Cloud SQL connector env and the migrate/backfill jobs untouched. Dropped the npm-bundled .trivyignore entries. Verified on dev (rev 00393-pqw, one container, real business/connector reads, sftp_connector still resolving config). Draft; branch left deployed on dev.
 
 PR: gfs-bifrost/config-service#317
+## 2026-11-04 — Extend the bundled-npm undici ignores a week and drop the stale zod one
+
+Extend the bundled-npm undici ignores a week and drop the stale zod one
+
+The image scan was red on main and every PR: the CVE-2026-87018/CVE-2026-109383 ignores (undici 6.28.0 in the npm CLI bundled with node:24-alpine, never invoked at runtime) expired 2026-11-04. Re-checked: still 6.28.0, so extended to 2026-11-11. Removed the stale CVE-2023-54404 zod entry (we're on zod 4.6.7). Shipped to prod with #314 (run 41815502155, prod apply 0/2/0, image roll only).
+
+PR: gfs-bifrost/config-service#315
+
+## 2026-11-04 — Size the Cloud SQL module by preset and stop it planning a disk shrink
+
+Size the Cloud SQL module by preset and stop it planning a disk shrink
+
+cloud-sql-iam: size = small|medium|large (db-f1-micro / db-custom-1-3840 / db-custom-2-7680) or a raw tier; edition derived. ignore_changes on settings[0].disk_size (autoresize + provider shrink = instance replacement, which deletion protection turns into failed applies). Plan-time guards: the migrator must be a user-managed .iam account; an app account can't be an impersonator. config-service: cloudsql_tier -> cloudsql_size (dev small, prod medium). terraform test 50/50, disk test red without the fix; targeted plans dev/prod No changes; dev apply 0/2/0 (image roll), module.db untouched. Precedes M2 (promotion), which Harry wants straight after.
+
+PR: gfs-bifrost/config-service#314
 
 ## 2026-11-03 — Give run.invoker one owner so prod plans stop flip-flopping
 

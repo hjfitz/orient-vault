@@ -4,28 +4,28 @@ tags:
 - carrier-integrations
 verified: '2026-11-06'
 title: carrier-integrations — overview
-thesis: "Carrier integrations are the services that move data between GFS and carriers. Ingress is a proxy per carrier that Selector calls to make labels. Egress is tracking coming back, by polling, webhook or file, into raw_tracking.v1: about 6.25M events in 15 days."
+thesis: "Carrier integrations move data between GFS and carriers, named from GFS's side. Egress is a proxy per carrier that Selector calls to make labels. Ingress is what comes back: tracking by polling, webhook or file into raw_tracking.v1 (about 6.25M events in 15 days), and proofs of delivery fetched on request."
 confidence: high
 ---
 # carrier-integrations — overview
 
 ```orient-bluf
-{ "v": 1, "bluf": "Carrier integrations are the services that move data between GFS and carriers. Ingress is a proxy per carrier that Selector calls to make labels. Egress is tracking coming back, by polling, webhook or file, into raw_tracking.v1: about 6.25M events in 15 days.", "confidence": "high", "action": "Before switching a carrier from polling to webhook, plan the connector switch-off: both feeds reach raw_tracking.v1 while both run." }
+{ "v": 1, "bluf": "Carrier integrations move data between GFS and carriers, named from GFS's side. Egress is a proxy per carrier that Selector calls to make labels. Ingress is what comes back: tracking by polling, webhook or file into raw_tracking.v1 (about 6.25M events in 15 days), and proofs of delivery fetched on request.", "confidence": "high", "action": "Before switching a carrier from polling to webhook, plan the connector switch-off: both feeds reach raw_tracking.v1 while both run." }
 ```
 
-**Ingress (GFS to carrier).** Selector sends a request with the customer's ApiKy key. The proxy finds that customer's carrier credentials, calls the carrier, and returns a label. Most carriers don't use a proxy at all: Selector draws their labels and pre-advises them by file (system [[selector]]).
+**Egress (GFS to carrier).** Selector sends a request with the customer's ApiKy key. The proxy finds that customer's carrier credentials, calls the carrier, and returns a label. Most carriers don't use a proxy at all: Selector draws their labels and pre-advises them by file (system [[selector]]).
 
-**Egress (carrier to GFS).** Three paths publish to one topic, `raw_tracking.v1`. Polling connectors on [[tracking-core]] carry about 5.44M events in 15 days. Webhooks carry about 215k (Royal Mail only). SFTP files carry about 54k (snapshot 2026-11-06).
+**Ingress (carrier to GFS).** Three paths publish to one topic, `raw_tracking.v1`. Polling connectors on [[tracking-core]] carry about 5.44M events in 15 days. Webhooks carry about 215k (Royal Mail only). SFTP files carry about 54k (snapshot 2026-11-06).
 
-**On request (proof of delivery).** [[gfs-pod-service]] calls the carrier live when the portal, Connect API or Nexus asks for a POD: about 21k requests in 15 days.
+**Ingress on request (proof of delivery).** [[gfs-pod-service]] calls the carrier live when the portal, Connect API or Nexus asks for a POD: about 21k requests in 15 days.
 
 ## Members
 
 | Family | Services | Where they run |
 | --- | --- | --- |
-| Ingress proxies | [[royal-mail-proxy]], [[ups-proxy]], [[coll8-proxy]], [[bjs-proxy]], [[ocs-proxy]], [[exelot-proxy]], [[dpd-europe-proxy]], [[amazon-proxy]] | GKE prod-uk1, from Azure DevOps |
-| Ingress proxies on Cloud Run | [[fedex-proxy]], [[inpost-proxy]] | Cloud Run, from GitHub |
-| Ingress rewrite (dev only) | [[carrier-proxies]] | Cloud Run dev |
+| Egress proxies | [[royal-mail-proxy]], [[ups-proxy]], [[coll8-proxy]], [[bjs-proxy]], [[ocs-proxy]], [[exelot-proxy]], [[dpd-europe-proxy]], [[amazon-proxy]] | GKE prod-uk1, from Azure DevOps |
+| Egress proxies on Cloud Run | [[fedex-proxy]], [[inpost-proxy]] | Cloud Run, from GitHub |
+| Egress rewrite (dev only) | [[carrier-proxies]] | Cloud Run dev |
 | Polling engine | [[tracking-core]] | GKE, namespace fenghuang |
 | Polling connectors | `connectors-*`: amazon, dhlparcel, dpd (also DPD Local), hermes, hermesps, international, ups, dhlexpress, inpost, fedex, plus idle collectplus, panther, yodel, and switched-off hdnl, tuffnells | GKE, namespace fenghuang |
 | Connector support | [[evri-auth-facade]]: one cached Evri token for connectors-hermes and connectors-hermesps | GKE prod-uk1, from Azure DevOps |
@@ -62,7 +62,8 @@ Fuse's selector-adapter and Parcel Portal reach the proxies only through Selecto
 
 ## Where the reference lives
 - [[architecture]] covers the proxy anatomy, the three tracking paths, coverage by carrier and credential patterns. [[known-context]] covers owners, volumes, the Evri cutover and risks.
-- Confluence MPK *Carrier Services* (353468499) and its children [2].
+- Confluence MPK *Carrier Services* (353468499) and its children [2]. Egress is 353697822 and Ingress is 353206337, with *Proof of Delivery Service* (353861642) under Ingress.
+- How a shipment moves through ECM's events, label to POD: [[2026-11-06-life-of-a-shipment-through-ecm]]. Why that event world is hard to change: [[2026-11-06-ecm-event-world-where-its-a-mess]].
 
 ## What deliberately isn't here
 - **Selector and pre-advice files.** System [[selector]].

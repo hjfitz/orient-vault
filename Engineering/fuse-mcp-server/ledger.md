@@ -13,6 +13,21 @@ Run fuse-mcp-server on the golden runtime images
 Moved both servers (Go: distroless/static to go-runtime; TypeScript: node:24-alpine to node24-runtime) onto the ILG golden images with Datadog in-container. Dropped both services' GFS+ILG sidecars and shared volume, and moved DD_* onto the app containers with ILG dual-ship. Removed the LOG_FILE file sink, so both log JSON to stderr. Go DogStatsD now keys off DD_LOGS_ENABLED instead of LOG_FILE. Added Nest enableShutdownHooks. Not deployed: the repo is prod-only, with no dev environment.
 
 PR: gfs-bifrost/fuse-mcp#64
+## 2026-11-04 — Clear the high findings failing the MCP dependency audit and image scan
+
+Clear the high findings failing the MCP dependency audit and image scan
+
+Cleared the secops dependency_audit and image_scan checks, red on master since at least 2026-11-02, in their own PR off master as the red-check rule requires. zod went to 4.6.6 and body-parser to 2.4.0. multer GHSA-q7qp-rjg7-q26m is allowlisted until 2026-11-11, because the fix only comes with Nest 12 and the server has no multipart route. Three undici CVEs in the npm CLI bundled in node:24 were trivyignored, since npm@latest still bundles 6.29.0. Follow-up owed: the Nest 12 upgrade before the multer allowlist expires.
+
+PR: gfs-bifrost/fuse-mcp#63
+
+## 2026-11-04 — Add shopify-test-order tools to the MCP
+
+Add shopify-test-order tools to the MCP
+
+Three dev-only Go MCP tools, shopify-test-order-create, -get (read-only) and -delete, over shopify-connector's new /api/v1/test-orders routes. Agents can now create, read and delete a real paid order on GADG's ILG Test Store without a human in the Shopify admin. They use a staging-only SHOPIFY_CONNECTOR client, with URL and key from the connector's dev remote state behind try(). The data files gain shopify-connector's consumer API and the fuse-mcp-server -> shopify-connector dependency. The parity baseline gains the Go-only declarations and the refreshed payloads.
+
+PR: gfs-bifrost/fuse-mcp#62
 
 ## 2026-10-05 — Say how to reach consumers with a mocked goods-out
 

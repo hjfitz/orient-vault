@@ -1,0 +1,23 @@
+browser 131.0.6778.33
+A description: As Bench 1's demo printer will print them, at 203 dpi.
+A position: Label 1 of 2
+A fit: canvas shown 388x582 px
+A after next: Label 2 of 2
+A zoomed: canvas shown 812x1218 px (label is 812x1218 dots)
+A back on As printed: Label 2 of 2
+A shown label 1: 812x1218 black=234031 sha=1137466789745757
+A shown label 2: 812x1218 black=233921 sha=f6864c023c5023ac
+A toast: Demo printer: 2 labels for Bench 1. Nothing was sent to a printer.
+A printed job: 2 labels; same dots as shown: true
+A frame prints: 0
+A bytes: dialog 43209 B, one-click 43209 B, identical true
+B description: As the carrier supplied them.; tabs 0
+B ZPL bytes identical to the label route: true
+C description: As the carrier supplied them.; tabs 0
+C frame prints: 1
+D description: As Bench 1's printer will print them, at 203 dpi.
+D after a failed send: tab "As supplied", frame prints 1
+D toast: The paired USB device doesn't take print data. Pair the printer again in Settings, Printing.
+C2 clicked before the PDF loaded: true; frame prints 1 (before the PDF loaded: 0)
+E second Print before the PDF loaded: true; frame prints 1 (before the PDF loaded: 0)
+F left before the PDF loaded: true; PDF loads since 2; frame prints 0 (before the PDF loaded: 0)

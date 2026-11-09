@@ -22,6 +22,22 @@ Run shopify-connector on the golden runtime image
 Moved shopify-connector and shopify-egress-service onto ilg-platform's node24-runtime:0.1-affogato golden image and dropped their Datadog serverless-init sidecars, so the agent runs in-container (DD_* moved onto the app containers with the sidecar's values, shared volume removed, base-image-only .trivyignore entries dropped, dev deploys announce failures only). Both verified in dev: single container, datadog_init_version on logs, a real poll cycle on the connector, and a stock_sync_sku subscription push handled by egress. shopify-app was not migrated: it runs prisma generate + db push via pnpm at container start, which a shell-less image can't do.
 
 PR: gfs-bifrost/shopify-connector#366
+## 2026-11-05 — FUSE-1350
+
+Take remote-config 2.5.2 (connector index fix) to dev
+
+Renovate bump to @gfs-bifrost/remote-config 2.5.2 for shopify-connector and shopify-egress-service, merged under /ship FUSE-1350; dev on 2592b75. Prod gate held: approving it would also ship #361/#362 (ILG Test Store operations), awaiting Harry.
+
+PR: gfs-bifrost/shopify-connector#364
+
+## 2026-11-04 — Add dev-only ILG Test Store order endpoints
+
+Add dev-only ILG Test Store order endpoints
+
+Added POST/GET/DELETE /api/v1/test-orders to shopify-connector, so an agent can create, read and delete a real paid order on GADG's ILG Test Store without a human in the Shopify admin. The first use is FUSE-1320's dev verification. The routes are mounted only in dev, via ConditionalModule on ENVIRONMENT=dev plus TEST_ORDER_CONNECTOR_ID. The store always comes from that configured connector. Every created order is tagged FUSE_TEST_ORDER, and fetch and delete refuse untagged orders. Auth is x-api-key only (ApiKeyOnlyGuard), because ApiKeyGuard's OIDC branch accepts any Google-signed token for the URL. Split into a two-PR native stack: core operations, then routes, mount and Terraform. The Fuse MCP tools follow in gfs-bifrost/fuse-mcp.
+
+PR: gfs-bifrost/shopify-connector#361
+PR: gfs-bifrost/shopify-connector#362
 
 ## 2026-11-02 — Raise the follow-redirects floor to 1.16.2
 

@@ -4,13 +4,13 @@ tags:
 - carrier-integrations
 verified: '2026-11-06'
 title: carrier-integrations — architecture
-thesis: "Ingress proxies are small Node services: ApiKy key to profile, profile to carrier credentials, carrier token, call, label back. Egress has three paths into raw_tracking.v1: polling connectors on tracking-core, webhook services that match pushed events to shipments, and SFTP files. Polling carries 87% of events."
+thesis: "Egress proxies are small Node services: ApiKy key to profile, profile to carrier credentials, carrier token, call, label back. Ingress has three paths into raw_tracking.v1: polling connectors on tracking-core, webhook services that match pushed events to shipments, and SFTP files. Polling carries 87% of events."
 confidence: high
 ---
 # carrier-integrations — architecture
 
 ```orient-bluf
-{ "v": 1, "bluf": "Ingress proxies are small Node services: ApiKy key to profile, profile to carrier credentials, carrier token, call, label back. Egress has three paths into raw_tracking.v1: polling connectors on tracking-core, webhook services that match pushed events to shipments, and SFTP files. Polling carries 87% of events.", "confidence": "high", "action": "Never log carrier payloads or keys: several proxies still do, and their logs reach Datadog." }
+{ "v": 1, "bluf": "Egress proxies are small Node services: ApiKy key to profile, profile to carrier credentials, carrier token, call, label back. Ingress has three paths into raw_tracking.v1: polling connectors on tracking-core, webhook services that match pushed events to shipments, and SFTP files. Polling carries 87% of events.", "confidence": "high", "action": "Never log carrier payloads or keys: several proxies still do, and their logs reach Datadog." }
 ```
 
 ## Guardrails
@@ -25,7 +25,7 @@ confidence: high
 - [contract:G5] `raw_tracking.v1` is shared by all three tracking paths and has no formal schema. A field change hits every downstream consumer.
   — paths: schema, packages/tracking-webhook-core
 
-## Ingress: what a proxy does
+## Egress: what a proxy does
 
 ```orient-flow
 { "v": 1, "title": "One proxied label",
@@ -61,7 +61,7 @@ confidence: high
 
 Snapshot 2026-11-06 [1].
 
-## Egress: three paths into `raw_tracking.v1`
+## Ingress: three paths into `raw_tracking.v1`
 
 ```orient-flow
 { "v": 1, "title": "Tracking into GFS",
@@ -87,7 +87,7 @@ Snapshot 2026-11-06 [1].
   ] }
 ```
 
-## On request: proof of delivery
+## Ingress on request: proof of delivery
 
 POD sits outside the event stream. [[gfs-pod-service]] keeps a copy of each shipment from `shipments.v2.identified`. When a caller asks, it fetches the POD from the carrier live. It normalises the result and caches it in Redis.
 
@@ -134,7 +134,7 @@ No tracking source: Click & Collect, Parcelforce, Palletforce. Idle connectors: 
 ## Evidence
 ```orient-evidence
 { "v": 1, "items": [
-  { "id": 1, "kind": "doc", "ref": "Confluence MPK 353697822 Carrier Ingress Services" },
-  { "id": 2, "kind": "doc", "ref": "Confluence MPK 353206337 Carrier Egress Services" }
+  { "id": 1, "kind": "doc", "ref": "Confluence MPK 353697822 Carrier Egress Services" },
+  { "id": 2, "kind": "doc", "ref": "Confluence MPK 353206337 Carrier Ingress Services" }
 ] }
 ```

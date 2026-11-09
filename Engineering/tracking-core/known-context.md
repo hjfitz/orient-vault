@@ -6,7 +6,7 @@ verified: '2026-11-06'
 ---
 # tracking-core — known context
 
-From the 2026-11-06 egress deep dive (code, prod manifests, Datadog). No interview. Shared context is in `Systems/carrier-integrations/known-context.md`.
+From the 2026-11-06 tracking (ingress) deep dive (code, prod manifests, Datadog). No interview. Shared context is in `Systems/carrier-integrations/known-context.md`.
 
 - **Owner is inferred:** the ECM / fenghuang side. Nobody has confirmed it.
 - **Polling cost** (snapshot 2026-11-06, 15 days): about 142M carrier calls produced 5.44M new events, roughly 26 calls per event. About 7M calls failed.

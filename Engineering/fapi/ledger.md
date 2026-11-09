@@ -14,6 +14,29 @@ Run fapi on the golden runtime image
 fapi's API and developer portal now run on ilg-platform's node24-runtime golden image, with the Datadog agent in-container. The API's serverless-init sidecar, its shared volume and DD_SERVERLESS_LOG_PATH are gone, and DD_* moved onto the app container. enableShutdownHooks was added because SIGTERM now reaches Node. The portal's node:22/alpine stages went to glibc node:24 and it gained DD_* env. Verified on dev: an HJF /api/v2/stock read, and a fuse-mocker pick confirmation through the webhook and failure path. Draft; the branch is left deployed in dev.
 
 PR: gfs-bifrost/fapi#189
+## 2026-11-05 — FUSE-1350
+
+Take remote-config 2.5.2 (connector index fix) to prod
+
+Renovate bump to @gfs-bifrost/remote-config ^2.5.2, merged and shipped under /ship FUSE-1350. Prod api-gateway-prod on 31de60d (revision 00044-zzv) from 10:47Z; plan was image-only plus standing drift; 11 parked ancestor Deploy runs cancelled. Fixes REST fan-out missing a business's other connectors after a connector backlink.
+
+PR: gfs-bifrost/fapi#187
+
+## 2026-11-04 — Clear the November dependency and image advisories
+
+Clear the November dependency and image advisories
+
+The dependency audit and both image scans were red on master's nightly. Fixed each advisory at source instead of allowlisting: zod ^4.6.7 (reachable memory-exhaustion DoS on customer payloads; possible now the @gfs-bifrost packages take zod as ^4.4.3, so observability ^2.5.0, pubsub ^0.5.2, remote-config ^2.5.1), pnpm overrides for body-parser >=2.4.0, multer >=2.5.0 and follow-redirects >=1.16.2, and portal next 16.4.5. Removed npm from both runner images (neither CMD uses it), which clears the undici findings and every npm-bundled CVE the scans have raised, so .trivyignore is now empty. Overlaps Matt's #182 (FUSE-1314), which no longer clears these.
+
+PR: gfs-bifrost/fapi#185
+
+## 2026-11-04 — FUSE-1153
+
+Capture the raw API request on ingress
+
+fapi now stamps the request it actually received on metadata.capture of every record it publishes to create_record_request: route, headers (any name matching auth|token|secret|key|cookie|session|password dropped) and the raw body exactly as sent, decoded with the declared charset and keeping a BOM. It is captured by a body-parser verify hook (bootstrap/body-parsers.ts, shared with the integration tests), ahead of v1's legacy mapping and v2's Zod defaulting, and threaded to bulk-ingest through the @ApiRequestCapture() param decorator. The body is left out above 256 KB, or 16 MB across a request's records, sized against prod request sizes (max 83 KB) and dedupe-service's 1 MB Datadog log line; route and headers are kept, a "Raw request body not captured" warning is logged, and an oversized body isn't held in memory. Types were bumped to ^11.4.1 (identical to Renovate #178). Self-reviewed twice by review-panel (second pass added the capacity persona) and verified in dev against the published envelopes. Follow-ups: FUSE-1344 (dedupe-service logs and stores the capture), collector dedup of captures (sibling ticket).
+
+PR: gfs-bifrost/fapi#184
 
 ## 2026-10-20 — Start fapi on a cache-less remote config when Redis is unreachable
 

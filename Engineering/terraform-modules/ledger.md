@@ -7,6 +7,30 @@ title: terraform-modules — work ledger
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-04 — Move SRE-309's module back to database/cloud-sql
+
+Move SRE-309's module back to database/cloud-sql
+
+Restored database/cloud-sql byte-identical to f6f24cd and removed database/cloud-sql-private. Only cloud-sql-iam's README cross-link changed, and the root docs were updated. Admin-merged as 649fabd; 0.1-affogato was force-moved to it. A code search found no callers of the interim path. Naming and a possible merge with cloud-sql-iam are still to be agreed with SRE.
+
+PR: ilg-platform/terraform-modules#7
+
+## 2026-11-04 — Name the IAM-only module database/cloud-sql-iam and leave cloud-sql empty
+
+Name the IAM-only module database/cloud-sql-iam and leave cloud-sql empty
+
+Harry: SRE-309's database/cloud-sql went in without platform governance. #5 moved it to database/cloud-sql-private. #6 then put the IAM module at database/cloud-sql-iam, leaving plain cloud-sql empty while Harry agrees naming and a possible merge with SRE. 0.1-affogato force-moved to 13573fa; no callers of either path. main now requires 1 approving review (admins exempt, stale reviews dismissed, no force-push or deletion); #6 was admin-merged under that exemption.
+
+PR: ilg-platform/terraform-modules#6
+
+## 2026-11-04 — Add database/cloud-sql-iam to terraform-modules
+
+Add database/cloud-sql-iam to terraform-modules
+
+Programme unit M2: promote config-service's cloud-sql-iam module as database/cloud-sql-iam. .tf files and tests byte-identical to config-service#314 (merge that first), 50/50 tests. Root CLAUDE.md gains a maintainer section and allows a tests/ dir. Release is a compatible force-move of 0.1-affogato (pinners: repo-template, gcp-config, wc-malware-analysis; none affected). M3 (config-service repoint) needs the GitHub App token wired into its terragrunt calls.
+
+PR: ilg-platform/terraform-modules#5
+
 ## 2026-10-28 — cloud-run: run Datadog in the app container, drop the sidecars
 
 cloud-run: run Datadog in the app container, drop the sidecars

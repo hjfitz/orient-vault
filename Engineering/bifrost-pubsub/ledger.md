@@ -7,6 +7,14 @@ title: bifrost-pubsub — work ledger
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-04 — Let other projects subscribe to topics via a subscribers input
+
+Let other projects subscribe to topics via a subscribers input
+
+Topic module gains a subscribers input (topic-scoped roles/pubsub.subscriber), fed per env from topic_subscribers in tfvars. Grants CX orders-service deploy SAs on create_record, create_acknowledge, create_data_failure, confirmation_ready. Leaner replacement for Darren's closed #18.
+
+PR: gfs-bifrost/bifrost-pubsub#19
+
 ## 2026-10-14 — Add the feature_flag_revision topic
 
 Add the feature_flag_revision topic

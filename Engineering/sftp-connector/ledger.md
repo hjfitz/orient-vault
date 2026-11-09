@@ -22,6 +22,62 @@ Run sftp-connector on the golden runtime image
 Moved the connector Cloud Run app onto ilg-platform's node24-runtime:0.1-affogato golden image and dropped its Datadog serverless-init sidecar. The agent now runs in-container, and DD_* moved onto the app container with the sidecar's values. The SFTP host VM is unchanged. Verified on dev: one container and no volumes, logs tagged dd.datadog_init_version, a real DAZZA SFTP master_data ingest, and a goods-out confirmation egress. ssh2's native binding loads in the image, and SIGTERM drains under datadog-init.
 
 PR: gfs-bifrost/sftp-connector#397
+## 2026-11-06 — Read mapping rules through @gfs-bifrost/remote-config
+
+Read mapping rules through @gfs-bifrost/remote-config
+
+Inc 3b of the remote-config plan: ingest, confirmation, stock-sync and stock-adjustment mapping reads go through the package's CONNECTOR_MAPPING handler; mapping revisions are applied live as an eviction before the ack; MappingRulesConfigHandler and getUserMappingRulesByUseCase deleted. Dev-verified (live mapping edit on DAZZA ingest; GADG pick/RGA/stock-adjustment egress; sweep 73/73, 201/201).
+
+PR: gfs-bifrost/sftp-connector#404
+
+## 2026-11-06 — Read DDP rules and warehouse routing through remote-config
+
+Read DDP rules and warehouse routing through remote-config
+
+Plan inc 2: a fragment adapter feeds the sales-order rule managers from the package; read failures degrade to [] uncached with status-only logs; DDP/routing revision items apply live first and a failed apply nacks. Old DDP/routing config handlers deleted. Stacked on #401.
+
+PR: gfs-bifrost/sftp-connector#402
+
+## 2026-11-06 — Move sftp-connector onto remote-config 2.6.0 with its own connector schema
+
+Move sftp-connector onto remote-config 2.6.0 with its own connector schema
+
+Behaviour-neutral first half of plan inc 3: remote-config 2.6.0, memTtl 30 s, x-request-id per request, and sftp's lenient connector schema (union with the package schema for non-SFTP connectors) on the shadow and sweep providers. The sweep now also resolves every configured mapping, because 2.6.0's mapping read is strict on duplicate dictionary names/keys and withConnectorSchema doesn't cover it. Dev sweep on 9851537: 73/73 connectors, 201/201 mappings.
+
+PR: gfs-bifrost/sftp-connector#401
+
+## 2026-11-05 — Describe users.json as served by the SFTP host, not the VM
+
+Describe users.json as served by the SFTP host, not the VM
+
+Connector notes corrected after the cutover: the host polls users.json every 20 s and re-reads on an unknown username; the VM sync script is pre-cutover and the prod VM is stopped. Also re-triggers the prod Deploy that #399's merge push didn't start.
+
+PR: gfs-bifrost/sftp-connector#400
+
+## 2026-11-05 — Run remote-config in shadow beside the connector's config layer (increment 1)
+
+Run remote-config in shadow beside the connector's config layer (increment 1)
+
+Increment 1 of move-the-connector-onto-the-shared-remote-config. Adds @gfs-bifrost/remote-config 2.5.2, dispatches every config_revision item to it after the in-repo layer (5 s bound per item, never changes the ack; remote_config.shadow_dispatch_failed on failure), and GET /debug/remote-config/sweep. Dev: sweep 73/73 resolved; connector and mapping revisions dispatched clean. Draft; prod is gated on the Cloud SQL E3 soak sign-off.
+
+PR: gfs-bifrost/sftp-connector#399
+
+## 2026-11-05 — Remove the connector's SSH user provisioning (cutover step 5)
+
+Remove the connector's SSH user provisioning (cutover step 5)
+
+Plan C step 5, built ahead of its gate and held as a draft until 2026-11-18. Deletes the create_sftp_user push route and handler, the SSH adapter, SFTPUserBuilder, key generation, and the user-creation response and sftp_user audit publishing (the host does all of these since S4), plus SFTP_ADMIN_* and two topic env vars and four dependencies. Merging removes the provisioning rollback to the VM.
+
+PR: gfs-bifrost/sftp-connector#398
+
+## 2026-11-04 — Move prod SFTP provisioning to the host (cut S4)
+
+Move prod SFTP provisioning to the host (cut S4)
+
+Plan C inc 4, S4: prod create_sftp_user consumption moves from the connector's SSH-to-VM path to the multi-zone host, which consumes the event and publishes UserCreationResponse on customer_creation. PR 1 turns the connector's push subscription off; PR 2 sets sftp_host_provisioning = live. Merged in order by cut.sh prod s4. Prep done 2026-11-04: prod VM startup script re-run (09:05Z, rc=0, getent fix live, 41 users resynced) and a daily sync_users.sh timer (03:30Z) on the VM.
+
+PR: gfs-bifrost/sftp-connector#394
+PR: gfs-bifrost/sftp-connector#395
 
 ## 2026-11-03 — Take the prod SFTP VM out of the backend service (cut S3)
 

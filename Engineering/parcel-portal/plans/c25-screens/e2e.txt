@@ -1,0 +1,10 @@
+unfixed Orders, acting for A: upload result "c25-check.csv wasn't uploaded The file couldn't be uploaded right now. Try again in a mome"
+unfixed Orders, after switching to B: upload results shown 1
+unfixed Shipments, acting for A: manifest result "Manifested 32 shipments The carrier has closed them out for collection. They can't be void"
+unfixed Shipments, after switching to B: manifest results shown 1fixed Orders, acting for A: upload result "c25-check.csv wasn't uploaded The file couldn't be uploaded right now. Try again in a mome"
+fixed Orders, after switching to B: upload results shown 1
+fixed Shipments, acting for A: manifest result "The carrier couldn't manifest the shipments: no shipments to manifest."
+fixed Shipments, after switching to B: manifest results shown 0fixed2 Orders, acting for A: upload result "c25-check.csv wasn't uploaded The file couldn't be uploaded right now. Try again in a mome"
+fixed2 Orders, after switching to B: upload results shown 0, upload panels 1, orders tables 1
+fixed2 Shipments, acting for A: manifest result "The carrier couldn't manifest the shipments: no shipments to manifest."
+fixed2 Shipments, after switching to B: manifest results shown 0, manifest buttons 1

@@ -16,8 +16,8 @@ From the 5–6 Nov 2026 carrier surveys (code, prod manifests, Cloud Run, Datado
 - **evri-auth-facade:** one commit, by Harry Fitzgerald (2025-05). `owner: ecm` is inferred.
 
 ## Volumes (snapshot 2026-11-06, 15 days)
-- **Ingress:** Royal Mail about 29.6k labels; UPS about 6.1k. Most GFS volume never touches a proxy: Selector draws the label and pre-advises by file.
-- **Egress:** about 6.25M events into `raw_tracking.v1`: polling 5.44M, webhook 215k, files 54k.
+- **Egress:** Royal Mail about 29.6k labels; UPS about 6.1k. Most GFS volume never touches a proxy: Selector draws the label and pre-advises by file.
+- **Ingress:** about 6.25M events into `raw_tracking.v1`: polling 5.44M, webhook 215k, files 54k.
 - **Polling cost:** about 142M carrier calls for 5.44M new events, roughly 26 calls per event. About 7M calls failed:
   - DHL Parcel UK's invalid-credentials error never pauses (368k wasted calls);
   - Evri returned 598k 403s;

@@ -7,6 +7,54 @@ title: snap-queue-polling-service — work ledger
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-06 — Add an optional per-host SNAP concurrency cap, SNAP_MAX_CONCURRENT_REQUESTS
+
+Add an optional per-host SNAP concurrency cap, SNAP_MAX_CONCURRENT_REQUESTS
+
+Programme unit Q3a. Optional env SNAP_MAX_CONCURRENT_REQUESTS (unset = no cap, no wrapper; not in Terraform). Set, the poller's SNAP requests per host (per instance, across businesses) are capped by wrapping the axios adapter, so bare-axios retries queue again, backoff holds no slot, latency is timed from slot acquisition, and the slot wait is bounded by SNAP_REQUEST_TIMEOUT_MS, which the config requires. Dev verified with a cap of 2. Q3b sets the value from measurement. Ship: SHIP-1106-poller-concurrency-cap
+
+PR: gfs-bifrost/snap-adapter#330
+
+## 2026-11-06 — Admit one half-open probe per cool-off behind SNAP_BREAKER_SINGLE_PROBE
+
+Admit one half-open probe per cool-off behind SNAP_BREAKER_SINGLE_PROBE
+
+Programme unit Q2b. New env switch SNAP_BREAKER_SINGLE_PROBE (default off; prod unchanged on deploy). On: tryAdmit single probe per cool-off (others turned away as CircuitOpen, counted on snap.breaker.rejected) plus the late-failure guard. Config refuses to start with it on and no SNAP_REQUEST_TIMEOUT_MS (a hung probe would wedge the host); verified live on dev (revision refused to start, traffic stayed put). Ship: SHIP-1106-poller-single-probe
+
+PR: gfs-bifrost/snap-adapter#329
+
+## 2026-11-06 — Key the SNAP breaker and snap_host by origin behind SNAP_NORMALISE_HOST_KEY
+
+Key the SNAP breaker and snap_host by origin behind SNAP_NORMALISE_HOST_KEY
+
+Programme unit Q5. New env switch SNAP_NORMALISE_HOST_KEY (default off; not in Terraform, so prod unchanged on deploy). On, the poller's breaker key and snap_host tags become the lowercased origin (normalizeHostKey, as snap-adapter does); the base URL is never normalised. Flip after G1 re-points the latency monitor groups and the dashboard $snap_host. Dev verified on and off. Ship: SHIP-1106-poller-host-key
+
+PR: gfs-bifrost/snap-adapter#328
+
+## 2026-11-06 — Emit snap.breaker.opened, .state and .rejected beside snap.circuit_breaker.state
+
+Emit snap.breaker.opened, .state and .rejected beside snap.circuit_breaker.state
+
+Programme unit Q4. The poller now emits the breaker metrics shared with snap-adapter: snap.breaker.opened (closed->open), snap.breaker.rejected (tagged snap_host, the tagged successor to snap.poll.skipped_circuit_open) and snap.breaker.state (closed 0, half-open 0.5, open/isolated 1) on every transition and every 10 s per host. Old metrics unchanged; metrics only. Dev shows all 7 hosts reporting the gauge. Ship: SHIP-1106-poller-breaker-metrics
+
+PR: gfs-bifrost/snap-adapter#327
+
+## 2026-11-06 — Run the SNAP breaker on @gfs-bifrost/resilience's PerHostCircuitBreaker
+
+Run the SNAP breaker on @gfs-bifrost/resilience's PerHostCircuitBreaker
+
+Programme unit Q2, rescoped to a pure parity swap. The poller's per-host SNAP breaker keeps its SnapCircuitBreaker API but delegates to PerHostCircuitBreaker: same ConsecutiveBreaker threshold, exponential half-open, 5xx/429/network trip rule, per-call counting at send(), and logs/gauge. cockatiel dropped as a direct dependency. Existing 14 breaker specs pass unchanged; new specs pin the breaker's logs and gauge. Single-probe and the late-failure guard move to a later unit behind a switch. Ship: SHIP-1106-poller-shared-breaker
+
+PR: gfs-bifrost/snap-adapter#326
+
+## 2026-11-06 — Add an optional per-request SNAP timeout, SNAP_REQUEST_TIMEOUT_MS
+
+Add an optional per-request SNAP timeout, SNAP_REQUEST_TIMEOUT_MS
+
+Programme unit Q1. Optional env SNAP_REQUEST_TIMEOUT_MS (min 120000; unset = no timeout, today's behaviour; not set in Terraform, so prod unchanged on deploy). Set, every SNAP call through AxiosBuilder.fromSnapBackEndConfig times out instead of hanging until Cloud Run's 600 s timeout; stock sync's 20 s per-request timeout still overrides. CLAUDE.md documents it and corrects the breaker trip rule to 5xx/429/network. 30-day prod latency: p95 avg 1.35 s, max 127-140 s, only in the 2026-10-19 outage hour, so 120 s is safe at flip. Dev verified unset and set. Ship: SHIP-1106-poller-snap-request-timeout
+
+PR: gfs-bifrost/snap-adapter#324
+
 ## 2026-10-15 — FUSE-1298
 
 Stamp the connector type on the stock_sync export publish

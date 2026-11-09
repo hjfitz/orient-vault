@@ -58,6 +58,7 @@ POD isn't part of the tracking event stream. Most carriers only return signature
 ## Where the reference lives
 - The repo's `AGENTS.md` is the most complete description. [[architecture]] covers the API and the carriers; [[known-context]] covers traffic and risks.
 - ECM's `ecm-development` `docs/data-journeys.md` has the POD journey step by step.
+- Confluence MPK *Proof of Delivery Service* (353861642), under *Carrier Ingress Services*: the human-facing page.
 
 ## What deliberately isn't here
 - **Tracking events.** Those come through connectors, webhooks and files into `raw_tracking.v1`; see system [[carrier-integrations]].

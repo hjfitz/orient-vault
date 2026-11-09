@@ -117,6 +117,8 @@ The leading hypothesis is an index write hotspot. Every copy rewrites indexed fi
      Check-selection order lives in verification-menu.md — do not restate it here. -->
 
 ### Evidence
+- 2026-11-06 [inc 3] **Prod applied and verified; G3 soak started 15:40:40Z.** Deploy run 42226342798 `terraform-apply-prod` (job 127949952620) ran 14:34:18–15:40:40Z, **66 min for 9 field ops (~7.4 min each on prod's 89k shipments)**, `Apply complete! Resources: 9 added, 1 changed, 0 destroyed.` `gcloud firestore indexes fields describe … --database=tracking-service --project=bifrost-prod-global1` at 15:41Z: all 9 fields report 0 indexes (`shipments` `lastSeenAt`, `totalDuplicates`, `stageTimes`, `confirmations`; `returns` `lastSeenAt`, `totalDuplicates`, `stageTimes`, `confirmation`, `linkedShipmentJson`); the map subfield `shipments.stageTimes.despatched` inherits from `stageTimes` (0); control `shipments.updatedAt` keeps its 3. `tracking-service-api-prod` serves `prod-44734ac…`. Prod API with an ID token at 15:41Z: `/health`, `/api/v1/shipments?limit=1`, `?lane=action`, `/api/v1/returns?limit=1`, `/api/v1/stats`, `/api/v1/stats/businesses` all 200 (`/stats/businesses` took 9.0 s). (AC 1, prod)
+- 2026-11-06 [inc 3] **Pre-soak baseline, prod** (`sum:gcp.firestore.api.request_count{database_id:tracking-service,response_code:resource_exhausted,project_id:bifrost-prod-global1}`, per minute, 2026-11-05 00:00Z → 15:25Z 11-06): 1,026 in total today. 09:11–09:17Z = 536 (the incident), **11:20–11:22Z = 486** (a second burst, before D1 reached any database), 00:51/00:56Z = 4; none 11:23Z → 15:25Z. The soak compares burst minutes from 15:40:40Z against these. (AC 3, baseline)
 - 2026-11-06 [inc 2] **Dev applied and verified.** Deploy run 42226342798 (merge `44734ac`, PR #18); `terraform-apply-dev` ran 13:34:24–14:30:45Z, **56 min for 9 field ops (~6.3 min each on the populated dev database)**. `gcloud firestore indexes fields describe` on `bifrost-dev-global1/tracking-service`: all 9 fields report 0 indexes; the map subfield `shipments.stageTimes.despatched` inherits from `stageTimes` (ancestorField `.../shipments/fields/stageTimes`, 0 indexes), so the map-inheritance assumption holds; control `shipments.updatedAt` keeps its 3. Dev API with an ID token: `/health`, `/api/v1/shipments?limit=1`, `?lane=action`, `?search=HJF`, `/api/v1/returns?limit=1`, `/api/v1/stats`, `/api/v1/stats/businesses` all 200. (AC 1, dev)
 - 2026-11-06 [inc 2] **Prod plan checked before approval** (`terraform-plan-prod` job 127949642667): `Plan: 9 to add, 1 to change, 0 to destroy`, the same 9 `google_firestore_field` adds plus the routine Cloud Run image (`prod-b12d0a6…` → `prod-44734ac…`) and masked Datadog env bump. Harry agreed the plan and the G3 bar (zero `resource_exhausted` commits in reap-burst minutes over 48 h, `gcp.firestore.api.request_count{database_id:tracking-service}`) on 2026-11-06 ("yes, ship it"); `terraform-prod` approved 14:3xZ.
 <!-- Newest first, dated. One bullet per check actually run, opening with what it discharges.
@@ -125,7 +127,10 @@ The leading hypothesis is an index write hotspot. Every copy rewrites indexed fi
 
 ### Not verified
 <!-- Stated, not papered over. "(none)" is a deliberate claim, and a fine one. -->
+> SUPERSEDED 2026-11-06 — AC 1 is verified in prod (Evidence, inc 3). Only AC 3 remains.
+
 - AC 1 in prod and AC 3 (the 48 h soak) — pending the prod apply and two days of bursts.
+- AC 3: the 48 h soak runs 2026-11-06T15:40:40Z → no earlier than 2026-11-08T15:41Z. Read it then against the baseline above; tick inc 3 only after.
 
 ## Decisions & deviations
 <!-- Date-stamped, newest first — written by `wp decide`, and by hand when that is easier.

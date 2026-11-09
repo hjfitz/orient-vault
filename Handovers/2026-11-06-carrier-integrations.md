@@ -1,14 +1,14 @@
 ---
 tags: [handover]
-status: open
+status: closed            # parked 2026-11-06: Next up done on rc-hjf; the rest waits on Harry
 workstream: Selector / carrier integrations / billing research → Confluence (MPK) and orient (Waypoint). Continue from the POD service carrier table
 programme: none
 repo: none (vault + Confluence); read-only clones under ~/code/apiky-survey, ~/code/selector (laptop only)
 from: laptop
 to: hjf.shell.platform.ilg.software
 session_id: 945d0e77-3787-450a-a8e6-3635e238a5c9
-resumed_by: ""
-updated: 2026-11-06T15:12Z
+resumed_by: 9ef32451-f6a6-429e-88df-add8e5d83ddf
+updated: 2026-11-06T15:34Z
 ---
 # Handover: carrier integrations research (continue from the POD service)
 
@@ -20,13 +20,14 @@ A long research session (4–6 Nov) mapped GFS's legacy Selector, the carrier pr
 | Page | ID | Notes |
 | --- | --- | --- |
 | Carrier Services (parent) | 353468499 | ingress vs egress table, links everything, Selector section |
-| ↳ Carrier Ingress Services (was "Carrier Proxies") | 353697822 | what a proxy is, why, prod estate |
+| ↳ Carrier Egress Services (was "Carrier Proxies", then "Carrier Ingress Services") | 353697822 | what a proxy is, why, prod estate |
 | ↳↳ Carriers and Volumes | 353566754 | ~270k shipments/wk; per-carrier volumes (measured vs estimated) |
 | ↳↳ Carrier Integration Methods | 353697842 | REST/XML/SOAP/FTP pre-advice (V4-Server-IE)/routing files |
 | ↳↳ Carrier Integration Uses | 353206310 | uses table incl. POD row (v3 by the POD fork) |
-| ↳ Carrier Egress Services | 353206337 | 3 tracking paths into raw_tracking.v1, coverage by carrier |
+| ↳ Carrier Ingress Services (was "Carrier Egress Services") | 353206337 | 3 tracking paths into raw_tracking.v1, coverage by carrier, POD |
 | ↳↳ Polling Connectors | 353697880 | 15 connector repos, 142M calls → 5.44M events / 15d |
 | ↳↳ Tracking Webhook Services | 353533985 | RM live, Evri shadow (CID-315), InPost PR #2, RM monorepo PR #3 |
+| ↳↳ Proof of Delivery Service | 353861642 | gfs-pod-service: how it works, APIs and callers, per-carrier table (new 6 Nov, rc-hjf) |
 
 Under Legacy Selector (351764483; it now has an index body):
 - overview 351764493
@@ -52,6 +53,8 @@ Under Legacy Selector (351764483; it now has an index body):
 None. All background agents finished (orient MCP fix, carrier-integrations onboarding, POD/facade survey).
 
 ## Waiting on Harry
+- **POD counts differ slightly between two snapshots (added on resume, rc-hjf).** Before this edit, `gfs-pod-service/known-context.md` had UPS 862, Evri 110, DPD Local 77 and Amazon 11. This record and Confluence have 865, 95, 78 and 12. I used this record's figures and replaced the old table. Datadog wasn't re-queried. Evri (110 vs 95) is the only real gap. Recommendation: leave it, since both are 15-day snapshots taken at different times.
+- **The `gfs-pod-service` architecture was edited without a re-anchor.** It's one bullet saying DHL Express isn't loaded and `MOCKCARRIER` is. The facts come from the same `811007e`, so `verified_sha` still holds. Recommendation: no action, or run `wp verify` from the laptop at the next code change.
 - **Security ticket draft** (offered early, never raised). Class-level items found:
   - ApiKy cross-project PUT/DELETE (his PR #7), hard-coded SMTP credentials, the database `sslmode` typo and public IP;
   - plaintext keys in prod-uk1 YAML;
@@ -74,7 +77,9 @@ None. All background agents finished (orient MCP fix, carrier-integrations onboa
   - the billing run timetable and `BILL_ON_SCAN = 2`.
 
 ## Next up
-1. **POD carrier table** (approved: "continue from the POD service"). Put this table into `Engineering/gfs-pod-service/known-context.md` (or the architecture if there is one) and into MPK 353206310 Carrier Integration Uses (the Proof of delivery row or a sub-table). House style applies.
+**Done 2026-11-06 on rc-hjf** (see Closed since handover). Nothing queued: what's left waits on Harry.
+
+1. ~~**POD carrier table**~~ (approved: "continue from the POD service"). Put this table into `Engineering/gfs-pod-service/known-context.md` (or the architecture if there is one) and into MPK 353206310 Carrier Integration Uses (the Proof of delivery row or a sub-table). House style applies.
 
    Facts, verified 6 Nov on the laptop from `GFS POD` repo `811007e` (`src/pod-service/load-services.js`, `src/config.js`) and the prod manifest `pod-server/pod-service.yaml`:
 
@@ -112,7 +117,7 @@ None. All background agents finished (orient MCP fix, carrier-integrations onboa
 Checked 15:10Z:
 - **Has:** Claude 2.1.319, credentials present, auto mode on; MCP servers Atlassian, ado-local-mcp, ado-remote-mcp, datadog, fuse, github, orient, slack, snap and terraform. Atlassian and Datadog may need `/mcp` OAuth if not already signed in.
 - **Repos present:** `~/projects/orient`, `~/code/merak/carrier-playground`, `~/code/fuse/selector-adapter` (cloned now).
-- **Missing:** `~/code/apiky-survey/*` and `~/code/selector/*` (laptop only). **No Azure DevOps SSH access:** `git clone` of `globalfreightsolutions/GFS POD` was denied. Next up 1 doesn't need code.
+- **Missing:** `~/code/apiky-survey/*` and `~/code/selector/*` (laptop only). **No Azure DevOps SSH access:** `git clone` of `globalfreightsolutions/GFS POD` was denied. Next up 1 doesn't need code. **But** `ado-local-mcp` `repo_file` reads GFS POD on the VM (checked 6 Nov, session 9ef32451). `master` is at `269bec2`, while the docs are anchored at `811007e`. The API won't take short shas, so whether master has moved past the docs needs `git log` from the laptop.
 
 ## Gotchas
 - **Azure DevOps:** `git ls-remote` against a non-existent ADO repo hangs, so list repos with the ADO MCP instead. The `ado-local-mcp` org is `globalfreightsolutions`; the Selector repos live in `globalfreightsolutons-legacy`, which it can't reach.
@@ -126,3 +131,5 @@ Checked 15:10Z:
 ## Closed since handover
 | When (UTC) | Work | Result |
 | --- | --- | --- |
+| 15:34 2026-11-06 | Ingress/egress swap and a dedicated POD page (Harry's ask, rc-hjf, session 9ef32451) | Families are now named from GFS's side: ingress = carrier → GFS (tracking, POD), egress = GFS → carrier (labels, pre-advice). 353697822 is now *Carrier Egress Services* (v6) and 353206337 *Carrier Ingress Services* (v3), swapped via a temporary title because Confluence stores links by title; links were checked and resolve to the right IDs. New *Proof of Delivery Service* 353861642 under Ingress. Parent 353468499 v4. Uses 353206310 v5: POD detail moved to the new page, and the POD row's direction is now Carrier → GFS. Link text swapped on Polling Connectors v3, Tracking Webhook Services v2, Getting a Label v4, Customer Data Flow v4 and Estate v5. Vault: `Systems/carrier-integrations` (system.yaml, overview, architecture, known-context), tracking-core and tracking-webhooks known-context, tracking-file-processor and gfs-pod-service overviews. Lint clean, `wp index` run. |
+| 15:14 2026-11-06 | Next up 1: POD carrier table (rc-hjf, session 9ef32451) | `Engineering/gfs-pod-service/known-context.md`: new **Carriers** section with the table (requests snapshot 2026-11-06), plus a skew surprise and a POD-in-tracking-events unknown. The old per-carrier counts table is replaced. `architecture.md` Interfaces out now says DHL Express isn't loaded and `MOCKCARRIER` is; lint clean, no re-anchor; `wp index` run. MPK 353206310 Carrier Integration Uses **v4**: new *Proof of delivery by carrier* section; the POD row adds FedEx to the idle carriers; one new unknown; the POD source names `811007e`. Kept class-level: the Amazon internal proxy's auth state is left out. Round-trip re-read is clean. |

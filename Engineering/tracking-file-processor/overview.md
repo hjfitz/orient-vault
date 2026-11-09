@@ -48,7 +48,7 @@ verified_sha: e6da4bf
 ```
 
 ## Where the reference lives
-- MPK *Carrier Egress Services* (353206337); the ECM workspace doc `backend/tracking-scan-pipeline.md` in `gfs-ecm/ecm-development`.
+- MPK *Carrier Ingress Services* (353206337); the ECM workspace doc `backend/tracking-scan-pipeline.md` in `gfs-ecm/ecm-development`.
 
 ## What deliberately isn't here
 - **Fetching files from carriers.** [[file-ingestion-ftp-proxy]] does that.
