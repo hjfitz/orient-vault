@@ -176,7 +176,7 @@ Every merge rolls prod, so never merge while a Deploy run is in flight (Scar tis
   - `make mongo-test` scope set to `./internal/store/... ./internal/storeopen/...`;
   - the stale `liveCounters` comment fixed (`backend_test.go:21,28`).
   - verify: `make test-emulator` green, proving the tags are inert to Firestore; a codec round-trip test (sub-µs input → `Truncate(µs)`, UTC, nil and zero time, `map[string]time.Time`, `*time.Time`); `make test-mongo` runs the suite with every case pending and none failing.
-- [ ] 3. **Shipment write path, `seen`, reads, stats wiring** (AC 2,3,4,5,9). The Apply transaction, on `runTxn`:
+- [x] 3. **Shipment write path, `seen`, reads, stats wiring** (AC 2,3,4,5,9). The Apply transaction, on `runTxn`: — done: a97baca
   - **Transaction steps:**
     1. Point-read `seen`, then the event `_id`, when eventID ≠ "".
     2. Read the record, then run `fn`. A Noop writes nothing.
