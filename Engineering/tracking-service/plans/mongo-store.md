@@ -156,7 +156,7 @@ Seven increments of about 500–700 lines each, about 3,500–4,000 lines in all
 
 Every merge rolls prod, so never merge while a Deploy run is in flight (Scar tissue).
 
-- [ ] 1. **Marks shape, aggregation pipeline and benchmark** (AC 1). These are pure functions over a marks collection; nothing touches `Store` yet.
+- [x] 1. **Marks shape, aggregation pipeline and benchmark** (AC 1). These are pure functions over a marks collection; nothing touches `Store` yet. — done: a97baca
   - **Refactor, no behaviour change.** Move the pure helpers out of `memory_marks.go`: `serve(marks, kept)`, which does merge then `CapReasons`, and the row projections `statsOf`, `insightsOf`, `statsOnDayOf` and `insightsOnDaysOf`.
   - **Marks doc shape:** `{_id: docID, businessId, marksHash, m:[{d, t:"s"|"i"|"r", k, b, ch, ex, n}]}`.
   - **Pipeline:** `$match` on `m.d` and business, `$unwind` with `includeArrayIndex`, `$match`, then `$group` by `{biz,d,t,k,b,ch}` with `$sum n` and `$min {id,i,ex}`.
