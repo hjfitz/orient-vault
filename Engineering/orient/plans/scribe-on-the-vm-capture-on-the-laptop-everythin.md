@@ -213,6 +213,14 @@ Follow-up plans, not in this one:
 ### Evidence
 <!-- Newest first, dated. One bullet per check actually run, opening with what it discharges.
      "Suite green" alone is not evidence. Sign-off requires at least one dated bullet here. -->
+- 2026-11-09 [inc 1] **The VM's scribe runs as a server** (AC 1). It was installed with `SCRIBE=server HEADLESS=1 scripts/install-units.sh`, which wrote `scribe.env` as `SCRIBE_ARGS=-role server -threads 8` and enabled the unit without starting it.
+  - `prune -dry-run` before the first start: "would delete 0 audio file(s)".
+  - Started: the log reads `serving on 127.0.0.1:3013 as server`.
+  - `GET /api/recordings`: 17 recordings, hosts `["laptop"]`, readOnly `[true]`.
+  - `POST /api/recordings`: 409 `{"error":"this machine does not record"}`.
+  - No reminder, nudge or playerctl lines in the journal.
+  - `localhost:3000/recordings` on the laptop (the VM's orient, through the tunnel) answers 200 and lists them, with no "not running" or "unexpected shape" error.
+- 2026-11-09 [inc 1] **VM transcription speed:** `nice -n 10 orient-scribe process -threads 8` on `ES2004a.stereo-me0.wav` (1049 s) took 3m39s, a real-time factor of 0.21 against the ≤0.5 bar. Per channel: me RTF 0.088, them RTF 0.119; diarisation is most of the time (about 1m10s per channel).
 - 2026-11-09 [inc 1] **Gate confirmed.** VM: static ffmpeg n9.0.2 (BtbN `ffmpeg-n9.0-latest-linux64-gpl-9.0`, sha256 verified against the release's `checksums.sha256`, libopus encoder present) in `~/.local/bin`, so no pacman change on a box whose package DB is stale. `claude -p` on the VM answered (signed in). Laptop: `~/.config/orient/host` written as `laptop`.
 - 2026-11-09 [inc 1] **Laptop unchanged in the `both` role** (`66511dc`): rebuilt scribe and installed `systemd/orient-scribe.service` (now with `EnvironmentFile` and `$SCRIBE_ARGS`). The log reads `serving on 127.0.0.1:3013 as both`. An 8 s recording went started, then `queued` after stop, then `done`, then deleted (204), leaving nothing in the vault.
 - 2026-11-09 [inc 1] **`go test ./...`** in `scribe/` green, including the new `TestAMachineWithNoRecorderRefusesToStart` (409 "does not record", nothing live). `make fmt-check vet` clean.
