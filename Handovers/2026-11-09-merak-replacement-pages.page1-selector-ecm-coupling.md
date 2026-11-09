@@ -21,7 +21,7 @@ This page maps each seam and says what a replacement must honour if either side 
 | 3. Manual changes | Portals and agents to Firebird, partly echoed to ECM | Mark as deleted or delivered, customer care status changes, tickets, comments, collections | Staff, customers, claims, support |
 | 4. Reference data | Firebird to ECM | Customers, contracts, carriers and products as `fb.*` change feeds. Manager writes the customer and contract tables behind them. Carrier credentials as `carrier-credentials.v1`, for six carriers | Customer and contract lookups, carrier names, tracking connectors, proof of delivery |
 | 5. Billing | Firebird to billing to ECM | The billing app reads `SHIPMENTS`. Invoices return as `invoices_published.v1` and `invoiced_shipments_published.v1` | Finance, claims, portals |
-| 6. Identity | `shipment-identity-service` | Consignment number plus carrier gives each shipment its ID. Invoice lines match on that same pair | Every ECM store, invoice matching |
+| 6. Identity | `shipment-identity-service` | Consignment number plus carrier gives each shipment [its ID](https://globalfreight.atlassian.net/wiki/spaces/MPK/pages/355631312/Shipment+Identity+Why+ECM+Gives+Each+Shipment+Its+Own+ID). Invoice lines match on that same pair | Most ECM stores (the POD cache keys on carrier, consignment number and parcel), invoice matching |
 
 The seams form a loop. ECM scans change Firebird rows, and those changes flow back into ECM as re-announcements. About 610k `SHIPMENTS` updates arrive a week. About 162k land inside the 180 s window and are absorbed, and 449k re-announce a known shipment. Daytime Scan Injector writes appear to cause about half of the updates.
 
