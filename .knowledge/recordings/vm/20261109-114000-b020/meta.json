@@ -1,0 +1,18 @@
+{
+  "id": "20261109-114000-b020",
+  "title": "handoff resume test (AMI ES2004a, 5 min)",
+  "status": "queued",
+  "startedAt": "2026-11-09T11:40:00Z",
+  "sources": {
+    "me": null,
+    "them": null
+  },
+  "call": false,
+  "host": "vm",
+  "capturedOn": "laptop",
+  "received": {
+    "sha256": "6245f78be0b669e4234f140848ba96bc1d37146c2b18a904bc301c85d8fe41b7",
+    "bytes": 4353196,
+    "at": "2026-11-09T11:13:19.264645717Z"
+  }
+}
