@@ -8,7 +8,7 @@ from: laptop
 to: hjf.shell.platform.ilg.software
 session_id: 80a57909-179d-48c7-a6cb-da766abb7a8a
 resumed_by: 7652f0c7-9f02-4c64-b56f-a154250bb016
-updated: 2026-11-06T15:45Z
+updated: 2026-11-09T11:00Z
 ---
 # Handover: Parcel Portal
 
@@ -84,6 +84,8 @@ Checked 2026-11-03 ~16:40Z on `harry@hjf.shell.platform.ilg.software`; synced wi
 ## Closed since handover
 | When (UTC) | Work | Result |
 | --- | --- | --- |
+| 2026-11-09 10:55 | #113, C25: a customer switch clears the previous customer's results and print state (session a25bb30f) | Keyed by the acting customer, each key prefixed with its component: upload panel, manifest bar, print-to-screen tab (it reprinted the old customer's labels), Settings → Printing outcome, demo printer panel. The switcher dismisses sticky toasts, because sonner replays them to a remounted toaster. Dev `ui-parcel-dev-00057` (image `dev-c357296…`). C33 (error page outlives a switch) is open. |
+| 2026-11-09 10:20 | #114, container scans green again | They had failed since 7 Nov on CVE-2026-78661 (`golang.org/x/net`) and two `zlib1g` CVEs. x/net is now v0.62.0 for this repo's binaries, and `.trivyignore.yaml` covers the platform runtime images' copies (`datadog-init` by path, `zlib1g`) until 16 Nov. **Owed upstream:** rebuild `go-runtime` and `node24-runtime` before then. Dev svc `00049`, gateway `00013`, sftp applied. |
 | 2026-11-06 15:40 | #112, C24: a batch's results stay when the batch empties the orders list (session a25bb30f) | `OrdersTable` is always rendered, with the empty message inside and stable child slots, so the results card isn't remounted. It's keyed by the acting customer, which also covers C25's batch half. The smoke test dispatches from the Ready list. Dev `ui-parcel-dev-00056` (image `dev-52db248…`). The sweep's findings became C29–C32, and C25 is narrowed to the upload panel and the manifest bar. |
 | 2026-11-06 14:20 | #111, C23: each panel once on an order's page (session a25bb30f) | Sibling panels shared a key, which left a stale panel on every re-render of the order form, including each keystroke in an address field. Fixed with per-panel and index keys, plus one dispatch-summary slot. Dev `ui-parcel-dev-00055` (image `dev-503721e…`). The sweep's other findings became C24–C28. The dev smoke still fails at sign-in until `DEV_SMOKE_ADMIN_EMAIL` is set. |
 | 2026-11-06 13:00 | #110, labels as a thermal bench prints them (C22 inc 3; session a25bb30f) | At a ZPL/EPL bench or the demo printer, Preview draws each PDF page in the printer's dots and Print sends those dots. label-print 0.3.0 adds `printBitmaps`, `onPage` and `signal`. The print-dialog fallback prints the PDF once, after it loads. Dev `ui-parcel-dev-00054` after one re-run (the first apply hit a GCS credentials 504 reading state). |
