@@ -115,7 +115,7 @@ Out-of-ticket; Harry asked for it on 2026-11-04, after prod cut S4 moved SFTP us
       - Delete `config-handlers/ddp-rules/`, `config-handlers/warehouse-routing/`, `getDdpRulesForBusiness` and `getWarehouseRoutingRules`.
       — verify: adapter spec "returns rules", "[] on config-service failure, not cached", "[] on schema failure", "provider not ready nacks", "a failed DDP invalidation nacks"; the `sales-order.rule-manager` specs stay green; dev: change a routing rule, and the next sales-order file routes by it.
 
-- [ ] 3. Mapping rules for ingest, confirmations and stock through the package (AC 1,2,3,6,7).
+- [x] 3. Mapping rules for ingest, confirmations and stock through the package (AC 1,2,3,6,7). — prod 00129: sweep 30/30 + 113/113 mappings; real STUBBLE/EPARFUM files archived and WILDSMITH/STUBBLE confirmations processed through the package's mapping reads — done: e17c9ca
       gate: `@gfs-bifrost/remote-config` 2.6.0 published ([[remote-config-2-6-2-7-opt-in-connector-handling-|pkg-node plan]], stack A), with `withConnectorSchema` applied to mapping resolves; the sweep on 2.6.0 with sftp's schema shows 0 failures in dev and prod
             > 2026-11-05: 2.6.0 published (pkg-node#299/#300, `91fba57`). The sweep on 2.6.0 with sftp's schema is still owed, in dev and in prod.
             > 2026-11-06: dev half met: on #401 `9851537` the sweep resolved 73/73 connectors and 201/201 mappings with sftp's schema. The prod sweep is owed after #401 merges. The sweep now covers mappings, because 2.6.0's mapping read is strict on duplicate dictionary names and keys, which `withConnectorSchema` doesn't reach.
