@@ -238,7 +238,7 @@ Every merge rolls prod, so never merge while a Deploy run is in flight (Scar tis
   - **Tests:** re-import is idempotent; after an Apply, an ApplyReturn, an AddNote and an UpdateNote (one test each), a re-import skips the record and leaves its notes unchanged; `Live` reads false after an import and true after one apply.
   - **Pending lifted:** Notes, ReturnNotes.
   - verify: `make test-mongo`, gates.
-- [ ] 7. **Opener, binaries, docs** (AC 2,8,9).
+- [x] 7. **Opener, binaries, docs** (AC 2,8,9). — done: a97baca
   - **`storeopen.Open` for mongodb:** connect, ping the primary, `NewMongo`, `EnsureIndexes`, and `Disconnect` on close. `ErrNotImplemented` goes, and `storeopen_test.go:32-38` becomes an open and ping test.
   - **Metrics:** `cmd/api` wires `OnRetry` to a transaction-retry/WriteConflict metric through the existing observability package, so metrics stay in-service.
   - **Twins of the emulator tests, both required:**
