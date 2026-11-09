@@ -156,7 +156,7 @@ Seven increments of about 500–700 lines each, about 3,500–4,000 lines in all
 
 Every merge rolls prod, so never merge while a Deploy run is in flight (Scar tissue).
 
-- [x] 1. **Marks shape, aggregation pipeline and benchmark** (AC 1). These are pure functions over a marks collection; nothing touches `Store` yet. — done: a97baca
+- [x] 1. **Marks shape, aggregation pipeline and benchmark** (AC 1). These are pure functions over a marks collection; nothing touches `Store` yet. — done: 42ef319
   - **Refactor, no behaviour change.** Move the pure helpers out of `memory_marks.go`: `serve(marks, kept)`, which does merge then `CapReasons`, and the row projections `statsOf`, `insightsOf`, `statsOnDayOf` and `insightsOnDaysOf`.
   - **Marks doc shape:** `{_id: docID, businessId, marksHash, m:[{d, t:"s"|"i"|"r", k, b, ch, ex, n}]}`.
   - **Pipeline:** `$match` on `m.d` and business, `$unwind` with `includeArrayIndex`, `$match`, then `$group` by `{biz,d,t,k,b,ch}` with `$sum n` and `$min {id,i,ex}`.
@@ -167,7 +167,7 @@ Every merge rolls prod, so never merge while a Deploy run is in flight (Scar tis
   - verify: `make test-race`, where memory's marks tests stay green through the refactor; `make test-mongo` (differential); `MONGO_BENCH=1 TEST_MONGODB_URI=… go test -run '^$' -bench MongoMarks -benchtime 20x ./internal/store/`, with the numbers and explain output recorded in Evidence.
       gate: Gate A — the latency bar is agreed with Harry and met on these numbers (dev Atlas, or local marked provisional). If it's missed: stop, and replan around a `$merge` rollup with Harry's staleness call.
             [ ] confirmed
-- [x] 2. **Scaffolding** (AC 2,9). The groundwork the later increments build on: — done: a97baca
+- [x] 2. **Scaffolding** (AC 2,9). The groundwork the later increments build on: — done: ec51508
   - `bson` tags on every fs* struct, `fsReturn` included;
   - `_id` wrapper structs;
   - the µs codec on the client and database registries, with UTC decode;
@@ -176,7 +176,7 @@ Every merge rolls prod, so never merge while a Deploy run is in flight (Scar tis
   - `make mongo-test` scope set to `./internal/store/... ./internal/storeopen/...`;
   - the stale `liveCounters` comment fixed (`backend_test.go:21,28`).
   - verify: `make test-emulator` green, proving the tags are inert to Firestore; a codec round-trip test (sub-µs input → `Truncate(µs)`, UTC, nil and zero time, `map[string]time.Time`, `*time.Time`); `make test-mongo` runs the suite with every case pending and none failing.
-- [x] 3. **Shipment write path, `seen`, reads, stats wiring** (AC 2,3,4,5,9). The Apply transaction, on `runTxn`: — done: a97baca
+- [x] 3. **Shipment write path, `seen`, reads, stats wiring** (AC 2,3,4,5,9). The Apply transaction, on `runTxn`: — done: 7945324
   - **Transaction steps:**
     1. Point-read `seen`, then the event `_id`, when eventID ≠ "".
     2. Read the record, then run `fn`. A Noop writes nothing.
@@ -206,7 +206,7 @@ Every merge rolls prod, so never merge while a Deploy run is in flight (Scar tis
   - **Docs:** `apps/api/CLAUDE.md` ("no TTL", "dedupe is the event doc") and README:90 updated for Mongo in this PR.
   - **Pending lifted:** ConfirmationUnderAnotherSnapID, LinesAndPreexisting, Journey, Republishes and Lookup (counter subtests still skip). ByKey's exact-mode subtest stays pending on SearchKeys.
   - verify: `make test-mongo`, `make test-emulator`, gates.
-- [x] 4. **Shipment queries, counts, indexes, explain test; counters on** (AC 2,6). `mongo_query.go` holds List, SearchKeys, SearchPrefix, ListAttention, CountAttention, CountActionNeeded, CountOrphans, ShipmentIDs and Businesses. — done: a97baca
+- [x] 4. **Shipment queries, counts, indexes, explain test; counters on** (AC 2,6). `mongo_query.go` holds List, SearchKeys, SearchPrefix, ListAttention, CountAttention, CountActionNeeded, CountOrphans, ShipmentIDs and Businesses. — done: c9677e8
   - **Filters and paging:**
     - Filter builders follow Firestore's pushdown exactly (Assumptions) and take a collection spec, so increment 5 reuses them for returns rather than refactoring them.
     - Keyset paging is `(f < v) OR (f == v AND _id < id)`.
@@ -217,7 +217,7 @@ Every merge rolls prod, so never merge while a Deploy run is in flight (Scar tis
   - **Pending lifted:** Search, List, Channels, Attention, ByKey, Insights, ReasonCap, Scopes, AttentionLanes, plus the counter subtests from increment 3. SortsAndWindows stays pending on its returns subtest.
   - **Docs:** the repo `CLAUDE.md:5` index rule gains its Mongo half: declare in `mongo_indexes.go`, and the explain test fails otherwise.
   - verify: `make test-mongo`, gates.
-- [x] 5. **Returns** (AC 2,3,4,5). This is ApplyReturn with a transaction-scoped `ShipmentReader` (findOne, plus a sorted, limited find on the session). — done: a97baca
+- [x] 5. **Returns** (AC 2,3,4,5). This is ApplyReturn with a transaction-scoped `ShipmentReader` (findOne, plus a sorted, limited find on the session). — done: 842536a
   - **Linked-shipment patches:** `updateOne({_id}, {$set:{returnsJson, returnCount}, $unset:{importedAt}}, upsert:false)`, which errors unless `MatchedCount == 1`. Memory skips unknown ids (`memory_returns.go:62`); Mongo follows Firestore's `tx.Update`, so this test stays Mongo-only.
   - **Methods and indexes:** the return queries and counts through increment 4's builders; ReturnIDs; return marks and ReturnStats/ReturnInsights/OnDay(s); the return indexes (`uniq_business_rga` partial on `keySource:"rga_number"`), with their explain shapes.
   - **Tests:**
@@ -228,7 +228,7 @@ Every merge rolls prod, so never merge while a Deploy run is in flight (Scar tis
     - the rgaJourney differential, which completes AC 3.
   - **Pending lifted:** ReturnJourney, ReturnLinkBySalesOrder, ReturnQueries, SortsAndWindows.
   - verify: `make test-mongo`, `make test-emulator`, gates.
-- [x] 6. **Notes, kept counters, import primitive** (AC 2,4,7). — done: a97baca
+- [x] 6. **Notes, kept counters, import primitive** (AC 2,4,7). — done: 729d15d
   - **Notes** go in `mongo_notes.go`. Note docs have `_id` = `docID/noteID` plus `r` and `createdAt`; the index is `{r:1, createdAt:1}`; reads are `createdAt` asc, limit 1000, matching Firestore. The methods are AddNote/UpdateNote and their return twins, each in one transaction:
     - AddNote reads the parent (ErrNotFound if it's missing), inserts the note (DuplicateKey is deterministic, not retried), `$inc`s noteCount/openNoteCount, `$set`s lastNote when `RefOf(note).Newer`, and `$unset`s `importedAt`.
     - UpdateNote with `openDelta == 0` writes nothing (`firestore.go:1112-1117`). Otherwise it updates `resolved`, `$inc`s openNoteCount and `$unset`s `importedAt`.
@@ -238,7 +238,7 @@ Every merge rolls prod, so never merge while a Deploy run is in flight (Scar tis
   - **Tests:** re-import is idempotent; after an Apply, an ApplyReturn, an AddNote and an UpdateNote (one test each), a re-import skips the record and leaves its notes unchanged; `Live` reads false after an import and true after one apply.
   - **Pending lifted:** Notes, ReturnNotes.
   - verify: `make test-mongo`, gates.
-- [x] 7. **Opener, binaries, docs** (AC 2,8,9). — done: a97baca
+- [x] 7. **Opener, binaries, docs** (AC 2,8,9). — done: 2387f18
   - **`storeopen.Open` for mongodb:** connect, ping the primary, `NewMongo`, `EnsureIndexes`, and `Disconnect` on close. `ErrNotImplemented` goes, and `storeopen_test.go:32-38` becomes an open and ping test.
   - **Metrics:** `cmd/api` wires `OnRetry` to a transaction-retry/WriteConflict metric through the existing observability package, so metrics stay in-service.
   - **Twins of the emulator tests, both required:**
