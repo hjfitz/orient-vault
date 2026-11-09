@@ -157,7 +157,7 @@ Since 2026-11-09 the VM (`rc-hjf`) is orient's home. The laptop reaches it throu
     - Decode a recent `audio.ogg` to WAV, then `orient-scribe handoff … -hub http://127.0.0.1:3014`, with `systemctl --user restart orient-tunnel` partway through. This also drops the terminal, which is expected. The upload resumes, and the recording reaches `done` and is enhanced on `localhost:3000/recordings`, with `capturedOn: laptop`. `curl -sI localhost:3000/api/recordings/<id>/audio` returns 200 `audio/ogg`.
     - Run `eval/wer.py` on ES2004a raw and on a FLAC round-trip; the word error rates match within noise.
     - A Go test: `PruneAudio` removes an unkept recording older than 14 days and leaves a kept one. A `prune -dry-run` on the VM lists the kept recording as skipped. Toggling Keep on the page persists across a reload.
-- [ ] 4. **The laptop becomes a recorder only and hands each call off automatically.** (AC 2,3,5)
+- [x] 4. **The laptop becomes a recorder only and hands each call off automatically.** (AC 2,3,5) — recorder live: dry run then real delete-on-receipt; outage holds uploading+lastError, drains 2s after; laptop MCP reads VM — done: ffb44e4
   - In recorder role, the store lives in a spool outside the vault, `~/.local/state/orient/scribe-spool/laptop/<id>/`.
     - A `Handoff` step replaces Transcribe, Summarise and Enhance in `process()`.
     - `Resume()` drains the spool at start.
