@@ -72,3 +72,7 @@
 {"t":"view","at":"2026-11-09T16:28:50.956Z","visit":"8070ea5f-f09e-42ab-98cd-fd1b9c7a9a03","route":"/incidents"}
 {"t":"leave","at":"2026-11-09T16:28:57.153Z","visit":"8070ea5f-f09e-42ab-98cd-fd1b9c7a9a03","activeMs":3000}
 {"t":"leave","at":"2026-11-09T16:29:21.355Z","visit":"8070ea5f-f09e-42ab-98cd-fd1b9c7a9a03","activeMs":4000}
+{"t":"leave","at":"2026-11-09T16:59:37.372Z","visit":"8070ea5f-f09e-42ab-98cd-fd1b9c7a9a03","activeMs":7000}
+{"t":"view","at":"2026-11-09T16:59:37.465Z","visit":"34d18580-c2e0-4a4f-aa6b-b1b42d3c56b3","route":"/incidents"}
+{"t":"leave","at":"2026-11-09T16:59:54.670Z","visit":"34d18580-c2e0-4a4f-aa6b-b1b42d3c56b3","activeMs":15000}
+{"t":"leave","at":"2026-11-09T17:00:13.472Z","visit":"34d18580-c2e0-4a4f-aa6b-b1b42d3c56b3","activeMs":18000}
