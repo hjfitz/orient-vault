@@ -8,7 +8,7 @@ from: rc-hjf
 to: next session, any machine
 session_id: 9ef32451-f6a6-429e-88df-add8e5d83ddf
 resumed_by: ""
-updated: 2026-11-09T12:00Z
+updated: 2026-11-09T12:01Z
 ---
 # Handover: Merak replacement pages (continues the carrier-integrations research)
 
