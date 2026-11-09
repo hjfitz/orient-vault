@@ -34,6 +34,13 @@ impl_effort: medium
      One marker, always above, never inside. `wp decide` writes the dated entry in
      `## Decisions & deviations` that explains why. -->
 
+- **2026-11-09:** Stack B review fixes went beyond the plan text.
+  - **`evictOnDelete` rejects on a failed cache write.** That's a new failure mode, against the plan's "acks". The primary key is deleted last so that the retry can finish.
+  - With `evictOnDelete`, `resolveByUsername` treats a cached alias whose connector now has another username as a miss. This is not in the plan; it closes a stale-alias gap when the old copy was missing or stale in L1.
+  - **`backlinkTypes`:** a response with no `config.type` rejects instead of acking.
+  - **The server-filtered lookup checks that the username matches exactly.**
+  - All of these sit behind opt-ins, so defaults are unchanged (AC 1).
+
 ## Intent
 <!-- What we are changing and why. Link the ticket. -->
 Out-of-ticket. This is the package half of [[move-the-connector-onto-the-shared-remote-config|sftp-connector's move onto remote-config]], which Harry asked for on 2026-11-04. sftp-connector can't adopt `@gfs-bifrost/remote-config` 2.5.1 without changing what customers see. The package validates connectors strictly, its username lookup scans every connector, it throws on a deleted connector, one failing item in a revision skips the rest, its in-memory TTL is fixed at 60 s, and it sends no correlation header. This plan adds each fix as an **opt-in** builder option across two minor releases: **2.6.0** unblocks sftp's mapping increment, and **2.7.0** unblocks its connector-lookup increment. fapi (`^2.5.1`, so it auto-bumps) and shopify-connector (pinned `2.5.1` in both apps) see no change unless they opt in. Done means both versions are published, a compatibility type test and the existing suites pass unedited in behaviour, and the username lookup has been proven against dev config-service.
@@ -150,6 +157,19 @@ Each stack is merged **in one sitting**, with the version bump on its last PR. #
      Check-selection order lives in verification-menu.md — do not restate it here. -->
 
 ### Evidence
+- **2026-11-09: stack B built and opened** (pkg-node#304 `92580f7`, #305 `434fa17`, #306 `1f86463`; native stack #307). Not merged: merging publishes 2.7.0.
+  - **Dev proof (AC 6):** the built package against dev config-service, `server-filtered` against `scan` for every SFTP username: **70/70 equal**, 0 diffs, 0 shared usernames (73 connectors). 2 requests per filtered lookup (140 in total) against 2,973 for the scan. Run before and after the review fixes, with the same result.
+  - **Release gate,** on the post-review tarball: fapi `007ad5c` `build:check` clean, 529 passed; shopify-connector `84714fc` 902 passed (`shopify-token-management` built first, as its CI does); shopify-egress-service 634 passed, `build:check:tests` clean; the 2.5.1 type test compiles. Manifest: cache `0.4.0` exact, peers `types >=10.15.0`, `zod ^4.4.3`.
+  - **Tests:** 308 (80 new). Mutation checks: 26 mutations across the three PRs, all caught.
+  - **Review panel** (backend, data, contract, tests): the contract reviewer found nothing. Fixed:
+    - eviction deletes the primary key last and rejects on a failed cache write;
+    - a rename drops the old alias before caching;
+    - stale-alias check on `resolveByUsername` (under `evictOnDelete`);
+    - a typeless backlink response rejects;
+    - exact-username check on the filtered lookup;
+    - failure-path tests.
+    
+    Documented, not fixed: the index read-modify-write race, the refresh/delete resurrection race, and cleanup after the primary key has expired.
 - **2026-11-05: stack A released as 2.6.0** (pkg-node#299 `d9617ab`, #300 `91fba57`, one atomic stack merge, publish run 42055718681, `npm view @gfs-bifrost/remote-config@2.6.0` → cache 0.4.0).
   - **Tests:** 228, with 29 new.
   - **Release gate:** the packed tarball type-checks and passes the full suites in fapi `c0eef2d` (511), shopify-connector `cff1956` (900, including `__characterization__`) and shopify-egress-service (633).
