@@ -1,0 +1,18 @@
+{
+  "id": "20261109-120000-3e14",
+  "title": "handoff test (copy of SFTP Folder Discussion)",
+  "status": "transcribing",
+  "startedAt": "2026-11-09T12:00:00Z",
+  "sources": {
+    "me": null,
+    "them": null
+  },
+  "call": false,
+  "host": "vm",
+  "capturedOn": "laptop",
+  "received": {
+    "sha256": "15e56707fc6a8450fbef3b961eff99c26460787f7f7c30f936ceaffa90f5700c",
+    "bytes": 17459949,
+    "at": "2026-11-09T11:19:12.916466601Z"
+  }
+}
