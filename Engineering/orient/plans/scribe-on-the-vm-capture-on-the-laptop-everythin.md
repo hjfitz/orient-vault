@@ -175,7 +175,7 @@ Since 2026-11-09 the VM (`rc-hjf`) is orient's home. The laptop reaches it throu
     - The laptop's `orient-recordings` MCP tool returns the new recording.
       gate: inc 3's handoff has worked on at least one real recording
           [x] confirmed
-- [ ] 5. **The VM relays start, stop, pause, resume and ignore to the laptop's recorder. `:3001` stays up alongside.** (AC 4)
+- [x] 5. **The VM relays start, stop, pause, resume and ignore to the laptop's recorder. `:3001` stays up alongside.** (AC 4) — relay live: start/pause/resume/stop via VM in <1.1s; disconnected start 409 with reason; restart hands off — done: 39e7fb8
   - `scribe/internal/server/agents.go`:
     - The recorder short-polls `POST /api/agents/laptop/poll` every 1–2 s. Each poll carries a snapshot (the live recording, pending uploads, the answer to the last command) and gets back the next command, if any. The recorder counts as disconnected after about 10 s of silence.
     - The VM's list merges in the snapshot's live and `uploading` items; its own copy wins once it has received one.
