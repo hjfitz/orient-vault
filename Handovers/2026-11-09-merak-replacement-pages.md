@@ -8,7 +8,7 @@ from: rc-hjf
 to: next session, any machine
 session_id: 9ef32451-f6a6-429e-88df-add8e5d83ddf
 resumed_by: 4ff6c302-4da3-4b14-bf3c-fc976c0ec75b   # laptop (freightops), 2026-11-09T12:14Z
-updated: 2026-11-09T13:48Z
+updated: 2026-11-09T15:30Z
 ---
 # Handover: Merak replacement pages (continues the carrier-integrations research)
 
@@ -32,6 +32,7 @@ Five design pages are **published as drafts, unverified**, under MPK "1. Archite
 | Draft page 3 (new) | **How Carriers Feed ECM**: polling, webhooks and files compared, plus the 12 mocked carriers by route (about 9% of events; Evri, DHL Parcel UK, DPD Local and DPD about 89%) | `Handovers/2026-11-09-merak-replacement-pages.page3-how-carriers-feed-ecm.md` | **Published 2026-11-09 12:38Z** as a draft: MPK 355074111. Unverified. No lint errors. The vault copy now says "Not confirmed" where the draft had `[??]`, and links page 2 |
 | Page 4 | **From Label to Invoice: How a Selector Shipment Is Billed**: 15-step chain from CSS or Client4 to the NetSuite file, bill triggers, pricing inputs, timing, where shipments wait, what a replacement must write | `Handovers/2026-11-09-merak-replacement-pages.page4-label-to-invoice.md` | **Published 2026-11-09 13:09Z** as a draft: MPK 354353232. Unverified: built from the Billing space and the Selector docs by one Sonnet reader. CCDIS and `REG_WILKO_*` were not read |
 | Page 5 | **How Each Carrier's POD Is Retrieved**: per-carrier calls, auth, image source, time handling and bugs for the 11 carriers plus the test carrier and DHL Express. Child of Proof of Delivery Service | `Handovers/2026-11-09-merak-replacement-pages.page5-pod-by-carrier.md` | **Published 2026-11-09 13:20Z** as a draft: MPK 354877489. Code read at `GFS POD` `origin/master` `d1f0ada` by three Sonnet readers. I checked 8 load-bearing claims against the code. No carrier was called |
+| Diagrams (Lucid) | Text twins (elements and relationships tables) for 8 C4 diagrams, to be drawn with the `c4-diagrams` skill in the house style. Ready: Selector/Firebird/ECM coupling (container, 20 el), tracking carrier to customer (container, 19), polling connector (component, 13), carrier proxy (component, 11), pod service (component, 17), customer data flow (container, 16), tracking webhook (component, 14), shipment journey (container, 20). Not drawn: Lucid is not authenticated | `Handovers/2026-11-09-merak-replacement-pages.diagram-*.md` | Tables ready 2026-11-09. Skill: `~/projects/orient-writers/skills/c4-diagrams/` (uncommitted). Nothing drawn or published |
 
 ## In flight
 None of this session's workflows or agents is running (checked 2026-11-09 11:53Z). The sessions `ListAgents` shows are Harry's other sessions: leave them alone.
@@ -45,6 +46,14 @@ None of this session's workflows or agents is running (checked 2026-11-09 11:53Z
 ## Waiting on Harry
 - **Flatten MPK "1. Architecture & Design": done 2026-11-09 13:35Z.** The root is now "1. Research into Existing Services" (351502339) with an index body. All carrier, tracking, POD, billing and Selector-coupling pages are direct children of it (checked with `getConfluencePageDescendants`). Services (Legacy Selector, Parcel Portal) is unchanged, and the Journey page keeps its whiteboard. Ten pages moved up, 15 bodies written (13 with wording or link changes), and the old two-family table on Carrier Services is gone. Version messages on older versions still say ingress and egress.
 - **Security items from the POD code read, class level only, not yet in the ticket draft below:** hard-coded credentials in the unloaded DHL Express module; credential-like sample values in comments in the Yodel and Panther modules; a Panther API key sent in a URL query string; the UK Mail token that never expires; the test carrier loaded in the prod config. The repo is `GFS POD` in Azure DevOps.
+- **Lucid sign-in.** Run `/mcp`, pick `claude.ai Lucid`, and finish the browser login. Then test one diagram (the carrier proxy) before drawing the rest. Unknown until tested: what the connector can create, whether it applies the house style and GCP icons, how to embed on Confluence, and whether the Atlassian tools can write the Lucid macro.
+- **Which diagrams.** Tier 1 is the 8 ASCII replacements above, minus Carrier Integration Methods (4 lines, left as text). Recommended extras: How Carriers Feed ECM, From Label to Invoice (numbered flow). Left out for overlap: Day End and Billing Handoff, Carrier and Proxy Interface, Carrier Proxies Estate. Only Harry's yes on the two extras is needed.
+- **Page corrections found while building the tables, not yet applied** (Harry approves before any live edit):
+  - Shipment Journey Through ECM: "In short" says a Dataflow job and the Scan Injector set shipment status (the Dataflow job sets none; Firebird derives it from raw scans). Stage 11 says the write-back sets a delivered status. Raw events also reach CCIS and ICIS directly. The ASCII omits Slipway's masked billing copy. The shipment ID rule (counter, or consignment plus carrier) is unresolved.
+  - Polling Connectors: the response-publisher pod also runs a `shipment-tracking-status-deriver` sidecar that the page omits. The manifests say namespace `default`, not `fenghuang`.
+  - Carrier Tracking and Proof of Delivery: `connect-hooks` subscribes to `raw_tracking.v1` directly, not after CCIS and ICIS. The three path counts sum to about 5.71M, not the 6.25M total. The same 5.44M appears on How Carriers Feed ECM.
+  - Tracking Webhook Services: code maps first, then matches, dedupes and publishes. The Royal Mail handler is older and synchronous, with no interim topic. The 90-day limit is a read cutoff, and the TTL indexes are unconfirmed.
+  - Customer Data Flow: it says a Sunday invoice run, but each customer has its own schedule.
 - **Feedback on the published drafts.** Harry will send it. Page 3's title, "How Carriers Feed ECM", is mine: the other two titles were agreed.
 - **Merak replacing ECM and Selector is an unconfirmed hunch (Harry, 2026-11-09).** It can't be confirmed with Jack and Stef yet. The published pages say "a replacement" hypothetically and leave the choice to the Merak team. Keep any new wording that way.
 - **Keep or drop one link.** Page 2 links the "Idea: Developer promise" page (349110455) in its opening paragraph. Recommendation: keep it. That page asks for the same v1 webhook features, and the decisions on it stay with Stef.
@@ -106,6 +115,7 @@ Checked on `rc-hjf` (`uname -n`) at 2026-11-09T11:57Z:
 - **Not part of the handover:** this session's scratchpad under `/tmp/claude-2001/`. The checked facts live in the two explainers and the MPK pages.
 
 ## Gotchas
+- **Selector and ECM Coupling was corrected live on 2026-11-09 (v2)** after three read-only agents challenged it. Firebird is the seam, not a tight coupling. The findings are in `Handovers/2026-11-09-merak-replacement-pages.page1-challenge-findings.md`. The Amazon SFP sentence on Carrier Tracking and Proof of Delivery was corrected too (v7).
 - **Confluence updates link targets when a page is renamed, but not the visible link text.** After a rename, search for the old title and fix the labels. Moves by `parentId` keep ids and links.
 - **Don't rewrite a Selector page that uses smart-link cards through markdown.** `Legacy Selector: overview` (351764493) shows live titles in cards, and a markdown write would turn them into plain links. It needed no change, so it was left alone.
 - **Carrier proxies are not in the event flow.** Selector calls them for labels, cancels and manifests. Events arrive by polling connectors, webhooks or SFTP files. The one link is `connectors-amazon`, which polls through the Amazon proxy.

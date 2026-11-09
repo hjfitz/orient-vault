@@ -1,10 +1,10 @@
 # Container diagram: Legacy Selector, from customer set-up to central
 
-This C4 level 2 diagram shows how one customer's set-up reaches their Selector site and how a shipment moves from a request to the central database. It does not show how tracking reaches ECM, how billing works inside, or registration states.
+This C4 level 2 diagram shows how a customer's set-up reaches their Selector site and how a shipment moves from request to central. It does not show how tracking reaches ECM, how billing works inside, or registration states.
 
 It replaces the ASCII block in "The flow" on the page "Legacy Selector - Customer Data Flow" (352157700, space MPK, version 5). Researched 9 Nov 2026 from that page, `Systems/selector/architecture.md` and `known-context.md`, and the Selector repos in `~/code/selector`.
 
-Split decision: one diagram, not two. It has 16 boxes against a limit of 20, and the set-up and shipping paths share four boxes: Client4, the site database, the upload server and the central database. Splitting would draw those twice. The Gaps section says where to cut if it proves crowded.
+Split decision: one diagram, not two. It has 16 boxes against a limit of 20. The set-up and shipping paths share four boxes: Client4, the site database, the upload server and the central database. Splitting would draw those twice. The Gaps section says where to cut if it proves crowded.
 
 Status values: `Verified in page` means the page states it. `Verified in source, not on page` means the vault notes or repos show it but the page does not. `Not confirmed` means no source settles it, so draw it dashed.
 
@@ -76,7 +76,7 @@ Put the Central Selector group across the top, left to right: staff, Manager, th
 
 Put the Hosted site group in the middle band, with the pack bench operator and calling systems on its left. Put the proxy, ApiKy, carriers and V4-Server-IE on the right, below the central group. Put tools-ui bottom-left, beside the site database.
 
-Run the set-up arrows downwards from Central to the site, and the shipping arrows left to right through CSS and Client4, with the end-of-day upload as one long arrow back up to the upload server.
+Run the set-up arrows downwards from Central to the site. Run the shipping arrows left to right through CSS and Client4. Draw the end-of-day upload as one long arrow back up to the upload server.
 
 ## Key needed
 
@@ -98,5 +98,5 @@ Run the set-up arrows downwards from Central to the site, and the shipping arrow
 - **Royal Mail's replica (`rm_replica`) is not drawn.** The ASCII mentions it. It is a second consumer of the same triggers.
 - **Who pastes the contract SQL is "someone" on the page.** The diagram says GFS staff. The page and vault do not name a role.
 - **Calling systems omit Fuse's selector-adapter.** `Systems/selector/known-context.md` says selector-adapter, parcel-portal and selector-rest-proxy all book through CSS. The page lists the other three.
-- **Left out on purpose:** the registration states, CSS API users, release of the Manager Versions screen, the carrier credential stores, and the central processing inside ECM and billing.
+- **Left out on purpose:** the registration states, CSS API users and the Manager Versions screen. Also the carrier credential stores and the processing inside ECM and billing.
 - **If Harry finds one diagram crowded, cut at the site database.** Set-up would be E1, E2, E3, E4, E5, E6, E8 and E15. Shipping would be E3, E4, E5, E6, E7, E9 to E14 and E16.

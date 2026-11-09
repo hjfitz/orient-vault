@@ -63,7 +63,7 @@ Arrows point from the caller, or the way a message travels for Pub/Sub. The 200 
 
 ## Layout hint
 
-Read left to right. Put the carrier, load balancer and the Cloud Run group in a left-to-middle row, with the interim topic and its dead-letter topic below the group's left edge. Keep the interim round trip (E5, E6, E8) as a loop under the group's top row.
+Read left to right. Put the carrier, load balancer and Cloud Run group in a left-to-middle row. Put the interim topic and its dead-letter topic below the group's left edge. Keep the interim round trip (E5, E6, E8) as a loop under the group's top row.
 
 Put the Mongo stores on the right inside reach of the Tracking service, below it. Put the `gfs-ecm-prod-uk1` group at the far right, with `shipments.v2.identified` above `raw_tracking.v1` and the shipments handler nearest the first.
 
@@ -80,10 +80,10 @@ Put the Mongo stores on the right inside reach of the Tracking service, below it
 - **The page's order differs from the code.** The page says match, then dedupe, then map. In `tracking.service.ts`, `processRequest` calls the adapter's `mapTracking` first, then looks up the shipment, then checks for a duplicate by trackingKey, then publishes. The diagram follows the code. The page text needs fixing.
 - **Royal Mail does not match this diagram.** Its older handler has no interim topic and processes in the request (`Engineering/tracking-webhook-royal-mail-sapient/overview.md`). It is the only service publishing. I did not read its code. Its shape here is Not confirmed.
 - **The interim path is switchable.** In the core, if the interim service is off, the endpoint matches and publishes inside the request. Evri's prod tfvars turn it on (`iac/projects/tracking-webhook-evri/tfvars/prod.tfvars`), and its variable defaults to off. The page does not mention the switch.
-- **"Up to 90 days" is a read window, not proof of deletion.** The code ignores held events older than 90 days by `createdAt`, and ignores shipments older than 90 days by `metadata.lastUpdated`. Physical deletion needs the TTL indexes, which the core README calls optional. Whether prod has them is Not confirmed.
+- **"Up to 90 days" is a read window, not proof of deletion.** The code ignores held events older than 90 days by `createdAt`. Physical deletion needs the TTL indexes, which the core README calls optional. Whether prod has them is Not confirmed.
 - **The shipments window is not on the page.** Shipment matching also ignores stored shipments older than 90 days. The page states 90 days for held events only.
 - **Mongo hosting is not stated.** The connection string sits in Secret Manager. No page or file I read names the cluster. The page asks for a same-cluster check before Royal Mail moves in.
 - **The shipments subscription has no dead-letter topic.** It only backs off, so a poison shipment message redelivers. The page says so. It is not drawn because the diagram has one dead-letter topic.
 - **Dead-letter depth is unknown.** The page already lists it. Nothing here shows whether anyone reads the dead-letter subscription.
-- **Not drawn on purpose:** health and verification endpoints, the token endpoint and JWT check used by Royal Mail, the optional verification GET, Evri's signature lookup and token cache, Secret Manager, Datadog, and the carrier's retry behaviour.
+- **Not drawn on purpose:** the health and verification endpoints, and the token endpoint and JWT check Royal Mail uses. Also Evri's signature lookup and token cache, Secret Manager and Datadog.
 - **Ownership of the two ECM topics is inferred from the project in tfvars.** Their publishers and other subscribers are not shown here.
