@@ -217,7 +217,7 @@ Every merge rolls prod, so never merge while a Deploy run is in flight (Scar tis
   - **Pending lifted:** Search, List, Channels, Attention, ByKey, Insights, ReasonCap, Scopes, AttentionLanes, plus the counter subtests from increment 3. SortsAndWindows stays pending on its returns subtest.
   - **Docs:** the repo `CLAUDE.md:5` index rule gains its Mongo half: declare in `mongo_indexes.go`, and the explain test fails otherwise.
   - verify: `make test-mongo`, gates.
-- [ ] 5. **Returns** (AC 2,3,4,5). This is ApplyReturn with a transaction-scoped `ShipmentReader` (findOne, plus a sorted, limited find on the session).
+- [x] 5. **Returns** (AC 2,3,4,5). This is ApplyReturn with a transaction-scoped `ShipmentReader` (findOne, plus a sorted, limited find on the session). — done: a97baca
   - **Linked-shipment patches:** `updateOne({_id}, {$set:{returnsJson, returnCount}, $unset:{importedAt}}, upsert:false)`, which errors unless `MatchedCount == 1`. Memory skips unknown ids (`memory_returns.go:62`); Mongo follows Firestore's `tx.Update`, so this test stays Mongo-only.
   - **Methods and indexes:** the return queries and counts through increment 4's builders; ReturnIDs; return marks and ReturnStats/ReturnInsights/OnDay(s); the return indexes (`uniq_business_rga` partial on `keySource:"rga_number"`), with their explain shapes.
   - **Tests:**
