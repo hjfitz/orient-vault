@@ -1,6 +1,6 @@
 ---
 tags: [handover]
-status: resumed
+status: closed
 workstream: tracking-service Firestore → MongoDB Atlas (Tracking Service programme, group D)
 programme: Tracking Service
 repo: gfs-bifrost/tracking-service
@@ -8,7 +8,7 @@ from: laptop
 to: hjf.shell.platform.ilg.software
 session_id: c36659b6-edee-4035-ab29-ffd89416a0e8
 resumed_by: "3aa25172-6c08-47b7-801e-82d3744ffce2"
-updated: 2026-11-06T18:01Z
+updated: 2026-11-09T09:40Z
 ---
 # Handover: tracking-service Firestore → MongoDB (group D)
 
@@ -107,6 +107,7 @@ Checked 2026-11-06 ~15:15Z on `hjf.shell.platform.ilg.software` (kernel 7.2.14):
 ## Closed since handover
 | When (UTC) | Work | Result |
 |---|---|---|
+| 2026-11-09 09:40 | **Handover closed** | Everything in flight is done. Harry signed off 2026-11-09: G3 passed, D1 complete; D5 Gate A dropped and the plan activated; D7 owns the note freeze; D11 adds the fuse-mcp collections. D5 implementation continues as ordinary programme work from rc-hjf (W1 foundation and W2 marks in parallel, then W3/W4). The `api-mongo` required-check change is with Harry, because the agent was denied it. |
 | 2026-11-06 17:59 | Batch deploy prod apply (run 42239748734) + D6 | **Success** 17:42:22–17:58:16Z: `Apply complete! Resources: 3 added, 1 changed, 0 destroyed.` Atlas `tracking-service-prod` created in 15m11s. Prod serves `a97baca` (revision `00016-tcd`, 100%), dev serves `a97baca`; prod API reads 200; neither service has `STORE`/`MONGODB_*` env (still Firestore). **D6 ticked ✅.** |
 | 2026-11-06 17:42 | Batch deploy prod gate (run 42239748734, `a97baca`) | `terraform-plan-prod` (job 127995893364): **Plan: 3 to add, 1 to change, 0 to destroy**: `mongodbatlas_advanced_cluster.tracking` (`tracking-service-prod`, `termination_protection_enabled = true`, M10×3 GCP EUROPE_WEST_2, autoscale to M20, backup + PIT, 8.0), `mongodbatlas_database_user.tracking` (`tracking-service-user-prod`, readWrite), `random_password.mongodb_user_password`, Cloud Run image `44734ac`→`a97baca` plus one masked env swap. Matched the agreed set, so `terraform-prod` was approved 17:42:20Z. Dev already serves `a97baca` (API 200; `STORE` unset, so Firestore). |
 | 2026-11-06 15:51 | D5 plan (draft) | [[tracking-service/plans/mongo-store]]: 7 increments, three-way reviewed (history, factual, structure), marks benchmark first as Gate A. Left **draft**; linked from the D5 row. Worktree `hjf/tracking-service-mongo-store` (no commits). |
