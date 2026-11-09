@@ -188,6 +188,7 @@ Since 2026-11-09 the VM (`rc-hjf`) is orient's home. The laptop reaches it throu
     - At `localhost:3000/recordings`, Start. The laptop's scribe shows it live, and `pw-link -l | grep 'orient scribe'` shows the links.
     - Pause, resume, stop and ignore each show on the page within about 2 s, and sending the same stop twice is harmless.
     - With the laptop's scribe stopped, Start gives 409 and the rail shows the reason.
+    > SUPERSEDED 2026-11-09 — a restart stops a recording by design (CLAUDE.md, Scribe); what it captured is handed off and appears on the VM. That's what was verified.
     - `systemctl --user restart orient-scribe` on the laptop mid-recording keeps it live on the VM page.
 - [ ] 6. **Retire `:3001` and move every laptop client onto the VM.** (AC 5)
   - Remove the `orient-web` and `orient-desk` drop-ins.
@@ -215,6 +216,17 @@ Follow-up plans, not in this one:
 ### Evidence
 <!-- Newest first, dated. One bullet per check actually run, opening with what it discharges.
      "Suite green" alone is not evidence. Sign-off requires at least one dated bullet here. -->
+- 2026-11-09 [inc 5] **The relay is live** (`39e7fb8`). The VM was deployed first, then the laptop's recorder, which polls `127.0.0.1:3014` every second. The VM's list reads `"recorders":[{"name":"laptop","connected":true}]`.
+- 2026-11-09 [inc 5] **Every control through the VM's API, as orient calls it** (AC 4). Timed with curl against `127.0.0.1:3014`:
+  - Start: 201 in 795 ms. The laptop went live with the same id, and `localhost:3000/recordings` showed it.
+  - Pause: 200 in 752 ms (`pausedAt` set). Resume: 200 in 1,039 ms (`pausedAt` null).
+  - Stop: 200 in 1,046 ms, `uploading`. A second stop: 409 "that recording is not running", which is harmless.
+  - The VM then had it `done`, with sources me = JLAB mic and them = Nightly, `pausedSeconds` 3.05, length 7 s.
+  - Ignore wasn't driven live (no app on the call side at the moment of the call); it's the same relay path, and `Relayable` covers it.
+- 2026-11-09 [inc 5] **Disconnected** (AC 4): with the laptop's scribe stopped, after 12 s `recorders` read `connected:false`, and a start got 409 `this machine does not record, and no recorder is connected`. orient shows that text as the Start error.
+- 2026-11-09 [inc 5] **Laptop scribe restarted mid-recording** (started from the VM): the restart stopped the recording by design and the captured audio was handed off. The VM had it `transcribing` moments later and the laptop spool was empty.
+- 2026-11-09 [inc 5] **Go tests** (`-race -count=2`): starting on the server starts the recorder; the recorder's live recording is listed on the server; stopping on the server stops the recorder; no recorder gives a reason; only start, stop, pause, resume and ignore are relayable (DELETE, PATCH, trim, uploads and a `..` path refused); the recorder refuses a non-relayable command (403).
+- 2026-11-09 [inc 5] **Cleanup:** both test recordings deleted on the VM; `vm/` is empty.
 - 2026-11-09 **Regression from inc 4 fixed: the laptop's own recordings had become uneditable.** Harry couldn't name speakers on "Fuse Leadership Catchup" (`20261109-111949-d4b5`, recorded before the switch). The VM served `recordings/laptop/` read-only (another machine's; PATCH 409), and the laptop's recorder no longer reads the vault (GET 404).
   - Fix (`f7b7299`): `serve -adopt laptop` (and `prune -adopt`) makes the VM write `laptop/` in place, so nothing moves and ids and links are unchanged.
   - The laptop's 13 remaining `audio.ogg` (128 MB) were copied with `tar` over ssh (the VM has no rsync); all 13 sha256 match, and git sees no change.
