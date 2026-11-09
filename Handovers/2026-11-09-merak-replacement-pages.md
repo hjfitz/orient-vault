@@ -8,7 +8,7 @@ from: rc-hjf
 to: next session, any machine
 session_id: 9ef32451-f6a6-429e-88df-add8e5d83ddf
 resumed_by: 4ff6c302-4da3-4b14-bf3c-fc976c0ec75b   # laptop (freightops), 2026-11-09T12:14Z
-updated: 2026-11-09T12:40Z
+updated: 2026-11-09T13:12Z
 ---
 # Handover: Merak replacement pages (continues the carrier-integrations research)
 
@@ -17,7 +17,7 @@ Continues [[Handovers/2026-11-06-carrier-integrations]], which is closed. Read t
 ## Where things stand
 The ECM and Selector research is published to MPK and the vault. On 2026-11-09 a 31-agent review checked 36 claims on the first journey page: 19 confirmed, 17 partly right, none refuted. All 17 were corrected. Harry now frames Merak as a new despatch and shipping platform that replaces ECM and Selector. **The Parcel Portal is not part of that.**
 
-Three design pages are **published as drafts, unverified**, under MPK "1. Architecture & Design" (page 351502339). Harry asked for them on 2026-11-09 at about 12:35Z and will send feedback afterwards. The verification run was killed at the session limit and returned nothing, so no claim on the pages has been through it. Apply Harry's feedback to the live pages first, then to the vault files, which are the source copies.
+Four design pages are **published as drafts, unverified**, under MPK "1. Architecture & Design" (page 351502339). Harry asked for them on 2026-11-09 at about 12:35Z and will send feedback afterwards. The verification run was killed at the session limit and returned nothing, so no claim on the pages has been through it. Apply Harry's feedback to the live pages first, then to the vault files, which are the source copies.
 
 | Unit | What it delivered | Where | State |
 | --- | --- | --- | --- |
@@ -30,6 +30,7 @@ Three design pages are **published as drafts, unverified**, under MPK "1. Archit
 | Draft page 2 | **Tracking Events and Webhooks: What v1 Needs**: ten requirements from ECM's failures | `Handovers/2026-11-09-merak-replacement-pages.page2-tracking-events-webhooks.md` | **Published 2026-11-09 12:37Z** as a draft: MPK 355074077. Unverified. 1 long-sentence lint warning left in |
 | Page 3 (old) | Dropped. It only answered MKP-9, a Parcel Portal gate | n/a | Hidden duties moved into page 1 |
 | Draft page 3 (new) | **How Carriers Feed ECM**: polling, webhooks and files compared, plus the 12 mocked carriers by route (about 9% of events; Evri, DHL Parcel UK, DPD Local and DPD about 89%) | `Handovers/2026-11-09-merak-replacement-pages.page3-how-carriers-feed-ecm.md` | **Published 2026-11-09 12:38Z** as a draft: MPK 355074111. Unverified. No lint errors. The vault copy now says "Not confirmed" where the draft had `[??]`, and links page 2 |
+| Page 4 | **From Label to Invoice: How a Selector Shipment Is Billed**: 15-step chain from CSS or Client4 to the NetSuite file, bill triggers, pricing inputs, timing, where shipments wait, what a replacement must write | `Handovers/2026-11-09-merak-replacement-pages.page4-label-to-invoice.md` | **Published 2026-11-09 13:09Z** as a draft: MPK 354353232. Unverified: built from the Billing space and the Selector docs by one Sonnet reader. CCDIS and `REG_WILKO_*` were not read |
 
 ## In flight
 None of this session's workflows or agents is running (checked 2026-11-09 11:53Z). The sessions `ListAgents` shows are Harry's other sessions: leave them alone.
@@ -38,7 +39,7 @@ None of this session's workflows or agents is running (checked 2026-11-09 11:53Z
 | --- | --- | --- | --- |
 | Verify drafts 1 and 2 | `Handovers/2026-11-09-merak-replacement-pages.verify-workflow.js.txt` | Killed, no results | Optional now the pages are live as drafts: ask Harry whether to run it before or after his feedback. Needs his go-ahead for multi-agent work. Add page 3 to its scope. Copy the script to a `.js` file and run it with `Workflow({scriptPath})`. It uses two Sonnet-high verifiers per page (source and runtime lenses), an Opus-high judge and a cross-page critic. Its CONTEXT points at this session's scratchpad (clones, `review-result.json`), which a new session won't have. Apply the corrections to the two draft files |
 | Fix lint warnings | Pages 1 (4 long sentences) and 2 (1) | Open. Fix in the vault, then `updateConfluencePage` with a `versionMessage` | `python3 ~/.claude/skills/plainly/lint.py <file>` |
-| Link the three pages from [Carrier Services](https://globalfreight.atlassian.net/wiki/spaces/MPK/pages/353468499/Carrier+Services) | MPK 353468499 | Not started. Harry asked only for the pages. The pages already sit under "1. Architecture & Design", which lists them as children | Add one line per page on Carrier Services, with a `versionMessage`. Ask Harry first: it edits a live page |
+| Link the four pages from [Carrier Services](https://globalfreight.atlassian.net/wiki/spaces/MPK/pages/353468499/Carrier+Services) | MPK 353468499 | Not started. Harry asked only for the pages. The pages already sit under "1. Architecture & Design", which lists them as children | Add one line per page on Carrier Services, with a `versionMessage`. Ask Harry first: it edits a live page |
 
 ## Waiting on Harry
 - **Feedback on the three published drafts.** Harry will send it. Page 3's title, "How Carriers Feed ECM", is mine: the other two titles were agreed.
@@ -81,6 +82,7 @@ In my 2026-11-09 view, two things are not worth writing. More per-service ECM pa
 | "142M carrier calls" on the Polling Connectors and Ingress pages, against the 115M parcel polls the review measured | Nobody has reconciled them. They may be different measures |
 
 ## Next up
+0. **POD page (asked 2026-11-09, scope not yet agreed).** `Proof of Delivery Service` (353861642, v3) already covers the service. Ask Harry which angle is missing before writing. Draft: end to end from carrier to customer screen, the "delivered" gate, carriers with no POD, and the pass-through question for UPS and FedEx (that last part needs outside research).
 1. Finish pages 1, 2 and 3: verify, fix, lint, show Harry the text, publish on his word. The verify script covers pages 1 and 2 only: add page 3.
 2. Ask Harry which further pages he wants (see Waiting). Harry asked for the carrier page and the connectors page on 2026-11-09; both are now draft page 3.
 

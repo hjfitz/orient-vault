@@ -1,11 +1,11 @@
 A label does not bill anyone. Selector's upload puts a row in central `SHIPMENTS`, and a separate billing app bills that row on the customer's next invoice run. For contracts billed on scan, a carrier scan must also have moved the row's status past 200. This page follows one shipment from label to invoice and names each system on the way.
 
-Billing belongs to Finance, not Selector. It is a Delphi 7 app that reads central `SHIPMENTS` directly, and Selector has no billing interface. Written 9 Nov 2026 from the Billing space and [Legacy Selector - Day End and Billing Handoff](https://globalfreight.atlassian.net/wiki/spaces/MPK/pages/353566845/Legacy+Selector+-+Day+End+and+Billing+Handoff). The billing app facts were read from its source at `develop` @ `3dcdc299` on 15 Sep 2026, and the counts come from Finance queries of a backup to 20 Oct 2026. How scan status reaches `SHIPMENTS` is on [Selector and ECM Coupling](https://globalfreight.atlassian.net/wiki/spaces/MPK/pages/354418743/Selector+and+ECM+Coupling).
+Billing belongs to Finance, not Selector. It is a Delphi 7 app that reads central `SHIPMENTS` directly, and Selector has no billing interface. Written 9 Nov 2026 from the Billing space and [Legacy Selector - Day End and Billing Handoff](https://globalfreight.atlassian.net/wiki/spaces/MPK/pages/353566845/Legacy+Selector+-+Day+End+and+Billing+Handoff). The billing app facts were read from its source at `develop` @ `3dcdc299` on 15 Sep 2026. The counts come from Finance queries of a backup to 20 Oct 2026. How scan status reaches `SHIPMENTS` is on [Selector and ECM Coupling](https://globalfreight.atlassian.net/wiki/spaces/MPK/pages/354418743/Selector+and+ECM+Coupling).
 
 ## In short
 
 - **Selector sends nothing to billing.** Billing selects one row per consignment number and carrier from `SHIPMENTS`.
-- **A shipment bills only if it reaches central.** A station that is off, a commit that never happens or a failed Slipway export loses it, and nothing alerts.
+- **A shipment bills only if it reaches central.** An offline station, a missed commit or a failed Slipway export loses it, and nothing alerts.
 - **Scan-billed contracts wait for ECM.** `BILL_ON_SCAN = 1` bills only when the status is above 200 and not 310.
 - **Each customer has its own schedule and there is no cut-off.** A late shipment lands on the next invoice.
 - **The pages end at the emailed or printed invoice and the NetSuite file.** Payment collection is not confirmed.
@@ -95,5 +95,13 @@ Statuses 100, 200 and 310 are data-only statuses from before any carrier scan. S
 ## Sources
 
 - **Selector side:** [Legacy Selector - Day End and Billing Handoff](https://globalfreight.atlassian.net/wiki/spaces/MPK/pages/353566845/Legacy+Selector+-+Day+End+and+Billing+Handoff), [Legacy Selector - Getting a Label](https://globalfreight.atlassian.net/wiki/spaces/MPK/pages/352157738/Legacy+Selector+-+Getting+a+Label) and [Legacy Selector - Customer Data Flow](https://globalfreight.atlassian.net/wiki/spaces/MPK/pages/352157700/Legacy+Selector+-+Customer+Data+Flow).
-- **Billing side:** the Legacy Billing pages in the Billing space: [Overview](https://globalfreight.atlassian.net/wiki/pages/viewpage.action?pageId=311328794), [Invoicing & Scheduling](https://globalfreight.atlassian.net/wiki/pages/viewpage.action?pageId=311394359), [Customers, Contracts & Schedules](https://globalfreight.atlassian.net/wiki/pages/viewpage.action?pageId=311164981), [Tariffs, Zones & Rating](https://globalfreight.atlassian.net/wiki/pages/viewpage.action?pageId=311132225), [Finance Export](https://globalfreight.atlassian.net/wiki/pages/viewpage.action?pageId=311590953), [Exceptions & Reconciliation](https://globalfreight.atlassian.net/wiki/pages/viewpage.action?pageId=310673473), [Anomalies & Open Questions Register](https://globalfreight.atlassian.net/wiki/pages/viewpage.action?pageId=311394383) and [Operational Process: Weekly EDI & Accruals](https://globalfreight.atlassian.net/wiki/pages/viewpage.action?pageId=312279071).
+- **Billing side:** the Legacy Billing pages in the Billing space.
+    - [Overview](https://globalfreight.atlassian.net/wiki/pages/viewpage.action?pageId=311328794)
+    - [Invoicing & Scheduling](https://globalfreight.atlassian.net/wiki/pages/viewpage.action?pageId=311394359)
+    - [Customers, Contracts & Schedules](https://globalfreight.atlassian.net/wiki/pages/viewpage.action?pageId=311164981)
+    - [Tariffs, Zones & Rating](https://globalfreight.atlassian.net/wiki/pages/viewpage.action?pageId=311132225)
+    - [Finance Export](https://globalfreight.atlassian.net/wiki/pages/viewpage.action?pageId=311590953)
+    - [Exceptions & Reconciliation](https://globalfreight.atlassian.net/wiki/pages/viewpage.action?pageId=310673473)
+    - [Anomalies & Open Questions Register](https://globalfreight.atlassian.net/wiki/pages/viewpage.action?pageId=311394383)
+    - [Operational Process: Weekly EDI & Accruals](https://globalfreight.atlassian.net/wiki/pages/viewpage.action?pageId=312279071)
 - **Publishing:** Azure DevOps `legacy-invoice-translator` and Datadog `invoice_published` subscription traffic.
