@@ -40,6 +40,7 @@ All pages are in the MPK space, at `https://globalfreight.atlassian.net/wiki/spa
 | Tracking Webhook Services | 353533985 | Live |
 | Carrier Integration Uses, Carrier Integration Methods | 353206310, 353697842 | Live |
 | Legacy Selector (index), Customer Data Flow | 351764483, 352157700 | Live. See [[selector]] |
+| Shipment Identity: Why ECM Gives Each Shipment Its Own ID | 355631312 | Published draft, unverified (9 Nov 2026). Code read at `gfs-ecm/shipment-identity-service` `7454a4e`; volumes from Datadog over the canonical window |
 
 Harry declined a verification run for the five drafts. Do not run one unless he asks. One Sonnet reader built page 4 from the Billing space and the Selector docs. It did not read CCDIS or the `REG_WILKO_*` procedures [1].
 
