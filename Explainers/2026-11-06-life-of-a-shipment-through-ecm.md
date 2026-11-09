@@ -69,9 +69,25 @@ confidence: high
 | 10 POD | portal or Connect, then `gfs-pod-service` | `{signee, deliveryDateTime, images, deliveryAddress}`, cached 1 h | Fetched from the carrier on read. Never published |
 | 11 Invoice | billing app on Firebird, `legacy-invoice-translator`, CCDIS | `invoiced_shipments_published.v1`: `{shipmentId, invoiceNumber, shipmentCost}` | CCIS, ICIS, claims and SUS add invoice fields |
 
+### What can change it later
+
+| Change | Caller | Writes | Reaches ECM? |
+|---|---|---|---|
+| Mark as deleted | Portal, via SUS and the legacy update service | Firebird `STATUS` 100 | Only before the first scan |
+| Mark as delivered | Portal, same path | `STATUS` 1003 plus `GFS_DELIVERED_EVENT` | No |
+| Change status | CCP agent, via MQP and SeekerAPI | Firebird `STATUS` | No |
+| Query or ticket action | Portal, CCP or n8n, via MQP, Oz and SeekerAPI | Firebird tickets and comments | Yes: `shipment-queries`, `gfs-tickets` |
+| Comment | Seeker, GFS Manager | Firebird comments | Yes: `shipment-comments.v1` |
+| Claim | Portal, internal claims portal | claims-service | Yes: `claims.v1`, eligibility, credit notes |
+| Collection | Portal, via collections-service | Firebird collections | Staff only, in ICIS |
+| Extra number | gfs-modernizer | none | Yes: CCIS and ICIS `additionalNumbers` |
+
 ## Assessment
 > What the journey means for carrier integrations.
 - **CONFIRMED** The label side emits no events. No proxy publishes a label, manifest or "Picked" event. ECM first hears of a shipment after upload. [1][4]
+- **CONFIRMED** Amazon SFP skips Firebird. Slipway publishes those shipments straight to `fb.shipments.v1`. [9]
+- **CONFIRMED** Firebird replicates only inserts and a shipment's first move to status 200+ or 100. Manual deliveries, later deletes and address edits never reach ECM. [2][10]
+- **CONFIRMED** No service edits a shipment's address, route or cancellation. Those are ticket requests only. [10]
 - **CONFIRMED** A labelled shipment that never uploads gets no ECM tracking, portal view or POD record. Fuse's commit gap (R5) lands here. [2]
 - **CONFIRMED** A new carrier needs an almanac entry first. `gfs-modernizer` dead-letters a shipment whose carrier it cannot resolve. [2]
 - **CONFIRMED** A tracking source must set `id`, `parcel.shipmentId` and `parcel.company`. CCIS, ICIS and `connect-hooks` drop events without them. Both webhooks set all three. [4][5]
@@ -89,6 +105,7 @@ confidence: high
 | Read patina-2's supported-carrier list (ADO variable group 141) | Harry | UNKNOWN |
 | Measure how often a re-insert wipes STSD's parcel history | carriers team | UNKNOWN |
 | Decide Evri cutover dedupe: consumers key on `id`, so connector plus webhook doubles history | carriers team | UNKNOWN |
+| Confirm the data warehouse's `raw_tracking.v1` subscription and the owner of `tracking-dump@` | ECM platform | UNKNOWN |
 
 ## Evidence
 ```orient-evidence
@@ -100,6 +117,8 @@ confidence: high
   { "id": 5, "kind": "doc", "ref": "Research track 'consumers', 2026-11-06: STSD@a3dc446, CCIS@b2af452, ICIS@3d125f5, SUS@ccec388, claims@584d827, connect@6c6d527" },
   { "id": 6, "kind": "doc", "ref": "Engineering/gfs-pod-service/architecture.md; MPK 353861642 Proof of Delivery Service" },
   { "id": 7, "kind": "doc", "ref": "ADO GFS Legacy Migration/patina-service-2 pipeline/aggregate/filter.go and README; pipeline patina-service-2-prod build 57328 (2026-11-03); gfs-ecm-prod-uk1 main.tf fenghuang-dataflow-legacy-tracking-service; tracking-patina-service@8edfb3e (CARRIERS=NONE)" },
+  { "id": 9, "kind": "doc", "ref": "gfs-hybrid-services/slipway@f604bdd iac/projects/slipway/pubsub.tf, code/src/processors/shipment.mapper.ts; Firebird Transfer Service readme.md ShipmentExclusion" },
+  { "id": 10, "kind": "doc", "ref": "Research track 'mutators', 2026-11-09: shipment-update-service@ccec388, ADO legacy-shipment-update-service@1a785a1, manage-queries-proxy@0772650, Firebird Transfer Service sql/4_fts_doppelganger_updates_3.sql, service-core@dc00bd4 GraphQL typedefs" },
   { "id": 8, "kind": "log", "ref": "Datadog gfs.doppelganger.received / injected, host MEDC-APP-01-P, 2026-10-22 to 2026-11-06; service gfs.doppelganger.scan-injector errors citing SET_PARCEL_HIST and FK_SHIP_PIECES_HIST" }
 ] }
 ```

@@ -5,7 +5,7 @@ tags:
 title: gfs-pod-service — overview
 thesis: 'gfs-pod-service returns a proof of delivery on request: it looks up the shipment,
   calls the carrier''s own POD or tracking API live, and returns one normalised POD
-  with signature, safe-place photo and GPS. It serves the customer portal, Connect
+  with signature, safe-place photo and GFS''s geocoded delivery address. It serves the customer portal, Connect
   API and staff tools, about 21k requests in 15 days, mostly DHL Parcel UK.'
 confidence: high
 verified: '2026-11-06'
@@ -19,12 +19,12 @@ verified_sha: 811007e
 # gfs-pod-service — overview
 
 ```orient-bluf
-{ "v": 1, "bluf": "gfs-pod-service returns a proof of delivery on request: it looks up the shipment, calls the carrier's own POD or tracking API live, and returns one normalised POD with signature, safe-place photo and GPS. It serves the customer portal, Connect API and staff tools, about 21k requests in 15 days, mostly DHL Parcel UK.", "confidence": "high", "action": "Change the repo in Azure DevOps project GFS POD, by PR; read its AGENTS.md first." }
+{ "v": 1, "bluf": "gfs-pod-service returns a proof of delivery on request: it looks up the shipment, calls the carrier's own POD or tracking API live, and returns one normalised POD with signature, safe-place photo and GFS's geocoded delivery address. It serves the customer portal, Connect API and staff tools, about 21k requests in 15 days, mostly DHL Parcel UK.", "confidence": "high", "action": "Change the repo in Azure DevOps project GFS POD, by PR; read its AGENTS.md first." }
 ```
 
 ## Responsibility
 - Keeps its own copy of each shipment (carrier, consignment, parcels, address) from `shipments.v2.identified`, plus BJS tracking from `raw_tracking.v1` [1].
-- On request, fetches the POD from the carrier's API and normalises it: signee, delivery time, GPS, images, comments [2].
+- On request, fetches the POD from the carrier's API and normalises it: signee, delivery time, images, comments [2]. It then swaps in GFS's own delivery address and geocodes it, so the coordinates are never the driver's.
 - Serves POD images and emails a POD on request through SendGrid.
 
 ## Why it exists separately

@@ -102,7 +102,7 @@ POD sits outside the event stream. [[gfs-pod-service]] keeps a copy of each ship
   "edges": [
     { "from": "c", "to": "p", "label": "GET /pod/:shipmentId" },
     { "from": "p", "to": "cr" },
-    { "from": "p", "to": "car", "label": "signature, photo, GPS" }
+    { "from": "p", "to": "car", "label": "signature, photo" }
   ] }
 ```
 

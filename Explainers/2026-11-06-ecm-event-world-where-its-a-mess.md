@@ -44,9 +44,15 @@ confidence: high
 - **CONFIRMED** Four dead or orphaned subscriptions sit on `raw_tracking.v1`, each holding up to 7 days of backlog. [1]
 - **CONFIRMED** `shipment-update-service` maps 3.0M events a week into a field nothing reads. Every status consumer drops its synthetic `GFS_DELIVERED_EVENT`. [5]
 
+### One-way and narrow
+- **CONFIRMED** Firebird replicates two things into ECM: a new shipment, and its first move to status 200+ or 100. Later legacy changes never arrive. [8]
+- **CONFIRMED** No portal, API or staff tool edits a shipment. Address changes, redeliveries and cancellations exist only as tickets. [8]
+- **ASSESSED** ECM's own write-back may cause many re-announcements: Scan Injector writes move `STATUS` past 200, which re-fires replication. The procedure source is unreachable.
+
 ### Split ownership
 - **CONFIRMED** The carriers team owns the connectors, `tracking-core`, the status deriver, `gfs-pod` and the file processor. The cx team owns CCIS, ICIS, identity and claims. `gfs-modernizer` and patina are cross-team. [7]
 - **CONFIRMED** The webhooks live in `gfs-hybrid-services`. Their grants on ECM topics sit in their own Terraform, outside ECM's. [2][4]
+- **CONFIRMED** Two identities hold publish rights on every ECM topic: the data warehouse project's Pub/Sub agent, and one account nobody has claimed. [9]
 - **CONFIRMED** No team owns the write-back to Firebird. It runs through a Dataflow job, a staging-project topic and an on-prem injector that stops overnight. [6]
 
 ## Open items
@@ -65,6 +71,8 @@ confidence: high
   { "id": 4, "kind": "code", "ref": "tracking-core/ResponsePublisher/ConnectorResponseHandler.cs@c081108" },
   { "id": 5, "kind": "doc", "ref": "Research track 'consumers', 2026-11-06: STSD@a3dc446, CCIS@b2af452, ICIS@3d125f5, SUS@ccec388, claims@584d827, connect@6c6d527, tracking-mapper@44cfbf2; Datadog *.tracking_mapping.requests" },
   { "id": 6, "kind": "doc", "ref": "ADO fenghuang/tracking-patina-service@8edfb3e src/subscriber/tracking-handler.js; ADO GFS Legacy Migration/patina-service-2 (Dataflow); Datadog gfs.doppelganger.* (Scan Injector, MEDC-APP-01-P)" },
-  { "id": 7, "kind": "doc", "ref": "gfs-ecm/ecm-development@b2b67df repos.json (team field)" }
+  { "id": 7, "kind": "doc", "ref": "gfs-ecm/ecm-development@b2b67df repos.json (team field)" },
+  { "id": 8, "kind": "doc", "ref": "Research track 'mutators', 2026-11-09: Firebird Transfer Service sql/4_fts_doppelganger_updates_3.sql (SHIPMENTS_AU9); service-core@dc00bd4 GraphQL typedefs; connect-gateway routes" },
+  { "id": 9, "kind": "code", "ref": "ecm-prod-uk1-iac/terraform/envs/prod.tfvars@68d97d7" }
 ] }
 ```
