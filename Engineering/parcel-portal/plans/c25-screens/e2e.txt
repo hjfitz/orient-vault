@@ -7,4 +7,22 @@ fixed Shipments, acting for A: manifest result "The carrier couldn't manifest th
 fixed Shipments, after switching to B: manifest results shown 0fixed2 Orders, acting for A: upload result "c25-check.csv wasn't uploaded The file couldn't be uploaded right now. Try again in a mome"
 fixed2 Orders, after switching to B: upload results shown 0, upload panels 1, orders tables 1
 fixed2 Shipments, acting for A: manifest result "The carrier couldn't manifest the shipments: no shipments to manifest."
-fixed2 Shipments, after switching to B: manifest results shown 0, manifest buttons 1
+fixed2 Shipments, after switching to B: manifest results shown 0, manifest buttons 1unfixed print tab after switching to B: label frames 1, error shown 0, prints 1 then 1
+unfixed Printing, A: outcome "Sent a ZPL test label to the demo printer. Nothing was sent to a print", demo jobs 1
+unfixed Printing, after switching to B: A's outcome shown 1
+unfixed Printing, B's test print: demo jobs listed 2
+unfixed order page, A: toast "The bench this browser was set up for isn't on the account's bench list any more"
+unfixed after switching to B: toasts shown 1fixed print tab after switching to B: label frames 0, error shown 1, prints 1 then 1
+fixed Printing, A: outcome "Sent a ZPL test label to the demo printer. Nothing was sent to a print", demo jobs 1
+fixed Printing, after switching to B: A's outcome shown 0
+fixed Printing, B's test print: demo jobs listed 1
+fixed order page, A: toast "The bench this browser was set up for isn't on the account's bench list any more"
+fixed after switching to B: toasts shown 1final print tab after switching to B: label frames 0, error shown 1, prints 1 then 1
+final Printing, A: outcome "Sent a ZPL test label to the demo printer. Nothing was sent to a print", demo jobs 1
+final Printing, after switching to B: A's outcome shown 0
+final Printing, B's test print: demo jobs listed 1
+final order page, A: toast "The bench this browser was set up for isn't on the account's bench list any more"
+final after switching to B: toasts shown 0final Orders, acting for A: upload result "c25-check.csv wasn't uploaded The file couldn't be uploaded right now. Try again in a mome"
+final Orders, after switching to B: upload results shown 0, upload panels 1, orders tables 1
+final Shipments, acting for A: manifest result "Manifested 6 shipments The carrier has closed them out for collection. They can't be voide"
+final Shipments, after switching to B: manifest results shown 0, manifest buttons 1

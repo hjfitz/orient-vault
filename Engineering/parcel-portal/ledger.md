@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-09 — Clear the previous customer's results and print state on a customer switch
+
+Clear the previous customer's results and print state on a customer switch
+
+C25. A GFS admin's customer switch refreshes the page in place, so client state survived it. Keyed by the acting customer: UploadPanel (Orders), ManifestBar (Shipments), PrintFrame (print-to-screen tab: it printed the old customer's labels again), ThisBench (Settings > Printing test outcome), DemoPrintPanel (old customer's demo labels and recipients). Toasts can't be cleared by a key (sonner 2.0.8's subscribe replays active toasts to a remounted Toaster), so CustomerSwitcher calls toast.dismiss() when actingId changes. Gotcha, caught by the local e2e: keys among siblings must differ, so each key is prefixed with its component (upload-/orders-/manifest-/print-/bench-/demo-printer-); UploadPanel and OrdersTable sharing the bare customer id left the old upload panel on screen. Not here: the stale-tab write guard (C19 incs 7-8) and the (app) error boundary outliving a switch (C33).
+
+PR: ilg-merak/parcel-portal#113
+
 ## 2026-11-06 — Keep a batch's results on screen when it empties the orders list
 
 Keep a batch's results on screen when it empties the orders list
