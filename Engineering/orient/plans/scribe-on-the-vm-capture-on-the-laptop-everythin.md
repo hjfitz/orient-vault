@@ -124,7 +124,7 @@ Since 2026-11-09 the VM (`rc-hjf`) is orient's home. The laptop reaches it throu
     - On the VM: the list holds ≥17 recordings, all `host: laptop`, all read-only. A POST answers 409. `journalctl` shows no reminder or music-warning start.
     - `eval/fetch-ami.sh`, then `process` on `ES2004a.stereo-me0.wav`, has a real-time factor of 0.5 or less.
     - On the laptop after pulling the unit change: `systemctl --user cat orient-scribe` shows the new unit, a 30 s recording still works there, and `localhost:3000/recordings` lists the read-only history.
-    - gate: on the VM, ffmpeg is installed and `claude -p` answers when signed in. On the laptop, `~/.config/orient/host` reads `laptop`.
+      gate: on the VM, ffmpeg is installed and `claude -p` answers when signed in. On the laptop, `~/.config/orient/host` reads `laptop`.
           [ ] confirmed
 - [ ] 2. **Upload ingest on the VM, behind a token.** (AC 2,6)
   - `scribe/internal/server/upload.go`:
@@ -138,7 +138,7 @@ Since 2026-11-09 the VM (`rc-hjf`) is orient's home. The laptop reaches it throu
   - Verify:
     - Go tests, one behaviour each: resumes after a cut; a wrong offset gives 409 with the true offset; `complete` before every byte arrives is refused; `complete` again gives the same answer; an id reused with different content is refused; no token gives 401.
     - After `make` and a restart on the VM, `localhost:3000/recordings` and `localhost:3001/recordings` both still load.
-    - gate: hub token generated on the VM and copied to the laptop (`~/.config/orient/scribe-hub-token`, mode 0600)
+      gate: hub token generated on the VM and copied to the laptop (`~/.config/orient/scribe-hub-token`, mode 0600)
           [ ] confirmed
 - [ ] 3. **A manual `handoff` on the laptop, the tunnel unit in the repo, `capturedOn`, and a status schema that tolerates unknown values.** (AC 2,6)
   - orient first, deployed on the VM and on `:3001`: unknown statuses show as "unknown" instead of failing the list. Add `uploading` to the `RecordingStatus` union, the label and colour maps (an in-flight accent, not red) and `PROCESSING`. Show an optional `capturedOn` beside "recorded on".
@@ -168,7 +168,7 @@ Since 2026-11-09 the VM (`rc-hjf`) is orient's home. The laptop reaches it throu
     - Record two minutes of a video from `:3001` and from a reminder's Record button. Each ends with the spool empty and `handed-off/` holding it, `done` and enhanced on the VM with `capturedOn: laptop`, and `find ~/Documents/obsidian/.knowledge/recordings/laptop -newer <marker>` empty.
     - `systemctl --user stop orient-tunnel`, record and stop: the recording sits at `uploading` with `lastError`. Restart the tunnel and it drains within a minute.
     - The laptop's `orient-recordings` MCP tool returns the new recording.
-    - gate: the retention, delete-timing and offline-fallback questions above are answered, and inc 3's handoff has worked on at least one real recording
+      gate: the retention, delete-timing and offline-fallback questions above are answered, and inc 3's handoff has worked on at least one real recording
           [ ] confirmed
 - [ ] 5. **The VM relays start, stop, pause, resume and ignore to the laptop's recorder. `:3001` stays up alongside.** (AC 4)
   - `scribe/internal/server/agents.go`:
@@ -194,7 +194,7 @@ Since 2026-11-09 the VM (`rc-hjf`) is orient's home. The laptop reaches it throu
     - `ss -ltn | grep -c ':3001 '` gives 0.
     - The top bar shows a live recording and Pause from its menu works.
     - Re-running `SCRIBE=recorder HEADLESS=1 scripts/install-units.sh` leaves orient-web disabled.
-    - gate: at least 3 real meetings recorded and controlled from the VM page after inc 5
+      gate: at least 3 real meetings recorded and controlled from the VM page after inc 5
           [ ] confirmed
 
 Follow-up plans, not in this one:
