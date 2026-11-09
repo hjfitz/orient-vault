@@ -101,3 +101,14 @@ Put Slipway above the Transfer Service to modernizer arrow. Put the portals, See
 - **Hosting.** The note does not give the Firebird host or the hosting of the ECM services. No GCP product is shown for them.
 - **Left out to stay at 20 boxes.** Carriers, connectors, webhooks, SUS, MQP, SeekerAPI, DataBridge, upload-service v2, the status deriver, gfs-pod-service, claims and the carrier almanac. Also the callers of CSS: selector-adapter, parcel-portal and selector-rest-proxy.
 - **Owners.** No team owns `patina-service-2` or the Scan Injector. The lists of bill-on-scan carriers and of carriers written back are not available.
+
+
+## As drawn in Lucid (2026-11-09)
+
+The drawing follows the corrected findings, so it differs from the tables above:
+
+- Selector's IE service is added in the Selector group, with an arrow into Firebird for the status procedures.
+- `gfs-modernizer` and `shipment-identity-service` are one box, to stay at 20 boxes. The arrow between them is dropped.
+- Slipway has a dashed arrow to Firebird for the masked billing copy, labelled Not confirmed.
+- Firebird is drawn as the seam. Patina-service-2 forwards raw carrier scans, and the Scan Injector calls the status procedures.
+- 20 boxes and 30 arrows.

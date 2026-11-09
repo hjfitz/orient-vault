@@ -10,6 +10,8 @@ This page maps each seam and says what a replacement must honour if either side 
 - **Either side can go first if its successor honours Firebird's contract.** A Selector successor must write central `SHIPMENTS` for billing. It must also publish the create message for ECM. An ECM successor must publish raw carrier scans to `scanners.consignments.V1`.
 - **Retiring Firebird means taking over every seam,** because billing, reference data, scans, tickets and manual status all read or write it.
 
+**Diagram:** [Container diagram: Selector, central Firebird and ECM](https://lucid.app/lucidchart/ea0a71eb-4fb1-4124-9fe5-e70720cb5e20/view), in Lucid.
+
 ## The six seams
 
 | Seam | Runs from and to | What crosses | Who depends on it |
