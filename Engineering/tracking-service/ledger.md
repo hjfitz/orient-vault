@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-09 — Open the MongoDB store from every binary
+
+Open the MongoDB store from every binary
+
+storeopen opens STORE=mongodb (connect, ping primary, ensure indexes); cmd/api counts transaction retries as fuse.tracking.store.retries; recompute-stats and backfill-upgrade -all have Mongo twins; mongo-test runs ./cmd/...; README and apps/api CLAUDE.md describe the Mongo path.
+
+PR: gfs-bifrost/tracking-service#30
+
 ## 2026-11-09 — Add notes, kept counters and the import primitive to the MongoDB store
 
 Add notes, kept counters and the import primitive to the MongoDB store
