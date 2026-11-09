@@ -91,11 +91,23 @@ Laptop writes reach GitHub within seconds already: the `vault-sync-kick.sh` Post
 ### Evidence
 <!-- Newest first, dated. One bullet per check actually run, opening with what it discharges.
      "Suite green" alone is not evidence. Sign-off requires at least one dated bullet here. -->
-- <YYYY-MM-DD> [inc <n>] <what was run, against what, and the observable result>
+- 2026-11-09 [inc 1] **Laptop → VM in 6.6 s** (AC 1). A probe was written under `.knowledge/sync-probe/` and kicked; the laptop announced `11:58:27 laptop 83030b3`, and the VM had the file 6.6 s after the write. The VM's status read `ok synced` at 11:58:34 with no timer run in that minute, so the kick did it.
+- 2026-11-09 [inc 1] **Quiet syncs announce nothing** (AC 3): two `orient-vault-sync sync` runs with nothing new left `orient-pushed` at 3 lines.
+- 2026-11-09 [inc 1] **Peer unreachable** (AC 4): with `sync-peer` set to `orient-nowhere`, a sync with a change took 3 s, ended `ok synced`, announced its push, and left no lock holder.
+- 2026-11-09 [inc 1] **Two fixes found by testing.**
+  - The backgrounded peer kick inherited the sync lock's descriptor and held it while ssh ran, so a concurrent sync skipped; it now closes fd 9 (`0adaec9`).
+  - A rejected push, retried after merging origin, announced the other machine's push because HEAD had moved; now only the successful attempt's commit count (`origin..HEAD` > 0) decides (`96a3889`).
+- 2026-11-09 [inc 2] **VM → laptop in 4.6 s** (AC 2). A probe was written on the VM and kicked; `orient-vault-follow` logged `vm pushed 71323e43` and the laptop had the file 4.6 s after the write.
+- 2026-11-09 [inc 2] **No ping-pong** (AC 3): both `orient-pushed` logs held at 3 lines over 25 s of quiet.
+- 2026-11-09 [inc 2] **Simultaneous writes.** Both machines wrote a probe and kicked at once; the probes were identical on both within 20 s. Each announcement carried that machine's own commit: the VM's were its probe and a live VM session's `Handovers/2026-11-09-merak-replacement-pages…` edits, and the laptop's were its probe and a live recording's meta. None was an echo.
+- 2026-11-09 [inc 2] **The follower survives a tunnel restart:** `systemctl --user restart orient-tunnel` left it `active` with `NRestarts` 0, since it uses its own ssh connection.
+- 2026-11-09 [inc 3] **`scripts/install-units.sh` run on the laptop** with `sync-peer` set (`93e74f7`). It installed the tunnel and follower and left web and pty alone (`orient-pty` still disabled; `:3000`, `:3001`, `:3011` and `:3014` all held). Scribe's PID was unchanged. `bash -n` passes on both scripts.
+- 2026-11-09 **Cleanup:** `.knowledge/sync-probe/` removed; gone on the VM within 8 s.
 
 ### Not verified
 <!-- Stated, not papered over. "(none)" is a deliberate claim, and a fine one. -->
-- <what remains unproven, and what would prove it>
+- **Edits that bypass the kick hook** (Obsidian by hand, or a script writing into the vault) still leave on the source machine's 90 s timer, as the Assumptions accept.
+- **`orient-pushed` is never rotated.** At about 60 bytes per push it grows a few MB a year; `tail -F` would replay a rotated file, so rotation needs care if it's ever wanted.
 
 ## Decisions & deviations
 <!-- Date-stamped, newest first — written by `wp decide`, and by hand when that is easier.
