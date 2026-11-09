@@ -79,7 +79,7 @@ DPD is ID 10, and DPD Local is ID 19. DPD Local reuses the DPD module with its o
 - **Watch for.**
     - The match on `delivered` would also match "not delivered".
     - The two 404 checks read `statusCode`, which a node-fetch response does not have, so they never match.
-    - The image path for consignment lookups references variables that are not in scope.
+    - The 404 branch of the image call refers to variables that are not in scope. It is never reached, because the check never matches.
     - DPD Local has no consignment route in v2.
 
 ## Evri
@@ -156,7 +156,7 @@ Tuffnells is ID 30.
 BJS is ID 41. It has no POD API, so the module works from GFS's own copy of the shipment and a BJS web page.
 
 - **Source of the link.** When a BJS tracking event arrives with status `BEP1910` or `BEP1935`, the tracking subscriber takes a `{"url": …}` fragment from the status description and stores it on the shipment record.
-- **Calls.** The module reads the shipment from Mongo, which needs the shipment ID. It then `GET`s the stored page URL and finds the first signature image under `https://epod.bjshomedelivery.com`. For the image, it makes a second `GET`.
+- **Calls.** The module reads the shipment from Mongo, which needs the shipment ID. It then `GET`s the stored page URL and finds the first signature image under the BJS ePOD host (`https://epod.bjshomedelivery.com` by default). For the image, it makes a second `GET`.
 - **Auth.** None.
 - **Reads.** Only the reported date, unchanged, and the image. It sets no delivered flag, signee or GPS.
 - **Watch for.** The v1 API passes no shipment, so BJS fails there. The module rejects without returning in several places, so the code after the rejection still runs. A shipment with no stored link gives a not-found error.
