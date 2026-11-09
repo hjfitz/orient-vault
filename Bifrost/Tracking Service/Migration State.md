@@ -114,6 +114,15 @@ Why: the 2026-11-06 burst errors (G3 below), the ~40/s cap from shared counter d
 - **R13 `redrive` re-applies under a new messageId**: Pub/Sub doesn't carry the original id onto a DLT message, so a partly-applied message that is redriven is re-applied as a republished copy and inflates copy counts. It's pre-existing and also affects Firestore. A fix would carry the original id through an attribute — open.
 - **R14 One order can split across two records** when a message lacks the customer ref: `~SO:` fallback, a Shopify failure keyed by the raw `name`, a replay-service edited failure, or normalisation gaps (BOM, NFD, internal whitespace). Nothing re-keys or merges the stray doc. **Live data 2026-11-06: 0 fallback-keyed docs and 0 duplicate businessId + customerRef groups in dev (34,294) and prod (89,156)**, so this is latent. The fix is code (merge a fallback doc when its ref arrives), not an index — open, low.
 ## Decision log
+- **2026-11-09** — **D5 Mongo store merged** (`2387f18`), built in one day as four parallel workstreams. #24 cleared the x/net CVE first. Decided along the way:
+  - `Live()` is sticky: a `seen` row or any record without `importedAt`.
+  - Empty-eventID rewrites keep `importedAt`, so a re-import before the cut still repairs those records.
+  - `ImportKept` refuses a live store.
+  - Business `lastSeenAt` = `$max(createdAt)` (G5).
+  - Times are stored as int64 µs, which closes R10.
+  - Known difference from Firestore: a return arriving alongside its shipment's first event links on its next event.
+  - Nothing runs on Mongo yet; `STORE` is unset everywhere.
+  - Next: D7 (rollback stack, note freeze, runbook) and D8/D9 (import, parity).
 - **2026-11-09** — Harry signed off: G3 passed and D1 complete; **D5 Gate A dropped** (latency not a concern, no benchmark gate, live aggregation, no `$merge`); D5 plan activated; `api-mongo` becomes a required check; the **note freeze during the hard-cut hold is D7's**; fuse-mcp `database-collections.json` gains the Mongo collections in **D11**. Also: "we're overcomplicating this and being overly cautious — let's get it finished today", so D5 ships in fewer, larger PRs, merged as each goes green. Harry.
 - **2026-11-06** — **Workload handed over to hjf.shell.platform.ilg.software** (account weekly limit): D1 prod apply and the a97baca batch deploy in flight, D5 next. [[Handovers/2026-11-06-tracking-service-mongo]]
 - **2026-11-06** — Cutover is a **hard cut**, not a live shadow, and Mongo gets a `seen` collection (exactly-once by messageId, 8-day TTL). A live shadow on held subscriptions would replay messages Firestore had already applied, and copies are guarded only by the last 64 counted ids per record, so copy counts could inflate. The hard cut puts every message on exactly one side; the rollback stack keeps Firestore current after the flip. Harry.
