@@ -142,7 +142,7 @@ Since 2026-11-09 the VM (`rc-hjf`) is orient's home. The laptop reaches it throu
       > SUPERSEDED 2026-11-09 — the laptop's copy is `~/.config/orient/scribe-hub-client-token`, not `scribe-hub-token`. scribe reads `scribe-hub-token` to switch uploads *on*, so a laptop copy at that path would make the laptop accept uploads too.
       gate: hub token generated on the VM and copied to the laptop (`~/.config/orient/scribe-hub-token`, mode 0600)
           [x] confirmed
-- [ ] 3. **A manual `handoff` on the laptop, the tunnel unit in the repo, `capturedOn`, the keep mark, and a status schema that tolerates unknown values.** (AC 2,6,7)
+- [x] 3. **A manual `handoff` on the laptop, the tunnel unit in the repo, `capturedOn`, the keep mark, and a status schema that tolerates unknown values.** (AC 2,6,7) — live handoff + resume across tunnel restart; FLAC WER 20.7% = raw; keep mark renders; tolerant status — done: 0dae982
   - orient first, deployed on the VM and on `:3001`: unknown statuses show as "unknown" instead of failing the list. Add `uploading` to the `RecordingStatus` union, the label and colour maps (an in-flight accent, not red) and `PROCESSING`. Show an optional `capturedOn` beside "recorded on".
   - scribe:
     - `internal/handoff`: convert to 16-bit FLAC, hash it, resume from the server's offset, back off on errors.
@@ -214,6 +214,23 @@ Follow-up plans, not in this one:
 ### Evidence
 <!-- Newest first, dated. One bullet per check actually run, opening with what it discharges.
      "Suite green" alone is not evidence. Sign-off requires at least one dated bullet here. -->
+- 2026-11-09 [inc 3] **Live handoff over the tunnel** (`0dae982`, `-chunk` in `eb626ea`; AC 2, 6).
+  - The full meeting: `orient-scribe handoff -i ES2004a.stereo-me0.wav` (public AMI audio, not a real meeting) sent 16,811,508 bytes of FLAC through `127.0.0.1:3014`. The receipt sha256 `786665a8…` matched.
+  - The VM stored it as `vm/20261109-113000-5f55` with `capturedOn: laptop` and `received.bytes` 16811508. It went `queued`, then `transcribing`, then `done`, and was enhanced, with a summary.
+  - `curl -H 'Range: bytes=0-1023' localhost:3000/api/recordings/<id>/audio` answered 206 `audio/ogg`, so audio plays through the VM's orient.
+- 2026-11-09 [inc 3] **Resume across a real tunnel drop.** A 5-minute clip at `-chunk 8192`; `systemctl --user restart orient-tunnel` once the VM's staged part held 425,984 bytes.
+  - The client logged `attempt 1 failed, retrying in 1s: … EOF`, resumed from the VM's offset, and finished at 11:13:19 with sha256 `6245f78b…`. That's identical to an uninterrupted run of the same clip, so the FLAC encode is deterministic.
+- 2026-11-09 [inc 3] **FLAC costs no accuracy:** `eval/wer.py` against the AMI words for ES2004a.
+  - Raw WAV transcribed on the VM (inc 1): WER 20.7% (S 139, D 334, I 49).
+  - The FLAC handoff copy: WER 20.7% (S 139, D 334, I 49). Identical.
+- 2026-11-09 [inc 3] **Keep mark (AC 7).**
+  - PATCH `{"keep":true}`: the VM page reads "Audio kept: it is not deleted after 14 days" with "let it expire", and the list shows a `kept` chip.
+  - PATCH `{"keep":false}`: back to "Audio is deleted 14 days after recording" with "keep audio".
+  - The page shows "captured on laptop".
+  - Go tests: `TestPruningSparesAKeptRecording`, `TestARecordingCanBeMarkedToKeepItsAudio`.
+- 2026-11-09 [inc 3] **orient tolerates new statuses:** `toRecordingStatus` maps unknown values to `unknown` (no "unexpected shape"); `uploading` is in-flight and `unknown` isn't (`tests/unit/recording-status.test.ts`). Typecheck clean, lint has only the 2 existing `globals.css` warnings, 4,767 tests pass.
+- 2026-11-09 [inc 3] **Deploy order held.** orient was deployed on the VM and on the laptop's `:3001` before either scribe. The repo `orient-tunnel.service` replaced the hand-written one (backup `orient-tunnel.service.bak-handwritten`); `:3000`, `:3001`, `:3011`, `:3013` and `:3014` are all listening, and `:3014` reaches the VM's scribe (200). The tunnel uses its own `~/.ssh/orient-tunnel.conf` (Host `orient-vm`, `IdentitiesOnly`).
+- 2026-11-09 [inc 3] **Cleanup:** the three test recordings were deleted (204 each); the VM's `recordings/vm/` and `scribe-uploads/` are empty.
 - 2026-11-09 [inc 2] **Upload ingest live on the VM** (`6898741`). `serve` turns uploads on only when `~/.config/orient/scribe-hub-token` is non-empty; the log reads `accepting uploads, staged in ~/.local/state/orient/scribe-uploads`.
   - No token: 401 `missing or wrong hub token`.
   - `Host: evil.example`: 403.
@@ -276,4 +293,5 @@ Follow-up plans, not in this one:
 - **`RecordingSchema.status` is a strict enum.** One status orient doesn't know fails the whole Recordings list ("unexpected shape"), so scribe must never send a new status before orient accepts it.
 - **`make -C scribe install` installs a unit hard-coded to `/home/hjf`.** It breaks any machine with a different user, such as the VM's `harry`. `systemd/orient-scribe.service` uses `%h`.
 - **design.md's Fixtures bullet still says `~/.local/state/orient/scribe/`,** but recordings moved into the vault in d62e6b8.
+- **`next build` (the laptop's `pnpm deploy:web`) once hung for 10+ min in static generation,** with a worker idle in `epoll` and no network wait. orient-web stays stopped meanwhile. Killing the process group and rerunning built normally in about 3 min. If it recurs, look at the prerender workers before assuming a code fault.
 - **The desk reads `:3000` by default,** so the tunnel sends it to the VM. It has to be pointed elsewhere for as long as recordings live on the laptop (interim drop-in, 2026-11-09).
