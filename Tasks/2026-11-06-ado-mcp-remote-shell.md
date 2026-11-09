@@ -1,7 +1,7 @@
 ---
 tags: [adhoc-task]
 date: 2026-11-06
-tldr: "ADO MCP on hjf.shell; orient + vault synced laptop/VM; orient now hosted on the VM, reached via orient-tunnel (3000/3011); laptop orient on :3001 for recordings only"
+tldr: "orient hosted on the VM; scribe split (laptop records, VM processes, relay controls) — scribe plan 5/6, inc 6 gated on 3 real meetings; vault sync-on-push live (~5s each way)"
 session_id: 0fb571d0-d903-483b-9e8b-1198b51d571f
 status: open
 ---
@@ -15,3 +15,5 @@ Vault (VM): sync failing since 5 Nov 16:04 — handover vault copy dropped lapto
 
 2026-11-09: orient moved to the VM as the main instance. Laptop runs `orient-tunnel.service` (ssh -L 3000, 3011 to the VM; terminal verified against VM tmux); laptop orient-pty disabled; laptop orient-web moved to :3001 by drop-in `orient-web.service.d/recordings-only-port.conf`, for Recordings only. desk/scribe hit :3000 (the VM) unchanged. No reverse forward for scribe: the remote-compute image sets `AllowTcpForwarding local` (ilg-platform/images, smoke-tested). Missing GitHub fuse repos cloned to the VM for headless runs; 13 ADO repos not (no ADO SSH on the VM). Vault keeps backing up through orient-vault-sync on both sides.
 2026-11-09: planned scribe on the VM — [[scribe-on-the-vm-capture-on-the-laptop-everythin]] (draft, 6 increments, opus/high; 5 UNRESOLVED questions for Harry). Interim: desk pointed at laptop :3001 via `orient-desk.service.d/recordings-interim.conf` (the VM orient has no scribe).
+
+2026-11-09 (later): scribe plan incs 1–5 done — VM scribe server (`-adopt laptop`), upload ingest, handoff, laptop recorder (delete on receipt), relay (VM page starts/stops laptop recordings, ~1 s). Inc 6 (retire :3001, desk → VM) gated on 3 real meetings via the VM page. Vault sync-on-push plan done (laptop→VM 6.6 s, VM→laptop 4.6 s); sign-off blocked only by Harry's uncommitted desk/gnome-extension files. Fixed an inc-4 regression: pre-switch laptop recordings were uneditable; VM now adopts `laptop/`, audio copied (13, sha-verified), laptop audio deleted.
