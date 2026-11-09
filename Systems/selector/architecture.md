@@ -196,7 +196,7 @@ Billing has no intake interface. A separate Delphi billing app, owned by Finance
   - A delete after upload never reaches central.
   - About 57.5k shipments with negative invoice numbers are never selected.
 
-Full write-up: MPK *Legacy Selector - Day End and Billing Handoff* (page 353566845).
+Full write-up: MPK *From Label to Invoice* (page 354353232, which now holds the former Day End and Billing Handoff page 353566845).
 
 ## Releases
 - **Client4 and DB updates:** someone uploads the zipped exe in Manager's Versions screen into central `CUST_SITE_UPDATES`. Upload stations on auto-update download it over SOAP, and `updUtil.exe` swaps the exe on each station [13]. The manual route is SQL scripts plus a hand-copied exe.
@@ -233,7 +233,7 @@ Three patterns, kept class-level here (details in the MPK *Carrier Proxies* page
   { "id": 12, "kind": "code", "ref": "V4/Client/Client.Alpha/uFunc.pas@73cfd69:L27448" },
   { "id": 13, "kind": "code", "ref": "V4/Client/UpdateUtil/uUpd.pas@73cfd69" },
   { "id": 14, "kind": "doc", "ref": "Confluence Billing 311394359 Legacy Billing – Invoicing & Scheduling" },
-  { "id": 15, "kind": "doc", "ref": "Confluence MPK 353566845 Legacy Selector - Day End and Billing Handoff" },
+  { "id": 15, "kind": "doc", "ref": "Confluence MPK 354353232 From Label to Invoice (absorbed 353566845 Day End and Billing Handoff)" },
   { "id": 16, "kind": "code", "ref": "V4-Server-Database/Updates/update_284.sql@82dde6b:L3-L204" },
   { "id": 17, "kind": "doc", "ref": "gfs-hybrid-services/UploadServiceV2DataBridge ShipmentProcessor.cs" }
 ] }
