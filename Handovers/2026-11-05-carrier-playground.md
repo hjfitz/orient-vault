@@ -8,7 +8,7 @@ from: laptop
 to: hjf.shell.platform.ilg.software
 session_id: 945d0e77-3787-450a-a8e6-3635e238a5c9
 resumed_by: 9d74d588-1876-4a16-907d-7470c90d25d5
-updated: 2026-11-06T18:16Z
+updated: 2026-11-09T09:33Z
 ---
 # Handover: mock carrier proxies (carrier-playground)
 
@@ -35,13 +35,15 @@ the names (`scripts/smoke.mts`, now type-checked in CI); Datadog shows no keys, 
 | #13 | Restore smoke `isPng`; type-check `scripts/` in CI | merged |
 
 ## In flight
-None.
+| Mock | Basis | Port / name | State |
+| --- | --- | --- | --- |
+| Veho | No prod proxy yet: the agreed contract (`gfs-hybrid-services/carrier-proxies` `apps/veho-proxy/src/api/openapi.yaml`, CID-336 merged #11) + spec (Confluence 323878984) + Jira epic CID-335 (stub CID-337 done; CID-338 real calls in progress, nothing pushed) + Veho API docs | 4112 / `veho` | builder running, worktree `mock-veho` (Harry asked 9 Nov) |
 
 ## Waiting on Harry
 - None blocking. Tech Services repos: leave them alone (Harry, 5 Nov).
 
 ## Next up
-1. Optional: Veho (`carrier-proxies/apps/veho-proxy`) once it is live; a DHL mock behind Selector's `DHL_URL` (no proxy exists).
+1. Optional: a DHL mock behind Selector's `DHL_URL` (no proxy exists).
 2. Optional: fix the platform `networking/load-balancer` module (removed services are deleted before being detached) — ilg-platform/terraform-modules.
 3. Optional mock cleanups (PR Notes): shared PNG encoder (coll8/fedex/amazon/dpd/inpost import across carriers) into mock-kit; UPS `RequestId undefined`; `env:serverless` on dd-trace; no max-instance cap.
 4. Prod findings the mocks surfaced (code-read, not confirmed against prod logs) — see each PR's "mirrored on purpose" section. Highest-impact: **InPost prod logs full payloads (LOG_CARRIER_PAYLOAD=true, marked TEMPORARY), callers' ApiKy keys, and its InPost Basic Authorization header** (#10); Exelot/OCS log whole axios errors incl. carrier tokens (#11/#12); Exelot always calls the real ApiKy whatever its env says (#12); DPD Europe validation rejects every Selector call (#4); Amazon Logistics refuses PDF labels (#8); GRAM weights ×1000 in OCS/Exelot.

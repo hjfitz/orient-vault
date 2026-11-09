@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-09 — Clear CVE-2026-78661 from the api image
+
+Clear CVE-2026-78661 from the api image
+
+Bumped x/net to 0.62.0 in apps/api; the v0.61.0 copy is in datadog-init in the go-runtime base image, so allowlisted in .trivyignore with a 7-day expiry.
+
+PR: gfs-bifrost/tracking-service#24
+
 ## 2026-11-06 — Record each record's marks on every write
 
 Record each record's marks on every write
