@@ -126,7 +126,7 @@ Since 2026-11-09 the VM (`rc-hjf`) is orient's home. The laptop reaches it throu
     - `eval/fetch-ami.sh`, then `process` on `ES2004a.stereo-me0.wav`, has a real-time factor of 0.5 or less.
     - On the laptop after pulling the unit change: `systemctl --user cat orient-scribe` shows the new unit, a 30 s recording still works there, and `localhost:3000/recordings` lists the read-only history.
       gate: on the VM, ffmpeg is installed and `claude -p` answers when signed in. On the laptop, `~/.config/orient/host` reads `laptop`.
-          [ ] confirmed
+          [x] confirmed
 - [ ] 2. **Upload ingest on the VM, behind a token.** (AC 2,6)
   - `scribe/internal/server/upload.go`:
     - `POST /api/uploads` takes `{id, meta, format, layout}` and answers `{offset}`. It is idempotent and reports the current offset when called again.
@@ -213,7 +213,10 @@ Follow-up plans, not in this one:
 ### Evidence
 <!-- Newest first, dated. One bullet per check actually run, opening with what it discharges.
      "Suite green" alone is not evidence. Sign-off requires at least one dated bullet here. -->
-- <YYYY-MM-DD> [inc <n>] <what was run, against what, and the observable result>
+- 2026-11-09 [inc 1] **Gate confirmed.** VM: static ffmpeg n9.0.2 (BtbN `ffmpeg-n9.0-latest-linux64-gpl-9.0`, sha256 verified against the release's `checksums.sha256`, libopus encoder present) in `~/.local/bin`, so no pacman change on a box whose package DB is stale. `claude -p` on the VM answered (signed in). Laptop: `~/.config/orient/host` written as `laptop`.
+- 2026-11-09 [inc 1] **Laptop unchanged in the `both` role** (`66511dc`): rebuilt scribe and installed `systemd/orient-scribe.service` (now with `EnvironmentFile` and `$SCRIBE_ARGS`). The log reads `serving on 127.0.0.1:3013 as both`. An 8 s recording went started, then `queued` after stop, then `done`, then deleted (204), leaving nothing in the vault.
+- 2026-11-09 [inc 1] **`go test ./...`** in `scribe/` green, including the new `TestAMachineWithNoRecorderRefusesToStart` (409 "does not record", nothing live). `make fmt-check vet` clean.
+- 2026-11-09 [inc 1] **VM sparse list lifted for recordings only:** `git sparse-checkout list` reads `/*`, `!/Bifrost/HR/`, `!/Bifrost/Team/`, `!/Interviews/`. 17 recordings are on disk under `recordings/laptop/`, and HR and Interviews are still absent.
 
 ### Not verified
 <!-- Stated, not papered over. "(none)" is a deliberate claim, and a fine one. -->
