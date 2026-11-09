@@ -8,7 +8,7 @@ services:
 - fuse-ui
 - observability
 created: '2026-10-05'
-updated: '2026-11-06'
+updated: '2026-11-09'
 tags:
 - bifrost
 - migration-state
@@ -70,7 +70,7 @@ Legend: ⬜ not started · 🟨 in progress · ✅ merged · ⛔ blocked · ⏸ 
 Why: the 2026-11-06 burst errors (G3 below), the ~40/s cap from shared counter docs, 40 composite indexes whose absence fails a query, and counters kept correct only by `recompute-stats`. Shape: stats are aggregated over a narrow per-record `marks` collection, so no shared document remains; each write is a Mongo transaction over one record's own docs (the event-doc check is the only guard against a redelivered first sighting being counted as a copy); cutover is a **hard cut** (2026-11-06, Harry): rollback subscriptions are created, prod ingest is held so Firestore stops changing, Firestore is imported into Mongo and parity-checked against the frozen copy, `STORE` flips and the hold is released; every message lands on exactly one side of the cut. A `seen` collection makes every Mongo write exactly-once. Draft and three reviews: 2026-11-06 session.
 | Unit | St | Summary | Deps | Risk | Tier | PR | Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| **D1** | 🟨 | Stopgap: exempt unqueried fields from Firestore indexing | | low | sonnet/medium | tracking-service#18 | Plan: [[tracking-service/plans/exempt-unqueried-fields-from-firestore-indexing]]. `lastSeenAt`, `totalDuplicates`, `confirmations`, `stageTimes` on shipments; the same plus `confirmation`, `linkedShipmentJson` on returns. Nothing queries them, copies rewrite them. Independent of the rest of D; tests the hotspot hypothesis (G3). Time it on dev first: the ~6 min per field op was measured on an empty database. |
+| **D1** | ✅ | Stopgap: exempt unqueried fields from Firestore indexing | | low | sonnet/medium | tracking-service#18 | Plan: [[tracking-service/plans/exempt-unqueried-fields-from-firestore-indexing]]. `lastSeenAt`, `totalDuplicates`, `confirmations`, `stageTimes` on shipments; the same plus `confirmation`, `linkedShipmentJson` on returns. Nothing queries them, copies rewrite them. Independent of the rest of D; tests the hotspot hypothesis (G3). Time it on dev first: the ~6 min per field op was measured on an empty database. |
 | **D2** | ✅ | Seams: absolute marks on every write | | med | opus/high | tracking-service#22 #23 | `Marks` (the record's `Contribution` of its *rebuilt* state) on `Write`/`ReturnWrite`, set at the 6 write sites in `core/ingest.go` + recompute; type in `store`/`model` (store never imports core). `capReasons` moves into `store`; the memory store aggregates from marks in the same PR, so served-stats change is visible on fixtures as a golden diff. Shuffle tests assert `Contribution` order-independence; one test pins the redelivery hazard. Firestore ignores marks. Gated on G5. |
 | **D3** | ✅ | Seams: backend-parameterised store conformance suite | | low | sonnet/medium | tracking-service#20 | ~1,180 lines of portable store tests behind a backend factory (memory + Firestore emulator now, Mongo in D5); stats cases split by semantics (counters vs marks). Mostly moves; 1–2 PRs. |
 | **D4** | ✅ | Store opener, `STORE`/`MONGODB_*` config, CI replica set | | low | sonnet/medium | tracking-service#21 | New opener package (can't live in `store` — cycle — and `config` only validates env); rewire the 5 binaries. CI Mongo via config-service's pattern: compose `mongod --replSet` + `rs.initiate` service started as a step (`integration-tests.yaml:61-63`), `mongo:8.0`. Gated on G7. |
