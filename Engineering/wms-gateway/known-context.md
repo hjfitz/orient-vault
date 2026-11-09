@@ -86,6 +86,11 @@ proved on the fuse-mocker simulator only.
   took about 3 s through the pager. Size the snapshot build timeout against the slower figure.
 - **The fuse-mocker simulator's fault injection fails only writes**, so it cannot fail a read. Exercise read
   failures against a local fake upstream.
+- **SNAP ignores `$filter` on the keyed `/v2/shipments/{id}` route** (2026-11-05, GADG dev and the simulator). A read
+  with `Owner eq 'ZZNOTTHEOWNER'` still returned GADG's shipment. On the **list** route `Owner eq` is a 400, and
+  `BizId eq` is honoured. `GetShipment` (`adapters/snap/request.go`, behind the sales-order route) relies on that
+  `Owner` filter, so it is **not scoped to the business**. pkg-go `snap` v0.1.0's `Shipment` checks the result's
+  `BizId` instead.
 
 ## SNAP kits
 
@@ -109,6 +114,12 @@ proved on the fuse-mocker simulator only.
 - **SNAP's front end answers 403 to Python's default user agent** while curl's passes (2026-10-01).
 
 ## Unknowns
+
+- **Banked fix (Harry, 2026-11-05): `GetShipment` should check `BizId` on the result**, returning not-found for
+  another business's shipment, because SNAP ignores the `Owner` filter (see SNAP behaviour). It's a few lines, or it
+  comes for free when the gateway adopts pkg-go `snap`. How exposed it is depends on something unverified: whether
+  any shared SNAP host uses one SNAP account for several businesses. If it does, one business can read another's
+  shipment by id through the sales-order route.
 
 - Multi-site: backend config is one per business with no site field. The stock snapshot sums across sites and takes an optional `site` filter, so it does not need to know; whether a multi-site customer ends up as several `businessId`s is still open.
 - Whether SNAP's own kit figure excludes components that are non-W or UNLINK (see SNAP kits); the gateway applies those filters itself.

@@ -5,8 +5,8 @@ service: tracking-service
 status: active
 created: '2026-10-19'
 updated: '2026-11-06'
-repo: /home/harry/code/fuse/tracking-service
-worktree: /home/harry/code/fuse/tracking-service/.claude/worktrees/skip-identical-republishes
+repo: /home/hjf/code/fuse/tracking-service
+worktree: /home/hjf/code/fuse/tracking-service/.claude/worktrees/skip-identical-republishes
 branch: hjf/skip-identical-republishes
 base: origin/main
 base_sha: 6f6259620

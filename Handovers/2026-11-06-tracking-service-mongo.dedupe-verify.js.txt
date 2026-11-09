@@ -8,7 +8,7 @@ export const meta = {
   ],
 }
 
-const SRC = '/home/harry/code/fuse/tracking-service/.claude/worktrees/exempt-unqueried-firestore-fields'
+const SRC = '/home/hjf/code/fuse/tracking-service/.claude/worktrees/exempt-unqueried-firestore-fields'
 const SCRATCH = '/tmp/claude-1000/-home-hjf/c36659b6-edee-4035-ab29-ffd89416a0e8/scratchpad/dedupe'
 const COMMON = `
 Context: tracking-service (Go, ${SRC}/apps/api; current main) folds Pub/Sub events into one record per order in Firestore and is about to move to MongoDB.

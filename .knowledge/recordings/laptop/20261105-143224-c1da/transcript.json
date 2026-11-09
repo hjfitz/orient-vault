@@ -1,0 +1,54 @@
+{
+  "audio": "/home/hjf/Documents/obsidian/.knowledge/recordings/laptop/20261105-143224-c1da/audio.wav",
+  "seconds": 3.2835,
+  "config": {
+    "ModelDir": "/home/hjf/.local/share/orient-scribe/models",
+    "ASR": "parakeet",
+    "Embedding": "nemo_en_titanet_small.onnx",
+    "Threshold": 1,
+    "Speakers": 0,
+    "WindowShift": 0.1,
+    "VAD": 0.35,
+    "Threads": 4
+  },
+  "loadNs": 1880951261,
+  "call": false,
+  "channels": {
+    "me": {
+      "gain": 10.060350877192981,
+      "regions": null,
+      "turns": null,
+      "utterances": null,
+      "timings": {
+        "vad": 14282275,
+        "diarization": 0,
+        "asr": 0
+      }
+    },
+    "them": {
+      "gain": 3.1690522243713732,
+      "regions": [
+        {
+          "start": 0.198,
+          "end": 3.264
+        }
+      ],
+      "turns": null,
+      "utterances": [
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 0.198,
+          "end": 3.264,
+          "text": ""
+        }
+      ],
+      "timings": {
+        "vad": 27315445,
+        "diarization": 33889927,
+        "asr": 384724510
+      }
+    }
+  },
+  "lines": null
+}

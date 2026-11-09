@@ -3,7 +3,7 @@
 # belongs in a doc.
 service: amazon-proxy
 system: carrier-integrations
-repo: /home/harry/code/apiky-survey/gh/gfs-hybrid-services_amazon-proxy
+repo: /home/hjf/code/apiky-survey/gh/gfs-hybrid-services_amazon-proxy
 github: gfs-hybrid-services/amazon-proxy
 type: backend
 owner: carrier-integrations               # inferred, see Systems/carrier-integrations/known-context.md

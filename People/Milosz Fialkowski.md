@@ -21,6 +21,7 @@ title: Milosz Fialkowski
 - ✍️ 
 
 ## Together (newest first)
+- 2026-11-09 — still waiting on the line 30 analysis after bumping the thread on Friday → [[Digests/2026-11/2026-11-09]]
 - 2026-06-23 → 06-25 — SPORTLUX purchase_order timeout (ITSD-43779): raised, investigated, resolved
 
 ## Links

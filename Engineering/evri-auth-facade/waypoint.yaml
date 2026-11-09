@@ -3,7 +3,7 @@
 # belongs in a doc.
 service: evri-auth-facade
 system: carrier-integrations
-repo: /home/harry/code/apiky-survey/ado/GFS_Evri_Integration
+repo: /home/hjf/code/apiky-survey/ado/GFS_Evri_Integration
 ado: globalfreightsolutions/GFS Evri Integration/GFS Evri Integration
 type: backend
 owner: ecm               # inferred; Harry wrote the only commit (2025-05-15)

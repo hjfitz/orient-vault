@@ -178,7 +178,7 @@ NUMBERS: Paged runQuery with a field mask, cross-checked against runAggregationQ
     -> confirmed: DocumentID replaces '/' with '_' (snapid.go:102), while the stored businessId keeps '/' (events.go:209,219; reduce.go:63). Distinct 'A/B' and 'A_B' would therefore share one id and merge. Nuance: in F
 
 ## critic
- Note: the findings I was given cut off partway through the message-dedupe lens (at `c-seen-ttl-8d`), and the fourth and fifth lenses were missing. Some gaps below may repeat what those lenses found. Paths are under `/home/harry/code/fuse/tracking-service/.claude/worktrees/exempt-unqueried-firestore-fields/apps/api` (c52f644) unless another repo is named.
+ Note: the findings I was given cut off partway through the message-dedupe lens (at `c-seen-ttl-8d`), and the fourth and fifth lenses were missing. Some gaps below may repeat what those lenses found. Paths are under `/home/hjf/code/fuse/tracking-service/.claude/worktrees/exempt-unqueried-firestore-fields/apps/api` (c52f644) unless another repo is named.
 
 **Gaps not checked by any lens I saw**
 

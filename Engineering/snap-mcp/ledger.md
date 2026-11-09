@@ -7,6 +7,14 @@ title: snap-mcp — work ledger
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-05 — Run snap-mcp on the golden runtime image
+
+Run snap-mcp on the golden runtime image
+
+Move the runtime stage onto ilg-platform's node24-runtime:0.1-affogato and drop both Datadog serverless-init sidecars (GFS + ILG) and the shared volume; DD_* moves onto the app container with ILG dual-ship. The request log goes to stderr as JSON instead of a file on the shared volume, enableShutdownHooks added for SIGTERM, Trivy ignores for the old alpine/npm base dropped. Draft; no dev env exists (manual-deploy targets prod), so the merge is the first deploy.
+
+PR: gfs-bifrost/snap-mcp#26
+
 ## 2026-11-02 — Clear the advisories failing the dependency audit and image scan
 
 Clear the advisories failing the dependency audit and image scan

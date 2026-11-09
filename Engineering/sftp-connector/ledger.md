@@ -7,6 +7,21 @@ title: sftp-connector — work ledger
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-06 — Stop counting redelivery deferrals and customer rejections as request failures
+
+Stop counting redelivery deferrals and customer rejections as request failures
+
+request.failure counted every errorHandler path, so the overview dashboard's request success rate showed ~92% since 06:00 on 2026-11-06 with no fault: 13 of 16 failures were deliberate routing deferrals, 3 were customer input/config. Deferrals now emit file_routing.deferred{trigger}, customer-input errors emit request.rejected, /health no longer counts towards fuse.request. Dashboard widget (Datadog UI) still to be changed to (request - failure) / request after deploy.
+
+PR: gfs-bifrost/sftp-connector#405
+
+## 2026-11-05 — Run sftp-connector on the golden runtime image
+
+Run sftp-connector on the golden runtime image
+
+Moved the connector Cloud Run app onto ilg-platform's node24-runtime:0.1-affogato golden image and dropped its Datadog serverless-init sidecar. The agent now runs in-container, and DD_* moved onto the app container with the sidecar's values. The SFTP host VM is unchanged. Verified on dev: one container and no volumes, logs tagged dd.datadog_init_version, a real DAZZA SFTP master_data ingest, and a goods-out confirmation egress. ssh2's native binding loads in the image, and SIGTERM drains under datadog-init.
+
+PR: gfs-bifrost/sftp-connector#397
 ## 2026-11-06 — Read mapping rules through @gfs-bifrost/remote-config
 
 Read mapping rules through @gfs-bifrost/remote-config

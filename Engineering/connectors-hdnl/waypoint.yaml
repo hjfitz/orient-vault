@@ -3,7 +3,7 @@
 # belongs in a doc.
 service: connectors-hdnl
 system: carrier-integrations
-repo: /home/harry/code/apiky-survey/ado/connectors-hdnl
+repo: /home/hjf/code/apiky-survey/ado/connectors-hdnl
 ado: globalfreightsolutions/fenghuang/connectors-hdnl
 type: backend
 owner: ecm               # inferred, see Systems/carrier-integrations/known-context.md

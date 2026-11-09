@@ -1,6 +1,6 @@
 # DRAFT — tracking-service: Firestore → MongoDB Atlas
 
-Worktree: /home/harry/code/fuse/tracking-service/.claude/worktrees/tracking-service-mongo (branch hjf/tracking-service-mongo off origin/main b12d0a6). Go app under apps/api.
+Worktree: /home/hjf/code/fuse/tracking-service/.claude/worktrees/tracking-service-mongo (branch hjf/tracking-service-mongo off origin/main b12d0a6). Go app under apps/api.
 
 ## Intent
 Move tracking-service persistence from Firestore (Native, db `tracking-service`) to MongoDB Atlas (Fuse house default), with no externally-visible behaviour change. Proof: in prod, ingest + serve from Mongo; PURDYFIGG 5-min reap bursts (~2k pushes/min) produce no store errors; /api/v1 parity with the Firestore-backed service; Firestore retired.

@@ -5,8 +5,8 @@ service: orient
 status: active
 created: '2026-11-06'
 updated: '2026-11-06'
-repo: /home/harry/projects/orient
-worktree: /home/harry/projects/orient
+repo: /home/hjf/projects/orient
+worktree: /home/hjf/projects/orient
 branch: master
 base: ad04890ed
 base_sha: ad04890ed

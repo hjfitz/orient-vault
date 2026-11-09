@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-05 — Run selector-adapter on the golden runtime image
+
+Run selector-adapter on the golden runtime image
+
+Moved the adapter's runtime image from distroless/static to ILG go-runtime:0.1-affogato (datadog-init entrypoint, CMD only) and dropped the serverless-init sidecar, shared volume and the app's held /shared-volume log-file sink; DD_* moved onto the app container with the same values. Verified on dev (revision 00006-c2w: one container, logs tagged dd.datadog_init_version, metrics flowing) and proved outbound TLS verification on base-nossl against the Selector sandbox plus badssl negative controls. Draft; left deployed in dev.
+
+PR: gfs-bifrost/selector-adapter#9
+
 ## 2026-10-28 — Read each business's Selector connection from config-service
 
 Read each business's Selector connection from config-service

@@ -6,6 +6,54 @@ title: 1-1 Schuster Efigenio
 ---
 # 1-1 Schuster Efigenio
 
+
+## 2026-11-05
+_10:30–11:00 GMT · Regus Southampton (in person) · no agenda_
+
+### Context
+
+**Open PRs**
+- [snap-adapter#316](https://github.com/gfs-bifrost/snap-adapter/pull/316) (FUSE-1332): awaiting review, CI green
+- [snap-adapter#203](https://github.com/gfs-bifrost/snap-adapter/pull/203) (FUSE-1050): draft, idle 68d
+- [pkg-node#278](https://github.com/gfs-bifrost/pkg-node/pull/278) (FUSE-1277): draft, idle 12d
+
+**Active Jira**
+- [FUSE-1329](https://globalfreight.atlassian.net/browse/FUSE-1329) Sev 3, In Progress, no PR yet (1 day old)
+- [FUSE-1327](https://globalfreight.atlassian.net/browse/FUSE-1327) and [FUSE-1328](https://globalfreight.atlassian.net/browse/FUSE-1328) Ready for QA, [FUSE-1330](https://globalfreight.atlassian.net/browse/FUSE-1330) In Progress (a joint retest with [[Tom Dunn]] once 1330 and 1328 land)
+
+**Owed by you**
+- Approve his holiday requests for 24 Dec and 29–31 Dec (Selima) — [email](https://outlook.office365.com/owa/?ItemID=AAMkADVhYjUxODIyLWM5NTktNGJmOC1hN2FjLWFjMjllNWUzYmY4MwBGAAAAAAAEXHdKGOMeRLfpaU7ff8ChBwABLsgQpFdPTayXOZTVrraLAAAAAAEMAAABLsgQpFdPTayXOZTVrraLAAHUCm4UAAA%3D&exvsurl=1&viewmodel=ReadMessageItem)
+- Approve his leave request for 30 Oct (1 day) — [Schuster's request](https://outlook.office365.com/owa/?ItemID=AAMkADVhYjUxODIyLWM5NTktNGJmOC1hN2FjLWFjMjllNWUzYmY4MwBGAAAAAAAEXHdKGOMeRLfpaU7ff8ChBwABLsgQpFdPTayXOZTVrraLAAAAAAFcAAABLsgQpFdPTayXOZTVrraLAAHMCW1YAAA%3D&exvsurl=1&viewmodel=ReadMessageItem)
+- Review his [fapi#169](https://github.com/gfs-bifrost/fapi/pull/169) (stacked 1/2), [fapi#170](https://github.com/gfs-bifrost/fapi/pull/170) (2/2) and [wms-gateway#37](https://github.com/gfs-bifrost/wms-gateway/pull/37) ([FUSE-1210](https://globalfreight.atlassian.net/browse/FUSE-1210), [FUSE-1035](https://globalfreight.atlassian.net/browse/FUSE-1035)): awaiting review, CI green — [fapi#169](https://github.com/gfs-bifrost/fapi/pull/169)
+- Order FUSE-1273 (assigned to him, Ready for Refinement) with [[Matt Shaw]] and [[Tom Dunn]] at the 10:00 standup — [group DM](https://gfsdeliver-eng.slack.com/archives/C0BC33H8QMT/p1790783612714759)
+- Weigh in on his Snap UI Automation proposal (to [[Oli Denton]], carried ×5 on my todo)
+- Chase his overdue mandatory training: antitrust plus the Sustainability e-learning by 5 Nov — [digest](../Digests/2026-10/2026-10-09.md)
+- Hold his start-of-year PDR meeting — [email](https://outlook.office365.com/owa/?ItemID=AAMkADVhYjUxODIyLWM5NTktNGJmOC1hN2FjLWFjMjllNWUzYmY4MwBGAAAAAAAEXHdKGOMeRLfpaU7ff8ChBwABLsgQpFdPTayXOZTVrraLAAAAAAEMAAABLsgQpFdPTayXOZTVrraLAAHCN1rQAAA%3D&exvsurl=1&viewmodel=ReadMessageItem)
+- Approve his holiday request, 16–18 Nov (3 days) — [email](https://outlook.office365.com/owa/?ItemID=AAMkADVhYjUxODIyLWM5NTktNGJmOC1hN2FjLWFjMjllNWUzYmY4MwBGAAAAAAAEXHdKGOMeRLfpaU7ff8ChBwABLsgQpFdPTayXOZTVrraLAAAAAAEMAAABLsgQpFdPTayXOZTVrraLAAHBMDI0AAA%3D&exvsurl=1&viewmodel=ReadMessageItem)
+- Complete the **6-Month Probation Review Meeting Form** and send it to him plus HR — still outstanding, carried since 2026-07-23 and now ×8, with [[Laura Bockling]]'s chase well past due
+- Answer his Slack DM: does snap-adapter#143 being left non-draft-but-unreviewed mean it's unfinished? — no, it's actually `draft:false`/CI green/ready for review, his PR body text is just stale (says "kept as draft")
+- Reply on getting GFS (Schuster/[[Matt Shaw]]/[[Harry Humby]]) added to ILG's SNAPDowntime mailing list ahead of the 22–31 July Snap maintenance window (Fri email)
+- Review [renovate-runner#6](https://github.com/gfs-bifrost/renovate-runner/pull/6) (no ticket) — 🔵 awaiting review, CI green, still untouched since 07-21
+
+**Other context**
+- I own [FUSE-866](https://globalfreight.atlassian.net/browse/FUSE-866) (Rework Required since 26 Oct), which is context for the Work Order Confirmation tests
+
+### To raise
+- [ ] snap-adapter#316 (FUSE-1332) is waiting for review with CI green: who is reviewing?
+- [ ] pkg-node#278 has been a draft for 12 days: ready, or park it?
+- [ ] FUSE-1329 is a Sev 3 with no PR yet: where is it?
+- [ ] snap-adapter#203 is a 61-day-old draft: ready, or close it? (carried ×3)
+- [ ] FUSE-1302's two PRs have waited 2 days for review: who is reviewing? (carried ×1)
+- [ ] FUSE-1328's draft is red only on the audit legs, which is the fleet advisory wave rather than his change? (carried ×1)
+- [ ] Distraction Duty moved to [[Matt Shaw]] this sprint: any handover notes from his week? (carried ×1)
+
+### Carried from last time
+- [ ] Probation Final Review — still outstanding, now materially overdue
+- [ ] Reply on GFS-side SNAPDowntime mailing-list access (his ask from 07-17)
+
+### Notes
+- ✍️ 
+
 ## 2026-10-29
 _10:30–11:00 GMT · Regus Southampton (in person) · no agenda_
 

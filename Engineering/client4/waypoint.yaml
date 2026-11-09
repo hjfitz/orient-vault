@@ -3,7 +3,7 @@
 # belongs in a doc.
 service: client4
 system: selector
-repo: /home/harry/code/selector/V4
+repo: /home/hjf/code/selector/V4
 ado: globalfreightsolutons-legacy/Legacy GFS Ticketing/V4
 type: frontend           # Windows desktop app
 owner: jez-poppleton

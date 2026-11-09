@@ -3,7 +3,7 @@
 # belongs in a doc.
 service: css
 system: selector
-repo: /home/harry/code/selector/CSS
+repo: /home/hjf/code/selector/CSS
 ado: globalfreightsolutons-legacy/Legacy GFS Ticketing/CSS
 type: backend
 owner: jez-poppleton

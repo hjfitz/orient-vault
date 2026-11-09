@@ -3,7 +3,7 @@
 # belongs in a doc.
 service: connectors-amazon
 system: carrier-integrations
-repo: /home/harry/code/apiky-survey/ado/connectors-amazon
+repo: /home/hjf/code/apiky-survey/ado/connectors-amazon
 ado: globalfreightsolutions/fenghuang/connectors-amazon
 type: backend
 owner: ecm               # inferred, see Systems/carrier-integrations/known-context.md

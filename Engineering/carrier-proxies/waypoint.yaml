@@ -3,7 +3,7 @@
 # belongs in a doc. (No line cap: the old ~25-line one was exceeded by 22 of 26 files.)
 service: carrier-proxies
 system: carrier-integrations
-repo: /home/harry/code/fuse/carrier-proxies
+repo: /home/hjf/code/fuse/carrier-proxies
 github: gfs-hybrid-services/carrier-proxies
 type: backend            # backend | frontend | library | infra
 owner: bifrost

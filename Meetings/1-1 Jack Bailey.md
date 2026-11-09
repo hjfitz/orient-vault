@@ -7,6 +7,38 @@ title: 'Harry/Jack 1:1'
 # Harry/Jack 1:1
 
 
+## 2026-11-09
+_13:30–14:15 GMT · Teams · weekly Fuse catch-up (recurring, optional, no formal agenda on the invite)_
+
+### Context
+
+**Owed by you**
+- Reply-all with call-outs on [[Darren Cobby]]'s Q1 migration timeline, which asks him and [[Tom Dunn]] to write up the customer-facing technical changes
+- Refine and sequence [FUSE-1335](https://globalfreight.atlassian.net/browse/FUSE-1335) (Escentric shared UK/PL store, still Backlog and unassigned) with the November Shopify parity work
+- Confirm owners and dates on his Integrations Path Forward actions, or say they stand
+- Agree the Peak on-call route for engineering cover
+- Grant his "Fuse EDI Evidence" and "Use-Case Readiness" artifact access requests
+
+**Other context**
+- Snap's software release was applied to staging on Friday and he is cc'd on the thread — [Fuse\Snap call thread](https://outlook.office365.com/owa/?ItemID=AAMkADVhYjUxODIyLWM5NTktNGJmOC1hN2FjLWFjMjllNWUzYmY4MwBGAAAAAAAEXHdKGOMeRLfpaU7ff8ChBwABLsgQpFdPTayXOZTVrraLAAAAAAEMAAABLsgQpFdPTayXOZTVrraLAAHaYrD0AAA%3D&exvsurl=1&viewmodel=ReadMessageItem)
+- Black Friday and Cyber Monday volumes from ILG: Escentric, Stubble and Wildsmith run promotions, Purdy and Figg are live from Friday and now run about 33k orders a day
+- Over the weekend 74 Purdy and Figg sales-order creations failed in SNAP in three short bursts and the Support Bot counted 542 held goods-out confirmations on Friday evening
+
+### To raise
+- [ ] CT PRICAT GLN: ILG has no trading-partner ID yet. Who owns getting it into the connector config in Fuse UI? (carried ×3)
+- [ ] Purdy & Figg API onboarding: what changes when they move WS shipments to sales orders by API? (carried ×3)
+- [ ] Workshop actions: who owns what, and by when (carried ×4)
+- [ ] Dock and Bay go-live watch monitors D2, D3, D7 and D8 are still Alert (muted): does the despatch plan explain it? (carried ×4)
+- [ ] Snap staging release is applied: who runs the performance testing and when?
+- [ ] Black Friday cover: Purdy and Figg at about 33k orders a day plus three customers' promotions, so what is the on-call route?
+
+### Carried from last time
+- [ ] [[SPS Commerce]]↔[[Manucurist]] work split (from 06-17) — still live
+- [ ] Putwall — takeaways + where FUSE fits (now agreed to build in Fuse)
+
+### Notes
+- ✍️
+
 ## 2026-11-02
 _13:30–14:15 GMT · Teams · weekly Fuse catch-up (recurring, optional, no formal agenda on the invite)_
 

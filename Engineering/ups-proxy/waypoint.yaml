@@ -3,7 +3,7 @@
 # belongs in a doc.
 service: ups-proxy
 system: carrier-integrations
-repo: /home/harry/code/apiky-survey/ado/GFS_UPS_Integration
+repo: /home/hjf/code/apiky-survey/ado/GFS_UPS_Integration
 ado: globalfreightsolutions/GFS UPS Integration/GFS UPS Integration
 type: backend
 owner: carrier-integrations               # inferred, see Systems/carrier-integrations/known-context.md

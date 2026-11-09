@@ -7,6 +7,14 @@ title: fuse-ui — work ledger
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-05 — Run fuse-ui on the golden runtime image
+
+Run fuse-ui on the golden runtime image
+
+Moves fuse-ui's runtime stage onto ilg-platform's node24-runtime:0.1-affogato (build stages to glibc node:24) and drops the Datadog serverless-init sidecar and shared volume; DD_* settings move onto the app container with the same values. Verified on dev revision fuse-ui-app-dev-00434-dcb (single container, logs tagged dd.datadog_init_version, authenticated pages render). Dev deploys now announce failures only.
+
+PR: gfs-bifrost/fuse-ui#403
+
 ## 2026-10-29 — FUSE-1336
 
 Offer despatches[] fields in the goods-out confirmation mapping editor

@@ -3,7 +3,7 @@
 # belongs in a doc.
 service: gfs-pod-service
 system: carrier-integrations
-repo: /home/harry/code/apiky-survey/ado/gfs-pod
+repo: /home/hjf/code/apiky-survey/ado/gfs-pod
 ado: globalfreightsolutions/GFS POD/GFS POD
 type: backend
 owner: carriers          # ECM repos.json team "carriers"; John Finney makes most 2026 commits

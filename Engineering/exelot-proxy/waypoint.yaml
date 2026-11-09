@@ -3,7 +3,7 @@
 # belongs in a doc.
 service: exelot-proxy
 system: carrier-integrations
-repo: /home/harry/code/apiky-survey/ado/GFS_Exelot_Integration
+repo: /home/hjf/code/apiky-survey/ado/GFS_Exelot_Integration
 ado: globalfreightsolutions/GFS Exelot Integration/GFS Exelot Integration
 type: backend
 owner: carrier-integrations               # inferred, see Systems/carrier-integrations/known-context.md

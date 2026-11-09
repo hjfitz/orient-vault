@@ -7,6 +7,14 @@ title: replay-service — work ledger
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-05 — Run replay-service on the golden runtime image
+
+Run replay-service on the golden runtime image
+
+Moved the runtime stage from node:24-alpine to ilg-platform's node24-runtime:0.1-affogato (Datadog serverless-init as entrypoint), removed the Datadog sidecar, shared volume and container-dependencies annotation, moved DD_* onto the app container, added enableShutdownHooks since SIGTERM now reaches Node, and emptied .trivyignore (npm-bundled CVEs no longer in the image). Verified on dev (replay-dev-00167-8cs: one container, datadog_init_version logs, failures list + get-by-id 200). Draft.
+
+PR: gfs-bifrost/replay-service#133
+
 ## 2026-10-19 — FUSE-1319
 
 Place Snap outages at Snap

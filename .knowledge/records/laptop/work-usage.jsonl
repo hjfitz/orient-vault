@@ -287,3 +287,4 @@
 {"ts": 1793977147, "kind": "programme_tick", "session_id": "c36659b6-edee-4035-ab29-ffd89416a0e8", "programme": "Tracking Service", "unit": "D2", "status": "done"}
 {"ts": 1793977150, "kind": "programme_tick", "session_id": "c36659b6-edee-4035-ab29-ffd89416a0e8", "programme": "Tracking Service", "unit": "D3", "status": "done"}
 {"ts": 1793977428, "kind": "programme_tick", "session_id": "c36659b6-edee-4035-ab29-ffd89416a0e8", "programme": "Tracking Service", "unit": "D4", "status": "done"}
+{"ts": 1793984519, "kind": "ledger", "session_id": "0b378024-4b31-43ce-82a8-c62ce19bf048", "service": "sftp-connector", "ticket": null, "programme": null, "heading": "## 2026-11-06 \u2014 Stop counting redelivery deferrals and customer rejections as request failures", "prs": ["gfs-bifrost/sftp-connector#405"]}

@@ -3,7 +3,7 @@
 # belongs in a doc.
 service: inpost-proxy
 system: carrier-integrations
-repo: /home/harry/code/apiky-survey/gh/gfs-hybrid-services_inpost-proxy
+repo: /home/hjf/code/apiky-survey/gh/gfs-hybrid-services_inpost-proxy
 github: gfs-hybrid-services/inpost-proxy
 type: backend
 owner: carrier-integrations               # inferred, see Systems/carrier-integrations/known-context.md

@@ -6,6 +6,32 @@ title: 1-1 Oli Denton
 ---
 # 1-1 Oli Denton
 
+
+## 2026-11-05
+_10:00–10:30 GMT · Epsilon House (Slack huddle) · moved to Thursdays_
+
+### Context
+
+**Other context**
+- Lee Simmons mailed that the temporary Iconic customer is deleted from FUSE Dev and Prod; Oli's two follow-ups (a roadmap route for exceptional order re-injection, and why the master data was wrong) are still open
+- [Peak volume support and escalation procedures](https://outlook.office365.com/owa/?ItemID=AAMkADVhYjUxODIyLWM5NTktNGJmOC1hN2FjLWFjMjllNWUzYmY4MwBGAAAAAAAEXHdKGOMeRLfpaU7ff8ChBwABLsgQpFdPTayXOZTVrraLAAAAAAEMAAABLsgQpFdPTayXOZTVrraLAAHaGM34AAA%3D&exvsurl=1&viewmodel=ReadMessageItem) from [[Ryan Ellis]] names you Fuse On Call on Sat 7 and Sun 8 Nov
+- ⚠️ overlaps the 10:00 Bifrost Team Standup, and Epsilon House at 10:00 sits against Schuster's 10:30 at Regus Southampton
+
+### To raise
+- [ ] Ryan's email names me Fuse On Call for 24 hours on both 7 and 8 Nov, but yesterday's call had Fuse on-call developers at level three and me at level four: is that the plan you agreed?
+- [ ] SNAP is down from 10:00 today for the emergency patch: anything you want covered at standup?
+- [ ] Spectrum IT's CV thread (Ruby Calver): the candidate is named Matthew Shaw, so is it a mix-up?
+- [ ] Peak on-call: who covers 7–8 Nov, the hours, and the escalation route to give Ryan Ellis (carried ×2)
+- [ ] Recruitment: next step after Peter Langley's first round with [[Matt Shaw]], and whether to see Peter Russell (carried ×2)
+- [ ] The prod deploy backlog and who approves: config-service is 3 approvals and 7 days behind (carried ×2)
+- [ ] Snap reliability after INC-42: ILG is logging each outage and challenging Snap before Peak (carried ×1)
+
+### Carried from last time
+- [ ] (nothing recorded)
+
+### Notes
+- ✍️ 
+
 ## 2026-10-22
 _10:00–10:30 BST · Epsilon House + Slack huddle · "Moving to Thursdays", no agenda. Overlaps the 10:00 Bifrost Team Standup_
 

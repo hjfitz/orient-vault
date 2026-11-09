@@ -5,8 +5,8 @@ service: tracking-service
 status: active
 created: '2026-11-06'
 updated: '2026-11-06'
-repo: /home/harry/code/fuse/tracking-service
-worktree: /home/harry/code/fuse/tracking-service/.claude/worktrees/exempt-unqueried-firestore-fields
+repo: /home/hjf/code/fuse/tracking-service
+worktree: /home/hjf/code/fuse/tracking-service/.claude/worktrees/exempt-unqueried-firestore-fields
 branch: hjf/exempt-unqueried-firestore-fields
 base: origin/main
 base_sha: b12d0a630

@@ -3,7 +3,7 @@
 # belongs in a doc.
 service: connectors-dhlparcel
 system: carrier-integrations
-repo: /home/harry/code/apiky-survey/ado/connectors-dhlparcel
+repo: /home/hjf/code/apiky-survey/ado/connectors-dhlparcel
 ado: globalfreightsolutions/fenghuang/connectors-dhlparcel
 type: backend
 owner: ecm               # inferred, see Systems/carrier-integrations/known-context.md

@@ -1,0 +1,94 @@
+{
+  "id": "20261105-132921-2bf2",
+  "title": "Candidate Review with Matt",
+  "status": "done",
+  "startedAt": "2026-11-05T13:29:21.707461968Z",
+  "endedAt": "2026-11-05T14:06:44.283131497Z",
+  "sources": {
+    "me": [
+      "Built-in Audio Analog Stereo"
+    ],
+    "them": [
+      "Nightly",
+      "speech-dispatcher-dummy"
+    ]
+  },
+  "call": true,
+  "speakers": {
+    "Room 1": "Matt",
+    "Room 2": "Harry"
+  },
+  "merged": {
+    "Room 3": "Room 2"
+  },
+  "summary": {
+    "tldr": [
+      "Reviewed four candidates: Edward Savage, a referred candidate (name garbled, possibly 'Projector'), Darren Taylor and Matthew Shaw.",
+      "Matthew Shaw is the strongest on paper (platform and SRE, Go, runbooks, willing to take a pay cut and work in the office) and should be interviewed first.",
+      "Edward Savage and Darren Taylor are both in. Ed is a possible backfill for Nyla, but his 70k ask and quick jump to senior need probing.",
+      "The referred candidate is parked: no clear level, salary or availability, and nothing on the CV that stands out.",
+      "How many seats this round is filling is still unconfirmed."
+    ],
+    "decisions": [
+      "Edward Savage goes forward to a phone screen or interview.",
+      "Darren Taylor is in.",
+      "Matthew Shaw is the strongest candidate and is interviewed first.",
+      "The referred candidate is parked for now, to be revisited only if more detail appears or a lower-level seat opens.",
+      "Interviews with Matthew Shaw and Darren Taylor to be arranged for Monday or Tuesday, subject to their availability.",
+      "Ed's interview will not go on the same day as the other three interviews."
+    ],
+    "actions": [
+      {
+        "owner": "Harry",
+        "text": "Send interview availability to Ruby and organise interviews with Matthew Shaw and Darren Taylor.",
+        "due": "Monday or Tuesday (9 or 10 November)"
+      },
+      {
+        "owner": "Harry",
+        "text": "Schedule Edward Savage on a separate day from the Matthew and Darren interviews.",
+        "due": ""
+      },
+      {
+        "owner": "Harry",
+        "text": "Confirm with Ollie how many seats this round is filling and whether Nyla's backfill is one of them.",
+        "due": ""
+      }
+    ],
+    "questions": [
+      "How many seats are being filled this round, and is Nyla's backfill one of them?",
+      "Can Matthew Shaw's four-day week (extra two hours a day) work, given the role runs until September 2027? Will he stay motivated at a lower salary?",
+      "Is Edward Savage worth 70k given how early he reached senior, and how much of the API time cut from over 500s to 30s was his own work?",
+      "What is the referred candidate's actual seniority, current work, salary expectation and notice period?",
+      "What is Edward Savage's TypeScript versus C# split?"
+    ],
+    "speakers": [
+      {
+        "label": "Room 2",
+        "name": "Harry",
+        "basis": "Addressed as Harry by Room 1; says this is their first proper recruitment; takes the scheduling actions"
+      },
+      {
+        "label": "Room 1",
+        "name": "Matt",
+        "basis": "Meeting titled with Matt; says 'I'm definitely a Matt'; talks to Harry as a peer"
+      },
+      {
+        "label": "Room 3",
+        "name": "",
+        "basis": "Another voice in the room, name not clear"
+      }
+    ],
+    "model": "sonnet",
+    "usd": 0.11927109999999999,
+    "durationMs": 20683,
+    "at": "2026-11-05T14:24:59.020725169Z"
+  },
+  "enhancement": {
+    "model": "sonnet",
+    "usd": 0.29476949999999996,
+    "durationMs": 20509,
+    "at": "2026-11-05T14:25:19.530957798Z",
+    "parts": 4
+  },
+  "host": "laptop"
+}

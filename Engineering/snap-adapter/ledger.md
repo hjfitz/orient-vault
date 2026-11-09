@@ -15,6 +15,13 @@ Programme unit X1, step 1: flips snap-adapter's transport switch via a new snap_
 
 PR: gfs-bifrost/snap-adapter#331
 
+## 2026-11-05 — Run snap-adapter on the golden runtime image
+
+Run snap-adapter on the golden runtime image
+
+Moved snap-adapter and snap-queue-polling-service onto ilg-platform's node24-runtime:0.1-affogato golden image and removed their Datadog serverless-init sidecars. The agent now runs in-container, with DD_* on the app container and the ILG dual-ship kept. snap-adapter gained a SIGTERM handler that closes the server and exits once in-flight creates finish. The poller's existing handler already keeps in-flight polls running through the grace. Both apps were deployed to dev and verified: HJF create via fuse-mocker, poller pickup of a simulator despatch, and a clean shutdown flushed to Datadog. Draft PR.
+
+PR: gfs-bifrost/snap-adapter#319
 ## 2026-11-06 — Emit snap.breaker.opened, .state and .rejected beside snap.circuit_opened
 
 Emit snap.breaker.opened, .state and .rejected beside snap.circuit_opened

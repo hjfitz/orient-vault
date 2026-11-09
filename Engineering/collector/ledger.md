@@ -7,6 +7,14 @@ title: collector — work ledger
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-05 — Run collector on the golden runtime image
+
+Run collector on the golden runtime image
+
+Moved collector's runtime image from node:24-alpine to ilg-platform's node24-runtime:0.1-affogato and dropped the Datadog serverless-init sidecar, so the agent now runs in the app container. The DD_* env moved onto the app container. Added enableShutdownHooks, because SIGTERM now reaches Node. Compose healthchecks now exec node, since the image has no wget. Dropped the base-image .trivyignore entries. Deployed to dev as collector-dev-00187-nlk and verified it end to end with a mock FGR for HJF. Part of the fleet-wide golden-image migration.
+
+PR: gfs-bifrost/collector#138
+
 ## 2026-09-24 — FUSE-1257
 
 Connector-aware confirmation lifecycle: delivered shows processed

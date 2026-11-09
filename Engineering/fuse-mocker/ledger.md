@@ -7,6 +7,14 @@ title: fuse-mocker — work ledger
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-05 — Run fuse-mocker on the golden runtime image
+
+Run fuse-mocker on the golden runtime image
+
+Moved all three images onto ilg-platform's golden runtime images and dropped the three Datadog serverless-init sidecars, so the agent runs in-container: api and snap-api on go-runtime:0.1-affogato (from distroless static), the UI on node24-runtime:0.1-affogato (glibc node:24 build, from node:24-alpine). DD_* moved onto the app containers with the same values; the shared-volume, its mounts and the container-dependencies annotations are gone. The Go apps' ResolveSink is now stdout-only and the UI's winston file transport is gone; @gfs-bifrost/observability ^2.3.0 -> ^2.5.0. Verified on dev from the branch (one container each, no volumes, Ready; logs tagged dd.datadog_init_version:1.11.2; fuse.mocker.publish still flowing; a dispatch-sink publish and authenticated UI pages exercised), then landed direct-to-main per the repo's no-PR convention and redeployed dev from main.
+
+Commit: gfs-bifrost/fuse-mocker@847b9b7 (direct to main, no PR)
+
 ## 2026-10-02 — FUSE-1188
 
 snap-api simulator: stock reads behave like real SNAP

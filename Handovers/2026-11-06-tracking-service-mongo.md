@@ -91,7 +91,7 @@ Checked 2026-11-06 ~15:15Z on `hjf.shell.platform.ilg.software` (kernel 7.2.14):
 - **Accounts:** `gh` is logged in as `harry-fitzgerald_gfsdev` and sees the merged PRs #18–#23 and pending run 42239748734. `gcloud` is `harry.fitzgerald@gfsdeliver.com` and can read `bifrost-prod-global1`.
 - **Repo:** `~/code/fuse/tracking-service` was **cloned during the handover** (at `a97baca`), with `mise.toml` trusted.
 - **Unattended running:** `~/.claude/.credentials.json` is present and `defaultMode` is `auto`.
-- **Sync:** the vault, skills and memories were synced, and this record, the Migration State, the ledger and session-handover match by hash. The draft-design, the dedupe script and the D1 plan match after the sync's `/home/harry` → `/home/harry` rewrite.
+- **Sync:** the vault, skills and memories were synced, and this record, the Migration State, the ledger and session-handover match by hash. The draft-design, the dedupe script and the D1 plan match after the sync's `/home/hjf` → `/home/hjf` rewrite.
 - **MCP:** the `fuse` and `ado-local-mcp` servers were kept with the VM's own config. OAuth servers (Atlassian, datadog, slack, ado-remote-mcp) need `/mcp` once there if they aren't already signed in. **Restart Claude on the VM** to load them.
 - **Not there:** the laptop's worktrees and background agents. All their work is pushed and merged; nothing is unpushed.
 

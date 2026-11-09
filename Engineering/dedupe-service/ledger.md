@@ -7,6 +7,14 @@ title: dedupe-service — work ledger
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-04 — Renew the zod and multer audit allowlist entries
+
+Renew the zod and multer audit allowlist entries
+
+The two allowlist entries expired 2026-11-04 and turned dependency_audit red on master and every open PR. Renewed 7 days after re-checking: no fixed zod 3.x, platform-express 11.x still pins multer 2.4.0.
+
+PR: gfs-bifrost/dedupe-service#173
+
 ## 2026-10-28 — Tag create_record with each backend type the business has
 
 Tag create_record with each backend type the business has

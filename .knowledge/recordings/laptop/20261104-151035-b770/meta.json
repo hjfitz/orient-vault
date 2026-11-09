@@ -1,0 +1,89 @@
+{
+  "id": "20261104-151035-b770",
+  "title": "Harry + Ryan on-call",
+  "status": "done",
+  "startedAt": "2026-11-04T15:10:35.976563219Z",
+  "endedAt": "2026-11-04T15:36:33.284288158Z",
+  "sources": {
+    "me": [
+      "JLAB TALK MICROPHONE Analog Stereo"
+    ],
+    "them": [
+      "Nightly",
+      "speech-dispatcher-dummy"
+    ]
+  },
+  "call": true,
+  "speakers": {
+    "Room 1": "Harry",
+    "Speaker 1": "Ryan"
+  },
+  "merged": {
+    "Room 2": "Room 1",
+    "Room 3": "Room 1"
+  },
+  "summary": {
+    "tldr": [
+      "Ryan and Harry covered weekend on-call cover for the big Purdy and Fig weekend, mainly as a precaution since no problems are expected.",
+      "Tomorrow's release is a fix for the label provider (carrier) and is unrelated to the Snap issues from this week. Ryan hopes it ends them.",
+      "Harry is writing an on-call document with the escalation path and references. Ryan needs it before about 2pm tomorrow so he can send it out, as he is on leave Friday.",
+      "Ryan's on-call: Danny Williams, plus Milo and Joe on site Saturday and Sunday. Joe is four months in, so level one needs plain-language answers.",
+      "Harry will be level four behind the Fuse developers on call (level three) and will send phone numbers and a rota."
+    ],
+    "decisions": [
+      "Fuse developers will be on call over the weekend as level three, with Harry as level four.",
+      "Both sides will treat on-call questions as equally urgent and respond quickly.",
+      "Ryan will send the on-call documentation to his team by about 2pm tomorrow."
+    ],
+    "actions": [
+      {
+        "owner": "Harry",
+        "text": "Send Ryan the on-call document covering the escalation path and references.",
+        "due": "Before 2pm tomorrow (Thursday 5 November), ASAP"
+      },
+      {
+        "owner": "Harry",
+        "text": "Send Ryan a list of phone numbers and who is on call when.",
+        "due": ""
+      },
+      {
+        "owner": "Ryan",
+        "text": "Send the on-call documentation out to his team and raise any questions on Harry's document.",
+        "due": "About 2pm tomorrow (Thursday 5 November)"
+      },
+      {
+        "owner": "Ryan",
+        "text": "Tell Danny Williams he is on call as a fallback for the weekend.",
+        "due": ""
+      }
+    ],
+    "questions": [
+      "How will on-call hours be tracked? Both Ryan and Harry use manual spreadsheets or timesheets, and Harry hoped a tool could handle it.",
+      "Will tomorrow's release fully end the Snap issues from this week? Ryan hopes so but it was not confirmed."
+    ],
+    "speakers": [
+      {
+        "label": "Room 1",
+        "name": "Harry",
+        "basis": "Named by Harry as himself"
+      },
+      {
+        "label": "Speaker 1",
+        "name": "Ryan",
+        "basis": "Named by Harry as Ryan"
+      }
+    ],
+    "model": "sonnet",
+    "usd": 0.0414412,
+    "durationMs": 6359,
+    "at": "2026-11-05T14:33:14.263903423Z"
+  },
+  "enhancement": {
+    "model": "sonnet",
+    "usd": 0.078234,
+    "durationMs": 15194,
+    "at": "2026-11-04T15:39:34.497058483Z",
+    "parts": 1
+  },
+  "host": "laptop"
+}

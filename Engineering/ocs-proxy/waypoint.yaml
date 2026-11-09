@@ -3,7 +3,7 @@
 # belongs in a doc.
 service: ocs-proxy
 system: carrier-integrations
-repo: /home/harry/code/apiky-survey/ado/ocs-proxy
+repo: /home/hjf/code/apiky-survey/ado/ocs-proxy
 ado: globalfreightsolutions/GFS Hybrid Services and Carrier Integrations/ocs-proxy
 type: backend
 owner: carrier-integrations               # inferred, see Systems/carrier-integrations/known-context.md

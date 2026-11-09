@@ -3,7 +3,7 @@
 # belongs in a doc.
 service: connectors-hermesps
 system: carrier-integrations
-repo: /home/harry/code/apiky-survey/ado/connectors-hermesps
+repo: /home/hjf/code/apiky-survey/ado/connectors-hermesps
 ado: globalfreightsolutions/fenghuang/connectors-hermesps
 type: backend
 owner: ecm               # inferred, see Systems/carrier-integrations/known-context.md

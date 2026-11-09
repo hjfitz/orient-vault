@@ -6,6 +6,13 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-05 — Run fuse-mcp-server on the golden runtime images
+
+Run fuse-mcp-server on the golden runtime images
+
+Moved both servers (Go: distroless/static to go-runtime; TypeScript: node:24-alpine to node24-runtime) onto the ILG golden images with Datadog in-container. Dropped both services' GFS+ILG sidecars and shared volume, and moved DD_* onto the app containers with ILG dual-ship. Removed the LOG_FILE file sink, so both log JSON to stderr. Go DogStatsD now keys off DD_LOGS_ENABLED instead of LOG_FILE. Added Nest enableShutdownHooks. Not deployed: the repo is prod-only, with no dev environment.
+
+PR: gfs-bifrost/fuse-mcp#64
 ## 2026-11-04 — Clear the high findings failing the MCP dependency audit and image scan
 
 Clear the high findings failing the MCP dependency audit and image scan
