@@ -22,6 +22,11 @@
     ]
   },
   "call": true,
+  "speakers": {
+    "Speaker 1": "Jack Bailey",
+    "Speaker 2": "Oli Denton",
+    "Speaker 3": "Matt Shaw"
+  },
   "summary": {
     "tldr": [
       "Peak weekend went cleanly: nothing dropped. The ~500k Purdy and Figg order requests are polling duplicates (90-minute window, 5-minute polls) that the deduper removes. Team is fine leaving it for now.",
