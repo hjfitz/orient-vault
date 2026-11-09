@@ -64,7 +64,7 @@ None of this session's workflows or agents is running (checked 2026-11-09 11:53Z
 | Exceptions, queries and claims today | The Exceptions and Claims portals; the AI query-automation brainstorm | Evidence in hand |
 | Identity and tenancy lessons from ECM | MKP-32 (shipper or warehouse operator as tenant) | MKP-32 is a Parcel Portal gate, so re-anchor on Merak or drop. Evidence: ECM keys tenancy on the company name, which is write-once, so a rename orphans data across about twelve services |
 
-Not worth writing, in my 2026-11-09 view: more per-service ECM pages (reference only, no decision), and the keep, replace or drop list for Selector v2 (a product call for Jack and Stef).
+In my 2026-11-09 view, two things are not worth writing. More per-service ECM pages are reference only and feed no decision. The keep, replace or drop list for Selector v2 is a product call for Jack and Stef.
 
 ### Answers owed by others
 | Question | Who or what settles it |
