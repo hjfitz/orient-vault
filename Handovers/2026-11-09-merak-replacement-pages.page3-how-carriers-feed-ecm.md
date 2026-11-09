@@ -1,11 +1,11 @@
 ECM receives carrier events by three routes: polling connectors, webhooks and SFTP files. All three publish to one topic, `raw_tracking.v1`. They differ in who starts the exchange, how an event is matched to a shipment, what is deduplicated and what each message carries. This page sets out how each route feeds ECM, where they differ, and which route each of the 12 carriers in `carrier-playground` uses.
 
-Carrier proxies are not a route. They serve Selector for labels, cancels and manifests. The one link is Amazon Logistics, whose polling connector calls the Amazon proxy. Volumes cover the 15 days to 6 Nov 2026. The requirements that follow from ECM's failures are on the companion page, Tracking Events and Webhooks: What v1 Needs. The path of one shipment is on [Shipment Journey Through ECM](https://globalfreight.atlassian.net/wiki/spaces/MPK/pages/354975746/Shipment+Journey+Through+ECM).
+Carrier proxies are not a route. They serve Selector for labels, cancels and manifests. The one link is Amazon Logistics, whose polling connector calls the Amazon proxy. Volumes cover the 15 days to 6 Nov 2026. The requirements that follow from ECM's failures are on the companion page, [Tracking Events and Webhooks: What v1 Needs](https://globalfreight.atlassian.net/wiki/spaces/MPK/pages/355074077/Tracking+Events+and+Webhooks+What+v1+Needs). The path of one shipment is on [Shipment Journey Through ECM](https://globalfreight.atlassian.net/wiki/spaces/MPK/pages/354975746/Shipment+Journey+Through+ECM).
 
 ## In short
 
 - **Polling does almost all the work.** It brought about 5.44M of about 6.25M events, from about 142M carrier calls. Webhooks brought about 215k, all from Royal Mail. Files brought about 54k.
-- **The routes do not produce the same message.** Webhook services leave `rawData` empty. The companion page, Tracking Events and Webhooks: What v1 Needs, reports that `tracking-core` attaches the full raw carrier response to polled events. Whether each connector fills it is not confirmed.
+- **The routes do not produce the same message.** Webhook services leave `rawData` empty. The companion page, [Tracking Events and Webhooks: What v1 Needs](https://globalfreight.atlassian.net/wiki/spaces/MPK/pages/355074077/Tracking+Events+and+Webhooks+What+v1+Needs), reports that `tracking-core` attaches the full raw carrier response to polled events. Whether each connector fills it is not confirmed.
 - **Nothing deduplicates across routes.** Each route dedupes on its own, so a carrier that is polled and also sends webhooks feeds the topic twice.
 - **The 12 mocked carriers produce about 9% of events.** Evri, DHL Parcel UK, DPD Local and DPD, none of which is mocked, produce about 89%.
 
@@ -28,7 +28,7 @@ Carrier proxies are not a route. They serve Selector for labels, cancels and man
 - **Who chooses what is tracked.** For polling, GFS chooses the parcels and asks for them. For webhooks and files, the carrier chooses what to send, and ECM holds or drops what it cannot match.
 - **The raw carrier payload.** The topic's `rawData` is optional. The webhook services leave it empty, and `tracking-core` attaches the raw carrier response to polled events. A consumer that needs the carrier's own words cannot rely on webhook events for them.
 - **Cost grows differently.** Polling cost follows parcels still being asked about: about 26 calls for each new event. Where a connector's DELIVERED state is on, delivered parcels keep being polled. Amazon re-polled 2.6M of them. Webhook cost follows events.
-- **Dedupe stops at the route.** Consumers dedupe on the event `id` alone, and each publisher mints its own. The same scan from a connector and a webhook lands twice. See requirement 2 on Tracking Events and Webhooks: What v1 Needs.
+- **Dedupe stops at the route.** Consumers dedupe on the event `id` alone, and each publisher mints its own. The same scan from a connector and a webhook lands twice. See requirement 2 on [Tracking Events and Webhooks: What v1 Needs](https://globalfreight.atlassian.net/wiki/spaces/MPK/pages/355074077/Tracking+Events+and+Webhooks+What+v1+Needs).
 - **A cutover between routes is manual.** A webhook in shadow mode records events but publishes none, and turning publish on does not backfill. Evri's plan has five steps:
     1. Evri enables webhooks for all GFS customers.
     2. GFS reconciles the account IDs Evri sends.
@@ -87,4 +87,4 @@ Together they add up to about 5.55M events, about 89% of the total. No webhook p
 - **Webhooks:** `tracking-webhooks` at `9777dd4`. The page [Tracking Webhook Services](https://globalfreight.atlassian.net/wiki/spaces/MPK/pages/353533985/Tracking+Webhook+Services).
 - **Files:** `tracking-file-processor` at `e6da4bf`.
 - **Per-carrier events and routes:** the page [Carrier Ingress Services](https://globalfreight.atlassian.net/wiki/spaces/MPK/pages/353206337/Carrier+Ingress+Services). Mocked carriers: the `ilg-merak/carrier-playground` `apps/` folder at `d98fd9b`.
-- **Dedupe across routes, ordering and cost:** the vault explainer on ECM's event world. Figures are from Datadog, 15 days to 6 Nov 2026.
+- **Dedupe across routes, ordering and cost:** [Tracking Events and Webhooks: What v1 Needs](https://globalfreight.atlassian.net/wiki/spaces/MPK/pages/355074077/Tracking+Events+and+Webhooks+What+v1+Needs). Figures are from Datadog, 15 days to 6 Nov 2026.

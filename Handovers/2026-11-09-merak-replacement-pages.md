@@ -8,7 +8,7 @@ from: rc-hjf
 to: next session, any machine
 session_id: 9ef32451-f6a6-429e-88df-add8e5d83ddf
 resumed_by: 4ff6c302-4da3-4b14-bf3c-fc976c0ec75b   # laptop (freightops), 2026-11-09T12:14Z
-updated: 2026-11-09T12:22Z
+updated: 2026-11-09T12:40Z
 ---
 # Handover: Merak replacement pages (continues the carrier-integrations research)
 
@@ -17,7 +17,7 @@ Continues [[Handovers/2026-11-06-carrier-integrations]], which is closed. Read t
 ## Where things stand
 The ECM and Selector research is published to MPK and the vault. On 2026-11-09 a 31-agent review checked 36 claims on the first journey page: 19 confirmed, 17 partly right, none refuted. All 17 were corrected. Harry now frames Merak as a new despatch and shipping platform that replaces ECM and Selector. **The Parcel Portal is not part of that.**
 
-Two design pages for MPK "1. Architecture & Design" (page 351502339) are drafted but **unverified and unpublished**. The verification run was killed at the session limit and returned nothing. Harry has not yet seen the full text.
+Three design pages are **published as drafts, unverified**, under MPK "1. Architecture & Design" (page 351502339). Harry asked for them on 2026-11-09 at about 12:35Z and will send feedback afterwards. The verification run was killed at the session limit and returned nothing, so no claim on the pages has been through it. Apply Harry's feedback to the live pages first, then to the vault files, which are the source copies.
 
 | Unit | What it delivered | Where | State |
 | --- | --- | --- | --- |
@@ -26,22 +26,22 @@ Two design pages for MPK "1. Architecture & Design" (page 351502339) are drafted
 | Ingress and Egress pages | Names from GFS's side: ingress = carrier to GFS, egress = GFS to carrier | MPK Carrier Ingress Services 353206337 (v5), Carrier Egress Services 353697822 (v6), Carrier Services 353468499 (v5), Carrier Integration Uses 353206310 (v6) | Live |
 | Explainers | Journey and diagnosis, rewritten with the checked facts | `Explainers/2026-11-06-life-of-a-shipment-through-ecm.md`, `Explainers/2026-11-06-ecm-event-world-where-its-a-mess.md` | Done, lint clean |
 | POD docs and idea | Address and cache correction. POD-at-ingress idea kept as a draft plan | `Engineering/gfs-pod-service/` (`ideas-log.md`, `plans/`) | Done. The plan stub counts as open for `wp doctor`. To drop it: `wp plan set-status gfs-pod-service --plan capture-pods-at-ingress-and-serve-them-from-a-st --status abandoned` |
-| Draft page 1 | **Selector and ECM Coupling**: six seams, what breaks if either goes first, duties nobody wrote down, three cut points | `Handovers/2026-11-09-merak-replacement-pages.page1-selector-ecm-coupling.md` | Drafted, unverified. No lint errors, 4 long-sentence warnings open |
-| Draft page 2 | **Tracking Events and Webhooks: What v1 Needs**: ten requirements from ECM's failures | `Handovers/2026-11-09-merak-replacement-pages.page2-tracking-events-webhooks.md` | Drafted, unverified. No lint errors, 1 long-sentence warning open |
+| Draft page 1 | **Selector and ECM Coupling**: six seams, what breaks if either goes first, duties nobody wrote down, three cut points | `Handovers/2026-11-09-merak-replacement-pages.page1-selector-ecm-coupling.md` | **Published 2026-11-09 12:37Z** as a draft: MPK 354418743. Unverified. 4 long-sentence lint warnings left in |
+| Draft page 2 | **Tracking Events and Webhooks: What v1 Needs**: ten requirements from ECM's failures | `Handovers/2026-11-09-merak-replacement-pages.page2-tracking-events-webhooks.md` | **Published 2026-11-09 12:37Z** as a draft: MPK 355074077. Unverified. 1 long-sentence lint warning left in |
 | Page 3 (old) | Dropped. It only answered MKP-9, a Parcel Portal gate | n/a | Hidden duties moved into page 1 |
-| Draft page 3 (new) | **How Carriers Feed ECM**: polling, webhooks and files compared, plus the 12 mocked carriers by route (about 9% of events; Evri, DHL Parcel UK, DPD Local and DPD about 89%) | `Handovers/2026-11-09-merak-replacement-pages.page3-how-carriers-feed-ecm.md` | Drafted on the laptop, unverified. No lint errors. 7 `[??]` gaps listed on the page |
+| Draft page 3 (new) | **How Carriers Feed ECM**: polling, webhooks and files compared, plus the 12 mocked carriers by route (about 9% of events; Evri, DHL Parcel UK, DPD Local and DPD about 89%) | `Handovers/2026-11-09-merak-replacement-pages.page3-how-carriers-feed-ecm.md` | **Published 2026-11-09 12:38Z** as a draft: MPK 355074111. Unverified. No lint errors. The vault copy now says "Not confirmed" where the draft had `[??]`, and links page 2 |
 
 ## In flight
 None of this session's workflows or agents is running (checked 2026-11-09 11:53Z). The sessions `ListAgents` shows are Harry's other sessions: leave them alone.
 
 | Work | Where | State | To close it |
 | --- | --- | --- | --- |
-| Verify drafts 1 and 2 | `Handovers/2026-11-09-merak-replacement-pages.verify-workflow.js.txt` | Killed, no results | Needs Harry's go-ahead for multi-agent work. Copy the script to a `.js` file and run it with `Workflow({scriptPath})`. It uses two Sonnet-high verifiers per page (source and runtime lenses), an Opus-high judge and a cross-page critic. Its CONTEXT points at this session's scratchpad (clones, `review-result.json`), which a new session won't have. Apply the corrections to the two draft files |
-| Fix lint warnings | Draft 1 (4 long sentences), draft 2 (1) | Open | `python3 ~/.claude/skills/plainly/lint.py <file>` |
-| Show Harry the full text, then publish on his word | MPK, space id 338526210, parent 351502339 | Not started | `mcp__Atlassian__createConfluencePage` in markdown, then link both pages from "1. Architecture & Design" and from [Carrier Services](https://globalfreight.atlassian.net/wiki/spaces/MPK/pages/353468499/Carrier+Services) |
+| Verify drafts 1 and 2 | `Handovers/2026-11-09-merak-replacement-pages.verify-workflow.js.txt` | Killed, no results | Optional now the pages are live as drafts: ask Harry whether to run it before or after his feedback. Needs his go-ahead for multi-agent work. Add page 3 to its scope. Copy the script to a `.js` file and run it with `Workflow({scriptPath})`. It uses two Sonnet-high verifiers per page (source and runtime lenses), an Opus-high judge and a cross-page critic. Its CONTEXT points at this session's scratchpad (clones, `review-result.json`), which a new session won't have. Apply the corrections to the two draft files |
+| Fix lint warnings | Pages 1 (4 long sentences) and 2 (1) | Open. Fix in the vault, then `updateConfluencePage` with a `versionMessage` | `python3 ~/.claude/skills/plainly/lint.py <file>` |
+| Link the three pages from [Carrier Services](https://globalfreight.atlassian.net/wiki/spaces/MPK/pages/353468499/Carrier+Services) | MPK 353468499 | Not started. Harry asked only for the pages. The pages already sit under "1. Architecture & Design", which lists them as children | Add one line per page on Carrier Services, with a `versionMessage`. Ask Harry first: it edits a live page |
 
 ## Waiting on Harry
-- **Review the two drafts before anything is published.** Recommendation: verify, fix, show the text, then publish both under "1. Architecture & Design".
+- **Feedback on the three published drafts.** Harry will send it. Page 3's title, "How Carriers Feed ECM", is mine: the other two titles were agreed.
 - **Confirm that Merak replaces both ECM and Selector.** That is Harry's framing. MPK names "Selector v2 and labelling" as big builds but has no Selector v2 design page and no mention of ECM being replaced. Those were phrase searches, not a full read. Check with Jack and Stef before the pages assume it.
 - **Keep or drop one link.** Page 2 links the "Idea: Developer promise" page (349110455) in its opening paragraph. Recommendation: keep it. That page asks for the same v1 webhook features, and the decisions on it stay with Stef.
 - **Which further pages he wants.** Four more were proposed on 2026-11-09 and none is approved. Check each against Merak before writing it. The first table below gives the decision each was meant to feed.
