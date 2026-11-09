@@ -7,6 +7,14 @@ title: snap-adapter — work ledger
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-09 — Gate SNAP requests on the shared breaker in prod (SNAP_TRANSPORT_GUARD=adapter)
+
+Gate SNAP requests on the shared breaker in prod (SNAP_TRANSPORT_GUARD=adapter)
+
+Programme unit X1, step 1: flips snap-adapter's transport switch via a new snap_transport_guard tfvar (default adapter; revert by setting interceptors). G1 cleared (P&F 4,816/3,522/2,609 Fri-Sun, back to baseline Monday). Prod plan shared for agreement before the gate is approved.
+
+PR: gfs-bifrost/snap-adapter#331
+
 ## 2026-11-06 — Emit snap.breaker.opened, .state and .rejected beside snap.circuit_opened
 
 Emit snap.breaker.opened, .state and .rejected beside snap.circuit_opened
