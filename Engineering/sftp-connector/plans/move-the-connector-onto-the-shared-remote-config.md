@@ -204,6 +204,11 @@ Out-of-ticket; Harry asked for it on 2026-11-04, after prod cut S4 moved SFTP us
   - **Egress (AC 1):** GADG pick, RGA and stock-adjustment confirmations, sent through the fuse-mocker API as broadcasts, each read their mapping through the package. Each wrote files with the mapped columns.
   - **Sweep:** 73/73 connectors and 201/201 mappings. No errors on the revision.
 
+- 2026-11-09 [inc 3b] Prod, #404 merged as `e17c9ca`, together with #406 (zod 4.6.7). Deploy run 42594936500, prod plan image-only (0/1/0, plus the standing env reorder); both gates approved. #405 had already gone to prod at 09:30 from another session. The parked #406 run (`7c852ee`, an ancestor) was cancelled before approval. Prod is live on `e17c9ca`, revision `00129-4gd`.
+  - Prod sweep: 30/30 connectors and 113/113 mappings, 0 failed.
+  - First real traffic (09:43–09:55Z): 8 sales-order files (STUBBLE ×7, EPARFUM ×1) validated and archived; 2 goods-out confirmations processed (WILDSMITH, STUBBLE). 20 file events 200, 31 acks and 2 confirmations 204. No warnings or errors.
+  - The black-box tests needed the mock config server to serve the package's shapes (`43502ea`, from another session) before #404 went green.
+
 ### Not verified
 <!-- Stated, not papered over. "(none)" is a deliberate claim, and a fine one. -->
 - [inc 1] The prod sweep and prod shadow: both wait on the E3 gate and the merge.

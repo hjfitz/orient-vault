@@ -6,6 +6,22 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-09 — Write shipments to the MongoDB store
+
+Write shipments to the MongoDB store
+
+Shipment Apply on a bounded own-loop transaction with a seen collection (8-day TTL), marks docs skipped when unchanged, and Get/GetMany/Events/ShipmentIDs/ReturnIDs. Six shipment conformance cases now run on Mongo, plus 20 Mongo-only tests pinning seen ids, aborts, concurrency, the loop bounds and the marks shape. Stacked on #26.
+
+PR: gfs-bifrost/tracking-service#27
+
+## 2026-11-09 — Scaffold the MongoDB store
+
+Scaffold the MongoDB store
+
+BSON tags beside the Firestore tags, a microsecond time codec, the Mongo type with errNotYet stubs so it satisfies storeopen.Backend, and a mongo conformance backend with a pending map; make mongo-test now runs the store suite. Groundwork for the Firestore to Mongo move, nothing selectable yet.
+
+PR: gfs-bifrost/tracking-service#26
+
 ## 2026-11-09 — Sum marks in Mongo as the memory store does
 
 Sum marks in Mongo as the memory store does
