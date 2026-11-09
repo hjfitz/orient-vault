@@ -1,12 +1,12 @@
-`gfs-pod-service` has one module per carrier, and each fetches a proof of delivery (POD) in its own way. This page lists, carrier by carrier, the calls each module makes, how it authenticates, what it reads from the response, where the image comes from and what can go wrong. It was written from the code on 9 Nov 2026. Nothing was run and no carrier was called.
+`gfs-pod-service` has one module per carrier, and each fetches a proof of delivery (POD) in its own way. This page lists, for each carrier, the calls its module makes and how it authenticates. It also covers what the module reads from the response, where the image comes from and what can go wrong. It was written from the code on 9 Nov 2026. Nothing was run and no carrier was called.
 
 It extends [Proof of Delivery Service](https://globalfreight.atlassian.net/wiki/spaces/MPK/pages/353861642/Proof+of+Delivery+Service), which covers the service, its APIs, its callers and its traffic. The code is `origin/master` at `d1f0ada`, two pull requests (14257 and 14259) after the `811007e` that page cites. They moved FedEx from the parcel list to the consignment list and fixed the key FedEx documents arrive under.
 
 ## In short
 
-- **Eleven carriers are in service, plus a test carrier.** DHL Parcel UK uses one of two modules, chosen by a flag the repo does not set. A DHL Express module exists, but it is not loaded and does not work.
+- **Eleven carriers are live, plus a test carrier.** DHL Parcel UK uses one of two modules, chosen by a flag the repo does not set. DHL Express has a module that is not loaded and does not work.
 - **There are three ways to get an image.** UPS returns it inline in the tracking response. BJS has no API, so the module scrapes a web page. Every other carrier needs a second call.
-- **UPS and FedEx call their APIs with one GFS account for every customer.** FedEx has a per-customer path in the code, and it is commented out.
+- **UPS and FedEx use one GFS account for every customer.** FedEx's per-customer path is commented out of the code.
 - **Five modules treat the carrier's local time as UTC or as the server's time zone.** These are UK Mail, Evri, UPS, Panther and Tuffnells.
 - **No module sets a timeout.** Only FedEx and DHL eCommerce retry, and only once, after a 401.
 
@@ -56,7 +56,7 @@ The carrier is ID 31, called UK Mail in the code. One flag chooses the module: `
 - **Delivered means** the shipment's status code is `delivered`. The module reads the first shipment only.
 - **Reads.** The signee, the delivery time, the remarks on the delivered events (joined into the driver comments), the receiver's address and the piece count. It sets no special instructions.
 - **Image.** The POD document URL and the signature URL from the response. Multi-parcel shipments are not supported.
-- **Watch for.** An empty `shipments` array or a missing `events` list throws a type error instead of a not-found error. The code carries a note that no sample data existed to test the remarks.
+- **Watch for.** An empty `shipments` array or a missing `events` list throws a type error instead of a not-found error. A comment in the code says no sample data existed to test the remarks.
 
 ### UK Mail (SOAP)
 
@@ -92,7 +92,7 @@ Evri is ID 16, called Hermes in the code.
 - **Reads.** The delivery time, converted to London time. GPS from the event's location, skipped when both values are 0. The address is looked up from the GPS point. The signee, comments and item count are always empty.
 - **Image.** The first link becomes the POD image, and the other links are added under their link names. A second call returns a JSON array, and the module decodes the first entry's base64 field.
 - **Watch for.**
-    - A 401 or 403 becomes an unauthorised error, a 500 becomes a generic error, and any other failure, including 429 and 502, becomes a not-found error.
+    - A 401 or 403 becomes an unauthorised error and a 500 becomes a generic error. Any other failure, including 429 and 502, becomes a not-found error.
     - An error event prints as `[object Object]`.
     - The image link is fetched with the token and API key and is not checked against Evri's host.
 
@@ -116,7 +116,7 @@ FedEx is ID 11. It uses consignment lookups only since 6 Nov, when PR 14257 move
 - **Delivered means** the shipment has an `ACTUAL_DELIVERY` date.
 - **Reads.** The signee from `receivedByName`, the location description as the driver comment, the delivery address, the item count and the shipper reference. The module reads the first track result only.
 - **Image.** The image is offered only if the available images include the signature type. A second call returns a base64 PNG, which the module reads from `output.documents[0]`. PR 14259 changed that key from `document`. The call needs the contract.
-- **Watch for.** If an image call fails, the error handler refers to a variable that is out of scope, so the caller sees a reference error instead of an image-not-found error.
+- **Watch for.** If an image call fails, the error handler refers to a variable that is out of scope. The caller then sees a reference error, not an image-not-found error.
 
 ## Yodel
 
@@ -137,7 +137,7 @@ Panther is ID 24.
 - **Auth.** An API key per contract from the credentials service, with no caching. The image fetch sends no authentication.
 - **Delivered means** the status is `delivered`.
 - **Reads.** The delivery time from the last signed POD entry, as a UK date. The address, the item count (summed from the lines) and GPS from the photos. It does not read a signee or comments. The shipment reference is the consignment number.
-- **Image.** The POD image is the PDF, or the first photo if there is no PDF. The module writes the PDF to a temporary file, converts it with the external `mutool` program and crops a fixed region of page 1 into a 200 by 200 PNG. It returns photos as raw bytes.
+- **Image.** The POD image is the PDF, or the first photo if there is no PDF. The module writes the PDF to a temporary file and converts it with the external `mutool` program. It crops a fixed region of page 1 into a 200 by 200 PNG. It returns photos as raw bytes.
 - **Watch for.** Temporary files are never deleted. A response whose consignment number does not match throws an error that prints `[object Object]`. There is no check on the HTTP status.
 
 ## Tuffnells
@@ -155,7 +155,7 @@ Tuffnells is ID 30.
 
 BJS is ID 41. It has no POD API, so the module works from GFS's own copy of the shipment and a BJS web page.
 
-- **Source of the link.** When a BJS tracking event arrives with status `BEP1910` or `BEP1935`, the tracking subscriber takes a `{"url": …}` fragment from the status description and stores it on the shipment record.
+- **Source of the link.** A BJS tracking event can arrive with status `BEP1910` or `BEP1935`. The tracking subscriber then takes a `{"url": …}` fragment from its status description and stores it on the shipment record.
 - **Calls.** The module reads the shipment from Mongo, which needs the shipment ID. It then `GET`s the stored page URL and finds the first signature image under the BJS ePOD host (`https://epod.bjshomedelivery.com` by default). For the image, it makes a second `GET`.
 - **Auth.** None.
 - **Reads.** Only the reported date, unchanged, and the image. It sets no delivered flag, signee or GPS.
@@ -175,8 +175,8 @@ Amazon Logistics is ID 1. The module calls the internal Amazon proxy, not Amazon
 
 ## Test carrier and DHL Express
 
-- **The test carrier (ID 35)** is loaded in production. It fetches a token on every call, always reports `delivered`, and returns the stored image reference as bytes without fetching anything.
-- **DHL Express** is not in the loaded list. Its production URL is `???`. In the module, the image call refers to a variable that does not exist, and the response is read as if it came from another carrier. Treat it as unfinished.
+- **The test carrier (ID 35)** is loaded unconditionally, and ID 35 is in the default consignment list. It fetches a token on every call, always reports `delivered`, and returns the stored image reference as bytes without fetching anything.
+- **DHL Express** is not in the loaded list. Its production URL is `???`. The image call refers to a variable that does not exist. The response is read as if it came from another carrier. Treat it as unfinished.
 
 ## Behaviour all the modules share
 
