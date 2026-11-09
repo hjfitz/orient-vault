@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-09 — Patch golang.org/x/net; ignore the runtime images' copies until they're rebuilt
+
+Patch golang.org/x/net; ignore the runtime images' copies until they're rebuilt
+
+Container scans (every PR, and the nightly DevSecOps run on main since 7 Nov) failed on new HIGHs: CVE-2026-78661 in golang.org/x/net v0.61.0 and CVE-2026-76844/85091 in zlib1g. apps/svc's indirect x/net is now v0.62.0, which fixes this repo's binaries (app/svc, app/sftp, app/canary, app/gateway). The remaining copies are in the platform runtime images (opt/datadog/datadog-init in go-runtime and node24-runtime 0.1-affogato; zlib1g in node24-runtime), excluded via .trivyignore.yaml (trivy YAML format: x/net by path, statements, expired_at 2026-11-16) passed to every container_scan job through the shared workflow's trivyignores input. Owed upstream: rebuild go-runtime and node24-runtime (patched datadog-init, zlib1g +deb13u1), then drop the entries; on expiry the scans fail again by design. Gotcha: a PR whose opened event triggers no runs (seen on #113) needs close/reopen to fire 'reopened'.
+
+PR: ilg-merak/parcel-portal#114
+
 ## 2026-11-09 — Clear the previous customer's results and print state on a customer switch
 
 Clear the previous customer's results and print state on a customer switch
