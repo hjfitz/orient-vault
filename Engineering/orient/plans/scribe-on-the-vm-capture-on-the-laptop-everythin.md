@@ -43,10 +43,11 @@ Since 2026-11-09 the VM (`rc-hjf`) is orient's home. The laptop reaches it throu
      (AC 2,4), and sign-off prints which criteria no increment claims. -->
 - [ ] 1. The VM runs `orient-scribe` in a server role: it transcribes, compresses, enhances and summarises, never records, and serves the Recordings page at `localhost:3000`. Its vault checkout includes `.knowledge/recordings/`. `Bifrost/HR`, `Bifrost/Team` and `Interviews` stay excluded.
 - [ ] 2. A finished laptop capture reaches the VM intact, confirmed by sha256, through a resumable upload. A dropped tunnel delays the upload but loses nothing, and the recording ends `done` and enhanced on the VM with playable audio.
-- [ ] 3. The laptop writes no new recordings into the vault. Its local copy is kept briefly after the VM confirms receipt, then removed.
+- [ ] 3. The laptop writes no new recordings into the vault and never transcribes. Its local copy is deleted as soon as the VM confirms receipt (sha256 matched, file synced to disk). While the VM is unreachable, captures queue on the laptop and you get a notification.
 - [ ] 4. From `localhost:3000/recordings` on the laptop: start, pause, resume, stop and ignore act on the laptop's capture within about 2 s. With the recorder disconnected, Start is refused and the page says why.
 - [ ] 5. The laptop runs no orient-web. The top-bar widget, the reminders and the laptop's orient MCP all show and control recordings through the VM. Re-running `install-units.sh` on the laptop doesn't bring orient-web back.
 - [ ] 6. The upload ingest accepts a recording whose total size isn't known until the end, appended from a reported offset. This is what the phone recorder needs.
+- [ ] 7. Audio is pruned after 14 days unless the recording is marked **keep**. A kept recording's audio survives the prune, and the mark can be set and cleared from its page.
 
 ## Affected boundaries
 <!-- Components, paths and contracts this touches. Wikilink existing explainers; do not restate
@@ -82,11 +83,11 @@ Since 2026-11-09 the VM (`rc-hjf`) is orient's home. The laptop reaches it throu
 - **Code is committed on the laptop and pulled on the VM,** because the VM's deploy key for `hjfitz/orient` is read-only. No git worktrees on the laptop (CLAUDE.md L15). The VM is deployed by hand, never by a timer, because a timer redeploy would kill `/sprint` runs. Established from [[go-remote-and-bootstrap-a-fresh-machine]] and known-context.
 - **scribe prunes audio and backfills enhancements when it starts** (serve.go L143/L151), and that has lost audio before (2026-10-19). Every first start in a new role, and every new delete-on-receipt job, gets a dry run first. Established from known-context.
 - **A 4.7 s stub, `20261105-143224-c1da`, is `done` with an empty transcript;** a backfill would re-run Claude on it. Established by the fact-check.
-- UNRESOLVED: Sensitive transcripts and their audio (1:1s, interviews) will live on a company-hosted VM with passwordless sudo, where project admins can snapshot the disk. `HR`, `Team` and `Interviews` are excluded from it for sensitivity. Is that acceptable for recordings? Linked: should `orient-recordings` withhold 1:1s and interviews (`docs/mcp-spec.md` L149/L184)?
-- UNRESOLVED: Audio retention on the VM: keep 14 days, or longer now the VM is the home?
-- UNRESOLVED: When the laptop copy goes: after the VM confirms receipt (the plan's default, with a 7-day `handed-off/` buffer), or only after the VM has transcribed it?
-- UNRESOLVED: If the laptop is offline for a long time, should it ever fall back to transcribing locally, or only queue and notify?
-- UNRESOLVED: Where do the morning digest and the other skills that read recordings run (laptop, VM, both)? This decides whether the laptop MCP points at the VM's scribe.
+- **Answered 2026-11-09: recordings may live on the VM,** sensitive ones (1:1s, interviews) included. `orient-recordings` is unchanged; nothing is withheld.
+- **Answered 2026-11-09: 14-day retention stays,** with a per-recording **keep** mark that exempts a recording's audio from the prune (AC 7).
+- **Answered 2026-11-09: the laptop copy is deleted once the VM has it,** meaning on receipt. No `handed-off/` buffer.
+- **Answered 2026-11-09: all transcription is on the VM.** No local fallback; captures queue and notify.
+- **Answered 2026-11-09: the morning digest and the other recording-reading skills keep running on the laptop.** So the laptop MCP must read the VM's scribe (inc 4). Getting the laptop's vault *writes* onto the VM is a separate concern and a separate plan (see Follow-up plans).
 
 ## Increments
 <!-- Each independently implementable AND verifiable. Cite the criteria it discharges as
@@ -140,12 +141,13 @@ Since 2026-11-09 the VM (`rc-hjf`) is orient's home. The laptop reaches it throu
     - After `make` and a restart on the VM, `localhost:3000/recordings` and `localhost:3001/recordings` both still load.
       gate: hub token generated on the VM and copied to the laptop (`~/.config/orient/scribe-hub-token`, mode 0600)
           [ ] confirmed
-- [ ] 3. **A manual `handoff` on the laptop, the tunnel unit in the repo, `capturedOn`, and a status schema that tolerates unknown values.** (AC 2,6)
+- [ ] 3. **A manual `handoff` on the laptop, the tunnel unit in the repo, `capturedOn`, the keep mark, and a status schema that tolerates unknown values.** (AC 2,6,7)
   - orient first, deployed on the VM and on `:3001`: unknown statuses show as "unknown" instead of failing the list. Add `uploading` to the `RecordingStatus` union, the label and colour maps (an in-flight accent, not red) and `PROCESSING`. Show an optional `capturedOn` beside "recorded on".
   - scribe:
     - `internal/handoff`: convert to 16-bit FLAC, hash it, resume from the server's offset, back off on errors.
     - `orient-scribe handoff -i x.wav -title … -hub URL -hub-token-file F`.
     - `store.Recording.CapturedOn`.
+    - A `Keep` field: `PATCH /api/recordings/{id}` sets it, and `PruneAudio` skips kept recordings. On the recording page in orient, a Keep toggle with a chip in the list (AC 7).
   - `systemd/orient-tunnel.service` goes into the repo. It's for the laptop only (`install-units.sh` installs it only for `SCRIBE=recorder`, from inc 4).
     - It adds `-L 127.0.0.1:3014:127.0.0.1:3013`.
     - It pins its own ssh config with `-F ~/.ssh/orient-tunnel.conf`, so a `gitswitch` swap of `~/.ssh/config` can't break it.
@@ -153,22 +155,24 @@ Since 2026-11-09 the VM (`rc-hjf`) is orient's home. The laptop reaches it throu
   - Verify:
     - Decode a recent `audio.ogg` to WAV, then `orient-scribe handoff … -hub http://127.0.0.1:3014`, with `systemctl --user restart orient-tunnel` partway through. This also drops the terminal, which is expected. The upload resumes, and the recording reaches `done` and is enhanced on `localhost:3000/recordings`, with `capturedOn: laptop`. `curl -sI localhost:3000/api/recordings/<id>/audio` returns 200 `audio/ogg`.
     - Run `eval/wer.py` on ES2004a raw and on a FLAC round-trip; the word error rates match within noise.
+    - A Go test: `PruneAudio` removes an unkept recording older than 14 days and leaves a kept one. A `prune -dry-run` on the VM lists the kept recording as skipped. Toggling Keep on the page persists across a reload.
 - [ ] 4. **The laptop becomes a recorder only and hands each call off automatically.** (AC 2,3,5)
   - In recorder role, the store lives in a spool outside the vault, `~/.local/state/orient/scribe-spool/laptop/<id>/`.
     - A `Handoff` step replaces Transcribe, Summarise and Enhance in `process()`.
     - `Resume()` drains the spool at start.
     - Progress is kept in the meta: `{offset, sha256, attempts, lastError}`.
     - `notify-send` warns when a handoff has waited more than an hour.
-  - On receipt, the spool entry moves to `scribe-spool/handed-off/`, which is pruned after 7 days. Dry-run that prune before it is enabled.
+  - On receipt (`complete` answered 200 with a matching sha256), the spool entry is deleted. Run a dry-run mode of that delete before it is enabled for real.
   - Laptop `scribe.env`: `-role recorder -hub http://127.0.0.1:3014 -hub-token-file …`.
-  - The laptop MCP gets `ORIENT_SCRIBE_URL=http://127.0.0.1:3014`, depending on the digest-location answer.
+  - The laptop MCP gets `ORIENT_SCRIBE_URL=http://127.0.0.1:3014`, because the morning digest and the other recording-reading skills run on the laptop.
   - From here `:3001` shows only live and uploading recordings; history is at `localhost:3000`.
+  - While the VM is unreachable, captures queue in the spool and `notify-send` warns after an hour. Nothing is transcribed locally.
   - Rollback: the `both` role never reads the spool. Drain it first, or run `orient-scribe handoff` on each leftover, then remove `-role recorder`.
   - Verify:
-    - Record two minutes of a video from `:3001` and from a reminder's Record button. Each ends with the spool empty and `handed-off/` holding it, `done` and enhanced on the VM with `capturedOn: laptop`, and `find ~/Documents/obsidian/.knowledge/recordings/laptop -newer <marker>` empty.
+    - Record two minutes of a video from `:3001` and from a reminder's Record button. Each ends with the spool empty, `done` and enhanced on the VM with `capturedOn: laptop`, and `find ~/Documents/obsidian/.knowledge/recordings/laptop -newer <marker>` empty.
     - `systemctl --user stop orient-tunnel`, record and stop: the recording sits at `uploading` with `lastError`. Restart the tunnel and it drains within a minute.
     - The laptop's `orient-recordings` MCP tool returns the new recording.
-      gate: the retention, delete-timing and offline-fallback questions above are answered, and inc 3's handoff has worked on at least one real recording
+      gate: inc 3's handoff has worked on at least one real recording
           [ ] confirmed
 - [ ] 5. **The VM relays start, stop, pause, resume and ignore to the laptop's recorder. `:3001` stays up alongside.** (AC 4)
   - `scribe/internal/server/agents.go`:
@@ -198,6 +202,7 @@ Since 2026-11-09 the VM (`rc-hjf`) is orient's home. The laptop reaches it throu
           [ ] confirmed
 
 Follow-up plans, not in this one:
+- **Laptop vault writes land on the VM promptly.** The laptop's skills (digest, ledger, Tasks, People) keep writing markdown locally. Proposed: an event-driven sync, not rsync. A systemd path unit runs `vault-sync.sh` a few seconds after a change instead of waiting for the 90 s timer, then asks the VM to sync (`ssh … systemctl --user start orient-vault-sync`, started from the laptop). Git stays the only transport.
 - **Move the 17 laptop recordings.** rsync their audio, then `orient-scribe adopt -from laptop` to move `laptop/<id>` to `vm/<id>`. Gate it on: the laptop confirmed recorder-only and synced, so `laptop/` has one writer; the retention answer; a prune dry run on the VM; and every sha256 matching before the laptop deletes anything.
 - **Phone recorder.** A browser MediaRecorder, chunks buffered in IndexedDB, uploaded through orient route handlers to inc 2's ingest. The `room-mono` layout maps to the mic channel, not to "Them".
 
@@ -220,6 +225,7 @@ Follow-up plans, not in this one:
      the plan in the same increment and record the correction here. Legitimately empty at plan
      time. A decision worth defending in a review six months out belongs in a durable record
      instead — `wp decide --record`. -->
+- **2026-11-09 — Harry's answers to the open questions.** Recordings, sensitive ones included, may live on the VM. Retention stays at 14 days, plus a keep mark (AC 7). The laptop copy is deleted on receipt. All transcription is on the VM, with no local fallback. Recording-reading skills stay on the laptop, so the laptop MCP reads the VM's scribe. This drops the review's 7-day `handed-off/` buffer: the VM's sha256-checked, synced-to-disk receipt is the safety net.
 - **2026-11-09 — Knowingly overrides "audio stays on the machine that recorded it".** That rule was agreed 2026-11-02 and is stated in CLAUDE.md L103, scribe/README L25, Systems/orient architecture.md, the vault `.gitignore` comment and INSTALL.md L88. It also overrides [[go-remote-and-bootstrap-a-fresh-machine]] AC 5's exclusion of recordings from the VM. That exclusion rested on "the VM is headless and doesn't record". Harry's call on 2026-11-09: the VM becomes the home for recordings, and the sensitivity exclusions for HR, Team and Interviews stay. Record it durably with `wp decide --record` at sign-off.
 - **2026-11-09 — The laptop pulls controls from the VM; the browser doesn't call the laptop's scribe directly.**
   - A direct call would need CORS on scribe and a ticket the VM issues but the laptop checks.
