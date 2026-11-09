@@ -6,11 +6,11 @@ status: active
 created: '2026-11-06'
 updated: '2026-11-06'
 repo: /home/harry/code/fuse/tracking-service
-worktree: /home/harry/code/fuse/tracking-service/.claude/worktrees/tracking-service-mongo-store
-branch: hjf/tracking-service-mongo-store
+worktree: "/home/harry/code/fuse/tracking-service/.claude/worktrees/mongo-store-opener-binaries"
+branch: "hjf/mongo-store-opener-binaries"
 base: origin/main
 base_sha: a97baca06
-pr: null
+pr: '30'
 tags:
 - waypoint
 - plan
@@ -47,13 +47,15 @@ Design inputs: the D5 row (decided requirements), [[Handovers/2026-11-06-trackin
 ## Acceptance criteria
 <!-- Observable, checkable outcomes — not tasks. Numbered by order: increments cite them as
      (AC 2,4), and sign-off prints which criteria no increment claims. -->
-- [ ] 1. **Aggregation is fast enough, or D5 stops.** Over ~600k synthetic marks (22 businesses, 30 days, a long reason-code tail), the marks aggregation for the 30-day all-business insights read set and the 7-day stats meets the agreed latency bar, measured locally and on the dev Atlas M10. If it misses, D5 stops and is replanned around `$merge` (Gate A).
-- [ ] 2. **The conformance suite passes on Mongo.** Every `eachBackend` case in `internal/store` passes on Mongo with `liveCounters: true`, and the temporary pending list is gone:
+> SUPERSEDED 2026-11-09: Gate A dropped by Harry ("latency isn't a concern"). No benchmark was run.
+
+- [x] 1. **Aggregation is fast enough, or D5 stops.** Over ~600k synthetic marks (22 businesses, 30 days, a long reason-code tail), the marks aggregation for the 30-day all-business insights read set and the 7-day stats meets the agreed latency bar, measured locally and on the dev Atlas M10. If it misses, D5 stops and is replanned around `$merge` (Gate A).
+- [x] 2. **The conformance suite passes on Mongo.** Every `eachBackend` case in `internal/store` passes on Mongo with `liveCounters: true`, and the temporary pending list is gone:
   - `store_test.go`: Journey, Search, List, ConfirmationUnderAnotherSnapID, ByKey, Republishes, Channels, Attention, Lookup, LinesAndPreexisting, Insights, ReasonCap, Notes;
   - `store_returns_test.go`: ReturnJourney, ReturnLinkBySalesOrder, ReturnQueries, ReturnNotes;
   - Scopes, SortsAndWindows, AttentionLanes.
-- [ ] 3. **Served stats equal the memory store's.** A differential test ingests the same corpus into memory and into Mongo, both in order and shuffled. `ReadCounters(false|true)`, Stats/Insights for every scope and day, StatsOnDay, InsightsOnDays and Businesses must be `reflect.DeepEqual`. The corpus is journey, seedCatalogue, channels, preexisting, the 55-code reason cap and rgaJourney.
-- [ ] 4. **Each D5 must-have has a test that fails if it's broken.**
+- [x] 3. **Served stats equal the memory store's.** A differential test ingests the same corpus into memory and into Mongo, both in order and shuffled. `ReadCounters(false|true)`, Stats/Insights for every scope and day, StatsOnDay, InsightsOnDays and Businesses must be `reflect.DeepEqual`. The corpus is journey, seedCatalogue, channels, preexisting, the 55-code reason cap and rgaJourney.
+- [x] 4. **Each D5 must-have has a test that fails if it's broken.**
   1. `seen` is keyed by the per-item event id: `M-i` from a bulk message and `M-j`/`M-i-j` from a failure that embeds several records, on shipments and returns.
   2. `seen` is written in the record's transaction. After an abort (ErrNoMarks, a `uniq_*` violation, an injected failure) no `seen` or event row is left.
   3. An empty eventID writes no `seen` row and rewrites every time.
@@ -61,15 +63,15 @@ Design inputs: the D5 row (decided requirements), [[Handovers/2026-11-06-trackin
   5. A first-insert race retries, and the store never returns `ErrUnprocessable`.
   6. A return patch naming an unknown shipment fails the transaction and creates no stub shipment.
   7. No shared document is written in a transaction. This one is covered by review, and no test can pin it; that is stated in the PR.
-- [ ] 5. **Writes are exactly-once and concurrency-safe.**
+- [x] 5. **Writes are exactly-once and concurrency-safe.**
   - 8 concurrent deliveries of one messageId give 1 event, 1 `seen` row and 0 duplicates.
   - A copy redelivered after more than 64 later copies is a no-op through `seen`.
   - Concurrent return and shipment applies, and a note added during an apply, both commit and keep their counts.
   - `runTxn` is bounded by its budget and the context.
-- [ ] 6. **Every query shape uses an index.** Each query shape the store can issue explains to a plan with no COLLSCAN and no blocking SORT. That covers list, search, prefix, attention, counts, the marks `$match` and the Businesses `$group`.
-- [ ] 7. **The import primitive can't overwrite live data.** `ImportShipment`/`ImportReturn` are idempotent while the store isn't live. After any live write (Apply, ApplyReturn, AddNote, UpdateNote) to a record, a re-import skips that record and leaves its notes alone. The store also exposes a liveness signal that D8 can refuse a whole run on (G9).
-- [ ] 8. **Every binary runs on Mongo.** `api`, `redrive`, `recompute-stats`, `backfill-upgrade` and `backfill-attention` open Mongo via `storeopen` and run against a local replica set. recompute-stats and backfill-upgrade have Mongo twins of their emulator tests.
-- [ ] 9. **Docs describe the Mongo path** from the increment that makes them true. That covers the README, the repo and `apps/api` CLAUDE.md, and the index rule.
+- [x] 6. **Every query shape uses an index.** Each query shape the store can issue explains to a plan with no COLLSCAN and no blocking SORT. That covers list, search, prefix, attention, counts, the marks `$match` and the Businesses `$group`.
+- [x] 7. **The import primitive can't overwrite live data.** `ImportShipment`/`ImportReturn` are idempotent while the store isn't live. After any live write (Apply, ApplyReturn, AddNote, UpdateNote) to a record, a re-import skips that record and leaves its notes alone. The store also exposes a liveness signal that D8 can refuse a whole run on (G9).
+- [x] 8. **Every binary runs on Mongo.** `api`, `redrive`, `recompute-stats`, `backfill-upgrade` and `backfill-attention` open Mongo via `storeopen` and run against a local replica set. recompute-stats and backfill-upgrade have Mongo twins of their emulator tests.
+- [x] 9. **Docs describe the Mongo path** from the increment that makes them true. That covers the README, the repo and `apps/api` CLAUDE.md, and the index rule.
 
 ## Affected boundaries
 <!-- Components, paths and contracts this touches. Wikilink existing explainers; do not restate
@@ -166,7 +168,7 @@ Every merge rolls prod, so never merge while a Deploy run is in flight (Scar tis
     - `BenchmarkMongoMarks*`, gated by `MONGO_BENCH=1`: it bulk-loads ~90k records and ~600k entries, then times the 30-day insights read set and the 7-day stats and saves explain `executionStats`. It runs locally and, if reachable, on the dev Atlas M10.
   - verify: `make test-race`, where memory's marks tests stay green through the refactor; `make test-mongo` (differential); `MONGO_BENCH=1 TEST_MONGODB_URI=… go test -run '^$' -bench MongoMarks -benchtime 20x ./internal/store/`, with the numbers and explain output recorded in Evidence.
       gate: Gate A — the latency bar is agreed with Harry and met on these numbers (dev Atlas, or local marked provisional). If it's missed: stop, and replan around a `$merge` rollup with Harry's staleness call.
-            [ ] confirmed
+            [x] confirmed (2026-11-09: dropped by Harry, "latency isn't a concern")
 - [x] 2. **Scaffolding** (AC 2,9). The groundwork the later increments build on: — done: ec51508
   - `bson` tags on every fs* struct, `fsReturn` included;
   - `_id` wrapper structs;
@@ -260,6 +262,21 @@ Every merge rolls prod, so never merge while a Deploy run is in flight (Scar tis
 ### Evidence
 <!-- Newest first, dated. One bullet per check actually run, opening with what it discharges.
      "Suite green" alone is not evidence. Sign-off requires at least one dated bullet here. -->
+- 2026-11-09 [all] **D5 merged to `main` (`2387f18`):** #24 `e967e19`, #25 `42ef319`, #26 `ec51508`, #27 `7945324`, #31 `c9677e8`, #32 `842536a`, #29 `729d15d`, #30 `2387f18`. Each was 14/14 green in CI (`api-mongo` runs the store suite on compose) and reviewed by review-panel before merge.
+  - **Review fixes before merge:**
+    - #27: the event-doc fallback is pinned by a test that fails with the fallback removed; the concurrent tests start behind a barrier.
+    - #31/#32: failure causes are asserted, the concurrency test uses a handshake instead of a sleep (20/20 at `-count=10`), and waits are bounded.
+    - #29/#30: open errors never carry URI credentials (tested for a bad `%` escape, a bad TLS password option and an unreachable host); ping, index and disconnect have deadlines; `Live()` is sticky (a `seen` row, or any record without `importedAt`); empty-eventID rewrites keep `importedAt`; `ImportKept` refuses a live store (`ErrLive`).
+  - **Conformance on Mongo:** 23/23 cases pass with `liveCounters: true`. The pending mechanism has been removed. Locally, the combined branch ran 574 pass, 36 skip (Firestore only, no emulator), 0 fail.
+  - **AC 3:** `TestMongoServesWhatMemoryServes`, in order and shuffled through the real `core.Ingestor`, is `reflect.DeepEqual` on Stats, Insights, OnDay(s), the return twins and the Businesses counts. Removing `serve` from the Mongo read makes it fail.
+  - **AC 6:** the explain test covers 276+ shapes (plus the notes and kept shapes) with no COLLSCAN or blocking SORT.
+  - **AC 8, manual `STORE=mongodb` against a local replica set (`8e0a5bd`):**
+    - `api` + `replay-fixture.sh`: 59/59 fixtures return 204, returns included;
+    - shipments, returns, events, prefix search, stats, insights, businesses, attention and notes (add, resolve, list, return notes) all return 200;
+    - `recompute-stats`: dry run, real run and dry run again, 0 days changed;
+    - `backfill-upgrade -all -dry-run`: 0 below version;
+    - `backfill-attention -dry-run`: 3 scanned, 0 changed;
+    - `redrive` replays a dead-lettered shipment and return.
 - 2026-11-09 [W1/W2] **Drafts open, not merged (merges are Harry's; the agent is denied).**
   - **#24, the CVE fix:** `x/net` 0.62.0. The base-image `datadog-init` copy is allowlisted to 2026-11-16. 14/14 checks green.
   - **#25, W2 marks aggregation:**
@@ -278,7 +295,13 @@ Every merge rolls prod, so never merge while a Deploy run is in flight (Scar tis
 
 ### Not verified
 <!-- Stated, not papered over. "(none)" is a deliberate claim, and a fine one. -->
+> SUPERSEDED 2026-11-09: D5 is built and merged; see Evidence.
+
 - **Everything in the ACs.** This is a draft plan, and no increment has started.
+- **No environment runs Mongo yet** (`STORE` is unset, so Firestore). Dev and prod behaviour on Atlas is D7/D10/D11.
+- **Performance at prod scale is unmeasured.** Gate A was dropped, and nothing has been benchmarked on Atlas.
+- **`Live()` and `ReadCounters`' full kept read are unindexed scans.** That is fine at one call per import or recompute run, and neither is in the explain test.
+- **AC 4.7 (no shared document in any transaction)** is argued in the PR bodies and the review, not tested.
 - **Whether the dev Atlas M10 is reachable from a workstation** for the Gate A benchmark.
 - **The write-skew impact on return linking.** It is reasoned, not measured; increment 5 measures it.
 
@@ -310,8 +333,4 @@ Every merge rolls prod, so never merge while a Deploy run is in flight (Scar tis
      or refuted hypothesis. Not restated doc content. Sign-off promotes each confirmed one into
      the matching durable doc, then clears it from here; a refuted one moves to ## Handback
      rather than being deleted. Legitimately empty. -->
-- **The fs* doc structs have no `_id`/id-bearing field.** The id lives only in the Firestore doc path, so any non-Firestore persistence needs a wrapper that carries it.
-- **Firestore reads notes in `createdAt` order (`firestore.go:1069`) but events in doc-id order (`:674`).** A port that range-reads both by id changes which notes come back past 1,000.
-- **Shipment list pushdown narrows with a channel or a custom sort/window** (`core/query.go:220-230`). Pages differ by store unless every backend pushes down the same subset.
-- **`backend_test.go:21,28`'s comment that memory turns `liveCounters` off once it aggregates marks is stale.** Memory aggregates marks and still passes every live-counter case.
-- **`api-mongo` is not a required check and is off the nightly** (`api-code-quality.yaml:82-87`), so CI green says nothing about Mongo until it is made required.
+- (promoted to known-context.md "Fragility and scar tissue" at sign-off, 2026-11-09)

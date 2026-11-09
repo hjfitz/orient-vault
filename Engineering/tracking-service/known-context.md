@@ -59,6 +59,13 @@ programme record is `Bifrost/Tracking Service/` (Overview, Migration State with 
 - Prod Firestore has point-in-time recovery off (`firestore.tf:9`); nothing backs up the `tracking-service` database.
 - `api-emulator` is one of the required checks on `main`.
 
+- **Mongo store (D5, 2026-11-09):**
+  - **Return linking under snapshot isolation:** a return arriving alongside its shipment's first event links only on its next event (`TestMongoReturnBesideItsShipmentsFirstEvent`).
+  - **Driver encoding:** the mongo-driver v2 codec drops the fields of an embedded unexported struct, so wrapper structs need a named `,inline` field.
+  - **File descriptors:** mongod needs `nofile` 64000 for the test suite.
+  - **Local test runs on rc-hjf:** there's no `docker compose`, so use `docker run mongo:8.0.13 --replSet rs0` and `make mongo-test MONGO_PORT=…`.
+  - **Waypoint stamps:** `wp tick` stamps the main checkout's HEAD, not the worktree's.
+
 ## Surprises
 - PURDYFIGG's bulk reap resends every open order with new messageIds: counted as duplicates, and
   old orders arrive this way first (preexisting). It is not just nightly: on 2026-10-18 it sent about 1,200 orders every

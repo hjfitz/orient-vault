@@ -17,4 +17,5 @@ status: done
 - 2026-11-09: closed the gaps (cross-project Terraform, shipment mutators), published MPK *Shipment Journey Through ECM* (354975746) under Carrier Services, and corrected the POD "GPS" claim on the POD, Ingress and Uses pages and in the vault.
 - 2026-11-09: ran a 31-agent review (36 claims, plus 6 gap studies). Published corrected MPK *Shipment Journey Through ECM* v2 and *Proof of Delivery Service* v3, and rewrote both ECM explainers. Main findings: the Scan Injector sets Firebird `STATUS` (so bill-on-scan depends on ECM tracking), and daytime injector writes drive about half of the re-announcements. The DHL issue is CID-317. Open: the prod trigger text, patina-2's carrier list, n8n carrier calls.
 - 2026-11-09: assessed what Merak (MPK) needs from this research and recommended follow-on pages. Nothing published. Merak is unannounced, so any new pages stay inside MPK.
+- 2026-11-09 (session limit): wrote the follow-on handover [[Handovers/2026-11-09-merak-replacement-pages]]. Two MPK design pages are drafted and unverified, and the Parcel Portal angle was dropped.
 - Handover record: [[Handovers/2026-11-06-carrier-integrations]].
