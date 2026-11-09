@@ -204,6 +204,7 @@ Since 2026-11-09 the VM (`rc-hjf`) is orient's home. The laptop reaches it throu
 
 Follow-up plans, not in this one:
 - **Laptop vault writes land on the VM promptly.** The laptop's skills (digest, ledger, Tasks, People) keep writing markdown locally. Proposed: an event-driven sync, not rsync. A systemd path unit runs `vault-sync.sh` a few seconds after a change instead of waiting for the 90 s timer, then asks the VM to sync (`ssh … systemctl --user start orient-vault-sync`, started from the laptop). Git stays the only transport.
+> SUPERSEDED 2026-11-09 — done in place instead: the VM adopts `laptop/` (`-adopt laptop`), and the audio was copied with checksums. See Decisions.
 - **Move the 17 laptop recordings.** rsync their audio, then `orient-scribe adopt -from laptop` to move `laptop/<id>` to `vm/<id>`. Gate it on: the laptop confirmed recorder-only and synced, so `laptop/` has one writer; the retention answer; a prune dry run on the VM; and every sha256 matching before the laptop deletes anything.
 - **Phone recorder.** A browser MediaRecorder, chunks buffered in IndexedDB, uploaded through orient route handlers to inc 2's ingest. The `room-mono` layout maps to the mic channel, not to "Them".
 
@@ -214,6 +215,13 @@ Follow-up plans, not in this one:
 ### Evidence
 <!-- Newest first, dated. One bullet per check actually run, opening with what it discharges.
      "Suite green" alone is not evidence. Sign-off requires at least one dated bullet here. -->
+- 2026-11-09 **Regression from inc 4 fixed: the laptop's own recordings had become uneditable.** Harry couldn't name speakers on "Fuse Leadership Catchup" (`20261109-111949-d4b5`, recorded before the switch). The VM served `recordings/laptop/` read-only (another machine's; PATCH 409), and the laptop's recorder no longer reads the vault (GET 404).
+  - Fix (`f7b7299`): `serve -adopt laptop` (and `prune -adopt`) makes the VM write `laptop/` in place, so nothing moves and ids and links are unchanged.
+  - The laptop's 13 remaining `audio.ogg` (128 MB) were copied with `tar` over ssh (the VM has no rsync); all 13 sha256 match, and git sees no change.
+  - `prune -dry-run -adopt laptop`: would delete 0.
+  - The VM's `scribe.env` is `-role server -threads 8 -adopt laptop`; the log reads "writing the recordings of laptop as well as this machine's".
+  - Every laptop recording is now `readOnly: false`; 13 have audio, a no-op PATCH answers 200, and the audio route answers 206 `audio/ogg`.
+  - The laptop's audio copies were then deleted, after a re-check (13 removed, 0 left).
 - 2026-11-09 [inc 4] **The laptop is a recorder** (`ffb44e4`, live since 12:11). The switch waited until a live meeting ("Fuse Leadership Catchup", 42 min) had finished processing the old way.
   - The log reads `serving on 127.0.0.1:3013 as recorder, recordings in ~/.local/state/orient/scribe-spool` and `handing recordings off to http://127.0.0.1:3014`.
 - 2026-11-09 [inc 4] **Dry run first** (`-handoff-dry-run`). A 15 s capture went `uploading` at stop, then "handed off; dry run, so …/scribe-spool/laptop/20261109-121107-596a is kept". The spool held `audio.wav`, `audio.flac` and `meta.json`; the VM had it with `host=vm`, `capturedOn=laptop` and length 15 s. The music warning still fired on a Firefox mix, so recorders keep it.
@@ -284,6 +292,7 @@ Follow-up plans, not in this one:
      the plan in the same increment and record the correction here. Legitimately empty at plan
      time. A decision worth defending in a review six months out belongs in a durable record
      instead — `wp decide --record`. -->
+- **2026-11-09 — The VM adopts `recordings/laptop/` in place** (`-adopt laptop`), replacing the planned follow-up that would `adopt`-move each recording to `vm/<id>`. One writer still holds, because the laptop's recorder never touches `laptop/`. The laptop can no longer go back to the `both` role without handing `laptop/` back first, which Harry accepts. His direction: "the laptop should just be a window in to orient, and write files to the server", with the phone as the next capture device.
 - **2026-11-09 — The receipt is made atomic by `Store.Ingest`.** The recording is built in `<host>/.incoming-<id>/` (audio, then `meta.json.tmp`, both gitignored), synced, and renamed into place. The receipt goes out only after that, so the laptop can't delete audio the VM doesn't durably have.
 - **2026-11-09 — All of scribe's routes now refuse a non-loopback Host,** not just the upload routes, guarding against DNS rebinding from a browser. The port is ignored because the `:3014` forward keeps its own.
 - **2026-11-09 — Harry's answers to the open questions.** Recordings, sensitive ones included, may live on the VM. Retention stays at 14 days, plus a keep mark (AC 7). The laptop copy is deleted on receipt. All transcription is on the VM, with no local fallback. Recording-reading skills stay on the laptop, so the laptop MCP reads the VM's scribe. This drops the review's 7-day `handed-off/` buffer: the VM's sha256-checked, synced-to-disk receipt is the safety net.
