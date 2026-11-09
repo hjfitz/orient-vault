@@ -190,7 +190,7 @@ Since 2026-11-09 the VM (`rc-hjf`) is orient's home. The laptop reaches it throu
     - With the laptop's scribe stopped, Start gives 409 and the rail shows the reason.
     > SUPERSEDED 2026-11-09 — a restart stops a recording by design (CLAUDE.md, Scribe); what it captured is handed off and appears on the VM. That's what was verified.
     - `systemctl --user restart orient-scribe` on the laptop mid-recording keeps it live on the VM page.
-- [ ] 6. **Retire `:3001` and move every laptop client onto the VM.** (AC 5)
+- [x] 6. **Retire `:3001` and move every laptop client onto the VM.** (AC 5) — :3001 retired; desk on VM with copied write token (act accepted, wrong token 401); install-units keeps web/pty off — done: 4e0902e
   - Remove the `orient-web` and `orient-desk` drop-ins.
   - The desk uses `-orient http://127.0.0.1:3000` and `-token` from a copy of the VM's write token. If the VM ever mints a new one, the desk gets 401; document that.
   - `systemctl --user disable --now orient-web`.
