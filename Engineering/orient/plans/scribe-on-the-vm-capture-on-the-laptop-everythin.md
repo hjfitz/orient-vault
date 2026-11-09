@@ -105,7 +105,7 @@ Since 2026-11-09 the VM (`rc-hjf`) is orient's home. The laptop reaches it throu
                      [ ] confirmed
 -->
 
-- [ ] 1. **The VM runs scribe as a server and lists the synced transcripts read-only. The laptop is unchanged.** (AC 1)
+- [x] 1. **The VM runs scribe as a server and lists the synced transcripts read-only. The laptop is unchanged.** (AC 1) — VM scribe -role server: 17 read-only, POST 409, no reminders, RTF 0.21; laptop both-role recorded fine — done: 66511dc
   - Code:
     - `serve -role recorder|server|both`. The default is `both`, today's behaviour. `server` never records: `POST /api/recordings` answers 409 "this machine does not record".
     - `systemd/orient-scribe.service` gains `EnvironmentFile=-%h/.config/orient/scribe.env` and `ExecStart=… serve $SCRIBE_ARGS`.
