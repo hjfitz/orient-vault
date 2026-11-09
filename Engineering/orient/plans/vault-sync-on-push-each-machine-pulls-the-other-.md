@@ -8,7 +8,7 @@ updated: '2026-11-09'
 repo: /home/hjf/projects/orient
 worktree: /home/hjf/projects/orient
 branch: master
-base: origin/master
+base: ffb44e47f
 base_sha: ffb44e47f
 pr: null
 tags:
@@ -41,10 +41,10 @@ Laptop writes reach GitHub within seconds already: the `vault-sync-kick.sh` Post
 ## Acceptance criteria
 <!-- Observable, checkable outcomes — not tasks. Numbered by order: increments cite them as
      (AC 2,4), and sign-off prints which criteria no increment claims. -->
-- [ ] 1. A vault write on the laptop is in the VM's checkout within about 10 s.
-- [ ] 2. A vault write on the VM is in the laptop's checkout within about 10 s.
-- [ ] 3. Only a push that moved `origin` announces itself, so the two machines never ping-pong. A quiet vault produces no announcements.
-- [ ] 4. Peer down (VM off, tunnel down) costs nothing but speed: each machine falls back to its 90 s timer, and nothing blocks or alerts.
+- [x] 1. A vault write on the laptop is in the VM's checkout within about 10 s.
+- [x] 2. A vault write on the VM is in the laptop's checkout within about 10 s.
+- [x] 3. Only a push that moved `origin` announces itself, so the two machines never ping-pong. A quiet vault produces no announcements.
+- [x] 4. Peer down (VM off, tunnel down) costs nothing but speed: each machine falls back to its 90 s timer, and nothing blocks or alerts.
 
 ## Affected boundaries
 <!-- Components, paths and contracts this touches. Wikilink existing explainers; do not restate
