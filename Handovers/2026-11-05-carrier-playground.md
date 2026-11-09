@@ -1,21 +1,21 @@
 ---
 tags: [handover]
 status: resumed
-workstream: Eleven mock carrier proxies with dev IaC and DNS in ilg-merak/carrier-playground
+workstream: Twelve mock carrier proxies with dev IaC and DNS in ilg-merak/carrier-playground
 programme: none
 repo: ilg-merak/carrier-playground
 from: laptop
 to: hjf.shell.platform.ilg.software
 session_id: 945d0e77-3787-450a-a8e6-3635e238a5c9
 resumed_by: 9d74d588-1876-4a16-907d-7470c90d25d5
-updated: 2026-11-09T09:33Z
+updated: 2026-11-09T11:00Z
 ---
 # Handover: mock carrier proxies (carrier-playground)
 
 ## Where things stand
-`main` is deployed to ilg-merak dev (SHIP-1106-carrier-playground). Eleven mocks are live at
-`https://{royalmail,ups,coll8,fedex,dpdeu,amazon-sfp,amazon,bjs,inpost,ocs,exelot}.mocks.merak.freightops.dev` (one HTTPS LB,
-`iac/projects/mock-edge`; records in core-infra's dev zone). All on the golden node24-runtime, GFS Datadog only. Smoke 33/33 through
+`main` is deployed to ilg-merak dev (SHIP-1106-carrier-playground). Twelve mocks are live at
+`https://{royalmail,ups,coll8,fedex,dpdeu,amazon-sfp,amazon,bjs,inpost,ocs,exelot,veho}.mocks.merak.freightops.dev` (one HTTPS LB,
+`iac/projects/mock-edge`; records in core-infra's dev zone). All on the golden node24-runtime, GFS Datadog only. Smoke 42/42 through
 the names (`scripts/smoke.mts`, now type-checked in CI); Datadog shows no keys, tokens or addresses.
 
 | PR | What | State |
@@ -33,11 +33,10 @@ the names (`scripts/smoke.mts`, now type-checked in CI); Datadog shows no keys, 
 | #11 | OCS (ADO `ocs-proxy`) | merged, deployed |
 | #12 | Exelot (ADO `GFS Exelot Integration`); metaData spread fixed in BJS/FedEx | merged, deployed |
 | #13 | Restore smoke `isPng`; type-check `scripts/` in CI | merged |
+| #14 | Veho, built from the agreed contract (no prod proxy yet; epic CID-335) | merged `d98fd9b`, deployed |
 
 ## In flight
-| Mock | Basis | Port / name | State |
-| --- | --- | --- | --- |
-| Veho | No prod proxy yet: the agreed contract (`gfs-hybrid-services/carrier-proxies` `apps/veho-proxy/src/api/openapi.yaml`, CID-336 merged #11) + spec (Confluence 323878984) + Jira epic CID-335 (stub CID-337 done; CID-338 real calls in progress, nothing pushed) + Veho API docs | 4112 / `veho` | builder running, worktree `mock-veho` (Harry asked 9 Nov) |
+None.
 
 ## Waiting on Harry
 - None blocking. Tech Services repos: leave them alone (Harry, 5 Nov).
@@ -79,6 +78,7 @@ Checked 16:10Z:
 ## Closed since handover
 | When (UTC) | Work | Result |
 | --- | --- | --- |
+| 2026-11-09 11:05 | Veho (#14) | Built from the contract/spec/tickets (CID-335) + Veho docs; 2 reviews, 3 blockers fixed (idempotency x2, real Veho tracking host); smoke 42/42 across twelve names. Builder made one read-only call to Veho's public unauthenticated sandbox ZIP endpoint (noted in the PR). |
 | 2026-11-06 18:20 | BJS, InPost, OCS, Exelot (#9–#13) | Sources confirmed against prod ingress/DNS; 4 builders, 8 reviews (3 blockers fixed: OCS log test gap, metaData shape in OCS/Exelot + BJS/FedEx); a merge-resolver bug fused two smoke rows and dropped a helper, both fixed and scripts/ now type-checked. Smoke 33/33 across eleven names. |
 | 2026-11-06 15:45 | Amazon Logistics mock (#8) | From ADO `gfs-amazon-logistics-proxy` (access granted by Harry); 2-dim review, no blockers, 3 fixes; deployed into `mock-amazon`; smoke 19/19 across seven names; Datadog clean. |
 | 2026-11-06 14:40 | #6 + #7 | Amazon mock repositioned as SFP; GFS Datadog only; edge removal bug hit and worked around by keeping `amazon`. Smoke 16/16. |
