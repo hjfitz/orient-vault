@@ -315,6 +315,7 @@ Follow-up plans, not in this one:
      the plan in the same increment and record the correction here. Legitimately empty at plan
      time. A decision worth defending in a review six months out belongs in a durable record
      instead — `wp decide --record`. -->
+- **2026-11-09 — Reconciled at sign-off.** The diff since `1b8ffbf28` also holds the [[vault-sync-on-push-each-machine-pulls-the-other-]] commits (`aad9f8a`..`93e74f7`) and Harry's 2 Nov GNOME extension changes (`41c9870`), which aren't this plan's. Beyond the plan: `handoff -chunk` (`eb626ea`), the handoff end time from `ffprobe` (`a325b35`), `-adopt` (`f7b7299`), and the lazily minted VM write token.
 - **2026-11-09 — The VM adopts `recordings/laptop/` in place** (`-adopt laptop`), replacing the planned follow-up that would `adopt`-move each recording to `vm/<id>`. One writer still holds, because the laptop's recorder never touches `laptop/`. The laptop can no longer go back to the `both` role without handing `laptop/` back first, which Harry accepts. His direction: "the laptop should just be a window in to orient, and write files to the server", with the phone as the next capture device.
 - **2026-11-09 — The receipt is made atomic by `Store.Ingest`.** The recording is built in `<host>/.incoming-<id>/` (audio, then `meta.json.tmp`, both gitignored), synced, and renamed into place. The receipt goes out only after that, so the laptop can't delete audio the VM doesn't durably have.
 - **2026-11-09 — All of scribe's routes now refuse a non-loopback Host,** not just the upload routes, guarding against DNS rebinding from a browser. The port is ignored because the `:3014` forward keeps its own.
@@ -335,9 +336,4 @@ Follow-up plans, not in this one:
      or refuted hypothesis. Not restated doc content. Sign-off promotes each confirmed one into
      the matching durable doc, then clears it from here; a refuted one moves to ## Handback
      rather than being deleted. Legitimately empty. -->
-- **Workstation SSH only allows forwards started from the laptop** (`AllowTcpForwarding local`, set in ilg-platform/images and checked by its smoke test). No orient feature can rely on the VM opening a connection to the laptop.
-- **`RecordingSchema.status` is a strict enum.** One status orient doesn't know fails the whole Recordings list ("unexpected shape"), so scribe must never send a new status before orient accepts it.
-- **`make -C scribe install` installs a unit hard-coded to `/home/hjf`.** It breaks any machine with a different user, such as the VM's `harry`. `systemd/orient-scribe.service` uses `%h`.
-- **design.md's Fixtures bullet still says `~/.local/state/orient/scribe/`,** but recordings moved into the vault in d62e6b8.
-- **`next build` (the laptop's `pnpm deploy:web`) once hung for 10+ min in static generation,** with a worker idle in `epoll` and no network wait. orient-web stays stopped meanwhile. Killing the process group and rerunning built normally in about 3 min. If it recurs, look at the prerender workers before assuming a code fault.
-- **The desk reads `:3000` by default,** so the tunnel sends it to the VM. It has to be pointed elsewhere for as long as recordings live on the laptop (interim drop-in, 2026-11-09).
+(promoted 2026-11-09 at sign-off: the sshd forwarding limit, the desk's copied write token and the `next build` hang went to `Systems/orient/known-context.md` Hazards; design.md's Fixtures path was corrected. The strict status enum and the hard-coded unit were fixed by this plan (`0dae982`, `66511dc`), so they aren't hazards any more.)

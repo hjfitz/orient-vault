@@ -2,7 +2,7 @@
 tags:
 - system
 - orient
-verified: '2026-11-03'
+verified: '2026-11-09'
 title: orient — architecture
 thesis: "orient is four components around one artefact, the Obsidian vault, which stays authoritative and is a git repo synced between machines. The writers own exact vault paths. The app adopts the vault in place and reads it through a disposable SQLite index."
 confidence: high
@@ -85,7 +85,9 @@ That asymmetry is the whole design. The app can be deleted and rebuilt with no d
 
 **CONFIRMED** Each machine names itself in `~/.config/orient/host` (default `laptop`). It appends only under its own `<host>/` directory, so no record file has two writers [10]. Readers merge every host.
 
-**CONFIRMED** Recordings: transcripts and summaries sync, audio stays on the machine that recorded it [11]. `orient-scribe` deletes audio 14 days after recording. A recording from another host is read-only: edits return 409.
+**CONFIRMED** The VM (`rc-hjf`, host `vm`) is orient's home. The laptop is a window onto it through `orient-tunnel` (`:3000` web, `:3011` terminal, `:3014` the VM's scribe) and runs no web or terminal of its own; with `~/.config/orient/sync-peer` set, `scripts/install-units.sh` installs it that way. The VM's sshd allows local forwards only, so every connection between the two starts on the laptop.
+
+**CONFIRMED** Recordings live on the VM [11]. The laptop's scribe (`-role recorder`) only captures. It hands each finished recording to the VM's (`-role server`) over `:3014` with a hub token, and deletes its copy once the VM's receipt matches its sha256. The laptop polls the VM every second, so the VM's page can start, stop, pause, resume and ignore a laptop recording through the relay. The VM writes `recordings/vm/` and, adopted in place (`-adopt laptop`), the laptop's older `recordings/laptop/`. Transcripts and summaries sync. Audio never syncs; it lives on the VM and is deleted 14 days after a recording is enhanced, unless the recording is marked keep. Recordings of a host neither its own nor adopted are read-only: edits return 409.
 
 **CONFIRMED** The manifest has one writer, the host named `manifestWriter` in `config.yaml` [10]. Other hosts skip writing it.
 
@@ -102,13 +104,14 @@ That asymmetry is the whole design. The app can be deleted and rebuilt with no d
   "edges": [
     { "from": "w", "to": "s", "label": "kick" },
     { "from": "s", "to": "o", "label": "push" },
-    { "from": "o", "to": "b", "label": "fetch, ≤90 s" }
+    { "from": "o", "to": "b", "label": "kicked at once; else its timer, ≤90 s" }
   ] }
 ```
 
 - **CONFIRMED** `scripts/vault-sync.sh` commits everything, fetches, **merges (never rebases)** and pushes [9]. A timer runs it every 90 s.
 - **CONFIRMED** Each writer kicks a sync after a write, so the write reaches origin in under 1 s [9][12]. A kick during a running sync makes it go round again.
 - **CONFIRMED** A `wp`/`cust` command that rewrites a file pulls first [12]. Offline, the kick is a no-op and commits queue.
+- **CONFIRMED** A push that sent this machine's commits is announced, so the other machine pulls at once (about 5 s each way, measured 2026-11-09). It's appended to `.git/orient-pushed`. The laptop, whose `sync-peer` names the VM, kicks the VM's sync over ssh. The VM can't reach the laptop, so the laptop's `orient-vault-follow` runs `tail -F` on the VM's `orient-pushed` over ssh and kicks its own. A push that only fast-forwarded announces nothing, so the two never set each other off. If the peer is down, each machine falls back to its timer.
 - **CONFIRMED** Records commit at most hourly: the statusline appends 3,000 to 5,000 rows a day [9].
 - **CONFIRMED** `.gitattributes` unions append-only logs and ledgers and keeps "ours" for generated indexes [13]. A conflict aborts the merge, writes `.git/orient-sync-status` and notifies once.
 

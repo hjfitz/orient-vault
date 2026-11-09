@@ -81,6 +81,12 @@ Never `git stash`: the stash stack is shared.
 
 **A destructive job wired into a service's start runs the moment it deploys.** Run its dry run (`orient-scribe prune -dry-run`) *before* deploying the build. Audio for four 2026-10-19 recordings was lost this way.
 
+**The VM cannot connect to the laptop.** The workstation image sets `AllowTcpForwarding local` (ilg-platform/images, checked by its smoke test). Anything that goes VM → laptop has to be pulled by the laptop: the scribe relay polls, and the vault follower tails over ssh. Don't design a feature that needs the VM to reach the laptop.
+
+**The laptop's top bar presses the VM's buttons with a copy of the VM's write token** (`~/.config/orient/peer-write-token`, from the VM's `~/.local/state/orient/write-token`). orient mints that token lazily on first use, so a fresh VM has none until something asks. If the VM ever mints a new one, the desk gets 401 until it's copied again.
+
+**`pnpm deploy:web` once hung for 10+ minutes in static generation** (2026-11-09, laptop), with a prerender worker idle in `epoll` and no network wait. orient-web stays stopped meanwhile. Killing the process group and rerunning built normally. If it recurs, look at the prerender workers before suspecting the code.
+
 **`wp tick --note` drops the `done:` stamp if the note contains the sha.** `cmd_tick` checks `sha not in new` as a substring. Leave the commit out of the note.
 
 **Config is memoised at boot.** Editing `.knowledge/config.yaml` needs the dev server

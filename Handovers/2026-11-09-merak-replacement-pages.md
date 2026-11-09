@@ -8,7 +8,7 @@ from: rc-hjf
 to: next session, any machine
 session_id: 9ef32451-f6a6-429e-88df-add8e5d83ddf
 resumed_by: 4ff6c302-4da3-4b14-bf3c-fc976c0ec75b   # laptop (freightops), 2026-11-09T12:14Z
-updated: 2026-11-09T13:38Z
+updated: 2026-11-09T13:44Z
 ---
 # Handover: Merak replacement pages (continues the carrier-integrations research)
 
@@ -38,7 +38,7 @@ None of this session's workflows or agents is running (checked 2026-11-09 11:53Z
 
 | Work | Where | State | To close it |
 | --- | --- | --- | --- |
-| Verify drafts 1 and 2 | `Handovers/2026-11-09-merak-replacement-pages.verify-workflow.js.txt` | Killed, no results | Optional now the pages are live as drafts: ask Harry whether to run it before or after his feedback. Needs his go-ahead for multi-agent work. Add page 3 to its scope. Copy the script to a `.js` file and run it with `Workflow({scriptPath})`. It uses two Sonnet-high verifiers per page (source and runtime lenses), an Opus-high judge and a cross-page critic. Its CONTEXT points at this session's scratchpad (clones, `review-result.json`), which a new session won't have. Apply the corrections to the two draft files |
+| Verify the drafts | `Handovers/2026-11-09-merak-replacement-pages.verify-workflow.js.txt` | **Declined by Harry 2026-11-09.** Drafts stay unverified | None. Don't run it unless he asks |
 | Fix lint warnings | Pages 1 (4 long sentences) and 2 (1) | Open. Fix in the vault, then `updateConfluencePage` with a `versionMessage` | `python3 ~/.claude/skills/plainly/lint.py <file>` |
 | Link the five pages from Carrier Services | MPK 353468499 | Done 2026-11-09 as part of the flatten: Carrier Services now lists every page | None |
 
@@ -46,10 +46,10 @@ None of this session's workflows or agents is running (checked 2026-11-09 11:53Z
 - **Flatten MPK "1. Architecture & Design": done 2026-11-09 13:35Z.** The root is now "1. Research into Existing Services" (351502339) with an index body. All carrier, tracking, POD, billing and Selector-coupling pages are direct children of it (checked with `getConfluencePageDescendants`). Services (Legacy Selector, Parcel Portal) is unchanged, and the Journey page keeps its whiteboard. Ten pages moved up, 15 bodies written (13 with wording or link changes), and the old two-family table on Carrier Services is gone. Version messages on older versions still say ingress and egress.
 - **Security items from the POD code read, class level only, not yet in the ticket draft below:** hard-coded credentials in the unloaded DHL Express module; credential-like sample values in comments in the Yodel and Panther modules; a Panther API key sent in a URL query string; the UK Mail token that never expires; the test carrier loaded in the prod config. The repo is `GFS POD` in Azure DevOps.
 - **Feedback on the published drafts.** Harry will send it. Page 3's title, "How Carriers Feed ECM", is mine: the other two titles were agreed.
-- **Confirm that Merak replaces both ECM and Selector.** That is Harry's framing. MPK names "Selector v2 and labelling" as big builds but has no Selector v2 design page and no mention of ECM being replaced. Those were phrase searches, not a full read. Check with Jack and Stef before the pages assume it.
+- **Merak replacing ECM and Selector is an unconfirmed hunch (Harry, 2026-11-09).** It can't be confirmed with Jack and Stef yet. The published pages say "a replacement" hypothetically and leave the choice to the Merak team. Keep any new wording that way.
 - **Keep or drop one link.** Page 2 links the "Idea: Developer promise" page (349110455) in its opening paragraph. Recommendation: keep it. That page asks for the same v1 webhook features, and the decisions on it stay with Stef.
-- **Which further pages he wants.** Four more were proposed on 2026-11-09 and none is approved. Check each against Merak before writing it. The first table below gives the decision each was meant to feed.
-- **Security ticket draft.** Offered on 2026-11-06 and not yet written up. Draft it for Harry, at class level only, and do not raise it. These items come from the research agents and I have not re-checked them:
+- **Further pages: none wanted (Harry, 2026-11-09).** The four proposed pages stay unwritten. Keep any future pages research level, comprehensive and simple.
+- **Security ticket: declined (Harry, 2026-11-09: "not my domain").** Don't draft or offer it. The class-level items below stay here as notes only. They come from the research agents and I have not re-checked them:
   - a committed credentials file in `patina-service-2`'s rollback tool;
   - plaintext secrets in several prod and dev manifests;
   - TLS verification off on the Shipment Update Service API and collections-service;
@@ -85,9 +85,9 @@ In my 2026-11-09 view, two things are not worth writing. More per-service ECM pa
 | "142M carrier calls" on the Polling Connectors and Ingress pages, against the 115M parcel polls the review measured | Nobody has reconciled them. They may be different measures |
 
 ## Next up
-0. **POD page (asked 2026-11-09, scope not yet agreed).** `Proof of Delivery Service` (353861642, v3) already covers the service. Ask Harry which angle is missing before writing. Draft: end to end from carrier to customer screen, the "delivered" gate, carriers with no POD, and the pass-through question for UPS and FedEx (that last part needs outside research).
-1. Finish pages 1, 2 and 3: verify, fix, lint, show Harry the text, publish on his word. The verify script covers pages 1 and 2 only: add page 3.
-2. Ask Harry which further pages he wants (see Waiting). Harry asked for the carrier page and the connectors page on 2026-11-09; both are now draft page 3.
+0. (Done 2026-11-09) The POD per-carrier page is published as MPK 354877489.
+1. Apply Harry's feedback on the published pages when it arrives: live page first, then the vault copy. No verification run was wanted.
+2. DHL Parcel UK follow-up (CID-317): draft a comment for Harry to approve. See Waiting on Harry. Nothing else is queued.
 
 ## How work is done here
 - **Confluence pages:** use the `plainly` skill. British English, no em dashes, sentences of 25 words or fewer, tables for state, security findings at class level only. Publish only when asked.

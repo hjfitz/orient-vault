@@ -627,7 +627,7 @@ Meetings recorded and summarised by the `scribe/` sidecar (`orient-scribe.servic
 - **A meta line wraps inline, not flex.** Each `·` is joined to the item before it by a no-break space, so
   a wrapped line never starts with a separator.
 - **Fixtures for review:** dense, failed and in-flight states are seeded as store dirs under
-  `~/.local/state/orient/scribe/` (`meta.json` + `transcript.json` + `audio.ogg`), with
+  `<vault>/.knowledge/recordings/<host>/` on the VM, which keeps recordings (`meta.json` + `transcript.json` + `audio.ogg`), with
   `POST /api/recordings/<id>/summarise` for a real summary. Delete them afterwards.
 
 ## Desk (GNOME top bar, `desk/`)
