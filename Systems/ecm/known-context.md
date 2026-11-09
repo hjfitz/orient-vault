@@ -30,7 +30,8 @@ The window is the 15 days from 2026-10-23 00:00 to 2026-11-07 00:00 UTC, which i
 | Evri webhook, in shadow: received, held for retry | about 563k, 59k. About 260k a week, none published |
 | Unmapped codes published to BigQuery | about 11.6k, mostly Interlink (4,651), DPD (3,124) and UPS (2,412) |
 | Customer webhooks sent | about 406k, which is 6.5% of events |
-| New shipments (new IDs) | about 675k |
+| New shipments (new IDs) | about 675k (674,672, `gfs.shipment_identity_service.ids_created`) |
+| Shipment messages handled by the identity service | about 1.59M (1,589,233, `gfs.shipment_identity_service.messages`). Re-announcements are 914,561, which is 57.5%. An earlier page draft said 1,644,519 messages and 713,297 IDs (56.6%): that was the 15 days to about 21:00 UTC on 9 Nov, not this window |
 | Nine mocked carriers | about 587k events, 9.3% |
 | Evri, DHL Parcel UK, DPD Local, DPD | about 5.59M events, 88.8% |
 | Hosted Selector VMs | 278, backing 259 sites (snapshot 2026-08-06). About 1,000 sites are registered |
