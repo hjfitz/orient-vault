@@ -2,9 +2,9 @@
 ticket: none
 title: Exempt unqueried fields from Firestore indexing
 service: tracking-service
-status: active
+status: complete
 created: '2026-11-06'
-updated: '2026-11-06'
+updated: '2026-11-09'
 repo: /home/hjf/code/fuse/tracking-service
 worktree: /home/hjf/code/fuse/tracking-service/.claude/worktrees/exempt-unqueried-firestore-fields
 branch: hjf/exempt-unqueried-firestore-fields
