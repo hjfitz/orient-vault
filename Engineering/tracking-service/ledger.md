@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-09 — Serve shipment queries and stats from the MongoDB store
+
+Serve shipment queries and stats from the MongoDB store
+
+Mongo store W3, stack 1/2: shipment List/search/attention/counts with Firestore's pushdown and _id keyset paging, a covered Businesses $group, and Stats/Insights served from marks through serve plus a keptFor stub matching #29's AllBusinesses convention. mongo_indexes.go declares every index; mongo_explain_test.go fails on a COLLSCAN, a blocking sort or an index that serves nothing. Mongo runs the live-counter conformance cases; the compose harness raises nofile to 64000.
+
+PR: gfs-bifrost/tracking-service#31
+
 ## 2026-11-09 — Open the MongoDB store from every binary
 
 Open the MongoDB store from every binary

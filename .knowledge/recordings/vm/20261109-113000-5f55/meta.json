@@ -1,0 +1,18 @@
+{
+  "id": "20261109-113000-5f55",
+  "title": "handoff test (AMI ES2004a)",
+  "status": "transcribing",
+  "startedAt": "2026-11-09T11:30:00Z",
+  "sources": {
+    "me": null,
+    "them": null
+  },
+  "call": false,
+  "host": "vm",
+  "capturedOn": "laptop",
+  "received": {
+    "sha256": "786665a88e352aa351f086421584907f0afbd0b9fd3f78ce3f039eb14457a30e",
+    "bytes": 16811508,
+    "at": "2026-11-09T11:12:33.44233449Z"
+  }
+}
