@@ -82,6 +82,7 @@ Record in-person meetings on Harry's iPhone. Safari on the phone opens orient th
   - whether `persist()` and the quota hold;
   - how long hashing 60 MB takes;
   - whether Safari plays `audio.ogg`.
+> SUPERSEDED 2026-11-09 — Harry: "use context wherever possible, I think that's important. I'm happy to pause processing notes until then." Context is resolved when the recording is sent, and the prompts are worded for it (see Decisions).
 - UNRESOLVED: **Meeting context for a recording made entirely offline.** It's resolved at the first successful send, which is after the meeting, so it includes notes written during it. The summary and enhance prompts label it "What Harry's notes said before the meeting". Use it anyway (fixing the label), or send no context when the start wasn't online?
 - UNRESOLVED (after the spike): **if capture dies mid-meeting** (Siri, a call, a reload), should the result be one recording made of segments (a scribe and client change, a follow-up plan) or two recordings (no scribe change)?
 
@@ -112,9 +113,10 @@ Record in-person meetings on Harry's iPhone. Safari on the phone opens orient th
   - `Layout` accepts `stereo` (the default) and `room-mono`; anything else stays 422.
   - `Converter` takes the layout, and `convertUpload` applies the room-mono filter above.
   - Conversion runs under `context.WithoutCancel` with a timeout, so a dropped phone doesn't kill ffmpeg.
+  - `UploadMeta` and `store.Recording` gain `contextAt`, the time the meeting context was looked up. When it's after `endedAt`, the summary and enhance prompts (`summary.go`, `enhance.go`, where they now say "What Harry's notes said before the meeting") read "Harry's notes for this meeting, including any written during or after it". Recordings without `contextAt`, including every laptop one, keep today's wording.
   - `handoff -layout`, which only sets the layout field; FLAC keeps the channel count.
   - verify:
-    - Go tests: room-mono accepted; an unknown layout is 422; the converter is told the layout; a conversion outlives its request; room-mono becomes stereo with a silent right (ffmpeg, skipped without it).
+    - Go tests: a `contextAt` after the end gives the during-or-after wording; none keeps the before-the-meeting wording; room-mono accepted; an unknown layout is 422; the converter is told the layout; a conversion outlives its request; room-mono becomes stereo with a silent right (ffmpeg, skipped without it).
     - On the VM: AAC 64 kbps mono fMP4 made from `ES2004a.Array1-01.wav`, then `orient-scribe handoff -i x.m4a -layout room-mono -hub http://127.0.0.1:3013 -hub-token-file ~/.config/orient/scribe-hub-token -captured-on phone`. It shows "Room N" labels and the in-person setting; record DER (`der -channel me`) against the room-array baseline, then delete the recording.
       gate: on the VM, `orient-scribe prune -dry-run -adopt laptop` is clean and no laptop recording is live, before scribe restarts
             [ ] confirmed
@@ -122,7 +124,7 @@ Record in-person meetings on Harry's iPhone. Safari on the phone opens orient th
   - `scribeHubToken()`; adapter functions `uploadStart` and `uploadComplete` (with a 150 s timeout and no client abort signal) and `uploadAppend` (its own fetch: octet-stream, and the 409 `{offset}` passed through).
   - `src/lib/recorder-guard.ts`: `hostAllowed` against localhost/127.0.0.1 plus a required `X-Orient-Recorder: 1` header, which forces a CORS preflight that Next's automatic OPTIONS never satisfies.
   - The routes:
-    - `POST /api/recordings/uploads`: `{id, title, docId?, startedAt, endedAt, pausedSeconds, mime}`, then `await startRequest`, then layout `room-mono`, `capturedOn: phone`, `sources.me: ['phone mic']`.
+    - `POST /api/recordings/uploads`: `{id, title, docId?, startedAt, endedAt, pausedSeconds, mime}`, then `await startRequest` at send time (so the newest notes are included), stamped `contextAt: now`, then layout `room-mono`, `capturedOn: phone`, `sources.me: ['phone mic']`.
     - `PATCH /api/recordings/uploads/[id]`: at most 8 MB.
     - `POST …/[id]/complete` with `{size, sha256}`.
     - `DELETE …/[id]`, proxied to a new scribe `DELETE /api/uploads/{id}` that drops the `.part` and `.json` (a small Go change with its test).
@@ -132,7 +134,7 @@ Record in-person meetings on Harry's iPhone. Safari on the phone opens orient th
     - Go test for the DELETE.
     - On the VM after `pnpm deploy:web` (check `/sprint` first): curl start, two PATCHes with one deliberately at a stale offset (409), complete; it processes. A DELETE on a second partial leaves no staged files. Delete the test recording.
       gate: answer the context question above, which changes what start sends
-            [ ] confirmed
+            [x] confirmed
 - [ ] 4. **The recorder page: local capture, recovery and export.** (AC 3, 4, 6)
   - `app/recordings/here/` has a tab title and no Sidebar or AutoRefresh, and the root layout's navigators (`FocusEffects`, `CommandPalette`, `Chords`, `QuickView`, `TerminalPanel`) render nothing on this path. If a pathname check turns out leaky, move to a route group with its own root layout.
   - `PhoneRecorder`:
@@ -185,6 +187,7 @@ Follow-ups, not in this plan:
      the plan in the same increment and record the correction here. Legitimately empty at plan
      time. A decision worth defending in a review six months out belongs in a durable record
      instead — `wp decide --record`. -->
+- **2026-11-09 — Meeting context is used wherever possible** (Harry). It's resolved when the recording is sent and so includes notes written during or after the meeting, and processing waits until then, which the upload-after-stop design does anyway. `contextAt` lets the prompts say what the notes are, rather than claiming they predate the meeting.
 - **2026-11-09 — Phone uploads go through orient on `:3000`, knowingly reversing** the scribe-on-the-VM decision that handoff goes over `:3014` and not through orient. A phone talking to `:3014` would need the hub token in the browser and CORS on scribe. Cost: a `pnpm deploy:web` (about 70 s, once 10+ min) interrupts phone sends; they resume from the server's offset.
 - **2026-11-09 — No new browser credential.** This matches every existing recording action and the `:3014` reasoning ("an ssh tunnel that already protects it"). The VM is single-user (checked), and the custom header plus the Origin check stop cross-site requests and DNS rebinding.
 - **2026-11-09 — Defaults taken rather than asked:**
