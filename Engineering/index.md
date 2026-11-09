@@ -17,6 +17,7 @@ it is now. Regenerate this page with `wp index`; check health with `wp doctor`.
 
 | Service | Type | Docs | Explainers | Active plans | Last work |
 | --- | --- | --- | --- | --- | --- |
+| [[Engineering/agents/overview\|agents]] | ? | 0 | 0 | 0 | — |
 | [[Engineering/amazon-proxy/overview\|amazon-proxy]] | backend | 1 | 0 | 0 | — |
 | [[Engineering/api-host-framework/overview\|api-host-framework]] | backend | 0 | 0 | 0 | 2026-10-06 |
 | [[Engineering/apiky/overview\|apiky]] | backend | 0 | 0 | 0 | 2026-10-09 |
@@ -74,13 +75,14 @@ it is now. Regenerate this page with `wp index`; check health with `wp doctor`.
 | [[Engineering/observability/overview\|observability]] | backend | 0 | 0 | 0 | 2026-11-05 |
 | [[Engineering/observability-sdk/overview\|observability-sdk]] | library | 3 | 0 | 0 | — |
 | [[Engineering/ocs-proxy/overview\|ocs-proxy]] | backend | 1 | 0 | 0 | — |
-| [[Engineering/orient/overview\|orient]] | frontend | 1 | 0 | 3 | 2026-11-09 |
+| [[Engineering/orient/overview\|orient]] | frontend | 1 | 0 | 4 | 2026-11-09 |
 | [[Engineering/parcel-portal/overview\|parcel-portal]] | backend | 4 | 0 | 3 | 2026-11-09 |
 | [[Engineering/pkg-go/overview\|pkg-go]] | backend | 0 | 0 | 0 | 2026-11-06 |
 | [[Engineering/pkg-node/overview\|pkg-node]] | library | 3 | 0 | 2 | 2026-11-06 |
 | [[Engineering/remote-compute/overview\|remote-compute]] | backend | 0 | 0 | 2 | 2026-11-03 |
 | [[Engineering/renovate-runner/overview\|renovate-runner]] | infra | 3 | 0 | 0 | 2026-11-06 |
 | [[Engineering/replay-service/overview\|replay-service]] | backend | 4 | 0 | 0 | 2026-11-05 |
+| [[Engineering/repo-template/overview\|repo-template]] | ? | 0 | 0 | 0 | — |
 | [[Engineering/royal-mail-proxy/overview\|royal-mail-proxy]] | backend | 3 | 0 | 0 | — |
 | [[Engineering/secops-reporting/overview\|secops-reporting]] | backend | 4 | 0 | 1 | 2026-09-14 |
 | [[Engineering/secrets-hub/overview\|secrets-hub]] | backend | 0 | 0 | 2 | 2026-11-05 |
@@ -92,10 +94,11 @@ it is now. Regenerate this page with `wp index`; check health with `wp doctor`.
 | [[Engineering/snap-mcp/overview\|snap-mcp]] | backend | 4 | 0 | 0 | 2026-11-05 |
 | [[Engineering/snap-queue-polling-service/overview\|snap-queue-polling-service]] | backend | 4 | 0 | 9 | 2026-11-06 |
 | [[Engineering/svc-template/overview\|svc-template]] | backend | 0 | 0 | 0 | 2026-10-28 |
+| [[Engineering/tech-services-manager/overview\|tech-services-manager]] | ? | 0 | 0 | 0 | — |
 | [[Engineering/terraform-modules/overview\|terraform-modules]] | infra | 3 | 0 | 0 | 2026-11-04 |
 | [[Engineering/tracking-core/overview\|tracking-core]] | backend | 3 | 0 | 0 | — |
 | [[Engineering/tracking-file-processor/overview\|tracking-file-processor]] | backend | 1 | 0 | 0 | — |
-| [[Engineering/tracking-service/overview\|tracking-service]] | backend | 4 | 0 | 2 | 2026-11-09 |
+| [[Engineering/tracking-service/overview\|tracking-service]] | backend | 4 | 0 | 1 | 2026-11-09 |
 | [[Engineering/tracking-webhook-royal-mail-sapient/overview\|tracking-webhook-royal-mail-sapient]] | backend | 1 | 0 | 0 | — |
 | [[Engineering/tracking-webhooks/overview\|tracking-webhooks]] | backend | 3 | 0 | 0 | — |
 | [[Engineering/ui-toolkit/overview\|ui-toolkit]] | library | 4 | 0 | 0 | — |
