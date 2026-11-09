@@ -100,7 +100,7 @@ Put E19 and E20 at the far right, with the POD arrows running down to E12.
 
 ## Gaps
 
-- **Possible page error: "set shipment status" wording.** The "In short" section says a Dataflow job and the Scan Injector "write scan history and set shipment status". The code review found that the Dataflow job sets no status. The Scan Injector calls the Firebird procedures and Firebird derives the status. The diagram follows the review.
+- **Possible page error: "set shipment status" wording.** The "In short" section says a Dataflow job and the Scan Injector "write scan history and set shipment status". The code review found the Dataflow job sets no status. The Scan Injector calls the Firebird procedures and Firebird derives the status. The diagram follows the review.
 - **Possible page error: stage 11.** It says "the write-back sets a Firebird delivered status". Firebird maps the raw carrier code to the status (`GET_SCAN_CODE`, unknown becomes 207). The page never says the scans sent back are raw. Stage 10 shows `carrCode` only.
 - **Possible page omission: Slipway's masked copy.** The ASCII block shows only Slipway's direct publish. "Two side paths" mentions the copy. Whether DataBridge writes it into Firebird in production is not confirmed, so that arrow is dashed.
 - **Identity rule differs between sources.** The page says `shipmentId` comes from a counter. The coupling twin says consignment number plus carrier. Only a legacy copy of the live service was read.
