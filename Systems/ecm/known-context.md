@@ -20,7 +20,7 @@ What the MPK research left standing on 2026-11-09: the canonical figures, Harry'
 - **Page 2 keeps its link to "Idea: Developer promise" (349110455).** That is a recommendation. The decisions on that page stay with Stef.
 
 ## Canonical figures
-The window is the 15 days from 2026-10-23 00:00 to 2026-11-07 00:00 UTC, which is "15 days to the end of 6 Nov". The reconciliation chose it because it is complete days that anyone can reproduce. Every disputed figure had been true for a different window, and the metrics move by up to 1% with the hour the window ends. The hub's first figures (6.25M and 215,319) match a run that ended about 2026-11-05 20:00 UTC. Source is Datadog application metrics.
+The window is the 15 days from 2026-10-23 00:00 to 2026-11-07 00:00 UTC, which is "15 days to the end of 6 Nov". The reconciliation chose it because it is complete days that anyone can reproduce. Every disputed figure had been true for a different window, and the metrics move by up to 1% with the hour the window ends. The hub's first figures (6.25M and 215,319) match a run that ended about 2026-11-05 20:00 UTC. Source is Datadog application metrics. The identity service counts are `sum:<metric>{*}.as_count()` as one scalar over the whole window.
 
 | Figure | Value |
 | --- | --- |
