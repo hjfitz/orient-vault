@@ -228,7 +228,7 @@ Every merge rolls prod, so never merge while a Deploy run is in flight (Scar tis
     - the rgaJourney differential, which completes AC 3.
   - **Pending lifted:** ReturnJourney, ReturnLinkBySalesOrder, ReturnQueries, SortsAndWindows.
   - verify: `make test-mongo`, `make test-emulator`, gates.
-- [ ] 6. **Notes, kept counters, import primitive** (AC 2,4,7).
+- [x] 6. **Notes, kept counters, import primitive** (AC 2,4,7). — done: a97baca
   - **Notes** go in `mongo_notes.go`. Note docs have `_id` = `docID/noteID` plus `r` and `createdAt`; the index is `{r:1, createdAt:1}`; reads are `createdAt` asc, limit 1000, matching Firestore. The methods are AddNote/UpdateNote and their return twins, each in one transaction:
     - AddNote reads the parent (ErrNotFound if it's missing), inserts the note (DuplicateKey is deterministic, not retried), `$inc`s noteCount/openNoteCount, `$set`s lastNote when `RefOf(note).Newer`, and `$unset`s `importedAt`.
     - UpdateNote with `openDelta == 0` writes nothing (`firestore.go:1112-1117`). Otherwise it updates `resolved`, `$inc`s openNoteCount and `$unset`s `importedAt`.
