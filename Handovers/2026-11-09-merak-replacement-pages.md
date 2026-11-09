@@ -8,7 +8,7 @@ from: rc-hjf
 to: next session, any machine
 session_id: 9ef32451-f6a6-429e-88df-add8e5d83ddf
 resumed_by: 4ff6c302-4da3-4b14-bf3c-fc976c0ec75b   # laptop (freightops), 2026-11-09T12:14Z
-updated: 2026-11-09T13:12Z
+updated: 2026-11-09T13:24Z
 ---
 # Handover: Merak replacement pages (continues the carrier-integrations research)
 
@@ -17,7 +17,7 @@ Continues [[Handovers/2026-11-06-carrier-integrations]], which is closed. Read t
 ## Where things stand
 The ECM and Selector research is published to MPK and the vault. On 2026-11-09 a 31-agent review checked 36 claims on the first journey page: 19 confirmed, 17 partly right, none refuted. All 17 were corrected. Harry now frames Merak as a new despatch and shipping platform that replaces ECM and Selector. **The Parcel Portal is not part of that.**
 
-Four design pages are **published as drafts, unverified**, under MPK "1. Architecture & Design" (page 351502339). Harry asked for them on 2026-11-09 at about 12:35Z and will send feedback afterwards. The verification run was killed at the session limit and returned nothing, so no claim on the pages has been through it. Apply Harry's feedback to the live pages first, then to the vault files, which are the source copies.
+Five design pages are **published as drafts, unverified**, under MPK "1. Architecture & Design" (page 351502339). Harry asked for them on 2026-11-09 at about 12:35Z and will send feedback afterwards. The verification run was killed at the session limit and returned nothing, so no claim on the pages has been through it. Apply Harry's feedback to the live pages first, then to the vault files, which are the source copies.
 
 | Unit | What it delivered | Where | State |
 | --- | --- | --- | --- |
@@ -31,6 +31,7 @@ Four design pages are **published as drafts, unverified**, under MPK "1. Archite
 | Page 3 (old) | Dropped. It only answered MKP-9, a Parcel Portal gate | n/a | Hidden duties moved into page 1 |
 | Draft page 3 (new) | **How Carriers Feed ECM**: polling, webhooks and files compared, plus the 12 mocked carriers by route (about 9% of events; Evri, DHL Parcel UK, DPD Local and DPD about 89%) | `Handovers/2026-11-09-merak-replacement-pages.page3-how-carriers-feed-ecm.md` | **Published 2026-11-09 12:38Z** as a draft: MPK 355074111. Unverified. No lint errors. The vault copy now says "Not confirmed" where the draft had `[??]`, and links page 2 |
 | Page 4 | **From Label to Invoice: How a Selector Shipment Is Billed**: 15-step chain from CSS or Client4 to the NetSuite file, bill triggers, pricing inputs, timing, where shipments wait, what a replacement must write | `Handovers/2026-11-09-merak-replacement-pages.page4-label-to-invoice.md` | **Published 2026-11-09 13:09Z** as a draft: MPK 354353232. Unverified: built from the Billing space and the Selector docs by one Sonnet reader. CCDIS and `REG_WILKO_*` were not read |
+| Page 5 | **How Each Carrier's POD Is Retrieved**: per-carrier calls, auth, image source, time handling and bugs for the 11 carriers plus the test carrier and DHL Express. Child of Proof of Delivery Service | `Handovers/2026-11-09-merak-replacement-pages.page5-pod-by-carrier.md` | **Published 2026-11-09 13:20Z** as a draft: MPK 354877489. Code read at `GFS POD` `origin/master` `d1f0ada` by three Sonnet readers. I checked 8 load-bearing claims against the code. No carrier was called |
 
 ## In flight
 None of this session's workflows or agents is running (checked 2026-11-09 11:53Z). The sessions `ListAgents` shows are Harry's other sessions: leave them alone.
@@ -39,10 +40,12 @@ None of this session's workflows or agents is running (checked 2026-11-09 11:53Z
 | --- | --- | --- | --- |
 | Verify drafts 1 and 2 | `Handovers/2026-11-09-merak-replacement-pages.verify-workflow.js.txt` | Killed, no results | Optional now the pages are live as drafts: ask Harry whether to run it before or after his feedback. Needs his go-ahead for multi-agent work. Add page 3 to its scope. Copy the script to a `.js` file and run it with `Workflow({scriptPath})`. It uses two Sonnet-high verifiers per page (source and runtime lenses), an Opus-high judge and a cross-page critic. Its CONTEXT points at this session's scratchpad (clones, `review-result.json`), which a new session won't have. Apply the corrections to the two draft files |
 | Fix lint warnings | Pages 1 (4 long sentences) and 2 (1) | Open. Fix in the vault, then `updateConfluencePage` with a `versionMessage` | `python3 ~/.claude/skills/plainly/lint.py <file>` |
-| Link the four pages from [Carrier Services](https://globalfreight.atlassian.net/wiki/spaces/MPK/pages/353468499/Carrier+Services) | MPK 353468499 | Not started. Harry asked only for the pages. The pages already sit under "1. Architecture & Design", which lists them as children | Add one line per page on Carrier Services, with a `versionMessage`. Ask Harry first: it edits a live page |
+| Link the five pages from [Carrier Services](https://globalfreight.atlassian.net/wiki/spaces/MPK/pages/353468499/Carrier+Services) | MPK 353468499 | Not started. Harry asked only for the pages. The pages already sit under "1. Architecture & Design", which lists them as children | Add one line per page on Carrier Services, with a `versionMessage`. Ask Harry first: it edits a live page |
 
 ## Waiting on Harry
-- **Feedback on the three published drafts.** Harry will send it. Page 3's title, "How Carriers Feed ECM", is mine: the other two titles were agreed.
+- **Flatten MPK "1. Architecture & Design" (asked 2026-11-09, plan not yet approved).** Plan put to Harry: rename the root to "1. Research into Existing Services"; move 7 pages (Polling Connectors, Tracking Webhook Services, Proof of Delivery Service, Carriers and Volumes, Carrier Integration Methods, Carrier Integration Uses, Shipment Journey Through ECM) up under it; rename Carrier Egress Services to "Carrier Proxies and Labelling" and Carrier Ingress Services to "Carrier Tracking and Proof of Delivery"; keep Carrier Services as a flat index; reword about 11 bodies. `updateConfluencePage` takes `parentId` and `title`, so moves and renames work. Check that title links survive the first rename. Nothing has been changed.
+- **Security items from the POD code read, class level only, not yet in the ticket draft below:** hard-coded credentials in the unloaded DHL Express module; credential-like sample values in comments in the Yodel and Panther modules; a Panther API key sent in a URL query string; the UK Mail token that never expires; the test carrier loaded in the prod config. The repo is `GFS POD` in Azure DevOps.
+- **Feedback on the published drafts.** Harry will send it. Page 3's title, "How Carriers Feed ECM", is mine: the other two titles were agreed.
 - **Confirm that Merak replaces both ECM and Selector.** That is Harry's framing. MPK names "Selector v2 and labelling" as big builds but has no Selector v2 design page and no mention of ECM being replaced. Those were phrase searches, not a full read. Check with Jack and Stef before the pages assume it.
 - **Keep or drop one link.** Page 2 links the "Idea: Developer promise" page (349110455) in its opening paragraph. Recommendation: keep it. That page asks for the same v1 webhook features, and the decisions on it stay with Stef.
 - **Which further pages he wants.** Four more were proposed on 2026-11-09 and none is approved. Check each against Merak before writing it. The first table below gives the decision each was meant to feed.
