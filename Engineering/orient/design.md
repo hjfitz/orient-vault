@@ -2,8 +2,8 @@
 tags:
 - waypoint
 - orient
-verified: '2026-11-03'
-verified_sha: 11aaab0
+verified: '2026-11-09'
+verified_sha: 41c9870
 verified_paths:
 - app/globals.css
 - src/components/ui-lang
