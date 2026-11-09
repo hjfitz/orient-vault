@@ -22,7 +22,7 @@ status: open
 
 ## Investigation
 - Monitor 1 window 19:59:37-20:01:37Z matched 7 logs, all snap_adapter, PURDYFIGG, slot_timeout, transient true, exhausted false, deliveryAttempt 1. Monitor 2 counted 7 distinct refs in its 15m window (warn 5), 12 by about 20:06Z (critical 10).
-- Wave was 23 distinct refs by 20:11Z (18 PURDYFIGG, 5 STUBBLE; 28 sales_order messages received 20:06-20:10). Max deliveryAttempt 6, none exhausted, none non-transient except nothing; replay-service newest sales_order failure is 15:03Z ESCENTRIC (unrelated).
+- Wave was 23 distinct refs by 20:11Z (18 PURDYFIGG, 5 STUBBLE; 28 sales_order messages received 20:06-20:10). Max deliveryAttempt 6, none exhausted, every failure transient true; replay-service newest sales_order failure is 15:03Z ESCENTRIC (unrelated).
 - New today: PUT /v2/attachments hung 120 s (snap_api_error "timeout of 120000ms exceeded", 8 refs), first breaker open (20:04, 22 circuit_open logs over 12 refs, closed 20:06 onward), ilg005 adapter latency avg 70 s (20:02), 120 s (20:04), 41-60 s (20:07-20:10), max 80 s at 20:10. Earlier waves peaked at 11 s avg / 14.6 s max.
 - Cheap read probes: 6 GETs 20:04:33Z four at 0.07 s and two at 4.1 s; 6 GETs 20:06:53Z all 0.05-0.07 s. Attachment GETs ~0.1 s or ~4.1 s.
 - All 23 refs have a shipment in Snap (read-only CustomerRef search). 34 of 130 PURDYFIGG orders that failed today (16 from the 16Z wave, 18 from this wave) have no attachment row; the 96 others have the "Cleaning Products" PRODDETAIL row. All 130 carry one customisation. Retry hits "Entity already exists in SNAP", and createInSnap (sales-order.service.ts) throws before event.controller.ts calls handleAttachments, so retries do not add it.
