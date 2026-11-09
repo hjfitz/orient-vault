@@ -88,7 +88,7 @@ it is now. Regenerate this page with `wp index`; check health with `wp doctor`.
 | [[Engineering/secrets-hub/overview\|secrets-hub]] | backend | 0 | 0 | 2 | 2026-11-05 |
 | [[Engineering/selector-adapter/overview\|selector-adapter]] | backend | 3 | 0 | 0 | 2026-11-05 |
 | [[Engineering/selector-rest-proxy/overview\|selector-rest-proxy]] | backend | 3 | 0 | 0 | — |
-| [[Engineering/sftp-connector/overview\|sftp-connector]] | backend | 5 | 1 | 2 | 2026-11-05 |
+| [[Engineering/sftp-connector/overview\|sftp-connector]] | backend | 5 | 1 | 2 | 2026-11-06 |
 | [[Engineering/shopify-connector/overview\|shopify-connector]] | backend | 4 | 0 | 1 | 2026-11-05 |
 | [[Engineering/snap-adapter/overview\|snap-adapter]] | backend | 4 | 2 | 1 | 2026-11-05 |
 | [[Engineering/snap-mcp/overview\|snap-mcp]] | backend | 4 | 0 | 0 | 2026-11-05 |
