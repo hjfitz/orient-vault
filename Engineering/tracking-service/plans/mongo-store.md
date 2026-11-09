@@ -167,7 +167,7 @@ Every merge rolls prod, so never merge while a Deploy run is in flight (Scar tis
   - verify: `make test-race`, where memory's marks tests stay green through the refactor; `make test-mongo` (differential); `MONGO_BENCH=1 TEST_MONGODB_URI=… go test -run '^$' -bench MongoMarks -benchtime 20x ./internal/store/`, with the numbers and explain output recorded in Evidence.
       gate: Gate A — the latency bar is agreed with Harry and met on these numbers (dev Atlas, or local marked provisional). If it's missed: stop, and replan around a `$merge` rollup with Harry's staleness call.
             [ ] confirmed
-- [ ] 2. **Scaffolding** (AC 2,9). The groundwork the later increments build on:
+- [x] 2. **Scaffolding** (AC 2,9). The groundwork the later increments build on: — done: a97baca
   - `bson` tags on every fs* struct, `fsReturn` included;
   - `_id` wrapper structs;
   - the µs codec on the client and database registries, with UTC decode;
