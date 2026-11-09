@@ -10,7 +10,7 @@ This page maps each seam and says what a replacement must honour if either side 
 - **Either side can go first if its successor honours Firebird's contract.** A Selector successor must write central `SHIPMENTS` for billing. It must also publish the create message for ECM. An ECM successor must publish raw carrier scans to `scanners.consignments.V1`.
 - **Retiring Firebird means taking over every seam,** because billing, reference data, scans, tickets and manual status all read or write it.
 
-**Diagram:** [Container diagram: Selector, central Firebird and ECM](https://lucid.app/lucidchart/ea0a71eb-4fb1-4124-9fe5-e70720cb5e20/view), in Lucid.
+**Diagram:** [Container diagram: Selector, central Firebird and ECM](https://lucid.app/lucidchart/ea0a71eb-4fb1-4124-9fe5-e70720cb5e20/edit?invitationId=inv_3816a5ec-9ded-417b-ae96-e83a761e0214), in Lucid.
 
 ## The six seams
 
@@ -30,7 +30,7 @@ The seams form a loop. ECM scans change Firebird rows, and those changes flow ba
 - **ECM stops learning of new shipments.** Nothing starts tracking, and portals, claims and reporting see nothing new. The exception is a replacement that publishes `shipments.v2` or the `fb.shipments.v1` message that feeds it. Slipway already does this for Amazon shipments.
 - **Reference data keeps flowing while Manager and Firebird stay.** Manager writes customers and contracts into Firebird, and the change feeds carry them to ECM. A Selector successor must replace Manager's set-up, or the feeds stop.
 - **Billing loses its rows.** Finance bills from central `SHIPMENTS`. See [Legacy Selector - Day End and Billing Handoff](https://globalfreight.atlassian.net/wiki/spaces/MPK/pages/353566845/Legacy+Selector+-+Day+End+and+Billing+Handoff).
-- **Day end disappears.** That covers commit, upload, carrier manifests and pre-advice files.
+- **Day end disappears.** That covers commit, upload, carrier manifests and [pre-advice files](https://globalfreight.atlassian.net/wiki/spaces/MPK/pages/353697842/Carrier+Integration+Methods#Pre-advice-by-file).
 
 ## If ECM goes first
 
