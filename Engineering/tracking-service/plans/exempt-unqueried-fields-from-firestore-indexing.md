@@ -106,7 +106,7 @@ The leading hypothesis is an index write hotspot. Every copy rewrites indexed fi
   - dev `/api/v1` list, search, attention and stats calls still answer.
       gate: Harry agrees the prod Terraform plan (plan-then-proceed) and the G3 threshold
             [x] confirmed
-- [ ] 3. **Apply to prod and soak** (AC 1,3). Approve `terraform-prod`. The run stays open for roughly 9 × the dev per-field time. — verify:
+- [x] 3. **Apply to prod and soak** (AC 1,3). Approve `terraform-prod`. The run stays open for roughly 9 × the dev per-field time. — verify: — done: a97baca
   - `gcloud ... describe` on the prod database;
   - 48 h of burst minutes: `resource_exhausted` count, Cloud Run 5xx and commit latency, against 09:10–09:16 on 2026-11-06;
   - the result is written to G3 in the Migration State.
