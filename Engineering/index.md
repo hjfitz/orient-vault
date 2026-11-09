@@ -23,7 +23,7 @@ it is now. Regenerate this page with `wp index`; check health with `wp doctor`.
 | [[Engineering/audit-service/overview\|audit-service]] | backend | 4 | 1 | 0 | 2026-10-27 |
 | [[Engineering/bifrost-pubsub/overview\|bifrost-pubsub]] | infra | 3 | 0 | 0 | 2026-11-04 |
 | [[Engineering/bjs-proxy/overview\|bjs-proxy]] | backend | 1 | 0 | 0 | — |
-| [[Engineering/carrier-playground/overview\|carrier-playground]] | backend | 0 | 0 | 0 | 2026-11-06 |
+| [[Engineering/carrier-playground/overview\|carrier-playground]] | backend | 0 | 0 | 0 | 2026-11-09 |
 | [[Engineering/carrier-proxies/overview\|carrier-proxies]] | backend | 1 | 0 | 0 | 2026-10-08 |
 | [[Engineering/client4/overview\|client4]] | frontend | 3 | 0 | 0 | — |
 | [[Engineering/coll8-proxy/overview\|coll8-proxy]] | backend | 1 | 0 | 0 | — |
@@ -74,7 +74,7 @@ it is now. Regenerate this page with `wp index`; check health with `wp doctor`.
 | [[Engineering/observability/overview\|observability]] | backend | 0 | 0 | 0 | 2026-11-05 |
 | [[Engineering/observability-sdk/overview\|observability-sdk]] | library | 3 | 0 | 0 | — |
 | [[Engineering/ocs-proxy/overview\|ocs-proxy]] | backend | 1 | 0 | 0 | — |
-| [[Engineering/orient/overview\|orient]] | frontend | 1 | 0 | 2 | 2026-11-06 |
+| [[Engineering/orient/overview\|orient]] | frontend | 1 | 0 | 3 | 2026-11-09 |
 | [[Engineering/parcel-portal/overview\|parcel-portal]] | backend | 4 | 0 | 3 | 2026-11-09 |
 | [[Engineering/pkg-go/overview\|pkg-go]] | backend | 0 | 0 | 0 | 2026-11-06 |
 | [[Engineering/pkg-node/overview\|pkg-node]] | library | 3 | 0 | 2 | 2026-11-06 |
