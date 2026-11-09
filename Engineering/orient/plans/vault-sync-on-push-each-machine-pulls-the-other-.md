@@ -1,17 +1,21 @@
 ---
-ticket: "none"
-title: "Vault sync on push: each machine pulls the other's changes at once"
-service: "orient"
+ticket: none
+title: 'Vault sync on push: each machine pulls the other''s changes at once'
+service: orient
 status: draft
-created: "2026-11-09"
-updated: "2026-11-09"
-repo: "/home/hjf/projects/orient"
-worktree: "/home/hjf/projects/orient"
-branch: "master"
-base: "origin/master"
-base_sha: "ffb44e47f"
-pr:
-tags: [waypoint, plan]
+created: '2026-11-09'
+updated: '2026-11-09'
+repo: /home/hjf/projects/orient
+worktree: /home/hjf/projects/orient
+branch: master
+base: origin/master
+base_sha: ffb44e47f
+pr: null
+tags:
+- waypoint
+- plan
+impl_model: sonnet
+impl_effort: medium
 ---
 # none — Vault sync on push: each machine pulls the other's changes at once
 
