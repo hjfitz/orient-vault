@@ -6,7 +6,7 @@ status: draft for Harry's review, not yet drawn
 ---
 # Component diagram: gfs-pod-service
 
-This diagram shows the parts of gfs-pod-service and the systems it talks to when it builds a shipment copy and serves a proof of delivery (POD) on the v2 API. It does not show the public v1 API, per-carrier request counts, time-zone handling, or the tracking pipeline.
+This diagram shows the parts of gfs-pod-service and the systems it talks to. It covers the shipment copy and serving a proof of delivery (POD) on the v2 API. It does not show the public v1 API, per-carrier request counts, time-zone handling, or the tracking pipeline.
 
 ## Groups
 
@@ -41,7 +41,7 @@ Both Deployments run one image. MongoDB (E7) and Redis (E9) sit outside the clus
 | E16 | Geocode service | system | | Gives map coordinates for GFS's shipment address on v2. Owner and interface not stated. | none | Page 353861642, "How it works", Other calls row | Verified in page |
 | E17 | SendGrid | system | | Third-party email service that sends POD emails. | none | Page 353861642, Other calls row. `Engineering/gfs-pod-service/overview.md` | Verified in page |
 
-Counts: 17 elements, made up of 8 systems (E1, E2, E3, E10, E14, E15, E16, E17), 2 containers (E4, E5), 5 components (E6, E8, E11, E12, E13) and 2 datastores (E7, E9).
+Counts: 17 elements. There are 8 systems (E1, E2, E3, E10, E14, E15, E16, E17) and 2 containers (E4, E5). There are 5 components (E6, E8, E11, E12, E13) and 2 datastores (E7, E9).
 
 ## Relationships
 
@@ -73,11 +73,11 @@ Counts: 21 relationships. Replies travel back on the same arrow as the request, 
 
 ## Layout hint
 
-Put the three callers (E1 to E3) at the left, all pointing at the v2 POD API (E8) in the middle of the POD API Deployment group. Put the subscriber Deployment group with its two topics (E4, E5) along the top, with MongoDB (E7) and Redis (E9) between the two groups. Put the Carrier modules group at the right, with the credentials service (E10), Carrier APIs (E14) and Amazon proxy (E15) beyond it. Put the geocode service (E16) and SendGrid (E17) below.
+Put the three callers (E1 to E3) at the left. Point them all at the v2 POD API (E8) in the middle of the POD API Deployment group. Put the subscriber Deployment group with its two topics (E4, E5) along the top, with MongoDB (E7) and Redis (E9) between the two groups. Put the Carrier modules group at the right, with the credentials service (E10), Carrier APIs (E14) and Amazon proxy (E15) beyond it. Put the geocode service (E16) and SendGrid (E17) below.
 
 ## Key needed
 
-- Dashed box or arrow with the label `Not confirmed`: the item is not proved by any source I read (the E11 to E16 arrow, and the Memorystore note on E9).
+- Dashed arrow with the label `Not confirmed`: no source I read proves it. This applies to the E11 to E16 arrow. The Memorystore note on E9 is also unproved.
 - Cylinder: a datastore. Plain rectangle: a component, container or external system.
 - Pub/Sub icon on E4 and E5. GKE icon on the cluster group label. No other GCP icon appears, because no other product is confirmed.
 - Arrows run in the direction of the request.
@@ -93,10 +93,10 @@ Put the three callers (E1 to E3) at the left, all pointing at the v2 POD API (E8
 - **The Amazon proxy instance is not pinned.** Page 353861642 names `amazon-logistics-proxy-internal`. Page 354877489 says the base URL is not in the repo. E15 shows the proxy, not a named instance.
 - **The geocode service is thin.** The pages say "a geocode service" with no name, owner or protocol. Page 354877489 mentions a separate address lookup from a GPS point for Evri, Yodel and Amazon. Whether that is the same service is Not confirmed, so that arrow is dashed.
 - **Callers' exact routes are not all known.** Connect's own route is given (`GET /connect/consignment/{gfsId}/pod`), but the route it calls on this service is not. The traffic split between the three callers is not known either.
-- **The POD email path is unclear.** Page 353861642 lists "a request POD email to the call centre, about 205 in 15 days" among the callers, and elsewhere counts 203 emails sent. Who receives the email, and which caller triggers it, is Not confirmed.
+- **The POD email path is unclear.** Page 353861642 lists "a request POD email to the call centre, about 205 in 15 days" among the callers. Elsewhere it counts 203 emails sent. Who receives the email, and which caller triggers it, is Not confirmed.
 - **Credentials do not come from the credentials service for every carrier.** UPS, FedEx, DHL eCommerce and Amazon use environment secrets. Tuffnells uses the contract as the account code. BJS has none. The arrows from E11 and E12 name only the carriers that do call it.
 - **The repo's own `AGENTS.md` disagrees with prod.** It names `carrier-credentials-manager`. Prod points at the legacy `gfs-carrier-credentials`, per `Engineering/gfs-pod-service/architecture.md` guardrail G2. The diagram follows prod. A replacement date is Not confirmed.
 - **Two code versions.** Page 353861642 was read at `811007e`. Page 354877489 was read at `d1f0ada`, two pull requests later. The change moved FedEx to consignment lookups. The diagram is unaffected.
-- **Left off by design.** The public v1 API (no caller found), `evri-auth-facade` (Evri's token), Google Maps static maps (listed, purpose not stated), and the idle carriers' request counts. Adding them would pass the 20-box limit or add unexplained arrows.
+- **Left off by design.** The public v1 API (no caller found). `evri-auth-facade` (Evri's token). Google Maps static maps (purpose not stated). The idle carriers' request counts. Adding them would pass the 20-box limit. Some would also add unexplained arrows.
 - **Pub/Sub delivery style is unknown.** The pages do not say whether the subscriber pulls or receives pushes. The arrows say "deliver" for that reason.
 - **Not checked live.** Page 354877489 states that no carrier was called. Nothing here has been run against the live service.

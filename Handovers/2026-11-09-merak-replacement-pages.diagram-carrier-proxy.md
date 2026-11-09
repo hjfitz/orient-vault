@@ -71,7 +71,7 @@ Put Selector (E1) at far left and the proxy group in the middle, with the six st
 
 ## Gaps
 
-- **E10 storage is unknown.** The pages say "one GFS account for everyone" but not whether it sits in an environment variable, a secret or a config file. I drew it dashed.
+- **E10 storage is unknown.** The pages say "one GFS account for everyone". They do not say if it sits in an environment variable, a secret or a config file. I drew it dashed.
 - **The ApiKy profile feeds E4 in every case, not only for BJS.** `Engineering/royal-mail-proxy/overview.md` says the profile's `royalmailCustomerId` selects the Sapient account. `Engineering/coll8-proxy/overview.md` says Coll8 still reads `accountCode` from the profile. So "one shared GFS account" for Coll8 is not the whole story. Source: vault notes from code at `361de96` and `44a05c3`.
 - **ApiKy's role differs for UPS.** `Engineering/ups-proxy/overview.md` says ApiKy "validates the key only" for UPS. The page says ApiKy returns the profile. Both are true for the generic case, but UPS ignores the profile.
 - **The token cache location is not stated.** The page says "cached". The UPS note gives the lifetime (token life minus 60 seconds). Whether the cache is in memory or Redis is Not confirmed, so E5 has no datastore.
