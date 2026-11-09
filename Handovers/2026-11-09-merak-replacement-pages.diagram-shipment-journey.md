@@ -1,6 +1,6 @@
 # Container diagram (C4 level 2, dynamic flow): one shipment through ECM
 
-This diagram follows one shipment from a Selector label, or from Slipway for Amazon, through Firebird and ECM to a delivered parcel and its proof of delivery (POD). It does not show invoicing, claims, reporting, the carrier almanac, ticket and comment flows, or manual status changes.
+This diagram follows one shipment from a Selector label, or from Slipway for Amazon, through Firebird and ECM to a proof of delivery (POD). It does not show invoicing, claims, reporting, the carrier almanac, ticket and comment flows, or manual status changes.
 
 Page: "Shipment Journey Through ECM" (MPK, page id 354975746, version 3). It replaces the ASCII block in "The journey". Stage numbers are the page's own, from "Stage by stage". Researched 9 Nov 2026.
 
@@ -100,7 +100,7 @@ Put E19 and E20 at the far right, with the POD arrows running down to E12.
 
 ## Gaps
 
-- **Possible page error: "set shipment status" wording.** The page's "In short" says a Dataflow job and the Scan Injector "write scan history and set shipment status". The code review found the Dataflow job sets no status. The Scan Injector calls the Firebird procedures and Firebird derives the status. The diagram follows the review.
+- **Possible page error: "set shipment status" wording.** The "In short" section says a Dataflow job and the Scan Injector "write scan history and set shipment status". The code review found that the Dataflow job sets no status. The Scan Injector calls the Firebird procedures and Firebird derives the status. The diagram follows the review.
 - **Possible page error: stage 11.** It says "the write-back sets a Firebird delivered status". Firebird maps the raw carrier code to the status (`GET_SCAN_CODE`, unknown becomes 207). The page never says the scans sent back are raw. Stage 10 shows `carrCode` only.
 - **Possible page omission: Slipway's masked copy.** The ASCII block shows only Slipway's direct publish. "Two side paths" mentions the copy. Whether DataBridge writes it into Firebird in production is not confirmed, so that arrow is dashed.
 - **Identity rule differs between sources.** The page says `shipmentId` comes from a counter. The coupling twin says consignment number plus carrier. Only a legacy copy of the live service was read.
@@ -109,7 +109,7 @@ Put E19 and E20 at the far right, with the POD arrows running down to E12.
 - **E7 and E8 hosting is unknown.** No source places gfs-modernizer or shipment-identity-service in the GKE cluster, so they have no hosting icon.
 - **Production Firebird triggers have not been read.** The E3 to E5 arrow rests on a repo script with a syntax error and on message volumes.
 - **Scan Injector source is unread.** It sits in the unreachable legacy organisation. Its arrow rests on error logs and Selector's own calls.
-- **Folded to stay at 20 boxes:** CSS and the site's GFS.FDB (into E1); the tracking connectors and tracking-core (E10); the Royal Mail webhook and file processor (E11); `file-ingestion-ftp-proxy`; customer webhook receivers (into E20).
+- **Folded to stay at 20 boxes.** CSS and the site's GFS.FDB went into E1. Connectors and tracking-core went into E10. The Royal Mail webhook, the file processor and `file-ingestion-ftp-proxy` went into E11. Customer webhook receivers went into E20.
 - **Left out:** claims, reporting, the Hub import service, the carrier almanac, the reference-data feeds, invoicing (stage 13) and `legacy-invoice-translator`. Also manual status, ticket and comment flows.
 - **Ownership.** No team owns `patina-service-2` or the Scan Injector.
 - **Carrier coverage of write-back is partial.** The page lists some carriers as unresolved, so the E17 to E18 arrow does not apply to every shipment.
