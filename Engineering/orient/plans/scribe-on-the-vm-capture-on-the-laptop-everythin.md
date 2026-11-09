@@ -1,17 +1,21 @@
 ---
-ticket: "none"
-title: "Scribe on the VM: capture on the laptop, everything else on the VM"
-service: "orient"
+ticket: none
+title: 'Scribe on the VM: capture on the laptop, everything else on the VM'
+service: orient
 status: draft
-created: "2026-11-09"
-updated: "2026-11-09"
-repo: "/home/hjf/projects/orient"
-worktree: "/home/hjf/projects/orient"
-branch: "master"
-base: "origin/master"
-base_sha: "1b8ffbf28"
-pr:
-tags: [waypoint, plan]
+created: '2026-11-09'
+updated: '2026-11-09'
+repo: /home/hjf/projects/orient
+worktree: /home/hjf/projects/orient
+branch: master
+base: origin/master
+base_sha: 1b8ffbf28
+pr: null
+tags:
+- waypoint
+- plan
+impl_model: opus
+impl_effort: high
 ---
 # none — Scribe on the VM: capture on the laptop, everything else on the VM
 
