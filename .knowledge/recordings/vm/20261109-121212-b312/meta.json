@@ -1,0 +1,26 @@
+{
+  "id": "20261109-121212-b312",
+  "title": "scribe handoff test (VM down)",
+  "status": "done",
+  "startedAt": "2026-11-09T12:12:12.513618035Z",
+  "endedAt": "2026-11-09T12:12:22.525672015Z",
+  "sources": {
+    "me": [
+      "JLAB TALK MICROPHONE Analog Stereo"
+    ],
+    "them": [
+      "Nightly",
+      "speech-dispatcher-dummy"
+    ]
+  },
+  "call": false,
+  "summaryError": "the transcript is empty",
+  "enhanceError": "the transcript is empty",
+  "host": "vm",
+  "capturedOn": "laptop",
+  "received": {
+    "sha256": "12e0d9ed5b2afad65eb7fa2c0946909c7f8cdbaacc56b84f573aaef1233489ea",
+    "bytes": 379108,
+    "at": "2026-11-09T12:14:53.706553952Z"
+  }
+}
