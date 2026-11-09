@@ -46,7 +46,7 @@ The record has a first-seen date that is set once. A MongoDB expiry on that date
 - **Tracking runs for about 90 days,** so a parcel still live on day 31 can get a new ID the next time it is announced again. This is inferred.
 - **The design doc describes a different rule.** It describes a date window of 90 days before and 7 days after delivery. The code does not implement it. The expiry appears to stand in for it.
 
-Over the 15 days, the service handled 1,644,519 shipment messages and minted 713,297 IDs. About 57% of messages were re-announcements of a shipment it already knew. These figures come from Datadog metrics.
+Over the 15 days from 23 Oct to the end of 6 Nov 2026 (UTC), the service handled 1,589,233 shipment messages and minted 674,672 IDs. About 57.5% of messages (914,561) were re-announcements of a shipment it already knew. These figures come from the Datadog metrics `messages` and `ids_created`.
 
 ## Who uses the ID
 
