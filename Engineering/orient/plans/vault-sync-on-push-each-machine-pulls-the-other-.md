@@ -2,7 +2,7 @@
 ticket: none
 title: 'Vault sync on push: each machine pulls the other''s changes at once'
 service: orient
-status: active
+status: complete
 created: '2026-11-09'
 updated: '2026-11-09'
 repo: /home/hjf/projects/orient
