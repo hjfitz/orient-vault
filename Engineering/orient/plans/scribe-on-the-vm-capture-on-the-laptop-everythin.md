@@ -127,7 +127,7 @@ Since 2026-11-09 the VM (`rc-hjf`) is orient's home. The laptop reaches it throu
     - On the laptop after pulling the unit change: `systemctl --user cat orient-scribe` shows the new unit, a 30 s recording still works there, and `localhost:3000/recordings` lists the read-only history.
       gate: on the VM, ffmpeg is installed and `claude -p` answers when signed in. On the laptop, `~/.config/orient/host` reads `laptop`.
           [x] confirmed
-- [ ] 2. **Upload ingest on the VM, behind a token.** (AC 2,6)
+- [x] 2. **Upload ingest on the VM, behind a token.** (AC 2,6) — VM upload ingest live: 401 without token, 403 foreign Host, both orient pages 200; Go protocol tests green under -race — done: 6898741
   - `scribe/internal/server/upload.go`:
     - `POST /api/uploads` takes `{id, meta, format, layout}` and answers `{offset}`. It is idempotent and reports the current offset when called again.
     - `PATCH /api/uploads/{id}` appends at `Upload-Offset`. A wrong offset gets 409 with the true offset.
