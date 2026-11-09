@@ -14,6 +14,8 @@ pr: null
 tags:
 - waypoint
 - plan
+impl_model: opus
+impl_effort: high
 ---
 # none — remote-config: close the connector-cache gaps left by evictOnDelete
 
