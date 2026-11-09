@@ -45,12 +45,12 @@ The leading hypothesis is an index write hotspot. Every copy rewrites indexed fi
 ## Acceptance criteria
 <!-- Observable, checkable outcomes — not tasks. Numbered by order: increments cite them as
      (AC 2,4), and sign-off prints which criteria no increment claims. -->
-- [ ] 1. In both databases, these fields report no single-field indexes:
+- [x] 1. In both databases, these fields report no single-field indexes:
   - `shipments`: `lastSeenAt`, `totalDuplicates`, `stageTimes`, `confirmations`;
   - `returns`: `lastSeenAt`, `totalDuplicates`, `stageTimes`, `confirmation`, `linkedShipmentJson`.
   - Every existing query still serves: the composite indexes and the other fields' automatic indexes are untouched.
-- [ ] 2. `firestore.indexes.json` and `firestore.tf` declare the same overrides (the `declared_field_overrides` precondition passes), and the emulator suite is green.
-- [ ] 3. In prod, over at least 48 h of reap bursts, `gcp.firestore.api.request_count{database_id:tracking-service,response_code:resource_exhausted}` and Cloud Run 5xx are compared against the 2026-11-06 baseline, and the result is recorded against programme gate G3. It counts either way: if the throttling persists, the hypothesis is refuted, and that is also a result.
+- [x] 2. `firestore.indexes.json` and `firestore.tf` declare the same overrides (the `declared_field_overrides` precondition passes), and the emulator suite is green.
+- [x] 3. In prod, over at least 48 h of reap bursts, `gcp.firestore.api.request_count{database_id:tracking-service,response_code:resource_exhausted}` and Cloud Run 5xx are compared against the 2026-11-06 baseline, and the result is recorded against programme gate G3. It counts either way: if the throttling persists, the hypothesis is refuted, and that is also a result.
 
 ## Affected boundaries
 <!-- Components, paths and contracts this touches. Wikilink existing explainers; do not restate
@@ -106,7 +106,7 @@ The leading hypothesis is an index write hotspot. Every copy rewrites indexed fi
   - dev `/api/v1` list, search, attention and stats calls still answer.
       gate: Harry agrees the prod Terraform plan (plan-then-proceed) and the G3 threshold
             [x] confirmed
-- [ ] 3. **Apply to prod and soak** (AC 1,3). Approve `terraform-prod`. The run stays open for roughly 9 × the dev per-field time. — verify:
+- [x] 3. **Apply to prod and soak** (AC 1,3). Approve `terraform-prod`. The run stays open for roughly 9 × the dev per-field time. — verify: — done: a97baca
   - `gcloud ... describe` on the prod database;
   - 48 h of burst minutes: `resource_exhausted` count, Cloud Run 5xx and commit latency, against 09:10–09:16 on 2026-11-06;
   - the result is written to G3 in the Migration State.
@@ -117,6 +117,7 @@ The leading hypothesis is an index write hotspot. Every copy rewrites indexed fi
      Check-selection order lives in verification-menu.md — do not restate it here. -->
 
 ### Evidence
+- 2026-11-09 [inc 3] **G3 soak passed** (2026-11-06T15:40:40Z → 2026-11-08T15:41Z, read 2026-11-09 09:16Z; `gcp.firestore.api.request_count{database_id:tracking-service,project_id:bifrost-prod-global1}` and `gcp.run.request_count{service_name:tracking-service-api-prod}` per minute). Bursts were heavier than the incident: **37 minutes ≥ 2,000 pushes/min, peak 2,859/min** (11-06 17:11Z; the 11-06 incident peaked ~2,400–2,578). **0 `resource_exhausted` in any burst minute.** The whole window has 2 (11-07 00:21Z, a 392-push minute just after UTC midnight, the same small midnight blips seen before D1 at 00:51/00:56 on 11-06). Firestore: 2,136,301 ok, 2,246 aborted, 2 resource_exhausted, 2 invalid_argument. Cloud Run 5xx: 15 in total (7 at 11-06 16:02Z), none in a throttled minute. The index-hotspot hypothesis holds; the deferred zero-write skip is not owed. Signed off by Harry 2026-11-09. (AC 3)
 - 2026-11-06 [inc 3] **Prod applied and verified; G3 soak started 15:40:40Z.** Deploy run 42226342798 `terraform-apply-prod` (job 127949952620) ran 14:34:18–15:40:40Z, **66 min for 9 field ops (~7.4 min each on prod's 89k shipments)**, `Apply complete! Resources: 9 added, 1 changed, 0 destroyed.` `gcloud firestore indexes fields describe … --database=tracking-service --project=bifrost-prod-global1` at 15:41Z: all 9 fields report 0 indexes (`shipments` `lastSeenAt`, `totalDuplicates`, `stageTimes`, `confirmations`; `returns` `lastSeenAt`, `totalDuplicates`, `stageTimes`, `confirmation`, `linkedShipmentJson`); the map subfield `shipments.stageTimes.despatched` inherits from `stageTimes` (0); control `shipments.updatedAt` keeps its 3. `tracking-service-api-prod` serves `prod-44734ac…`. Prod API with an ID token at 15:41Z: `/health`, `/api/v1/shipments?limit=1`, `?lane=action`, `/api/v1/returns?limit=1`, `/api/v1/stats`, `/api/v1/stats/businesses` all 200 (`/stats/businesses` took 9.0 s). (AC 1, prod)
 - 2026-11-06 [inc 3] **Pre-soak baseline, prod** (`sum:gcp.firestore.api.request_count{database_id:tracking-service,response_code:resource_exhausted,project_id:bifrost-prod-global1}`, per minute, 2026-11-05 00:00Z → 15:25Z 11-06): 1,026 in total today. 09:11–09:17Z = 536 (the incident), **11:20–11:22Z = 486** (a second burst, before D1 reached any database), 00:51/00:56Z = 4; none 11:23Z → 15:25Z. The soak compares burst minutes from 15:40:40Z against these. (AC 3, baseline)
 - 2026-11-06 [inc 2] **Dev applied and verified.** Deploy run 42226342798 (merge `44734ac`, PR #18); `terraform-apply-dev` ran 13:34:24–14:30:45Z, **56 min for 9 field ops (~6.3 min each on the populated dev database)**. `gcloud firestore indexes fields describe` on `bifrost-dev-global1/tracking-service`: all 9 fields report 0 indexes; the map subfield `shipments.stageTimes.despatched` inherits from `stageTimes` (ancestorField `.../shipments/fields/stageTimes`, 0 indexes), so the map-inheritance assumption holds; control `shipments.updatedAt` keeps its 3. Dev API with an ID token: `/health`, `/api/v1/shipments?limit=1`, `?lane=action`, `?search=HJF`, `/api/v1/returns?limit=1`, `/api/v1/stats`, `/api/v1/stats/businesses` all 200. (AC 1, dev)
