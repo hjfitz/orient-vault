@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-09 — Add notes, kept counters and the import primitive to the MongoDB store
+
+Add notes, kept counters and the import primitive to the MongoDB store
+
+Mongo store notes (one transaction each, importedAt dropped on every note write), kept counters as arrays with ReadCounters/ReplaceCounters on memory's semantics plus ImportKept and the keptFor read seam, and ImportShipment/ImportReturn guarded by importedAt so a re-import never overwrites a record written live; Live() for D8. Also raises mongod's nofile limit in the test harness.
+
+PR: gfs-bifrost/tracking-service#29
+
 ## 2026-11-09 — Write shipments to the MongoDB store
 
 Write shipments to the MongoDB store
