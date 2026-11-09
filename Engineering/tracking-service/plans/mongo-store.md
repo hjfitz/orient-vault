@@ -206,7 +206,7 @@ Every merge rolls prod, so never merge while a Deploy run is in flight (Scar tis
   - **Docs:** `apps/api/CLAUDE.md` ("no TTL", "dedupe is the event doc") and README:90 updated for Mongo in this PR.
   - **Pending lifted:** ConfirmationUnderAnotherSnapID, LinesAndPreexisting, Journey, Republishes and Lookup (counter subtests still skip). ByKey's exact-mode subtest stays pending on SearchKeys.
   - verify: `make test-mongo`, `make test-emulator`, gates.
-- [ ] 4. **Shipment queries, counts, indexes, explain test; counters on** (AC 2,6). `mongo_query.go` holds List, SearchKeys, SearchPrefix, ListAttention, CountAttention, CountActionNeeded, CountOrphans, ShipmentIDs and Businesses.
+- [x] 4. **Shipment queries, counts, indexes, explain test; counters on** (AC 2,6). `mongo_query.go` holds List, SearchKeys, SearchPrefix, ListAttention, CountAttention, CountActionNeeded, CountOrphans, ShipmentIDs and Businesses. — done: a97baca
   - **Filters and paging:**
     - Filter builders follow Firestore's pushdown exactly (Assumptions) and take a collection spec, so increment 5 reuses them for returns rather than refactoring them.
     - Keyset paging is `(f < v) OR (f == v AND _id < id)`.
