@@ -2,7 +2,7 @@
 ticket: none
 title: 'Phone recorder: in-person meetings from the iPhone, offline-first'
 service: orient
-status: draft
+status: active
 created: '2026-11-09'
 updated: '2026-11-09'
 repo: /home/hjf/projects/orient
