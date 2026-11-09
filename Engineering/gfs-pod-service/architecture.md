@@ -29,7 +29,7 @@ verified_sha: 811007e
   — paths: src/pod-service/credentials-service.js
 - [technical:G3] Image ids are minted per cached POD entry, so an image link from an older POD can stop resolving once the cache entry changes.
   — paths: src/pod-service/pod-cache.js
-- [contract:G4] The POD address is always GFS's shipment address, on purpose: every carrier except DPD supplies its own, and the service discards it. The coordinates come from geocoding GFS's address, never from the carrier.
+- [contract:G4] On v2 requests the POD address is GFS's shipment address, on purpose, geocoded for its coordinates; a failed geocode falls back to 0,0. v1 passes no shipment, so it keeps the carrier's address. DPD, DPD Local and BJS supply none; Hermes and Yodel derive one from the carrier's GPS point. v1 and v2 share the cache key `carrier:consNo`, so a POD first cached by v1 reaches v2 callers without the GFS address.
   — paths: src/pod-service
 
 ## Structure

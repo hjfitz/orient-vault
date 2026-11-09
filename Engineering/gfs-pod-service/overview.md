@@ -24,7 +24,7 @@ verified_sha: 811007e
 
 ## Responsibility
 - Keeps its own copy of each shipment (carrier, consignment, parcels, address) from `shipments.v2.identified`, plus BJS tracking from `raw_tracking.v1` [1].
-- On request, fetches the POD from the carrier's API and normalises it: signee, delivery time, images, comments [2]. It then swaps in GFS's own delivery address and geocodes it, so the coordinates are never the driver's.
+- On request, fetches the POD from the carrier's API and normalises it: signee, delivery time, images, comments [2]. On v2 requests it then swaps in GFS's own delivery address and geocodes it, so the coordinates are not the driver's. The public v1 API keeps the carrier's address.
 - Serves POD images and emails a POD on request through SendGrid.
 
 ## Why it exists separately
