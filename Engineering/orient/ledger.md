@@ -6,6 +6,22 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-09 — Vault sync on push: each machine pulls the other's changes in about 5 s
+
+Vault sync on push: each machine pulls the other's changes in about 5 s
+
+A push that sent this machine's commits is announced: appended to .git/orient-pushed, and the laptop (sync-peer=orient-vm) kicks the VM's sync over ssh. The VM cannot reach the laptop, so the laptop's orient-vault-follow tails the VM's orient-pushed over ssh and kicks its own sync. Measured: laptop to VM 6.6 s, VM to laptop 4.6 s. A push that only fast-forwarded announces nothing, so there's no ping-pong. If the peer is down, each falls back to its 90 s timer.
+Gotchas found: the backgrounded peer kick inherited the sync lock's fd (fixed, 9>&-); a rejected push retried after a merge announced the other machine's push (fixed: count origin..HEAD on the successful attempt).
+Commits aad9f8a..93e74f7 on hjfitz/orient master (no PR). Plan: [[vault-sync-on-push-each-machine-pulls-the-other-]].
+
+## 2026-11-09 — Scribe on the VM: the laptop captures, the VM keeps and processes recordings
+
+Scribe on the VM: the laptop captures, the VM keeps and processes recordings
+
+The VM (rc-hjf) keeps every recording and the laptop only captures. scribe has roles: recorder (laptop) hands each finished recording over orient-tunnel :3014 as FLAC (resumable upload, sha256 receipt, deleted on receipt), and server (VM) ingests, transcribes, summarises and enhances. A relay the laptop polls every second lets the VM's page start, stop, pause, resume and ignore laptop recordings; only those five cross. The VM adopts the laptop's older recordings in place (-adopt laptop), and their audio was copied with checksums. A keep mark spares audio from the 14-day prune. The laptop's :3001 orient is retired; the top bar presses the VM's buttons with a copied write token.
+Gotchas: the VM can never connect to the laptop (sshd local forwards only), so everything VM to laptop is polled; the VM mints its write token lazily; scribe restart stops a recording but hands off what it captured.
+Commits 66511dc..4e0902e on hjfitz/orient master (no PR; direct-to-master repo). Plan: [[scribe-on-the-vm-capture-on-the-laptop-everythin]]. Docs: Systems/orient architecture + known-context, scribe/README Roles.
+
 ## 2026-11-06 — Give the orient MCP a Waypoint system lens and correct service headers
 
 Give the orient MCP a Waypoint system lens and correct service headers
