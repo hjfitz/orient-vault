@@ -42,10 +42,10 @@ One thing to avoid: `tracking-core` attaches the full raw carrier response to ev
 
 ## Not covered
 
-What each carrier sends. The UK carriers' formats are on [Carrier Ingress Services](https://globalfreight.atlassian.net/wiki/spaces/MPK/pages/353206337/Carrier+Ingress+Services). Carriers outside today's estate are not researched.
+What each carrier sends. The UK carriers' formats are on [Carrier Tracking and Proof of Delivery](https://globalfreight.atlassian.net/wiki/spaces/MPK/pages/353206337/Carrier+Tracking+and+Proof+of+Delivery). Carriers outside today's estate are not researched.
 
 ## Sources
 
 - **ECM code:** `tracking-core`, `tracking-file-processor`, the two tracking webhooks, `shipment-tracking-status-deriver`, CCIS, ICIS, claims, `shipment-update-service` and `connect-hooks`.
-- **Pages:** [Tracking Webhook Services](https://globalfreight.atlassian.net/wiki/spaces/MPK/pages/353533985/Tracking+Webhook+Services), [Polling Connectors](https://globalfreight.atlassian.net/wiki/spaces/MPK/pages/353697880/Polling+Connectors) and [Carrier Ingress Services](https://globalfreight.atlassian.net/wiki/spaces/MPK/pages/353206337/Carrier+Ingress+Services).
+- **Pages:** [Tracking Webhook Services](https://globalfreight.atlassian.net/wiki/spaces/MPK/pages/353533985/Tracking+Webhook+Services), [Polling Connectors](https://globalfreight.atlassian.net/wiki/spaces/MPK/pages/353697880/Polling+Connectors) and [Carrier Tracking and Proof of Delivery](https://globalfreight.atlassian.net/wiki/spaces/MPK/pages/353206337/Carrier+Tracking+and+Proof+of+Delivery).
 - **Volumes:** Datadog application metrics.
