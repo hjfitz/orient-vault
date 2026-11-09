@@ -32,7 +32,7 @@ Everything else sits outside the group. The credential stores (E9, E10) are draw
 | E10 | Shared GFS carrier account | datastore | | One GFS carrier account used for every customer. Where it is stored is not stated. | none | Page 353697822, Credentials row | Not confirmed |
 | E11 | Carrier API | system | | The carrier's own REST API, plus its OAuth token endpoint. UPS also takes legacy XML. | none | Page 353697822, steps 3 and 5 | Verified in page |
 
-Counts: 11 elements (2 systems outside, 1 carrier system outside, 5 components, 2 datastores, E1 counted as a system). Total boxes: 11.
+Counts: 11 elements, made up of 3 systems (E1, E2, E11), 6 components (E3 to E8) and 2 datastores (E9, E10).
 
 ## Relationships
 
