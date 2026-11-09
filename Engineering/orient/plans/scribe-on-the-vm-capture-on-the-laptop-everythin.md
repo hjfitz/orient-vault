@@ -139,8 +139,9 @@ Since 2026-11-09 the VM (`rc-hjf`) is orient's home. The laptop reaches it throu
   - Verify:
     - Go tests, one behaviour each: resumes after a cut; a wrong offset gives 409 with the true offset; `complete` before every byte arrives is refused; `complete` again gives the same answer; an id reused with different content is refused; no token gives 401.
     - After `make` and a restart on the VM, `localhost:3000/recordings` and `localhost:3001/recordings` both still load.
+      > SUPERSEDED 2026-11-09 — the laptop's copy is `~/.config/orient/scribe-hub-client-token`, not `scribe-hub-token`. scribe reads `scribe-hub-token` to switch uploads *on*, so a laptop copy at that path would make the laptop accept uploads too.
       gate: hub token generated on the VM and copied to the laptop (`~/.config/orient/scribe-hub-token`, mode 0600)
-          [ ] confirmed
+          [x] confirmed
 - [ ] 3. **A manual `handoff` on the laptop, the tunnel unit in the repo, `capturedOn`, the keep mark, and a status schema that tolerates unknown values.** (AC 2,6,7)
   - orient first, deployed on the VM and on `:3001`: unknown statuses show as "unknown" instead of failing the list. Add `uploading` to the `RecordingStatus` union, the label and colour maps (an in-flight accent, not red) and `PROCESSING`. Show an optional `capturedOn` beside "recorded on".
   - scribe:
@@ -213,6 +214,22 @@ Follow-up plans, not in this one:
 ### Evidence
 <!-- Newest first, dated. One bullet per check actually run, opening with what it discharges.
      "Suite green" alone is not evidence. Sign-off requires at least one dated bullet here. -->
+- 2026-11-09 [inc 2] **Upload ingest live on the VM** (`6898741`). `serve` turns uploads on only when `~/.config/orient/scribe-hub-token` is non-empty; the log reads `accepting uploads, staged in ~/.local/state/orient/scribe-uploads`.
+  - No token: 401 `missing or wrong hub token`.
+  - `Host: evil.example`: 403.
+  - The list is still 17.
+  - The laptop's scribe (rebuilt) serves as `both` with uploads off, since it has no server token file.
+  - `localhost:3000/recordings` (VM) and `localhost:3001/recordings` (laptop) both answer 200, with no "unexpected shape" or "not running".
+- 2026-11-09 [inc 2] **Gate:** a 32-byte random hub token generated on the VM (mode 600, never printed) and copied to the laptop as `~/.config/orient/scribe-hub-client-token` (600). The sha256 of both copies matches.
+- 2026-11-09 [inc 2] **Go tests** (`go test -race -count=3`), one behaviour each:
+  - Refused without the token (401), and off without a token (404).
+  - A completed upload is stored with its receipt and `capturedOn`, and is processed to `done`.
+  - Starting again reports the resume offset; a wrong offset gets 409 with the true offset.
+  - Complete before every byte arrives is 409; a damaged upload (sha mismatch) is 422 and its part is dropped.
+  - Complete again gives the same receipt; an id received with other content is 409.
+  - Appending without the total size until complete works (AC 6).
+  - A non-loopback Host is 403.
+  - Store: `Ingest` moves the audio in, and an unfinished `.incoming-<id>` isn't listed.
 - 2026-11-09 [inc 1] **The VM's scribe runs as a server** (AC 1). It was installed with `SCRIBE=server HEADLESS=1 scripts/install-units.sh`, which wrote `scribe.env` as `SCRIBE_ARGS=-role server -threads 8` and enabled the unit without starting it.
   - `prune -dry-run` before the first start: "would delete 0 audio file(s)".
   - Started: the log reads `serving on 127.0.0.1:3013 as server`.
@@ -236,6 +253,8 @@ Follow-up plans, not in this one:
      the plan in the same increment and record the correction here. Legitimately empty at plan
      time. A decision worth defending in a review six months out belongs in a durable record
      instead — `wp decide --record`. -->
+- **2026-11-09 — The receipt is made atomic by `Store.Ingest`.** The recording is built in `<host>/.incoming-<id>/` (audio, then `meta.json.tmp`, both gitignored), synced, and renamed into place. The receipt goes out only after that, so the laptop can't delete audio the VM doesn't durably have.
+- **2026-11-09 — All of scribe's routes now refuse a non-loopback Host,** not just the upload routes, guarding against DNS rebinding from a browser. The port is ignored because the `:3014` forward keeps its own.
 - **2026-11-09 — Harry's answers to the open questions.** Recordings, sensitive ones included, may live on the VM. Retention stays at 14 days, plus a keep mark (AC 7). The laptop copy is deleted on receipt. All transcription is on the VM, with no local fallback. Recording-reading skills stay on the laptop, so the laptop MCP reads the VM's scribe. This drops the review's 7-day `handed-off/` buffer: the VM's sha256-checked, synced-to-disk receipt is the safety net.
 - **2026-11-09 — Knowingly overrides "audio stays on the machine that recorded it".** That rule was agreed 2026-11-02 and is stated in CLAUDE.md L103, scribe/README L25, Systems/orient architecture.md, the vault `.gitignore` comment and INSTALL.md L88. It also overrides [[go-remote-and-bootstrap-a-fresh-machine]] AC 5's exclusion of recordings from the VM. That exclusion rested on "the VM is headless and doesn't record". Harry's call on 2026-11-09: the VM becomes the home for recordings, and the sensitivity exclusions for HR, Team and Interviews stay. Record it durably with `wp decide --record` at sign-off.
 - **2026-11-09 — The laptop pulls controls from the VM; the browser doesn't call the laptop's scribe directly.**
