@@ -175,7 +175,11 @@ Follow-ups, not in this plan:
 ### Evidence
 <!-- Newest first, dated. One bullet per check actually run, opening with what it discharges.
      "Suite green" alone is not evidence. Sign-off requires at least one dated bullet here. -->
-- <YYYY-MM-DD> [inc <n>] <what was run, against what, and the observable result>
+- 2026-11-09 [inc 1] **The probe works end to end in desktop Chrome with a fake mic** (`4504f06`, report fix `3b…` on master). Headless Chrome (`--use-fake-device-for-media-stream`, `?auto=12`) ran against the VM's receiver (`127.0.0.1:3020`, `--sample` a real `audio.ogg`) through a temporary forward.
+  - It recorded, reloaded at 12 s, found the session `interrupted`, sent the full and cut files, hashed 60 MB in 57 ms, and sent the report with every stored event (including those before the reload) and each chunk's time and size.
+  - On the VM, `ffmpeg -v error -i <f> -f null -` decodes both: full 10.10 s (the last ≤5 s lost to the reload, as designed) and cut (1 of 2 chunks) 0.105 s.
+  - **Chrome's `audio/mp4` holds Opus, not AAC**, and its first 5 s chunk was only 641 bytes (0.1 s of audio): chunk boundaries don't track the timeslice. The cut file still decodes. Whether Safari does the same is the second gate.
+  - Wake lock was granted, and `pagehide`/`visibilitychange` fire on reload.
 
 ### Not verified
 <!-- Stated, not papered over. "(none)" is a deliberate claim, and a fine one. -->
