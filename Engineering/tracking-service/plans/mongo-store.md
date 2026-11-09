@@ -2,7 +2,7 @@
 ticket: none
 title: Mongo store
 service: tracking-service
-status: draft
+status: active
 created: '2026-11-06'
 updated: '2026-11-06'
 repo: /home/harry/code/fuse/tracking-service
@@ -134,6 +134,13 @@ Design inputs: the D5 row (decided requirements), [[Handovers/2026-11-06-trackin
                gate: FUSE-1052 AND FUSE-1053 confirmed in prod
                      [ ] confirmed
 -->
+> SUPERSEDED 2026-11-09 — regrouped for speed (Harry: "finish it today"). Gate A is gone. Build order and parallelism:
+> - **W1 foundation + shipment write path** = increments 2 + 3 (minus the Stats wiring), plus `ShipmentIDs`/`ReturnIDs`. Branch `hjf/mongo-store-foundation`.
+> - **W2 marks aggregation** = increment 1 without the benchmark or gate: the `memory_marks.go` refactor, the Mongo pipeline as functions over a collection, and the differential test against memory's tally. Built **in parallel with W1** off `main`. Branch `hjf/mongo-store-marks`.
+> - **W3 queries + returns** = increments 4 + 5, plus Stats/Insights wiring through W2's functions, after W1 and W2 merge. A 2-PR stack is fine.
+> - **W4 notes, kept counters, import, opener, binaries, docs** = increments 6 + 7, after W1 and W2 merge, **in parallel with W3**.
+> - Each W is merged as soon as its checks are green and `review-panel` finds nothing blocking. The text below is kept as the detailed spec each W implements.
+
 Seven increments of about 500–700 lines each, about 3,500–4,000 lines in all, one PR each. That is the top of the 3–7 range, because D5 is large. The Firestore store alone is about 1,650 lines before tests.
 
 **Shared mechanism for increments 2–6:**
