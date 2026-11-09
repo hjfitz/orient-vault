@@ -1,13 +1,50 @@
 {
   "id": "20261109-113500-623a",
   "title": "handoff resume test (AMI ES2004a, 5 min)",
-  "status": "queued",
+  "status": "done",
   "startedAt": "2026-11-09T11:35:00Z",
   "sources": {
     "me": null,
     "them": null
   },
-  "call": false,
+  "call": true,
+  "summary": {
+    "tldr": [
+      "Kickoff meeting for a remote control design project, run by Sarah, the project manager.",
+      "Sarah covered the agenda: getting acquainted, tool training, project plan, and individual ideas, within twenty-five minutes.",
+      "Product goals: original, trendy, wide market appeal, user friendly, and not a hunk of metal.",
+      "Design runs in three stages: functional, conceptual, then detailed design.",
+      "The team began a whiteboard warm-up. Sarah drew a tiger and called it majestic, independent and proud. Harry was about to draw his animal when the transcript ends."
+    ],
+    "decisions": [],
+    "actions": [],
+    "questions": [
+      "What animal is Harry drawing? He asked the others to guess."
+    ],
+    "speakers": [
+      {
+        "label": "Speaker 1",
+        "name": "Sarah",
+        "basis": "Introduces herself as the project manager and runs the agenda"
+      },
+      {
+        "label": "Harry",
+        "name": "Harry",
+        "basis": "The voice on Harry's own mic"
+      }
+    ],
+    "model": "sonnet",
+    "usd": 0.028929,
+    "durationMs": 3947,
+    "at": "2026-11-09T11:17:22.895011805Z"
+  },
+  "enhancement": {
+    "model": "sonnet",
+    "usd": 0.0398673,
+    "durationMs": 6200,
+    "at": "2026-11-09T11:17:29.095820381Z",
+    "parts": 1
+  },
   "host": "vm",
   "capturedOn": "laptop",
   "received": {
