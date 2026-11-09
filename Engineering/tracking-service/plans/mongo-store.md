@@ -268,6 +268,7 @@ Every merge rolls prod, so never merge while a Deploy run is in flight (Scar tis
      the plan in the same increment and record the correction here. Legitimately empty at plan
      time. A decision worth defending in a review six months out belongs in a durable record
      instead — `wp decide --record`. -->
+- **2026-11-09 — Gate A dropped, plan simplified (Harry):** "latency isn't a concern … we're overcomplicating this and being overly cautious — let's get it finished today." No benchmark gate and no `$merge`: stats are live aggregation over marks. Increments regroup into 4 PRs (see Increments), built in parallel where they don't depend on each other, and merged as each goes green.
 - **2026-11-06 — Deviations from the D5 row, made knowingly:**
   - **An own `runTxn` loop, not the driver's `WithTransaction`:** its 120 s retry outlives the 30 s ack deadline, and it doesn't separate DuplicateKey by site.
   - **The row's (a)–(e) are reordered and split into 7 increments:**
