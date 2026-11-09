@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-09 — Add a mock Veho proxy at veho.mocks.merak.freightops.dev, built from the agreed contract
+
+Add a mock Veho proxy at veho.mocks.merak.freightops.dev, built from the agreed contract
+
+Ship: SHIP-1106-carrier-playground. Veho has no prod proxy: mock built from the agreed contract (carrier-proxies apps/veho-proxy openapi.yaml, CID-336), the spec (Confluence 323878984) and epic CID-335's stories, with a mock Veho API v2 from Veho's public docs. All six operations; error mapping per CID-336; open questions documented against tickets (CID-343/345/346/347-351). Review fixed idempotency (lookup-before-create per the contract), a real Veho tracking host, and log safety. Smoke 42/42 across twelve names.
+
+PR: ilg-merak/carrier-playground#14
+
 ## 2026-11-06 — Add a mock Exelot proxy at exelot.mocks.merak.freightops.dev; spread metaData like the sources
 
 Add a mock Exelot proxy at exelot.mocks.merak.freightops.dev; spread metaData like the sources
