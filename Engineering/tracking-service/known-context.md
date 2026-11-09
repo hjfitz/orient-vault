@@ -54,6 +54,11 @@ programme record is `Bifrost/Tracking Service/` (Overview, Migration State with 
 - Datadog logs carry `env:serverless`, not the environment: filter on `project_id` or
   `configuration_name`. Metrics use `environment:`.
 
+- **2026-11-06 burst errors were Firestore index-write throttling.** 536 commits (and 486 more at 11:20Z) failed `RESOURCE_EXHAUSTED` during PURDYFIGG reap bursts, surfacing as `InvalidArgument: transaction has expired` because the gapic Commit retry reuses the dead transaction id and `RunTransaction` retries only `Aborted`. Exempting the 9 unqueried, copy-rewritten fields from indexing (D1, #18) fixed it: 0 in 48 h of heavier bursts (peak 2,859 pushes/min).
+- A record remembers only its last 64 counted copy ids (`dedupe.go:22`, ~1.5–2 h of PURDYFIGG resends); an older redelivered copy counts again.
+- Prod Firestore has point-in-time recovery off (`firestore.tf:9`); nothing backs up the `tracking-service` database.
+- `api-emulator` is one of the required checks on `main`.
+
 ## Surprises
 - PURDYFIGG's bulk reap resends every open order with new messageIds: counted as duplicates, and
   old orders arrive this way first (preexisting). It is not just nightly: on 2026-10-18 it sent about 1,200 orders every

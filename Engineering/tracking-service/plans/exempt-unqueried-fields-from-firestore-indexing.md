@@ -146,8 +146,4 @@ The leading hypothesis is an index write hotspot. Every copy rewrites indexed fi
      or refuted hypothesis. Not restated doc content. Sign-off promotes each confirmed one into
      the matching durable doc, then clears it from here; a refuted one moves to ## Handback
      rather than being deleted. Legitimately empty. -->
-- **The 2026-11-06 burst errors are `RESOURCE_EXHAUSTED` underneath.** The surfaced `InvalidArgument: transaction has expired` comes from the gapic Commit retry (`firestore/apiv1` v1.25.0 retries Commit on ResourceExhausted/Unavailable, reusing the transaction id). `RunTransaction` retries only `Aborted`. Every throttled commit therefore shows up as 1 RE plus 1 IA in `gcp.firestore.api.request_count`. This is the first store-error incident on the new stack.
-- **Copy-redelivery protection is capped.** `CountedIDs` keeps 64 ids per record (`dedupe.go:22`), which is about 1.5–2 h of PURDYFIGG resends. Older redelivered copies count again.
-- **Prod Firestore has point-in-time recovery disabled** (`firestore.tf:9`). There is no backup of the `tracking-service` database.
-- **`api-emulator` is one of the 8 required checks on `main`.**
-
+- (promoted to known-context.md "Fragility and scar tissue" at sign-off, 2026-11-09)
