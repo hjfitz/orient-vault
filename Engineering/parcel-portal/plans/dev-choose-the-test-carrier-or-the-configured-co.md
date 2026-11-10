@@ -104,6 +104,8 @@ Harry, 10 Nov: "can we configure dev to opt in to the test selector or a configu
      time. A decision worth defending in a review six months out belongs in a durable record
      instead — `wp decide --record`. -->
 
+- **2026-11-10** — Self-review: the booking log's testCarrier is the carrier's own Test(conn), as GET /carrier's is, because migration 017 marks every older row true, prod's included. Kept DEFAULT true (not false + a dev backfill) so dev customers keep the stand-in with no data step; prod never reads or reports the raw column (status, check, GET connection and now the log all go through the wired carrier or the offered flag).
+
 - **2026-11-10** — Self-review (4 lenses): the switch guard stays a check, not a lock. A dispatch that read the old choice just before a switch still books with it, and that shipment then needs an engineer (Selector can't void a TST consignment, and the guard won't switch back while it's booked). Closing it means locking the carrier_connection row in the G2 claim transaction; not worth touching G2 for a dev-only toggle with a sub-second window. Documented in the README and on the guard.
 
 ## Learnings
