@@ -1,7 +1,7 @@
 ---
 tags: [adhoc-task]
 date: 2026-11-06
-tldr: "orient hosted on the VM; scribe split (laptop records, VM processes, relay controls) — scribe plan 5/6, inc 6 gated on 3 real meetings; vault sync-on-push live (~5s each way)"
+tldr: "orient on the VM; scribe split; vault sync-on-push; orient Svelte UI programme — spike passed (G1 go), foundations U6–U8 under way"
 session_id: 0fb571d0-d903-483b-9e8b-1198b51d571f
 status: open
 ---
@@ -21,3 +21,4 @@ Vault (VM): sync failing since 5 Nov 16:04 — handover vault copy dropped lapto
 2026-11-10: "lost recording notes" — nothing lost. The laptop's disabled-but-never-stopped orient-web had been restart-looping and, after a resume at 09:36, took :3000 from orient-tunnel, so the laptop served its own stale orient (empty recordings). Stopped it; install-units now `disable --now`s web/pty in peer mode (orient 70a6558).
 2026-11-10: Next UI frozen (orient ccafb1c); phone recorder plan abandoned (probe stopped). Programme [[orient Svelte UI/Overview|orient Svelte UI]] written (Design + 24-unit ledger + 8 gates) from a Plan-agent draft and 3 reviews; status planning, awaiting Harry's answers on G2/G3/G4/G6/G7.
 2026-11-10: Programme active; gates G2, G3, G4, G6, G7 cleared by Harry. U0 bench harness delegated; U1 core kernel built (src/core: Host/write guards, SWR cache, index watcher → SSE, static UI serving; exclusive token minting).
+2026-11-10: Spike done (U0–U5, orient 64879d0..c191315): Svelte /today data 25 ms vs 777 ms via tunnel, DOM 895 vs 5,867, nav 35 ms vs 845 ms. G1 go (Harry); 4× keypress row accepted. U6 renderer parity, U7 decoupling, U8 keymap started in parallel.
