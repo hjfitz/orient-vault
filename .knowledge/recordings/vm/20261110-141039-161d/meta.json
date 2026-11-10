@@ -15,9 +15,15 @@
   },
   "call": false,
   "speakers": {
-    "Room 1": "Harry",
+    "Room 1": "Mulder",
+    "Room 2": "Mulder",
+    "Room 3": "Mulder",
     "Room 4": "Zirak",
-    "Room 5": "Harry"
+    "Room 5": "Harry",
+    "Room 6": "John C"
+  },
+  "merged": {
+    "Room 2": "Room 1"
   },
   "summary": {
     "tldr": [
