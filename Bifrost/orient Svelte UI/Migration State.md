@@ -97,6 +97,8 @@ U5 fills this; all must hold for G1. U0 fills the baseline column.
 - **R6 Proxy correctness** — unbuffered RSC streaming, encodings, Host for actions, Range for audio. — open.
 - **R7 Render-cache staleness** — a missed `linkGen` input serves stale link resolution; the parity harness and a `RENDERER_VERSION` bump discipline cover it. — open.
 
+- **R8 Terminal buttons from pasted content** — any `orient-action` block anywhere in the vault renders a button that pastes its payload (with Enter, if it ends in a newline) into the tmux window; its label is free text. Same as the React path today. Mitigated in U3 by showing the payload on hover; whether to render these only for skill-written paths (e.g. `Digests/`) is Harry's call. — open.
+
 ## Decision log
 - **2026-11-10** — U1 review: a local process can forge the browser write headers (Origin, X-Orient). Accepted: each machine has one login user (harry on the VM, hjf on the laptop), and any process running as them can read the 0600 write token anyway — the guards exist for browsers (CSRF, DNS rebinding, framing), not for the local user. Revisit if a second user is ever added.
 - **2026-11-10** — Gates G2, G3, G4, G6, G7 answered by Harry (see Gates). Desktop-only UI; cross-framework full-page hops accepted; no Mac; LAN IP dropped; no headless runs during the migration. Programme active.
