@@ -7,6 +7,77 @@ title: 1-1 Matt Shaw
 # 1-1 Matt Shaw
 
 
+
+## 2026-11-10
+_10:30–11:00 GMT · Teams, Epsilon House and Slack huddle · no agenda (Teams boilerplate only)_
+
+### Context
+
+**Open PRs**
+- [shopify-connector#368](https://github.com/gfs-bifrost/shopify-connector/pull/368) (FUSE-1314): CI failing, open 3d
+- [collector#140](https://github.com/gfs-bifrost/collector/pull/140) (FUSE-1158): draft, red image scan
+- [fuse-mocker#35](https://github.com/gfs-bifrost/fuse-mocker/pull/35) (FUSE-1314): draft, idle 14d, blocks fuse-mocker#34 and #37
+- [collector#131](https://github.com/gfs-bifrost/collector/pull/131) (FUSE-1314): draft, idle 14d
+- [dedupe-service#166](https://github.com/gfs-bifrost/dedupe-service/pull/166) (FUSE-1314): draft, idle 14d
+- [fapi#182](https://github.com/gfs-bifrost/fapi/pull/182) (FUSE-1314): draft, idle 14d
+
+**Active Jira**
+- [FUSE-1314](https://globalfreight.atlassian.net/browse/FUSE-1314) Sprint 16 Distraction Duty (In Progress), reassigned by him to [[Schuster Efigenio]] on 9 Nov at 14:06 UTC
+- [FUSE-1158](https://globalfreight.atlassian.net/browse/FUSE-1158) Collector: persist a version history of each canonical record (In Progress)
+- [FUSE-1324](https://globalfreight.atlassian.net/browse/FUSE-1324) Cache: network writes hang when Redis is unreachable (Done 9 Nov)
+
+**Owed by you**
+- Reply on Tom Dunn's "Works Orders SFTP QA Issues" email, addressed to you and him: work-order confirmations have no line-level production or expiry date, and FGR line numbers map to a backend value where Tom wants the `identifiers.solineId` equivalent. Check FUSE-1329 covers the first gap, then place the second — [email](https://outlook.office365.com/owa/?ItemID=AAMkADVhYjUxODIyLWM5NTktNGJmOC1hN2FjLWFjMjllNWUzYmY4MwBGAAAAAAAEXHdKGOMeRLfpaU7ff8ChBwABLsgQpFdPTayXOZTVrraLAAAAAAEMAAABLsgQpFdPTayXOZTVrraLAAHc35JoAAA%3D&exvsurl=1&viewmodel=ReadMessageItem)
+- Tell him whether you join the first-round interview calls on Wed and Thu. Matthew Shaw withdrew after accepting another offer, so Wed 11:30 is free and Darren (Wed 14:00) and Edward (Fri 13:30) remain; he owns the scheduling — [Slack DM](https://gfsdeliver-eng.slack.com/archives/D09A702MDQF/p1793964694402199)
+- Approve his holiday request for 2–4 Nov (3 days) — starts Monday
+- Approve his access request to the "Fuse EDI Evidence" artifact (10-06, still open 10-08) — [email](https://outlook.office365.com/owa/?ItemID=AAMkADVhYjUxODIyLWM5NTktNGJmOC1hN2FjLWFjMjllNWUzYmY4MwBGAAAAAAAEXHdKGOMeRLfpaU7ff8ChBwABLsgQpFdPTayXOZTVrraLAAAAAAEMAAABLsgQpFdPTayXOZTVrraLAAHExRL5AAA%3D&exvsurl=1&viewmodel=ReadMessageItem)
+- Sign and send on his start-of-year PDR once he finishes the form — [email](https://outlook.office365.com/owa/?ItemID=AAMkADVhYjUxODIyLWM5NTktNGJmOC1hN2FjLWFjMjllNWUzYmY4MwBGAAAAAAAEXHdKGOMeRLfpaU7ff8ChBwABLsgQpFdPTayXOZTVrraLAAAAAAEMAAABLsgQpFdPTayXOZTVrraLAAHCN1rQAAA%3D&exvsurl=1&viewmodel=ReadMessageItem)
+- Sequence the confirmation defects he triaged (FUSE-1272, 1273, 1274, 1276, 1281 backlog; 1275 and 1280 are L2 mapping fixes) — [group DM](https://gfsdeliver-eng.slack.com/archives/C0BC33H8QMT/p1790783612714759) — 10-05: FUSE-1281 is Done, 1272 is Ready for QA, 1275/1280 are Schuster's; 1273, 1274 and 1276 are left to order at the 10:00 standup
+- Assign and prioritise FUSE-1272 to FUSE-1276, the QA defects he raised from Tom Dunn's list — [email](https://outlook.office365.com/owa/?ItemID=AAMkADVhYjUxODIyLWM5NTktNGJmOC1hN2FjLWFjMjllNWUzYmY4MwBGAAAAAAAEXHdKGOMeRLfpaU7ff8ChBwABLsgQpFdPTayXOZTVrraLAAAAAAEMAAABLsgQpFdPTayXOZTVrraLAAHBMDI8AAA%3D&exvsurl=1&viewmodel=ReadMessageItem)
+- Agree the next-rules-engine-publish plan now that he's merged [pkg-node#240](https://github.com/gfs-bifrost/pkg-node/pull/240) (peer floor `>=10.5.0` re-breaks sftp-connector on `types` ^9.5)
+- Ask where the FUSE-995 diff actually lives — Code Review status but no open PR against it in the sweep for a full week now
+- Review his FUSE-995 structured-logging stack — 6 PRs across 5 repos, all 🔵 needs-review, CI green: [replay-service#84](https://github.com/gfs-bifrost/replay-service/pull/84), [shopify-connector#256](https://github.com/gfs-bifrost/shopify-connector/pull/256)/[#257](https://github.com/gfs-bifrost/shopify-connector/pull/257)/[#263](https://github.com/gfs-bifrost/shopify-connector/pull/263), [sftp-connector#267](https://github.com/gfs-bifrost/sftp-connector/pull/267), [fapi#136](https://github.com/gfs-bifrost/fapi/pull/136)
+- Review his 5 green PRs awaiting review — [shopify-connector#248](https://github.com/gfs-bifrost/shopify-connector/pull/248), [#249](https://github.com/gfs-bifrost/shopify-connector/pull/249), [#250](https://github.com/gfs-bifrost/shopify-connector/pull/250), [#251](https://github.com/gfs-bifrost/shopify-connector/pull/251) and [dedupe-service#134](https://github.com/gfs-bifrost/dedupe-service/pull/134)
+- Ask why 7 approved/green/mergeable PRs (replay-service#56/57/60/63/65/66, fuse-ui#191) are sitting unmerged 3d — [1:1 note](../Meetings/1-1%20Matt%20Shaw.md)
+- Answer his #bifrost-private question — scope the nightly gitleaks/secops scan to `main` only? He says a decision might unblock nightlies (carried ×5 since 07-21) — [Slack](https://gfsdeliver-eng.slack.com/archives/C099GFZDFJM/p1784548833414809)
+- Take him up on his offer to review my PRs — [Slack](https://gfsdeliver-eng.slack.com/archives/D09A702MDQF/p1785761825178049)
+- FUSE-999 catch-up **today in the office** — he has early findings on the blockers, and I promised to share where I think the perf issue is — [DM](https://gfsdeliver-eng.slack.com/archives/D09A702MDQF/p1785343986551939)
+- Pre-review his FUSE-999/1012 pkg-node stack [#178–#182](https://github.com/gfs-bifrost/pkg-node/pulls) + [fapi#90](https://github.com/gfs-bifrost/fapi/pull/90) before wider review (carried ×3) — [Slack](https://gfsdeliver-eng.slack.com/archives/D09A702MDQF/p1784648702592629)
+- Review [pkg-node#174](https://github.com/gfs-bifrost/pkg-node/pull/174) (FUSE-999) — CI green, awaiting review
+- Resolve the merge conflicts on [fuse-ui#166](https://github.com/gfs-bifrost/fuse-ui/pull/166) (8d idle, ⚠️ stale) + [fuse-ui#170](https://github.com/gfs-bifrost/fuse-ui/pull/170) (7d idle, ⚠️ stale) — both still draft
+
+**Other context**
+- Hiring: the candidate Matthew Shaw (not Matt) withdrew after accepting another offer, so Wednesday 11:30 is free
+- Hiring: he owns the scheduling and asked in his DM whether you join the first-round calls on Wed and Thu — [DM](https://gfsdeliver-eng.slack.com/archives/D09A702MDQF/p1793964694402199)
+- [[Tom Dunn]]'s "Works Orders SFTP QA Issues" email is addressed to you both: work-order confirmations lack line-level production and expiry dates, and FGR line numbers map to a backend value where he wants the `identifiers.solineId` equivalent
+- [FUSE-1329](https://globalfreight.atlassian.net/browse/FUSE-1329) (FGR lines omit production and expiry dates) is Ready for QA with [[Schuster Efigenio]]
+- Distraction Duty is now Schuster's but five of FUSE-1314's PRs stay in Matt's name
+- The fuse-mocker nightly is red, and fuse-mocker#35 holds up fuse-mocker#34, #36 and #37
+- Standup at 10:00 is the place to say who owns the nightly reds this sprint
+- No agenda on the invite
+
+### To raise
+- [ ] shopify-connector#368 has CI failing on FUSE-1314, which is no longer his ticket: who finishes it?
+- [ ] FUSE-1314 moved to Schuster on 9 Nov at 14:06 UTC while its five PRs stay in his name: which does he keep and which move across?
+- [ ] The four Distraction Duty drafts have been idle 14 days: which should merge now, given fuse-mocker#35 clears the red nightly and unblocks two Renovate PRs? (carried ×1)
+- [ ] The dedupe zod and `GHSA-q7qp-rjg7-q26m` allowlist entries expire on 11 Nov and ride on dedupe-service#166: who re-checks them? (carried ×1)
+- [ ] collector#140 (FUSE-1158) is a draft with a red image scan: what is left on it?
+- [ ] Can the six Dock and Bay go-live watch monitors go? They show Alert while muted since 28 Sep
+- [ ] Which first-round calls does he want you on, now Wednesday 11:30 is free?
+- [ ] Tom Dunn's second gap (FGR line number): does FUSE-1329 cover the first, and who takes the second?
+- [ ] Is the FUSE-792 Get Stock API ready for Thomas Dunn to test? (carried ×3)
+- [ ] pkg-node#282 is the last of the `types` v11 train and the five red majors are open: what does he want to do about fapi#178, dedupe-service#163, snap-adapter#302, sftp-connector#315 and fuse-mocker#34? (carried ×3)
+- [ ] Where do the draft advisory-fix PRs stand, and which red repos have no fix PR yet? (carried ×3)
+- [ ] FUSE-1296 (stock sync QA, unassigned): who runs it? (carried ×4)
+- [ ] I will refine and estimate the webhook epic and the status webhook so he can lead it. Does he want to? (carried ×4)
+- [ ] Is his start-of-year PDR form ready to sign? (carried ×5)
+
+### Carried from last time
+- [ ] (nothing recorded)
+
+### Notes
+- ✍️ 
+
 ## 2026-11-05
 _11:30–12:00 GMT · Teams, Epsilon House and Slack huddle · no agenda_
 

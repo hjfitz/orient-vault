@@ -13,7 +13,7 @@ relationship: internal-partner
 
 ## Open loops
 **I owe**
-- [ ] Read her Black Friday and Cyber Monday volumes (Fri 6 Nov, 13:41 UTC, attachment, unread): Escentric, Stubble and Wildsmith run promotions, Purdy and Figg live from Friday, Phlur low — [email](https://outlook.office365.com/owa/?ItemID=AAMkADVhYjUxODIyLWM5NTktNGJmOC1hN2FjLWFjMjllNWUzYmY4MwBGAAAAAAAEXHdKGOMeRLfpaU7ff8ChBwABLsgQpFdPTayXOZTVrraLAAAAAAEMAAABLsgQpFdPTayXOZTVrraLAAHaYrDyAAA%3D&exvsurl=1&viewmodel=ReadMessageItem)
+- [x] Read her Black Friday and Cyber Monday volumes (Fri 6 Nov, 13:41 UTC, attachment): Escentric, Stubble and Wildsmith run promotions, Purdy and Figg live from Friday, Phlur low — read and marked read in the 10 Nov digest
 
 **Owed to me**
 - nothing

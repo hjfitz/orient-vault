@@ -15,6 +15,7 @@ title: Darren Rielly
 
 ## Open loops
 **I owe**
+- [ ] Give him, [[John Clarke]] and [[Oli Denton]] your review of the SRE VM-image work: what exists and which defaults are missing — [group DM](https://gfsdeliver-eng.slack.com/archives/C0A33D92C76/p1793981617640289)
 - [ ] Move the `0.2-bonbon` tag in ilg-platform/github-actions to the head after his #40 (merged 3 Nov) — [DM](https://gfsdeliver-eng.slack.com/archives/D09GTBH3WNQ/p1793719703338129)
 - [ ] Answer his question on opening ingress and relying on IAM for the Pub/Sub push ("tentatively yes") — [DM](https://gfsdeliver-eng.slack.com/archives/D09GTBH3WNQ/p1793722583336749)
 - [x] Review bifrost-pubsub#18 (said you would look on Tue 3 Nov) — [DM](https://gfsdeliver-eng.slack.com/archives/D09GTBH3WNQ/p1793643105078299)

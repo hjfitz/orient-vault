@@ -16,6 +16,7 @@ title: Wolf Clostermann
 
 ## Open loops
 **I owe**
+- [ ] Give [[John Clarke]], [[Darren Rielly]] and [[Oli Denton]] your review of the SRE VM-image work (what exists, which defaults are missing); he is looking at the same area, with budgeting and expensing to talk to Pete — [group DM](https://gfsdeliver-eng.slack.com/archives/C0A33D92C76/p1793981617640289)
 - [ ] Reply in #sre-general: the Customer Experience GCP projects are live, and Darren and I own the `cx-admin` and `cx-developers` groups. An acknowledgement is enough — [thread](https://gfsdeliver-eng.slack.com/archives/C098XBHJWS2/p1791790980814329?thread_ts=1790859952.822329&cid=C098XBHJWS2)
 - [ ] Answer the GitHub-org question in his cx GCP project naming DM; I replied but it was not clearly answered — [DM](https://gfsdeliver-eng.slack.com/archives/D0990E40D18/p1791474413550979)
 - [ ] Be the SRE contact this week: [[Darren Rielly]] is off and told him to liaise with me on the objectives — [digest](../Digests/2026-10/2026-10-09.md)

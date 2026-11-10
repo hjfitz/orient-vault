@@ -15,6 +15,7 @@ title: John Clarke
 
 ## Open loops
 **I owe**
+- [ ] Give him, [[Darren Rielly]] and [[Oli Denton]] your review of the SRE VM-image work: what exists and which defaults are missing — [group DM](https://gfsdeliver-eng.slack.com/archives/C0A33D92C76/p1793981617640289)
 - [x] **Migrate the SecOps work out of Bifrost into the platform-engineering org "within this week"** — done early: `gfs-bifrost/secops` transferred to `ilg-platform/secops-reporting` on 07-28
 - [ ] Get SRE to provision a dedicated platform-engineering GCP project — asked, still pending
 - [ ] Review [secops#2](https://github.com/gfs-bifrost/secops/pull/2) (Neon support) + give the go/no-go on rolling the Sec Ops reporter out — CI red, now idle ~25 days

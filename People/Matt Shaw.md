@@ -17,7 +17,8 @@ title: Matt Shaw
 
 ## Open loops
 **I owe**
-- [ ] Tell him whether you join the first-round interview calls he proposed to Ruby (Matthew Wed 11:30, Darren Wed 14:00, Edward Fri 13:30) — [Slack DM](https://gfsdeliver-eng.slack.com/archives/D09A702MDQF/p1793964694402199)
+- [ ] Reply on Tom Dunn's "Works Orders SFTP QA Issues" email, addressed to you and him: work-order confirmations have no line-level production or expiry date, and FGR line numbers map to a backend value where Tom wants the `identifiers.solineId` equivalent. Check FUSE-1329 covers the first gap, then place the second — [email](https://outlook.office365.com/owa/?ItemID=AAMkADVhYjUxODIyLWM5NTktNGJmOC1hN2FjLWFjMjllNWUzYmY4MwBGAAAAAAAEXHdKGOMeRLfpaU7ff8ChBwABLsgQpFdPTayXOZTVrraLAAAAAAEMAAABLsgQpFdPTayXOZTVrraLAAHc35JoAAA%3D&exvsurl=1&viewmodel=ReadMessageItem)
+- [ ] Tell him whether you join the first-round interview calls on Wed and Thu. Matthew Shaw withdrew after accepting another offer, so Wed 11:30 is free and Darren (Wed 14:00) and Edward (Fri 13:30) remain; he owns the scheduling — [Slack DM](https://gfsdeliver-eng.slack.com/archives/D09A702MDQF/p1793964694402199)
 - [ ] Approve his holiday request for 2–4 Nov (3 days) — starts Monday
 - [x] Place [FUSE-1296](https://globalfreight.atlassian.net/browse/FUSE-1296) (Ready for QA, the only in-flight ticket with no assignee). He has the FUSE-1292 spike open on the same stock sync — [Jira](https://globalfreight.atlassian.net/browse/FUSE-1296)
 - [x] Decide who clears the merge conflicts on [shopify-connector#305](https://github.com/gfs-bifrost/shopify-connector/pull/305) (FUSE-1198 stack 1/7): he is off today and Mon 12 Oct, and it went conflicted after Renovate #324 merged this morning — [#305](https://github.com/gfs-bifrost/shopify-connector/pull/305) — merged 10-09 14:35Z
@@ -51,6 +52,7 @@ title: Matt Shaw
 - [x] fuse-mcp#8 conflict — dropped out of the open sweep 07-15, presumed resolved/merged; confirm
 
 **Owed to me**
+- [ ] Rebase or close the four Distraction Duty drafts idle 14 days ([fuse-mocker#35](https://github.com/gfs-bifrost/fuse-mocker/pull/35), [collector#131](https://github.com/gfs-bifrost/collector/pull/131), [dedupe-service#166](https://github.com/gfs-bifrost/dedupe-service/pull/166), [fapi#182](https://github.com/gfs-bifrost/fapi/pull/182)) and fix CI on [shopify-connector#368](https://github.com/gfs-bifrost/shopify-connector/pull/368). He reassigned FUSE-1314 to Schuster on 9 Nov at 14:06 UTC but the five PRs stay in his name — [digest](../Digests/2026-11/2026-11-10.md)
 - [ ] Close out the [FUSE-1198](https://globalfreight.atlassian.net/browse/FUSE-1198) stack: 8 drafts ([shopify-connector#305](https://github.com/gfs-bifrost/shopify-connector/pull/305), [#311](https://github.com/gfs-bifrost/shopify-connector/pull/311), [#312](https://github.com/gfs-bifrost/shopify-connector/pull/312), [#314](https://github.com/gfs-bifrost/shopify-connector/pull/314), [#315](https://github.com/gfs-bifrost/shopify-connector/pull/315), [#316](https://github.com/gfs-bifrost/shopify-connector/pull/316), [#317](https://github.com/gfs-bifrost/shopify-connector/pull/317), [observability#62](https://github.com/gfs-bifrost/observability/pull/62)). He hopes to finish it today — [DM](https://gfsdeliver-eng.slack.com/archives/D09A702MDQF/p1791389372503489)
 - [x] Land FUSE-1283 (Shopify Admin API 2026-04, [shopify-connector#309](https://github.com/gfs-bifrost/shopify-connector/pull/309)) before Shopify's 16 Oct cutover — merged 10-05, ticket Done 10-06
 - [ ] Resolve the new merge conflict on [shopify-connector#242](https://github.com/gfs-bifrost/shopify-connector/pull/242)
@@ -80,6 +82,7 @@ title: Matt Shaw
 - ✍️ 
 
 ## Together (newest first)
+- 2026-11-10 — 1:1 at 10:30; Tom Dunn's work-order and FGR QA email is addressed to you both; he moved FUSE-1314 to Schuster yesterday at 14:06 UTC with five PRs still in his name → [[Meetings/1-1 Matt Shaw]]
 - 2026-11-09 — has taken over Senior Developer interview scheduling with Ruby; asked whether you join the first-round calls → [[Digests/2026-11/2026-11-09]]
 - 2026-11-05 — candidate review (37m recording): Matthew Shaw to be interviewed first, Edward Savage and Darren Taylor in → [recording](http://localhost:3000/recordings/20261105-132921-2bf2)
 - 2026-11-05 — Back from leave (2 to 4 Nov); 1:1 at 11:30 → [[Meetings/1-1 Matt Shaw]]

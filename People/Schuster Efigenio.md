@@ -38,6 +38,7 @@ title: Schuster Efigenio
 - [ ] Review [renovate-runner#6](https://github.com/gfs-bifrost/renovate-runner/pull/6) (no ticket) — 🔵 awaiting review, CI green, still untouched since 07-21
 
 **Owed to me**
+- [ ] Own Sprint 16 Distraction Duty ([FUSE-1314](https://globalfreight.atlassian.net/browse/FUSE-1314), reassigned to him by Matt Shaw on 9 Nov at 14:06 UTC) and the red nightlies: the Node golden image cannot publish because its own scan finds two zlib1g HIGH advisories — [digest](../Digests/2026-11/2026-11-10.md)
 - [x] Say where [FUSE-1210](https://globalfreight.atlassian.net/browse/FUSE-1210) stands — now Code Review with [wms-gateway#37](https://github.com/gfs-bifrost/wms-gateway/pull/37) and [fapi#169](https://github.com/gfs-bifrost/fapi/pull/169) open
 - [x] Say where [FUSE-1035](https://globalfreight.atlassian.net/browse/FUSE-1035) stands — now Code Review with [fapi#170](https://github.com/gfs-bifrost/fapi/pull/170) open
 - [ ] Move [FUSE-642](https://globalfreight.atlassian.net/browse/FUSE-642) and [FUSE-828](https://globalfreight.atlassian.net/browse/FUSE-828) through QA, in QA about 19 days
@@ -64,6 +65,7 @@ title: Schuster Efigenio
 - ✍️ 
 
 ## Together (newest first)
+- 2026-11-10 — now holds Distraction Duty (FUSE-1314) after Matt Shaw's reassignment, with five of its PRs still in Matt's name → [[Digests/2026-11/2026-11-10]]
 - 2026-11-03 — merged snap-adapter#311, #313 and #315 yesterday; pkg-node#293 has merge conflicts and FUSE-1302, 1327 and 1328 are all Ready for QA
 - 2026-10-29 — 1:1 at 10:30; FUSE-1302 has two PRs awaiting review (sftp-connector#345, core-infra#16) and FUSE-1328 a fresh Sev 3 draft; new holiday requests for 24 Dec and 29–31 Dec → [[Meetings/1-1 Schuster Efigenio]]
 - 2026-10-27 — Handed Distraction Duty to Matt on Mon 26 Oct; FUSE-1328 in progress and FUSE-1302 in Code Review (sftp-connector#345 and core-infra#16 open)

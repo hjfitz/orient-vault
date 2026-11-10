@@ -7,6 +7,46 @@ title: 1-1 Nylah Klasson
 # 1-1 Nylah Klasson
 
 
+
+## 2026-11-10
+_11:30–12:00 GMT · Epsilon House Office and a Slack huddle · no agenda, no body_
+
+### Context
+
+**Open PRs**
+- [replay-service#134](https://github.com/gfs-bifrost/replay-service/pull/134) (FUSE-1157): draft, red image scan, opened yesterday
+
+**Active Jira**
+- [FUSE-1157](https://globalfreight.atlassian.net/browse/FUSE-1157) Replay: preserve ingest capture through the create_data_failure decode path (In Progress)
+- [FUSE-1151](https://globalfreight.atlassian.net/browse/FUSE-1151) Collector: persist and surface Shopify's captured raw payload (Done 9 Nov)
+
+**Owed by you**
+- Chase her Yusen Advance PDR online conversation assignment, now overdue since 10 Oct — [Yusen reminder](https://outlook.office365.com/owa/?ItemID=AAMkADVhYjUxODIyLWM5NTktNGJmOC1hN2FjLWFjMjllNWUzYmY4MwBGAAAAAAAEXHdKGOMeRLfpaU7ff8ChBwABLsgQpFdPTayXOZTVrraLAAAAAAEMAAABLsgQpFdPTayXOZTVrraLAAHLFMPcAAA%3D&exvsurl=1&viewmodel=ReadMessageItem) — [email](https://outlook.office365.com/owa/?ItemID=AAMkADVhYjUxODIyLWM5NTktNGJmOC1hN2FjLWFjMjllNWUzYmY4MwBGAAAAAAAEXHdKGOMeRLfpaU7ff8ChBwABLsgQpFdPTayXOZTVrraLAAAAAAEMAAABLsgQpFdPTayXOZTVrraLAAHExRL2AAA%3D&exvsurl=1&viewmodel=ReadMessageItem)
+- Chase her overdue mandatory training, Yusen Advance Manual Handling (carried ×13 on my todo)
+- Sign and send on her start-of-year PDR once she finishes the form (due 10 Oct; check it's still needed given her resignation) — [email](https://outlook.office365.com/owa/?ItemID=AAMkADVhYjUxODIyLWM5NTktNGJmOC1hN2FjLWFjMjllNWUzYmY4MwBGAAAAAAAEXHdKGOMeRLfpaU7ff8ChBwABLsgQpFdPTayXOZTVrraLAAAAAAEMAAABLsgQpFdPTayXOZTVrraLAAHCN1rQAAA%3D&exvsurl=1&viewmodel=ReadMessageItem)
+- Complete the leaver form — Bakeerthana Mohankumar (ILG People) forwarded the resignation letter today (2026-09-16) with a direct ask to action it
+- Read her [resignation letter](https://outlook.office365.com/owa/?ItemID=AAMkADVhYjUxODIyLWM5NTktNGJmOC1hN2FjLWFjMjllNWUzYmY4MwBGAAAAAAAEXHdKGOMeRLfpaU7ff8ChBwABLsgQpFdPTayXOZTVrraLAAAAAAEMAAABLsgQpFdPTayXOZTVrraLAAG0S3v8AAA%3D&exvsurl=1&viewmodel=ReadMessageItem) end to end — confirm notice period + last working day
+- Line up the backfill with [[Oli Denton]] (he DM'd about the leaver/team backfill) — 09:00 1:1 today is the venue
+- Plan handover of her open work — [observability#28](https://github.com/gfs-bifrost/observability/pull/28) (🔴 conflicts), [collector#89](https://github.com/gfs-bifrost/collector/pull/89) ([FUSE-1058](https://globalfreight.atlassian.net/browse/FUSE-1058), draft) — and any live tickets before her last day
+- Kick off HR offboarding process once the last day is confirmed
+
+**Other context**
+- The fuse-ui PRs raised last time are resolved: #376, #378 and #379 merged on 5 Nov and #348 closed on 6 Nov
+- [FUSE-1314](https://globalfreight.atlassian.net/browse/FUSE-1314) Distraction Duty is no longer hers: Matt Shaw reassigned it to [[Schuster Efigenio]] on 9 Nov
+- [FUSE-1330](https://globalfreight.atlassian.net/browse/FUSE-1330) is In QA with [[Schuster Efigenio]], so she does not take it
+- No agenda on the invite
+
+### To raise
+- [ ] replay-service#134 (FUSE-1157) is a draft with a red image scan: what is left on it, and can it land before her last day?
+- [ ] What is her last working day, and what is left to hand over? (carried ×5)
+- [ ] Her two overdue Yusen Advance items: the PDR conversation (due 10 Oct) and Manual Handling (carried ×4)
+
+### Carried from last time
+- [ ] (nothing recorded)
+
+### Notes
+- ✍️ 
+
 ## 2026-11-05
 _12:30–13:00 GMT · Slack huddle and the Epsilon House Office room · no agenda_
 

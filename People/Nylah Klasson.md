@@ -20,7 +20,7 @@ title: Nylah Klasson
 **I owe**
 - [ ] Chase her Yusen Advance PDR online conversation assignment, now overdue since 10 Oct — [Yusen reminder](https://outlook.office365.com/owa/?ItemID=AAMkADVhYjUxODIyLWM5NTktNGJmOC1hN2FjLWFjMjllNWUzYmY4MwBGAAAAAAAEXHdKGOMeRLfpaU7ff8ChBwABLsgQpFdPTayXOZTVrraLAAAAAAEMAAABLsgQpFdPTayXOZTVrraLAAHLFMPcAAA%3D&exvsurl=1&viewmodel=ReadMessageItem) — [email](https://outlook.office365.com/owa/?ItemID=AAMkADVhYjUxODIyLWM5NTktNGJmOC1hN2FjLWFjMjllNWUzYmY4MwBGAAAAAAAEXHdKGOMeRLfpaU7ff8ChBwABLsgQpFdPTayXOZTVrraLAAAAAAEMAAABLsgQpFdPTayXOZTVrraLAAHExRL2AAA%3D&exvsurl=1&viewmodel=ReadMessageItem)
 - [ ] Chase her overdue mandatory training, Yusen Advance Manual Handling (carried ×13 on my todo)
-- [ ] Cover Sprint 16 Distraction Duty: [FUSE-1314](https://globalfreight.atlassian.net/browse/FUSE-1314) is assigned to her despite her resignation, and snap-mcp's nightly DevSecOps is red on a CRITICAL `proxy-addr` advisory with no fix PR — [nightly run](https://github.com/gfs-bifrost/snap-mcp/actions/runs/38691891467)
+- [x] Cover Sprint 16 Distraction Duty: [FUSE-1314](https://globalfreight.atlassian.net/browse/FUSE-1314) is no longer hers; Matt Shaw reassigned it to Schuster Efigenio on 9 Nov at 14:06 UTC — [digest](../Digests/2026-11/2026-11-10.md)
 - [ ] Sign and send on her start-of-year PDR once she finishes the form (due 10 Oct; check it's still needed given her resignation) — [email](https://outlook.office365.com/owa/?ItemID=AAMkADVhYjUxODIyLWM5NTktNGJmOC1hN2FjLWFjMjllNWUzYmY4MwBGAAAAAAAEXHdKGOMeRLfpaU7ff8ChBwABLsgQpFdPTayXOZTVrraLAAAAAAEMAAABLsgQpFdPTayXOZTVrraLAAHCN1rQAAA%3D&exvsurl=1&viewmodel=ReadMessageItem)
 - [ ] Complete the leaver form — Bakeerthana Mohankumar (ILG People) forwarded the resignation letter today (2026-09-16) with a direct ask to action it
 - [ ] Read her [resignation letter](https://outlook.office365.com/owa/?ItemID=AAMkADVhYjUxODIyLWM5NTktNGJmOC1hN2FjLWFjMjllNWUzYmY4MwBGAAAAAAAEXHdKGOMeRLfpaU7ff8ChBwABLsgQpFdPTayXOZTVrraLAAAAAAEMAAABLsgQpFdPTayXOZTVrraLAAG0S3v8AAA%3D&exvsurl=1&viewmodel=ReadMessageItem) end to end — confirm notice period + last working day
@@ -45,6 +45,7 @@ title: Nylah Klasson
 - ✍️ 
 
 ## Together (newest first)
+- 2026-11-10 — 1:1 at 11:30; FUSE-1151 went Done yesterday and her FUSE-1157 draft replay-service#134 has a red image scan → [[Meetings/1-1 Nylah Klasson]]
 - 2026-11-03 — 1:1 at 11:30 clashes with the Northstar all-hands; 15 open PRs, 14 with no ticket key, four fuse-ui PRs awaiting review with CI green → [[Meetings/1-1 Nylah Klasson]]
 - 2026-10-29 — 22 open PRs (21 with no ticket key), including a stacked fuse-ui chain; 4 overdue training modules chased by ILG L&D
 - 2026-10-27 — 1:1 today; her FUSE-1148 PR and a 32-PR fuse-ui draft stack are open, her Support Bot suggestion is unanswered → [[Meetings/1-1 Nylah Klasson]]
