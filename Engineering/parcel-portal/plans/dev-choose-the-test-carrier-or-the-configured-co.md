@@ -2,7 +2,7 @@
 ticket: none
 title: 'Dev: choose the test carrier or the configured connection per customer'
 service: parcel-portal
-status: active
+status: blocked
 created: '2026-11-10'
 updated: '2026-11-10'
 repo: ilg-merak/parcel-portal
@@ -14,6 +14,12 @@ pr: '115'
 tags:
 - waypoint
 - plan
+reason: 'Shipped (PR #115 merged, dev). Only increment 6 is left: drive it on dev
+  as an admin. This session can''t sign in to dev: the svc-parcel-bootstrap-admin-password
+  secret is IAM-denied, and the dev smoke''s own admin login is refused (DEV_SMOKE_ADMIN_EMAIL
+  unset). Unblocked by a dev GFS-admin login in ~/.secrets, or by Harry doing the
+  2-minute check.'
+blocked_since: '2026-11-10'
 ---
 # SHIP-1110-dev-carrier-optin — Dev: choose the test carrier or the configured connection per customer
 
