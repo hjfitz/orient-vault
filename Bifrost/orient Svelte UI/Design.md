@@ -10,6 +10,7 @@ tags: [bifrost]
 > Drafted 2026-11-10 by a planning agent from source, then reviewed on three axes (history, factual grounding, increment structure). **The corrections below override the text that follows them**; the unit list and gates in [[orient Svelte UI/Migration State|Migration State]] replace §3–§4's increments and waves.
 >
 > **Corrections from review**
+> - **Dropped 2026-11-10 (Harry): the in-browser terminal and preset prompting.** Ignore everything below about the terminal panel, xterm, the pty ticket, `/api/tmux/*`, `data-send-terminal`/`data-copy` hooks, `CopyPrompt`, `PromptBuilder`, `/tools`, and MDX via a hast runtime: none of it is built. `.mdx` renders as source.
 > - **Index rebuild renames the file.** The core must read `index.sqlite` through `getDb` (`src/index/db.ts`, inode check), not its own connection, and treat a rebuild as a full invalidation. `PRAGMA data_version` alone misses it.
 > - **Analytics:** `PageTracker` uses `sendBeacon`, which can't set `X-Orient`. Exempt `/api/analytics` from that header (Origin + Content-Type still checked).
 > - **Write token:** `orientWriteToken()` mints non-exclusively; mint with `flag: 'wx'` and re-read, so Next and the core can't race (the laptop desk 401 hazard).
