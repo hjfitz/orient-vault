@@ -2,7 +2,7 @@
 ticket: none
 title: 'Per-account Selector services list: block, package code'
 service: parcel-portal
-status: draft
+status: active
 created: '2026-11-10'
 updated: '2026-11-10'
 repo: /home/hjf/code/merak/parcel-portal
