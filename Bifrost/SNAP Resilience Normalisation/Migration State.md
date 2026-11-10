@@ -9,7 +9,7 @@ services:
 - snap-queue-polling-service
 - observability
 created: '2026-11-05'
-updated: '2026-11-09'
+updated: '2026-11-10'
 tags:
 - bifrost
 - migration-state
@@ -59,7 +59,7 @@ Legend: ⬜ not started · 🟨 in progress · ✅ merged · ⛔ blocked · ⏸ 
 ### E — Phase 2: `@gfs-bifrost/snap` (planned when Phase 1 lands)
 | Unit | St | Summary | Deps | Risk | Tier | PR | Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| **S1** | ⬜ | Client helpers | A3 | med | sonnet/medium | | `SNAP_ENDPOINTS`, `isTransientSnapStatus`, `assertSnapWriteOk`. **First**, add a classifier branch running `collectSnapFieldErrors` on `SnapWriteRejectedError.body`, so field errors aren't lost (G5). |
+| **S1** | 🟨 | Client helpers | A3 | med | sonnet/medium | | `SNAP_ENDPOINTS`, `isTransientSnapStatus`, `assertSnapWriteOk`. **First**, add a classifier branch running `collectSnapFieldErrors` on `SnapWriteRejectedError.body`, so field errors aren't lost (G5). |
 | **S2** | ⏸ | Lift the transport into `@gfs-bifrost/snap/http` | S1,X2 | med | sonnet/medium | | `AxiosBuilder.withResilience(...)`. Retry options must cover the poller (408, PATCH with no response, jitter) before it can switch. |
 | **S3** | ⏸ | Types per entity + parsing breakglass | S2 | high | opus/high | | `SNAP_RESPONSE_PARSE_MODE=strict\|tolerant` (app config, Cloud Run env; the package takes it as an option). **Strict applies only to 2xx success bodies, never error envelopes.** Shadow parse first (`snap.response.parse_failed`). Adapter write-path reads default to tolerant. A strict failure on the create path is never permanent without checking the deduper. One entity per PR, live-verified via the snap MCP. |
 | **S4** | ⏸ | Delete `@gfs-bifrost/types`' legacy `snap/` | S3 | med | sonnet/low | | A `types` major. Check fleet consumers first. |
@@ -82,6 +82,8 @@ Legend: ⬜ not started · 🟨 in progress · ✅ merged · ⛔ blocked · ⏸ 
 - **R8 Phase 2 strict parsing discards real errors** — Mitigation: the breakglass env var, strict only on 2xx bodies, the classifier branch first, shadow mode — standing.
 
 ## Decision log
+- **2026-11-10** — **X1 step 1 done: `SNAP_TRANSPORT_GUARD=adapter` is live in prod** (snap-adapter#331 merged as afdb226, revision `snap-adapter-prod-00101-7dp`, 12:05Z, Harry approved). G1 cleared on 2026-11-09: P&F did 4,816 / 3,522 / 2,609 orders Fri–Sun, then returned to baseline. 30-minute smoke: 95 creates handled, 0 failures, 0 errors; `snap.request` now tagged by real host; p95 5.7 s (6.5 s before); breaker state 0; backlog peaks unchanged (0–6). Steps 2–4 follow one a day: the poller timeout and single-probe, then the adapter's 429 trip with the 337501612 message, then the poller host key with the monitor and dashboard re-point. On the way, snap-adapter#332 moved zod to 4.6.7 (the GHSA-mrhx allowlist expired 2026-11-09). Three node24-runtime base-image CVEs are suppressed until 2026-11-16 pending an ilg-platform/images rebuild (Harry's call).
+- **2026-11-10** — **S1 builds on Harry Humby's stale draft #170 (FUSE-1078)**, which asserts every SNAP create response via `assertSnapWriteOk` and keeps field errors classifiable. The work goes on a fresh branch from master, credited to him, with his draft left alone. The assertion ships behind `SNAP_ASSERT_WRITE_RESPONSES` (default off) and is flipped after dev verification (Harry). It also fixes a silent loss: today sales-order and master-data creates treat a SNAP 2xx `{Status:"Error"}` rejection as success.
 - **2026-11-10** — **X1 step 1 shipped: #331 merged 12:01Z (`afdb226`) and deployed to prod 12:04:48Z**, so `SNAP_TRANSPORT_GUARD=adapter` is live (revert: tfvar `snap_transport_guard=interceptors`). Noted by the datadog-watch session from the deploy notification and the git log; the X1 unit row and G1 are not updated here. The attachment-completion handover ([[Handovers/2026-11-09-snap-adapter-attachment-completion]]) now designs against the adapter path.
 - **2026-11-09** — **snap-adapter attachment-completion fix handed over to hjf.shell.platform.ilg.software** (out-of-programme-unit follow-up to tonight's ilg005 incident: orders acked as `already_in_wms` skip their post-create attachments; 30 of 35 affected shipments backfilled in Snap, 5 despatched left). Record: [[Handovers/2026-11-09-snap-adapter-attachment-completion]]. Not an X1 step; X1 stays PR #331.
 - **2026-11-06** — **Phase 1 code is complete** (A2a–A3 and Q1–Q5, including Q2b and Q3a, all in prod with every switch at today's behaviour). What's left of phase 1 is the X1 flip after G1, then X2, O1–O3 and Q3b. Both poller switches that can wedge a host (`SNAP_BREAKER_SINGLE_PROBE`, `SNAP_MAX_CONCURRENT_REQUESTS`) **refuse to start without `SNAP_REQUEST_TIMEOUT_MS`**. That's a config-schema rule, proved on dev (the revision failed its startup probe with the reason, and traffic stayed put).
