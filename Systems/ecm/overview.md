@@ -22,7 +22,7 @@ confidence: moderate
 **Standing context.** Replacing ECM and Selector with Merak is an unconfirmed hunch (Harry, 2026-11-09). The MPK pages say "a replacement" and leave the choice to the Merak team. Keep any new wording hypothetical.
 
 ## Tracking
-Tracking is choreography, not orchestration. `tracking-core` leases due parcels to polling connectors at one interval per carrier and state. Everything after `raw_tracking.v1` reacts to topics. The full explainer is [[Systems/ecm/tracking]] [4]. It covers polling, the event shape at each stage, the topic spine, the status model, weaknesses and what a replacement must keep. The guardrails are G9 to G14 in [[Systems/ecm/architecture]]. The topic-by-topic account of all 70 Terraform topics, with verdicts, is MPK page 356155424 and its source copy [[Handovers/2026-11-09-merak-replacement-pages.page7-ecm-topics]].
+Tracking is choreography, not orchestration. `tracking-core` leases due parcels to polling connectors at one interval per carrier and state. Everything after `raw_tracking.v1` reacts to topics. The full explainer is [[Systems/ecm/tracking]] [4]. It covers polling, the event shape at each stage, the topic spine, the status model, weaknesses and what a replacement must keep. The guardrails are G9 to G14 in [[Systems/ecm/architecture]]. The topic-by-topic account of all 70 Terraform topics, with verdicts, is MPK page 356155424 and its source copy [[Handovers/2026-11-09-merak-replacement-pages.page7-ecm-topics]]. The polling behaviour is MPK 356614148 and the event and status model is MPK 356614184, with source copies [[Handovers/2026-11-09-merak-replacement-pages.page8-tracking-chasing]] and [[Handovers/2026-11-09-merak-replacement-pages.page9-tracking-model]].
 
 ## Where the research lives
 
@@ -45,6 +45,8 @@ All pages are in the MPK space, at `https://globalfreight.atlassian.net/wiki/spa
 | Legacy Selector (index), Customer Data Flow | 351764483, 352157700 | Live. See [[selector]] |
 | Shipment Identity: Why ECM Gives Each Shipment Its Own ID | 355631312 | Published draft, unverified (9 Nov 2026). Code read at `gfs-ecm/shipment-identity-service` `7454a4e`; volumes from Datadog over the canonical window |
 | ECM Pub/Sub Topics: Shapes, Producers and Consumers | 356155424 | Published draft, unverified (10 Nov 2026). 70 Terraform topics from code and manifests at the shas listed; Datadog counters for 41 |
+| Chasing a Parcel: How GFS Decides What to Track and When | 356614148 | Published draft, unverified (10 Nov 2026). `tracking-core` code read at `c081108`; prod etcd polling values unread |
+| What a Tracking Update Means: Events, Statuses and Delivery Outcomes | 356614184 | Published draft, unverified (10 Nov 2026). Code read at the shas on the page; the group spreadsheet is unread |
 
 Harry declined a verification run for the five drafts. Do not run one unless he asks. One Sonnet reader built page 4 from the Billing space and the Selector docs. It did not read CCDIS or the `REG_WILKO_*` procedures [1].
 
@@ -81,6 +83,7 @@ The vault copies are the source for edits. Change the live page first, then the 
 - [[Handovers/2026-11-09-merak-replacement-pages.page5-pod-by-carrier]]
 - [[Handovers/2026-11-09-merak-replacement-pages.page6-shipment-identity]]
 - [[Handovers/2026-11-09-merak-replacement-pages.page7-ecm-topics]]
+- [[Handovers/2026-11-09-merak-replacement-pages.page8-tracking-chasing]] and [[Handovers/2026-11-09-merak-replacement-pages.page9-tracking-model]]
 - Topic research copies, 2026-11-10: [[Handovers/2026-11-09-merak-replacement-pages.topic-usage-map]] (the 70-topic map) and [[Handovers/2026-11-09-merak-replacement-pages.topic-datadog-usage]] (Datadog counters)
 - Tracking research copies, 2026-11-10: [[Handovers/2026-11-09-merak-replacement-pages.tracking-core-findings]], [[Handovers/2026-11-09-merak-replacement-pages.tracking-topic-catalogue]] and [[Handovers/2026-11-09-merak-replacement-pages.tracking-model-findings]]
 

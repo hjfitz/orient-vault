@@ -17,6 +17,8 @@ Source: three read-only research reports of 2026-11-10 [1]. Code was read in `tr
 
 **Corrected later on 2026-11-10.** A second read built a usage map of every topic the prod Terraform creates, at Terraform master `35b545ce` and prod manifests `a317dc0` [30]. It found 70 topics and 145 subscriptions, not the 41 topics of the first catalogue. It also corrected the `raw_tracking.v1` consumer count below. The published page is MPK 356155424, with the source copy [[Handovers/2026-11-09-merak-replacement-pages.page7-ecm-topics]].
 
+**Published as pages later on 2026-11-10.** The polling and expiry behaviour is MPK 356614148 and the event, status and delivery-outcome model is MPK 356614184. Both are unverified drafts, with source copies [[Handovers/2026-11-09-merak-replacement-pages.page8-tracking-chasing]] and [[Handovers/2026-11-09-merak-replacement-pages.page9-tracking-model]].
+
 Terms: gRPC is a remote procedure call protocol. etcd is the key-value store that holds connector config. RAG is red, amber, green. POD is proof of delivery. CCIS and ICIS are the customer and internal consignment information services, the stores customers read. SUS is `shipment-update-service`.
 
 ## Short answers
@@ -26,6 +28,8 @@ Terms: gRPC is a remote procedure call protocol. etcd is the key-value store tha
 - **CONFIRMED** A tracking update is not a status string. It is three shapes: a scan event, a mapped event and a derived shipment status. The bus carries no status enum [1].
 
 ## Orchestration and polling
+The page for this section is MPK 356614148, "Chasing a Parcel: How GFS Decides What to Track and When".
+
 - **CONFIRMED** One .NET Core 3.1 image runs three roles, chosen by `System__Mode`: consignment-manager, batch-creator and response-publisher. Prod runs 3 replicas of each [4][5].
 - **CONFIRMED** Each connector runs one loop per enabled etcd batch key, that is per carrier and state. The loop asks batch-creator for a batch. If the batch was full it asks again at once, and otherwise it sleeps `IntervalSeconds` (default 30). After an error it sleeps `IntervalErrorSeconds` (default 60) [6].
 - **CONFIRMED** The lease is a Mongo `FindOneAndUpdate` in batch-creator, not in the connector. It matches the carrier and state, skips parcels requested within `TargetPollingMinutes`, sets `lastRequestedAt` to now and takes the oldest first [2][3].
@@ -44,6 +48,8 @@ Terms: gRPC is a remote procedure call protocol. etcd is the key-value store tha
 - **CONFIRMED** response-publisher then calls the status deriver over HTTP to get a `DELIVERED` or `IN_TRANSIT` bucket. That bucket sets the parcel's state and expiry. The response-publisher pod carries a deriver sidecar, image tag `prod-53270`, which no report mapped to a git sha [4][8][11].
 
 ## What a tracking update is
+The page for this section is MPK 356614184, "What a Tracking Update Means: Events, Statuses and Delivery Outcomes".
+
 Each stage has its own shape. The same word, "status", names a different type at each stage.
 
 | Stage | Shape | Carries | Identity |
@@ -157,6 +163,8 @@ Detail and the full list are in [[Systems/ecm/known-context]].
 - [[Handovers/2026-11-09-merak-replacement-pages.tracking-model-findings]]: event shapes per stage, status model, terminal states, mismatches.
 - [[Handovers/2026-11-09-merak-replacement-pages.topic-usage-map]] and [[Handovers/2026-11-09-merak-replacement-pages.topic-datadog-usage]]: all 70 prod Terraform topics with verdicts, and their Datadog counters. The later reading wherever it differs from the catalogue.
 - [[Handovers/2026-11-09-merak-replacement-pages.page7-ecm-topics]]: the published topic page (MPK 356155424).
+- [[Handovers/2026-11-09-merak-replacement-pages.page8-tracking-chasing]]: the published polling page (MPK 356614148).
+- [[Handovers/2026-11-09-merak-replacement-pages.page9-tracking-model]]: the published event and status page (MPK 356614184).
 
 ## Evidence
 ```orient-evidence

@@ -143,7 +143,7 @@ Checked on `rc-hjf` (`uname -n`) at 2026-11-09T11:57Z:
 | --- | --- | --- |
 
 ## Tracking research (2026-11-10)
-**Asked.** How ECM orchestrates tracking, whether the polling interval shrinks as a parcel ages, what a tracking event and a status look like at each stage, and which topics carry them. Harry asked for orient first, before any Confluence page. No Confluence page has been written or edited.
+**Asked.** How ECM orchestrates tracking, whether the polling interval shrinks as a parcel ages, what a tracking event and a status look like at each stage, and which topics carry them. Harry asked for orient first, before any Confluence page. Two pages were published later the same day (see "Published as pages" below).
 
 **Answers, in three lines.**
 - `tracking-core` stores active parcels and leases due ones to connectors over gRPC. It has no scheduler, and the chain after `raw_tracking.v1` is choreography through Pub/Sub topics.
@@ -156,6 +156,11 @@ Checked on `rc-hjf` (`uname -n`) at 2026-11-09T11:57Z:
 - Research copies: [[Handovers/2026-11-09-merak-replacement-pages.tracking-core-findings]], [[Handovers/2026-11-09-merak-replacement-pages.tracking-topic-catalogue]] and [[Handovers/2026-11-09-merak-replacement-pages.tracking-model-findings]].
 
 **Owed corrections (Confluence not edited, Harry to decide).** Polling Connectors (353697880) gives the `FindOneAndUpdate` to the connector, and it runs in batch-creator. How Carriers Feed ECM, Selector and ECM Coupling and Shipment Identity state the 90-day expiry too firmly. Tracking Events and Webhooks says every event carries the raw code beside the derived status. The full list, and the contradictions in the `tracking-core` Waypoint docs, are in `known-context` under Owed.
+
+**Published as pages (2026-11-10).** Harry asked for two pages and authorised publishing. Both are unverified drafts under 351502339, and each links to the other.
+- MPK 356614148, "Chasing a Parcel: How GFS Decides What to Track and When". Source copy [[Handovers/2026-11-09-merak-replacement-pages.page8-tracking-chasing]]. Code read at `tracking-core` `c081108`.
+- MPK 356614184, "What a Tracking Update Means: Events, Statuses and Delivery Outcomes". Source copy [[Handovers/2026-11-09-merak-replacement-pages.page9-tracking-model]]. Code read at the shas on the page.
+- Both pages were fetched back and checked against the source copies: headings, table rows, gap-marker counts and links. The root index (351502339) is hand-written and does not list either page, the topics page or Shipment Identity. Harry decides whether to add them.
 
 ## Topic usage (2026-11-10)
 **Asked.** Harry asked for a page on the ECM Pub/Sub topics: what each carries, who writes it and who reads it. Harry reviewed the draft and authorised publishing.
