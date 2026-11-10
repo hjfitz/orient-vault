@@ -77,3 +77,16 @@
 {"t":"leave","at":"2026-11-09T16:59:54.670Z","visit":"34d18580-c2e0-4a4f-aa6b-b1b42d3c56b3","activeMs":15000}
 {"t":"leave","at":"2026-11-09T17:00:13.472Z","visit":"34d18580-c2e0-4a4f-aa6b-b1b42d3c56b3","activeMs":18000}
 {"t":"leave","at":"2026-11-09T21:12:36.825Z","visit":"34d18580-c2e0-4a4f-aa6b-b1b42d3c56b3","activeMs":21000}
+{"t":"view","at":"2026-11-10T10:25:32.705Z","visit":"95157856-aabb-49b7-8877-e1d826484b85","route":"/today"}
+{"t":"leave","at":"2026-11-10T10:25:36.733Z","visit":"95157856-aabb-49b7-8877-e1d826484b85","activeMs":3000}
+{"t":"view","at":"2026-11-10T10:25:36.735Z","visit":"3495dc46-20db-4b8e-a91a-a1d3aab2d050","route":"/puzzles"}
+{"t":"leave","at":"2026-11-10T10:25:39.333Z","visit":"3495dc46-20db-4b8e-a91a-a1d3aab2d050","activeMs":2000}
+{"t":"view","at":"2026-11-10T10:25:39.623Z","visit":"39a7c985-b290-49b9-884b-a0e1be518091","route":"/puzzles","tab":"queens"}
+{"t":"leave","at":"2026-11-10T10:31:27.019Z","visit":"39a7c985-b290-49b9-884b-a0e1be518091","activeMs":164000}
+{"t":"view","at":"2026-11-10T10:34:10.334Z","visit":"0744cbe9-e3d4-4361-8b31-3a12f2884dc2","route":"/"}
+{"t":"view","at":"2026-11-10T10:34:10.955Z","visit":"620afaff-312d-4b07-bb2d-31822628f0dd","route":"/today"}
+{"t":"leave","at":"2026-11-10T10:34:13.176Z","visit":"620afaff-312d-4b07-bb2d-31822628f0dd","activeMs":2000}
+{"t":"view","at":"2026-11-10T10:34:13.489Z","visit":"8f70c924-ad41-45e7-a617-c922080642f3","route":"/recordings"}
+{"t":"leave","at":"2026-11-10T10:34:21.731Z","visit":"8f70c924-ad41-45e7-a617-c922080642f3","activeMs":6000}
+{"t":"leave","at":"2026-11-10T10:35:19.975Z","visit":"8f70c924-ad41-45e7-a617-c922080642f3","activeMs":58000}
+{"t":"leave","at":"2026-11-10T10:38:19.807Z","visit":"8f70c924-ad41-45e7-a617-c922080642f3","activeMs":59000}
