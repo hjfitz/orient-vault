@@ -23,7 +23,8 @@
     "Room 6": "John C"
   },
   "merged": {
-    "Room 2": "Room 1"
+    "Room 2": "Room 1",
+    "Room 3": "Room 1"
   },
   "summary": {
     "tldr": [
