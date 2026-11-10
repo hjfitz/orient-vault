@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-10 — Send a goods description with every shipment
+
+Send a goods description with every shipment
+
+Shipments now carry Selector's shipment-level Content (each distinct item's customs description, else name, else SKU, joined, cut to 35 characters). FedEx refuses a shipment without it; found by Check with carrier on the dev Beachhead Demo order after the services list was in place.
+
+PR: ilg-merak/parcel-portal#124
+
 ## 2026-11-10 — Shipping-methods editor offers only the account's services
 
 Shipping-methods editor offers only the account's services
