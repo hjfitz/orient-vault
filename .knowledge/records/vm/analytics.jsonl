@@ -99,3 +99,11 @@
 {"t":"leave","at":"2026-11-10T11:02:14.058Z","visit":"65a819a2-e7c1-435d-b884-2cec75c9e0f1","activeMs":85000}
 {"t":"view","at":"2026-11-10T11:44:54.665Z","visit":"3971be55-35dd-434a-aca8-955e51909476","route":"/"}
 {"t":"view","at":"2026-11-10T11:44:55.526Z","visit":"5e202603-923e-4365-bbdc-4a7d3eb158cc","route":"/today"}
+{"t":"leave","at":"2026-11-10T11:47:49.850Z","visit":"5e202603-923e-4365-bbdc-4a7d3eb158cc","activeMs":164000}
+{"t":"leave","at":"2026-11-10T11:50:39.287Z","visit":"5e202603-923e-4365-bbdc-4a7d3eb158cc","activeMs":171000}
+{"t":"leave","at":"2026-11-10T11:52:41.930Z","visit":"5e202603-923e-4365-bbdc-4a7d3eb158cc","activeMs":182000}
+{"t":"leave","at":"2026-11-10T11:53:38.034Z","visit":"5e202603-923e-4365-bbdc-4a7d3eb158cc","activeMs":184000}
+{"t":"leave","at":"2026-11-10T11:56:35.162Z","visit":"5e202603-923e-4365-bbdc-4a7d3eb158cc","activeMs":186000}
+{"t":"view","at":"2026-11-10T11:56:35.164Z","visit":"acd86c9a-8a26-4c3c-8f20-c1fc80b0bb30","route":"/programmes"}
+{"t":"leave","at":"2026-11-10T11:56:47.286Z","visit":"acd86c9a-8a26-4c3c-8f20-c1fc80b0bb30","activeMs":4000}
+{"t":"leave","at":"2026-11-10T11:59:24.488Z","visit":"acd86c9a-8a26-4c3c-8f20-c1fc80b0bb30","activeMs":5000}
