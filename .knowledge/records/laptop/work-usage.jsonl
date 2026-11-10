@@ -304,3 +304,5 @@
 {"ts": 1794316265, "kind": "programme_tick", "session_id": "0fb571d0-d903-483b-9e8b-1198b51d571f", "programme": "orient Svelte UI", "unit": "U4", "status": "done"}
 {"ts": 1794316268, "kind": "programme_tick", "session_id": "0fb571d0-d903-483b-9e8b-1198b51d571f", "programme": "orient Svelte UI", "unit": "U5", "status": "doing"}
 {"ts": 1794320161, "kind": "ledger", "session_id": "7d291878-abac-48c9-98c1-55f49b04450b", "service": "sftp-connector", "ticket": "FUSE-1351", "programme": null, "heading": "## 2026-11-10 \u2014 FUSE-1351", "prs": ["gfs-bifrost/sftp-connector#408"]}
+{"ts": 1794325078, "kind": "ledger", "session_id": "a1c66d35-5bf7-4f34-9d21-dac5ddb5fabe", "service": "parcel-portal", "ticket": null, "programme": "Parcel Portal", "heading": "## 2026-11-10 \u2014 Store a tenant's Selector services", "prs": ["ilg-merak/parcel-portal#116"]}
+{"ts": 1794325349, "kind": "ledger", "session_id": "a1c66d35-5bf7-4f34-9d21-dac5ddb5fabe", "service": "parcel-portal", "ticket": null, "programme": "Parcel Portal", "heading": "## 2026-11-10 \u2014 Carrier-services API", "prs": ["ilg-merak/parcel-portal#117"]}
