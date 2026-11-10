@@ -800,3 +800,7 @@
 {"session_id": "a25bb30f-e3fe-44fe-885c-4e0ba8c2cc07", "model": "Opus 5.5", "cost_usd": 676.0040249999998, "ts": 1794321822}
 {"session_id": "a25bb30f-e3fe-44fe-885c-4e0ba8c2cc07", "model": "Opus 5.5", "cost_usd": 676.1516245999999, "ts": 1794321832}
 {"session_id": "a25bb30f-e3fe-44fe-885c-4e0ba8c2cc07", "model": "Opus 5.5", "cost_usd": 676.3136953999999, "ts": 1794321850}
+{"session_id": "7f84afae-380e-4959-8dc8-c8b0cbe9f19d", "model": "Sonnet 5.5", "cost_usd": 228.24582899999965, "ts": 1794323593}
+{"session_id": "7f84afae-380e-4959-8dc8-c8b0cbe9f19d", "model": "Sonnet 5.5", "cost_usd": 228.29463149999964, "ts": 1794323595}
+{"session_id": "7f84afae-380e-4959-8dc8-c8b0cbe9f19d", "model": "Sonnet 5.5", "cost_usd": 228.34424079999962, "ts": 1794325397}
+{"session_id": "7f84afae-380e-4959-8dc8-c8b0cbe9f19d", "model": "Sonnet 5.5", "cost_usd": 228.39418799999962, "ts": 1794325399}
