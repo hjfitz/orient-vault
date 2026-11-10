@@ -1,6 +1,6 @@
 ---
 tags: [customer, EADEM]
-verified: '2026-10-22'
+verified: '2026-11-10'
 verified_against: cust sync (config-service)
 generated: config-snapshot
 title: Eadem — overview
@@ -23,7 +23,7 @@ confidence: high
 
 | Connector | Type | Use cases | Confirmations | Mappings |
 | --- | --- | --- | --- | --- |
-| Main SFTP | sftp | purchase_order, sales_order, master_data, goods_out_confirmation | off | 4 |
+| Main SFTP | sftp | master_data, sales_order, purchase_order, goods_out_confirmation | off | 4 |
 
 ## Dev connectors
 
@@ -32,5 +32,5 @@ Dev maps the same use cases per channel as production.
 ## Evidence
 
 ```orient-evidence
-{"v": 1, "items": [{"id": 1, "kind": "log", "ref": "cust sync -> config-service (prod), 2026-10-22", "note": "connectors, use cases, confirmation flags and backend type, read live"}]}
+{"v": 1, "items": [{"id": 1, "kind": "log", "ref": "cust sync -> config-service (prod), 2026-11-10", "note": "connectors, use cases, confirmation flags and backend type, read live"}]}
 ```

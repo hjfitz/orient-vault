@@ -2,7 +2,7 @@
 # Secret-free by construction: allowlisted fields only.
 businessId: BYOMA
 friendlyName: Byoma
-synced: 2026-10-22T06:58Z
+synced: 2026-11-10T08:01Z
 environments:
   prod:
     storefronts:
@@ -19,18 +19,18 @@ environments:
       egressFiletype: csv
       host: 34.89.6.210
       useCases:
-        purchase_order:
-          status: active
-          rules: 12
-          mapping: sha:2ebaa670
-        sales_order:
-          status: active
-          rules: 63
-          mapping: sha:26341993
         master_data:
           status: active
           rules: 52
           mapping: sha:5ebef808
+        sales_order:
+          status: active
+          rules: 63
+          mapping: sha:26341993
+        purchase_order:
+          status: active
+          rules: 12
+          mapping: sha:2ebaa670
         goods_in_confirmation:
           status: active
           rules: 14
@@ -56,18 +56,18 @@ environments:
       egressFiletype: csv
       host: 34.142.66.200
       useCases:
-        purchase_order:
-          status: active
-          rules: 12
-          mapping: sha:f9ead257
-        sales_order:
-          status: active
-          rules: 62
-          mapping: sha:dc70e970
         master_data:
           status: active
           rules: 50
           mapping: sha:6e520aed
+        sales_order:
+          status: active
+          rules: 62
+          mapping: sha:aa0d6991
+        purchase_order:
+          status: active
+          rules: 12
+          mapping: sha:f9ead257
         goods_in_confirmation:
           status: active
           rules: 14
@@ -79,4 +79,8 @@ environments:
     backend:
       type: SNAP
       host: https://ilg003testapi.snapwarehouse.net/api
-changes: []
+changes:
+- at: '2026-11-10'
+  env: dev
+  subject: BYOMA SFTP
+  summary: sales_order mapping changed

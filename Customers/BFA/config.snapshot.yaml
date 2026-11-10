@@ -2,7 +2,7 @@
 # Secret-free by construction: allowlisted fields only.
 businessId: BFA
 friendlyName: Built for Athletes
-synced: 2026-10-22T06:58Z
+synced: 2026-11-10T08:01Z
 environments:
   prod:
     storefronts:

@@ -1,6 +1,6 @@
 ---
 tags: [customer, CTSAPPL]
-verified: '2026-10-22'
+verified: '2026-11-10'
 verified_against: cust sync (config-service)
 generated: config-snapshot
 title: Charlotte Tilbury SAP (PL) — overview
@@ -23,10 +23,10 @@ confidence: high
 
 | Connector | Type | Use cases | Confirmations | Mappings |
 | --- | --- | --- | --- | --- |
-| Main SFTP | sftp | purchase_order, sales_order, master_data | on | 3 |
+| Main SFTP | sftp | master_data, sales_order, purchase_order | on | 3 |
 
 ## Evidence
 
 ```orient-evidence
-{"v": 1, "items": [{"id": 1, "kind": "log", "ref": "cust sync -> config-service (dev), 2026-10-22", "note": "connectors, use cases, confirmation flags and backend type, read live"}]}
+{"v": 1, "items": [{"id": 1, "kind": "log", "ref": "cust sync -> config-service (dev), 2026-11-10", "note": "connectors, use cases, confirmation flags and backend type, read live"}]}
 ```

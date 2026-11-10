@@ -1,6 +1,6 @@
 ---
 tags: [customer, ACADEMIC]
-verified: '2026-10-22'
+verified: '2026-11-10'
 verified_against: cust sync (config-service)
 generated: config-snapshot
 title: Academically Gifted — overview
@@ -23,18 +23,18 @@ confidence: high
 
 | Connector | Type | Use cases | Confirmations | Mappings |
 | --- | --- | --- | --- | --- |
-| Academically SFTP Connector | sftp | purchase_order, master_data, goods_in_confirmation | off | 3 |
+| Academically SFTP Connector | sftp | master_data, purchase_order, goods_in_confirmation | off | 3 |
 
 ## Dev connectors
 
 | Connector | Type | Use cases | Confirmations | Mappings |
 | --- | --- | --- | --- | --- |
-| Primary SFTP | sftp | purchase_order, master_data | on | 2 |
+| Primary SFTP | sftp | master_data, purchase_order | on | 2 |
 | Shopify LG Dev Store | shopify | sales_order, goods_out_confirmation | on | 2 |
 | Shopify PI Dev Store | shopify | sales_order, goods_out_confirmation | on | 2 |
 
 ## Evidence
 
 ```orient-evidence
-{"v": 1, "items": [{"id": 1, "kind": "log", "ref": "cust sync -> config-service (prod), 2026-10-22", "note": "connectors, use cases, confirmation flags and backend type, read live"}]}
+{"v": 1, "items": [{"id": 1, "kind": "log", "ref": "cust sync -> config-service (prod), 2026-11-10", "note": "connectors, use cases, confirmation flags and backend type, read live"}]}
 ```

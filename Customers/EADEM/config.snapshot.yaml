@@ -2,7 +2,7 @@
 # Secret-free by construction: allowlisted fields only.
 businessId: EADEM
 friendlyName: Eadem
-synced: 2026-10-22T06:58Z
+synced: 2026-11-10T08:01Z
 environments:
   prod:
     storefronts:
@@ -19,18 +19,18 @@ environments:
       egressFiletype: csv
       host: 34.89.6.210
       useCases:
-        purchase_order:
-          status: active
-          rules: 12
-          mapping: sha:5e203c6e
-        sales_order:
-          status: active
-          rules: 62
-          mapping: sha:e3febfed
         master_data:
           status: active
           rules: 50
           mapping: sha:6b180b42
+        sales_order:
+          status: active
+          rules: 62
+          mapping: sha:e3febfed
+        purchase_order:
+          status: active
+          rules: 12
+          mapping: sha:5e203c6e
         goods_out_confirmation:
           status: active
           rules: 27
@@ -62,18 +62,18 @@ environments:
       egressFiletype: csv
       host: 34.142.66.200
       useCases:
-        purchase_order:
-          status: active
-          rules: 12
-          mapping: sha:cc855513
-        sales_order:
-          status: active
-          rules: 62
-          mapping: sha:d8c22b88
         master_data:
           status: active
           rules: 50
           mapping: sha:6b180b42
+        sales_order:
+          status: active
+          rules: 62
+          mapping: sha:d8c22b88
+        purchase_order:
+          status: active
+          rules: 12
+          mapping: sha:cc855513
         goods_out_confirmation:
           status: active
           rules: 27

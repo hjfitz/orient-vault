@@ -2,7 +2,7 @@
 # Secret-free by construction: allowlisted fields only.
 businessId: CTSAPPL
 friendlyName: Charlotte Tilbury SAP (PL)
-synced: 2026-10-22T06:58Z
+synced: 2026-11-10T08:01Z
 environments:
   dev:
     storefronts:
@@ -16,23 +16,35 @@ environments:
       status: inactive
       confirmationsEnabled: true
       stockAdjustmentsEnabled: false
-      egressFiletype: csv
+      egressFiletype: edi
       host: 34.142.66.200
       useCases:
-        purchase_order:
-          status: active
-          rules: 12
-          mapping: sha:e7a8ebe8
-        sales_order:
-          status: active
-          rules: 62
-          mapping: sha:a3efdd28
         master_data:
           status: active
           rules: 50
           mapping: sha:f17ef685
+        sales_order:
+          status: active
+          rules: 62
+          mapping: sha:a06111f7
+        purchase_order:
+          status: active
+          rules: 12
+          mapping: sha:47a6caf4
     backend:
       type: SNAP
       host: https://ilg003testapi.snapwarehouse.net/api
       broadcastConfirmations: false
-changes: []
+changes:
+- at: '2026-11-10'
+  env: dev
+  subject: Main SFTP
+  summary: 'egressFiletype: csv -> edi'
+- at: '2026-11-10'
+  env: dev
+  subject: Main SFTP
+  summary: purchase_order mapping changed
+- at: '2026-11-10'
+  env: dev
+  subject: Main SFTP
+  summary: sales_order mapping changed

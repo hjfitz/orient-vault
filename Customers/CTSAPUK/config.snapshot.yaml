@@ -2,7 +2,7 @@
 # Secret-free by construction: allowlisted fields only.
 businessId: CTSAPUK
 friendlyName: Charlotte Tilbury SAP (UK)
-synced: 2026-10-22T06:58Z
+synced: 2026-11-10T08:01Z
 environments:
   dev:
     storefronts:
@@ -16,23 +16,53 @@ environments:
       status: active
       confirmationsEnabled: false
       stockAdjustmentsEnabled: false
-      egressFiletype: csv
+      egressFiletype: edi
       host: 34.142.66.200
       useCases:
-        purchase_order:
-          status: active
-          rules: 12
-          mapping: sha:30621a90
-        sales_order:
-          status: active
-          rules: 62
-          mapping: sha:78ed837a
         master_data:
           status: active
           rules: 50
           mapping: sha:30af393d
+        sales_order:
+          status: active
+          rules: 62
+          mapping: sha:78ed837a
+        purchase_order:
+          status: active
+          rules: 12
+          mapping: sha:30621a90
+    - id: conn_561de371c475410d8714a2f7219276eb
+      storefrontId: sf_3b0c33b008684818a49846fc3d6f0346
+      name: Secondary SFTP
+      type: sftp
+      status: active
+      confirmationsEnabled: false
+      stockAdjustmentsEnabled: false
+      egressFiletype: csv
+      host: 34.142.66.200
+      useCases:
+        master_data:
+          status: active
+          rules: 50
+          mapping: sha:30af393d
+        sales_order:
+          status: active
+          rules: 62
+          mapping: sha:78ed837a
+        purchase_order:
+          status: active
+          rules: 12
+          mapping: sha:68b75e95
     backend:
       type: SNAP
       host: https://ilg002testapi.snapwarehouse.net/api
       broadcastConfirmations: false
-changes: []
+changes:
+- at: '2026-11-10'
+  env: dev
+  subject: Secondary SFTP
+  summary: connector added (sftp)
+- at: '2026-11-10'
+  env: dev
+  subject: Main SFTP
+  summary: 'egressFiletype: csv -> edi'

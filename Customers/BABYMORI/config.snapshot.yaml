@@ -2,7 +2,7 @@
 # Secret-free by construction: allowlisted fields only.
 businessId: BABYMORI
 friendlyName: Baby Mori
-synced: 2026-10-22T06:58Z
+synced: 2026-11-10T08:01Z
 environments:
   prod:
     storefronts:
@@ -19,21 +19,22 @@ environments:
       egressFiletype: csv
       host: 34.89.6.210
       useCases:
-        purchase_order:
-          status: active
-          rules: 12
-          mapping: sha:e31b519c
-        sales_order:
-          status: active
-          rules: 62
-          mapping: sha:6b151596
         master_data:
           status: active
           rules: 50
           mapping: sha:f7642059
+        sales_order:
+          status: active
+          rules: 62
+          mapping: sha:6b151596
+        purchase_order:
+          status: active
+          rules: 12
+          mapping: sha:e31b519c
     backend:
       type: SNAP
       host: https://ilg004liveapi.snapfulfil.net/api
+      broadcastConfirmations: false
   dev:
     storefronts:
     - id: sf_f98550c2865f4a21b6515b42ef38795e
@@ -49,19 +50,30 @@ environments:
       egressFiletype: csv
       host: 34.142.66.200
       useCases:
-        purchase_order:
-          status: active
-          rules: 12
-          mapping: sha:7059741b
-        sales_order:
-          status: active
-          rules: 62
-          mapping: sha:6b151596
         master_data:
           status: active
           rules: 50
           mapping: sha:f7642059
+        sales_order:
+          status: active
+          rules: 62
+          mapping: sha:6b151596
+        purchase_order:
+          status: active
+          rules: 12
+          mapping: sha:7059741b
     backend:
       type: SNAP
       host: https://ilg004testapi.snapwarehouse.net/api
-changes: []
+      broadcastConfirmations: false
+changes:
+- at: '2026-11-10'
+  env: dev
+  subject: backend
+  summary: '{''type'': ''SNAP'', ''host'': ''https://ilg004testapi.snapwarehouse.net/api''} -> {''type'':
+    ''SNAP'', ''host'': ''https://ilg004testapi.snapwarehouse.net/api'', ''broadcastConfirmations'': False}'
+- at: '2026-11-10'
+  env: prod
+  subject: backend
+  summary: '{''type'': ''SNAP'', ''host'': ''https://ilg004liveapi.snapfulfil.net/api''} -> {''type'':
+    ''SNAP'', ''host'': ''https://ilg004liveapi.snapfulfil.net/api'', ''broadcastConfirmations'': False}'

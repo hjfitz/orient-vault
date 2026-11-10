@@ -1,6 +1,6 @@
 ---
 tags: [customer, DOCKBAY]
-verified: '2026-10-22'
+verified: '2026-11-10'
 verified_against: cust sync (config-service)
 generated: config-snapshot
 title: Dock and Bay — overview
@@ -24,17 +24,17 @@ confidence: high
 | Connector | Type | Use cases | Confirmations | Mappings |
 | --- | --- | --- | --- | --- |
 | Fulfil.io API Live | rest | no mappings | on | 0 |
-| Primary SFTP | sftp | purchase_order, sales_order, master_data | off | 3 |
+| Primary SFTP | sftp | master_data, sales_order, purchase_order | off | 3 |
 
 ## Dev connectors
 
 | Connector | Type | Use cases | Confirmations | Mappings |
 | --- | --- | --- | --- | --- |
 | Fulfil.io Testing | rest | no mappings | on | 0 |
-| Primary SFTP | sftp | purchase_order, sales_order, master_data, goods_out_confirmation | on | 4 |
+| Primary SFTP | sftp | master_data, sales_order, purchase_order, goods_out_confirmation | on | 4 |
 
 ## Evidence
 
 ```orient-evidence
-{"v": 1, "items": [{"id": 1, "kind": "log", "ref": "cust sync -> config-service (prod), 2026-10-22", "note": "connectors, use cases, confirmation flags and backend type, read live"}]}
+{"v": 1, "items": [{"id": 1, "kind": "log", "ref": "cust sync -> config-service (prod), 2026-11-10", "note": "connectors, use cases, confirmation flags and backend type, read live"}]}
 ```

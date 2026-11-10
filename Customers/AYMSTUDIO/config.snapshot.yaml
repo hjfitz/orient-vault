@@ -2,7 +2,7 @@
 # Secret-free by construction: allowlisted fields only.
 businessId: AYMSTUDIO
 friendlyName: AYM Studio
-synced: 2026-10-22T06:58Z
+synced: 2026-11-10T08:01Z
 environments:
   prod:
     storefronts:
@@ -19,18 +19,18 @@ environments:
       egressFiletype: csv
       host: 34.89.6.210
       useCases:
-        purchase_order:
-          status: active
-          rules: 15
-          mapping: sha:a05bdc2b
-        sales_order:
-          status: active
-          rules: 63
-          mapping: sha:18b890b9
         master_data:
           status: active
           rules: 51
           mapping: sha:07d064a4
+        sales_order:
+          status: active
+          rules: 63
+          mapping: sha:18b890b9
+        purchase_order:
+          status: active
+          rules: 15
+          mapping: sha:a05bdc2b
     backend:
       type: SNAP
       host: https://ilg001liveapi.snapfulfil.net/api
@@ -48,18 +48,18 @@ environments:
       egressFiletype: csv
       host: 34.142.66.200
       useCases:
-        purchase_order:
-          status: active
-          rules: 15
-          mapping: sha:a05bdc2b
-        sales_order:
-          status: active
-          rules: 63
-          mapping: sha:18b890b9
         master_data:
           status: active
           rules: 51
           mapping: sha:881d001b
+        sales_order:
+          status: active
+          rules: 63
+          mapping: sha:18b890b9
+        purchase_order:
+          status: active
+          rules: 15
+          mapping: sha:a05bdc2b
     backend:
       type: SNAP
       host: https://ilg001testapi.snapwarehouse.net/api

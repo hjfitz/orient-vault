@@ -1,0 +1,8 @@
+businessId: ABBOTT
+friendlyName: Abbott Lyon
+environment: production
+connectors: []
+wms: []
+created: '2026-11-10'
+last_synced: null
+kind: customer

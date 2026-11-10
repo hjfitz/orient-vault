@@ -1,6 +1,6 @@
 ---
 tags: [customer, BFA]
-verified: '2026-10-22'
+verified: '2026-11-10'
 verified_against: cust sync (config-service)
 generated: config-snapshot
 title: Built for Athletes — overview
@@ -34,5 +34,5 @@ confidence: high
 ## Evidence
 
 ```orient-evidence
-{"v": 1, "items": [{"id": 1, "kind": "log", "ref": "cust sync -> config-service (prod), 2026-10-22", "note": "connectors, use cases, confirmation flags and backend type, read live"}]}
+{"v": 1, "items": [{"id": 1, "kind": "log", "ref": "cust sync -> config-service (prod), 2026-11-10", "note": "connectors, use cases, confirmation flags and backend type, read live"}]}
 ```

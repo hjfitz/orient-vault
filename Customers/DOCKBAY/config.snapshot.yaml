@@ -2,7 +2,7 @@
 # Secret-free by construction: allowlisted fields only.
 businessId: DOCKBAY
 friendlyName: Dock and Bay
-synced: 2026-10-22T06:58Z
+synced: 2026-11-10T08:01Z
 environments:
   prod:
     storefronts:
@@ -27,18 +27,18 @@ environments:
       egressFiletype: csv
       host: 34.89.6.210
       useCases:
-        purchase_order:
-          status: active
-          rules: 12
-          mapping: sha:989264f5
-        sales_order:
-          status: active
-          rules: 62
-          mapping: sha:a283cc31
         master_data:
           status: active
           rules: 50
           mapping: sha:3820ec87
+        sales_order:
+          status: active
+          rules: 62
+          mapping: sha:a283cc31
+        purchase_order:
+          status: active
+          rules: 12
+          mapping: sha:989264f5
     backend:
       type: SNAP
       host: https://ilg001liveapi.snapfulfil.net/api
@@ -66,18 +66,18 @@ environments:
       egressFiletype: csv
       host: 34.142.66.200
       useCases:
-        purchase_order:
-          status: active
-          rules: 12
-          mapping: sha:989264f5
-        sales_order:
-          status: active
-          rules: 62
-          mapping: sha:a283cc31
         master_data:
           status: active
           rules: 50
           mapping: sha:3820ec87
+        sales_order:
+          status: active
+          rules: 62
+          mapping: sha:a283cc31
+        purchase_order:
+          status: active
+          rules: 12
+          mapping: sha:989264f5
         goods_out_confirmation:
           status: active
           rules: 27

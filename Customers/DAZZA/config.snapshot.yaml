@@ -2,7 +2,7 @@
 # Secret-free by construction: allowlisted fields only.
 businessId: DAZZA
 friendlyName: Darren Test Customer
-synced: 2026-10-22T06:58Z
+synced: 2026-11-10T08:01Z
 environments:
   dev:
     storefronts:
@@ -38,14 +38,14 @@ environments:
       egressFiletype: csv
       host: 34.142.66.200
       useCases:
-        purchase_order:
-          status: active
-          rules: 16
-          mapping: sha:4fc66ad5
         sales_order:
           status: active
           rules: 63
           mapping: sha:544f884b
+        purchase_order:
+          status: active
+          rules: 16
+          mapping: sha:4fc66ad5
     - id: conn_e5559c89782144589ef79c7432b4e9c5
       storefrontId: sf_91a8dcd10ad241a28c0a0850ead79806
       name: Demo SFTP
@@ -56,14 +56,14 @@ environments:
       egressFiletype: csv
       host: 34.142.66.200
       useCases:
-        sales_order:
-          status: active
-          rules: 62
-          mapping: sha:bbf12a58
         master_data:
           status: active
           rules: 50
           mapping: sha:7fe97e7b
+        sales_order:
+          status: active
+          rules: 62
+          mapping: sha:bbf12a58
         goods_in_confirmation:
           status: active
           rules: 0
@@ -77,14 +77,14 @@ environments:
       egressFiletype: csv
       host: 34.142.66.200
       useCases:
-        purchase_order:
-          status: active
-          rules: 15
-          mapping: sha:0c0e12f2
         sales_order:
           status: active
           rules: 0
           mapping: sha:111bf95d
+        purchase_order:
+          status: active
+          rules: 15
+          mapping: sha:0c0e12f2
     - id: conn_54ec5a382efd4320ac091da6fe2ac09b
       storefrontId: sf_cc082fe3090f465e9a55cad3ecc96507
       name: harry test
@@ -117,18 +117,18 @@ environments:
       egressFiletype: csv
       host: 34.142.66.200
       useCases:
-        purchase_order:
-          status: active
-          rules: 12
-          mapping: sha:bf93178d
-        sales_order:
-          status: active
-          rules: 62
-          mapping: sha:bbf12a58
         master_data:
           status: active
           rules: 50
           mapping: sha:7fe97e7b
+        sales_order:
+          status: active
+          rules: 62
+          mapping: sha:bbf12a58
+        purchase_order:
+          status: active
+          rules: 12
+          mapping: sha:bf93178d
     - id: conn_f6b2646c44fb41eea330baedbaa4424e
       storefrontId: sf_8af4640e84c54906bac10f0db90a7a94
       name: sftpfour
@@ -139,18 +139,18 @@ environments:
       egressFiletype: csv
       host: 34.142.66.200
       useCases:
-        purchase_order:
-          status: active
-          rules: 12
-          mapping: sha:51006a3c
-        sales_order:
-          status: active
-          rules: 62
-          mapping: sha:cb6d4f88
         master_data:
           status: active
           rules: 49
           mapping: sha:ef241d1e
+        sales_order:
+          status: active
+          rules: 62
+          mapping: sha:cb6d4f88
+        purchase_order:
+          status: active
+          rules: 12
+          mapping: sha:51006a3c
     - id: conn_4ccebc536100450b89dabbbe7e1b0087
       storefrontId: sf_8af4640e84c54906bac10f0db90a7a94
       name: sftptwo

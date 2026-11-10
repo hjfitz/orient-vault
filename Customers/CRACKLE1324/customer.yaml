@@ -1,0 +1,8 @@
+businessId: CRACKLE1324
+friendlyName: FUSE-1324 dev canary (crackle)
+environment: production
+connectors: []
+wms: []
+created: '2026-11-10'
+last_synced: null
+kind: fixture

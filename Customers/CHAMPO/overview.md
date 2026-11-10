@@ -1,6 +1,6 @@
 ---
 tags: [customer, CHAMPO]
-verified: '2026-10-22'
+verified: '2026-11-10'
 verified_against: cust sync (config-service)
 generated: config-snapshot
 title: Champo — overview
@@ -23,17 +23,17 @@ confidence: high
 
 | Connector | Type | Use cases | Confirmations | Mappings |
 | --- | --- | --- | --- | --- |
-| Main SFTP | sftp | purchase_order, sales_order, master_data, goods_in_confirmation, goods_out_confirmation | off | 5 |
+| Main SFTP | sftp | master_data, sales_order, purchase_order, goods_in_confirmation, goods_out_confirmation | off | 5 |
 
 ## Dev connectors
 
 | Connector | Type | Use cases | Confirmations | Mappings |
 | --- | --- | --- | --- | --- |
-| SFTP | sftp | purchase_order, sales_order, master_data | on | 3 |
+| SFTP | sftp | master_data, sales_order, purchase_order | on | 3 |
 | sftp 2 | sftp | no mappings | on | 0 |
 
 ## Evidence
 
 ```orient-evidence
-{"v": 1, "items": [{"id": 1, "kind": "log", "ref": "cust sync -> config-service (prod), 2026-10-22", "note": "connectors, use cases, confirmation flags and backend type, read live"}]}
+{"v": 1, "items": [{"id": 1, "kind": "log", "ref": "cust sync -> config-service (prod), 2026-11-10", "note": "connectors, use cases, confirmation flags and backend type, read live"}]}
 ```

@@ -1,16 +1,16 @@
 ---
 tags: [customer, CTSAPUK]
-verified: '2026-10-22'
+verified: '2026-11-10'
 verified_against: cust sync (config-service)
 generated: config-snapshot
 title: Charlotte Tilbury SAP (UK) — overview
-thesis: "Charlotte Tilbury SAP (UK) has 1 sftp connector in dev only and lands in a SNAP backend. No narrative has been captured; this page is generated from live config."
+thesis: "Charlotte Tilbury SAP (UK) has 2 sftp connectors in dev only and lands in a SNAP backend. No narrative has been captured; this page is generated from live config."
 confidence: high
 ---
 # Charlotte Tilbury SAP (UK) — overview
 
 ```orient-bluf
-{"v": 1, "bluf": "Charlotte Tilbury SAP (UK) has 1 sftp connector in dev only and lands in a SNAP backend. No narrative has been captured; this page is generated from live config.", "confidence": "high", "action": "none"}
+{"v": 1, "bluf": "Charlotte Tilbury SAP (UK) has 2 sftp connectors in dev only and lands in a SNAP backend. No narrative has been captured; this page is generated from live config.", "confidence": "high", "action": "none"}
 ```
 
 ## Integration shape
@@ -23,10 +23,11 @@ confidence: high
 
 | Connector | Type | Use cases | Confirmations | Mappings |
 | --- | --- | --- | --- | --- |
-| Main SFTP | sftp | purchase_order, sales_order, master_data | off | 3 |
+| Main SFTP | sftp | master_data, sales_order, purchase_order | off | 3 |
+| Secondary SFTP | sftp | master_data, sales_order, purchase_order | off | 3 |
 
 ## Evidence
 
 ```orient-evidence
-{"v": 1, "items": [{"id": 1, "kind": "log", "ref": "cust sync -> config-service (dev), 2026-10-22", "note": "connectors, use cases, confirmation flags and backend type, read live"}]}
+{"v": 1, "items": [{"id": 1, "kind": "log", "ref": "cust sync -> config-service (dev), 2026-11-10", "note": "connectors, use cases, confirmation flags and backend type, read live"}]}
 ```

@@ -2,7 +2,7 @@
 # Secret-free by construction: allowlisted fields only.
 businessId: EPARFUM
 friendlyName: Euro Parfums
-synced: 2026-10-22T06:58Z
+synced: 2026-11-10T08:01Z
 environments:
   prod:
     storefronts:
@@ -19,18 +19,18 @@ environments:
       egressFiletype: csv
       host: 34.89.6.210
       useCases:
-        purchase_order:
-          status: active
-          rules: 15
-          mapping: sha:7b9cd11d
-        sales_order:
-          status: active
-          rules: 63
-          mapping: sha:1ec36543
         master_data:
           status: active
           rules: 52
           mapping: sha:f62c2891
+        sales_order:
+          status: active
+          rules: 63
+          mapping: sha:1ec36543
+        purchase_order:
+          status: active
+          rules: 15
+          mapping: sha:7b9cd11d
         goods_in_confirmation:
           status: active
           rules: 14
@@ -56,18 +56,18 @@ environments:
       egressFiletype: csv
       host: 34.142.66.200
       useCases:
-        purchase_order:
-          status: active
-          rules: 15
-          mapping: sha:ad163508
-        sales_order:
-          status: active
-          rules: 64
-          mapping: sha:beb38661
         master_data:
           status: active
           rules: 52
           mapping: sha:7c1f7b13
+        sales_order:
+          status: active
+          rules: 64
+          mapping: sha:beb38661
+        purchase_order:
+          status: active
+          rules: 15
+          mapping: sha:ad163508
         goods_in_confirmation:
           status: active
           rules: 14

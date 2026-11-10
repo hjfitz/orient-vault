@@ -2,7 +2,7 @@
 # Secret-free by construction: allowlisted fields only.
 businessId: CHAMPO
 friendlyName: Champo
-synced: 2026-10-22T06:58Z
+synced: 2026-11-10T08:01Z
 environments:
   prod:
     storefronts:
@@ -19,18 +19,18 @@ environments:
       egressFiletype: csv
       host: 34.89.6.210
       useCases:
-        purchase_order:
-          status: active
-          rules: 12
-          mapping: sha:81f253cf
-        sales_order:
-          status: active
-          rules: 62
-          mapping: sha:a936cb7d
         master_data:
           status: active
           rules: 51
           mapping: sha:22f4159d
+        sales_order:
+          status: active
+          rules: 62
+          mapping: sha:a936cb7d
+        purchase_order:
+          status: active
+          rules: 12
+          mapping: sha:81f253cf
         goods_in_confirmation:
           status: active
           rules: 14
@@ -57,18 +57,18 @@ environments:
       egressFiletype: csv
       host: 34.142.66.200
       useCases:
-        purchase_order:
-          status: active
-          rules: 12
-          mapping: sha:81f253cf
-        sales_order:
-          status: active
-          rules: 62
-          mapping: sha:ddbaa7e7
         master_data:
           status: active
           rules: 51
           mapping: sha:285f0bf3
+        sales_order:
+          status: active
+          rules: 62
+          mapping: sha:ddbaa7e7
+        purchase_order:
+          status: active
+          rules: 12
+          mapping: sha:81f253cf
     - id: conn_341002a471cb47e680b3d224c19386b4
       storefrontId: sf_b95502b526d9417cbe3cac0f0ec9ca7a
       name: sftp 2

@@ -1,6 +1,6 @@
 ---
 tags: [customer, DAZZA]
-verified: '2026-10-22'
+verified: '2026-11-10'
 verified_against: cust sync (config-service)
 generated: config-snapshot
 title: Darren Test Customer — overview
@@ -25,17 +25,17 @@ confidence: high
 | --- | --- | --- | --- | --- |
 | Demo Rest | rest | no mappings | on | 0 |
 | Resty | rest | no mappings | on | 0 |
-| Default SFTP | sftp | purchase_order, sales_order | on | 2 |
-| Demo SFTP | sftp | sales_order, master_data, goods_in_confirmation | on | 3 |
-| SFTP1 | sftp | purchase_order, sales_order | on | 2 |
+| Default SFTP | sftp | sales_order, purchase_order | on | 2 |
+| Demo SFTP | sftp | master_data, sales_order, goods_in_confirmation | on | 3 |
+| SFTP1 | sftp | sales_order, purchase_order | on | 2 |
 | harry test | sftp | no mappings | on | 0 |
 | sfthreepee | sftp | sales_order | on | 1 |
-| sftpfive | sftp | purchase_order, sales_order, master_data | on | 3 |
-| sftpfour | sftp | purchase_order, sales_order, master_data | on | 3 |
+| sftpfive | sftp | master_data, sales_order, purchase_order | on | 3 |
+| sftpfour | sftp | master_data, sales_order, purchase_order | on | 3 |
 | sftptwo | sftp | no mappings | on | 0 |
 
 ## Evidence
 
 ```orient-evidence
-{"v": 1, "items": [{"id": 1, "kind": "log", "ref": "cust sync -> config-service (dev), 2026-10-22", "note": "connectors, use cases, confirmation flags and backend type, read live"}]}
+{"v": 1, "items": [{"id": 1, "kind": "log", "ref": "cust sync -> config-service (dev), 2026-11-10", "note": "connectors, use cases, confirmation flags and backend type, read live"}]}
 ```

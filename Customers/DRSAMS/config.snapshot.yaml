@@ -2,7 +2,7 @@
 # Secret-free by construction: allowlisted fields only.
 businessId: DRSAMS
 friendlyName: Dr Sams (UK)
-synced: 2026-10-22T06:58Z
+synced: 2026-11-10T08:01Z
 environments:
   prod:
     storefronts:
@@ -19,18 +19,18 @@ environments:
       egressFiletype: csv
       host: 34.89.6.210
       useCases:
-        purchase_order:
-          status: active
-          rules: 12
-          mapping: sha:7ef8b13e
-        sales_order:
-          status: active
-          rules: 62
-          mapping: sha:baf3eef2
         master_data:
           status: active
           rules: 50
           mapping: sha:8da8c99c
+        sales_order:
+          status: active
+          rules: 62
+          mapping: sha:baf3eef2
+        purchase_order:
+          status: active
+          rules: 12
+          mapping: sha:7ef8b13e
         goods_out_confirmation:
           status: active
           rules: 27
@@ -54,18 +54,18 @@ environments:
       egressFiletype: csv
       host: 34.142.66.200
       useCases:
-        purchase_order:
-          status: active
-          rules: 12
-          mapping: sha:7ef8b13e
-        sales_order:
-          status: active
-          rules: 62
-          mapping: sha:baf3eef2
         master_data:
           status: active
           rules: 50
           mapping: sha:8da8c99c
+        sales_order:
+          status: active
+          rules: 62
+          mapping: sha:baf3eef2
+        purchase_order:
+          status: active
+          rules: 12
+          mapping: sha:7ef8b13e
         goods_out_confirmation:
           status: active
           rules: 27
