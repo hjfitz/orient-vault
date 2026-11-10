@@ -9,7 +9,7 @@ services:
 - snap-queue-polling-service
 - observability
 created: '2026-11-05'
-updated: '2026-11-09'
+updated: '2026-11-10'
 tags:
 - bifrost
 - migration-state
@@ -59,7 +59,7 @@ Legend: ⬜ not started · 🟨 in progress · ✅ merged · ⛔ blocked · ⏸ 
 ### E — Phase 2: `@gfs-bifrost/snap` (planned when Phase 1 lands)
 | Unit | St | Summary | Deps | Risk | Tier | PR | Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| **S1** | ⬜ | Client helpers | A3 | med | sonnet/medium | | `SNAP_ENDPOINTS`, `isTransientSnapStatus`, `assertSnapWriteOk`. **First**, add a classifier branch running `collectSnapFieldErrors` on `SnapWriteRejectedError.body`, so field errors aren't lost (G5). |
+| **S1** | 🟨 | Client helpers | A3 | med | sonnet/medium | | `SNAP_ENDPOINTS`, `isTransientSnapStatus`, `assertSnapWriteOk`. **First**, add a classifier branch running `collectSnapFieldErrors` on `SnapWriteRejectedError.body`, so field errors aren't lost (G5). |
 | **S2** | ⏸ | Lift the transport into `@gfs-bifrost/snap/http` | S1,X2 | med | sonnet/medium | | `AxiosBuilder.withResilience(...)`. Retry options must cover the poller (408, PATCH with no response, jitter) before it can switch. |
 | **S3** | ⏸ | Types per entity + parsing breakglass | S2 | high | opus/high | | `SNAP_RESPONSE_PARSE_MODE=strict\|tolerant` (app config, Cloud Run env; the package takes it as an option). **Strict applies only to 2xx success bodies, never error envelopes.** Shadow parse first (`snap.response.parse_failed`). Adapter write-path reads default to tolerant. A strict failure on the create path is never permanent without checking the deduper. One entity per PR, live-verified via the snap MCP. |
 | **S4** | ⏸ | Delete `@gfs-bifrost/types`' legacy `snap/` | S3 | med | sonnet/low | | A `types` major. Check fleet consumers first. |
