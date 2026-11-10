@@ -42,7 +42,7 @@ Legend: ⬜ not started · 🟨 in progress · ✅ merged · ⛔ blocked · ⏸ 
 | **U9** | 🟨 | Palette, quick view, layout globals, SSE | U6, U8 | med | sonnet/medium | | `/api/v1/palette`, quick view (native, or iframe `?embed=1` for Next pages), FocusEffects/SoundHost (same localStorage keys), PageTracker, IndexBanner, not-found/loading, titles; SSE invalidation replaces the 39 polling sites as pages move. |
 | **U10** | ❌ | Terminal panel | U8 | high | opus/high | | Dropped 2026-11-10 (Harry): the in-browser terminal goes. The pty sidecar (:3011), `/api/tmux/*` and every send-to-terminal button are retired at U13 and deleted at Retire. |
 | **U11** | ✅ | Outside contracts on a side port | U7 | med | sonnet/medium | 9a1d283 | desk (`/api/desk`, `/api/desk/act` + bearer), recordings (`glossary`, `upcoming`, audio with Range), `/api/write` — same paths. Verified by desk and `orient-scribe enhance -orient` against the side port. |
-| **U12** | 🟨 | Proxy + `migrated-routes` on a side port | U7, U11 | high | opus/high | | Streams RSC unbuffered, passes encoding and Range, keeps Host for server actions; one route list shared by the core and the SPA's links. Verified by a curl matrix (Host `evil.test` → 421 everywhere, Next pages included) and a server action through the proxy. |
+| **U12** | ✅ | Proxy + `migrated-routes` on a side port | U7, U11 | high | opus/high | c234f6a, fbe5376, f4c8237 | Streams RSC unbuffered, passes encoding and Range, keeps Host for server actions; one route list shared by the core and the SPA's links. Verified by a curl matrix (Host `evil.test` → 421 everywhere, Next pages included) and a server action through the proxy. |
 
 ### Cutover
 | Unit | St | Summary | Deps | Risk | Tier | PR | Notes |
