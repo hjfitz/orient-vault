@@ -1,7 +1,7 @@
 ---
 title: "orient Svelte UI — Migration State"
 programme: "orient-svelte-ui"
-status: planning
+status: active
 owner: "hjf"
 services: ["orient"]
 created: "2026-11-10"
@@ -77,12 +77,12 @@ U5 fills this; all must hold for G1. U0 fills the baseline column.
 
 ## Gates
 - [ ] **G1 — Spike go/no-go** — blocks U6, U7, U8. U5's pass table holds and Harry, after a full digest day on `:3030/today`, calls it terminal-fast. No-go if interaction or navigation budgets fail while server and payload pass: stop and report; keep the core's cache for Next.
-- [ ] **G2 — Mac decided** — blocks U13. Does a Mac still run orient, and how is it launched? CLAUDE.md and desk/README.md still say it does; the 2026-11-09 ledger retired the laptop's own orient.
-- [ ] **G3 — LAN IP in `ptyAllowedHosts`** — blocks U13. `192.168.1.210` is a default in `src/config.ts`; it also gates `/history` and the terminal origin. Drop it, or say what still needs it.
-- [ ] **G4 — Headless runs survive a core restart** — blocks W-B. `KillMode=process` on `orient-core` keeps detached runs alive and retires the "check /sprint before restarting" rule.
+- [x] **G2 — Mac decided** — blocks U13. Does a Mac still run orient, and how is it launched? CLAUDE.md and desk/README.md still say it does; the 2026-11-09 ledger retired the laptop's own orient. Cleared 2026-11-10: no Mac runs orient; a future Mac would use the VM's through the tunnel. Docs corrected.
+- [x] **G3 — LAN IP in `ptyAllowedHosts`** — blocks U13. `192.168.1.210` is a default in `src/config.ts`; it also gates `/history` and the terminal origin. Drop it, or say what still needs it. Cleared 2026-11-10: drop it (Harry). Removed in U13 with the Host guard work.
+- [x] **G4 — Headless runs survive a core restart** — blocks W-B. `KillMode=process` on `orient-core` keeps detached runs alive and retires the "check /sprint before restarting" rule. Cleared 2026-11-10: no headless runs during the migration (Harry), so restarts are safe; no `KillMode` change. The `/sprint` rule stays for after.
 - [ ] **G5 — Foundations used for a day on the side port** — blocks U13. Shell, palette, quick view and terminal in daily use before `:3000` flips.
-- [ ] **G6 — Cross-framework hops accepted** — blocks U13. Between the cutover and each page's wave, moving between a Svelte page and a Next page is a full page load: music and ambient sound stop, unsent drafts are lost, the terminal reattaches. Accept it, or move Focus/Sound earlier.
-- [ ] **G7 — Phone viewing** — blocks U4. design.md judges layouts at phone width too, and the phone reaches orient through Termius. Desktop-only (drops the duplicate mobile nav) or keep a phone layout?
+- [x] **G6 — Cross-framework hops accepted** — blocks U13. Between the cutover and each page's wave, moving between a Svelte page and a Next page is a full page load: music and ambient sound stop, unsent drafts are lost, the terminal reattaches. Accept it, or move Focus/Sound earlier. Cleared 2026-11-10: accepted (Harry uses YouTube Music and another pomodoro timer meanwhile).
+- [x] **G7 — Phone viewing** — blocks U4. design.md judges layouts at phone width too, and the phone reaches orient through Termius. Desktop-only (drops the duplicate mobile nav) or keep a phone layout? Cleared 2026-11-10: desktop only (Harry seldom works from the phone; a phone recorder page may come back on its own later).
 - [ ] **G8 — A week on the full Svelte UI** — blocks Retire.
 
 ## Risks
@@ -95,6 +95,7 @@ U5 fills this; all must hold for G1. U0 fills the baseline column.
 - **R7 Render-cache staleness** — a missed `linkGen` input serves stale link resolution; the parity harness and a `RENDERER_VERSION` bump discipline cover it. — open.
 
 ## Decision log
+- **2026-11-10** — Gates G2, G3, G4, G6, G7 answered by Harry (see Gates). Desktop-only UI; cross-framework full-page hops accepted; no Mac; LAN IP dropped; no headless runs during the migration. Programme active.
 - **2026-11-10** — Swap the UI framework for a Svelte 5 SPA over a standalone core service, keeping the look. Why: input lag Harry feels in every Next/React UI; measured `/today` at ~0.7 s server time per visit, 1.48 MB, ~7,400 elements, markdown re-run per todo. One core process (modules registered with a small kernel), not microservices.
 - **2026-11-10** — Next.js UI frozen: fixes only until a page moves (orient `CLAUDE.md`, ccafb1c).
 - **2026-11-10** — Phone recorder plan abandoned (not in use); the spike port is 3030, not the probe's 3020.

@@ -1,6 +1,6 @@
 ---
 title: "orient Svelte UI — Overview"
-status: planning
+status: active
 verdict: undecided
 owner: "hjf"
 services: ["orient"]
