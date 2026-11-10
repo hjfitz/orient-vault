@@ -40,11 +40,12 @@ Harry, 10 Nov: "can we configure dev to opt in to the test selector or a configu
 <!-- Observable, checkable outcomes — not tasks. Numbered by order: increments cite them as
      (AC 2,4), and sign-off prints which criteria no increment claims. -->
 - [ ] 1. On dev, an admin can untick **Book with the test carrier** on a customer's Carrier card, after which that customer's dispatch, check, void, manifest, refresh and connection check go through its configured Selector connection. Ticked, or for a customer never changed, they use the stand-in as today.
-- [ ] 2. Prod never routes to the stand-in. svc wires the plain Selector client when the test carrier isn't offered, a request to choose it there is refused, and the card doesn't offer it.
-- [ ] 3. Switching a customer's carrier is refused while it has booked shipments or unresolved dispatch attempts, saying what to close first, so nothing booked by one backend is voided, reconciled or manifested by the other (G2).
-- [ ] 4. A customer on its configured connection needs a stored password, as on prod. The password stays optional only while the test carrier is chosen.
-- [ ] 5. Status follows the customer. GET /carrier's `test`, the TEST notices and Manifest availability reflect that customer's choice: the sandbox Manifest guard still applies to a Selector-routed customer on the shared sandbox (G4). The card reads the choice for the customer being edited, not the acting one.
+- [x] 2. Prod never routes to the stand-in. svc wires the plain Selector client when the test carrier isn't offered, a request to choose it there is refused, and the card doesn't offer it.
+- [x] 3. Switching a customer's carrier is refused while it has booked shipments or unresolved dispatch attempts, saying what to close first, so nothing booked by one backend is voided, reconciled or manifested by the other (G2).
+- [x] 4. A customer on its configured connection needs a stored password, as on prod. The password stays optional only while the test carrier is chosen.
+- [x] 5. Status follows the customer. GET /carrier's `test`, the TEST notices and Manifest availability reflect that customer's choice: the sandbox Manifest guard still applies to a Selector-routed customer on the shared sandbox (G4). The card reads the choice for the customer being edited, not the acting one.
 - [ ] 6. Demo customers and the dev smoke keep working: demo customers are created on the test carrier.
+  - (2026-11-10) 2–5 proven by tests, mutation checks and the local drive against the real Selector sandbox (see Verification). 1 waits on the drive on dev (increment 6). 6: demo customers verified; the dev smoke has been red since 8 Nov on its own login, unrelated to this change, so it can't confirm anything until that login is fixed.
 
 ## Affected boundaries
 <!-- Components, paths and contracts this touches. Wikilink existing explainers; do not restate
