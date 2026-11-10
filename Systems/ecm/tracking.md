@@ -17,7 +17,7 @@ Source: three read-only research reports of 2026-11-10 [1]. Code was read in `tr
 
 **Corrected later on 2026-11-10.** A second read built a usage map of every topic the prod Terraform creates, at Terraform master `35b545ce` and prod manifests `a317dc0` [30]. It found 70 topics and 145 subscriptions, not the 41 topics of the first catalogue. It also corrected the `raw_tracking.v1` consumer count below. The published page is MPK 356155424, with the source copy [[Handovers/2026-11-09-merak-replacement-pages.page7-ecm-topics]].
 
-**Published as pages later on 2026-11-10.** The polling and expiry behaviour is MPK 356614148 and the event, status and delivery-outcome model is MPK 356614184. Neither draft is verified yet. Source copies: [[Handovers/2026-11-09-merak-replacement-pages.page8-tracking-chasing]] and [[Handovers/2026-11-09-merak-replacement-pages.page9-tracking-model]].
+**Published as pages later on 2026-11-10.** The polling and expiry behaviour is MPK 356614148 and the event, status and delivery-outcome model is MPK 356614184. Nobody has verified either draft. Source copies: [[Handovers/2026-11-09-merak-replacement-pages.page8-tracking-chasing]] and [[Handovers/2026-11-09-merak-replacement-pages.page9-tracking-model]].
 
 Terms: gRPC is a remote procedure call protocol. etcd is the key-value store that holds connector config. RAG is red, amber, green. POD is proof of delivery. CCIS and ICIS are the customer and internal consignment information services, the stores customers read. SUS is `shipment-update-service`.
 
