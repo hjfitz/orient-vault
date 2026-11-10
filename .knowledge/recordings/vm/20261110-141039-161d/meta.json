@@ -1,7 +1,7 @@
 {
   "id": "20261110-141039-161d",
   "title": "Recording Tue 10 Nov 14:10",
-  "status": "summarising",
+  "status": "done",
   "startedAt": "2026-11-10T14:10:39.682969376Z",
   "endedAt": "2026-11-10T15:47:29.632986829Z",
   "sources": {
@@ -14,6 +14,58 @@
     ]
   },
   "call": false,
+  "summary": {
+    "tldr": [
+      "This was an in-person technical interview of a back-end candidate (referred to as Zarek, a C# engineer ex-PDI/Maintel), run by Harry's team.",
+      "Topics covered: data validation, shared contracts, retries, slow queries, production incidents, testing, a code read of a pub/sub handler, and a whiteboard design for a carrier proxy API.",
+      "The candidate gave sound answers on validation, retry limits and rate limiting, and spotted the main code bugs. They were weaker on contract testing and had no pub/sub experience.",
+      "The candidate met Dan and John, was asked about office days and release practice, then was shown round the office.",
+      "Afterwards the panel's view was that it went well and they got a decent feel for the candidate. No formal decision was recorded."
+    ],
+    "decisions": [],
+    "actions": [],
+    "questions": [
+      "Whether to progress the candidate. The panel only said it should be good and no hiring decision was recorded.",
+      "Whether the code-read exercise should be reworked. Room 1 said it was left Fuse-adjacent and could be replaced with a native example.",
+      "What the roughly fifty Windows services on the legacy app servers actually do. This was raised only as an aside."
+    ],
+    "speakers": [
+      {
+        "label": "Room 4",
+        "name": "Zarek",
+        "basis": "The candidate. Answers the interview questions, describes PDI/Maintel and PhD background, and is addressed as Zero/Zarek."
+      },
+      {
+        "label": "Room 1",
+        "name": "Harry",
+        "basis": "Probable. Runs most of the interview, and Room 5 asks Harry if there is anything else on the code base. Room 2 also speaks for the panel, so this is not certain."
+      },
+      {
+        "label": "Room 5",
+        "name": "",
+        "basis": "Fuse-team interviewer who asks follow-ups on retries, security testing and the code read. Went to Portsmouth 2015-2019 and has a six-month-old baby. Name not given."
+      },
+      {
+        "label": "Room 2",
+        "name": "",
+        "basis": "Co-interviewer who sets up the exercises. Possibly the same person as Room 1, since the diarisation is unclear."
+      },
+      {
+        "label": "Room 6",
+        "name": "",
+        "basis": "Senior colleague who joins late for the meet-the-team part and asks about the maintenance team and RAG. Likely John, but this is uncertain."
+      },
+      {
+        "label": "Room 3",
+        "name": "",
+        "basis": "Panel member heard in short interjections. Could not be placed."
+      }
+    ],
+    "model": "sonnet",
+    "usd": 0.13993999999999998,
+    "durationMs": 8252,
+    "at": "2026-11-10T16:05:29.417643056Z"
+  },
   "host": "vm",
   "capturedOn": "laptop",
   "received": {
