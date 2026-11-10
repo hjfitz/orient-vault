@@ -1,17 +1,19 @@
 ---
-ticket: "none"
-title: "Dev: choose the test carrier or the configured connection per customer"
-service: "parcel-portal"
-status: draft
-created: "2026-11-10"
-updated: "2026-11-10"
-repo: "ilg-merak/parcel-portal"
-worktree: "/home/harry/code/merak/parcel-portal/.claude/worktrees/dev-carrier-choice"
-branch: "hjf/dev-carrier-choice"
-base: "origin/main"
-base_sha: "c357296"
-pr:
-tags: [waypoint, plan]
+ticket: none
+title: 'Dev: choose the test carrier or the configured connection per customer'
+service: parcel-portal
+status: active
+created: '2026-11-10'
+updated: '2026-11-10'
+repo: ilg-merak/parcel-portal
+worktree: /home/harry/code/merak/parcel-portal/.claude/worktrees/dev-carrier-choice
+branch: hjf/dev-carrier-choice
+base: origin/main
+base_sha: c357296
+pr: null
+tags:
+- waypoint
+- plan
 ---
 # SHIP-1110-dev-carrier-optin — Dev: choose the test carrier or the configured connection per customer
 
