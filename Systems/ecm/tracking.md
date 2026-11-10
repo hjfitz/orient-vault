@@ -15,6 +15,8 @@ confidence: moderate
 
 Source: three read-only research reports of 2026-11-10 [1]. Code was read in `tracking-core` at `c0811087` (the ADO master head that day), in prod manifests at `a317dc0` and in Terraform at `e3c6dd9` (2025-07-30, so it may lag). No GCP, etcd or Mongo access was available. Confidence is `moderate` because prod config and the deployed images are not read. Basis tags follow the reports: **CONFIRMED** means a report read it in code, a manifest, Terraform or Datadog. The lease, expiry, bucket and publish-order claims were re-read in the local clone at `c081108`.
 
+Terms: gRPC is a remote procedure call protocol. etcd is the key-value store that holds connector config. RAG is red, amber, green. POD is proof of delivery. CCIS and ICIS are the customer and internal consignment information services, the stores customers read. SUS is `shipment-update-service`.
+
 ## Short answers
 - **CONFIRMED** `tracking-core` is a state store and a work-lease server, not an orchestrator. It has no cron, no timer and no push. Connectors ask it for work [2][3].
 - **CONFIRMED** The polling interval does not fall as a parcel ages. Code holds one `TargetPollingMinutes` per carrier and state (`IN_TRANSIT`, `DELIVERED`, `DELETED`), with no age term [2][3]. **UNKNOWN** Prod values live in etcd, so a person could still have set `DELIVERED` shorter than `IN_TRANSIT`.
@@ -62,7 +64,7 @@ The chain from carrier scan to customer is choreography. A synchronous HTTP call
 ```orient-flow
 { "v": 1, "preset": "data-flow", "title": "Tracking, carrier scan to customer",
   "nodes": [
-    { "id": "ship", "label": "shipments.v2.identified", "sub": "17 pull subscriptions", "kind": "topic" },
+    { "id": "ship", "label": "shipments.v2.identified", "sub": "17 subscriptions", "kind": "topic" },
     { "id": "tc", "label": "tracking-core", "sub": "active-parcels, batch lease", "kind": "service", "tone": "accent" },
     { "id": "con", "label": "Carrier connectors", "sub": "pull batches, call carriers", "kind": "service" },
     { "id": "oth", "label": "Webhook, files, manual", "sub": "three more publishers", "kind": "external" },
@@ -91,14 +93,14 @@ The chain from carrier scan to customer is choreography. A synchronous HTTP call
 ```
 
 - **CONFIRMED** The deriver holds events per shipment in Mongo, closes a sliding window with a timer, and publishes `expired_window`. Three of its own subscriptions on that topic publish the final statuses [19].
-- **CONFIRMED** Subscription defaults apply to every Terraform subscription unless a row says otherwise: pull, 10 s acknowledge deadline, dead-letter after 10 attempts to `dead-letters.v1`, retry backoff 10 s to 600 s, ordering off. The Terraform read is 15 months old [20].
+- **CONFIRMED** Terraform subscriptions share these defaults unless a row says otherwise. They pull, with a 10 s acknowledge deadline. After 10 attempts a message goes to `dead-letters.v1`. Retry backoff runs 10 s to 600 s and ordering is off. This Terraform read is 15 months old [20].
 - **CONFIRMED** `raw_tracking.v1` has four publishers. They are tracking-core, the Royal Mail webhook, `tracking-file-processor` and `shipment-update-service` (manual mark as delivered) [14][21].
 
 Compact topic table. The full 41-topic list is in [[Handovers/2026-11-09-merak-replacement-pages.tracking-topic-catalogue]]. Volumes are Datadog handled counts, 2026-10-23 to 2026-11-07 UTC [22].
 
-| Topic | Publisher | Subscribers | Key fields | Ordering key | DLQ | Volume | Status |
+| Topic | Publisher | Subscribers | Key fields | Ordering key | Dead letter | Volume | Status |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| `shipments.v2.identified` | shipment-identity-service | 17 pull subscriptions (tracking-core, deriver, CCIS, ICIS, claims, gfs-pod and others), 2 webhook push subscriptions | `shipmentId`, `shipmentIdV2`, consignment, parcels | none | pull: default. Push: none | about 1.59M | CONFIRMED |
+| `shipments.v2.identified` | shipment-identity-service | 17 subscriptions (tracking-core, deriver, CCIS, ICIS, claims, gfs-pod and others), 2 webhook push subscriptions | `shipmentId`, `shipmentIdV2`, consignment, parcels | none | pull: default. Push: none | about 1.59M | CONFIRMED |
 | `raw_tracking.v1` | tracking-core, Royal Mail webhook, file processor, `shipment-update-service` | 15 subscriptions: 10 with a running consumer, 1 BigQuery sink, 4 orphaned | `id`, dates, `statusCode`, `statusDescription`, `parcel{}`, `rawData` | none | default | about 6.29M | CONFIRMED |
 | `expired_window` | deriver | deriver, 3 subscriptions | `shipmentId` | none | default | about 4.08M | CONFIRMED |
 | `shipment_tracking_status.v2` | deriver | CCIS (filter `CUSTOMER_VISIBLE`), reporting-ingestion | `shipmentId`, `trackingStatusV2`; attributes `visibilityGroup`, `groupId` | `shipmentId` | default | about 4.08M | CONFIRMED |
@@ -112,14 +114,14 @@ Compact topic table. The full 41-topic list is in [[Handovers/2026-11-09-merak-r
 | `tracking.v1`, `legacy_tracking.v1`, `parcel-eta-update`, `warehouse-*` | none running | none | n/a | n/a | n/a | 0 | Dormant, CONFIRMED |
 
 ## The status model
-- **CONFIRMED** No canonical status exists. There are at least six types, each owned by a different layer: the carrier's code, the mapped event, the shipment status, the RAG exception status, tracking-core's parcel bucket and the Firebird integer. The webhook adds a seventh, a display string [18].
+- **CONFIRMED** No canonical status exists. At least six types exist, one per layer: the carrier's code, the mapped event, the shipment status, the RAG exception status, tracking-core's parcel bucket and the Firebird integer. The webhook adds a seventh, a display string [18].
 - **CONFIRMED** `groupId` is a free string, set by a spreadsheet in Google Cloud Storage that the tracking-configuration-distribution-service parses and pushes to the mapper sidecars. Its columns include `groupId`, `trackingIsDelivered`, `customerIsVisible` and `exceptionStatus` [23].
 - **CONFIRMED** The names in use are `DATA_ONLY`, `IN_TRANSIT`, `DELIVERED`, `PARTIALLY_DELIVERED`, `OUT_FOR_DELIVERY`, `ATTEMPTED`, `HELD_AT_BRANCH`, `AWAITING_CUSTOMER_COLLECTION` and `RETURNED`. The first four have a code path. The CCIS validator names the rest, and `OTHER` is a query bucket only [24][25].
 - **CONFIRMED** The deriver synthesises `PARTIALLY_DELIVERED` and never takes it from a carrier. The mapper defaults any unmapped code to `IN_TRANSIT`, visible to customers [25].
 - **UNKNOWN** Nothing enforces the list: `VALID_GROUP_IDS` is read only when set, and no prod manifest sets it. The prod spreadsheet, its codes and the number of mapped codes are not read.
 - **CONFIRMED** tracking-core's bucket is `DELIVERED` when `groupId` equals `DELIVERED`, and `IN_TRANSIT` otherwise. Delivered also has a second source, the mapped `isDelivered` boolean. Nothing asserts they agree [11][26].
 - **CONFIRMED** No topic or type exists for delivered, out for delivery, POD ready or customer notification. They are `groupId` values, or absent. Failed delivery is `ATTEMPTED` with no reason field. Lost is not modelled [26].
-- **CONFIRMED** The RAG exception status has its own topic. The deriver publishes it on every window expiry, not only on change [26].
+- **CONFIRMED** The red, amber, green (RAG) exception status has its own topic. The deriver publishes it on every window expiry, not only on change [26].
 
 ## Weaknesses
 - **CONFIRMED** Publish before store. A crash between the two republishes events under new IDs, and downstream stores key on `id` [14].

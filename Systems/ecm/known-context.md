@@ -2,12 +2,12 @@
 tags:
 - system
 - ecm
-verified: '2026-11-09'
+verified: '2026-11-10'
 title: ecm — known context
 ---
 # ecm: known context
 
-What the MPK research left standing on 2026-11-09: the canonical figures, Harry's decisions, and every claim still unconfirmed. Sources are the handover [[Handovers/2026-11-09-merak-replacement-pages]] [1] and the number reconciliation run that day [2]. No interview. Figures marked `(snapshot …)` age out.
+What the MPK research left standing on 2026-11-09: the canonical figures, Harry's decisions, and every claim still unconfirmed. Sources are the handover [[Handovers/2026-11-09-merak-replacement-pages]] [1], the number reconciliation run that day [2] and, from 2026-11-10, the tracking research in [[Systems/ecm/tracking]] [3]. No interview. Figures marked `(snapshot …)` age out.
 
 ## Standing decisions (Harry, 2026-11-09)
 - **Merak replacing ECM and Selector is an unconfirmed hunch.** It cannot be confirmed with Jack and Stef yet. The MPK pages say "a replacement" and leave the choice to the Merak team. Keep new wording hypothetical.
@@ -45,6 +45,21 @@ The window is the 15 days from 2026-10-23 00:00 to 2026-11-07 00:00 UTC, which i
 
 About 24 calls per event still holds: 142M over 6.01M is 23.6.
 
+## Settled facts: tracking (2026-11-10)
+Read in code at `tracking-core` `c0811087`, in prod manifests at `a317dc0` and in Terraform at `e3c6dd9`. Detail and evidence are in [[Systems/ecm/tracking]].
+- **CONFIRMED** `tracking-core` is a parcel store and a work-lease server. It has no scheduler, and connectors pull batches over gRPC.
+- **CONFIRMED** The polling interval does not shrink with parcel age. Code holds one `TargetPollingMinutes` per carrier and state. The hypothesis is falsified in code. Prod values are still unread.
+- **CONFIRMED** The Mongo `FindOneAndUpdate` that leases a parcel is in batch-creator, not in the connector.
+- **CONFIRMED** Expiry is set in `ConsignmentHandler.cs` and refreshed in `TrackingStatusManager.cs` on each new event, by carrier and status bucket. A TTL index deletes the parcel. `ActiveParcelDomain.cs` holds no expiry logic.
+- **CONFIRMED** `tracking-core` publishes to `raw_tracking.v1` before it writes Mongo. A failure between them republishes events with fresh IDs.
+- **CONFIRMED** Failures other than credential errors are ignored, and the parcel waits another interval.
+- **CONFIRMED** A parcel's bucket is `DELIVERED` when the deriver's `groupId` equals `DELIVERED`, and `IN_TRANSIT` otherwise. `tracking-core` calls the deriver over HTTP to get it.
+- **CONFIRMED** The chain after `raw_tracking.v1` is choreography through Pub/Sub topics. Terraform is the only central artefact.
+- **CONFIRMED** The bus carries no status enum. `groupId` is a string set by a spreadsheet. The mapped event is stored but never published, so each consumer maps again.
+- **CONFIRMED** The `fenghuang-tracking-core-config` ConfigMap is defined in Terraform (`modules/fenghuang-scanning-core/main.tf`), not missing.
+- **CONFIRMED** The inbound `shipments.v2.identified` subscription has a dead-letter topic after 10 attempts, and the Evri interim topic has one after 5. The earlier "no dead letters" is true of polling only.
+- **CONFIRMED** `tracking-core/agents.md` is wrong. It says Node.js, and it names subscriptions the code does not use. Do not cite it.
+
 ## Unconfirmed
 Each item has a source that says one thing and a source that says another, or no source at all.
 
@@ -61,7 +76,7 @@ Each item has a source that says one thing and a source that says another, or no
 - **Why the invoice-matching service carries a 13,398-entry fix map,** and when it was added. Stated by the identity research, not on any earlier page.
 - **Whether two customers can hold the same consignment number on one carrier.** The identity key leaves out the customer.
 - **Whether a live parcel changes ID at day 31.** Inferred: the expiry is 30 days and tracking runs about 90.
-- **Source of tracking-core, CCIS, ICIS and claims,** so how they use the ID is stated, not read.
+- **Source of CCIS, ICIS, claims-service, the Scan Injector, the Transfer Service and `gfs-modernizer`,** so how they use the ID is stated, not read. `tracking-core` itself was read on 2026-11-10 (see Tracking, below).
 - **The "12 mocked carriers" row on How Carriers Feed ECM.** Its table has 12 rows. Amazon SFP is not resolved, and Veho and Exelot sent nothing.
 - **The DHL Express POD module claim.** Page 5 says the module is not loaded and does not work. The cleanup pass did not re-check it.
 - **Nightline.** The Selector Interface page says Nightline. Four pages name only Nightfreight. They are two carriers, so those pages cover only one.
@@ -78,16 +93,42 @@ Each item has a source that says one thing and a source that says another, or no
 - **Live GCP state:** cross-project grants, the warehouse subscription and `tracking-dump@`.
 - **Whether Client4's SOAP upload carries a file or shipment records.**
 
+**Tracking (2026-11-10)**
+- **Prod etcd values.** `targetPollingMinutes`, `batchLimit`, `intervalSeconds` and `expiryDays` per carrier and state, and whether `DELIVERED` differs from `IN_TRANSIT`. `etcdctl get --prefix connectors:` settles it.
+- **Whether prod runs master.** The prod image `tracking-core:prod-44693` and the deriver sidecar `prod-53270` map to no git sha. Three prod env vars have no binding at `c081108`: `GetNewTrackingV2Enabled`, `UseGetNewTrackingV2` and `TrackingStatusV2Enabled`.
+- **The `ExpiryDays` binding.** Prod sets `ActiveParcel__ParcelOptions__default__ExpiryDays=90`, and the code binds only the `Connectors` section. The effective expiry per carrier and bucket is open. The spread of `expiryDate - createdDate` in Mongo settles it.
+- **`Gfs.Core.PubSub` publisher.** Whether it adds an ordering key or attributes to `raw_tracking.v1`. The NuGet package was not read. Other `raw_tracking.v1` subscriptions' ordering settings are also unread.
+- **The prod mapping spreadsheet.** Its codes, groups and `isDelivered` values, whether `VALID_GROUP_IDS` is set, and whether any prod subscription filters on the `groupId` attribute.
+- **Who writes legacy scans in prod.** The Kubernetes patina service looks disabled (`CARRIERS=NONE`). The Dataflow job's source and `patina-service-2` were not found. The research files disagree on the label: one marks the `patina-service-2` flow CONFIRMED from its README and a Terraform comment, the other marks the prod writer UNKNOWN. This note keeps the flow as stated and the writer as unknown.
+- **What the Scan Injector does** with `scanners.consignments.V1`, and whether the Dataflow write-back sends one state per message or one aggregate per session window.
+- **The staging project.** `scanners.consignments.V1` sits in `gfs-ecm-staging`. Its own Terraform, subscription and dead-letter setup were not seen.
+- **CCIS, ICIS, claims-service and `gfs-pod`** beyond the two CCIS files read. The Go filter enum in `consignment-query-service` was unreachable.
+- **Whether deployed images match the cloned shas.** That covers `tracking-core`, the deriver, `connect-hooks`, and the Royal Mail webhook (the standalone repo at `3c880bf`, with a move into the monorepo in a PR).
+- **Deletion after creation.** A deleted consignment re-announced as an `UPDATE` does not flip an existing parcel to `DELETED`, because the handler returns first. This is a risk, not a confirmed bug. The event type a deletion arrives as is unknown.
+- **Live GCP topic state.** The reports used Terraform and manifests only, with no GCP access. The local `gfs-ecm-prod-uk1` clone is 15 months old.
+- **Which of `parcel.carrier` and `parcel.carrierV2` holds the numeric ID.** The ECM catalogue and the simulator header disagree, and every type is a string.
+- **Smaller gaps.** The `untracked` list contents. Which carriers fill `additionalData`, a failure reason or a delivery window. The `getMapping` function body. How many prod env vars are dead.
+
 ## Owed
 - Harry deletes three Confluence pages by hand: Carrier Services (353468499), Day End and Billing Handoff (353566845) and a scratch draft (355565572).
 - Harry's feedback on the five draft pages. Apply it to the live page first, then the vault copy.
 - The `orient-writers` skills `plainly` and `c4-diagrams` are uncommitted.
 - Retest the Lucid macro on Confluence once the admin installs the app.
+- **Owed corrections to MPK pages, for Harry (Confluence not edited).** These findings contradict or soften:
+  - *Polling Connectors* (353697880) attributes the `FindOneAndUpdate` to the connector. It runs in batch-creator.
+  - *How Carriers Feed ECM* (355074111) says polling has "no retry and no dead-letter queue". That holds for polling. The inbound `shipments.v2.identified` subscription has a dead-letter topic after 10 attempts. It also says "a parcel expires after 90 days", and the expiry resets on each new event, by carrier and bucket. The 90 is not confirmed.
+  - *Selector and ECM Coupling* (354418743) and *Shipment Identity* (355631312) say tracking stops or runs about 90 days after the last new event. Same softening.
+  - *Tracking Events and Webhooks* (355074077) says every event carries the raw code beside the derived status. `raw_tracking.v1` carries the raw code only, and the mapped result stays in each store. Its "at least six definitions" of delivered is partly counted: four in code plus CCIS's own re-derivation, with ICIS unread.
+  - The Polling Connectors and Carrier Tracking pages say "no retry or dead-letter handling" and that the ConfigMap is missing from the cluster repo. Terraform defines the ConfigMap.
+  - The Connect webhook docs list `carrier`, and the code sends `carrierName`. The docs omit `carrierEventTime`, which holds the received time.
+  - No page located says polling slows with age or that tracking is orchestrated centrally. Harry to check whether any wording implies it.
+- **Waypoint contradictions (not edited, owed to the Waypoint owner).** In `Engineering/tracking-core/`: `architecture.md` G2 and `overview.md` say a parcel expires after 90 days. The expiry resets on each new event, and other exits exist (`DELETED` key off, the `untracked` list, credential pause). `architecture.md`'s action says "no retries or dead letters", true of polling only. `overview.md` says "up to 100 parcels", which is the C# default, and the prod value is in etcd. `known-context.md` says the ConfigMap is not in the cluster repo. `waypoint.yaml` and `overview.md` point readers at `agents.md`, which is wrong.
 
 ## Evidence
 ```orient-evidence
 { "v": 1, "items": [
   { "id": 1, "kind": "doc", "ref": "Handovers/2026-11-09-merak-replacement-pages.md" },
-  { "id": 2, "kind": "doc", "ref": "Session scratchpad numbers-canonical.md, 2026-11-09 (Datadog metrics via execute_code; not in the vault)" }
+  { "id": 2, "kind": "doc", "ref": "Session scratchpad numbers-canonical.md, 2026-11-09 (Datadog metrics via execute_code; not in the vault)" },
+  { "id": 3, "kind": "doc", "ref": "Systems/ecm/tracking.md and Handovers/2026-11-09-merak-replacement-pages.tracking-core-findings.md, ...tracking-topic-catalogue.md, ...tracking-model-findings.md (2026-11-10)" }
 ] }
 ```
