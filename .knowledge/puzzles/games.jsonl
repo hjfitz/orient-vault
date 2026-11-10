@@ -19,3 +19,4 @@
 {"game":"queens","difficulty":"hard","seed":2043699289,"ms":91282,"day":"2026-11-09","at":"2026-11-09T12:04:02.742Z","daily":false}
 {"game":"queens","difficulty":"hard","seed":483311285,"ms":51654,"day":"2026-11-09","at":"2026-11-09T12:05:00.032Z","daily":false}
 {"game":"queens","difficulty":"hard","seed":762710586,"ms":47848,"day":"2026-11-09","at":"2026-11-09T12:05:50.788Z","daily":false}
+{"game":"queens","difficulty":"medium","seed":523206032,"ms":11576,"day":"2026-11-10","at":"2026-11-10T10:25:52.864Z","daily":true}
