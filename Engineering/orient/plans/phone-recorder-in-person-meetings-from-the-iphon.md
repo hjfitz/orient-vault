@@ -2,9 +2,9 @@
 ticket: none
 title: 'Phone recorder: in-person meetings from the iPhone, offline-first'
 service: orient
-status: active
+status: abandoned
 created: '2026-11-09'
-updated: '2026-11-09'
+updated: '2026-11-10'
 repo: /home/hjf/projects/orient
 worktree: /home/hjf/projects/orient
 branch: master
@@ -16,6 +16,10 @@ tags:
 - plan
 impl_model: opus
 impl_effort: high
+reason: 'Harry, 2026-11-10: not using phone recording right now; UI moving off Next
+  (see the Svelte UI plan). iPhone spike findings stay in this plan: MediaRecorder
+  gives audio/mp4, persist() false outside Home Screen, Termius tunnel dies ~1 min
+  after backgrounding. Revive from here.'
 ---
 # none — Phone recorder: in-person meetings from the iPhone, offline-first
 
