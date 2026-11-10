@@ -64,19 +64,19 @@ Legend: ⬜ not started · 🟨 in progress · ✅ merged · ⛔ blocked · ⏸ 
 | **Retire** | ⬜ | Remove Next, React, `src/components` | W-A2, W-B, W-C, W-D1, W-D2, W-E, W-F, W-G | med | sonnet/medium | | Drop deps, `renderDocument.tsx`, `orient-web` from install-units; rewrite CLAUDE.md invariants. |
 
 ## Spike budgets
-U5 fills this; all must hold for G1. U0 fills the baseline column.
+U5 fills this; all must hold for G1. Baseline measured by U0 on 2026-11-10 (two runs, medians within 10%; `bench/baseline.json`, ecc94c7). Note: Next's interaction **p75 already meets the budget** — the lag is navigation (845 ms), data (732 ms) and long frames (max 192 ms, LoAF 144 ms), so for G1 the max/LoAF and navigation rows carry the weight. Event Timing floors at 16 ms.
 
 | Metric | Next baseline | Pass |
 | --- | --- | --- |
-| `/today` data warm p95, VM / via tunnel | U0 | ≤ 50 ms / ≤ 100 ms |
-| First request after a digest change | U0 | ≤ 150 ms |
-| Jira unreachable | U0 | ≤ 50 ms, section marked unavailable with `asOf` |
-| Cold-load transfer (gzip) | U0 | ≤ 250 KB |
-| Repeat visit | U0 | data only; assets immutable |
-| DOM elements | U0 | ≤ 2,000 |
-| Interaction p75 / max, 1× | U0 | ≤ 50 ms / ≤ 100 ms, no LoAF > 50 ms in an interaction |
-| Interaction p75, 4× CPU | U0 | ≤ 100 ms |
-| Keypress to `/today` painted, data cached | U0 | ≤ 100 ms |
+| `/today` data warm p95, VM / via tunnel | 732 ms / 777 ms (first byte 42/60 ms is only the loading skeleton) | ≤ 50 ms / ≤ 100 ms |
+| First request after a digest change | 705 ms (no data cache) | ≤ 150 ms |
+| Jira unreachable | 698 ms warm, 2.3 s cold; a hung Jira 9.6 s; no `asOf` | ≤ 50 ms, section marked unavailable with `asOf` |
+| Cold-load transfer (gzip) | 1.14 MB over 109 requests (78 sidebar prefetches = 536 KB) | ≤ 250 KB |
+| Repeat visit | 734 KB (document + all 78 prefetches again) | data only; assets immutable |
+| DOM elements | 5,867 | ≤ 2,000 |
+| Interaction p75 / max, 1× | 20 / 192 ms; worst LoAF in an interaction 144 ms (fold open) | ≤ 50 ms / ≤ 100 ms, no LoAF > 50 ms in an interaction |
+| Interaction p75, 4× CPU | 44 ms (max 288 ms; LoAF 189 ms on show-more) | ≤ 100 ms |
+| Keypress to `/today` painted, data cached | 845 ms (1×), 1,073 ms (4×): a server round trip every time | ≤ 100 ms |
 
 ## Gates
 - [ ] **G1 — Spike go/no-go** — blocks U6, U7, U8. U5's pass table holds and Harry, after a full digest day on `:3030/today`, calls it terminal-fast. No-go if interaction or navigation budgets fail while server and payload pass: stop and report; keep the core's cache for Next.
@@ -100,6 +100,7 @@ U5 fills this; all must hold for G1. U0 fills the baseline column.
 - **R8 Terminal buttons from pasted content** — closed 2026-11-10: the terminal and preset prompting are dropped, and renderHtml emits no terminal or copy hooks (6dec777). Was: any `orient-action` block anywhere in the vault renders a button that pastes its payload (with Enter, if it ends in a newline) into the tmux window; its label is free text. Same as the React path today. Mitigated in U3 by showing the payload on hover; whether to render these only for skill-written paths (e.g. `Digests/`) is Harry's call. — closed.
 
 ## Decision log
+- **2026-11-10** — U0 baseline: Next `/today` interaction p75 is already 20 ms; what Harry feels is navigation (845 ms keypress→painted, a server round trip each time), the 732 ms data wait, long frames on fold-open/show-more (144–189 ms), and 1.1 MB/109 requests per load (78 sidebar prefetches). The spike is judged mainly on those rows.
 - **2026-11-10** — Drop the in-browser terminal and preset prompting (Harry: a risk vector, used less than expected). Gone from the Svelte UI: the terminal panel, the pty sidecar and `/api/tmux/*`, every send-to-terminal and copy-prompt button, `/tools` and the `Prompts/` prompt builders, and MDX execution (only the prompt builder needed it). Kept: headless ticket runs, the skills list, the vault's `Prompts/` files. U10 dropped; the Next versions stay until U13 retires the sidecar.
 - **2026-11-10** — U1 review: a local process can forge the browser write headers (Origin, X-Orient). Accepted: each machine has one login user (harry on the VM, hjf on the laptop), and any process running as them can read the 0600 write token anyway — the guards exist for browsers (CSRF, DNS rebinding, framing), not for the local user. Revisit if a second user is ever added.
 - **2026-11-10** — Gates G2, G3, G4, G6, G7 answered by Harry (see Gates). Desktop-only UI; cross-framework full-page hops accepted; no Mac; LAN IP dropped; no headless runs during the migration. Programme active.
