@@ -1,0 +1,140 @@
+import { expect, type Page, test } from "@playwright/test";
+
+// Dev verification of the per-customer carrier choice. Writes evidence lines to carrier-choice-dev.out.
+import * as fs from "node:fs";
+
+const email = process.env.SMOKE_EMAIL ?? "";
+const password = process.env.SMOKE_PASSWORD ?? "";
+const ACTING = "pp_acting_tenant";
+const SANDBOX = "https://sandbox.gfsdeliver.com/ClientServer_450/ClientShipService.asmx";
+const OUT = `${__dirname}/carrier-choice-dev.out`;
+const SHOTS = `${__dirname}/../shots`;
+const lines: string[] = [];
+const log = (line: string) => {
+	lines.push(line);
+	console.log(line);
+	fs.writeFileSync(OUT, `${lines.join("\n")}\n`);
+};
+const text = async (page: Page, id: string) => (await page.getByTestId(id).innerText()).replace(/\s+/g, " ").trim();
+
+async function signIn(page: Page) {
+	await page.goto("/sign-in");
+	const form = page.getByTestId("sign-in-form");
+	await form.getByLabel("Email").fill(email);
+	await form.getByLabel("Password", { exact: true }).fill(password);
+	await page.getByTestId("sign-in-submit").click();
+	await expect(page).not.toHaveURL(/\/sign-in/, { timeout: 30_000 });
+}
+
+async function demoCustomer(page: Page, context: import("@playwright/test").BrowserContext) {
+	await page.goto("/settings/customers");
+	await page.getByTestId("create-demo-customer").click();
+	await expect(page).toHaveURL(/\/orders$/, { timeout: 60_000 });
+	const id = (await context.cookies()).find((c) => c.name === ACTING)?.value;
+	expect(id).toBeTruthy();
+	return id as string;
+}
+
+async function card(page: Page, id: string) {
+	await page.goto(`/settings/customers/${id}/carrier`);
+	await expect(page.getByTestId("carrier-account")).toBeVisible();
+}
+
+async function save(page: Page) {
+	await page.getByTestId("carrier-save").click();
+	const outcome = page.getByTestId("carrier-done").or(page.getByTestId("carrier-error")).first();
+	await expect(outcome).toBeVisible({ timeout: 30_000 });
+	return (await outcome.innerText()).replace(/\s+/g, " ").trim();
+}
+
+function row(page: Page, ref: string) {
+	return page.getByTestId("order-row").filter({ hasText: ref });
+}
+
+test("each dev customer books with the carrier chosen for it", async ({ page, context }) => {
+	test.setTimeout(600_000);
+	test.skip(!password, "SMOKE_PASSWORD isn't set");
+	const made: string[] = [];
+	try {
+		await signIn(page);
+
+		// A: a demo customer on the test carrier, with its sample booked.
+		const a = await demoCustomer(page, context);
+		made.push(a);
+		log(`A (demo customer ${a}) made`);
+		const sample = await page.request.get("/orders/sample");
+		const body = await sample.body();
+		const refs = [...new Set(body.toString().split("\n").slice(1).map((l) => l.split(",")[0]).filter(Boolean))];
+		await page.getByTestId("upload-input").setInputFiles({ name: "sample-orders.csv", mimeType: "text/csv", buffer: body });
+		await expect(page.getByTestId("upload-result")).toContainText("imported with problems", { timeout: 90_000 });
+		const [r1, r2, r3, toPack, flagged] = refs;
+		await page.goto("/orders");
+		await row(page, flagged).getByRole("link", { name: flagged }).click();
+		await page.getByTestId("order-form").getByLabel("City").fill("Seattle");
+		await page.getByTestId("order-save").click();
+		await expect(page.getByTestId("edit-saved")).toBeVisible();
+		await page.goto("/orders");
+		await page.getByLabel(`Select ${toPack}`).check();
+		await page.getByTestId("pack-selected").click();
+		await expect(row(page, toPack)).toContainText("Ready");
+		await page.getByTestId("filter-ready").click();
+		for (const ref of [r1, r2, r3, toPack, flagged]) await page.getByLabel(`Select ${ref}`).check();
+		await page.getByTestId("dispatch-selected").click();
+		await expect(page.getByTestId("dispatch-results")).toContainText("5 booked, 0 not booked", { timeout: 120_000 });
+		log(`A dispatch: "${await text(page, "dispatch-results")}"`.slice(0, 200));
+		await page.goto("/shipments");
+		await expect(page.getByText(r1).first()).toBeVisible();
+		const tst = await page.getByText(/^TST/).count();
+		log(`A shipments: test-carrier notice ${await page.getByTestId("test-carrier").count()}, TST consignments shown ${tst}`);
+		await page.screenshot({ path: `${SHOTS}/dev-choice-1-A-shipments-test-carrier.png`, fullPage: true });
+
+		// A can't switch while its shipments are booked.
+		await card(page, a);
+		log(`A card: box checked ${await page.getByTestId("carrier-test").isChecked()}, test-mode notice ${await page.getByTestId("carrier-test-mode").count()}`);
+		await page.getByTestId("carrier-test").uncheck();
+		await page.locator("#carrier-password").fill("not-used-refused-first");
+		log(`A switch with 5 booked shipments: "${await save(page)}"`);
+		await page.screenshot({ path: `${SHOTS}/dev-choice-2-A-switch-refused.png`, fullPage: true });
+		await card(page, a);
+		log(`A after the refusal: box checked ${await page.getByTestId("carrier-test").isChecked()}`);
+
+		// B: a demo customer with nothing booked, moved to its own account on the Selector sandbox.
+		const b = await demoCustomer(page, context);
+		made.push(b);
+		log(`B (demo customer ${b}) made`);
+		await card(page, b);
+		await page.getByTestId("carrier-test").uncheck();
+		log(`B unticked: password required ${await page.locator("#carrier-password").evaluate((e) => (e as HTMLInputElement).required)}, account notice ${await page.getByTestId("carrier-account-mode").count()}`);
+		await page.locator("#carrier-endpoint").fill(SANDBOX);
+		await page.locator("#carrier-username").fill("TEST");
+		await page.locator("#carrier-password").fill("TEST");
+		await page.locator("#carrier-code").fill("HERMES");
+		await page.locator("#carrier-origin").fill("GB");
+		log(`B save on its own sandbox account: "${await save(page)}"`);
+		await card(page, b);
+		log(`B after reload: box checked ${await page.getByTestId("carrier-test").isChecked()}, account notice ${await page.getByTestId("carrier-account-mode").count()}`);
+		await page.getByTestId("carrier-check").click();
+		await expect(page.getByTestId("carrier-check-result")).toBeVisible({ timeout: 60_000 });
+		log(`B check connection (one read-only daily query): "${await text(page, "carrier-check-result")}"`.slice(0, 300));
+		await page.screenshot({ path: `${SHOTS}/dev-choice-3-B-own-account-checked.png`, fullPage: true });
+
+		await context.addCookies([{ name: ACTING, value: b, url: process.env.BASE_URL ?? "" }]);
+		await page.goto("/shipments");
+		await expect(page.getByTestId("manifest")).toBeVisible();
+		log(`B shipments: test-carrier notice ${await page.getByTestId("test-carrier").count()}, Manifest disabled ${await page.getByTestId("manifest").isDisabled()}`);
+		await page.screenshot({ path: `${SHOTS}/dev-choice-4-B-shipments-sandbox.png`, fullPage: true });
+
+		// B goes back to the test carrier: nothing is open, and no password is needed.
+		await card(page, b);
+		await page.getByTestId("carrier-test").check();
+		log(`B back to the test carrier: "${await save(page)}"`);
+	} finally {
+		for (const id of made) {
+			await page.goto(`/settings/customers/${id}/overview`);
+			await page.getByTestId("delete-customer").click();
+			await page.getByTestId("delete-customer-confirm").getByRole("button", { name: "Delete" }).click();
+			await expect(page).toHaveURL(/\/settings\/customers$/);
+			log(`deleted demo customer ${id}`);
+		}
+	}
+});
