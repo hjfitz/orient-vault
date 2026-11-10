@@ -8,7 +8,7 @@ from: laptop (harry, tmux session `monitors`)
 to: hjf.shell.platform.ilg.software
 session_id: 7f84afae-380e-4959-8dc8-c8b0cbe9f19d
 resumed_by: ""
-updated: 2026-11-09T23:04Z
+updated: 2026-11-10T12:15Z
 ---
 # Handover: snap-adapter attachment completion (ilg005 incident follow-up)
 
@@ -30,7 +30,7 @@ Backfill done tonight (read-only checks, then one `PUT /v2/attachments` row per 
 - Posted to #bifrost-general (ts 1794262802.922819) and #snap-wms (ts 1794263199.942269) and noted in the alert thread in #bifrost-notifications (ts 1794262810.475209).
 - Row format, verified identical to an adapter-written row (shipment PURD7978AF54F1E, LineId PURD1F20A8): `{Table:"SHH", Key:<ShipmentId>, KeyLine:"0", LineId, Type:"PRODDETAIL", AttachmentText}`. `LineId` = `createDeterministicId(businessId, undefined, "<TYPE>:<keyLine>", shipmentId, 10)` (`apps/snap-adapter/src/shared/identity-helper/create-deterministic-id.ts`): first 4 chars of the uppercased businessId, plus the first 14 hex of sha256 over `<BIZ>::<TYPE>:<KEYLINE>:<SHIPMENTID>` uppercased, cut to 10.
 
-Programme context (read before planning): this lives in **SNAP Resilience Normalisation** (`Bifrost/SNAP Resilience Normalisation/Migration State.md`). `@gfs-bifrost/resilience` provides the semaphore, token bucket and per-host breaker. **PR #331 (open, ready, Harry's account, updated 2026-11-09T10:50Z) flips `SNAP_TRANSPORT_GUARD=adapter` in prod (unit X1 step 1)**; prod is on the legacy interceptor path today (`SNAP_TRANSPORT_GUARD` unset live). The guard (`guardSnapTransport`, #322) runs per HTTP request: `canAttempt` → token → slot → `breaker.execute` → release in `finally`, with a single half-open probe. Do not duplicate or fight that work; the fix below must work in both modes.
+Programme context (read before planning): this lives in **SNAP Resilience Normalisation** (`Bifrost/SNAP Resilience Normalisation/Migration State.md`). `@gfs-bifrost/resilience` provides the semaphore, token bucket and per-host breaker. **PR #331 (unit X1 step 1) merged 2026-11-10T12:01Z as `afdb226` and the prod deploy succeeded at 12:04:48Z (deploy notification in #bifrost-notifications): `SNAP_TRANSPORT_GUARD=adapter` is now the live default, revert by setting the `snap_transport_guard` tfvar to `interceptors`.** Until 12:04Z prod ran the legacy interceptor path, and every observation about the legacy breaker in this record (5 consecutive failures, no single probe, slot timeouts not counted) describes the 9 Nov incident under that path. Re-check live behaviour before designing against either path. The guard (`guardSnapTransport`, #322) runs per HTTP request: `canAttempt` → token → slot → `breaker.execute` → release in `finally`, with a single half-open probe. Do not duplicate or fight that work; the fix below must work in both modes.
 
 Live limits at 9 Nov (Cloud Run revision 00100 plus code defaults; prod env for the semaphore not read): max 3 instances, 30 concurrency each; 5 slots per instance per host; `SNAP_SLOT_ACQUIRE_TIMEOUT_MS` 30000; request timeout 120000 ms; `SNAP_MAX_TRANSIENT_DELIVERY_ATTEMPTS` 30 (adapter self-reports to `create_data_failure`); subscription ack deadline 300 s, `maxDeliveryAttempts` 35, backoff 10–600 s. Legacy breaker: 5 consecutive 5xx or no-response failures, probes after 30 s; slot timeouts are not counted.
 
@@ -39,7 +39,7 @@ Live limits at 9 Nov (Cloud Run revision 00100 plus code defaults; prod env for 
 | Work | PR / branch | State | To close it |
 | --- | --- | --- | --- |
 | The fix itself | none yet | Not started. Plan not written. | Run `waypoint-plan` for snap-adapter (folder `Engineering/snap-adapter/`), then `waypoint-work`. Branch `hjf/<short-description>` off fresh `origin/master`; **no ticket key** in branch, PR title or commit. Open a **draft** PR. After it exists: `wp ledger snap-adapter --title "<imperative>" --body "<what and why>\n\nPR: gfs-bifrost/snap-adapter#<n>" --programme "SNAP Resilience Normalisation"` (no `--ticket`). |
-| PR #331 (X1 step 1) | `hjf/snap-transport-guard-on` | Open, not part of this work. A Terraform apply behind the prod gate. | Not yours. Do not merge or approve it. Rebase onto or around it if the fix touches the same files. |
+| PR #331 (X1 step 1) | `hjf/snap-transport-guard-on` | Merged 2026-11-10T12:01Z (`afdb226`), prod deployed 12:04:48Z. Not part of this work. | Nothing. Branch your work off `origin/master` at or after `afdb226`. The rest of X1 (`SNAP_CB_TRIP_ON_429`, poller flips) and X2 are the programme's, not this PR's. |
 
 ## Waiting on Harry
 
@@ -70,7 +70,7 @@ Not checked. `ssh harry@hjf.shell.platform.ilg.software` from the laptop failed 
 
 ## Gotchas
 
-- The laptop's `~/code/fuse/snap-adapter` was 15 commits behind `origin/master` on its local `master`. Use a fresh worktree from `origin/master` (8b2e5af at the time of writing).
+- The laptop's `~/code/fuse/snap-adapter` was 15 commits behind `origin/master` on its local `master`. Use a fresh worktree from `origin/master` (`afdb226` at 2026-11-10T12:15Z).
 - Datadog `snap.request.latency` has no path/method tag, and `slot_timeout` logs carry no path. Do not claim which call timed out without evidence.
 - The adapter log tag `version` is the git sha; check `analyze_datadog_logs` by `version` to see what prod runs.
 - `snap-write`/direct Snap GETs need the business's own credentials from `get-snap-connection`; STUBBLE and PHLUR rows are invisible with another business's credentials.
