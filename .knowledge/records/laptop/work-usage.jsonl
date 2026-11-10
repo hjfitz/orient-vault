@@ -316,3 +316,14 @@
 {"ts": 1794342422, "kind": "programme_tick", "session_id": "0fb571d0-d903-483b-9e8b-1198b51d571f", "programme": "orient Svelte UI", "unit": "U6", "status": "doing"}
 {"ts": 1794342425, "kind": "programme_tick", "session_id": "0fb571d0-d903-483b-9e8b-1198b51d571f", "programme": "orient Svelte UI", "unit": "U7", "status": "doing"}
 {"ts": 1794342428, "kind": "programme_tick", "session_id": "0fb571d0-d903-483b-9e8b-1198b51d571f", "programme": "orient Svelte UI", "unit": "U8", "status": "doing"}
+{"ts": 1794343136, "kind": "programme_tick", "session_id": "0fb571d0-d903-483b-9e8b-1198b51d571f", "programme": "orient Svelte UI", "unit": "U8", "status": "done"}
+{"ts": 1794343347, "kind": "programme_tick", "session_id": "0fb571d0-d903-483b-9e8b-1198b51d571f", "programme": "orient Svelte UI", "unit": "U7", "status": "done"}
+{"ts": 1794343360, "kind": "programme_tick", "session_id": "0fb571d0-d903-483b-9e8b-1198b51d571f", "programme": "orient Svelte UI", "unit": "U11", "status": "doing"}
+{"ts": 1794343728, "kind": "programme_tick", "session_id": "0fb571d0-d903-483b-9e8b-1198b51d571f", "programme": "orient Svelte UI", "unit": "U11", "status": "doing"}
+{"ts": 1794343753, "kind": "programme_tick", "session_id": "0fb571d0-d903-483b-9e8b-1198b51d571f", "programme": "orient Svelte UI", "unit": "U11", "status": "done"}
+{"ts": 1794343756, "kind": "programme_tick", "session_id": "0fb571d0-d903-483b-9e8b-1198b51d571f", "programme": "orient Svelte UI", "unit": "U12", "status": "doing"}
+{"ts": 1794344284, "kind": "ledger", "session_id": "a1c66d35-5bf7-4f34-9d21-dac5ddb5fabe", "service": "parcel-portal", "ticket": null, "programme": "Parcel Portal", "heading": "## 2026-11-10 \u2014 Log Selector's fault text when its server fails a call", "prs": ["ilg-merak/parcel-portal#125"]}
+{"ts": 1794344343, "kind": "programme_tick", "session_id": "0fb571d0-d903-483b-9e8b-1198b51d571f", "programme": "orient Svelte UI", "unit": "U6", "status": "done"}
+{"ts": 1794344346, "kind": "programme_tick", "session_id": "0fb571d0-d903-483b-9e8b-1198b51d571f", "programme": "orient Svelte UI", "unit": "U9", "status": "doing"}
+{"ts": 1794345294, "kind": "programme_tick", "session_id": "0fb571d0-d903-483b-9e8b-1198b51d571f", "programme": "orient Svelte UI", "unit": "U12", "status": "done"}
+{"ts": 1794346401, "kind": "programme_tick", "session_id": "0fb571d0-d903-483b-9e8b-1198b51d571f", "programme": "orient Svelte UI", "unit": "U9", "status": "done"}
