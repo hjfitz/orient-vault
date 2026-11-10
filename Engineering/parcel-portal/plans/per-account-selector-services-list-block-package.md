@@ -38,7 +38,14 @@ Origin: Oliver Wilders's DMs, 10 Nov (TCA's Selector account has six installed F
 ## Acceptance criteria
 <!-- Observable, checkable outcomes — not tasks. Numbered by order: increments cite them as
      (AC 2,4), and sign-off prints which criteria no increment claims. -->
-- [ ] <observable outcome>
+- [ ] 1. A tenant with no services rows books, checks and edits shipping methods exactly as before. Evidence: the existing request goldens and `shipping_methods_e2e_test.go` pass unchanged, plus a dispatch test with an empty list.
+- [ ] 2. `GET`/`PUT /admin/tenants/{tenantId}/carrier-services` round-trips and is admin-only (a customer gets 403). `PUT` replaces the whole list in one transaction and `[]` clears it. A duplicate (case-insensitive) or blank code gets 400 `invalid_input`. A tenant with no connection gets 404.
+- [ ] 3. Each tenant reads and writes only its own list, and saving the carrier connection never changes the list. Evidence: both extended tenancy tests, plus an e2e where an old-shape `PUT carrier-connection` leaves the services intact.
+- [ ] 4. With a non-empty list, dispatch, batch dispatch and "Check with carrier" refuse an order whose service is blocked or unlisted with `order_not_dispatchable` naming the code, and make zero `ClaimDispatch`, `ProcessShipment` or `ValidateShipment` calls.
+- [ ] 5. An enabled row's `packageCode` is sent as `<PackageCode>` after `<ServiceCode>`. With none set no element is sent, and every existing request golden stays byte-identical.
+- [ ] 6. The test-carrier path is not gated, and a mapped service for a different carrier keeps today's carrier-mismatch message only.
+- [ ] 7. With a non-empty list, saving shipping methods rejects a new or changed row naming a blocked or unlisted service for the account's carrier (400). Unchanged stale rows still save and reset to built-in is always allowed. `GET` reports each method's `serviceStatus` and offers only enabled services.
+- [ ] 8. On dev, with a real admin login and "Book with the test carrier" unticked, an admin enters services on the carrier page, the shipping-methods editor restricts to them, and a blocked order is refused with its message. Evidence: screenshots.
 
 ## Affected boundaries
 <!-- Components, paths and contracts this touches. Wikilink existing explainers; do not restate
