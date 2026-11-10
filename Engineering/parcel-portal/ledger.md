@@ -6,6 +6,22 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-10 — Shipping-methods editor offers only the account's services
+
+Shipping-methods editor offers only the account's services
+
+On a customer with listed services, a shipping method's service code is a choice of the enabled ones, a stale mapping stays flagged blocked or not offered, and an unrestricted customer keeps free text. Increment 7 of the per-account services plan; draft, stacked.
+
+PR: ilg-merak/parcel-portal#123
+
+## 2026-11-10 — Account services card on the carrier page
+
+Account services card on the carrier page
+
+A GFS admin lists the services installed on a customer's Selector account (code, label, package code, Offered tick that blocks) in a second card on the Selector config tab; empty means no restriction, and a customer with no config is told to save it first. Increment 6 of the per-account services plan; draft, stacked.
+
+PR: ilg-merak/parcel-portal#122
+
 ## 2026-11-10 — Shipping methods report where each service stands
 
 Shipping methods report where each service stands

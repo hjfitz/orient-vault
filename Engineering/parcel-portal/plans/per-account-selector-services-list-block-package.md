@@ -122,11 +122,16 @@ Seven PRs, stacked in this order: 1a → 1b → 2+3 → 4a → 4b → 5a → 5b.
 ### Evidence
 <!-- Newest first, dated. One bullet per check actually run, opening with what it discharges.
      "Suite green" alone is not evidence. Sign-off requires at least one dated bullet here. -->
-- <YYYY-MM-DD> [inc <n>] <what was run, against what, and the observable result>
+- 2026-11-10 [inc 6,7; AC 2,7] Browser drive on a local svc (`CARRIER_MODE=fake`, scratch database) and the UI dev server, headless Chromium, as a GFS admin. Services FGR (package code YP), FGHD and FPON (Offered off) saved and read back after a reload (3 rows, flags `true,true,false`). The shipping-methods editor offered 2 selects with only FGR and FGHD, kept the stale "Rush → FPON" row as `FPON (not offered)` with the blocked note, saved with that row unchanged, and showed free text (0 selects) for an unrestricted customer. A customer with no connection got the "save the Selector config first" hint. It found two UI defects, both fixed (the saved message vanishing on remount, 118b7c0; the clipped blocked note, dc6dc63). Screenshots: `per-account-services-screens/`.
+- 2026-11-10 [inc 1; AC 3] Merged as #116; the dev deploy logged "Migrations applied" `toVersion` 18, applied 1, and `svc-parcel-dev-00052` serves it.
+- 2026-11-10 [inc 3–5; AC 1,4,5,6,7] Full svc suite under `-race` against local Postgres and `golangci-lint` (0 issues): 24 dispatch/check tests, 13 save-time tests, 8 status tests, 4+4+3 HTTP end-to-end tests through the real router, the adapter wire tests (PackageCode between ServiceCode and Dropoff, none when unset, existing goldens unchanged). `make contract-check`: no breaking changes for 5.11.0 and 5.12.0.
 
 ### Not verified
 <!-- Stated, not papered over. "(none)" is a deliberate claim, and a fine one. -->
-- <what remains unproven, and what would prove it>
+- AC 8: the drive on **dev** with a real admin login and "Book with the test carrier" unticked, including a blocked order refused with its message. Needs the stack on dev and the laptop's dev admin login.
+- Which package codes are valid for TCA's FedEx account (`YP` is the sandbox login's). Oliver Wilders.
+- That the test carrier staying ungated is what Harry wants. Gate on PR #118.
+- The unconfirmed FedEx built-in guesses read "unlisted" on a restricted account: stated, not exercised against a real FedEx account.
 
 ## Decisions & deviations
 <!-- Date-stamped, newest first — written by `wp decide`, and by hand when that is easier.
