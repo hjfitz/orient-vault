@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-10 — Expose daily windows, confirmation stages and confirmAfterSeconds on mock-schedule
+
+Expose daily windows, confirmation stages and confirmAfterSeconds on mock-schedule
+
+MCP mock-schedule/mock-load-run lacked the mocker's new schedule fields (fuse-mocker#38) and confirmAfterSeconds. Go (live) and TS updated, parity baseline refreshed, mock-activity gains the auto_confirm source. Merge to master deploys prod (terraform apply), so merge waits on the plan being reviewed.
+
+PR: gfs-bifrost/fuse-mcp#65
+
 ## 2026-11-05 — Run fuse-mcp-server on the golden runtime images
 
 Run fuse-mcp-server on the golden runtime images
