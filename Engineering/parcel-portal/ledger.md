@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-10 — Refuse saving a shipping method for a blocked service
+
+Refuse saving a shipping method for a blocked service
+
+With listed services on a tenant's Selector account, PUT shipping-methods refuses a new or changed method for the account's carrier that maps to a blocked or unlisted service (400); unchanged rows and a reset to built-ins still save. Increment 4 of the per-account services plan; draft, stacked.
+
+PR: ilg-merak/parcel-portal#120
+
 ## 2026-11-10 — Refuse a blocked service, send its package code
 
 Refuse a blocked service, send its package code
