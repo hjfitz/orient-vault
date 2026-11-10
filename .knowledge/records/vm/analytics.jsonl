@@ -107,3 +107,12 @@
 {"t":"view","at":"2026-11-10T11:56:35.164Z","visit":"acd86c9a-8a26-4c3c-8f20-c1fc80b0bb30","route":"/programmes"}
 {"t":"leave","at":"2026-11-10T11:56:47.286Z","visit":"acd86c9a-8a26-4c3c-8f20-c1fc80b0bb30","activeMs":4000}
 {"t":"leave","at":"2026-11-10T11:59:24.488Z","visit":"acd86c9a-8a26-4c3c-8f20-c1fc80b0bb30","activeMs":5000}
+{"t":"leave","at":"2026-11-10T13:21:12.909Z","visit":"acd86c9a-8a26-4c3c-8f20-c1fc80b0bb30","activeMs":9000}
+{"t":"view","at":"2026-11-10T13:21:12.915Z","visit":"6df340b6-4d46-45dd-9058-f77c6cb65aa0","route":"/puzzles"}
+{"t":"leave","at":"2026-11-10T13:21:14.790Z","visit":"6df340b6-4d46-45dd-9058-f77c6cb65aa0","activeMs":1000}
+{"t":"view","at":"2026-11-10T13:21:15.086Z","visit":"1fbd9ad6-076a-4031-82ae-6d04819e7621","route":"/puzzles","tab":"tango"}
+{"t":"leave","at":"2026-11-10T13:21:51.700Z","visit":"1fbd9ad6-076a-4031-82ae-6d04819e7621","activeMs":36000}
+{"t":"view","at":"2026-11-10T13:27:54.586Z","visit":"295a04e5-98f2-4fec-b2ee-87e50ac7387d","route":"/today"}
+{"t":"leave","at":"2026-11-10T13:28:06.703Z","visit":"295a04e5-98f2-4fec-b2ee-87e50ac7387d","activeMs":8000}
+{"t":"leave","at":"2026-11-10T13:28:39.643Z","visit":"295a04e5-98f2-4fec-b2ee-87e50ac7387d","activeMs":9000}
+{"t":"leave","at":"2026-11-10T13:29:29.043Z","visit":"295a04e5-98f2-4fec-b2ee-87e50ac7387d","activeMs":11000}
