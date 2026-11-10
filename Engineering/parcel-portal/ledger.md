@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-10 — Shipping methods report where each service stands
+
+Shipping methods report where each service stands
+
+GET and PUT shipping-methods (openapi 5.12.0) add restricted, the enabled services to choose from, and a per-method serviceStatus (available, blocked, unlisted; x-extensible-enum). Increment 5 of the per-account services plan; draft, stacked.
+
+PR: ilg-merak/parcel-portal#121
+
 ## 2026-11-10 — Refuse saving a shipping method for a blocked service
 
 Refuse saving a shipping method for a blocked service
