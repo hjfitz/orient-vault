@@ -75,10 +75,10 @@ it is now. Regenerate this page with `wp index`; check health with `wp doctor`.
 | [[Engineering/observability/overview\|observability]] | backend | 0 | 0 | 0 | 2026-11-05 |
 | [[Engineering/observability-sdk/overview\|observability-sdk]] | library | 3 | 0 | 0 | — |
 | [[Engineering/ocs-proxy/overview\|ocs-proxy]] | backend | 1 | 0 | 0 | — |
-| [[Engineering/orient/overview\|orient]] | frontend | 1 | 0 | 4 | 2026-11-09 |
+| [[Engineering/orient/overview\|orient]] | frontend | 1 | 0 | 3 | 2026-11-09 |
 | [[Engineering/parcel-portal/overview\|parcel-portal]] | backend | 4 | 0 | 3 | 2026-11-09 |
 | [[Engineering/pkg-go/overview\|pkg-go]] | backend | 0 | 0 | 0 | 2026-11-06 |
-| [[Engineering/pkg-node/overview\|pkg-node]] | library | 3 | 0 | 2 | 2026-11-06 |
+| [[Engineering/pkg-node/overview\|pkg-node]] | library | 3 | 0 | 3 | 2026-11-09 |
 | [[Engineering/remote-compute/overview\|remote-compute]] | backend | 0 | 0 | 2 | 2026-11-03 |
 | [[Engineering/renovate-runner/overview\|renovate-runner]] | infra | 3 | 0 | 0 | 2026-11-06 |
 | [[Engineering/replay-service/overview\|replay-service]] | backend | 4 | 0 | 0 | 2026-11-05 |
