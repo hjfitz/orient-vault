@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-10 — Carrier-services API
+
+Carrier-services API
+
+GET and PUT /admin/tenants/{tenantId}/carrier-services (openapi 5.11.0) read and replace a tenant's Selector services; an empty list is unrestricted, the tenant needs a connection first. Increment 2 of the per-account services plan, stacked on the store PR; nothing enforces the list yet.
+
+PR: ilg-merak/parcel-portal#117
+
 ## 2026-11-10 — Store a tenant's Selector services
 
 Store a tenant's Selector services
