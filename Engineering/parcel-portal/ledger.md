@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-10 — Let each dev customer choose the test carrier or its own Selector account
+
+Let each dev customer choose the test carrier or its own Selector account
+
+Dev's stand-in carrier is now a per-customer choice: carrier_connection.test_carrier (migration 017, default true so existing dev customers keep it), set from a 'Book with the test carrier' box on the Selector config card. Where CARRIER_MODE=fake, bootstrap wires fakecarrier.Router + PasswordRouter, routing every carrier call and the password read by the customer's connection; elsewhere the plain Selector client is wired and the column is never read (prod rows read true until saved, which is harmless). A switch is refused (422 carrier_switch_blocked) while the customer has booked shipments or in_flight/outcome_unknown attempts, since nothing records which backend booked a shipment; the guard is a check, not a lock (documented). Gotchas: the booking log's testCarrier must come from carrier.Test(conn), not the column; a local svc has no carrier key, so own-account saves 503 locally (dev or WithCarrierKey); the dev smoke's admin login is broken, so the authenticated dev drive (plan increment 6) is gated on a login. openapi 5.10.0. Ship: SHIP-1110-dev-carrier-optin
+
+PR: ilg-merak/parcel-portal#115
+
 ## 2026-11-09 — Patch golang.org/x/net; ignore the runtime images' copies until they're rebuilt
 
 Patch golang.org/x/net; ignore the runtime images' copies until they're rebuilt
