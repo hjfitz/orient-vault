@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-10 — Refuse a blocked service, send its package code
+
+Refuse a blocked service, send its package code
+
+Dispatch, batch dispatch and Check with carrier refuse an order whose mapped service is blocked or unlisted on the tenant's Selector account (order_not_dispatchable, before any claim or Selector call); the listed package code goes out as PackageCode between ServiceCode and Dropoff. The test carrier and tenants with no list are untouched. Increment 3 of the per-account services plan; draft, gated.
+
+PR: ilg-merak/parcel-portal#118
+
 ## 2026-11-10 — Carrier-services API
 
 Carrier-services API
