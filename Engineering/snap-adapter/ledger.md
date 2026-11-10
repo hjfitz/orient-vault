@@ -7,6 +7,15 @@ title: snap-adapter — work ledger
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-10 — Check SNAP create responses through @gfs-bifrost/snap, behind SNAP_ASSERT_WRITE_RESPONSES
+
+Check SNAP create responses through @gfs-bifrost/snap, behind SNAP_ASSERT_WRITE_RESPONSES
+
+S1. Every SNAP create checks a 2xx {Status:"Error"} through a guard over @gfs-bifrost/snap's assertSnapWriteOk that re-raises EntityCreationException. PO and RGA are unchanged (parity). Work orders now classify as snap_api_error, not unexpected. Sales orders and master data only check with SNAP_ASSERT_WRITE_RESPONSES=true (default off). Builds on Harry Humby's draft #170. Dev-verified with the simulator's status_error fault, off and on. Gaps: productalternates, and partial-commit behind a 2xx is unverified.
+
+Ship: SHIP-1110-snap-write-assert
+PR: gfs-bifrost/snap-adapter#333
+
 ## 2026-11-09 — Gate SNAP requests on the shared breaker in prod (SNAP_TRANSPORT_GUARD=adapter)
 
 Gate SNAP requests on the shared breaker in prod (SNAP_TRANSPORT_GUARD=adapter)
