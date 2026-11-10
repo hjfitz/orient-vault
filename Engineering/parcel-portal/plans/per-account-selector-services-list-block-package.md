@@ -51,7 +51,14 @@ Origin: Oliver Wilders's DMs, 10 Nov (TCA's Selector account has six installed F
 <!-- Components, paths and contracts this touches. Wikilink existing explainers; do not restate
      their contents. If this names a topic, endpoint, canonical type, collection, inter-service
      dependency or shared package, sign-off will prompt for the Fuse MCP data file too. -->
-- <component / path / contract>
+- Contract: `apps/svc/openapi.yaml`, 5.10.0 → 5.11.0 (carrier-services CRUD) and → 5.12.0 (shipping-methods GET fields). Edit first, `make gen`; `public-openapi.yaml` untouched (admin-only). `serviceStatus` is declared `x-extensible-enum` so a later value isn't an oasdiff break.
+- Store: migration `018_carrier_service.sql`, `queries/carrier_service.sql`, `internal/repositories/postgres/carrier_services.go` (modelled on `bench_printers.go`), `models.CarrierService` in `internal/models/dispatch.go`.
+- Core: `internal/core/carriers/services.go` (use cases, validation, pure `Standing`), `internal/core/dispatch/prepare.go` (the one enforcement point for Dispatch, Batch and Check), `internal/core/imports/shipping_methods.go`.
+- Adapter: `internal/adapters/selector/{types,wire,client}.go` (`Connection.PackageCode`, `carrierService.PackageCode`).
+- HTTP and wiring: `internal/http/controllers/admin.go`, `internal/bootstrap/bootstrap.go` (~290–297).
+- UI (hand-typed `apps/ui/src/svc.ts`): `settings/customers/{actions.ts,carrier-account.tsx,shipping-methods.tsx}`, `[id]/carrier/page.tsx`, `[id]/shipping-methods/page.tsx`, new `carrier-services.tsx`. The UI has no test setup, and AGENTS.md says to ask before adding one.
+- Docs: `apps/svc/README.md` (endpoint table ~128, carrier-account paragraph ~196).
+- Guardrails: G1 (every new query names `tenant_id`; both tenancy tests extended), G3, G4 (never Commit/PrintManifest/ProcessCarrierDispatch on the shared sandbox), G6 (`PackageCode` is never defaulted).
 
 ## Assumptions & uncertainty
 <!-- One line each, with how it was established. A genuine product or domain question goes here
