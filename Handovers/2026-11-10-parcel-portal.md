@@ -8,7 +8,7 @@ from: hjf.shell.platform.ilg.software
 to: laptop
 session_id: a25bb30f-e3fe-44fe-885c-4e0ba8c2cc07
 resumed_by: a1c66d35-5bf7-4f34-9d21-dac5ddb5fabe
-updated: 2026-11-10T14:55Z
+updated: 2026-11-10T16:20Z
 ---
 # Handover: Parcel Portal (workstation → laptop)
 
@@ -28,8 +28,10 @@ Dev runs main at `7988887` (#115) for svc (`svc-parcel-dev-00051`), ui (`ui-parc
 | Work | PR / branch | State | To close it |
 | --- | --- | --- | --- |
 | SHIP-1110 increment 6: drive the carrier choice **on dev** | #115 merged; no branch left | Plan `dev-choose-the-test-carrier-or-the-configured-co` is **blocked** only because the workstation has no dev admin login. **The laptop has one**: `~/parcel-portal-dev-admin.txt` (bootstrap admin `admin@parcel-portal.invalid`; read it only in scripts, never print it) | Run [[Handovers/2026-11-10-parcel-portal.carrier-choice.spec.ts.txt]] as a Playwright spec (copy it to `e2e/carrier-choice.spec.ts` in a scratch worktree and **don't commit it**, or it joins the smoke suite; run `npx playwright test carrier-choice.spec.ts` with `BASE_URL=https://parcel.delivery.freightops.dev`, `SMOKE_EMAIL=admin@parcel-portal.invalid`, `SMOKE_PASSWORD` from the file). Expect, in order: two demo customers; A's 5 sample orders book TST; untick A → "This customer has 5 booked shipments … Close them before switching carrier"; B on the sandbox account (TEST/TEST, HERMES, GB) saves; B's Check connection says "The carrier accepted the account."; B's Shipments has Manifest off with the sandbox reason; B ticked back saves; both demo customers are deleted. Then: paste the evidence into the plan's Verification, `wp tick … --increment 6`, confirm its gate, tick AC 1, `wp plan set-status … --status active`, `wp signoff`, and promote the plan's Learnings. AC 6 stays open until the smoke login works (below) |
+| Per-account Selector services list (Oliver Wilders's DMs, 10 Nov) | #118 (enforce, draft), #120 (shipping-methods save, draft), #121 (status fields, draft), #122 (carrier card, draft), #123 (methods editor, draft), stacked in that order on main | Plan `per-account-selector-services-list-block-package`, active, 7 of 7 increments ticked, all PRs open as drafts. Local checks green; dev drive (AC 8) not done | **Gates before merging #118:** Harry confirms the test carrier stays ungated; Oliver confirms valid package codes for TCA's FedEx. Then mark each ready and merge in order (don't delete a branch on merge: GitHub closes the PR stacked on it, as it did #117). After the stack is on dev, run AC 8 with the laptop's dev admin login, paste the evidence into the plan, then `wp signoff` |
 
 ## Waiting on Harry
+- **Per-account services (#118 gate).** Confirm the test carrier stays ungated by the services list (recommended: yes, the list describes a real Selector account and the fake accepts any code; on dev the block shows only once "Book with the test carrier" is unticked). Also: should I post the stack in `#bifrost-forge`? I didn't, since earlier Parcel PRs weren't announced there and the slack-bot skill wants an explicit ask.
 - **C22 increment 5, ZPL in the browser.** Recommended: **A**, keep ZPL accounts download-only until a ZPL customer is confirmed. The other options are B, Labelize (a third-party download needing his OK, after a render test) and C, PDF on thermal. An A6 sandbox check was offered.
 - **The dev smoke login.** Every deploy's `smoke-dev` and the nightly fail at sign-in ("That email and password don't match" for `smoke-test@parcel-portal.invalid`). The repo has the `DEV_SMOKE_ADMIN_PASSWORD` secret but no `DEV_SMOKE_ADMIN_EMAIL` **variable**. Recommended: with the laptop's dev admin login, create a dedicated GFS admin on dev for the smoke, then set the variable and secret to it. Get Harry's OK for the repo secret and variable write first. That also opens the gates on C19 incs 6–8 and SHIP-1110's AC 6.
 - **C19 increments 6–8** (a stale acting cookie cleans itself up, stale tabs, actions carry the page's customer) were proposed and not answered. They're gated on the smoke login.
@@ -97,3 +99,5 @@ Not checked from here: the workstation has no route to the laptop. The vault rea
 ## Closed since handover
 | When (UTC) | Work | Result |
 | --- | --- | --- |
+| 2026-11-10 16:00 | #116 store for per-account Selector services | Merged; dev logged "Migrations applied" `toVersion` 18 on `svc-parcel-dev-00052`. |
+| 2026-11-10 16:10 | #119 (replaces #117) carrier-services API, openapi 5.11.0 | Merged. |
