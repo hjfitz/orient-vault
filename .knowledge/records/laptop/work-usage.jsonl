@@ -291,3 +291,12 @@
 {"ts": 1794233624, "kind": "ledger", "session_id": "0fb571d0-d903-483b-9e8b-1198b51d571f", "service": "orient", "ticket": null, "programme": null, "heading": "## 2026-11-09 \u2014 Scribe on the VM: the laptop captures, the VM keeps and processes recordings", "prs": []}
 {"ts": 1794233624, "kind": "ledger", "session_id": "0fb571d0-d903-483b-9e8b-1198b51d571f", "service": "orient", "ticket": null, "programme": null, "heading": "## 2026-11-09 \u2014 Vault sync on push: each machine pulls the other's changes in about 5 s", "prs": []}
 {"ts": 1794309711, "kind": "ledger", "session_id": "abdafc9f-2190-457e-972f-89a08cdc96d3", "service": "fuse-mocker", "ticket": null, "programme": null, "heading": "## 2026-11-10 \u2014 Add daily-window schedules and chained pick/pack/goods-out confirmations", "prs": ["gfs-bifrost/fuse-mocker#38"]}
+{"ts": 1794311367, "kind": "ledger", "session_id": "abdafc9f-2190-457e-972f-89a08cdc96d3", "service": "fuse-mcp-server", "ticket": null, "programme": null, "heading": "## 2026-11-10 \u2014 Expose daily windows, confirmation stages and confirmAfterSeconds on mock-schedule", "prs": ["gfs-bifrost/fuse-mcp#65"]}
+{"ts": 1794312269, "kind": "programme_tick", "session_id": "0fb571d0-d903-483b-9e8b-1198b51d571f", "programme": "orient Svelte UI", "unit": "U0", "status": "doing"}
+{"ts": 1794312272, "kind": "programme_tick", "session_id": "0fb571d0-d903-483b-9e8b-1198b51d571f", "programme": "orient Svelte UI", "unit": "U1", "status": "doing"}
+{"ts": 1794313040, "kind": "programme_tick", "session_id": "0fb571d0-d903-483b-9e8b-1198b51d571f", "programme": "orient Svelte UI", "unit": "U1", "status": "done"}
+{"ts": 1794313070, "kind": "programme_tick", "session_id": "0fb571d0-d903-483b-9e8b-1198b51d571f", "programme": "orient Svelte UI", "unit": "U3", "status": "doing"}
+{"ts": 1794313590, "kind": "programme_tick", "session_id": "0fb571d0-d903-483b-9e8b-1198b51d571f", "programme": "orient Svelte UI", "unit": "U2", "status": "doing"}
+{"ts": 1794313775, "kind": "programme_tick", "session_id": "0fb571d0-d903-483b-9e8b-1198b51d571f", "programme": "orient Svelte UI", "unit": "U3", "status": "done"}
+{"ts": 1794314740, "kind": "programme_tick", "session_id": "0fb571d0-d903-483b-9e8b-1198b51d571f", "programme": "orient Svelte UI", "unit": "U2", "status": "done"}
+{"ts": 1794314743, "kind": "programme_tick", "session_id": "0fb571d0-d903-483b-9e8b-1198b51d571f", "programme": "orient Svelte UI", "unit": "U4", "status": "doing"}
