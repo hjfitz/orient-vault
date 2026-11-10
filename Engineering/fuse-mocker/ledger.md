@@ -7,6 +7,14 @@ title: fuse-mocker — work ledger
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-10 — Add daily-window schedules and chained pick/pack/goods-out confirmations
+
+Add daily-window schedules and chained pick/pack/goods-out confirmations
+
+Mocker could only fire on a fixed interval and confirm goods-out once. Adds dailyCount/window/daysOfWeek timing and confirmStages chains so FUSEDEV can get saira-like daily end-to-end traffic. MCP mock-schedule parity and the live FUSEDEV schedule are follow-ups.
+
+PR: gfs-bifrost/fuse-mocker#38
+
 ## 2026-11-05 — Run fuse-mocker on the golden runtime image
 
 Run fuse-mocker on the golden runtime image
