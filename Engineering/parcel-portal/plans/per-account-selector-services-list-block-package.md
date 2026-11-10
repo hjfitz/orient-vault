@@ -135,6 +135,8 @@ Seven PRs, stacked in this order: 1a → 1b → 2+3 → 4a → 4b → 5a → 5b.
      time. A decision worth defending in a review six months out belongs in a durable record
      instead — `wp decide --record`. -->
 
+- **2026-11-10** — Deviations in 1–2: package_code and label are NOT NULL DEFAULT '' (not NULL) to keep sqlc types plain; the list body is {items:[…]} like bench printers, not {services:[…]}; a duplicate code in any case is 400 invalid_input at both store and use-case level; the up/down migration check is dropped (the repo has no down migrations), so the only rollback claim is that an older image ignores the table.
+
 ## Learnings
 <!-- Durable facts about the service surfaced while planning, working or testing that are not
      already written anywhere in the vault — a gotcha, a constraint, a fragile edge, a confirmed
