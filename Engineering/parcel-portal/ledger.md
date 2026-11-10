@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-10 — Log Selector's fault text when its server fails a call
+
+Log Selector's fault text when its server fails a call
+
+Ship: SHIP-1110-selector-services. Dispatch on dev was refused with a bare 'carrier rejected the request' and logs showed only code 0030. Selector's own fault text (codes 0030 and 0040 only, cut to 200 chars) is now in the logged cause; it showed a null-reference inside ProcessShipment.
+
+PR: ilg-merak/parcel-portal#125
+
 ## 2026-11-10 — Send a goods description with every shipment
 
 Send a goods description with every shipment
