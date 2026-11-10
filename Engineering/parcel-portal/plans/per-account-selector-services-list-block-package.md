@@ -33,7 +33,7 @@ programme: "Parcel Portal"
 
 ## Intent
 <!-- What we are changing and why. Link the ticket. -->
-<the change, and the observable outcome that proves it, in 2-4 sentences>
+Origin: Oliver Wilders's DMs, 10 Nov (TCA's Selector account has six installed FedEx services, some must be installable but hidden; later a customer-routes call may fill the list) and Harry's "leave it open so it's extensible" and go-ahead. Each tenant gets a free-form list of Selector services `{serviceCode, label, enabled, packageCode?}`. `enabled=false` blocks a service installed on the account but not yet wanted. An empty list means no restriction, so every existing account behaves as today. When the list is non-empty, booking and "Check with carrier" refuse an order whose mapped service is blocked or unlisted before Selector is called, the shipping-methods editor offers only enabled services, and the row's `packageCode` goes out as `<PackageCode>` between `ServiceCode` and `Dropoff`.
 
 ## Acceptance criteria
 <!-- Observable, checkable outcomes — not tasks. Numbered by order: increments cite them as
