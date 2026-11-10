@@ -7,8 +7,8 @@ repo: ilg-merak/parcel-portal
 from: hjf.shell.platform.ilg.software
 to: laptop
 session_id: a25bb30f-e3fe-44fe-885c-4e0ba8c2cc07
-resumed_by: ""
-updated: 2026-11-10T14:43Z
+resumed_by: a1c66d35-5bf7-4f34-9d21-dac5ddb5fabe
+updated: 2026-11-10T14:55Z
 ---
 # Handover: Parcel Portal (workstation → laptop)
 
