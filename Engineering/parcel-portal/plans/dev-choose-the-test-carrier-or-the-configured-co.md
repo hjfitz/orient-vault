@@ -82,7 +82,11 @@ Harry, 10 Nov: "can we configure dev to opt in to the test selector or a configu
 - [x] 2. svc choice rules and contract: SetConnection takes `testCarrier` (absent keeps the stored choice), refuses it where not offered, requires a password unless the test carrier is chosen, and refuses a switch with booked shipments or open attempts; openapi 5.10.0 with the new fields and errors; controllers (AC 2,3,4) — verify: core tests per rule; `make check` incl. contract-check and the tenancy tests — 19 core tests for the choice, password and switch rules; e2e 422 carrier_switch_blocked and test_carrier_unavailable; make check (fmt, vet, race, lint, gen-check) and contract-check 5.9.0->5.10.0 additive; full integration suite green — done: e19a6a9
 - [x] 3. UI: the Carrier card's checkbox (offered only where svc says so, state from the customer-scoped connection), the password rule, the switch-refused message, per-customer notice copy (AC 1,4,5) — verify: lint, build:check, next build; local e2e of the card on and off — biome, tsc and next build green; local Playwright: offered → box ticked + TEST notice + password optional, unticked → account notice + password required, a tick-back save with nothing open succeeds; not offered → no box or notice, password required. A save storing a password 503s locally (no carrier key); covered on dev — done: c5e8675
 - [x] 4. Docs: svc README, runbook, ui README, dev.tfvars and variable description (AC 2) — verify: read through — svc README, runbook, ui README, dev.tfvars comment and carrier_mode description read through; terraform fmt clean — done: ce2574b
-- [ ] 5. Dev: deploy and drive it: a stand-in customer still books TST; unticking a customer reaches its Selector endpoint; a switch with open shipments is refused; Manifest guard on a sandbox-routed customer (AC 1-6) — verify: evidence in Verification
+> SUPERSEDED 2026-11-10 — dev can't be driven as an admin from this session (the bootstrap-admin secret is IAM-denied and the dev smoke's admin login is broken), so increment 5 was split: the drive ran locally against the real Selector sandbox, and the drive on dev became increment 6, gated on a login.
+- [x] 5. Dev deploy, and the drive run locally against the real Selector sandbox: a stand-in customer still books TST; a switch with open shipments is refused; an unticked customer's check reaches Selector; Manifest guard on a sandbox-routed customer (AC 1-6) — verify: evidence in Verification — dev deploy healthy (migration 17, test carrier offered); local drive against the real Selector sandbox, evidence in Verification — done: 3ea96d9
+- [ ] 6. Drive it on dev as an admin: untick a demo customer onto the sandbox account, Check connection from dev, switch refused with a booked shipment, then tick it back (AC 1,3,4) — verify: evidence in Verification
+      gate: a dev GFS-admin login this session can use (put in ~/.secrets), or Harry runs the check
+            [ ] confirmed
 
 ## Verification
 <!-- The single authority for evidence. Increment lines carry `— done: <sha>` and nothing else.
@@ -91,11 +95,15 @@ Harry, 10 Nov: "can we configure dev to opt in to the test selector or a configu
 ### Evidence
 <!-- Newest first, dated. One bullet per check actually run, opening with what it discharges.
      "Suite green" alone is not evidence. Sign-off requires at least one dated bullet here. -->
-- <YYYY-MM-DD> [inc <n>] <what was run, against what, and the observable result>
+- 2026-11-10 [inc 5] **Dev deploy of the branch (5898dc0):** svc-parcel-dev-00050 and ui-parcel-dev-00058 serving `dev-5898dc0`; svc log on dev "Migrations applied 16 → 17 (applied 1)" then "The test carrier is offered"; `/sign-in` 200. Every existing dev customer keeps the test carrier (column default true).
+- 2026-11-10 [inc 5] **Local drive, branch svc with a local-only carrier key, against the real Selector sandbox** (Playwright, screenshots in `carrier-choice-screens/`): the seed customer on the test carrier dispatched PREVIEW-18 as TST2613752224 (log `Dispatch booked testCarrier=true`) and the order page showed "Orders here are booked with a stand-in carrier"; unticking it with that shipment booked was refused: "This customer has 1 booked shipment to void or manifest. Close them before switching carrier…" (singular wording fixed in 3ea96d9), and a reload still showed it ticked. A fresh demo customer unticked onto the sandbox account (TEST/TEST, HERMES, GB) saved (audit `testCarrier=false passwordWritten=true`), Check connection answered "The carrier accepted the account." (one read-only daily query), its Shipments page had no TEST notice and Manifest off with the sandbox reason; ticked back with nothing open it saved, and Check said "This customer books with the test carrier, so nothing was checked with Selector."
+- 2026-11-10 [inc 3] **Card where the test carrier isn't offered** (local svc in selector mode): no checkbox and no notices; the password is required.
+- 2026-11-10 [inc 1-2] **Tests:** routing for every carrier call and the password router (unit); the choice, password and switch rules (20 core tests); open-work count and its tenant scoping against Postgres; e2e: a test-carrier customer books TST with no Selector call while an own-account one books through the faked Selector, switch refused with 422 `carrier_switch_blocked` until the shipment is voided, `test_carrier_unavailable` where not offered, and prod's wiring ignores a row the migration marked true (booking, log and status). Mutation-checked: the log test fails on the raw column, and the prod-wiring tests fail if selector mode wires the router. `make check` and the full integration suite green under `-race`.
 
 ### Not verified
 <!-- Stated, not papered over. "(none)" is a deliberate claim, and a fine one. -->
-- <what remains unproven, and what would prove it>
+- The authenticated flow on dev itself (increment 6): unticking a dev customer, its check reaching the sandbox from dev's network, and the refusal. Proven locally against the real sandbox with the same code; dev needs an admin login this session can use.
+- The switch guard's race with a dispatch already under way (accepted and documented: a check, not a lock).
 
 ## Decisions & deviations
 <!-- Date-stamped, newest first — written by `wp decide`, and by hand when that is easier.
@@ -104,9 +112,16 @@ Harry, 10 Nov: "can we configure dev to opt in to the test selector or a configu
      time. A decision worth defending in a review six months out belongs in a durable record
      instead — `wp decide --record`. -->
 
+- **2026-11-10** — Self-review: the booking log's testCarrier is the carrier's own Test(conn), as GET /carrier's is, because migration 017 marks every older row true, prod's included. Kept DEFAULT true (not false + a dev backfill) so dev customers keep the stand-in with no data step; prod never reads or reports the raw column (status, check, GET connection and now the log all go through the wired carrier or the offered flag).
+
+- **2026-11-10** — Self-review (4 lenses): the switch guard stays a check, not a lock. A dispatch that read the old choice just before a switch still books with it, and that shipment then needs an engineer (Selector can't void a TST consignment, and the guard won't switch back while it's booked). Closing it means locking the carrier_connection row in the G2 claim transaction; not worth touching G2 for a dev-only toggle with a sub-second window. Documented in the README and on the guard.
+
 ## Learnings
 <!-- Durable facts about the service surfaced while planning, working or testing that are not
      already written anywhere in the vault — a gotcha, a constraint, a fragile edge, a confirmed
      or refuted hypothesis. Not restated doc content. Sign-off promotes each confirmed one into
      the matching durable doc, then clears it from here; a refuted one moves to ## Handback
      rather than being deleted. Legitimately empty. -->
+- **Local svc has no carrier key**, so any save that stores a carrier password answers 503 ("No carrier key: carrier passwords can't be stored or read"). An own-account save can only be driven on dev (which has `svc-parcel-carrier-key`) or in the e2e harness (`WithCarrierKey`). (2026-11-10)
+- **A shipment booked by one backend can't be closed through the other.** Selector refuses a TST consignment it never saw, and its day list doesn't show it, so void's fallback can't recover it; the stand-in "voids" a real Selector booking portal-side only, leaving it live in the sandbox. This is why the switch guard exists, and why a dispatch caught mid-switch needs an engineer. (2026-11-10)
+- **The local preview database's second demo customer (`Demo 6 Nov 14:12:31 UTC`) was deleted on 9 Nov**, so acting for it 404s on `/me`: the stale acting-cookie error page, not a bug. Make a fresh demo customer for local checks. (2026-11-10)
