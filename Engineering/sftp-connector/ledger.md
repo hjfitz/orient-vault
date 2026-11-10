@@ -7,6 +7,14 @@ title: sftp-connector — work ledger
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-10 — FUSE-1351
+
+Create the pick, pack, stock adjustment and returns confirmation folders for every SFTP user
+
+Added from_ilg/pick_confirmation_confirmations, pack_confirmation_confirmations, stock_adjustment_confirmations and return_goods_authorization_confirmations to apps/host/internal/directories/directories.json, so the host's create-only reconcile makes them up front for every user (EDICOM can't connect to a folder that doesn't exist). stock_sync is deliberately left out until its name is confirmed (FUSE-1302). Shipped by /ship, to prod ahead of QA. Dev: 388 created across 3 replicas (97 non-CT users x 4). Prod: image prod-9f782e1cb1bf live on 3 healthy hosts, reconcile created 164 (41 users x 4), no errors. FUSE-1351 stays open: prod has no CT user yet, stock snapshot folder name unconfirmed. The five CT dev users were given these folders, plus a tentative stock_sync, by hand beforehand.
+
+PR: gfs-bifrost/sftp-connector#408
+
 ## 2026-11-06 — Stop counting redelivery deferrals and customer rejections as request failures
 
 Stop counting redelivery deferrals and customer rejections as request failures
