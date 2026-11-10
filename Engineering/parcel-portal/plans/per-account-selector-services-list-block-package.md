@@ -1,18 +1,22 @@
 ---
-ticket: "none"
-title: "Per-account Selector services list: block, package code"
-service: "parcel-portal"
+ticket: none
+title: 'Per-account Selector services list: block, package code'
+service: parcel-portal
 status: draft
-created: "2026-11-10"
-updated: "2026-11-10"
-repo: "/home/hjf/code/merak/parcel-portal"
-worktree: "/home/hjf/code/merak/parcel-portal/.claude/worktrees/selector-services"
-branch: "hjf/selector-service-allowlist"
-base: "origin/main"
-base_sha: "79888873f"
-pr:
-tags: [waypoint, plan]
-programme: "Parcel Portal"
+created: '2026-11-10'
+updated: '2026-11-10'
+repo: /home/hjf/code/merak/parcel-portal
+worktree: /home/hjf/code/merak/parcel-portal/.claude/worktrees/selector-services
+branch: hjf/selector-service-allowlist
+base: origin/main
+base_sha: 79888873f
+pr: null
+tags:
+- waypoint
+- plan
+programme: Parcel Portal
+impl_model: sonnet
+impl_effort: medium
 ---
 # none — Per-account Selector services list: block, package code
 
