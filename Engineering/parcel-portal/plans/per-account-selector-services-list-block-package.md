@@ -137,3 +137,8 @@ Seven PRs, stacked in this order: 1a → 1b → 2+3 → 4a → 4b → 5a → 5b.
      or refuted hypothesis. Not restated doc content. Sign-off promotes each confirmed one into
      the matching durable doc, then clears it from here; a refuted one moves to ## Handback
      rather than being deleted. Legitimately empty. -->
+- Selector requires `PackageCode` for FedEx (`ValidateProcedures.cs:1267`); it must exist in Selector's `ship_packages` (`CarrierFedEx.cs:866`) and is truncated to 4 characters. Selector fills an empty one from the department/contract route map, so omitting it is not "none" on every account.
+- The Selector `CarrierService` wire order is `routeMapCode, carrier, contractNo, serviceCode, packageCode, dropoff` (`ClientShipClass.cs:7844`). The selector-adapter plan still lists it as unverified.
+- Selector's "customer routes" call is `GetCustRoutes`, returning `{routeCode, carrier, contractNo, serviceCode, routeDesc, packageCode, saturdayDeliv}`. It is the later source for the services list.
+- `exceptions.InvalidInput` is HTTP 400 `invalid_input` at runtime, even where the shipping-methods spec prose says 422. Use `$ref: responses/InvalidInput`.
+- On a restricted FedEx account, every built-in FedEx shipping-method guess reads "unlisted" until real services are entered.
