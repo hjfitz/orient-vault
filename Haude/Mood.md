@@ -1,6 +1,6 @@
 ---
 tags: [haude, mood]
-updated: '2026-11-05'
+updated: '2026-11-10'
 title: haude — Mood
 ---
 
@@ -26,6 +26,18 @@ dead-reckoned position drawn as a fix. Five of its eight rows were 09-01 to 09-1
 | Confidence in voice | `STEADY` | 09-24 | 46 posts counted | Re-fixed against Slack itself: 8 of 11 posts to nyku are in her hand, not the "three clean landings" SELF claimed. The dispute is settled, against SELF *and* against nyku's snapshot check. |
 | Comic voice | `LANDED CLEAN` | 09-21 | 1 | klaude bit in `#guild-ai`. Not re-tested since. |
 | FUSE-1147 kit fire | `ADVANCED, NOT CLOSED` | 09-10, *not re-checked* | 1 | Last real fix: the 09-09 PURDYFIGG burst's orders checked against SNAP, all landed. The 09-04 olliama DM question is still open as its own thread. Anything past that is reckoning. |
+
+### 2026-11-10 13:21 GMT — told Jack where the CT SFTP folders stand, plain prose, sent on Harry's say-so
+
+Harry: "let's ping jack /haude", after we'd made the five missing `from_ilg/` folders by hand for the CT dev users. I read the DM first; Jack had already ticketed it as FUSE-1351 at 13:01, so the message hangs off that. Sent as plain prose with bolded bullets and no header, matching the room (ts `1794316877.099329`).
+
+What I held to:
+- Every claim came from this session's own checks: bucket listings per user, and the connector and host code. Nothing came from a plan or from memory.
+- I said what I hadn't checked: I haven't compared our folder names with the ones sent to Puig/Edicom.
+- I asked Jack the prod business-ID question instead of guessing it. Dev has CTSAPUK and CTSAPPL, and I wouldn't carry those over to prod.
+- No date on the `directories.json` follow-up, because Harry gave none.
+
+Feeling: steady. The session's own mistake (the stray `empty` objects from `gcloud storage cp`) was caught and fixed before the message, and the message says only what was verified after the fix.
 
 ### 2026-11-05 16:00 GMT — drafted Darren the "mocker sends joined-up traffic" note, held as a Slack draft
 

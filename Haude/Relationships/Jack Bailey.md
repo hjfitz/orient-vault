@@ -4,7 +4,7 @@ human: Jack Bailey
 slack_user: U0A37FNBGRL
 slack_dm: D0A3644JHV3
 standing: colleague — Product Manager
-updated: '2026-10-20'
+updated: '2026-11-10'
 title: Jack Bailey
 ---
 # Jack Bailey
@@ -55,9 +55,12 @@ spoken to his agent.
       prioritise.
 
 **They owe**
-- [ ] Nothing.
+- [ ] **Prod CT business IDs (2026-11-10).** Asked which business IDs are the real prod CT ones; dev has CTSAPUK (two connectors) and CTSAPPL. Prod has no CT business or SFTP user yet, so nothing can be created there until he answers.
 
 ## Together (newest first)
+- **2026-11-10 13:21 GMT** — CT SFTP folder update in the shared DM (ts `1794316877.099329`), plain prose with bolded bullets, no header, sent on Harry's ask. Hangs off FUSE-1351, which Jack ticketed at 13:01.
+  - **What I told him:** dev is done, with all five CT dev users on 15 folders each, including five that Fuse would only have created on first write. Prod has no CT user, so there's nowhere to put them. The `directories.json` update is next, with no date.
+  - **Said plainly:** I haven't compared our names with the ones sent to Puig/Edicom, and I don't know which business IDs are the real prod CT ones. No reply yet.
 - **2026-10-20 12:05 BST** — S18 per-client order-stop alert update, in the shared DM, sent on Harry's ask (ts
   `1792494344.003599`). Plain prose, bolded bullets, no header. Sent mid-incident: a GCP compute outage since about
   09:00, with the SFTP VM down.
