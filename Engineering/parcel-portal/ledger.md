@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-10 — Store a tenant's Selector services
+
+Store a tenant's Selector services
+
+Migration 018 and a tenant-scoped store for the services on a tenant's Selector account: code, label, enabled (false blocks) and optional package code; an empty list is unrestricted. Increment 1 of the per-account services plan; nothing reads it yet.
+
+PR: ilg-merak/parcel-portal#116
+
 ## 2026-11-10 — Let each dev customer choose the test carrier or its own Selector account
 
 Let each dev customer choose the test carrier or its own Selector account
