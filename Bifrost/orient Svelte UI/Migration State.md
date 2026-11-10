@@ -98,6 +98,7 @@ U5 fills this; all must hold for G1. U0 fills the baseline column.
 - **R7 Render-cache staleness** — a missed `linkGen` input serves stale link resolution; the parity harness and a `RENDERER_VERSION` bump discipline cover it. — open.
 
 ## Decision log
+- **2026-11-10** — U1 review: a local process can forge the browser write headers (Origin, X-Orient). Accepted: each machine has one login user (harry on the VM, hjf on the laptop), and any process running as them can read the 0600 write token anyway — the guards exist for browsers (CSRF, DNS rebinding, framing), not for the local user. Revisit if a second user is ever added.
 - **2026-11-10** — Gates G2, G3, G4, G6, G7 answered by Harry (see Gates). Desktop-only UI; cross-framework full-page hops accepted; no Mac; LAN IP dropped; no headless runs during the migration. Programme active.
 - **2026-11-10** — Swap the UI framework for a Svelte 5 SPA over a standalone core service, keeping the look. Why: input lag Harry feels in every Next/React UI; measured `/today` at ~0.7 s server time per visit, 1.48 MB, ~7,400 elements, markdown re-run per todo. One core process (modules registered with a small kernel), not microservices.
 - **2026-11-10** — Next.js UI frozen: fixes only until a page moves (orient `CLAUDE.md`, ccafb1c).
