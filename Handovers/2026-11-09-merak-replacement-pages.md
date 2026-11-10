@@ -8,7 +8,7 @@ from: rc-hjf
 to: next session, any machine
 session_id: 9ef32451-f6a6-429e-88df-add8e5d83ddf
 resumed_by: 4ff6c302-4da3-4b14-bf3c-fc976c0ec75b   # laptop (freightops), 2026-11-09T12:14Z
-updated: 2026-11-10T12:15Z
+updated: 2026-11-10T12:55Z
 ---
 # Handover: Merak replacement pages (continues the carrier-integrations research)
 
@@ -156,6 +156,18 @@ Checked on `rc-hjf` (`uname -n`) at 2026-11-09T11:57Z:
 - Research copies: [[Handovers/2026-11-09-merak-replacement-pages.tracking-core-findings]], [[Handovers/2026-11-09-merak-replacement-pages.tracking-topic-catalogue]] and [[Handovers/2026-11-09-merak-replacement-pages.tracking-model-findings]].
 
 **Owed corrections (Confluence not edited, Harry to decide).** Polling Connectors (353697880) gives the `FindOneAndUpdate` to the connector, and it runs in batch-creator. How Carriers Feed ECM, Selector and ECM Coupling and Shipment Identity state the 90-day expiry too firmly. Tracking Events and Webhooks says every event carries the raw code beside the derived status. The full list, and the contradictions in the `tracking-core` Waypoint docs, are in `known-context` under Owed.
+
+## Topic usage (2026-11-10)
+**Asked.** Harry asked for a page on the ECM Pub/Sub topics: what each carries, who writes it and who reads it. Harry reviewed the draft and authorised publishing.
+
+**Published.** MPK 356155424, "ECM Pub/Sub Topics: Shapes, Producers and Consumers", under 351502339. It is an unverified draft. It covers all 70 topics the prod Terraform creates (145 subscriptions), with a verdict for each: LIVE 42, CONSUME-ONLY 9, PUBLISH-ONLY 8, UNKNOWN 5, ORPHAN 3, UNDEPLOYED 3. Datadog counters cover 41 topics. The published page was fetched back and checked against the source: all 70 topic names, the six verdict counts, the five linked pages and every table row were present.
+
+**Correction.** [[Systems/ecm/tracking]] said 10 of the 15 `raw_tracking.v1` subscriptions had a running consumer, and listed 41 topics. The map found 8 running consumers, one that runs but drops every event, a Dataflow job in an unknown state and 4 with no running workload. Both are corrected there.
+
+**Where it lives.**
+- [[Handovers/2026-11-09-merak-replacement-pages.page7-ecm-topics]]: the page source copy.
+- [[Handovers/2026-11-09-merak-replacement-pages.topic-usage-map]] and [[Handovers/2026-11-09-merak-replacement-pages.topic-datadog-usage]]: the research copies.
+- [[Systems/ecm/known-context]] has the settled facts, the new unconfirmed items and the owed GCP read. [[Systems/ecm/overview]] indexes the page.
 
 ## Where this now lives
 The durable, indexed copy of these findings is the system [[Systems/ecm/overview|ecm]]. This record stays the transient handover.
