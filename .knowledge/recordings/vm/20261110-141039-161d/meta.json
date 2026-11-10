@@ -66,6 +66,13 @@
     "durationMs": 8252,
     "at": "2026-11-10T16:05:29.417643056Z"
   },
+  "enhancement": {
+    "model": "sonnet",
+    "usd": 0.6358832,
+    "durationMs": 45897,
+    "at": "2026-11-10T16:06:15.315352573Z",
+    "parts": 9
+  },
   "host": "vm",
   "capturedOn": "laptop",
   "received": {
