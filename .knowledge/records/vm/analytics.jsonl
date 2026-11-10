@@ -90,3 +90,12 @@
 {"t":"leave","at":"2026-11-10T10:34:21.731Z","visit":"8f70c924-ad41-45e7-a617-c922080642f3","activeMs":6000}
 {"t":"leave","at":"2026-11-10T10:35:19.975Z","visit":"8f70c924-ad41-45e7-a617-c922080642f3","activeMs":58000}
 {"t":"leave","at":"2026-11-10T10:38:19.807Z","visit":"8f70c924-ad41-45e7-a617-c922080642f3","activeMs":59000}
+{"t":"view","at":"2026-11-10T11:00:41.046Z","visit":"b5aab76f-d4f3-4d9f-9973-d8267e9a74d5","route":"/"}
+{"t":"view","at":"2026-11-10T11:00:41.775Z","visit":"3f24db40-fb04-4d74-ac2c-8fc34116e849","route":"/today"}
+{"t":"leave","at":"2026-11-10T11:00:46.983Z","visit":"3f24db40-fb04-4d74-ac2c-8fc34116e849","activeMs":4000}
+{"t":"view","at":"2026-11-10T11:00:47.026Z","visit":"23a2cb9f-4b34-4bca-9d2b-d80dbee05065","route":"/puzzles"}
+{"t":"leave","at":"2026-11-10T11:00:48.567Z","visit":"23a2cb9f-4b34-4bca-9d2b-d80dbee05065","activeMs":1000}
+{"t":"view","at":"2026-11-10T11:00:48.862Z","visit":"65a819a2-e7c1-435d-b884-2cec75c9e0f1","route":"/puzzles","tab":"queens"}
+{"t":"leave","at":"2026-11-10T11:02:14.058Z","visit":"65a819a2-e7c1-435d-b884-2cec75c9e0f1","activeMs":85000}
+{"t":"view","at":"2026-11-10T11:44:54.665Z","visit":"3971be55-35dd-434a-aca8-955e51909476","route":"/"}
+{"t":"view","at":"2026-11-10T11:44:55.526Z","visit":"5e202603-923e-4365-bbdc-4a7d3eb158cc","route":"/today"}

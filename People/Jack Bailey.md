@@ -17,7 +17,7 @@ title: Jack Bailey
 
 ## Open loops
 **I owe**
-- [ ] Join the CT DESADV customer call Darren Cobby is setting up, and refine and sequence FUSE-1335 with the November Shopify parity work
+- [x] Join the CT DESADV customer call Darren Cobby is setting up, and refine and sequence FUSE-1335 with the November Shopify parity work
 - [ ] Reply to his #bifrost-general stand-up-eve asks: QA status of dual-Shopify polling for Escentric (FUSE-1312), the GetStock API and Shopify stock sync, and Returns / Work Orders / Pick-Pack QA. He is away 10-21 — [Slack](https://gfsdeliver-eng.slack.com/archives/C098LD5PS95/p1792532297004579?thread_ts=1792532297.004579&cid=C098LD5PS95)
 - [ ] Send him [[Matt Shaw]]'s stand-up update after Wednesday's 10:00 standup, since he is away (agreed in the 10-19 1:1) — [recording](http://localhost:3000/recordings/20261019-133321-defe)
 - [ ] Confirm owners and dates on his Integrations Path Forward actions, or say they stand. I am named on S18 (hourly ingest monitoring, before the 1 Nov peak freeze) and L3 (change process and feature flags, shipped in types 10.14/10.15 and remote-config 2.4). He also wants a verbal Support to L2 Projects process agreed before the Phlur, Eadem, Escentric and Jo Loves go-lives, raised at the Wednesday catchup (carried ×2) — [Jack's workshop mail](https://outlook.office365.com/owa/?ItemID=AAMkADVhYjUxODIyLWM5NTktNGJmOC1hN2FjLWFjMjllNWUzYmY4MwBGAAAAAAAEXHdKGOMeRLfpaU7ff8ChBwABLsgQpFdPTayXOZTVrraLAAAAAAFcAAABLsgQpFdPTayXOZTVrraLAAHLFV2XAAA%3D&exvsurl=1&viewmodel=ReadMessageItem)
