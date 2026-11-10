@@ -63,8 +63,19 @@ Origin: Oliver Wilders's DMs, 10 Nov (TCA's Selector account has six installed F
 ## Assumptions & uncertainty
 <!-- One line each, with how it was established. A genuine product or domain question goes here
      as UNRESOLVED: and is raised with the user, never invented. -->
-- <assumption> — <how it was established: source read, ticket, asked>
-- UNRESOLVED: <question that needs a human decision>
+- A new table, not jsonb on `carrier_connection` — a later routes sync upserts per row without racing admin edits, and uniqueness is a DB constraint. Settled by reading `bench_printers.go` and `import_mapping.shipping_methods` (migration 009).
+- A separate endpoint, not a field on `CarrierConnectionRequest` — `PutCarrierConnection` rewrites the whole row, so an old UI would wipe the list. Source read.
+- The gate sits in `prepare`, before `ClaimDispatch`, so no attempt row and no Selector call. It uses `Test(selector.Connection{TestCarrier: conn.TestCarrier})`, as bootstrap does, because `sel` isn't built until after the password read. Source read, both reviewers.
+- The test carrier is not gated: the list describes a real Selector account and the fake accepts any code. Consistent with the carrier-choice plan, which says prod never consults `test_carrier` and prod rows hold `true` from migration 017. On dev the block shows only after unticking "Book with the test carrier".
+- Errors are 400 `invalid_input` (`exceptions.InvalidInput`), not 422; a duplicate code from a concurrent PUT is also `InvalidInput`, as in `ReplaceBenchPrinters`. The 404 for GET and PUT comes from the use case calling `GetCarrierConnection` first, because an empty PUT never trips the FK.
+- `PackageCode` goes between `ServiceCode` and `Dropoff`: Selector's `ClientShipClass.cs:7844` orders `routeMapCode, carrier, contractNo, serviceCode, packageCode, dropoff`. Selector requires it for FedEx (`ValidateProcedures.cs:1267`), it must exist in Selector's `ship_packages`, and Selector truncates it to 4 characters. Source read in `/home/hjf/code/selector`.
+- An empty `PackageCode` is omitted, never defaulted to `YP` (G6). Selector fills an empty one from the department/contract route map, so omitting is not "none" on every account.
+- Code matching is case-insensitive (`EqualFold`), matching the `upper(service_code)` unique index. The order's code is sent as stored.
+- A carrier change leaves the list as it was; no server change, only a UI hint in 5a. Clearing it would touch `PutCarrierConnection`.
+- On a restricted FedEx account every built-in FedEx mapping reads "unlisted" (they are `unconfirmedCarriers` guesses), so those orders are refused at dispatch and Check until the mapping is edited. Chosen deliberately: the refusal message names the code, and reset-to-built-in stays allowed on save. FedEx isn't bookable yet anyway (G6 / MKP-10).
+- Non-goals: marking orders invalid at import, gating `PATCH /orders`, and showing customers why a service is blocked beyond the order message.
+- UNRESOLVED: should a row be keyed by service code, or by Selector route (carrier + contract + service + route code)? Selector's `GetCustRoutes` returns `{routeCode, carrier, contractNo, serviceCode, routeDesc, packageCode, saturdayDeliv}`, and two routes can share a service with different package codes. Planned default: key by `serviceCode` now, and add `routeCode` later as an additive column when the sync exists.
+- UNRESOLVED: which package codes are valid for TCA's FedEx account (`YP` was named for the sandbox login). Gates entering real rows, not the code. Ask Oliver Wilders.
 
 ## Increments
 <!-- Each independently implementable AND verifiable. Cite the criteria it discharges as
