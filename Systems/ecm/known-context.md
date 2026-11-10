@@ -60,6 +60,15 @@ Read in code at `tracking-core` `c0811087`, in prod manifests at `a317dc0` and i
 - **CONFIRMED** The inbound `shipments.v2.identified` subscription has a dead-letter topic after 10 attempts, and the Evri interim topic has one after 5. The earlier "no dead letters" is true of polling only.
 - **CONFIRMED** `tracking-core/agents.md` is wrong. It says Node.js, and it names subscriptions the code does not use. Do not cite it.
 
+## Settled facts: topics (2026-11-10)
+Read in the prod Terraform (`gfs-ecm-prod-uk1`, master `35b545ce`) and the prod cluster manifests (`a317dc0`), with Datadog counters for 41 topics. Detail is in the published page MPK 356155424 (source [[Handovers/2026-11-09-merak-replacement-pages.page7-ecm-topics]]) and the map [[Handovers/2026-11-09-merak-replacement-pages.topic-usage-map]] [4].
+- **CONFIRMED** Prod Terraform creates 70 topics and 145 subscriptions. The earlier catalogue listed 41 topics. The vault's count of 144 subscriptions was not recounted.
+- **CONFIRMED** Verdicts, from code and manifests: LIVE 42, CONSUME-ONLY 9, PUBLISH-ONLY 8, UNKNOWN 5, ORPHAN 3, UNDEPLOYED 3. Datadog traffic is shown beside a verdict and does not change it.
+- **CONFIRMED** `tracking.v1` is dead. Terraform, the manifest and the docs wire it, no code publishes it, and no code reads the subscription's env key.
+- **CONFIRMED** `legacy_tracking.v1` is off in prod. The manifest sets the publish flag false by default, with no per-carrier override, and no subscription exists.
+- **CONFIRMED** `raw_tracking.v1` has 15 subscriptions in the prod project and 8 running consumers. The Kubernetes tracking-patina-service runs with `CARRIERS=NONE` and drops every event, so its counter of 6,294,707 counts drops. The earlier "10 of 15" in the tracking note was wrong.
+- **CONFIRMED** Datadog has no Pub/Sub metrics for the ECM prod project. Backlog, oldest unacknowledged age, acknowledgements and dead-letter counts are not measured. Traffic figures are the services' own handled or published counters.
+
 ## Unconfirmed
 Each item has a source that says one thing and a source that says another, or no source at all.
 
@@ -97,23 +106,38 @@ Each item has a source that says one thing and a source that says another, or no
 - **Prod etcd values.** `targetPollingMinutes`, `batchLimit`, `intervalSeconds` and `expiryDays` per carrier and state, and whether `DELIVERED` differs from `IN_TRANSIT`. `etcdctl get --prefix connectors:` settles it.
 - **Whether prod runs master.** The prod image `tracking-core:prod-44693` and the deriver sidecar `prod-53270` map to no git sha. Three prod env vars have no binding at `c081108`: `GetNewTrackingV2Enabled`, `UseGetNewTrackingV2` and `TrackingStatusV2Enabled`.
 - **The `ExpiryDays` binding.** Prod sets `ActiveParcel__ParcelOptions__default__ExpiryDays=90`, and the code binds only the `Connectors` section. The effective expiry per carrier and bucket is open. The spread of `expiryDate - createdDate` in Mongo settles it.
-- **`Gfs.Core.PubSub` publisher.** Whether it adds an ordering key or attributes to `raw_tracking.v1`. The NuGet package was not read. Other `raw_tracking.v1` subscriptions' ordering settings are also unread.
+- **`Gfs.Core.PubSub` publisher.** Whether it adds an ordering key or attributes to `raw_tracking.v1`. The NuGet package was not read. The topic map found no ordering on any `raw_tracking.v1` subscription (Terraform, CONFIRMED).
 - **The prod mapping spreadsheet.** Its codes, groups and `isDelivered` values, whether `VALID_GROUP_IDS` is set, and whether any prod subscription filters on the `groupId` attribute.
-- **Who writes legacy scans in prod.** The Kubernetes patina service looks disabled (`CARRIERS=NONE`). The Dataflow job's source and `patina-service-2` were not found. The research files disagree on the label: one marks the `patina-service-2` flow CONFIRMED from its README and a Terraform comment, the other marks the prod writer UNKNOWN. This note keeps the flow as stated and the writer as unknown.
+- **Who writes legacy scans in prod.** The Kubernetes patina service runs but drops every event (`CARRIERS=NONE`, CONFIRMED on 2026-11-10). The Dataflow job's source and `patina-service-2` were not found. The research files disagree on the label: one marks the `patina-service-2` flow CONFIRMED from its README and a Terraform comment, the other marks the prod writer UNKNOWN. This note keeps the flow as stated and the writer as unknown.
 - **What the Scan Injector does** with `scanners.consignments.V1`, and whether the Dataflow write-back sends one state per message or one aggregate per session window.
 - **The staging project.** `scanners.consignments.V1` sits in `gfs-ecm-staging`. Its own Terraform, subscription and dead-letter setup were not seen.
 - **CCIS, ICIS, claims-service and `gfs-pod`** beyond the two CCIS files read. The Go filter enum in `consignment-query-service` was unreachable.
 - **Whether deployed images match the cloned shas.** That covers `tracking-core`, the deriver, `connect-hooks`, and the Royal Mail webhook (the standalone repo at `3c880bf`, with a move into the monorepo in a PR).
 - **Deletion after creation.** A deleted consignment re-announced as an `UPDATE` does not flip an existing parcel to `DELETED`, because the handler returns first. This is a risk, not a confirmed bug. The event type a deletion arrives as is unknown.
-- **Live GCP topic state.** The reports used Terraform and manifests only, with no GCP access. The local `gfs-ecm-prod-uk1` clone is 15 months old.
+- **Live GCP topic state.** The reports used Terraform and manifests only, with no GCP access. The first read used a Terraform clone 15 months old. The topic map of 2026-11-10 used master `35b545ce`, and also had no GCP access.
 - **Which of `parcel.carrier` and `parcel.carrierV2` holds the numeric ID.** The ECM catalogue and the simulator header disagree, and every type is a string.
 - **Smaller gaps.** The `untracked` list contents. Which carriers fill `additionalData`, a failure reason or a delivery window. The `getMapping` function body. How many prod env vars are dead.
+
+**Topics (2026-11-10)**
+- **The on-prem Firebird Transfer Service's deployed config.** Every `fb.*` publisher rests on it. The repo config names `fb.<x>.v1.prod` in project `gfs-ecm`, while prod Terraform creates `fb.<x>.v1` in `gfs-ecm-prod-uk1`. Nine topics have a running consumer and no readable publisher, and Datadog shows traffic on three of them, so a publisher exists that no repo shows.
+- **Source for ccp-api, the oz gateway, longmen, the CS bot, the report-scheduler and the Cloud Run route-validation-import service.** Also the invoice translator's host, and what the CS bot is.
+- **Whether the cluster repo matches the cluster.** The local manifests clone is at `a317dc0` and remote master is at `b7e16c7`. Image tags may differ, and the cluster was not read.
+- **The subscription count.** 145 in the prod Terraform against the vault's 144. Which one is missing is unknown.
+- **Datadog gaps.** Topics outside the 41 queried were not measured, apart from nine seen in passing. The push subscriptions in `gfs-selector-rest-prod-uk1`, `patina-service-2` in prod, data-warehouse, longmen, tracking-mapper and parcel-eta-service are not measured. Several counts name a topic by inference from a metric or subscription name.
+- **Whether gfs-modernizer publishes to `tracking-events.v2` and `customers.v2`.** The env vars are set and no subscription exists.
+- **Message shapes not read:** `windowed-shipments-parcels`, `shipment-number-updates`, `tracking-events.v2`, `customers.v2`, `ticket-actions`, `report-run`, `route_validation_import.v1`, `connect.usage_notifications.v1` and the claims topics other than `claims.v1`. Also the call sites of most claims publish functions and of the CCDIS publish to `invoiced_shipments_published.v1`.
+- **Ack and nack behaviour** of the shared subscriber library in each image. Whether `shipment_tracking_status.v2` ordering is honoured on publish, because the deriver's client is built without publisher options.
+- **Whether Flux applies the `carrier-cs.yml` manifest,** given its `.yml` extension.
+- **Whether the BigQuery write on `cs.bot.logs.*` has the rights it needs.** Terraform shows two subscriptions on each of the ticket and exception topics but describes one.
+- **The parcel-eta-service history.** The repo says retired 2026-07-27. An earlier finding said 0 replicas since 2022.
+- **Topics outside the prod Terraform,** in staging, dev, playground and finance-dev, and the staging module internals.
 
 ## Owed
 - Harry deletes three Confluence pages by hand: Carrier Services (353468499), Day End and Billing Handoff (353566845) and a scratch draft (355565572).
 - Harry's feedback on the five draft pages. Apply it to the live page first, then the vault copy.
 - The `orient-writers` skills `plainly` and `c4-diagrams` are uncommitted.
 - Retest the Lucid macro on Confluence once the admin installs the app.
+- Someone with GCP access lists subscriptions and backlogs for `gfs-ecm-prod-uk1` (`gcloud pubsub subscriptions list`; Cloud Monitoring).
 - **Owed corrections to MPK pages, for Harry (Confluence not edited).** These findings contradict or soften:
   - *Polling Connectors* (353697880) attributes the `FindOneAndUpdate` to the connector. It runs in batch-creator.
   - *How Carriers Feed ECM* (355074111) says polling has "no retry and no dead-letter queue". That holds for polling. The inbound `shipments.v2.identified` subscription has a dead-letter topic after 10 attempts. It also says "a parcel expires after 90 days", and the expiry resets on each new event, by carrier and bucket. The 90 is not confirmed.
@@ -129,6 +153,7 @@ Each item has a source that says one thing and a source that says another, or no
 { "v": 1, "items": [
   { "id": 1, "kind": "doc", "ref": "Handovers/2026-11-09-merak-replacement-pages.md" },
   { "id": 2, "kind": "doc", "ref": "Session scratchpad numbers-canonical.md, 2026-11-09 (Datadog metrics via execute_code; not in the vault)" },
-  { "id": 3, "kind": "doc", "ref": "Systems/ecm/tracking.md and Handovers/2026-11-09-merak-replacement-pages.tracking-core-findings.md, ...tracking-topic-catalogue.md, ...tracking-model-findings.md (2026-11-10)" }
+  { "id": 3, "kind": "doc", "ref": "Systems/ecm/tracking.md and Handovers/2026-11-09-merak-replacement-pages.tracking-core-findings.md, ...tracking-topic-catalogue.md, ...tracking-model-findings.md (2026-11-10)" },
+  { "id": 4, "kind": "doc", "ref": "Handovers/2026-11-09-merak-replacement-pages.topic-usage-map.md and ...topic-datadog-usage.md (research copies, 2026-11-10); Confluence MPK 356155424 ECM Pub/Sub Topics (draft, unverified)" }
 ] }
 ```

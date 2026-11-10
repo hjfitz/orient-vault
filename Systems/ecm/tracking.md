@@ -15,6 +15,8 @@ confidence: moderate
 
 Source: three read-only research reports of 2026-11-10 [1]. Code was read in `tracking-core` at `c0811087` (the ADO master head that day), in prod manifests at `a317dc0` and in Terraform at `e3c6dd9` (2025-07-30, so it may lag). No GCP, etcd or Mongo access was available. Confidence is `moderate` because prod config and the deployed images are not read. Basis tags follow the reports: **CONFIRMED** means a report read it in code, a manifest, Terraform or Datadog. The lease, expiry, bucket and publish-order claims were re-read in the local clone at `c081108`.
 
+**Corrected later on 2026-11-10.** A second read built a usage map of every topic the prod Terraform creates, at Terraform master `35b545ce` and prod manifests `a317dc0` [30]. It found 70 topics and 145 subscriptions, not the 41 topics of the first catalogue. It also corrected the `raw_tracking.v1` consumer count below. The published page is MPK 356155424, with the source copy [[Handovers/2026-11-09-merak-replacement-pages.page7-ecm-topics]].
+
 Terms: gRPC is a remote procedure call protocol. etcd is the key-value store that holds connector config. RAG is red, amber, green. POD is proof of delivery. CCIS and ICIS are the customer and internal consignment information services, the stores customers read. SUS is `shipment-update-service`.
 
 ## Short answers
@@ -93,15 +95,15 @@ The chain from carrier scan to customer is choreography. A synchronous HTTP call
 ```
 
 - **CONFIRMED** The deriver holds events per shipment in Mongo, closes a sliding window with a timer, and publishes `expired_window`. Three of its own subscriptions on that topic publish the final statuses [19].
-- **CONFIRMED** Terraform subscriptions share these defaults unless a row says otherwise. They pull, with a 10 s acknowledge deadline. After 10 attempts a message goes to `dead-letters.v1`. Retry backoff runs 10 s to 600 s and ordering is off. This Terraform read is 15 months old [20].
+- **CONFIRMED** Terraform subscriptions share these defaults unless a row says otherwise. They pull, with a 10 s acknowledge deadline. After 10 attempts a message goes to `dead-letters.v1`. Retry backoff runs 10 s to 600 s and ordering is off. The first Terraform read is 15 months old [20]. The later read at `35b545ce` found the same defaults [30].
 - **CONFIRMED** `raw_tracking.v1` has four publishers. They are tracking-core, the Royal Mail webhook, `tracking-file-processor` and `shipment-update-service` (manual mark as delivered) [14][21].
 
-Compact topic table. The full 41-topic list is in [[Handovers/2026-11-09-merak-replacement-pages.tracking-topic-catalogue]]. Volumes are Datadog handled counts, 2026-10-23 to 2026-11-07 UTC [22].
+Compact topic table. The first catalogue of 41 topics is in [[Handovers/2026-11-09-merak-replacement-pages.tracking-topic-catalogue]]. Prod Terraform creates 70 topics, and the full list with a verdict for each is in [[Handovers/2026-11-09-merak-replacement-pages.topic-usage-map]]. Volumes are Datadog handled counts, 2026-10-23 to 2026-11-07 UTC [22].
 
 | Topic | Publisher | Subscribers | Key fields | Ordering key | Dead letter | Volume | Status |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | `shipments.v2.identified` | shipment-identity-service | 17 subscriptions (tracking-core, deriver, CCIS, ICIS, claims, gfs-pod and others), 2 webhook push subscriptions | `shipmentId`, `shipmentIdV2`, consignment, parcels | none | pull: default. Push: none | about 1.59M | CONFIRMED |
-| `raw_tracking.v1` | tracking-core, Royal Mail webhook, file processor, `shipment-update-service` | 15 subscriptions: 10 with a running consumer, 1 BigQuery sink, 4 orphaned | `id`, dates, `statusCode`, `statusDescription`, `parcel{}`, `rawData` | none | default | about 6.29M | CONFIRMED |
+| `raw_tracking.v1` | tracking-core, Royal Mail webhook, file processor, `shipment-update-service` | 15 subscriptions in the prod project: 8 with a running consumer (status deriver, connect-hooks, CCIS, ICIS, claims-service, `shipment-update-service`, `gfs-pod-service`, ccp-api), 1 that runs but drops every event (Kubernetes tracking-patina-service), 1 Dataflow job (`patina-service-2`, state UNKNOWN), 1 BigQuery sink, 4 with no running workload. One more BigQuery sink is in the warehouse project | `id`, dates, `statusCode`, `statusDescription`, `parcel{}`, `rawData` | none | default | about 6.29M | CONFIRMED, except the Dataflow job [31] |
 | `expired_window` | deriver | deriver, 3 subscriptions | `shipmentId` | none | default | about 4.08M | CONFIRMED |
 | `shipment_tracking_status.v2` | deriver | CCIS (filter `CUSTOMER_VISIBLE`), reporting-ingestion | `shipmentId`, `trackingStatusV2`; attributes `visibilityGroup`, `groupId` | `shipmentId` | default | about 4.08M | CONFIRMED |
 | `shipment_tracking_status` (v1, obsolete) | deriver | ICIS, `shipment-update-service`, CCIS, reporting | same, minus visibility | none | default | about 4.08M | CONFIRMED |
@@ -146,13 +148,15 @@ These are facts the code shows, not a recommendation. The guardrail lines are in
 ## Unknown
 Detail and the full list are in [[Systems/ecm/known-context]].
 - **UNKNOWN** Prod etcd values, the effective expiry, and whether prod runs the cloned source. Prod image `prod-44693` is unmapped, and several prod env vars have no binding in this clone.
-- **UNKNOWN** Who writes legacy scans in prod. The Kubernetes patina service looks disabled (`CARRIERS=NONE`), and the Dataflow job's source was not found [29].
+- **UNKNOWN** Who writes legacy scans in prod. The Kubernetes patina service runs but drops every event (`CARRIERS=NONE`, **CONFIRMED** in the manifest and the handler [31]), and the Dataflow job's source was not found [29].
 - **UNKNOWN** Live Pub/Sub state. Every topic and subscription fact comes from Terraform and manifests.
 
 ## Research copies
 - [[Handovers/2026-11-09-merak-replacement-pages.tracking-core-findings]]: polling, lease, lifecycle, errors.
-- [[Handovers/2026-11-09-merak-replacement-pages.tracking-topic-catalogue]]: the 41 topics, the chain, the `raw_tracking.v1` schema, weaknesses, gaps.
+- [[Handovers/2026-11-09-merak-replacement-pages.tracking-topic-catalogue]]: the first catalogue of 41 topics, the chain, the `raw_tracking.v1` schema, weaknesses, gaps.
 - [[Handovers/2026-11-09-merak-replacement-pages.tracking-model-findings]]: event shapes per stage, status model, terminal states, mismatches.
+- [[Handovers/2026-11-09-merak-replacement-pages.topic-usage-map]] and [[Handovers/2026-11-09-merak-replacement-pages.topic-datadog-usage]]: all 70 prod Terraform topics with verdicts, and their Datadog counters. The later reading wherever it differs from the catalogue.
+- [[Handovers/2026-11-09-merak-replacement-pages.page7-ecm-topics]]: the published topic page (MPK 356155424).
 
 ## Evidence
 ```orient-evidence
@@ -185,6 +189,8 @@ Detail and the full list are in [[Systems/ecm/known-context]].
   { "id": 26, "kind": "code", "ref": "src/derive-shipment-tracking-status-v2.js@a3dc446:L19-130", "note": "group precedence, PARTIALLY_DELIVERED, delivered handling" },
   { "id": 27, "kind": "code", "ref": "handler/src/services/tracking.service.ts@3c880bf", "note": "Royal Mail webhook: parks events, mints its own id, publishes before save" },
   { "id": 28, "kind": "code", "ref": "apps/connect-hooks/src/tracking-handler.js@6c6d527:L34-46", "note": "events with no company are dropped" },
-  { "id": 29, "kind": "doc", "ref": "tracking-patina-service.yaml@a317dc0:L68-82 (CARRIERS=NONE); patina-service-2 ReadMe.md; modules/tracking-dataflow-patina-service/main.tf@e3c6dd9 (staging topic comment)" }
+  { "id": 29, "kind": "doc", "ref": "tracking-patina-service.yaml@a317dc0:L68-82 (CARRIERS=NONE); patina-service-2 ReadMe.md; modules/tracking-dataflow-patina-service/main.tf@e3c6dd9 (staging topic comment)" },
+  { "id": 30, "kind": "doc", "ref": "Handovers/2026-11-09-merak-replacement-pages.topic-usage-map.md (research copy, 2026-11-10): prod Terraform master 35b545ce, prod manifests a317dc0, 70 topics and 145 subscriptions" },
+  { "id": 31, "kind": "doc", "ref": "Handovers/2026-11-09-merak-replacement-pages.topic-usage-map.md, raw_tracking.v1 and Kubernetes tracking-patina-service rows; tracking-patina-service.yaml@a317dc0 and the handler at 8edfb3e. Datadog counters in ...topic-datadog-usage.md" }
 ] }
 ```
