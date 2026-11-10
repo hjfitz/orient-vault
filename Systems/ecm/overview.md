@@ -2,7 +2,7 @@
 tags:
 - system
 - ecm
-verified: '2026-11-09'
+verified: '2026-11-10'
 title: ecm — overview
 thesis: "ECM is the event-driven platform behind GFS tracking. It learns of a shipment only after Selector uploads it into central Firebird, rebuilds its status from raw carrier scans, tells customers, and fetches proofs of delivery live. The MPK research pages and Lucid diagrams that describe it are indexed here."
 confidence: moderate
@@ -20,6 +20,9 @@ confidence: moderate
 **What it is not.** It does not make labels. Selector does, and the carrier proxies serve Selector. ECM first hears of a shipment after upload. The path of one shipment is in [[2026-11-06-life-of-a-shipment-through-ecm]]. The diagnosis of its event design is in [[2026-11-06-ecm-event-world-where-its-a-mess]].
 
 **Standing context.** Replacing ECM and Selector with Merak is an unconfirmed hunch (Harry, 2026-11-09). The MPK pages say "a replacement" and leave the choice to the Merak team. Keep any new wording hypothetical.
+
+## Tracking
+Tracking is choreography, not orchestration. `tracking-core` leases due parcels to polling connectors at one interval per carrier and state. Everything after `raw_tracking.v1` reacts to topics. The full explainer is [[Systems/ecm/tracking]] [4]. It covers polling, the event shape at each stage, the topic spine, the status model, weaknesses and what a replacement must keep. The guardrails are G9 to G14 in [[Systems/ecm/architecture]].
 
 ## Where the research lives
 
@@ -76,6 +79,7 @@ The vault copies are the source for edits. Change the live page first, then the 
 - [[Handovers/2026-11-09-merak-replacement-pages.page4-label-to-invoice]]
 - [[Handovers/2026-11-09-merak-replacement-pages.page5-pod-by-carrier]]
 - [[Handovers/2026-11-09-merak-replacement-pages.page6-shipment-identity]]
+- Tracking research copies, 2026-11-10: [[Handovers/2026-11-09-merak-replacement-pages.tracking-core-findings]], [[Handovers/2026-11-09-merak-replacement-pages.tracking-topic-catalogue]] and [[Handovers/2026-11-09-merak-replacement-pages.tracking-model-findings]]
 
 ## Neighbours
 - [[selector]] owns the label, the upload and central Firebird's set-up. ECM and Selector meet at Firebird (see [[Systems/ecm/architecture]]).
@@ -85,6 +89,7 @@ The vault copies are the source for edits. Change the live page first, then the 
   - the Scan Injector and the Firebird Transfer Service
   - the status deriver, CCIS, ICIS and `connect-hooks`
 - `gfs-pod-service`, `tracking-core`, the webhooks and the file path do have Waypoint folders.
+- `tracking-core`'s code was read on 2026-11-10 at `c0811087`, so it is no longer stated-only. The status deriver, `connect-hooks`, the mapper, `shipment-update-service` and two CCIS files were read too. CCIS and ICIS beyond that, claims-service, the Scan Injector, the Transfer Service and `gfs-modernizer` are unread.
 
 ## What deliberately isn't here
 - **The long form.** The MPK pages carry it. This system is the index, the contracts and the open questions.
@@ -96,6 +101,7 @@ The vault copies are the source for edits. Change the live page first, then the 
 { "v": 1, "items": [
   { "id": 1, "kind": "doc", "ref": "Handovers/2026-11-09-merak-replacement-pages.md" },
   { "id": 2, "kind": "doc", "ref": "Confluence MPK 351502339 1. Research into Existing Services" },
-  { "id": 3, "kind": "doc", "ref": "Tasks/2026-11-09-merak-pages-published.md" }
+  { "id": 3, "kind": "doc", "ref": "Tasks/2026-11-09-merak-pages-published.md" },
+  { "id": 4, "kind": "doc", "ref": "Systems/ecm/tracking.md; Handovers/2026-11-09-merak-replacement-pages.tracking-core-findings.md (research, 2026-11-10)" }
 ] }
 ```

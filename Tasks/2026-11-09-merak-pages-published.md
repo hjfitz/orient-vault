@@ -1,7 +1,7 @@
 ---
 tags: [adhoc-task]
 date: 2026-11-09
-tldr: "Installed the plainly skill here, resumed the Merak replacement-pages handover and published five draft MPK pages (Selector and ECM Coupling, Tracking Events and Webhooks, How Carriers Feed ECM, From Label to Invoice, How Each Carrier's POD Is Retrieved) on Harry's word."
+tldr: "Installed the plainly skill here, resumed the Merak replacement-pages handover and published five draft MPK pages (Selector and ECM Coupling, Tracking Events and Webhooks, How Carriers Feed ECM, From Label to Invoice, How Each Carrier's POD Is Retrieved) on Harry's word. On 10 Nov recorded the ECM tracking research (polling, event model, topics) in orient."
 session_id: 4ff6c302-4da3-4b14-bf3c-fc976c0ec75b
 status: open
 ---
@@ -20,3 +20,5 @@ Cleanup pass, 9 Nov 2026: embedded the Lucid macro on nine pages, reviewed all M
 Vault placement, 9 Nov 2026: new system folder `Systems/ecm/` (overview, architecture, known-context, system.yaml) indexes the MPK pages, the Lucid document ids, the Firebird contract and cut points, the canonical figures and the full unconfirmed list. Central Firebird sits inside its architecture note, not a second folder. A pointer was added to `Systems/selector/known-context.md`, and the follow-ups went into the 9 Nov digest Todo. See [[Systems/ecm/overview]].
 
 ASCII blocks and the shipment identity page (9 Nov 2026, later pass): Harry asked to remove the ASCII diagrams, explain why `shipment-identity-service` mints its own ID, and give every finding a place in orient. The eight ASCII blocks are removed from their pages (ADF only, macros intact, each page re-fetched). A check of the removed text against the Lucid diagrams found stale figures and three lost facts on three diagrams, fixed in Lucid. New page "Shipment Identity: Why ECM Gives Each Shipment Its Own ID" (355631312), linked from the Journey and Coupling pages; its volumes were re-run on the canonical window (1,589,233 received, 674,672 minted, 57.5% re-announced). Findings now live in `Systems/ecm/` (overview, architecture, known-context). Owed by hand: delete pages 353468499, 353566845 and 355565572.
+
+Tracking research recorded in orient first, 10 Nov 2026: Harry asked how ECM tracking is orchestrated, whether the polling interval shrinks with parcel age, and what the event and status model is. New explainer `Systems/ecm/tracking.md`, guardrails G9 to G14 and a corrected G6 in `architecture.md`, settled facts, unconfirmed items and owed corrections in `known-context.md`, and three research copies in `Handovers/`. Findings: `tracking-core` is a lease server with no scheduler, the interval is one value per carrier and state (the age hypothesis is falsified in code), and the chain after `raw_tracking.v1` is choreography. No Confluence page written yet. Owed: Harry's decision on the page corrections listed in [[Systems/ecm/known-context]], and the prod etcd read. See [[Systems/ecm/tracking]].

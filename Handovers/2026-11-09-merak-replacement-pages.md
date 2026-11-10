@@ -8,7 +8,7 @@ from: rc-hjf
 to: next session, any machine
 session_id: 9ef32451-f6a6-429e-88df-add8e5d83ddf
 resumed_by: 4ff6c302-4da3-4b14-bf3c-fc976c0ec75b   # laptop (freightops), 2026-11-09T12:14Z
-updated: 2026-11-09T16:12Z
+updated: 2026-11-10T12:15Z
 ---
 # Handover: Merak replacement pages (continues the carrier-integrations research)
 
@@ -141,6 +141,21 @@ Checked on `rc-hjf` (`uname -n`) at 2026-11-09T11:57Z:
 ## Closed since handover
 | When (UTC) | Work | Result |
 | --- | --- | --- |
+
+## Tracking research (2026-11-10)
+**Asked.** How ECM orchestrates tracking, whether the polling interval shrinks as a parcel ages, what a tracking event and a status look like at each stage, and which topics carry them. Harry asked for orient first, before any Confluence page. No Confluence page has been written or edited.
+
+**Answers, in three lines.**
+- `tracking-core` stores active parcels and leases due ones to connectors over gRPC. It has no scheduler, and the chain after `raw_tracking.v1` is choreography through Pub/Sub topics.
+- The polling interval does not shrink with age. Code holds one `TargetPollingMinutes` per carrier and state, and the prod values in etcd are unread.
+- A tracking update has three shapes (scan, mapped event, shipment status). `groupId` is a free string, and no topic or enum exists for delivered, out for delivery, POD ready or customer notification.
+
+**Where it lives.**
+- [[Systems/ecm/tracking]] is the explainer, with the topic spine, a topic table and what a replacement must keep.
+- [[Systems/ecm/architecture]] gained guardrails G9 to G14 and a corrected G6. [[Systems/ecm/known-context]] has the settled facts, the new unconfirmed items and the owed corrections.
+- Research copies: [[Handovers/2026-11-09-merak-replacement-pages.tracking-core-findings]], [[Handovers/2026-11-09-merak-replacement-pages.tracking-topic-catalogue]] and [[Handovers/2026-11-09-merak-replacement-pages.tracking-model-findings]].
+
+**Owed corrections (Confluence not edited, Harry to decide).** Polling Connectors (353697880) gives the `FindOneAndUpdate` to the connector, and it runs in batch-creator. How Carriers Feed ECM, Selector and ECM Coupling and Shipment Identity state the 90-day expiry too firmly. Tracking Events and Webhooks says every event carries the raw code beside the derived status. The full list, and the contradictions in the `tracking-core` Waypoint docs, are in `known-context` under Owed.
 
 ## Where this now lives
 The durable, indexed copy of these findings is the system [[Systems/ecm/overview|ecm]]. This record stays the transient handover.
