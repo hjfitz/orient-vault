@@ -1,6 +1,6 @@
 ---
 tags: [handover]
-status: resumed
+status: closed
 workstream: Parcel Portal programme — SFTP users, UX review fixes, REST API, file layout rework
 programme: Parcel Portal
 repo: ilg-merak/parcel-portal
@@ -8,9 +8,11 @@ from: laptop
 to: hjf.shell.platform.ilg.software
 session_id: 80a57909-179d-48c7-a6cb-da766abb7a8a
 resumed_by: 7652f0c7-9f02-4c64-b56f-a154250bb016
-updated: 2026-11-09T11:00Z
+updated: 2026-11-10T14:50Z
 ---
 # Handover: Parcel Portal
+
+**Closed 2026-11-10:** handed back to the laptop; continued in [[Handovers/2026-11-10-parcel-portal]].
 
 ## Where things stand
 Dev runs main at `059a62a` for svc (revision 00037) and the new **gateway** (`gateway-parcel-dev`, revision 00002), and `2218b15` for ui. Everything is in project `ilg-merak-dev-b5e3`, us-central1. The SFTP host was redeployed routinely by #81. **The customer API is live on dev at `https://api.parcel.delivery.freightops.dev`**: `/docs` (Swagger UI), `/openapi.json` (1.2.0), and `/v1/order-files`, `/v1/order-files/{id}` and `/v1/orders`. Prod is held at D1: nothing is deployed there, and every prod gate stays parked. Migrations are at 014. The portal contract is 5.0.0, and the customer API is 1.2.0.
@@ -84,6 +86,7 @@ Checked 2026-11-03 ~16:40Z on `harry@hjf.shell.platform.ilg.software`; synced wi
 ## Closed since handover
 | When (UTC) | Work | Result |
 | --- | --- | --- |
+| 2026-11-10 14:02 | #115, SHIP-1110: per-customer choice of dev's test carrier or the customer's own Selector account (session a25bb30f) | `carrier_connection.test_carrier` (migration 017, default true), a **Book with the test carrier** box on the Selector config card, `fakecarrier.Router` and `PasswordRouter` wired only where `CARRIER_MODE=fake`, and a switch refused while anything is booked or in flight (contract 5.10.0). Verified locally against the real Selector sandbox, and live on dev at `7988887` (svc 00051, ui 00059, gateway 00014). The dev drive is owed: plan increment 6, carried to [[Handovers/2026-11-10-parcel-portal]]. |
 | 2026-11-09 10:55 | #113, C25: a customer switch clears the previous customer's results and print state (session a25bb30f) | Keyed by the acting customer, each key prefixed with its component: upload panel, manifest bar, print-to-screen tab (it reprinted the old customer's labels), Settings → Printing outcome, demo printer panel. The switcher dismisses sticky toasts, because sonner replays them to a remounted toaster. Dev `ui-parcel-dev-00057` (image `dev-c357296…`). C33 (error page outlives a switch) is open. |
 | 2026-11-09 10:20 | #114, container scans green again | They had failed since 7 Nov on CVE-2026-78661 (`golang.org/x/net`) and two `zlib1g` CVEs. x/net is now v0.62.0 for this repo's binaries, and `.trivyignore.yaml` covers the platform runtime images' copies (`datadog-init` by path, `zlib1g`) until 16 Nov. **Owed upstream:** rebuild `go-runtime` and `node24-runtime` before then. Dev svc `00049`, gateway `00013`, sftp applied. |
 | 2026-11-06 15:40 | #112, C24: a batch's results stay when the batch empties the orders list (session a25bb30f) | `OrdersTable` is always rendered, with the empty message inside and stable child slots, so the results card isn't remounted. It's keyed by the acting customer, which also covers C25's batch half. The smoke test dispatches from the Ready list. Dev `ui-parcel-dev-00056` (image `dev-52db248…`). The sweep's findings became C29–C32, and C25 is narrowed to the upload panel and the manifest bar. |
