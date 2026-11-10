@@ -20,7 +20,7 @@ Carrier-services API
 
 GET and PUT /admin/tenants/{tenantId}/carrier-services (openapi 5.11.0) read and replace a tenant's Selector services; an empty list is unrestricted, the tenant needs a connection first. Increment 2 of the per-account services plan, stacked on the store PR; nothing enforces the list yet.
 
-PR: ilg-merak/parcel-portal#117
+PR: ilg-merak/parcel-portal#119 (replaces #117, closed when #116's branch was deleted)
 
 ## 2026-11-10 — Store a tenant's Selector services
 
