@@ -14,11 +14,10 @@ pr: '115'
 tags:
 - waypoint
 - plan
-reason: 'Shipped (PR #115 merged, dev). Only increment 6 is left: drive it on dev
-  as an admin. This session can''t sign in to dev: the svc-parcel-bootstrap-admin-password
-  secret is IAM-denied, and the dev smoke''s own admin login is refused (DEV_SMOKE_ADMIN_EMAIL
-  unset). Unblocked by a dev GFS-admin login in ~/.secrets, or by Harry doing the
-  2-minute check.'
+reason: 'Shipped (PR #115 merged, live on dev). Only increment 6 is left: drive it
+  on dev as an admin. The workstation has no dev login; the laptop has ~/parcel-portal-dev-admin.txt,
+  and the spec is in Handovers/2026-11-10-parcel-portal.carrier-choice.spec.ts.txt.
+  Carried by [[Handovers/2026-11-10-parcel-portal]].'
 blocked_since: '2026-11-10'
 ---
 # SHIP-1110-dev-carrier-optin — Dev: choose the test carrier or the configured connection per customer
@@ -92,7 +91,7 @@ Harry, 10 Nov: "can we configure dev to opt in to the test selector or a configu
 > SUPERSEDED 2026-11-10 — dev can't be driven as an admin from this session (the bootstrap-admin secret is IAM-denied and the dev smoke's admin login is broken), so increment 5 was split: the drive ran locally against the real Selector sandbox, and the drive on dev became increment 6, gated on a login.
 - [x] 5. Dev deploy, and the drive run locally against the real Selector sandbox: a stand-in customer still books TST; a switch with open shipments is refused; an unticked customer's check reaches Selector; Manifest guard on a sandbox-routed customer (AC 1-6) — verify: evidence in Verification — dev deploy healthy (migration 17, test carrier offered); local drive against the real Selector sandbox, evidence in Verification — done: 3ea96d9
 - [ ] 6. Drive it on dev as an admin: untick a demo customer onto the sandbox account, Check connection from dev, switch refused with a booked shipment, then tick it back (AC 1,3,4) — verify: evidence in Verification
-      gate: a dev GFS-admin login this session can use (put in ~/.secrets), or Harry runs the check
+      gate: a dev GFS-admin login: the laptop has ~/parcel-portal-dev-admin.txt (the workstation has none); spec in [[Handovers/2026-11-10-parcel-portal.carrier-choice.spec.ts.txt]]
             [ ] confirmed
 
 ## Verification
