@@ -1,6 +1,6 @@
 ---
 tags: [handover]
-status: open
+status: resumed
 workstream: Parcel Portal programme — dev carrier choice shipped; its dev check, acting-as UI (C19 6–8, C20), label preview inc 5, small fixes C26–C33
 programme: Parcel Portal
 repo: ilg-merak/parcel-portal
