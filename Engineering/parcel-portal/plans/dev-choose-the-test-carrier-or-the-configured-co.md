@@ -114,3 +114,6 @@ Harry, 10 Nov: "can we configure dev to opt in to the test selector or a configu
      or refuted hypothesis. Not restated doc content. Sign-off promotes each confirmed one into
      the matching durable doc, then clears it from here; a refuted one moves to ## Handback
      rather than being deleted. Legitimately empty. -->
+- **Local svc has no carrier key**, so any save that stores a carrier password answers 503 ("No carrier key: carrier passwords can't be stored or read"). An own-account save can only be driven on dev (which has `svc-parcel-carrier-key`) or in the e2e harness (`WithCarrierKey`). (2026-11-10)
+- **A shipment booked by one backend can't be closed through the other.** Selector refuses a TST consignment it never saw, and its day list doesn't show it, so void's fallback can't recover it; the stand-in "voids" a real Selector booking portal-side only, leaving it live in the sandbox. This is why the switch guard exists, and why a dispatch caught mid-switch needs an engineer. (2026-11-10)
+- **The local preview database's second demo customer (`Demo 6 Nov 14:12:31 UTC`) was deleted on 9 Nov**, so acting for it 404s on `/me`: the stale acting-cookie error page, not a bug. Make a fresh demo customer for local checks. (2026-11-10)
