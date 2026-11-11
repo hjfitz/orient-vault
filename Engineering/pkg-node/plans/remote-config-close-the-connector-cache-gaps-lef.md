@@ -114,7 +114,7 @@ Close the connector-cache gaps that `@gfs-bifrost/remote-config` 2.7.0 documents
       Name each of the seven callers in the spec matrix. The ordering argument and its reconnect caveat go in the README.
       — verify: two-instance race specs (a deferred `getConnector` on A, a `-1` on B, then A's fetch released): "leaves no primary key", "leaves no business index entry", "restores no username alias", the same for `resolveByConnectorId`'s fetch and for a business resolve; "a single lookup throws not-found when the re-check finds a tombstone"; mutation-check the re-check.
 
-- [ ] 4. **Prune tombstoned ids when reading, then release 2.8.0** (AC 3,5,6). Under `evictOnDelete`:
+- [x] 4. **Prune tombstoned ids when reading, then release 2.8.0** (AC 3,5,6). Under `evictOnDelete`: — 11 specs, 5 mutations caught; dev proof HJF 12 -> 11, 0 config-service requests; 340 tests — done: 2fa6010
       - On a partial miss in `resolveWithUnresolved`/`resolveByStorefrontId`, read the tombstones of the ids whose primary key is missing.
       - Remove tombstoned ids from the index. This is best effort: a failed write isn't thrown on a read path.
       - If the rest are cached, serve them with no config-service call. If pruning empties the index, fall through to the existing marker check and fetch; never return `[]` without one.
