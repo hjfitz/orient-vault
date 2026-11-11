@@ -59,8 +59,8 @@ it is now. Regenerate this page with `wp index`; check health with `wp doctor`.
 | [[Engineering/fuse-billing/overview\|fuse-billing]] | backend | 0 | 0 | 0 | 2026-11-05 |
 | [[Engineering/fuse-devtools/overview\|fuse-devtools]] | backend | 3 | 0 | 0 | 2026-10-31 |
 | [[Engineering/fuse-mcp/overview\|fuse-mcp]] | backend | 4 | 0 | 0 | 2026-11-03 |
-| [[Engineering/fuse-mcp-server/overview\|fuse-mcp-server]] | backend | 0 | 0 | 0 | 2026-11-05 |
-| [[Engineering/fuse-mocker/overview\|fuse-mocker]] | backend | 4 | 0 | 1 | 2026-11-05 |
+| [[Engineering/fuse-mcp-server/overview\|fuse-mcp-server]] | backend | 0 | 0 | 0 | 2026-11-10 |
+| [[Engineering/fuse-mocker/overview\|fuse-mocker]] | backend | 4 | 0 | 1 | 2026-11-10 |
 | [[Engineering/fuse-ui/overview\|fuse-ui]] | frontend | 5 | 3 | 1 | 2026-11-05 |
 | [[Engineering/gcp-config/overview\|gcp-config]] | backend | 0 | 0 | 0 | 2026-11-05 |
 | [[Engineering/gfs-pod-service/overview\|gfs-pod-service]] | backend | 3 | 0 | 1 | 2026-11-06 |
@@ -75,8 +75,8 @@ it is now. Regenerate this page with `wp index`; check health with `wp doctor`.
 | [[Engineering/observability/overview\|observability]] | backend | 0 | 0 | 0 | 2026-11-05 |
 | [[Engineering/observability-sdk/overview\|observability-sdk]] | library | 3 | 0 | 0 | — |
 | [[Engineering/ocs-proxy/overview\|ocs-proxy]] | backend | 1 | 0 | 0 | — |
-| [[Engineering/orient/overview\|orient]] | frontend | 1 | 0 | 3 | 2026-11-09 |
-| [[Engineering/parcel-portal/overview\|parcel-portal]] | backend | 4 | 0 | 3 | 2026-11-09 |
+| [[Engineering/orient/overview\|orient]] | frontend | 1 | 0 | 2 | 2026-11-10 |
+| [[Engineering/parcel-portal/overview\|parcel-portal]] | backend | 4 | 0 | 5 | 2026-11-10 |
 | [[Engineering/pkg-go/overview\|pkg-go]] | backend | 0 | 0 | 0 | 2026-11-06 |
 | [[Engineering/pkg-node/overview\|pkg-node]] | library | 3 | 0 | 3 | 2026-11-09 |
 | [[Engineering/remote-compute/overview\|remote-compute]] | backend | 0 | 0 | 2 | 2026-11-03 |
@@ -88,9 +88,9 @@ it is now. Regenerate this page with `wp index`; check health with `wp doctor`.
 | [[Engineering/secrets-hub/overview\|secrets-hub]] | backend | 0 | 0 | 2 | 2026-11-05 |
 | [[Engineering/selector-adapter/overview\|selector-adapter]] | backend | 3 | 0 | 0 | 2026-11-05 |
 | [[Engineering/selector-rest-proxy/overview\|selector-rest-proxy]] | backend | 3 | 0 | 0 | — |
-| [[Engineering/sftp-connector/overview\|sftp-connector]] | backend | 5 | 1 | 3 | 2026-11-06 |
+| [[Engineering/sftp-connector/overview\|sftp-connector]] | backend | 5 | 1 | 3 | 2026-11-10 |
 | [[Engineering/shopify-connector/overview\|shopify-connector]] | backend | 4 | 0 | 1 | 2026-11-05 |
-| [[Engineering/snap-adapter/overview\|snap-adapter]] | backend | 4 | 2 | 1 | 2026-11-09 |
+| [[Engineering/snap-adapter/overview\|snap-adapter]] | backend | 4 | 2 | 1 | 2026-11-10 |
 | [[Engineering/snap-mcp/overview\|snap-mcp]] | backend | 4 | 0 | 0 | 2026-11-05 |
 | [[Engineering/snap-queue-polling-service/overview\|snap-queue-polling-service]] | backend | 4 | 0 | 9 | 2026-11-06 |
 | [[Engineering/svc-template/overview\|svc-template]] | backend | 0 | 0 | 0 | 2026-10-28 |
