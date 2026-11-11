@@ -97,7 +97,7 @@ None of this session's workflows or agents is running (checked 2026-11-09 11:53Z
   - Carrier Tracking and Proof of Delivery: `connect-hooks` subscribes to `raw_tracking.v1` directly, not after CCIS and ICIS. The three path counts sum to about 5.71M, not the 6.25M total. The same 5.44M appears on How Carriers Feed ECM.
   - Tracking Webhook Services: code maps first, then matches, dedupes and publishes. The Royal Mail handler is older and synchronous, with no interim topic. The 90-day limit is a read cutoff, and the TTL indexes are unconfirmed.
   - Customer Data Flow: it says a Sunday invoice run, but each customer has its own schedule.
-- **Feedback on the published drafts.** Harry will send it. Page 3's title, "How Carriers Feed ECM", is mine: the other two titles were agreed.
+- **Feedback on the published drafts.** Harry said on 2026-11-11 that the pages are fine, so none is owed. Page 3's title, "How Carriers Feed ECM", is mine: the other two titles were agreed.
 - **Merak replacing ECM and Selector is an unconfirmed hunch (Harry, 2026-11-09).** It can't be confirmed with Jack and Stef yet. The published pages say "a replacement" hypothetically and leave the choice to the Merak team. Keep any new wording that way.
 - **Keep or drop one link.** Page 2 links the "Idea: Developer promise" page (349110455) in its opening paragraph. Recommendation: keep it. That page asks for the same v1 webhook features, and the decisions on it stay with Stef.
 - **Further pages: none wanted (Harry, 2026-11-09).** The four proposed pages stay unwritten. Keep any future pages research level, comprehensive and simple.
@@ -161,6 +161,7 @@ Checked on `rc-hjf` (`uname -n`) at 2026-11-09T11:57Z:
 - **Not part of the handover:** this session's scratchpad under `/tmp/claude-2001/`. The checked facts live in the two explainers and the MPK pages.
 
 ## Gotchas
+- **Write Confluence pages as ADF, not markdown.** `updateConfluencePage` with `contentFormat: adf` keeps Lucid macros and smart links and needs no API token. Fetch the body with `contentFormat: adf`, change only the nodes you mean to, and send the whole body back. Re-fetch afterwards and check the `lucidchart` extension node is still there.
 - **Selector and ECM Coupling was corrected live on 2026-11-09 (v2)** after three read-only agents challenged it. Firebird is the seam, not a tight coupling. The findings are in `Handovers/2026-11-09-merak-replacement-pages.page1-challenge-findings.md`. The Amazon SFP sentence on Carrier Tracking and Proof of Delivery was corrected too (v7).
 - **Confluence updates link targets when a page is renamed, but not the visible link text.** After a rename, search for the old title and fix the labels. Moves by `parentId` keep ids and links.
 - **Don't rewrite a Selector page that uses smart-link cards through markdown.** `Legacy Selector: overview` (351764493) shows live titles in cards, and a markdown write would turn them into plain links. It needed no change, so it was left alone.
