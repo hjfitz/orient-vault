@@ -183,6 +183,8 @@ Close the connector-cache gaps that `@gfs-bifrost/remote-config` 2.7.0 documents
      time. A decision worth defending in a review six months out belongs in a durable record
      instead — `wp decide --record`. -->
 
+- **2026-11-11** — Inc 4 drops the index instead of removing tombstoned ids from it (the plan said 'remove ... best effort'). Rewriting has the same stale in-memory lost-update hazard inc 1 removed; dropping it costs one list fetch on the next lookup.
+
 ## Learnings
 <!-- Durable facts about the service surfaced while planning, working or testing that are not
      already written anywhere in the vault — a gotcha, a constraint, a fragile edge, a confirmed
