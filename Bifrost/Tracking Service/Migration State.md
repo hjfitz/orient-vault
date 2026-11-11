@@ -114,6 +114,15 @@ Why: the 2026-11-06 burst errors (G3 below), the ~40/s cap from shared counter d
 - **R13 `redrive` re-applies under a new messageId**: Pub/Sub doesn't carry the original id onto a DLT message, so a partly-applied message that is redriven is re-applied as a republished copy and inflates copy counts. It's pre-existing and also affects Firestore. A fix would carry the original id through an attribute — open.
 - **R14 One order can split across two records** when a message lacks the customer ref: `~SO:` fallback, a Shopify failure keyed by the raw `name`, a replay-service edited failure, or normalisation gaps (BOM, NFD, internal whitespace). Nothing re-keys or merges the stray doc. **Live data 2026-11-06: 0 fallback-keyed docs and 0 duplicate businessId + customerRef groups in dev (34,294) and prod (89,156)**, so this is latent. The fix is code (merge a fallback doc when its ref arrives), not an index — open, low.
 ## Decision log
+- **2026-11-11** — **Prod is on MongoDB** (16:28Z, revision `00022-xgx`), after the dev cut at 14:18Z. Harry said "yes, go", lifting the "human runs prod tools" rule for this cut; the agent ran the prod import and parity.
+  - **Prod hold:** 15:17–16:28Z.
+  - **Import:** 114,340 shipments, 577,279 events and 1 note in 40m23s at 47/s with 48 workers, 0 skipped or failed. The frozen `duplicates` (65 scope-days) went in via `ImportKept`.
+  - **Parity:** PASS, nothing unexpected; the only differences are the expected G5 classes.
+  - **Release:** the backlog peaked at ~11.4k and drained by ~16:31Z. 1,949 Cloud Run "no available instance" 500s in the first minutes were retried by Pub/Sub, with dead-lettering off.
+  - **Since 16:30Z every push is 204,** including the 16:35Z reap burst (1,449 pushes in one minute).
+  - **Dev:** the import was 34,354 shipments and 234 returns; parity PASS; every push 204 after its flip.
+  - **Firestore stays frozen at the cut as the rollback copy** (`store="firestore"`; it lacks messages since the cut).
+  - **Left:** D12 soak; D13 retire Firestore after G11.
 - **2026-11-11** — **D7 dropped; cut over end to end now** (Harry: "D7 feels unnecessary … ship this end to end … point everything at mongo and backfill the data").
   - **No rollback stack.** Rollback = flip `STORE` back to Firestore, which stays frozen at the cut. Messages after the cut would be missing from it.
   - **Note freeze (G9):** `INGEST_HOLD` also 503s note POST/PATCH, built in the D8/D9 PR rather than D7.
