@@ -8,7 +8,7 @@ from: laptop
 to: hjf.shell.platform.ilg.software
 session_id: a1c66d35-5bf7-4f34-9d21-dac5ddb5fabe
 resumed_by: 3e3bf683-a529-4b8f-afc1-7733d6a995ea
-updated: 2026-11-11T12:46Z
+updated: 2026-11-11T12:57Z
 ---
 # Handover: Parcel Portal (laptop → workstation)
 
