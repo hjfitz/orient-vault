@@ -1,0 +1,32 @@
+{
+  "id": "20261111-130330-af92",
+  "title": "Weekly Bi-Frost/FUSE Update",
+  "meeting": {
+    "docId": "d_edozqsr4brtf",
+    "series": "Fuse/Bifrost Weekly Sync",
+    "date": "2026-11-11",
+    "href": "/meeting/fuse-bifrost-weekly-sync"
+  },
+  "context": "13:00–13:45 GMT · calendar title \"Weekly Bi-Frost/FUSE Update\" · Darren Cobby (organizer), Jack Bailey, Lee Simmons, Tom Dunn, James Godsell, Ryan Ellis, Denis Tomolea, Danny Williams, you · Teams\n\nContext:\n**Open loops to raise**\n- James Godsell's ask for `identifiers.solLineId` in the pick and pack confirmation line mappings is unanswered, and no ticket exists\n- Tom Dunn's work-order and finished-good-receipt QA gaps are FUSE-1352 and FUSE-1353\n- FUSE-1352 and FUSE-1353 are unassigned Sev 3 bugs in Ready for Development\n- Indu go-live is Monday 16 Nov at 10:00 (JBMQ to Fuse middleware migration, rollback to JBMQ possible)\n- CT PRICAT SFTP folders: Jack Bailey advised Darren Cobby that CT should log in and create its own\n- CT EDIFACT stress-test action from the 9 Nov leadership catch-up: the team quietly tests CT's EDIFACT and Edicom sample files\n- Jack Bailey's 9 Nov Fuse Product Update (Purdy \u0026 Figg peak ramp-up runs clean)\n- BAT SAP migration early notice, forwarded by Jack Bailey: a top-3 customer moving onto Fuse\n\nTo raise:\n- [ ] Reply to James Godsell on `solLineId` and agree the ticket\n- [ ] Confirm FUSE-1352 and FUSE-1353 owners and sizing with Tom Dunn\n- [ ] Confirm engineering watches the Indu go-live on Monday 16 Nov at 10:00\n- [ ] Tell Darren Cobby and Jack Bailey how the CT SFTP folders get created\n- [ ] Ask Jack Bailey for the BAT SAP migration timeline\n\nCarried from last time:\n- [ ] SPS Commerce↔Manucurist `/to_ilg` subfolder (open with Ashley / Lee Simmons) — no update logged since 08-19",
+  "status": "transcribing",
+  "startedAt": "2026-11-11T13:03:30.592038974Z",
+  "endedAt": "2026-11-11T13:25:41.484326461Z",
+  "sources": {
+    "me": [
+      "JLAB TALK MICROPHONE Analog Stereo"
+    ],
+    "them": [
+      "Google Chrome",
+      "Nightly",
+      "speech-dispatcher-dummy"
+    ]
+  },
+  "call": false,
+  "host": "vm",
+  "capturedOn": "laptop",
+  "received": {
+    "sha256": "ce7bdd185b40515161ad3660898c9145286ef9f82bb9730c661fca5a0b052863",
+    "bytes": 23828650,
+    "at": "2026-11-11T13:25:46.898689819Z"
+  }
+}
