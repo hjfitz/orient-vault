@@ -10,7 +10,7 @@ worktree: /home/harry/code/fuse/.worktrees/pkg-node-rc-2.7
 branch: hjf/remote-config-username-lookup-settled
 base: origin/main
 base_sha: 9246cf92c
-pr: '306'
+pr: '309'
 tags:
 - waypoint
 - plan
