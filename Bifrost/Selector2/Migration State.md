@@ -1,12 +1,16 @@
 ---
-title: "Selector2 — Migration State"
-programme: "selector2"
+title: Selector2 — Migration State
+programme: selector2
 status: planning
-owner: "Harry"
-services: ["carrier-playground"]
-created: "2026-11-11"
-updated: "2026-11-11"
-tags: [bifrost, merak, migration-state]
+owner: Harry
+services:
+- carrier-playground
+created: '2026-11-11'
+updated: '2026-11-11'
+tags:
+- bifrost
+- merak
+- migration-state
 ---
 # Selector2 — Migration State
 
@@ -37,7 +41,7 @@ Legend: ⬜ not started · 🟨 in progress · ✅ merged · ⛔ blocked · ⏸ 
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | **A1** | ⬜ | New repo: NestJS svc + SvelteKit ui | | med | sonnet/medium | | **Gated on G1.** `ilg-merak/selector2`, a pnpm monorepo: `apps/svc` (NestJS, `src/` layers per the org contract, DI in `bootstrap/containers/`) and `apps/ui` (SvelteKit). Biome, Vitest, `mise.toml`, golden `node24-runtime` image, CI with `build:check`. `svc-template` is still an empty README, so the layout comes from the org AGENTS.md and `parcel-portal`. **Done when** both apps build in CI and deploy to dev as stubs. |
 | **A2** | ⬜ | Dev IaC: Cloud SQL (IAM), Cloud Run, SAs | A1 | med | sonnet/high | | `database/cloud-sql-iam` (IAM-only logins, no passwords, connector, `size` preset); one Cloud Run service per app; app and migrator service accounts. Drizzle migrations run as a job inside the apply, as in Parcel Portal A2. Mock proxy URLs and invoker needs come from A3's outputs. **Plan shared and agreed before any apply** (global CLAUDE.md). **Done when** the svc connects to the database as its IAM user on dev. |
-| **A3** | ⬜ | carrier-playground: IAM path and outputs | | low | sonnet/medium | | **Lives in `ilg-merak/carrier-playground`.** Each `mock-*` project already outputs `service_name`, `service_uri` and `service_account_email`, and `mock-edge` outputs `urls`. Add an `invoker_members` input to each so selector2's service account can be granted `roles/run.invoker`, and one aggregate output of every proxy's URI. **Keep `allUsers`: the public names stay** (R4). Only add to `mock-edge`, never remove a name (scar tissue). **Done when** selector2's account can call a mock's `service_uri` with an ID token on dev, and the outputs read from selector2's Terragrunt. |
+| **A3** | ✅ | carrier-playground: IAM path and outputs | | low | sonnet/medium | ilg-merak/carrier-playground#15 | **Lives in `ilg-merak/carrier-playground`.** Each `mock-*` project already outputs `service_name`, `service_uri` and `service_account_email`, and `mock-edge` outputs `urls`. Add an `invoker_members` input to each so selector2's service account can be granted `roles/run.invoker`, and one aggregate output of every proxy's URI. **Keep `allUsers`: the public names stay** (R4). Only add to `mock-edge`, never remove a name (scar tissue). **Done when** selector2's account can call a mock's `service_uri` with an ID token on dev, and the outputs read from selector2's Terragrunt. |
 
 ### B — Core domain
 | Unit | St | Summary | Deps | Risk | Tier | PR | Notes |
