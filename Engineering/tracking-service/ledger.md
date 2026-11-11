@@ -6,6 +6,16 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-11 — Retire Firestore from tracking-service
+
+Retire Firestore from tracking-service
+
+Draft 2-PR stack for D13 (gated on G11): the API drops the Firestore store, cutover tools and emulator, STORE defaults to mongodb; Terraform forgets the Firestore database, indexes and fields via removed{} (destroy=false), drops datastore.user and the FIRESTORE_DATABASE/STORE env.
+Not merged; due no earlier than 2026-11-12 11:00 UTC after the overnight soak and final export. fuse-mcp database-collections updated in a88e8bd.
+
+PR: gfs-bifrost/tracking-service#44
+PR: gfs-bifrost/tracking-service#45
+
 ## 2026-11-11 — Cut tracking-service over to MongoDB in dev and prod
 
 Cut tracking-service over to MongoDB in dev and prod
