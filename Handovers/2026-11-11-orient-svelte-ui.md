@@ -8,7 +8,7 @@ from: laptop
 to: hjf.shell.platform.ilg.software
 session_id: 0fb571d0-d903-483b-9e8b-1198b51d571f
 resumed_by: ""
-updated: 2026-11-11T12:33Z
+updated: 2026-11-11T12:36Z
 ---
 # Handover: orient Svelte UI
 
@@ -66,13 +66,19 @@ No laptop agents are running any more. Every remaining item below is yours.
      - `/monitors`, `/tools` and `/team` answer 308.
 5. Mark W-C, W-D1, W-D2, W-F and W-G done (`wp programme tick … --status done --pr <range>`) and add a decision
    log entry.
-6. **Retire.** Its brief is `docs/waves/Retire.md` in the repo: the inventory of what's left of Next and who calls it.
-   - Only `/api/reindex` needs a core home.
-   - Move the PR review draft's own spawn (`src/adapters/claude-review.ts`) onto `src/adapters/headless.ts`.
-   - Then delete Next, React and `orient-web`; drop the proxy; rewrite the CLAUDE.md invariants.
-   - Review with review-panel, deploy, and stop `orient-web` (install-units).
-   - Remove `.next-prod*` and `.next-bench` only after a day on the SPA alone.
-7. Gate **G8**: a week on the full Svelte UI, Harry's call.
+6. **Retire prep, safe to land now** (both keep Next working):
+   - Give `/api/reindex` a core home. The SPA palette calls it; see `docs/waves/Retire.md`.
+   - Move the PR review draft's own spawn (`src/adapters/claude-review.ts`) onto `src/adapters/headless.ts`, so
+     a draft never blocks `deploy:core`.
+   Review with review-panel, then deploy.
+7. **Stop at gate G8: a week on the full Svelte UI. G8 blocks Retire** (Migration State `## Gates`). Do not delete
+   Next, React or `orient-web` until Harry ticks G8. When he does, Retire works from `docs/waves/Retire.md`:
+   - delete Next, React and `orient-web`;
+   - drop the proxy;
+   - rewrite the CLAUDE.md invariants;
+   - review with review-panel and deploy;
+   - stop `orient-web` (install-units).
+   Remove `.next-prod*` and `.next-bench` only a day after that.
 
 ## How work is done here
 - **Rules:** repo rules are in `CLAUDE.md`. The wave playbook is `docs/waves/README.md`; follow its "Mistakes …
