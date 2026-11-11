@@ -14,7 +14,7 @@ outcome: monitor_mistuned
 escalated_to:
 ticket:
 session_id: 7f84afae-380e-4959-8dc8-c8b0cbe9f19d
-status: open
+status: done
 ---
 # config-service 5xx monitor (P2) tripped by 5 hostile-client 500s at overnight volume: 5 of 63 responses, same scanner burst as the Platform alert
 
