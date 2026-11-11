@@ -161,3 +161,4 @@
 {"ts": 1794402412, "kind": "programme_tick", "session_id": "8584435d-36a9-464d-bc60-e21c842cfe59", "programme": "orient Svelte UI", "unit": "W-G", "status": "done"}
 {"ts": 1794402450, "kind": "ledger", "session_id": "3958064e-f29c-4a24-8868-8f726d62feae", "service": "snap-adapter", "ticket": null, "programme": "SNAP Resilience Normalisation", "heading": "## 2026-11-11 \u2014 Turn on SNAP_NORMALISE_HOST_KEY for the poller (X1 step 4)", "prs": ["gfs-bifrost/snap-adapter#337"]}
 {"ts": 1794402455, "kind": "programme_tick", "session_id": "3958064e-f29c-4a24-8868-8f726d62feae", "programme": "SNAP Resilience Normalisation", "unit": "X1", "status": "done"}
+{"ts": 1794409633, "kind": "programme_tick", "session_id": "8584435d-36a9-464d-bc60-e21c842cfe59", "programme": "orient Svelte UI", "unit": "Retire", "status": "done"}
