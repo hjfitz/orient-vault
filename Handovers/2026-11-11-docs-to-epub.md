@@ -8,7 +8,7 @@ from: laptop (freightops)
 to: rc-hjf (the workstation, harry@hjf.shell.platform.ilg.software). Harry chose this on 2026-11-11. The tooling is installed there. The skill folder still has to be copied across from the laptop
 session_id: 4ff6c302-4da3-4b14-bf3c-fc976c0ec75b
 resumed_by: 9e1daa5f-c28e-44cb-b0dd-e5b4bfb5878c
-updated: 2026-11-11T12:46Z
+updated: 2026-11-11T12:51Z
 ---
 # Handover: the docs-to-epub skill
 
@@ -65,6 +65,8 @@ Nothing is running. No agents or workflows were started for this workstream.
 4. **Create the symlink:** `ln -s ~/projects/orient-writers/skills/docs-to-epub ~/.claude/skills/docs-to-epub`.
 5. **Smoke test a fresh project:** `book.py init /tmp/x`, then `check`. Fix whatever the scaffold gets wrong.
 6. **Commit only when Harry asks.** The repo's `.gitignore` is an allow-list (nothing is tracked unless named), so check it, and do not commit `examples/lantern-queue/build/`, `__pycache__/` or `*.epubcheck.json`. Add explicit paths. End the commit message with the attribution line from the harness. Then push only on his yes.
+7. **Make the figures robust to a missing DejaVu Sans.** Give `FONT_DOT` in `scripts/figures.py` a fallback list (for example `DejaVu Sans, Liberation Sans, Arial, sans-serif`) so Graphviz and Chromium agree, or have `book.py figures` warn when `fc-match "DejaVu Sans"` does not return DejaVu. Neither is written or tested.
+8. **Check how a real e-reader treats the figure text description.** It is `<details class="figure-text">` with no `open` attribute, so Chromium shows it collapsed. Reading systems differ on `<details>`. Test one before `SKILL.md` claims the text alternatives are accessible, and say in `references/diagrams.md` what was found.
 
 ## Waiting on Harry
 - **Decided: carry on on rc-hjf** (Harry, 2026-11-11). The tooling is installed there (see On the target). One step is owed from the laptop: copy the skill folder across, because it exists only there, untracked. `rsync` works on rc-hjf now, so run this from the laptop: `rsync -a --exclude '__pycache__' --exclude 'examples/*/build/' ~/projects/orient-writers/skills/docs-to-epub/ harry@hjf.shell.platform.ilg.software:projects/orient-writers/skills/docs-to-epub/`. A branch commit also works, but that needs his go-ahead.
