@@ -73,7 +73,7 @@ Nothing is running. No agents or workflows were started for this workstream.
 ## Waiting on Harry
 - **Done: carry on on rc-hjf** (Harry's decision, 2026-11-11). Harry ran the copy from the laptop and 22 files arrived. The skill folder is untracked on both machines and the two copies have now diverged: the laptop's is stale, and the edits of 12:48Z exist only on rc-hjf. Do not edit the laptop copy. The command used was: `rsync -a --exclude '__pycache__' --exclude 'examples/*/build/' ~/projects/orient-writers/skills/docs-to-epub/ harry@hjf.shell.platform.ilg.software:projects/orient-writers/skills/docs-to-epub/`. A branch commit also works, but that needs his go-ahead.
 - **Two defaults taken, for Harry to confirm or change.** I followed the recommendations: the voice guide defaults to British English with no em dashes (switchable in `book.yaml` with `language` and `style.no_em_dash`), and the example stays fictional.
-- **`.gitignore` for generated output.** Recommendation: yes, add `skills/docs-to-epub/examples/*/build/` and `*.epubcheck.json` before the first commit. It is Harry's repo, so I have not touched it. Otherwise `git add` of the folder stages about 31 generated files.
+- **`.gitignore` for generated output: done at Harry's yes (2026-11-11), uncommitted.** Added `/skills/docs-to-epub/examples/*/build/` and `*.epubcheck.json` to `~/projects/orient-writers/.gitignore`. It changes a tracked file, so it goes in with the first commit. A dry run of `git add skills/docs-to-epub` now lists 30 files and none are generated.
 - Commit and push of the skill: wait for his go-ahead.
 
 ## How work is done here
