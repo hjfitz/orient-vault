@@ -47,7 +47,7 @@ Nothing is running. No agents or workflows were started for this workstream.
 
 | Work | Where | State | To close it |
 | --- | --- | --- | --- |
-| The whole skill, uncommitted: `SKILL.md`, `references/`, and edits to `scripts/figures.py`, `scripts/book.py`, `assets/book.css` and one example chapter | `~/projects/orient-writers/skills/docs-to-epub/` on rc-hjf, untracked | Written and tested today (see Closed since handover). The laptop's copy has none of it | Commit only when Harry asks. **A plain `git add skills/docs-to-epub` stages about 31 generated files under `examples/lantern-queue/build/`**: nothing in `.gitignore` excludes them. Add explicit paths, or ask Harry to add `skills/docs-to-epub/examples/*/build/` and `*.epubcheck.json` to `.gitignore` first |
+| The whole skill, uncommitted: `SKILL.md`, `references/`, and edits to `scripts/figures.py`, `scripts/book.py`, `assets/book.css` and one example chapter | `~/projects/orient-writers/skills/docs-to-epub/` on rc-hjf, untracked | Written and tested today (see Closed since handover). The laptop's copy has none of it | Commit only when Harry asks. The `.gitignore` now excludes generated output (an uncommitted edit), so a plain `git add skills/docs-to-epub` stages 30 files and none are generated. Put `.gitignore` in the same commit. The repo was 2 commits behind `origin/main` when checked at 13:09Z, so pull first |
 
 ## Next up
 1. ~~Re-run the example and read the page images at full size.~~ Done on rc-hjf, see Closed since handover.
