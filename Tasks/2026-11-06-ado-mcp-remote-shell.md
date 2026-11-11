@@ -1,7 +1,7 @@
 ---
 tags: [adhoc-task]
 date: 2026-11-06
-tldr: "orient on the VM; scribe split; vault sync-on-push; orient Svelte UI programme — spike passed, foundations U6–U12 done and reviewed, cutover prep under way"
+tldr: "orient on the VM; scribe split; vault sync-on-push; orient Svelte UI programme — spike passed, foundations U6–U12 done and reviewed, U13 cutover live on the VM (orient-core on :3000, Next behind it on :3001)"
 session_id: 0fb571d0-d903-483b-9e8b-1198b51d571f
 status: open
 ---
@@ -23,3 +23,4 @@ Vault (VM): sync failing since 5 Nov 16:04 — handover vault copy dropped lapto
 2026-11-10: Programme active; gates G2, G3, G4, G6, G7 cleared by Harry. U0 bench harness delegated; U1 core kernel built (src/core: Host/write guards, SWR cache, index watcher → SSE, static UI serving; exclusive token minting).
 2026-11-10: Spike done (U0–U5, orient 64879d0..c191315): Svelte /today data 25 ms vs 777 ms via tunnel, DOM 895 vs 5,867, nav 35 ms vs 845 ms. G1 go (Harry); 4× keypress row accepted. U6 renderer parity, U7 decoupling, U8 keymap started in parallel.
 2026-11-10: Foundations done (U6 renderer parity over 1,364 docs + disk render cache; U7 ops split + import guard; U8 keymap; U9 palette/quick view/globals; U11 desk/scribe/write on the core; U12 proxy to Next), each through review-panel; fixed an encoded-path write-guard bypass (fbe5376) and a clipboard shell-payload path in the palette. U13 cutover prep in progress; G5 dogfood on :3030 awaiting Harry.
+2026-11-11: U13 cutover live on the VM (G5 waived by Harry): orient-core on :3000 serves the Svelte /today and proxies the rest to Next on :3001; ~3.5 s with nothing on :3000; 15/15 runbook checks pass before and after the Next rebuild; orient-pty removed, laptop tunnel drops :3011. VM deploy is now `pnpm deploy:all`; rollback per docs/cutover-u13.md §5 while .next-prod.bak exists. Next: waves W-A1, W-B.
