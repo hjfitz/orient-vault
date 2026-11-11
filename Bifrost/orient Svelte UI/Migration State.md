@@ -53,7 +53,7 @@ Legend: ⬜ not started · 🟨 in progress · ✅ merged · ⛔ blocked · ⏸ 
 | Unit | St | Summary | Deps | Risk | Tier | PR | Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | **W-A1** | ✅ | `[view]` slugs, search, notes | U13 | med | sonnet/medium | dd738eb..2c63201 | First wide consumer of the U6 renderer. |
-| **W-A2** | 🟨 | `doc/[id]` + editor | W-A1 | high | opus/high | | CodeMirror and the conflict dialog. |
+| **W-A2** | ✅ | `doc/[id]` + editor | W-A1 | high | opus/high | a114cd8..04400b4 | CodeMirror and the conflict dialog. |
 | **W-B** | 🟨 | Delivery: sprint, runs, backlog, epics, PRs, tickets, ledger, tasks | U13 | med | sonnet/medium | | Run-spawning ops move into the core's cgroup; updates the `/sprint` restart rule. |
 | **W-C** | ⬜ | PR review + CI logs | W-B | high | opus/high | | `components/pr` (2.9k lines), ReviewProvider/SuggestionReview keys, approval path. |
 | **W-D1** | ⬜ | Work, plans, programmes | W-A1 | med | sonnet/medium | | `/plans` is 0.77 s / 1.25 MB today. |
