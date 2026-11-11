@@ -8,7 +8,7 @@ from: laptop
 to: hjf.shell.platform.ilg.software
 session_id: 0fb571d0-d903-483b-9e8b-1198b51d571f
 resumed_by: 8584435d-36a9-464d-bc60-e21c842cfe59
-updated: 2026-11-11T13:33Z
+updated: 2026-11-11T13:52Z
 ---
 # Handover: orient Svelte UI
 
@@ -32,11 +32,12 @@ Live on the VM at **`fa069be`** (deployed 2026-11-11 13:01Z from the VM's local 
 ## In flight
 | Work | State | To close it |
 | --- | --- | --- |
-| Retire prep (a): core `POST /api/reindex` | built, **6564455** (shared op `src/ops/reindex.ts`, core route in `legacy.ts` at the same path, Next's route a thin wrapper, `core-proxy.test.ts` now uses `/api/tmux/paste` as its Next-only path). **Measured** on a scratch vault clone (1,398 docs): a full rebuild is ~36 s wall, the op yields between documents, worst single event-loop stall 1.7 s (the SQLite transaction); accepted: user-initiated, and Next froze for the whole time before. 13:30Z: review-panel (backend, security, tests) running | review findings → fix → gates → deploy with (b) |
-| Retire prep (b): review draft onto headless.ts | built, **b61d565** (`runClaude` detached in its own scope under `review-runs/<runId>`, polled, dir removed in `finally`, 1 h sweep; `runToolLess` and its 4 other callers unchanged on purpose). Builder's caveats: the claude binary is now `ORIENT_CLAUDE_BIN ?? ~/.local/bin/claude` (was `CLAUDE_BIN ?? 'claude'`); an abort takes up to 500 ms; the draft's environment now also withholds the GitHub/Jira/Slack/etc. tokens (`agentEnv`); after a service restart the claude process becomes an orphan that nothing times out (`claude-draft.ts` already shows its record as failed, the dir is swept after 1 h). Same review running | same |
+| Retire prep review fixes | **13:50Z: 2 sonnet builders running.** review-panel (backend, security, tests) on 6564455 + b61d565 found, all verified: (reindex) the frozen React palette's bare `fetch` is refused by the core's write guard (fix: send `X-Orient` + JSON); `void invalidate` should be `await kernel.settle(['index'])`; a 30 s throttle after a successful rebuild (36 s of CPU in the front door); five test gaps (failure status, Next-vs-core parity, token branch not pinned, rebuild args, vacuous mode test). (draft) opaque failure when claude is not at `~/.local/bin/claude` (now named, like slack-runs); sweep-throws and mode test gaps; CLAUDE.md/Retire.md lines. Already fixed and committed: **a8c1ec5** withholds `DATADOG_API_KEY`/`DATADOG_APP_KEY` (orient's real names; the lists only had `DD_*`) in `headless.ts` and the scribe copy (Go source changed and tested, **not deployed**: the scribe binary is unchanged). | builders report → check shas → `pnpm typecheck`, `pnpm test`, `ui:check`, `ui:build`, lint → deploy |
 | Deploy of the two prep changes | not started | one named sha, `pnpm deploy:all` (Next changes, so a `deploy:web` rebuild: prove it in `.next-check` first), then drive `/` palette reindex (a POST: only with Harry's data in mind, see Gotchas) |
 
 ## Waiting on Harry
+- **Deploy mid-draft (decision, recommendation: accept).** Since b61d565 a PR review draft runs in its own systemd scope, so `deploy:all` no longer refuses while one runs, as intended. The cost: a deploy or restart mid-draft loses that draft (its record shows "interrupted"), the `claude` process runs on unattended until it ends (nothing times it out), a Retry starts a second billed run, and the run dir (holding the PR's diff, 0700 under `~/.local/state/orient/review-runs/`) stays until the next draft's hour-old sweep. A fuller fix is a pid file beside the run dir so the next `startDraft` adopts or stops the orphan. I did not build it.
+- **Scribe Go source changed, not built or deployed** (a8c1ec5, the withheld-credentials list). `make install` in `scribe/` would apply it; the running binary is unchanged and the change only matters once it is rebuilt.
 - **Unpushed commits.** Pushes need the write-enabled key (below). Local-only so far: d6457ee 082af34 d486509 806a824 (plus the rail fixes and everything after, see the final list).
 - **Low priority, no action needed unless you disagree:** the rail offers pause/stop for any row that reads `status: recording`, including a read-only one (another machine's, not adopted), where scribe answers 409 and the error shows. On this setup a read-only `recording` row needs a third, un-adopted machine, and the old Next rail behaved the same. Recommendation: leave it.
 - **A write-enabled GitHub deploy key for hjfitz/orient on the VM.** The VM pushes with
