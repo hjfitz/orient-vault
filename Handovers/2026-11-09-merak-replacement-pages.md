@@ -180,6 +180,9 @@ Checked on `rc-hjf` (`uname -n`) at 2026-11-09T11:57Z:
 ## Closed since handover
 | When (UTC) | Work | Result |
 | --- | --- | --- |
+| 2026-11-11 12:38 | Corrections owed on Polling Connectors and Tracking Events and Webhooks | Applied on Harry's approval: 353697880 v12 and 355074077 v4. Re-fetched, Lucid macro intact |
+| 2026-11-11 12:38 | Line on ECM Platform pointing at Central Firebird | Applied: 357662721 v3. Vault copy updated |
+| 2026-11-11 12:38 | Harry's feedback on the published pages | None to apply: "pages are fine" |
 
 ## Tracking research (2026-11-10)
 **Asked.** How ECM orchestrates tracking, whether the polling interval shrinks as a parcel ages, what a tracking event and a status look like at each stage, and which topics carry them. Harry asked for orient first, before any Confluence page. Two pages were published later the same day (see "Published as pages" below).
