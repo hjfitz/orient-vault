@@ -1,9 +1,9 @@
 ---
 tags: [adhoc-task]
 date: 2026-11-11
-tldr: "Resumed the Parcel Portal handover on the VM: #128 not merged (one false-positive secret-scan finding, fix prepared but its push needs Harry's yes); Confluence, plan and PR body updated; Oliver has not replied"
+tldr: "Resumed the Parcel Portal handover on the VM: #128 merged as 2938b41 after Harry approved a one-file gitleaks allowlist; its svc deploy run is parked at the prod gate; Confluence (v6), plan and PR body updated; Oliver has not replied"
 session_id: 3e3bf683-a529-4b8f-afc1-7733d6a995ea
-status: open
+status: done
 ---
 # Resume the Parcel Portal handover on the VM
 
