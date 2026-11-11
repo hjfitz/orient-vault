@@ -8,7 +8,7 @@ from: laptop
 to: hjf.shell.platform.ilg.software
 session_id: 0fb571d0-d903-483b-9e8b-1198b51d571f
 resumed_by: 8584435d-36a9-464d-bc60-e21c842cfe59
-updated: 2026-11-11T12:51Z
+updated: 2026-11-11T12:58Z
 ---
 # Handover: orient Svelte UI
 
@@ -36,10 +36,11 @@ No laptop agents are running any more. Every remaining item below is yours.
 
 | Work | State | To close it |
 | --- | --- | --- |
-| W-G review fixes | **12:50Z: 3 sonnet builders running on disjoint files** (usage watcher+focus page; focus-watch; history cache); I verified finding 1 against the code and added one requirement: the usage page re-reads `/live` every 60 s so the 2-min read gate doesn't leave a quiet page stale. Finding 3's redaction claim is imprecise (`redactDeep` runs on the 60-turn slice only; the cost is the whole-file parse). Original brief: | 1. **[high]** `src/core/modules/usage/index.ts:82-100`: the usage watcher runs for any open tab, and its fingerprint includes `cpuPct`/`memMb`. So a live session republishes `usage:live` every 5 s and reruns the eager `spendOp` with nobody on /usage. Drop cpu/mem from the fingerprint and gate the watcher on a /usage read in the last ~2 min. 2. **[med]** `focus-watch.ts:59-89`: the phase-end timer is a monotonic `setTimeout`, so after a suspend the block is logged ~20 min late. In `look()`, settle when `endsAt() <= now()`. 3. **[med]** `src/ops/history.ts:78-82` + `domain/history.ts:173-178`: every 60-turn page re-parses and redacts the whole transcript on the event loop. Cache parsed turns per file mtime (bounded, e.g. 4 files), or slice before redacting. Clip giant turn text in the DTO. 4. **[med]** `routes/focus/+page.svelte:38-41`: Space starts the timer on `?tab=breathe`; in Next it did nothing there. Enter the scope only when `tab === 'timer'`. 5. **[low]** `focus-watch.ts:69-77`: a persistent settle error makes a once-a-second publish loop (back off, cap at 60 s). A watcher closed by an error or a missing dir at boot is never reopened (reopen it on the next poll). Security review: clean. |
-| Rail unit review (47b5412) | **12:50Z: review-panel running** (frontend + security; I read the 45-line core module myself: clean) | on its findings: fix, run `pnpm test`/`ui:check`, commit |
+| Rail review fixes (47b5412) | **12:58Z: 1 sonnet builder running.** review-panel (frontend + security): security found one hardening gap (recording id unencoded in stop/pause/ignore paths; I fixed it in `ui/src/lib/recordings/actions.ts`, uncommitted, the builder commits it with a test); frontend found a double-send window (pending clears before the rail's read-back), focus loss on disabled buttons, an error with no `role=alert`, no test that the 250 ms tick is released. All verified by reading. | when the builder reports: check its sha, then run the full gates (Next up 3) |
 
 ## Waiting on Harry
+- **Unpushed commits.** Pushes need the write-enabled key (below). Local-only so far: d6457ee 082af34 d486509 806a824 (plus the rail fixes and everything after, see the final list).
+- **Low priority, no action needed unless you disagree:** the rail offers pause/stop for any row that reads `status: recording`, including a read-only one (another machine's, not adopted), where scribe answers 409 and the error shows. On this setup a read-only `recording` row needs a third, un-adopted machine, and the old Next rail behaved the same. Recommendation: leave it.
 - **A write-enabled GitHub deploy key for hjfitz/orient on the VM.** The VM pushes with
   `~/.ssh/orient-deploy/orient` (`core.sshCommand`), a read-only deploy key. Add its public key again in GitHub
   (hjfitz/orient → Settings → Deploy keys) with "Allow write access", or add a new write key and point
@@ -134,5 +135,6 @@ Checked 2026-11-11T12:2xZ:
 | --- | --- | --- |
 | 2026-11-11T12:30Z | Rail unit (SPA sidebar statuses and controls) | built and pushed, 47b5412; review owed (Next up 2b) |
 | 2026-11-11T12:2xZ | W-G backend/frontend review | 5 findings, written into In flight; security review clean |
+| 2026-11-11T12:57Z | W-G review fixes (5 findings) | **done**, local only, not pushed: d6457ee (history parse cache + giant-turn clip), 082af34 (focus-watch: overdue settle on look, backoff, reopen watchers), d486509 (usage watcher gated on a /usage read, mem/cpu out of the fingerprint; Space on the focus page only on the timer tab), 806a824 (stale doc comment). Deviation from the brief, correct: the usage page needs no 60 s interval of its own, because `Query.start()` already polls every 60 s while the tab is visible. Consequence: cpu/mem in the session list refresh every 60 s, not 5 s |
 | 2026-11-11T12:39Z | Resume on the VM | session 8584435d took over; master ff'd to af51670 (clean tree, deployed is still 0cab68a); `gh` on the VM is logged out (token invalid), so no `gh pr`/`gh api` here; pushes go by the deploy key |
 | 2026-11-11T12:33Z | W-F review fixes (6 items) | pushed: ed2fa5a, 2f83b90, af51670; full suite flaky only under load |
