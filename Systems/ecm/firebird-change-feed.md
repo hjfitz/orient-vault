@@ -29,7 +29,7 @@ Terms: a trigger is SQL that Firebird runs when a row changes. DDL is the SQL th
 
 | Thing | Status | Evidence |
 | --- | --- | --- |
-| The 2014 base schema plus `update_1` to `update_411` for `SHIPMENTS`, `SHIP_PIECES` and related tables | CONFIRMED readable | [1][2] |
+| The 2014 base schema plus `update_1` to `update_411` for `SHIPMENTS`, `SHIP_PIECES` and related tables. These are the server (central) database scripts: `Updates/` in `V4-Server-Database`, whose base file is `server_db.sql` and whose `REG_SHIPMENTS` the upload server calls. The same repo's `ClientScripts/` folder holds the separate site (client) database scripts, with their own four `SHIPMENTS` triggers (`SHIPMENTS_AD0`, `AU0`, `BI0`, `BU0`) that this note does not cover | CONFIRMED readable (server side). That the live central database runs this schema without drift is STATED only: the source is an October 2023 snapshot | [1][2] |
 | `SHIPMENTS_AI2` posts `UPLOAD_2_GCP`. `RELOAD_PUBLISH_SHIPMENTS_AI` posts `RELOAD_2_GCP` | CONFIRMED | [1] |
 | Triggers are switched on and off in production by scripts (`ALTER TRIGGER ... INACTIVE`) | CONFIRMED | [7] |
 | Uploads go through `REG_SHIPMENTS` and `REG_SHIP_ITEMS` | CONFIRMED | [3][5] |
