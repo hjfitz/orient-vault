@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-11 — Freeze notes under the hold and add the Firestore to MongoDB import
+
+Freeze notes under the hold and add the Firestore to MongoDB import
+
+INGEST_HOLD now also 503s note POST/PATCH, so nothing changes Firestore while the cut copies it. cmd/import-mongo copies the frozen duplicates history, then every shipment and return with all events and notes in one read-only transaction each; it refuses a live MongoDB, skips bad identities, resumes from a checkpoint that never passes a failure, and exits non-zero unless every record was written. Emulator rate 575-607 records/s at 16 workers.
+
+PR: gfs-bifrost/tracking-service#36
+
 ## 2026-11-11 — Wire the Mongo connection into the API service
 
 Wire the Mongo connection into the API service
