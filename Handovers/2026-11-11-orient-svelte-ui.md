@@ -8,7 +8,7 @@ from: laptop
 to: hjf.shell.platform.ilg.software
 session_id: 0fb571d0-d903-483b-9e8b-1198b51d571f
 resumed_by: 8584435d-36a9-464d-bc60-e21c842cfe59
-updated: 2026-11-11T14:03Z
+updated: 2026-11-11T14:04Z
 ---
 # Handover: orient Svelte UI
 **Closed 14:03Z (parked, not abandoned):** the VM session did everything up to gate G8 and stops there by instruction; Retire waits for Harry to tick G8, and the 13 unpushed commits wait for a write-enabled deploy key (Waiting on Harry 1).
@@ -124,6 +124,7 @@ Checked 2026-11-11T12:2xZ:
 ## Closed since handover
 | When (UTC) | Work | Result |
 | --- | --- | --- |
+| 2026-11-11T14:04Z | DM to Harry | sent through the slack-bot skill (Bifrost Support Bot; `auth.test` ok on this host; Harry's user id from his own Slack profile; DM channel already open): what is live, what is left, what waits on him |
 | 2026-11-11T14:02Z | Final browser tour and palette Reindex on ef8d2c8 | 60 page loads, non-GET aborted: all pages 200 from the SPA with data; the only fails are `/service/<system>` (known) and `/usage` and `/pr/...` showing their cold-load state right after the restart, both full within ~1 s on a recheck. The SPA palette's "Reindex the vault" clicked in a real browser: "Indexed 1388 documents." after 38 s, one POST with `origin`, `x-orient`, `content-type`, no console errors |
 | 2026-11-11T13:57Z | **Deploy of the reindex fix at ef8d2c8** | live (13:57:11–13:57:26Z; core, ui, index record ef8d2c8; `deploy:all` skipped the Next rebuild because nothing Next is built from changed, so `web` stays 64d7ef9). Gates: typecheck clean, `ui:check` 0/0, `ui:build` clean, lint at baseline, `pnpm test` 386 files passed / 1 skipped on a quiet host. **Live proof:** during one real 37 s rebuild, 131 polls of the core, slowest 0.34 s, none over 1 s (the freeze had been 4 polls and a 20 s timeout); 403/403/403/421 refusals as before; a second call inside 30 s answered from the throttle in 0.5 s |
 | 2026-11-11T13:50Z | review-panel on the child-process reindex (ef8d2c8) | security: no findings. backend: one medium, an orphaned rebuild child can race a new core's rebuild when a core is signalled by pid outside systemd (not reachable under the unit's cgroup stop); left, in Gotchas and Waiting on Harry 8c |
