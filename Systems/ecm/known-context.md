@@ -12,7 +12,8 @@ What the MPK research left standing on 2026-11-09: the canonical figures, Harry'
 ## Standing decisions (Harry, 2026-11-09)
 - **Merak replacing ECM and Selector is an unconfirmed hunch.** It cannot be confirmed with Jack and Stef yet. The MPK pages say "a replacement" and leave the choice to the Merak team. Keep new wording hypothetical.
 - **Merak is unannounced.** Keep the content in MPK, with no Slack. Do not anchor Merak pages on the Parcel Portal or its MKP gates.
-- **No further pages are wanted.** Four were proposed and stay unwritten. Any future page stays research level, comprehensive and simple.
+- **No further pages are wanted.** Four were proposed and stay unwritten. Any future page stays research level and simple.
+- **The lens is the consignment, not ECM (Harry, 2026-11-11).** Pages need not be a comprehensive "how things flow in ECM". The lens is how a consignment flows through GFS, even where the steps are disjoint. Leave a gap between systems and say so, rather than inventing the seam.
 - **No security ticket.** Harry: "not my domain". Do not draft or offer one. Class-level notes from the research agents stay in the handover record, not re-checked.
 - **DHL Parcel UK hand-off (CID-317, blocked) is dropped.** Harry: "not an us issue for now". Nothing was sent and nothing is owed.
 - **Lucid diagrams are linked, not embedded.** Harry draws the Confluence whiteboards by hand.
