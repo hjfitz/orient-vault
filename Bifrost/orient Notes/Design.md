@@ -19,6 +19,8 @@ Progress is in [[orient Notes/Migration State|Migration State]]; the why is in [
 
 ## 2. What exists (the facts the design stands on)
 
+> SUPERSEDED 2026-11-11 — the Tags row below says body `#hashtags` count as tags. They do not reach the index: `parse.ts:159` and `writer.ts:209` write only frontmatter `tags:` (the `tags.source` column exists but no `body` row is written). Found building N3; N6's source option is unnecessary unless body tags are added.
+
 | Area | Fact | Where |
 | --- | --- | --- |
 | Hierarchy | The tree is built from path segments only. `listNotes()` returns `{id, path, title}` and is not filtered. | `src/lib/note-tree.ts:16-37`, `src/domain/notes.ts:9-27` |
