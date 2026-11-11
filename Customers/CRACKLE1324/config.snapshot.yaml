@@ -2,7 +2,7 @@
 # Secret-free by construction: allowlisted fields only.
 businessId: CRACKLE1324
 friendlyName: FUSE-1324 dev canary (crackle)
-synced: 2026-11-10T08:01Z
+synced: 2026-11-11T07:58Z
 environments:
   dev:
     storefronts:

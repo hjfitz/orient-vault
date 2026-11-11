@@ -2,7 +2,7 @@
 # Secret-free by construction: allowlisted fields only.
 businessId: DRSAMS
 friendlyName: Dr Sams (UK)
-synced: 2026-11-10T08:01Z
+synced: 2026-11-11T07:58Z
 environments:
   prod:
     storefronts:

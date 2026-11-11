@@ -1,6 +1,6 @@
 ---
 tags: [customer, CTSAPUK]
-verified: '2026-11-10'
+verified: '2026-11-11'
 verified_against: cust sync (config-service)
 generated: config-snapshot
 title: Charlotte Tilbury SAP (UK) — overview
@@ -29,5 +29,5 @@ confidence: high
 ## Evidence
 
 ```orient-evidence
-{"v": 1, "items": [{"id": 1, "kind": "log", "ref": "cust sync -> config-service (dev), 2026-11-10", "note": "connectors, use cases, confirmation flags and backend type, read live"}]}
+{"v": 1, "items": [{"id": 1, "kind": "log", "ref": "cust sync -> config-service (dev), 2026-11-11", "note": "connectors, use cases, confirmation flags and backend type, read live"}]}
 ```
