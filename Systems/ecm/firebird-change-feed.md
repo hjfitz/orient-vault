@@ -17,7 +17,7 @@ Source: read-only research of 2026-11-11 [13][14]. Code was read in Selector's `
 
 Terms: a trigger is SQL that Firebird runs when a row changes. DDL is the SQL that defines an object, here a trigger. `POST_EVENT` signals clients that listen to Firebird. DBA is database administrator. `fb.*` are the Pub/Sub topics of the form `fb.<table>.v1`.
 
-- **CONFIRMED** Three MPK pages (11 Nov 2026) cover the Selector site side, the central database and what crosses between them: Selector at a Site (357171228), Central Firebird (357531678) and Between a Site and the Centre (357367820). Copies: [[Handovers/2026-11-09-merak-replacement-pages.page10-selector-local]], [[Handovers/2026-11-09-merak-replacement-pages.page11-selector-central]] and [[Handovers/2026-11-09-merak-replacement-pages.page12-selector-interaction]].
+- **CONFIRMED** Three MPK pages (11 Nov 2026) cover the Selector site, the central database and what crosses between them. They are Selector at a Site (357171228), Central Firebird (357531678) and Between a Site and the Centre (357367820). Copies: [[Handovers/2026-11-09-merak-replacement-pages.page10-selector-local]], [[Handovers/2026-11-09-merak-replacement-pages.page11-selector-central]] and [[Handovers/2026-11-09-merak-replacement-pages.page12-selector-interaction]].
 - **CONFIRMED** The site's upload client reads the upload address from the site table `CUST_UPL_SERVERS` (`V4/Client/Client.Alpha/sqlStatements.pas:305`), not from `Client4.exe`.
 - **UNKNOWN** Whether the executable ships a default address. It was not checked.
 
