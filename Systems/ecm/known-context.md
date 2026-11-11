@@ -75,7 +75,7 @@ Read in Selector's `V4-Server-Database` at `82dde6b` (an October 2023 snapshot, 
 - **CONFIRMED** `SHIPMENTS_AI2` posts the Firebird event `UPLOAD_2_GCP` after every shipment insert, and `RELOAD_PUBLISH_SHIPMENTS_AI` posts `RELOAD_2_GCP`. `TRANSFER_QUEUE` appears nowhere in the source.
 - **CONFIRMED** Scripts switch triggers on and off in production (`ALTER TRIGGER ... INACTIVE`), so the snapshot is a lead and not a record.
 - **CONFIRMED** Uploads call `REG_SHIPMENTS` and `REG_SHIP_ITEMS`. A new consignment gets a plain `INSERT`, so every after-insert trigger fires. A repeat upload does not update `SHIPMENTS` in the branch read.
-- **CONFIRMED** The Firebird Transfer Service is live in production: 3,022,807 rows in 15 days, 1,715,298 of them `shipments`, with one monitor set and no insert, update or delete split.
+- **CONFIRMED** The Firebird Transfer Service is live in production: 3,022,807 rows in 15 days, 1,715,298 of them `shipments`. Datadog gives no insert, update or delete split.
 - **STATED** The push to Pub/Sub starts from the main Firebird, not from Client4, CSS or a site database (a Selector team member, 2026-11-04, paraphrased).
 
 ## Unconfirmed
@@ -101,7 +101,7 @@ Each item has a source that says one thing and a source that says another, or no
 - **Evri "keeps held events up to 90 days".** It is a read cutoff, and the TTL indexes are not confirmed. Recommended wording: "reads them for up to 90 days". Harry has not decided.
 
 **Answers owed by others**
-- **The production Firebird triggers on `SHIPMENTS` and `SHIP_PIECES`, narrowed on 2026-11-11.** Selector's source triggers are read, at `82dde6b`. Still missing: the text of every `TRANSFER_QUEUE` trigger, the roughly nine extra production triggers on `SHIPMENTS` (about 25 on Test against 16 in source) and any extra on `SHIP_PIECES`, and whether `SHIPMENTS_AI2` and the queue triggers are active. The read-only queries in [[Systems/ecm/firebird-change-feed]] settle it.
+- **The production Firebird triggers on `SHIPMENTS` and `SHIP_PIECES`, narrowed on 2026-11-11.** Selector's source triggers are read, at `82dde6b`. Still missing: the text of every `TRANSFER_QUEUE` trigger. Also the roughly nine extra production triggers on `SHIPMENTS` (about 25 on Test against 16 in source), and any extra on `SHIP_PIECES`. Also whether `SHIPMENTS_AI2` and the queue triggers are active. The read-only queries in [[Systems/ecm/firebird-change-feed]] settle it.
 - **Which carriers `patina-service-2` writes back,** and which carriers hold the 1,309 bill-on-scan contracts. The list is ADO variable group `gfs-patina-service.prod` (Library id 141), which the ADO MCP cannot read.
 - **Who runs `CHECK_SHIP_STATUS`,** and which host runs the Scan Injector. Datadog shows `MEDC-APP-01-P`. SRE-126 confirmed `MEDC-APP-12-P`.
 - **What the deployed mark-as-delivered code writes.** The default of 1003 is read from code, and legacy UPS loss reporting reads 1003 as lost. Nobody owns the write-back.
@@ -112,10 +112,10 @@ Each item has a source that says one thing and a source that says another, or no
 - **Whether Client4's SOAP upload carries a file or shipment records.**
 
 **Firebird triggers and change feed (2026-11-11)**
-- **The text of every `TRANSFER_QUEUE` trigger.** STATED by the Tech Services vault (a metadata read of the Test replica) and Confluence 206274620, and in no readable source. The likeliest home is the Firebird Transfer Service repo's `sql/` folder (ADO project GFS Legacy Migration, commit `8569227`), which the ADO tools could not reach.
+- **The text of every `TRANSFER_QUEUE` trigger.** STATED by the Tech Services vault (a metadata read of the Test replica) and Confluence 206274620. It is in no readable source. The likeliest home is the Firebird Transfer Service repo's `sql/` folder (ADO project GFS Legacy Migration, commit `8569227`), which the ADO tools could not reach.
 - **The Transfer Service's delete capture, ordering, batching and resume,** and its live config: tables, topic names, project, poll interval, batch size.
 - **`GFSPublisher`.** STATED by the vault as the listener for `UPLOAD_2_GCP` (ADO repo `V6`). Its code is unread, and Datadog shows no `gfs.legacy-publisher.*` metric and no indexed log, which does not prove it is stopped. Whether it runs beside the Transfer Service is open.
-- **Which feed produces `fb.shipments.v1`.** ASSESSED as the Transfer Service: five small tables match the modernizer's counts exactly (carriers 36, customers 36, contracts 420, contract services 458, products 43). No Pub/Sub topic metric exists for `fb.*`, so the topic's own volume was not measured.
+- **Which feed produces `fb.shipments.v1`.** ASSESSED as the Transfer Service. Five small tables match the modernizer's counts exactly: carriers 36, customers 36, contracts 420, contract services 458, products 43. No Pub/Sub topic metric exists for `fb.*`, so the topic's own volume was not measured.
 - **The 11% gap.** The modernizer received 1,906,654 shipment messages against the Transfer Service's 1,715,298. INFERRED, not shown: Slipway's direct publish to `fb.shipments.v1` explains part of it.
 - **The 1.8 updates per new shipment.** STATED by an earlier session from `sql/4_fts_doppelganger_updates_3.sql`, not re-read. Upload alone does not update `SHIPMENTS`, so the updates are ASSESSED as later status writes that pass an unread filter.
 - **Delete handling.** Whether a delete, replace or rename reaches `fb.shipments.v1` as a DELETE. `delete from shipments` appears only in the swap-consignment branch of `REG_SHIP_ITEMS`.

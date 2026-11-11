@@ -174,6 +174,19 @@ Checked on `rc-hjf` (`uname -n`) at 2026-11-09T11:57Z:
 - [[Handovers/2026-11-09-merak-replacement-pages.topic-usage-map]] and [[Handovers/2026-11-09-merak-replacement-pages.topic-datadog-usage]]: the research copies.
 - [[Systems/ecm/known-context]] has the settled facts, the new unconfirmed items and the owed GCP read. [[Systems/ecm/overview]] indexes the page.
 
+## Firebird triggers and change feed (2026-11-11)
+**Asked.** Harry asked what is known about the production Firebird triggers and how a change in central Firebird becomes a message in GCP. Orient first. A Confluence page may follow, and none exists.
+
+**Answers, in three lines.**
+- Selector's source triggers are readable (`V4-Server-Database` at `82dde6b`, October 2023): 16 on `SHIPMENTS`, 10 on `SHIP_PIECES`. `SHIPMENTS_AI2` posts `UPLOAD_2_GCP` on every shipment insert. The `TRANSFER_QUEUE` triggers are in no readable source.
+- Two feeds may exist. The Firebird Transfer Service is live in Datadog (3,022,807 rows in 15 days). The `GFSPublisher` feed has a confirmed trigger, an unread publisher and no Datadog data.
+- An upload inserts once per new consignment, so the 1.8 updates per new shipment on the topic come from later status writes. The filter that passes them is unread.
+
+**Where it lives.**
+- [[Systems/ecm/firebird-change-feed]] is the explainer, with the Datadog evidence and the read-only DBA queries. Harry decides who is asked. Nothing has been sent.
+- [[Systems/ecm/architecture]] gained guardrails G15 to G18. [[Systems/ecm/known-context]] has the settled facts and the narrowed unconfirmed items. It also has two new owed lines: the DBA queries, and ADO access to the Transfer Service and `V6` repos.
+- Research copies: [[Handovers/2026-11-09-merak-replacement-pages.firebird-triggers-findings]] and [[Handovers/2026-11-09-merak-replacement-pages.firebird-feeds-datadog]].
+
 ## Where this now lives
 The durable, indexed copy of these findings is the system [[Systems/ecm/overview|ecm]]. This record stays the transient handover.
 - [[Systems/ecm/overview]]: the MPK page index and states, the nine Lucid document ids and their text twins.

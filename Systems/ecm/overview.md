@@ -2,7 +2,7 @@
 tags:
 - system
 - ecm
-verified: '2026-11-10'
+verified: '2026-11-11'
 title: ecm — overview
 thesis: "ECM is the event-driven platform behind GFS tracking. It learns of a shipment only after Selector uploads it into central Firebird, rebuilds its status from raw carrier scans, tells customers, and fetches proofs of delivery live. The MPK research pages and Lucid diagrams that describe it are indexed here."
 confidence: moderate
@@ -23,6 +23,9 @@ confidence: moderate
 
 ## Tracking
 Tracking is choreography, not orchestration. `tracking-core` leases due parcels to polling connectors at one interval per carrier and state. Everything after `raw_tracking.v1` reacts to topics. The full explainer is [[Systems/ecm/tracking]] [4]. It covers polling, the event shape at each stage, the topic spine, the status model, weaknesses and what a replacement must keep. The guardrails are G9 to G14 in [[Systems/ecm/architecture]]. The topic-by-topic account of all 70 Terraform topics, with verdicts, is MPK page 356155424 and its source copy [[Handovers/2026-11-09-merak-replacement-pages.page7-ecm-topics]]. The polling behaviour is MPK 356614148 and the event and status model is MPK 356614184, with source copies [[Handovers/2026-11-09-merak-replacement-pages.page8-tracking-chasing]] and [[Handovers/2026-11-09-merak-replacement-pages.page9-tracking-model]].
+
+## Firebird change feed
+Two change feeds may leave central Firebird, and only the Firebird Transfer Service has live evidence. Its `TRANSFER_QUEUE` trigger text is in no readable source. Selector's own trigger source was read on 2026-11-11 (`V4-Server-Database` at `82dde6b`, October 2023): 16 triggers on `SHIPMENTS`, 10 on `SHIP_PIECES`, and `SHIPMENTS_AI2` posts `UPLOAD_2_GCP` on every shipment insert. The explainer is [[Systems/ecm/firebird-change-feed]] [5]. It carries the Datadog evidence, the gaps and the read-only DBA queries. The guardrails are G15 to G18 in [[Systems/ecm/architecture]].
 
 ## Where the research lives
 
@@ -97,9 +100,10 @@ The vault copies are the source for edits. Change the live page first, then the 
 - [[Handovers/2026-11-09-merak-replacement-pages.page8-tracking-chasing]] and [[Handovers/2026-11-09-merak-replacement-pages.page9-tracking-model]]
 - Topic research copies, 2026-11-10: [[Handovers/2026-11-09-merak-replacement-pages.topic-usage-map]] (the 70-topic map) and [[Handovers/2026-11-09-merak-replacement-pages.topic-datadog-usage]] (Datadog counters)
 - Tracking research copies, 2026-11-10: [[Handovers/2026-11-09-merak-replacement-pages.tracking-core-findings]], [[Handovers/2026-11-09-merak-replacement-pages.tracking-topic-catalogue]] and [[Handovers/2026-11-09-merak-replacement-pages.tracking-model-findings]]
+- Firebird research copies, 2026-11-11: [[Handovers/2026-11-09-merak-replacement-pages.firebird-triggers-findings]] (trigger catalogue, feeds, queries) and [[Handovers/2026-11-09-merak-replacement-pages.firebird-feeds-datadog]] (Datadog evidence)
 
 ## Neighbours
-- [[selector]] owns the label, the upload and central Firebird's set-up. ECM and Selector meet at Firebird (see [[Systems/ecm/architecture]]).
+- [[selector]] owns the label, the upload and central Firebird's set-up. ECM and Selector meet at Firebird (see [[Systems/ecm/architecture]]). Selector's `V4-Server-Database` source (`82dde6b`, October 2023) was read for triggers on 2026-11-11: [[Systems/ecm/firebird-change-feed]].
 - [[carrier-integrations]] owns the proxies, the polling connectors, the webhooks, the file path and `gfs-pod-service`. Those services feed ECM's `raw_tracking.v1`.
 - These ECM services have no vault folder yet:
   - `gfs-modernizer`, `shipment-identity-service` and `patina-service-2`
@@ -119,6 +123,7 @@ The vault copies are the source for edits. Change the live page first, then the 
   { "id": 1, "kind": "doc", "ref": "Handovers/2026-11-09-merak-replacement-pages.md" },
   { "id": 2, "kind": "doc", "ref": "Confluence MPK 351502339 1. Research into Existing Services" },
   { "id": 3, "kind": "doc", "ref": "Tasks/2026-11-09-merak-pages-published.md" },
-  { "id": 4, "kind": "doc", "ref": "Systems/ecm/tracking.md; Handovers/2026-11-09-merak-replacement-pages.tracking-core-findings.md (research, 2026-11-10)" }
+  { "id": 4, "kind": "doc", "ref": "Systems/ecm/tracking.md; Handovers/2026-11-09-merak-replacement-pages.tracking-core-findings.md (research, 2026-11-10)" },
+  { "id": 5, "kind": "doc", "ref": "Systems/ecm/firebird-change-feed.md; Handovers/2026-11-09-merak-replacement-pages.firebird-triggers-findings.md (research, 2026-11-11)" }
 ] }
 ```
