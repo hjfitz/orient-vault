@@ -56,7 +56,7 @@ Legend: ⬜ not started · 🟨 in progress · ✅ merged · ⛔ blocked · ⏸ 
 | **W-A2** | ✅ | `doc/[id]` + editor | W-A1 | high | opus/high | a114cd8..04400b4 | CodeMirror and the conflict dialog. |
 | **W-B** | ✅ | Delivery: sprint, runs, backlog, epics, PRs, tickets, ledger, tasks | U13 | med | sonnet/medium | b17e398..5c3c65c | Run-spawning ops move into the core's cgroup; updates the `/sprint` restart rule. |
 | **W-C** | 🟨 | PR review + CI logs | W-B | high | opus/high | | `components/pr` (2.9k lines), ReviewProvider/SuggestionReview keys, approval path. |
-| **W-D1** | ⬜ | Work, plans, programmes | W-A1 | med | sonnet/medium | | `/plans` is 0.77 s / 1.25 MB today. |
+| **W-D1** | 🟨 | Work, plans, programmes | W-A1 | med | sonnet/medium | | `/plans` is 0.77 s / 1.25 MB today. |
 | **W-D2** | ⬜ | Systems, services, people, customers, team, skills, diagrams | W-A1 | low | sonnet/medium | | `/tools` and `/tools/[id]` dropped (preset prompting); skills page without its invoke button. |
 | **W-E** | ✅ | Prod: health, incidents, support, maintenance, soaks, monitors, availability | W-A1 | low | sonnet/low | 6436f67, 8a4585f | |
 | **W-F** | ⬜ | Meetings, recordings, Slack, haude | W-A1 | med | sonnet/medium | | Recordings: 14 actions, audio player, relay. |
