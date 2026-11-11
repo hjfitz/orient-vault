@@ -75,7 +75,13 @@ All optional. Nothing was requested beyond Veho.
 - **Work happens in worktrees** under `.claude/worktrees/`. Out-of-ticket branches are `hjf/<desc>`.
 
 ## On the target (laptop)
-Not checked from here: the laptop isn't reachable from rc-hjf.
+Resumed 2026-11-11T09:42Z by session 396b7315. Re-checked live from the laptop, and the record held:
+- `origin/main` is `d98fd9b`; no open PRs; `deploy dev` run 42603726675 is green on that sha.
+- `veho`, `ups` and `royalmail` answer through their `*.mocks.merak.freightops.dev` names. Veho serves `/healthz` (200), not `/`.
+- The local clone `~/code/merak/carrier-playground` is on `hjf/mock-carrier-proxies` (`4932d6e`, remote branch gone), untouched. Start from a worktree off `origin/main`.
+- `wp locate carrier-playground` resolves.
+
+Not checked from rc-hjf when this was written: the laptop isn't reachable from there.
 - Before starting, `git -C ~/code/merak/carrier-playground fetch && git switch main && git pull` (or a worktree from `origin/main`).
 - The local clone may still be on `hjf/mock-carrier-proxies`, which was deleted on the remote after #1 merged.
 - `mise install` gives node 24, pnpm 10.34.7, terraform 1.14.9 and terragrunt 0.50.8.
