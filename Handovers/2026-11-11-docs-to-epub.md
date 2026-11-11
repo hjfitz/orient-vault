@@ -8,7 +8,7 @@ from: laptop (freightops)
 to: rc-hjf (the workstation, harry@hjf.shell.platform.ilg.software). Harry chose this on 2026-11-11. The tooling is installed there and the skill folder has been copied across from the laptop
 session_id: 4ff6c302-4da3-4b14-bf3c-fc976c0ec75b
 resumed_by: 9e1daa5f-c28e-44cb-b0dd-e5b4bfb5878c
-updated: 2026-11-11T13:06Z
+updated: 2026-11-11T13:19Z
 ---
 # Handover: the docs-to-epub skill
 
@@ -47,7 +47,7 @@ Nothing is running. No agents or workflows were started for this workstream.
 
 | Work | Where | State | To close it |
 | --- | --- | --- | --- |
-| The whole skill, uncommitted: `SKILL.md`, `references/`, and edits to `scripts/figures.py`, `scripts/book.py`, `assets/book.css` and one example chapter | `~/projects/orient-writers/skills/docs-to-epub/` on rc-hjf, untracked | Written and tested today (see Closed since handover). The laptop's copy has none of it | Commit only when Harry asks. The `.gitignore` now excludes generated output (an uncommitted edit), so a plain `git add skills/docs-to-epub` stages 30 files and none are generated. Put `.gitignore` in the same commit. The repo was 2 commits behind `origin/main` when checked at 13:09Z, so pull first |
+| The whole skill, uncommitted: `SKILL.md`, `references/`, and edits to `scripts/figures.py`, `scripts/book.py`, `assets/book.css` and one example chapter | `~/projects/orient-writers/skills/docs-to-epub/` on rc-hjf, untracked | Written and tested today (see Closed since handover). The laptop's copy has none of it | Commit only when Harry asks. The `.gitignore` now excludes generated output (an uncommitted edit), so a plain `git add skills/docs-to-epub` stages 30 files and none are generated. Put `.gitignore` in the same commit. The repo was 2 commits behind `origin/main` when checked just before 13:19Z, so pull first |
 
 ## Next up
 1. ~~Re-run the example and read the page images at full size.~~ Done on rc-hjf, see Closed since handover.
