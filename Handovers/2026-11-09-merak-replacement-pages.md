@@ -7,8 +7,8 @@ repo: none (vault + Confluence MPK; read-only GitHub and Azure DevOps)
 from: rc-hjf
 to: next session, any machine
 session_id: 9ef32451-f6a6-429e-88df-add8e5d83ddf
-resumed_by: 4ff6c302-4da3-4b14-bf3c-fc976c0ec75b   # laptop (freightops), 2026-11-09T12:14Z
-updated: 2026-11-10T12:55Z
+resumed_by: ""   # previous driver: 4ff6c302-4da3-4b14-bf3c-fc976c0ec75b (laptop, freightops), ended 2026-11-11T12:30Z at its session limit
+updated: 2026-11-11T12:30Z
 ---
 # Handover: Merak replacement pages (continues the carrier-integrations research)
 
