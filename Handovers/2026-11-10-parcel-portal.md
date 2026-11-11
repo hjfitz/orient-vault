@@ -82,8 +82,8 @@ Dev runs main at `7628c78` (#127) for svc, ui and gateway, in project `ilg-merak
 ## On the target
 Checked 12:20Z over SSH, names only:
 - **Present:** `claude`, `gh`, `gcloud` (signed in as Harry), `git`, `go`, `node`, `docker`, `python3`, `jq`, `tmux`; the vault; `session-handover`; `~/code/merak/parcel-portal`; Claude's `defaultMode` is `auto`; a Claude login. tmux has `main` (4 windows) and `monitors`.
-- **Missing:** `pnpm` and `terraform` (not needed for svc work or for PR plans, which CI runs; `pnpm` is needed for UI work), `~/code/selector` (the Selector source, laptop only, not a git repo), `~/parcel-portal-dev-admin.txt`, `~/.config/parcel-debug/selector.env`, and the debug MCP binary and registration.
-- **To confirm on arrival:** `gh auth status`, the clone is at `7628c78` or later (`git fetch`), and `gh api rate_limit`.
+- **Missing:** `pnpm`, `terraform` and `gitleaks` (not needed for svc work or for PR plans, which CI runs; `pnpm` is needed for UI work; CI is the authority for the secret scan), `~/code/selector` (the Selector source, laptop only, not a git repo), `~/parcel-portal-dev-admin.txt` and `~/.config/parcel-debug/selector.env`. The debug MCP is installed and registered now; it wasn't at 12:20Z.
+- **Confirmed on arrival (12:18Z to 12:38Z):** `git fetch` shows `origin/main` at `7628c78`. The main checkout is on `main`, 98 behind, and was left alone. `gh api rate_limit` reset at 12:37:35Z (4,984 of 5,000 after). The VM clock is NTP-synced and matches GitHub's `Date` header. `gh auth status` was not run, as the launch note said it can mislead while the limit is exhausted.
 
 ## Gotchas
 - **svc is private.** Only the UI's runtime service account and (dev only, #127) Harry's user can invoke it. The dev region is **us-central1**; `gcloud run … --region europe-west2` shows an empty policy.
@@ -99,10 +99,15 @@ Checked 12:20Z over SSH, names only:
 - **`gh run view --log-failed` refuses while a run waits at a prod gate.** Read a finished job with `gh api --allow-escape-sequences repos/ilg-merak/parcel-portal/actions/jobs/<id>/logs`.
 - **React siblings sharing a key orphan DOM nodes, and production builds don't warn.** Prefix each key with its component.
 - **sonner replays active toasts to a remounted Toaster.** Dismiss them on a customer switch instead.
+- **gitleaks scans the whole history** (186 commits on #128), so a placeholder in a pushed commit can't be cleared by editing the file in a later commit. Use a rule-and-path allowlist in `.gitleaks.toml` (precedent: 0737122), or fix it before the first push. A redaction test that feeds a fake value under a key named `apiKey` trips `generic-api-key`.
+- **The auto-mode classifier refuses a push that edits a scanner allowlist to clear a red check** (`CI Bypass`). It needs Harry's explicit yes. Don't route around it with the GitHub MCP or a second PR.
+- **`updateConfluencePage` replaces the whole body and needs `getContentFormatGuide` first.** Read the page, keep its HTML, and send all of it.
 
 ## Closed since handover
 | When (UTC) | Work | Result |
 | --- | --- | --- |
+| 2026-11-11 12:43 | Owed records after #128 | Confluence 357007366 at version 5 (the #127 row, the one-parcel FGHD booking, Oliver's answers). The plan's Not verified section brought up to date; its evidence already had the re-pack. The ledger already had #127 and #128. PR #128's body Evidence rewritten, with a CI section. `wp signoff` not run. The #128 Confluence row is still owed, after merge |
+| 2026-11-11 12:20 | Oliver's thread read | Two replies, no answer yet to the 12:00Z repro. Nothing sent from the VM |
 | 2026-11-11 11:55 | #127 let a named developer call svc directly in dev | Merged 7628c78. The dev apply added one IAM member; confirmed with `gcloud run services get-iam-policy`. Prod run parked, not approved. |
 | 2026-11-11 10:50 | #126 send the shipment cost | Merged b9fa8b5, on dev. Fixes the 0030 null reference. mdlb-1 (FGR) and mdlb-3 (FIGR) booked with tracking numbers; mdlb-2 re-packed as one parcel booked. |
 | 2026-11-10 20:40 | #125 log Selector fault text | Merged ccdc34f, on dev. |
