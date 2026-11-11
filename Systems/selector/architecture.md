@@ -22,7 +22,7 @@ confidence: high
   — paths: CSS/vzClientSoapServer/ClientShipService.asmx.cs
 - [contract:G4] With `CUST_SITES.ALLOW_ROUTES = 0`, any shipment carrying a route code fails ("The usage of custom routes is prohibited").
   — paths: CSS/vzClientSoapServer/InternalProcedures
-- [operational:G5] Site updates only add and change data. A contract or service removed in Manager stays on the site, and re-registering wipes the site, shipments included.
+- [operational:G5] The repo's site-update script deletes site rows missing from the package for six types (contracts, third-party accounts, site contracts, services, departments, products), and delete triggers cascade into routes and station defaults. The live script was not checked. Re-registering wipes the site, shipments included.
   — paths: V4-Server-Database/ClientScripts
 - [policy:G6] Every site DB holds carrier credentials (`CARR_KEY`/`CARR_PSW`) and plaintext API user passwords (`gfs_users`, `web_users`). Never copy their values into docs, logs or tickets.
   — paths: CSS/vzClientSoapServer, V4/Client/Client.Alpha

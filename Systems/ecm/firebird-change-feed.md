@@ -17,6 +17,10 @@ Source: read-only research of 2026-11-11 [13][14]. Code was read in Selector's `
 
 Terms: a trigger is SQL that Firebird runs when a row changes. DDL is the SQL that defines an object, here a trigger. `POST_EVENT` signals clients that listen to Firebird. DBA is database administrator. `fb.*` are the Pub/Sub topics of the form `fb.<table>.v1`.
 
+- **CONFIRMED** Three MPK pages (11 Nov 2026) cover the Selector site side, the central database and what crosses between them: Selector at a Site (357171228), Central Firebird (357531678) and Between a Site and the Centre (357367820). Copies: [[Handovers/2026-11-09-merak-replacement-pages.page10-selector-local]], [[Handovers/2026-11-09-merak-replacement-pages.page11-selector-central]] and [[Handovers/2026-11-09-merak-replacement-pages.page12-selector-interaction]].
+- **CONFIRMED** The site's upload client reads the upload address from the site table `CUST_UPL_SERVERS` (`V4/Client/Client.Alpha/sqlStatements.pas:305`), not from `Client4.exe`.
+- **UNKNOWN** Whether the executable ships a default address. It was not checked.
+
 ## Short answers
 - **CONFIRMED** Selector's source holds 16 triggers on `SHIPMENTS` and 10 on `SHIP_PIECES`. No later script drops one, and none writes a queue row for the `fb.*` feed [1][2].
 - **CONFIRMED** `SHIPMENTS_AI2` posts the event `UPLOAD_2_GCP` after every shipment insert [1].
@@ -29,7 +33,7 @@ Terms: a trigger is SQL that Firebird runs when a row changes. DDL is the SQL th
 
 | Thing | Status | Evidence |
 | --- | --- | --- |
-| The 2014 base schema plus `update_1` to `update_411` for `SHIPMENTS`, `SHIP_PIECES` and related tables. These are the server (central) database scripts: `Updates/` in `V4-Server-Database`, whose base file is `server_db.sql` and whose `REG_SHIPMENTS` the upload server calls. The same repo's `ClientScripts/` folder holds the separate site (client) database scripts, with their own four `SHIPMENTS` triggers (`SHIPMENTS_AD0`, `AU0`, `BI0`, `BU0`) that this note does not cover | CONFIRMED readable (server side). That the live central database runs this schema without drift is STATED only: the source is an October 2023 snapshot | [1][2] |
+| The 2014 base schema plus `update_1` to `update_417` (the last numbered script) for `SHIPMENTS`, `SHIP_PIECES` and related tables. These are the server (central) database scripts: `Updates/` in `V4-Server-Database`, whose base file is `server_db.sql` and whose `REG_SHIPMENTS` the upload server calls. The same repo's `ClientScripts/` folder holds the separate site (client) database scripts, with their own four `SHIPMENTS` triggers (`SHIPMENTS_AD0`, `AU0`, `BI0`, `BU0`) that this note does not cover. The 16 `SHIPMENTS` triggers were catalogued from the scripts the first reading covered. A text search on 2026-11-11 found no `TRIGGER` statement in scripts 412 to 417, so the catalogue still holds for the repo, though no one read those six line by line | CONFIRMED readable (server side). That the live central database runs this schema without drift is STATED only: the source is an October 2023 snapshot | [1][2] |
 | `SHIPMENTS_AI2` posts `UPLOAD_2_GCP`. `RELOAD_PUBLISH_SHIPMENTS_AI` posts `RELOAD_2_GCP` | CONFIRMED | [1] |
 | Triggers are switched on and off in production by scripts (`ALTER TRIGGER ... INACTIVE`) | CONFIRMED | [7] |
 | Uploads go through `REG_SHIPMENTS` and `REG_SHIP_ITEMS` | CONFIRMED | [3][5] |

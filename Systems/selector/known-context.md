@@ -45,7 +45,7 @@ Interview truth (Harry, 2026-11-05), the Tech Services vault, Datadog, and facts
 - **CSS-only customers still depend on Client4.** If the upload station is down, labels print but nothing reaches GFS or billing. Nothing alerts on this.
 - **No duplicate guard.** Selector books a repeated `ProcessShipment` again (proved by the [[selector-adapter]] spike).
 - **Carrier logic lives twice, and it drifts.** `FEDEX` and `INPOST` mean a GFS proxy in CSS but the carrier's old direct API in Client4. `label_id = 0` means something different in each app.
-- **Manager edits don't flow on their own.** Someone has to press "Site update". Deletions never propagate. tools-ui fixes land on the site only, and re-registration wipes them.
+- **Manager edits don't flow on their own.** Someone has to press "Site update". The repo's site-update script deletes site rows missing from the package for six types (contracts, third-party accounts, site contracts, services, departments, products), so a removal in Manager can reach the site. The live script was not checked. tools-ui fixes land on the site only, and re-registration wipes them.
 - **The vault and the code disagree on two points:**
   - The vault says CSS writes to the main DB directly. The code says it only fires `SHIP_COMMITED`, and Client4 uploads.
   - The vault names `CSS-Enterprise` as the CSS source. The 4.50.7.0 work is in the `CSS` repo (see [[css]] known-context).
@@ -58,6 +58,9 @@ Interview truth (Harry, 2026-11-05), the Tech Services vault, Datadog, and facts
   - request and response dumps under `C:\temp`
   - a public, unauthenticated log sink
   - full recipient PII at info level in the UPS and Coll8 proxy logs
+
+## Pages
+The site, central and in-between sides are on three MPK pages (11 Nov 2026): Selector at a Site 357171228, Central Firebird 357531678 and Between a Site and the Centre 357367820. See [[Systems/ecm/overview]].
 
 ## Unknowns
 - **Billing:**

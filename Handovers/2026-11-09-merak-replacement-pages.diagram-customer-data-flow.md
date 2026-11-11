@@ -49,7 +49,7 @@ Arrows point from the caller. A reply on the same call is not drawn.
 | E2 | E3 | Store a site package: VER_DATA at registration, CUST_SITE_UPDATES for a site update | Firebird, zipped package | Verified in page |
 | E5 | E4 | Pull the registration package or a waiting update, with global data, routing files and new Client4 versions | SOAP, GetCustSiteRegData | Verified in page |
 | E4 | E3 | Read the stored package | Firebird | Verified in page |
-| E5 | E6 | Load the package: wipe and reload at registration, add and change on a site update, never delete | Firebird | Verified in page |
+| E5 | E6 | Load the package: wipe and reload at registration, add and change on a site update. The repo's site-update script also deletes rows missing from the package for six types (live script not checked) | Firebird | Verified in page |
 | E1 | E8 | Generate contract insert SQL | tools-ui | Verified in page |
 | E1 | E6 | Paste the generated SQL into the site database | SQL, by hand | Verified in page |
 | E3 | E15 | Queue changes from the set-up tables for ECM | Firebird triggers, TRANSFER_QUEUE | Verified in page |
