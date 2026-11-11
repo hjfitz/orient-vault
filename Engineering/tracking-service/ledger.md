@@ -6,6 +6,17 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-11 — Cut tracking-service over to MongoDB in dev and prod
+
+Cut tracking-service over to MongoDB in dev and prod
+
+Held each env, imported Firestore into Atlas with cmd/import-mongo, checked cmd/parity (PASS, nothing unexpected), then flipped STORE=mongodb and released the hold. Dev cut 14:18Z, prod 16:28Z on 2026-11-11 (114,340 shipments, 577,279 events, 0 failed); every push 204 since 16:30Z, including reap bursts; dead-lettering restored in both envs.
+
+PR: gfs-bifrost/tracking-service#39
+PR: gfs-bifrost/tracking-service#40
+PR: gfs-bifrost/tracking-service#41
+PR: gfs-bifrost/tracking-service#42
+
 ## 2026-11-11 — Add the Firestore to MongoDB parity check
 
 Add the Firestore to MongoDB parity check
