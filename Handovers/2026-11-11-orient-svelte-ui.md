@@ -8,7 +8,7 @@ from: laptop
 to: hjf.shell.platform.ilg.software
 session_id: 0fb571d0-d903-483b-9e8b-1198b51d571f
 resumed_by: 8584435d-36a9-464d-bc60-e21c842cfe59
-updated: 2026-11-11T13:22Z
+updated: 2026-11-11T13:33Z
 ---
 # Handover: orient Svelte UI
 
@@ -32,8 +32,8 @@ Live on the VM at **`fa069be`** (deployed 2026-11-11 13:01Z from the VM's local 
 ## In flight
 | Work | State | To close it |
 | --- | --- | --- |
-| Retire prep (a): core `POST /api/reindex` | **13:15Z: 1 sonnet builder running** (shared op `src/ops/reindex.ts`, core route in `legacy.ts` at the same path, Next's route a thin wrapper, tests, README/Retire.md) | check its sha; review-panel (backend + security: a new core write route); fix; gates; commit |
-| Retire prep (b): review draft onto headless.ts | **13:15Z: 1 sonnet builder running** (`runClaude` detached in its own systemd scope, run dir swept and removed; `runToolLess` and its 4 other callers unchanged on purpose) | same; also review the env hygiene versus `cleanEnv()` |
+| Retire prep (a): core `POST /api/reindex` | built, **6564455** (shared op `src/ops/reindex.ts`, core route in `legacy.ts` at the same path, Next's route a thin wrapper, `core-proxy.test.ts` now uses `/api/tmux/paste` as its Next-only path). **Measured** on a scratch vault clone (1,398 docs): a full rebuild is ~36 s wall, the op yields between documents, worst single event-loop stall 1.7 s (the SQLite transaction); accepted: user-initiated, and Next froze for the whole time before. 13:30Z: review-panel (backend, security, tests) running | review findings → fix → gates → deploy with (b) |
+| Retire prep (b): review draft onto headless.ts | built, **b61d565** (`runClaude` detached in its own scope under `review-runs/<runId>`, polled, dir removed in `finally`, 1 h sweep; `runToolLess` and its 4 other callers unchanged on purpose). Builder's caveats: the claude binary is now `ORIENT_CLAUDE_BIN ?? ~/.local/bin/claude` (was `CLAUDE_BIN ?? 'claude'`); an abort takes up to 500 ms; the draft's environment now also withholds the GitHub/Jira/Slack/etc. tokens (`agentEnv`); after a service restart the claude process becomes an orphan that nothing times out (`claude-draft.ts` already shows its record as failed, the dir is swept after 1 h). Same review running | same |
 | Deploy of the two prep changes | not started | one named sha, `pnpm deploy:all` (Next changes, so a `deploy:web` rebuild: prove it in `.next-check` first), then drive `/` palette reindex (a POST: only with Harry's data in mind, see Gotchas) |
 
 ## Waiting on Harry
