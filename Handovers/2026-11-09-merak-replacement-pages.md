@@ -1,7 +1,7 @@
 ---
 tags: [handover]
-status: resumed
-workstream: ECM and Selector research, now feeding Merak (Harry frames it as a new despatch and shipping platform that replaces both). Finish and publish two MPK design pages
+status: open
+workstream: ECM and Selector research, now feeding Merak (Harry frames it as a new despatch and shipping platform that replaces both). The MPK research space is published and grouped; what remains is owed corrections, access-gated answers and Harry's feedback
 programme: none
 repo: none (vault + Confluence MPK; read-only GitHub and Azure DevOps)
 from: rc-hjf
