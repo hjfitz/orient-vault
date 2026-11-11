@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-11 — Build with Go 1.26.11 to clear the stdlib vulnerability gate
+
+Build with Go 1.26.11 to clear the stdlib vulnerability gate
+
+Code Quality Go red on master since the 2026-11-11 nightly: govulncheck GO-2026-6859 (net/http, fixed in 1.26.11). Same fix as #61: raise the go directive and the mise pin; setup-go's cached 1.26.10 then fetches 1.26.11 via GOTOOLCHAIN. Verified locally: 0 affecting vulns on 1.26.11, exit 1 on 1.26.10; build/vet/tests/fmt-check green.
+
+PR: gfs-bifrost/fuse-mcp#66
+
 ## 2026-11-10 — Expose daily windows, confirmation stages and confirmAfterSeconds on mock-schedule
 
 Expose daily windows, confirmation stages and confirmAfterSeconds on mock-schedule
