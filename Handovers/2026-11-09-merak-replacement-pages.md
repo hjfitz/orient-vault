@@ -28,7 +28,8 @@ This block supersedes the older summary below it. The older sections are kept as
 
 **Done 2026-11-11 (Harry: "pages are fine", apply the corrections and the line).** There is no feedback to apply: he reviewed the published pages and they stand. Applied through the MCP update tool in ADF, with no API token. Each page was re-fetched afterwards, and the Lucid macro on Polling Connectors survived.
 - Polling Connectors 353697880, v12: the lease is a Mongo `FindOneAndUpdate` in batch-creator, not in the connector.
-- Tracking Events and Webhooks 355074077, v4: `raw_tracking.v1` carries the raw code and text only, not the mapped result.
+- Tracking Events and Webhooks 355074077, v4 then v5. v4: `raw_tracking.v1` carries the raw code and text only, not the mapped result. v5 (Harry said yes to the two rewordings I had held back): row 1 now says "several definitions: four in code, and CCIS re-derives its own. ICIS is unread", and that `tracking-core` keeps its own mapping to itself.
+- Tracking group page 357597186, v3: dropped the two "Owed correction" notes that those edits made stale (the raw-code note, and the lease half of the Polling Connectors note). The ConfigMap half stays, because Polling Connectors still says that ConfigMap is missing from the cluster repo.
 - ECM Platform 357662721, v3: a sentence in "Where to start" points at Central Firebird (357531678).
 - Vault copies (`page2-tracking-events-webhooks`, `group-ecm-platform`) and [[Systems/ecm/known-context]] match the live pages. Polling Connectors has no vault source copy: the live page is the copy.
 
