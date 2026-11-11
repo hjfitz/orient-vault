@@ -14,7 +14,36 @@ updated: 2026-11-11T12:30Z
 
 Continues [[Handovers/2026-11-06-carrier-integrations]], which is closed. Read that record for the earlier waiting items.
 
-## Where things stand
+A separate workstream, the `docs-to-epub` skill, has its own record: [[Handovers/2026-11-11-docs-to-epub]].
+
+## Current state (2026-11-11, end of session 4ff6c302)
+This block supersedes the older summary below it. The older sections are kept as history.
+
+**Structure.** The MPK research space ("1. Research into Existing Services", 351502339, index v4) is grouped under five parents. All 18 moved pages kept their ids and bodies.
+- Legacy Selector 351764483 (v6), which now also holds From Label to Invoice and the three Selector pages.
+- Carriers and How We Integrate With Them 357629953, Tracking: How GFS Follows a Parcel 357597186, Proof of Delivery 357236740, ECM Platform: How a Shipment Moves Through It 357662721. Each is an overview page with a table of its children, what is known, a reading order and the open questions. Source copies are `Handovers/…group-<slug>.md`, and [[Systems/ecm/overview]] has a "Structure of the research space" section.
+- Harry deleted Carrier Services, Day End and Billing Handoff and the scratch draft by hand on 2026-11-11.
+
+**Pages published since the five drafts, all unverified, each fetched back and compared with its source copy.** ECM Pub/Sub Topics 356155424; Chasing a Parcel 356614148; What a Tracking Update Means 356614184; Selector at a Site 357171228; Central Firebird 357531678; Between a Site and the Centre 357367820. Ids and copies are in the sections below.
+
+**Waiting on Harry (nothing is blocked).**
+- Apply his feedback on the published pages when it comes: live page first, then the vault copy.
+- **Corrections owed to published pages, not applied.** Polling Connectors (353697880) gives the lease query to the connector, but it is in batch-creator: it carries a Lucid macro, so it needs an ADF edit. Tracking Events and Webhooks (355074077) says every event carries the raw code and the derived status. Recommendation: apply both. Not applied, and owned by other skills: the `Engineering/tracking-core` Waypoint docs (90-day expiry, "no retries or dead letters", "up to 100 parcels", the ConfigMap, `agents.md`) and `Engineering/client4/architecture.md` line 106 ("upsert-only").
+- Offered and unanswered: a line on the ECM Platform group page that points at the Central Firebird page; a draft of the ask to the Selector team for the read-only trigger queries and access to the two unread repos (not drafted, nothing sent); restoring the `REG_WILKO_*` and `JABIL_` procedure names on the Central Firebird page (left out under the no-customer-names rule, though earlier pages name `REG_WILKO_*`).
+- **The Atlassian API token.** On 2026-11-11 Harry allowed the environment's token (`JIRA_API_TOKEN` and `JIRA_API_EMAIL`) for Confluence page moves only, because the MCP update tool needs a whole body to change a parent. It was used for the 18 moves and nothing else. This is not a standing permission: ask again.
+
+**Answers only someone with access can give.** All are in [[Systems/ecm/known-context]] under Owed.
+- Prod etcd values (`targetPollingMinutes`, `batchLimit`, `intervalSeconds`, `expiryDays`): settles whether any state's interval differs.
+- Pub/Sub subscription backlogs, acks and dead letters for `gfs-ecm-prod-uk1` (`gcloud pubsub subscriptions list`, Cloud Monitoring).
+- Production Firebird triggers, especially the `TRANSFER_QUEUE` ones: the read-only queries are in [[Systems/ecm/firebird-change-feed]].
+- ADO repos `GFS Legacy Migration` (Firebird Transfer Service, `sql/`) and `V6` (`GFSPublisher`). The `ado-local-mcp` server was disconnected when this session ended: reconnect it, or use the remote one, which needs OAuth.
+- Live `CUST_SCRIPTS` rows. The central schema source in the repo stops at `update_417` and the April 2026 upload server calls `REG_SHIPMENTS` with a parameter no script defines, so the repo is stale against production.
+
+**Settled this session, now in the vault.** The polling interval does not shrink with parcel age. The tracking chain is choreography through Pub/Sub, not orchestrated. The prod Terraform creates 70 topics and 145 subscriptions. The Firebird Transfer Service is the live feed from central Firebird. Selector's local and central databases are different schemas with different triggers. See [[Systems/ecm/tracking]], [[Systems/ecm/firebird-change-feed]] and [[Systems/ecm/architecture]] (G1 to G18).
+
+**Decisions that still stand.** Merak replacing ECM and Selector is an unconfirmed hunch: keep wording hypothetical. Merak is unannounced: MPK only, no Slack. No security ticket and no security commentary (a research agent noticed committed credentials in three places: they are not recorded anywhere in the vault). CCP and OZ are not part of this research. Pages stay research level, comprehensive and simple, framed around the delivery side of the business. No verification run unless Harry asks. Paraphrase Slack and DM content, never quote it. The `plainly` and `c4-diagrams` skills were committed and pushed on 2026-11-10 (`9f5389a`).
+
+## Where things stand (older summary, 2026-11-09 to 2026-11-10)
 The ECM and Selector research is published to MPK and the vault. On 2026-11-09 a 31-agent review checked 36 claims on the first journey page: 19 confirmed, 17 partly right, none refuted. All 17 were corrected. Harry now frames Merak as a new despatch and shipping platform that replaces ECM and Selector. **The Parcel Portal is not part of that.**
 
 Five design pages are **published as drafts, unverified**, under MPK "1. Architecture & Design" (page 351502339). Harry asked for them on 2026-11-09 at about 12:35Z and will send feedback afterwards. The verification run was killed at the session limit and returned nothing, so no claim on the pages has been through it. Apply Harry's feedback to the live pages first, then to the vault files, which are the source copies.
