@@ -1,6 +1,6 @@
 ---
 tags: [handover]
-status: resumed
+status: closed            # superseded by [[Handovers/2026-11-11-carrier-playground]] (rc-hjf → laptop, 11 Nov)
 workstream: Twelve mock carrier proxies with dev IaC and DNS in ilg-merak/carrier-playground
 programme: none
 repo: ilg-merak/carrier-playground
@@ -8,7 +8,7 @@ from: laptop
 to: hjf.shell.platform.ilg.software
 session_id: 945d0e77-3787-450a-a8e6-3635e238a5c9
 resumed_by: 9d74d588-1876-4a16-907d-7470c90d25d5
-updated: 2026-11-09T11:00Z
+updated: 2026-11-11T09:40Z
 ---
 # Handover: mock carrier proxies (carrier-playground)
 
