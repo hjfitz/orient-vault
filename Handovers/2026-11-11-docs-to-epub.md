@@ -8,7 +8,7 @@ from: laptop (freightops)
 to: a new session on the laptop (freightops), where the untracked skill folder lives. rc-hjf has no copy of it yet
 session_id: 4ff6c302-4da3-4b14-bf3c-fc976c0ec75b
 resumed_by: ""
-updated: 2026-11-11T12:30Z
+updated: 2026-11-11T12:33Z
 ---
 # Handover: the docs-to-epub skill
 
@@ -68,6 +68,7 @@ Nothing is running. No agents or workflows were started for this workstream.
 6. **Commit only when Harry asks.** The repo's `.gitignore` is an allow-list (nothing is tracked unless named), so check it, and do not commit `examples/lantern-queue/build/`, `__pycache__/` or `*.epubcheck.json`. Add explicit paths. End the commit message with the attribution line from the harness. Then push only on his yes.
 
 ## Waiting on Harry
+- **Where to carry on.** Recommendation: a new session on the laptop (freightops). The skill folder exists only there, untracked, and rc-hjf has none of the build and preview tooling (see On the target). Moving the work to rc-hjf needs the folder copied across first, then the installs. To copy it, run this from the laptop: `rsync -a --exclude '__pycache__' --exclude 'examples/*/build/' ~/projects/orient-writers/skills/docs-to-epub/ harry@hjf.shell.platform.ilg.software:projects/orient-writers/skills/docs-to-epub/`. A branch commit also works, but that needs his go-ahead.
 - None for the build. Two small calls the next session can make and report: whether the voice guide should default to British English with no em dashes (recommendation: yes, as the default, switchable in `book.yaml` via `style.no_em_dash` and `language`), and whether the example should stay fictional (recommendation: yes).
 - Commit and push of the skill: wait for his go-ahead.
 
