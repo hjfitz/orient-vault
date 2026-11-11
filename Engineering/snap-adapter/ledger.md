@@ -7,6 +7,15 @@ title: snap-adapter — work ledger
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-11 — Turn on SNAP_REQUEST_TIMEOUT_MS and SNAP_BREAKER_SINGLE_PROBE for the poller (X1 step 2)
+
+Turn on SNAP_REQUEST_TIMEOUT_MS and SNAP_BREAKER_SINGLE_PROBE for the poller (X1 step 2)
+
+X1 step 2. New poller tfvars snap_request_timeout_ms (120000) and snap_breaker_single_probe (true) set the two switches shipped off in #324 and #329, on dev and prod. The Terraform minimum for the timeout is 120000 to match the app's schema floor. Dev-verified by setting both on the dev poller (clean boot, 0 errors over about 3 minutes, SNAP queue fetches fine). Plan agreed with Harry before merge: image plus the standing sensitive-env reorder plus the two new envs. Revert: snap_breaker_single_probe=false.
+
+Ship: SHIP-1111-poller-timeout-probe
+PR: gfs-bifrost/snap-adapter#335
+
 ## 2026-11-10 — Check SNAP create responses through @gfs-bifrost/snap, behind SNAP_ASSERT_WRITE_RESPONSES
 
 Check SNAP create responses through @gfs-bifrost/snap, behind SNAP_ASSERT_WRITE_RESPONSES
