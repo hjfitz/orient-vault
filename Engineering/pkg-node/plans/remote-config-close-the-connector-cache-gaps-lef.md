@@ -33,6 +33,7 @@ impl_effort: high
 
      One marker, always above, never inside. `wp decide` writes the dated entry in
      `## Decisions & deviations` that explains why. -->
+- **2026-11-11: the default-mode lost add is deferred** (Harry: "proceed" on the recommendation). It stays a documented README limit until a lost add is seen in prod. Fixing it needs a cache primitive that tells a failed Redis read from a miss, plus a default change. Revisit it together with the compare-and-set option.
 - **2026-11-09: this ships after 2.7.0, not folded into it.** The gaps are in opt-in behaviour, 2.7.0's release gate and "defaults unchanged" claim would be invalidated, and sftp-connector step 4 needs 2.7.0. This reverses my earlier suggestion to Harry to hold the 2.7.0 merge for it, which was made before the reviews found the outage hazard.
 - **2026-11-09: a single lookup that hits a tombstone in the re-check behaves as not-found.** Its only consumer, sftp-connector, already maps a missing connector to `ConnectorConfigException`.
 
@@ -76,6 +77,7 @@ Close the connector-cache gaps that `@gfs-bifrost/remote-config` 2.7.0 documents
 - **Redis ordering:** one node-redis client per `CacheService` runs commands in send order. Retried writes settle before a later command on that connection. Across a reconnect (heartbeat recycle or socket error) a dropped command can land late; `disableOfflineQueue` keeps that narrow. The tombstone ordering argument rests on this. Established: source read of `redis.cache.ts` and `@redis/client`.
 - **Failed reads look like misses:** `tryGetAsync` swallows Redis errors and timeouts and returns `undefined`. A tombstone read therefore fails open while Redis is down. That's an accepted, documented window, not a defect. Established: source read (`cache.service.ts:421-424`).
 - **`rc:` isn't a real prefix:** `CacheService` stores the `rc:` key prefix and never applies it, so Redis keys are unprefixed. The sftp-connector plan assumes `rc:` separates them from its old `cfg` keys. That needs checking there before step 4 (new keys here: `connector-deleted:*`). Established: source read, both reviews.
+> SUPERSEDED 2026-11-11: resolved. Harry said "proceed" to the recommendation, so it is deferred and documented as a known limit (see Decisions).
 - **UNRESOLVED: is the default-mode lost add worth a cache release and a second default change?**
   - The race: two *new* connectors for one business are added on different instances within `memTtl`. The second instance writes its stale in-memory index back, and one connector is silently missing from that business's lookups until the index TTL. It's older than 2.7.0, and rare: fapi saw 14 connector backlinks in 7 days.
   - Fixing it safely needs a cache primitive that tells "Redis failed" from "not found". Dropping the in-memory copy before reading turns a Redis outage into the 2.5.2 silent-omission bug.
