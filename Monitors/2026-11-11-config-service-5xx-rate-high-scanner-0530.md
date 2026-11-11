@@ -8,15 +8,13 @@ snap_instance:
 channel: bifrost-notifications
 thread_url: "https://gfsdeliver-eng.slack.com/archives/C099WKQTE8G/p1794375084742799"
 opened_at: "2026-11-11T05:30:01Z"
-resolved_at: "RESOLVED_AT"
-minutes_spent: MINUTES
 severity_assessed: P4
 flapping: true
 outcome: monitor_mistuned
 escalated_to:
 ticket:
 session_id: 7f84afae-380e-4959-8dc8-c8b0cbe9f19d
-status: resolved
+status: open
 ---
 # config-service 5xx monitor (P2) tripped by 5 hostile-client 500s at overnight volume: 5 of 63 responses, same scanner burst as the Platform alert
 
