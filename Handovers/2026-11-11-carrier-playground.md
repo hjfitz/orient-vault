@@ -98,6 +98,7 @@ Not checked from rc-hjf when this was written: the laptop isn't reachable from t
 - **A deploy watch must stop on the first failed job.** Watching for a downstream signal instead cost 45 minutes on #6.
 - **Unexplained startup failure, 6 Nov:** the `deploy-dev` run for #13 (`8a5f3a0`) failed when mock-upstreams' new revision missed its Cloud Run startup probe. The tracer loaded and `listening` never followed; normal startup is about 5 s. The cause is not established. The next deploy was fine. If it recurs, re-run the failed jobs. If it keeps happening, look at startup time (`tsx` compiles at boot) against the probe (3 × 10 s).
 - **Check every source's real prod deployment before building** (cluster ingress plus DNS). GitHub "modernised" copies are often not what prod serves: Amazon, BJS, Exelot and OCS all had a newer copy that wasn't live.
+- **Veho's health route is `/healthz`.** `/` and `/health` return 404, unlike the older mocks; don't read that as an outage.
 - **Error-body shape:** the older carrier sources spread Ajv errors into `metaData: {"0": …}`. The newer `api-host-framework` (Veho) uses `errors: [{field, problem}]`.
 - **New public names draw certificate-transparency scanners within minutes.** They get harmless 4xx.
 
