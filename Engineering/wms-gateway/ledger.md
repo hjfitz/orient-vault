@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-11 — Return not-found for a shipment another business owns
+
+Return not-found for a shipment another business owns
+
+GetShipment now returns not-found unless a result's BizId is the requesting business. SNAP ignores $filter=Owner eq on the keyed /v2/shipments/{id} route, so the sales-order read returned any shipment on the tenant to whichever business asked; pkg-go's snap.Shipment already had the check. Exact, case-sensitive match, looping over Results. Verified on dev (GADG's real shipment still 200, unknown 404, stock 200) and by 4 unit tests that fail on the old code. A foreign-owned shipment could not be shown end to end: the shared dev tenant has none visible to GADG's credentials. Draft, awaiting review. Known-context 'Banked fix' note is stale once this merges.
+
+PR: gfs-bifrost/wms-gateway#45
+
 ## 2026-11-05 — Run wms-gateway on the golden runtime image
 
 Run wms-gateway on the golden runtime image
