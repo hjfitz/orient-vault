@@ -98,7 +98,7 @@ Close the connector-cache gaps that `@gfs-bifrost/remote-config` 2.7.0 documents
                gate: FUSE-1052 AND FUSE-1053 confirmed in prod
                      [ ] confirmed
 -->
-- [ ] 1. **Clear, don't rewrite, an index on delete** (AC 1,4,5). Opt-in under `evictOnDelete`. `removeFromIndex` deletes the business and storefront index keys outright instead of writing back a copy with one id removed. Deleting a key isn't a read-modify-write, so a stale in-memory copy can't drop another instance's addition.
+- [x] 1. **Clear, don't rewrite, an index on delete** (AC 1,4,5). Opt-in under `evictOnDelete`. `removeFromIndex` deletes the business and storefront index keys outright instead of writing back a copy with one id removed. Deleting a key isn't a read-modify-write, so a stale in-memory copy can't drop another instance's addition. — two-instance harness reproduces the lost add on 2.7.0 and passes after; 311 tests — done: a26ceba
       - **Cost:** one full fetch of that business or storefront (list plus one GET per connector) per delete per consuming service. Deletes are an admin action.
       - **Tests:** first add the two-instance harness: two real `CacheService` + `LruCache` over one Map-backed `INetworkCache`, both `init()`-ed. The existing single-Map mocks can't model memory copies.
       - **README Limits:** remove the "two instances changing one index" sentence.
