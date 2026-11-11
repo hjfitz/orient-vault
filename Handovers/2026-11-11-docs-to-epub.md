@@ -47,7 +47,7 @@ Nothing is running. No agents or workflows were started for this workstream.
 
 | Work | Where | State | To close it |
 | --- | --- | --- | --- |
-| The whole skill, committed locally and not pushed | Commit `e68a6c9` on `main` in `~/projects/orient-writers` on rc-hjf: 31 files, the skill and the `.gitignore` rules | Committed at about 13:25Z, gitleaks clean. **Eight files have changed since, uncommitted:** the dogfood fixes (`book.py`, `cover.py`, `figures.py`, `SKILL.md` and four references). At that point `main` was ahead 1 and behind 2 of `origin/main`. The laptop's copy of the folder is stale and has none of it | Push only on Harry's yes. Pull first: `git pull --rebase` needs the modified `skills/review-panel/SKILL.md` stashed or committed, and `skills/plainly/` is untracked. Neither is part of this work, so do not add them |
+| The whole skill, committed locally and not pushed | Commits `e68a6c9` (31 files: the skill and the `.gitignore` rules) and `74deb01` (8 files: the dogfood fixes) on `main` in `~/projects/orient-writers` on rc-hjf | Committed at about 13:25Z, gitleaks clean. **Eight files have changed since, uncommitted:** the dogfood fixes (`book.py`, `cover.py`, `figures.py`, `SKILL.md` and four references). At that point `main` was ahead 1 and behind 2 of `origin/main`. The laptop's copy of the folder is stale and has none of it | Push only on Harry's yes. Pull first: `git pull --rebase` needs the modified `skills/review-panel/SKILL.md` stashed or committed, and `skills/plainly/` is untracked. Neither is part of this work, so do not add them |
 
 ## Next up
 1. ~~Re-run the example and read the page images at full size.~~ Done on rc-hjf, see Closed since handover.
