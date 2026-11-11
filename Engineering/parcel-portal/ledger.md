@@ -6,6 +6,15 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-11 — Let a named developer call svc directly in dev
+
+Let a named developer call svc directly in dev
+
+svc is private, so nothing run from a developer's machine reached the admin API. A debug_invokers variable grants roles/run.invoker on svc to named members; dev sets one, prod ignores it.
+
+Ship: SHIP-1110-selector-services
+PR: ilg-merak/parcel-portal#127
+
 ## 2026-11-11 — Send the shipment cost so Selector can book a FedEx shipment
 
 Send the shipment cost so Selector can book a FedEx shipment
