@@ -58,7 +58,7 @@ Legend: ⬜ not started · 🟨 in progress · ✅ merged · ⛔ blocked · ⏸ 
 | **W-C** | ⬜ | PR review + CI logs | W-B | high | opus/high | | `components/pr` (2.9k lines), ReviewProvider/SuggestionReview keys, approval path. |
 | **W-D1** | ⬜ | Work, plans, programmes | W-A1 | med | sonnet/medium | | `/plans` is 0.77 s / 1.25 MB today. |
 | **W-D2** | ⬜ | Systems, services, people, customers, team, skills, diagrams | W-A1 | low | sonnet/medium | | `/tools` and `/tools/[id]` dropped (preset prompting); skills page without its invoke button. |
-| **W-E** | 🟨 | Prod: health, incidents, support, maintenance, soaks, monitors, availability | W-A1 | low | sonnet/low | | |
+| **W-E** | ✅ | Prod: health, incidents, support, maintenance, soaks, monitors, availability | W-A1 | low | sonnet/low | 6436f67, 8a4585f | |
 | **W-F** | ⬜ | Meetings, recordings, Slack, haude | W-A1 | med | sonnet/medium | | Recordings: 14 actions, audio player, relay. |
 | **W-G** | ⬜ | History, usage, analytics, focus, puzzles | W-A1 | med | sonnet/medium | | History access gate and redaction; chessground. |
 | **Retire** | ⬜ | Remove Next, React, `src/components` | W-A2, W-B, W-C, W-D1, W-D2, W-E, W-F, W-G | med | sonnet/medium | | Drop deps, `renderDocument.tsx`, `orient-web` from install-units; rewrite CLAUDE.md invariants. |
