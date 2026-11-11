@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-11 — Cloud SQL, migrations, readiness and public access
+
+Cloud SQL, migrations, readiness and public access
+
+Cloud SQL (cloud-sql-iam, Postgres 17, db-f1-micro, ZONAL, deletion protection on), IAM-only logins, a Cloud Run migrate job run inside the apply, readiness that checks the database, and allUsers invokers on selector2-api and selector2-ui (auth is in the app, later units). Dev apply: api 17 added / 1 changed / 0 destroyed, ui 1 / 1 / 0. Migrate job logged migrations applied and exited 0; api readiness returns 200 publicly. The god-password secret exists (Terraform state; read with gcloud secrets versions access) but no job reads it yet: the seeding unit adds the env. Open: no instance cap on the platform module (R8), readiness not probed by Cloud Run (R9).
+
+PR: ilg-merak/selector2#2
+
 ## 2026-11-11 — Scaffold selector2-api and selector2-ui, IaC and CI
 
 Scaffold selector2-api and selector2-ui, IaC and CI
