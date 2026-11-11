@@ -8,7 +8,7 @@ from: laptop
 to: hjf.shell.platform.ilg.software
 session_id: 0fb571d0-d903-483b-9e8b-1198b51d571f
 resumed_by: 8584435d-36a9-464d-bc60-e21c842cfe59
-updated: 2026-11-11T14:11Z
+updated: 2026-11-11T15:00Z
 ---
 # Handover: orient Svelte UI
 **Reopened 14:11Z: Harry waived G8 ("let's tag and delete") and the write key is sorted. Retire is in progress (see In flight). Earlier text below describes the state at the G8 stop.**
@@ -36,7 +36,7 @@ updated: 2026-11-11T14:11Z
 ## In flight
 | Work | State | To close it |
 | --- | --- | --- |
-| **Retire (Next, React, orient-web removed)** | **14:11Z: 3 sonnet builders running** on disjoint files: A = delete `app/`, `src/components`, React tests, deps/config (moving `app/globals.css` to `ui/src/globals.css` first: the SPA's stylesheet imports it); B = core proxy and `ORIENT_NEXT_URL` out, unserved paths answer the SPA's 404 or 404 JSON under `/api`, SPA routing helpers and their tests; C = deploy scripts, `install-units.sh` (stops, disables, removes `orient-web`), units, README/INSTALL/Retire.md. I write the `CLAUDE.md` rewrite myself. Tag `next-ui-final` (ef8d2c8) is pushed. | integrate → `pnpm install --frozen-lockfile` (prunes node_modules) → full gates on a quiet host → review-panel on the non-deletion diff → `pnpm deploy:all` at one named sha → `install-units.sh` stops orient-web → drive pages → `rm -rf .next-prod .next-prod.bak .next-bench` a day later |
+| **Retire (Next, React, orient-web removed)** | **15:00Z: built, reviewed, final gates running; not deployed.** 19 commits since `ef8d2c8` (the tag `next-ui-final`, pushed): 29b560e (SPA stylesheet moved to `ui/src/globals.css`), 421cd6b + 322b7d8 (deletions, deps, configs; 245 files, +837/−18,550), 529e643 + aeb2eb5 + 8bb454a (core without the proxy; SPA without Next origin/`leave.ts`; tests), 4a9ba76 + 7cac8fc + ccf644c (scripts, units, docs, bench), 656dccd (CLAUDE.md rewrite), b9d38f8 + 5474c22 + e0ffb52 + 7d4ab9d (coverage ported, dead code, stale text), then the review fixes c637e8d, c040a5f, 3069dee, 8ec671e, 23d6fbe, 6445727. review-panel (backend, frontend, ops-script, security; tests lens dropped, builders mutation-checked): security none; fixed: `//api/…` answered the shell with 200 (c637e8d), the editor's unsaved-changes guard could stop firing after a cancelled unload prompt (3069dee), `install-units.sh` had no post-condition after stopping orient-web (8ec671e), a stale `next-env.d.ts` would break tsc on other checkouts (c040a5f). | gates green → `bash -c '. scripts/deploy-lib.sh; gate_no_runs orient-core.service'` → `pnpm deploy:all` at one named sha → verify → `SCRIBE=server HEADLESS=1 scripts/install-units.sh` (stops, disables, removes orient-web) → browser tour → `git push` → remove the stale `pty-secret` → a day later `rm -rf .next-prod .next-prod.bak .next-bench` |
 
 ## Waiting on Harry
 In order of importance, each with my recommendation.
@@ -99,6 +99,7 @@ Checked 2026-11-11T12:2xZ:
 - Agents testing on the VM must use side ports (3031–3044) and scratch state, exactly as on the laptop.
 
 ## Gotchas
+- **A long-lived reader keeps the old index after a full rebuild.** A Claude session's orient MCP server holds `index.sqlite` open; a rebuild (palette Reindex, `pnpm index:build`) renames a new file in, and that session then reports "idx STALE: watcher down" from the unlinked old file. The real watcher was healthy (`pnpm index:status`). Restart the session or the MCP server to see the new index.
 - **Stopping a side-port core mid-reindex:** the rebuild child is not tied to the core's lifetime. Under systemd the cgroup stop kills it; for a `pnpm core` side port, stop it with Ctrl-C (the child shares the process group) or check `pgrep -f reindex-run`; otherwise an orphan can race the next rebuild on `index.sqlite.rebuild.tmp`.
 - **Run `pnpm test` on a quiet host.** At host load above ~15 (22 cores; a full run itself drives load to ~28) 4–8 timing-sensitive UI tests fail (`focus-page`, `slack`, `today`, `usage`, `sprint`, `meetings`) and pass in isolation and on a re-run at load ~2. Do not run gates back to back with builds; wait for `cat /proc/loadavg` to fall below ~3.
 - **Measure a freeze in the real process, not a bare script.** `monitorEventLoopDelay` in a bare tsx script said 1.7 s; the real core, polled over HTTP, froze for ~34 s. The recipe is in the scratchpad (`side-core-reindex.sh`: the real core on side port 3037 against a scratch vault clone, `git clone --no-hardlinks ~/Documents/obsidian <dir>` because /tmp is another filesystem, a poll loop on `/api/v1/usage/live`, `--cpu-prof` via `node --import tsx`).
