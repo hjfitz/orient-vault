@@ -2,9 +2,9 @@
 ticket: none
 title: 'remote-config: close the connector-cache gaps left by evictOnDelete'
 service: pkg-node
-status: draft
+status: active
 created: '2026-11-09'
-updated: '2026-11-09'
+updated: '2026-11-11'
 repo: /home/harry/code/fuse/pkg-node
 worktree: /home/harry/code/fuse/.worktrees/pkg-node-rc-2.7
 branch: hjf/remote-config-username-lookup-settled
