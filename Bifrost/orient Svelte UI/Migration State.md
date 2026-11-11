@@ -60,7 +60,7 @@ Legend: ⬜ not started · 🟨 in progress · ✅ merged · ⛔ blocked · ⏸ 
 | **W-D2** | ✅ | Systems, services, people, customers, team, skills, diagrams | W-A1 | low | sonnet/medium | 585d9e9..71b5013 | `/tools` and `/tools/[id]` dropped (preset prompting); skills page without its invoke button. |
 | **W-E** | ✅ | Prod: health, incidents, support, maintenance, soaks, monitors, availability | W-A1 | low | sonnet/low | 6436f67, 8a4585f | |
 | **W-F** | ✅ | Meetings, recordings, Slack, haude | W-A1 | med | sonnet/medium | f2a58f2..af51670 | Recordings: 14 actions, audio player, relay. |
-| **W-G** | 🟨 | History, usage, analytics, focus, puzzles | W-A1 | med | sonnet/medium | | History access gate and redaction; chessground. |
+| **W-G** | ✅ | History, usage, analytics, focus, puzzles | W-A1 | med | sonnet/medium | 6ea2c81..d486509 | History access gate and redaction; chessground. |
 | **Retire** | ⬜ | Remove Next, React, `src/components` | W-A2, W-B, W-C, W-D1, W-D2, W-E, W-F, W-G | med | sonnet/medium | | Drop deps, `renderDocument.tsx`, `orient-web` from install-units; rewrite CLAUDE.md invariants. |
 
 ## Spike budgets
