@@ -7,6 +7,15 @@ title: snap-adapter — work ledger
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-11 — Turn on SNAP_NORMALISE_HOST_KEY for the poller (X1 step 4)
+
+Turn on SNAP_NORMALISE_HOST_KEY for the poller (X1 step 4)
+
+X1 step 4, the last X1 step. New poller tfvar snap_normalise_host_key (default true) sets the switch shipped off in #328, on dev and prod: the poller's per-host breaker and snap_host tag now use the host origin, matching snap-adapter. Prod snap_host values moved from https://ilgNNNliveapi.snapfulfil.net/api to https://ilgNNNliveapi.snapfulfil.net (five hosts, one to one) and now equal the adapter's; the old series stopped at 12:59:10Z. No observability change was needed: the poller monitors and every dashboard query group by snap_host generically and nothing hardcodes a host. Both poller monitors stayed OK. Dev-verified first. Plan agreed with Harry; prod plan matched (image plus the standing sensitive-env reorder plus one new env). Prod: snap-polling-service-prod-00111-2d5. Smoke: poll events and the usual noise unchanged, confirmations published in line with the pre-flip range, one startup-probe failure on a new instance at 13:00:44Z that did not recur. Revert: snap_normalise_host_key=false.
+
+Ship: SHIP-1111-poller-host-key
+PR: gfs-bifrost/snap-adapter#337
+
 ## 2026-11-11 — Turn on SNAP_CB_TRIP_ON_429 for the adapter (X1 step 3)
 
 Turn on SNAP_CB_TRIP_ON_429 for the adapter (X1 step 3)
