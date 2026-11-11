@@ -38,7 +38,7 @@ All paths below are under `~/projects/orient-writers/skills/docs-to-epub/`.
 | `assets/book.css` | E-ink-first stylesheet: relative units, wrapping code blocks, callouts that rely on text labels and border styles, not colour | Done |
 | `examples/lantern-queue/` | A fictional worked example ("Reading a Retry Queue", about an invented job queue called Lantern): 6 chapters, 3 figures (sequence, state, component), `sources.yaml`, `gaps.yaml` with one open question, a `PLAN.md` showing the plan format, and `source-material/` it cites | Built. Rebuilt and re-validated on rc-hjf after the fixes (see Closed since handover): **EPUBCheck 5.4.0 VALID, no messages**, 13 preview pages, 0 mechanical problems |
 | `SKILL.md` and `references/` | The workflow, plan template, voice guide, chapter template, diagram guide, gaps-and-sources guide, format reference and QA checklist | Written on rc-hjf at about 13:00Z. `plainly`'s linter passes all eight files. The format claims were checked against `book.py` and `figures.py`, and a second book exercised the features the example does not use |
-| `~/.claude/skills/docs-to-epub` symlink | Makes the skill invocable | Created on rc-hjf at 13:03Z, the same way as `plainly`. A running session's skill list is fixed at start-up, so it shows in new sessions only. Not created on the laptop |
+| `~/.claude/skills/docs-to-epub` symlink | Makes the skill invocable | Created on rc-hjf at 13:03Z, the same way as `plainly`. It appeared in the running session's skill list straight away. Not created on the laptop |
 
 The example is fictional on purpose: nothing from the unannounced Merak research may go into a reusable skill that could be pushed.
 
