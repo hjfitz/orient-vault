@@ -1,7 +1,7 @@
 ---
 tags: [adhoc-task]
 date: 2026-11-11
-tldr: "Resumed the Merak replacement-pages handover on rc-hjf and, on Harry's approval, applied four edits to MPK pages: Polling Connectors v12, Tracking Events and Webhooks v5, ECM Platform v3 and the Tracking group page v3. No feedback was owed. Only access-gated answers remain."
+tldr: "Resumed the Merak replacement-pages handover on rc-hjf and, on Harry's approval, applied four edits to MPK pages: Polling Connectors v12, Tracking Events and Webhooks v5, ECM Platform v3 and the Tracking group page v3. No feedback was owed. Only access-gated answers remain. Also wrote the deep-research skill from this research's method (uncommitted, in orient-writers)."
 session_id: d94837dd-a7bc-4aac-99e6-6a3f03c9f046
 status: done
 ---
