@@ -118,7 +118,7 @@ Each stack is merged **in one sitting**, with the version bump on its last PR. #
       - Release: version 2.6.0; changelog `#### 2.6.0` **and the missing `#### 2.5.0`** (ms TTL with a one-hour default, `memory` mode builds, `init()` resolves within 5 s on a Redis outage via cache 0.4.0); pkg-node `CLAUDE.md` row; README "Cache modes" (no longer "not configurable") and a "Connector schema" section with the flat use-case shape warning.
       — verify: `connector-backlink.handler.spec` "validates with the supplied schema on refresh", "keeps a field the supplied schema keeps", "falls back to the API when a cached connector fails the supplied schema", "reads cached connectors unvalidated without a supplied schema"; `connector-mapping.handler.spec` "resolves a mapping for a connector only the supplied schema accepts" (an sftp-shaped fixture: a config-less use case, a `null` use case, a bad `ediEnvelope`); the release gate below; after publish, `npm view @gfs-bifrost/remote-config@2.6.0 --registry=https://npm.pkg.github.com` resolves.
 
-- [ ] 4. `evictOnDelete` (AC 1,4). Stack B, PR 3.
+- [x] 4. `evictOnDelete` (AC 1,4). Stack B, PR 3. — pkg-node#304 merged; published in 2.7.0 — done: 5c5ca23
       - Under `withConnectorHandling({ evictOnDelete: true })`, `refresh` on `version -1` or a 404:
         1. Read the cached primary loosely.
         2. `tryDeleteAsync` it (Both tiers).
