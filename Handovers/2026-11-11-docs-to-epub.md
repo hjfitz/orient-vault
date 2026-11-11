@@ -8,7 +8,7 @@ from: laptop (freightops)
 to: rc-hjf (the workstation, harry@hjf.shell.platform.ilg.software). Harry chose this on 2026-11-11. The tooling is installed there and the skill folder has been copied across from the laptop
 session_id: 4ff6c302-4da3-4b14-bf3c-fc976c0ec75b
 resumed_by: 9e1daa5f-c28e-44cb-b0dd-e5b4bfb5878c
-updated: 2026-11-11T13:19Z
+updated: 2026-11-11T13:27Z
 ---
 # Handover: the docs-to-epub skill
 
