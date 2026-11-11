@@ -8,7 +8,7 @@ from: laptop
 to: hjf.shell.platform.ilg.software
 session_id: 0fb571d0-d903-483b-9e8b-1198b51d571f
 resumed_by: 8584435d-36a9-464d-bc60-e21c842cfe59
-updated: 2026-11-11T13:52Z
+updated: 2026-11-11T13:36Z
 ---
 # Handover: orient Svelte UI
 
@@ -33,7 +33,7 @@ Live on the VM at **`fa069be`** (deployed 2026-11-11 13:01Z from the VM's local 
 | Work | State | To close it |
 | --- | --- | --- |
 | Retire prep review fixes | **13:50Z: 2 sonnet builders running.** review-panel (backend, security, tests) on 6564455 + b61d565 found, all verified: (reindex) the frozen React palette's bare `fetch` is refused by the core's write guard (fix: send `X-Orient` + JSON); `void invalidate` should be `await kernel.settle(['index'])`; a 30 s throttle after a successful rebuild (36 s of CPU in the front door); five test gaps (failure status, Next-vs-core parity, token branch not pinned, rebuild args, vacuous mode test). (draft) opaque failure when claude is not at `~/.local/bin/claude` (now named, like slack-runs); sweep-throws and mode test gaps; CLAUDE.md/Retire.md lines. Already fixed and committed: **a8c1ec5** withholds `DATADOG_API_KEY`/`DATADOG_APP_KEY` (orient's real names; the lists only had `DD_*`) in `headless.ts` and the scribe copy (Go source changed and tested, **not deployed**: the scribe binary is unchanged). | builders report → check shas → `pnpm typecheck`, `pnpm test`, `ui:check`, `ui:build`, lint → deploy |
-| Deploy of the two prep changes | not started | one named sha, `pnpm deploy:all` (Next changes, so a `deploy:web` rebuild: prove it in `.next-check` first), then drive `/` palette reindex (a POST: only with Harry's data in mind, see Gotchas) |
+| Deploy of the two prep changes at **64d7ef9** | **13:36Z: started.** Gates green on 64d7ef9 on a quiet host (typecheck, ui:check, ui:build, lint baseline, `pnpm test` 384 files passed/1 skipped; the suite flakes at host load above ~15, see Gotchas). Next check build passed (BUILD_ID 8IgHlnuiab_OE4kHuhHRJ); run gates OK. Live before: fa069be. The draft path was also exercised through the real `systemd-run` scope with a fake claude (ok, dir removed). | `pnpm deploy:all`; then verify shas/services, one real `POST /api/reindex` with the page's headers, and re-drive the pages |
 
 ## Waiting on Harry
 - **Deploy mid-draft (decision, recommendation: accept).** Since b61d565 a PR review draft runs in its own systemd scope, so `deploy:all` no longer refuses while one runs, as intended. The cost: a deploy or restart mid-draft loses that draft (its record shows "interrupted"), the `claude` process runs on unattended until it ends (nothing times it out), a Retry starts a second billed run, and the run dir (holding the PR's diff, 0700 under `~/.local/state/orient/review-runs/`) stays until the next draft's hour-old sweep. A fuller fix is a pid file beside the run dir so the next `startDraft` adopts or stops the orphan. I did not build it.
