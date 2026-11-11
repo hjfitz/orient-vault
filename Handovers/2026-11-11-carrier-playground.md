@@ -50,6 +50,8 @@ None.
 - **Tech Services repos:** leave them alone (Harry, 5 Nov).
 
 ## Next up
+> 2026-11-11 (session 396b7315): a follow-on programme now uses the mocks as the egress for a new service. See [[Bifrost/Selector2/Migration State]]. Its unit A3 is a carrier-playground change: add an `invoker_members` input to each `mock-*` project and an aggregate URI output, keeping `allUsers` and the public names.
+
 All optional. Nothing was requested beyond Veho.
 1. A DHL mock behind Selector's `DHL_URL`. There is no proxy; Selector calls DHL directly.
 2. Fix the platform `networking/load-balancer` module in `ilg-platform/terraform-modules`: removing a service deletes its backend and cert before detaching them. Until that's fixed, never remove a name from `mock-edge`.
