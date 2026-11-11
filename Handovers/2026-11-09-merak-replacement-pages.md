@@ -147,6 +147,8 @@ In my 2026-11-09 view, two things are not worth writing. More per-service ECM pa
 - **Memories that apply:** `project_merak_context`, `feedback_merak_parcel_portal_irrelevant`, `reference_firebird_ddl_dump`, `reference_ado_orgs`.
 
 ## On the target
+**Resumed on `rc-hjf` at 2026-11-11T12:32Z.** Live check of the MPK tree under 351502339 (`getConfluencePageDescendants`, depth 4): five parents (Legacy Selector, Carriers, Tracking, Proof of Delivery, ECM Platform) and the 18 moved pages are in place with the ids in "Current state". Carrier Services, Day End and the scratch draft are gone. The newest page edit is 12:04Z (Legacy Selector, v6), so nothing changed after the previous driver's last write. `JIRA_API_TOKEN` and `JIRA_API_EMAIL` are **not set** in this shell, so the Polling Connectors ADF edit cannot be made from here without Harry supplying them again. `ado-local-mcp` was not re-checked.
+
 Checked on `rc-hjf` (`uname -n`) at 2026-11-09T11:57Z:
 - **Has:** `gh` signed in as `harry-fitzgerald_gfsdev`. `gcloud` account `harry.fitzgerald@gfsdeliver.com`, with no Pub/Sub access to `gfs-ecm-*`. The Atlassian, Datadog, Slack, Fuse, GitHub, ADO (`ado-local-mcp`) and orient MCP servers all answered this session. The Datadog server is on a deprecated endpoint and still works. `~/code` holds `fuse`, `merak`, `ilg-platform` and `remote-compute`.
 - **Lacks:** ADO `git clone` (denied), so read source through `repo_file`, which needs a branch name or a full 40-character sha. `~/code/selector` does not exist, and `~/code/apiky-survey` holds only an empty `ado/` folder. The legacy ADO org `globalfreightsolutons-legacy` is unreachable. Central Firebird procedure source is readable in `gfs-data-services/gfs-pipelines` (a December 2025 dump).
