@@ -2,12 +2,12 @@
 tags:
 - system
 - ecm
-verified: '2026-11-10'
+verified: '2026-11-11'
 title: ecm — known context
 ---
 # ecm: known context
 
-What the MPK research left standing on 2026-11-09: the canonical figures, Harry's decisions, and every claim still unconfirmed. Sources are the handover [[Handovers/2026-11-09-merak-replacement-pages]] [1], the number reconciliation run that day [2] and, from 2026-11-10, the tracking research in [[Systems/ecm/tracking]] [3]. No interview. Figures marked `(snapshot …)` age out.
+What the MPK research left standing on 2026-11-09: the canonical figures, Harry's decisions, and every claim still unconfirmed. Sources are the handover [[Handovers/2026-11-09-merak-replacement-pages]] [1], the number reconciliation run that day [2] and, from 2026-11-10, the tracking research in [[Systems/ecm/tracking]] [3] and, from 2026-11-11, the Firebird trigger research in [[Systems/ecm/firebird-change-feed]] [5]. No interview. Figures marked `(snapshot …)` age out.
 
 ## Standing decisions (Harry, 2026-11-09)
 - **Merak replacing ECM and Selector is an unconfirmed hunch.** It cannot be confirmed with Jack and Stef yet. The MPK pages say "a replacement" and leave the choice to the Merak team. Keep new wording hypothetical.
@@ -69,6 +69,15 @@ Read in the prod Terraform (`gfs-ecm-prod-uk1`, master `35b545ce`) and the prod 
 - **CONFIRMED** `raw_tracking.v1` has 15 subscriptions in the prod project and 8 running consumers. The Kubernetes tracking-patina-service runs with `CARRIERS=NONE` and drops every event, so its counter of 6,294,707 counts drops. The earlier "10 of 15" in the tracking note was wrong.
 - **CONFIRMED** Datadog has no Pub/Sub metrics for the ECM prod project. Backlog, oldest unacknowledged age, acknowledgements and dead-letter counts are not measured. Traffic figures are the services' own handled or published counters.
 
+## Settled facts: Firebird triggers and the change feed (2026-11-11)
+Read in Selector's `V4-Server-Database` at `82dde6b` (an October 2023 snapshot, so production may differ) and `V4-Server-UploadServer` at `5773b8e`, with Datadog for 2026-10-23 to 2026-11-07 UTC. Detail and evidence are in [[Systems/ecm/firebird-change-feed]] [5].
+- **CONFIRMED** Selector's source holds 16 triggers on `SHIPMENTS` and 10 on `SHIP_PIECES`. They cascade status, queue notifications, write history and feed the web-scanner queue. No later script drops any of them.
+- **CONFIRMED** `SHIPMENTS_AI2` posts the Firebird event `UPLOAD_2_GCP` after every shipment insert, and `RELOAD_PUBLISH_SHIPMENTS_AI` posts `RELOAD_2_GCP`. `TRANSFER_QUEUE` appears nowhere in the source.
+- **CONFIRMED** Scripts switch triggers on and off in production (`ALTER TRIGGER ... INACTIVE`), so the snapshot is a lead and not a record.
+- **CONFIRMED** Uploads call `REG_SHIPMENTS` and `REG_SHIP_ITEMS`. A new consignment gets a plain `INSERT`, so every after-insert trigger fires. A repeat upload does not update `SHIPMENTS` in the branch read.
+- **CONFIRMED** The Firebird Transfer Service is live in production: 3,022,807 rows in 15 days, 1,715,298 of them `shipments`, with one monitor set and no insert, update or delete split.
+- **STATED** The push to Pub/Sub starts from the main Firebird, not from Client4, CSS or a site database (a Selector team member, 2026-11-04, paraphrased).
+
 ## Unconfirmed
 Each item has a source that says one thing and a source that says another, or no source at all.
 
@@ -92,7 +101,7 @@ Each item has a source that says one thing and a source that says another, or no
 - **Evri "keeps held events up to 90 days".** It is a read cutoff, and the TTL indexes are not confirmed. Recommended wording: "reads them for up to 90 days". Harry has not decided.
 
 **Answers owed by others**
-- **The production Firebird triggers** on `SHIPMENTS` and `SHIP_PIECES`. One read-only query by a DBA settles it.
+- **The production Firebird triggers on `SHIPMENTS` and `SHIP_PIECES`, narrowed on 2026-11-11.** Selector's source triggers are read, at `82dde6b`. Still missing: the text of every `TRANSFER_QUEUE` trigger, the roughly nine extra production triggers on `SHIPMENTS` (about 25 on Test against 16 in source) and any extra on `SHIP_PIECES`, and whether `SHIPMENTS_AI2` and the queue triggers are active. The read-only queries in [[Systems/ecm/firebird-change-feed]] settle it.
 - **Which carriers `patina-service-2` writes back,** and which carriers hold the 1,309 bill-on-scan contracts. The list is ADO variable group `gfs-patina-service.prod` (Library id 141), which the ADO MCP cannot read.
 - **Who runs `CHECK_SHIP_STATUS`,** and which host runs the Scan Injector. Datadog shows `MEDC-APP-01-P`. SRE-126 confirmed `MEDC-APP-12-P`.
 - **What the deployed mark-as-delivered code writes.** The default of 1003 is read from code, and legacy UPS loss reporting reads 1003 as lost. Nobody owns the write-back.
@@ -101,6 +110,15 @@ Each item has a source that says one thing and a source that says another, or no
 - **Whether any n8n workflow calls a carrier API.**
 - **Live GCP state:** cross-project grants, the warehouse subscription and `tracking-dump@`.
 - **Whether Client4's SOAP upload carries a file or shipment records.**
+
+**Firebird triggers and change feed (2026-11-11)**
+- **The text of every `TRANSFER_QUEUE` trigger.** STATED by the Tech Services vault (a metadata read of the Test replica) and Confluence 206274620, and in no readable source. The likeliest home is the Firebird Transfer Service repo's `sql/` folder (ADO project GFS Legacy Migration, commit `8569227`), which the ADO tools could not reach.
+- **The Transfer Service's delete capture, ordering, batching and resume,** and its live config: tables, topic names, project, poll interval, batch size.
+- **`GFSPublisher`.** STATED by the vault as the listener for `UPLOAD_2_GCP` (ADO repo `V6`). Its code is unread, and Datadog shows no `gfs.legacy-publisher.*` metric and no indexed log, which does not prove it is stopped. Whether it runs beside the Transfer Service is open.
+- **Which feed produces `fb.shipments.v1`.** ASSESSED as the Transfer Service: five small tables match the modernizer's counts exactly (carriers 36, customers 36, contracts 420, contract services 458, products 43). No Pub/Sub topic metric exists for `fb.*`, so the topic's own volume was not measured.
+- **The 11% gap.** The modernizer received 1,906,654 shipment messages against the Transfer Service's 1,715,298. INFERRED, not shown: Slipway's direct publish to `fb.shipments.v1` explains part of it.
+- **The 1.8 updates per new shipment.** STATED by an earlier session from `sql/4_fts_doppelganger_updates_3.sql`, not re-read. Upload alone does not update `SHIPMENTS`, so the updates are ASSESSED as later status writes that pass an unread filter.
+- **Delete handling.** Whether a delete, replace or rename reaches `fb.shipments.v1` as a DELETE. `delete from shipments` appears only in the swap-consignment branch of `REG_SHIP_ITEMS`.
 
 **Tracking (2026-11-10)**
 - **Prod etcd values.** `targetPollingMinutes`, `batchLimit`, `intervalSeconds` and `expiryDays` per carrier and state, and whether `DELIVERED` differs from `IN_TRANSIT`. `etcdctl get --prefix connectors:` settles it.
@@ -138,6 +156,8 @@ Each item has a source that says one thing and a source that says another, or no
 - The `orient-writers` skills `plainly` and `c4-diagrams` are uncommitted.
 - Retest the Lucid macro on Confluence once the admin installs the app.
 - Someone with GCP access lists subscriptions and backlogs for `gfs-ecm-prod-uk1` (`gcloud pubsub subscriptions list`; Cloud Monitoring).
+- Someone with Firebird admin access runs the read-only trigger queries in [[Systems/ecm/firebird-change-feed]]. Harry decides who is asked. Nothing has been sent.
+- Access to the ADO repos GFS Legacy Migration (Firebird Transfer Service, `sql/`) and `V6` (`GFSPublisher`). The ADO tools could not reach either on 2026-11-11.
 - **Owed corrections to MPK pages, for Harry (Confluence not edited).** These findings contradict or soften:
   - *Polling Connectors* (353697880) attributes the `FindOneAndUpdate` to the connector. It runs in batch-creator.
   - *How Carriers Feed ECM* (355074111) says polling has "no retry and no dead-letter queue". That holds for polling. The inbound `shipments.v2.identified` subscription has a dead-letter topic after 10 attempts. It also says "a parcel expires after 90 days", and the expiry resets on each new event, by carrier and bucket. The 90 is not confirmed.
@@ -155,6 +175,7 @@ Each item has a source that says one thing and a source that says another, or no
   { "id": 1, "kind": "doc", "ref": "Handovers/2026-11-09-merak-replacement-pages.md" },
   { "id": 2, "kind": "doc", "ref": "Session scratchpad numbers-canonical.md, 2026-11-09 (Datadog metrics via execute_code; not in the vault)" },
   { "id": 3, "kind": "doc", "ref": "Systems/ecm/tracking.md and Handovers/2026-11-09-merak-replacement-pages.tracking-core-findings.md, ...tracking-topic-catalogue.md, ...tracking-model-findings.md (2026-11-10)" },
-  { "id": 4, "kind": "doc", "ref": "Handovers/2026-11-09-merak-replacement-pages.topic-usage-map.md and ...topic-datadog-usage.md (research copies, 2026-11-10); Confluence MPK 356155424 ECM Pub/Sub Topics (draft, unverified)" }
+  { "id": 4, "kind": "doc", "ref": "Handovers/2026-11-09-merak-replacement-pages.topic-usage-map.md and ...topic-datadog-usage.md (research copies, 2026-11-10); Confluence MPK 356155424 ECM Pub/Sub Topics (draft, unverified)" },
+  { "id": 5, "kind": "doc", "ref": "Systems/ecm/firebird-change-feed.md; Handovers/2026-11-09-merak-replacement-pages.firebird-triggers-findings.md and ...firebird-feeds-datadog.md (research copies, 2026-11-11)" }
 ] }
 ```
