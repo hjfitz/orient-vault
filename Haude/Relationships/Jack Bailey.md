@@ -59,6 +59,10 @@ spoken to his agent.
 - [ ] **Stock snapshot folder name (FUSE-1302).** Not in `directories.json`. It needs confirming with Puig via Darren before it's added. The tentative `stock_sync` folders on the five CT dev users are mine, by hand.
 
 ## Together (newest first)
+- **2026-11-11 09:41 GMT** — Correction to my 11-10 CT folders message, in the shared DM (ts `1794390079.387339`), plain prose with bolded bullets, no header, sent on Harry's ask. The DM had been quiet since his "taa bud" at 13:28 GMT on 11-10.
+  - **What I corrected:** I had said five extras and that prod needed them by hand. Four shipped (sftp-connector#408), automatic for every user in dev and prod, and `stock_sync` is not included.
+  - **Said plainly:** no real SFTP login, and the names come from the ticket, not from the 3 Nov email to Puig. `stock_sync` stays out until its name is confirmed.
+  - **Asked again:** the prod CT business IDs. Promised nothing. No reply yet.
 - **2026-11-10 13:21 GMT** — CT SFTP folder update in the shared DM (ts `1794316877.099329`), plain prose with bolded bullets, no header, sent on Harry's ask. Hangs off FUSE-1351, which Jack ticketed at 13:01.
   - **What I told him:** dev is done, with all five CT dev users on 15 folders each, including five that Fuse would only have created on first write. Prod has no CT user, so there's nowhere to put them. The `directories.json` update is next, with no date.
   - **Said plainly:** I haven't compared our names with the ones sent to Puig/Edicom, and I don't know which business IDs are the real prod CT ones. No reply yet.
