@@ -5,7 +5,7 @@ workstream: Build the reusable `docs-to-epub` skill (technical documentation to 
 programme: none
 repo: hjfitz/orient-writers (local clone ~/projects/orient-writers, path skills/docs-to-epub, untracked)
 from: laptop (freightops)
-to: next session, any machine with the laptop's ~/projects/orient-writers
+to: a new session on the laptop (freightops), where the untracked skill folder lives. rc-hjf has no copy of it yet
 session_id: 4ff6c302-4da3-4b14-bf3c-fc976c0ec75b
 resumed_by: ""
 updated: 2026-11-11T12:30Z
