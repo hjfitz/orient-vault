@@ -180,3 +180,12 @@
 {"t":"leave","at":"2026-11-11T10:51:29.120Z","visit":"af8dccd8-244c-4a0c-b2d9-1bca3f731ba1","activeMs":16000}
 {"t":"view","at":"2026-11-11T10:51:29.277Z","visit":"1410e3e2-e8ec-4c50-a8f5-20269eecbbd5","route":"/today"}
 {"t":"leave","at":"2026-11-11T10:51:38.892Z","visit":"1410e3e2-e8ec-4c50-a8f5-20269eecbbd5","activeMs":7000}
+{"t":"leave","at":"2026-11-11T11:10:38.731Z","visit":"1410e3e2-e8ec-4c50-a8f5-20269eecbbd5","activeMs":9000}
+{"t":"view","at":"2026-11-11T11:10:38.887Z","visit":"1cf4ee87-9844-4d82-a4e7-0458f111adc7","route":"/recordings"}
+{"t":"leave","at":"2026-11-11T11:10:43.045Z","visit":"1cf4ee87-9844-4d82-a4e7-0458f111adc7","activeMs":3000}
+{"t":"view","at":"2026-11-11T11:10:43.047Z","visit":"3fce6d6d-9e72-4faf-84ef-734e7893e64b","route":"/recordings/…"}
+{"t":"leave","at":"2026-11-11T11:10:46.066Z","visit":"3fce6d6d-9e72-4faf-84ef-734e7893e64b","activeMs":1000}
+{"t":"leave","at":"2026-11-11T11:11:45.536Z","visit":"3fce6d6d-9e72-4faf-84ef-734e7893e64b","activeMs":57000}
+{"t":"leave","at":"2026-11-11T11:12:23.299Z","visit":"3fce6d6d-9e72-4faf-84ef-734e7893e64b","activeMs":58000}
+{"t":"leave","at":"2026-11-11T11:31:45.945Z","visit":"3fce6d6d-9e72-4faf-84ef-734e7893e64b","activeMs":105000}
+{"t":"leave","at":"2026-11-11T11:33:32.278Z","visit":"3fce6d6d-9e72-4faf-84ef-734e7893e64b","activeMs":208000}
