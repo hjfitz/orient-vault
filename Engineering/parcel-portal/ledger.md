@@ -6,6 +6,15 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-11 — Send the shipment cost so Selector can book a FedEx shipment
+
+Send the shipment cost so Selector can book a FedEx shipment
+
+Selector's ProcessShipment threw a null reference (0030) after the carrier step for every FedEx booking. Replaying the failed request against the test endpoint one change at a time showed the shipment-level Cost block is what it needs. The portal now sends it: the sum of each item's price times its quantity, in the order's currency, omitted when there is no price or currency.
+
+Ship: SHIP-1110-selector-services
+PR: ilg-merak/parcel-portal#126
+
 ## 2026-11-10 — Log Selector's fault text when its server fails a call
 
 Log Selector's fault text when its server fails a call
