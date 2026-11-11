@@ -8,7 +8,7 @@ from: laptop (harry, tmux session `monitors`)
 to: hjf.shell.platform.ilg.software
 session_id: 7f84afae-380e-4959-8dc8-c8b0cbe9f19d
 resumed_by: ""
-updated: 2026-11-11T11:20Z
+updated: 2026-11-11T11:50Z
 ---
 # Handover: snap-adapter attachment completion (ilg005 incident follow-up)
 
@@ -32,7 +32,7 @@ Backfill done tonight (read-only checks, then one `PUT /v2/attachments` row per 
 
 Programme context (read before planning): this lives in **SNAP Resilience Normalisation** (`Bifrost/SNAP Resilience Normalisation/Migration State.md`). `@gfs-bifrost/resilience` provides the semaphore, token bucket and per-host breaker. **PR #331 (unit X1 step 1) merged 2026-11-10T12:01Z as `afdb226` and the prod deploy succeeded at 12:04:48Z (deploy notification in #bifrost-notifications): `SNAP_TRANSPORT_GUARD=adapter` is now the live default, revert by setting the `snap_transport_guard` tfvar to `interceptors`.** Until 12:04Z prod ran the legacy interceptor path, and every observation about the legacy breaker in this record (5 consecutive failures, no single probe, slot timeouts not counted) describes the 9 Nov incident under that path. Re-check live behaviour before designing against either path. The guard (`guardSnapTransport`, #322) runs per HTTP request: `canAttempt` → token → slot → `breaker.execute` → release in `finally`, with a single half-open probe. Do not duplicate or fight that work; the fix below must work in both modes.
 
-Later prod deploys (from deploy notices in #bifrost-notifications and `git log origin/master`, 2026-11-11): snap-adapter `dd86e1a` (#333, deployed 10:41:50Z) routes create-response checks through `@gfs-bifrost/snap` behind `SNAP_ASSERT_WRITE_RESPONSES` (default off; sales orders and master data discard a 2xx `Status:"Error"` response until it is on, so check whether it is on before assuming a create succeeded); snap-queue-polling-service `692d432` (#335, deployed 11:05:26Z) sets `SNAP_REQUEST_TIMEOUT_MS` and `SNAP_BREAKER_SINGLE_PROBE` from tfvars (the poller side of X1). `origin/master` is `692d432`. Neither changes the already_in_wms attachment gap.
+Later prod deploys (from deploy notices in #bifrost-notifications and `git log origin/master`, 2026-11-11): snap-adapter `dd86e1a` (#333, deployed 10:41:50Z) routes create-response checks through `@gfs-bifrost/snap` behind `SNAP_ASSERT_WRITE_RESPONSES` (default off; sales orders and master data discard a 2xx `Status:"Error"` response until it is on, so check whether it is on before assuming a create succeeded); snap-queue-polling-service `692d432` (#335, deployed 11:05:26Z) sets `SNAP_REQUEST_TIMEOUT_MS` and `SNAP_BREAKER_SINGLE_PROBE` from tfvars (the poller side of X1). Then snap-adapter `841717e` (#336, deployed 11:40:43Z) set `SNAP_CB_TRIP_ON_429` from a tfvar, on by default: a 429 from Snap now trips the per-host breaker (programme risk R2: a 429 storm opens the circuit and nacks a healthy backlog), and `@gfs-bifrost/remote-config` 2.7.0 and 2.8.0 were published at 11:39Z and 11:41Z. `origin/master` is `841717e`. None of these changes the already_in_wms attachment gap.
 
 Live limits at 9 Nov (Cloud Run revision 00100 plus code defaults; prod env for the semaphore not read): max 3 instances, 30 concurrency each; 5 slots per instance per host; `SNAP_SLOT_ACQUIRE_TIMEOUT_MS` 30000; request timeout 120000 ms; `SNAP_MAX_TRANSIENT_DELIVERY_ATTEMPTS` 30 (adapter self-reports to `create_data_failure`); subscription ack deadline 300 s, `maxDeliveryAttempts` 35, backoff 10–600 s. Legacy breaker: 5 consecutive 5xx or no-response failures, probes after 30 s; slot timeouts are not counted.
 
@@ -72,7 +72,7 @@ Not checked. `ssh harry@hjf.shell.platform.ilg.software` from the laptop failed 
 
 ## Gotchas
 
-- The laptop's `~/code/fuse/snap-adapter` was 15 commits behind `origin/master` on its local `master`. Use a fresh worktree from `origin/master` (`692d432` at 2026-11-11T11:20Z).
+- The laptop's `~/code/fuse/snap-adapter` was 15 commits behind `origin/master` on its local `master`. Use a fresh worktree from `origin/master` (`841717e` at 2026-11-11T11:50Z).
 - Datadog `snap.request.latency` has no path/method tag, and `slot_timeout` logs carry no path. Do not claim which call timed out without evidence.
 - The adapter log tag `version` is the git sha; check `analyze_datadog_logs` by `version` to see what prod runs.
 - `snap-write`/direct Snap GETs need the business's own credentials from `get-snap-connection`; STUBBLE and PHLUR rows are invisible with another business's credentials.

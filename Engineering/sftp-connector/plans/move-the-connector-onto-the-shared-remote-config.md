@@ -133,6 +133,9 @@ Out-of-ticket; Harry asked for it on 2026-11-04, after prod cut S4 moved SFTP us
 
 - [ ] 4. Connector lookups and backlinks through the package; the old layer stays in the tree, unused (AC 1,2,4,5,6,7).
       > 2026-11-05: the Plan C inc 5 part is met (sftp-connector#398, `6a4956c`, in prod 15:09Z; Harry waived its 2-week gate). The 2.7.0 and 7-day-shadow parts are still open, so the box stays unticked.
+      > 2026-11-11: **the 2.7.0 part is met, and 2.8.0 is out too.** pkg-node#304–#306 published 2.7.0 (`c3c89b4`), with its dev proof that the username lookup matched for 70/70 usernames. pkg-node#309 published 2.8.0 (`f730dc0`), which closes 2.7.0's `evictOnDelete` cache gaps: a deletion tombstone, index drop on delete, and a re-check after each cache write.
+      > - **Adopt 2.8.0, not 2.7.0.** `evictOnDelete` in 2.8.0 can also reject (a failed tombstone write nacks), so the 7-day prod shadow must run on the version shipped.
+      > - **Before this step:** the `rc:` key prefix is never applied by `CacheService`, so the package's Redis keys are unprefixed. Check they can't collide with the old layer's `cfg` keys.
       gate: Plan C inc 5 merged and in prod (no earlier than 2026-11-18); remote-config 2.7.0 published (pkg-node plan stack B, including its dev proof of the username lookup); 7 days of prod shadow with 0 `shadow_dispatch_failed` and a prod sweep with 0 failures
             [ ] confirmed
 

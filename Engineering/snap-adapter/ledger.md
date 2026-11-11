@@ -7,6 +7,15 @@ title: snap-adapter — work ledger
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-11 — Turn on SNAP_CB_TRIP_ON_429 for the adapter (X1 step 3)
+
+Turn on SNAP_CB_TRIP_ON_429 for the adapter (X1 step 3)
+
+X1 step 3. New adapter tfvar snap_cb_trip_on_429 (default true) sets the switch shipped off in #323, on dev and prod: a 429 from SNAP now counts toward the per-host breaker. Dev-verified with the simulator returning 429 on shipments (retries exhausted and nacked, then circuit_open nacks without calling SNAP, half-open probes re-opened it, recovered and created the order once the fault was spent). Plan agreed with Harry. Prod: snap-adapter-prod-00103-vkh, 9 creates in 5 minutes, 0 failures. Revert: snap_cb_trip_on_429=false. Watch: per-host 429 counts vs snap.circuit_opened, and circuit_open nacks against the 30-delivery budget.
+
+Ship: SHIP-1111-adapter-429-trip
+PR: gfs-bifrost/snap-adapter#336
+
 ## 2026-11-11 — Turn on SNAP_REQUEST_TIMEOUT_MS and SNAP_BREAKER_SINGLE_PROBE for the poller (X1 step 2)
 
 Turn on SNAP_REQUEST_TIMEOUT_MS and SNAP_BREAKER_SINGLE_PROBE for the poller (X1 step 2)
