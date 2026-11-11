@@ -173,3 +173,5 @@
 {"ts": 1794423799, "kind": "ledger", "session_id": "3aa25172-6c08-47b7-801e-82d3744ffce2", "service": "observability", "ticket": null, "programme": "Tracking Service", "heading": "## 2026-11-11 \u2014 Let the tracking-service hold-mode monitor resolve when the hold ends", "prs": ["gfs-bifrost/observability#90"]}
 {"ts": 1794428429, "kind": "programme_tick", "session_id": "8584435d-36a9-464d-bc60-e21c842cfe59", "programme": "orient Notes", "unit": "N1", "status": "done"}
 {"ts": 1794429228, "kind": "programme_tick", "session_id": "8584435d-36a9-464d-bc60-e21c842cfe59", "programme": "orient Notes", "unit": "N2", "status": "done"}
+{"ts": 1794431475, "kind": "programme_tick", "session_id": "8584435d-36a9-464d-bc60-e21c842cfe59", "programme": "orient Notes", "unit": "N3", "status": "done"}
+{"ts": 1794434124, "kind": "programme_tick", "session_id": "8584435d-36a9-464d-bc60-e21c842cfe59", "programme": "orient Notes", "unit": "N4a", "status": "done"}
