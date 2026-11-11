@@ -131,9 +131,10 @@ In my 2026-11-09 view, two things are not worth writing. More per-service ECM pa
 | "142M carrier calls" on the Polling Connectors and Ingress pages, against the 115M parcel polls the review measured | Nobody has reconciled them. They may be different measures |
 
 ## Next up
-0. (Done 2026-11-09) The POD per-carrier page is published as MPK 354877489.
 1. Apply Harry's feedback on the published pages when it arrives: live page first, then the vault copy. No verification run was wanted.
-2. Nothing else is queued. Wait for Harry's feedback on the five published pages.
+2. Ask Harry about the owed corrections in "Current state" (Polling Connectors needs an ADF edit; Tracking Events and Webhooks is a one-sentence fix), then apply them the way he approves.
+3. When any access-gated answer arrives (etcd values, Pub/Sub backlogs, the production trigger list, the Transfer Service `sql/` folder), update [[Systems/ecm/known-context]] and [[Systems/ecm/firebird-change-feed]] first, then the affected pages.
+4. Nothing else is queued. Harry has said no further pages are wanted unless he asks.
 
 ## How work is done here
 - **Confluence pages:** use the `plainly` skill. British English, no em dashes, sentences of 25 words or fewer, tables for state, security findings at class level only. Publish only when asked.
@@ -225,7 +226,7 @@ Harry asked for three pages from a read of the Selector clones and authorised pu
 | Central Firebird: What the Hub Does and Who Reads It | 357531678 | [[Handovers/2026-11-09-merak-replacement-pages.page11-selector-central]] |
 | Between a Site and the Centre: Uploads, Downloads and What Crosses | 357367820 | [[Handovers/2026-11-09-merak-replacement-pages.page12-selector-interaction]] |
 
-Research copies: [[Handovers/2026-11-09-merak-replacement-pages.selector-local-findings]] and [[Handovers/2026-11-09-merak-replacement-pages.selector-central-findings]]. Three corrections went into the vault: the last central script is `update_417`, not `update_411`; the upload address is read from the site table `CUST_UPL_SERVERS`; and the repo's site-update script deletes rows missing from the package, so "deletions never propagate" is wrong if the live script matches. The Legacy Selector index page does not yet list the three pages.
+Research copies: [[Handovers/2026-11-09-merak-replacement-pages.selector-local-findings]] and [[Handovers/2026-11-09-merak-replacement-pages.selector-central-findings]]. Three corrections went into the vault: the last central script is `update_417`, not `update_411`; the upload address is read from the site table `CUST_UPL_SERVERS`; and the repo's site-update script deletes rows missing from the package, so "deletions never propagate" is wrong if the live script matches. The Legacy Selector index page (351764483, now v6) lists the three pages in its reading order, added in ADF on 2026-11-11 so the smart links stayed intact.
 
 ## Where this now lives
 The durable, indexed copy of these findings is the system [[Systems/ecm/overview|ecm]]. This record stays the transient handover.
