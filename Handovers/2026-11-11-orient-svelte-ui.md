@@ -28,8 +28,8 @@ every sha.
 | W-D1 | work, plans, programmes | 1db80dc, a516649, c5ddeb7 | reviewed, fixes in, not deployed |
 | W-D2 | systems, people, customers, skills, diagrams | 585d9e9, 71b5013 | reviewed, fixes in, not deployed |
 | W-F | meetings, recordings, Slack, haude | f2a58f2..ec7b09c | review fixes in flight |
-| W-G | history, usage, analytics, focus, puzzles | 6ea2c81..ff02169 | security review clean; backend/frontend review in flight |
-| Rail unit | SPA sidebar nav statuses + record/focus controls (`/api/v1/nav-status`) | — | building on the laptop |
+| W-G | history, usage, analytics, focus, puzzles | 6ea2c81..ff02169 | both reviews done; 5 findings to fix (In flight) |
+| Rail unit | SPA sidebar nav statuses + record/pause/stop + focus controls (`/api/v1/nav-status`) | 47b5412 | built, **not reviewed** (Next up 2b) |
 | Lead fixes | write token only on `/api/desk/act` and `/api/write` (bc1ec12); `/pr` lights Pull requests (1457855) | | on master |
 
 ## In flight
@@ -40,7 +40,6 @@ laptop never does.
 | --- | --- | --- |
 | W-F review fixes (6 items) | agent working | Six items: deleted-recording 404 with held data; the transcript mention regex and re-render; scribe watcher cadence (5 s only while live); Slack held channels released; meetings/haude throw in cached loaders; `ui/tests/overlays.test.ts` `/meeting` case. If no `W-F review` commit has landed, do them yourself (`docs/waves/W-F.md`). |
 | W-G review fixes | **review done; fixes not started, yours** | 1. **[high]** `src/core/modules/usage/index.ts:82-100`: the usage watcher runs for any open tab, and its fingerprint includes `cpuPct`/`memMb`. So a live session republishes `usage:live` every 5 s and reruns the eager `spendOp` with nobody on /usage. Drop cpu/mem from the fingerprint and gate the watcher on a /usage read in the last ~2 min. 2. **[med]** `focus-watch.ts:59-89`: the phase-end timer is a monotonic `setTimeout`, so after a suspend the block is logged ~20 min late. In `look()`, settle when `endsAt() <= now()`. 3. **[med]** `src/ops/history.ts:78-82` + `domain/history.ts:173-178`: every 60-turn page re-parses and redacts the whole transcript on the event loop. Cache parsed turns per file mtime (bounded, e.g. 4 files), or slice before redacting. Clip giant turn text in the DTO. 4. **[med]** `routes/focus/+page.svelte:38-41`: Space starts the timer on `?tab=breathe`; in Next it did nothing there. Enter the scope only when `tab === 'timer'`. 5. **[low]** `focus-watch.ts:69-77`: a persistent settle error makes a once-a-second publish loop (back off, cap at 60 s). A watcher closed by an error or a missing dir at boot is never reopened (reopen it on the next poll). Security review: clean. |
-| Rail unit | agent working | It adds `src/core/modules/nav-status*` (in `src/core/modules/index.ts`), a sidebar with statuses, record/pause/stop, focus start/skip, and tests. If unpushed, restart from the brief: parity with Next's `src/components/shell/{NavLink,nav-controls,nav-status-store}` and `app/api/nav-status`. |
 
 ## Waiting on Harry
 - **A write-enabled GitHub deploy key for hjfitz/orient on the VM.** The VM pushes with
@@ -50,7 +49,8 @@ laptop never does.
 
 ## Next up
 1. Pull `origin/master`. Wait until the three In-flight rows have landed, or finish them as each row says.
-2. Apply the W-G backend/frontend findings.
+2. Apply the W-G backend/frontend findings (In flight row).
+   2b. Review the rail unit `47b5412` with review-panel (frontend, plus security on its writes: they reuse the W-F recordings and focus write routes) and fix. Its commit message lists the Next shell files Retire deletes.
 3. Clean up across waves until every gate passes, then commit:
    - `pnpm test`;
    - `pnpm typecheck`, which regenerates route types itself, so an error is never "stale types";
@@ -128,3 +128,5 @@ Checked 2026-11-11T12:2xZ:
 ## Closed since handover
 | When (UTC) | Work | Result |
 | --- | --- | --- |
+| 2026-11-11T12:4xZ | Rail unit (SPA sidebar statuses and controls) | built and pushed, 47b5412; review owed (Next up 2b) |
+| 2026-11-11T12:2xZ | W-G backend/frontend review | 5 findings, written into In flight; security review clean |
