@@ -162,3 +162,10 @@
 {"ts": 1794402450, "kind": "ledger", "session_id": "3958064e-f29c-4a24-8868-8f726d62feae", "service": "snap-adapter", "ticket": null, "programme": "SNAP Resilience Normalisation", "heading": "## 2026-11-11 \u2014 Turn on SNAP_NORMALISE_HOST_KEY for the poller (X1 step 4)", "prs": ["gfs-bifrost/snap-adapter#337"]}
 {"ts": 1794402455, "kind": "programme_tick", "session_id": "3958064e-f29c-4a24-8868-8f726d62feae", "programme": "SNAP Resilience Normalisation", "unit": "X1", "status": "done"}
 {"ts": 1794409633, "kind": "programme_tick", "session_id": "8584435d-36a9-464d-bc60-e21c842cfe59", "programme": "orient Svelte UI", "unit": "Retire", "status": "done"}
+{"ts": 1794413087, "kind": "programme_tick", "session_id": "8584435d-36a9-464d-bc60-e21c842cfe59", "programme": "orient Notes", "unit": "N0", "status": "done"}
+{"ts": 1794414986, "kind": "programme_tick", "session_id": "3aa25172-6c08-47b7-801e-82d3744ffce2", "programme": "Tracking Service", "unit": "D11", "status": "doing"}
+{"ts": 1794414991, "kind": "programme_tick", "session_id": "3aa25172-6c08-47b7-801e-82d3744ffce2", "programme": "Tracking Service", "unit": "D8", "status": "done"}
+{"ts": 1794414994, "kind": "programme_tick", "session_id": "3aa25172-6c08-47b7-801e-82d3744ffce2", "programme": "Tracking Service", "unit": "D9", "status": "done"}
+{"ts": 1794414997, "kind": "programme_tick", "session_id": "3aa25172-6c08-47b7-801e-82d3744ffce2", "programme": "Tracking Service", "unit": "D10", "status": "done"}
+{"ts": 1794415615, "kind": "programme_tick", "session_id": "3aa25172-6c08-47b7-801e-82d3744ffce2", "programme": "Tracking Service", "unit": "D11", "status": "done"}
+{"ts": 1794415615, "kind": "ledger", "session_id": "3aa25172-6c08-47b7-801e-82d3744ffce2", "service": "tracking-service", "ticket": null, "programme": "Tracking Service", "heading": "## 2026-11-11 \u2014 Cut tracking-service over to MongoDB in dev and prod", "prs": ["gfs-bifrost/tracking-service#39", "gfs-bifrost/tracking-service#40", "gfs-bifrost/tracking-service#41", "gfs-bifrost/tracking-service#42"]}
