@@ -1,14 +1,14 @@
 ---
 tags: [handover]
-status: open
+status: resumed
 workstream: orient Svelte UI — finish the page waves, deploy them, then Retire (remove Next/React)
 programme: orient Svelte UI
 repo: hjfitz/orient
 from: laptop
 to: hjf.shell.platform.ilg.software
 session_id: 0fb571d0-d903-483b-9e8b-1198b51d571f
-resumed_by: ""
-updated: 2026-11-11T12:36Z
+resumed_by: 8584435d-36a9-464d-bc60-e21c842cfe59
+updated: 2026-11-11T12:39Z
 ---
 # Handover: orient Svelte UI
 
@@ -133,4 +133,5 @@ Checked 2026-11-11T12:2xZ:
 | --- | --- | --- |
 | 2026-11-11T12:30Z | Rail unit (SPA sidebar statuses and controls) | built and pushed, 47b5412; review owed (Next up 2b) |
 | 2026-11-11T12:2xZ | W-G backend/frontend review | 5 findings, written into In flight; security review clean |
+| 2026-11-11T12:39Z | Resume on the VM | session 8584435d took over; master ff'd to af51670 (clean tree, deployed is still 0cab68a); `gh` on the VM is logged out (token invalid), so no `gh pr`/`gh api` here; pushes go by the deploy key |
 | 2026-11-11T12:33Z | W-F review fixes (6 items) | pushed: ed2fa5a, 2f83b90, af51670; full suite flaky only under load |
