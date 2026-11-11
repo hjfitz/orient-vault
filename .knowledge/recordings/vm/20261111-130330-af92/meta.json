@@ -22,6 +22,12 @@
     ]
   },
   "call": true,
+  "speakers": {
+    "Speaker 1": "Jack Bailey",
+    "Speaker 2": "Darren Cobby",
+    "Speaker 3": "Tom Dunn",
+    "Speaker 4": "Lee Simmons"
+  },
   "summary": {
     "tldr": [
       "Jack Bailey gave the Fuse update: Purdy \u0026 Figg peak ran at 100% order success, Edicom connected to the SFTP for CT, and stock sync, raw payload capture, work order and pick/pack fixes are in progress.",
