@@ -8,7 +8,7 @@ from: rc-hjf
 to: next session, any machine
 session_id: 9ef32451-f6a6-429e-88df-add8e5d83ddf
 resumed_by: d94837dd-a7bc-4aac-99e6-6a3f03c9f046   # rc-hjf, 2026-11-11T12:32Z. Previous driver: 4ff6c302-4da3-4b14-bf3c-fc976c0ec75b (laptop, freightops), ended 2026-11-11T12:30Z at its session limit
-updated: 2026-11-11T12:46Z
+updated: 2026-11-11T12:59Z
 ---
 # Handover: Merak replacement pages (continues the carrier-integrations research)
 
