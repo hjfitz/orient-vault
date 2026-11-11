@@ -6,6 +6,15 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-11 — Add a dev-only debug MCP server
+
+Add a dev-only debug MCP server
+
+A stdio MCP at apps/svc/cmd/debug-mcp with 20 tools to read and write dev state, preview the exact Selector request for an order, search dev logs, read deploys and replay requests to Selector's test endpoint. Dev hosts only, no manifesting, no gate approval, secrets redacted.
+
+Ship: SHIP-1110-selector-services
+PR: ilg-merak/parcel-portal#128
+
 ## 2026-11-11 — Let a named developer call svc directly in dev
 
 Let a named developer call svc directly in dev
