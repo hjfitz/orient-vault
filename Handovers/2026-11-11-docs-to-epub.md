@@ -47,7 +47,7 @@ Nothing is running. No agents or workflows were started for this workstream.
 
 | Work | Where | State | To close it |
 | --- | --- | --- | --- |
-| The whole skill, uncommitted: `SKILL.md`, `references/`, and edits to `scripts/figures.py`, `scripts/book.py`, `assets/book.css` and one example chapter | `~/projects/orient-writers/skills/docs-to-epub/` on rc-hjf, untracked | Written and tested today (see Closed since handover). The laptop's copy has none of it | Commit only when Harry asks. The `.gitignore` now excludes generated output (an uncommitted edit), so a plain `git add skills/docs-to-epub` stages 30 files and none are generated. Put `.gitignore` in the same commit. The repo was 2 commits behind `origin/main` when checked just before 13:19Z, so pull first |
+| The whole skill, committed locally and not pushed | Commit `e68a6c9` on `main` in `~/projects/orient-writers` on rc-hjf: 31 files, the skill and the `.gitignore` rules | Committed at about 13:25Z, gitleaks clean. At that point `main` was ahead 1 and behind 2 of `origin/main`. The laptop's copy of the folder is stale and has none of it | Push only on Harry's yes. Pull first: `git pull --rebase` needs the modified `skills/review-panel/SKILL.md` stashed or committed, and `skills/plainly/` is untracked. Neither is part of this work, so do not add them |
 
 ## Next up
 1. ~~Re-run the example and read the page images at full size.~~ Done on rc-hjf, see Closed since handover.
