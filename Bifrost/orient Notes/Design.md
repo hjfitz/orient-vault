@@ -59,7 +59,7 @@ Progress is in [[orient Notes/Migration State|Migration State]]; the why is in [
 type BlockSpec<T> = {
   name: `orient-${string}`                          // the fence language
   parse(text: string): { ok: true; block: T } | { ok: false; error: string }   // today's shape
-  lint?(block: T): Finding[]                        // flow and sequence adopt diagram-lint.ts; N7's preview shows them
+  lint?(raw: unknown): Finding[]                    // takes the RAW JSON (the schema rejects what several rules target); flow and sequence adopt diagram-lint.ts; N7's preview shows them
   render(block: T, ctx: RenderCtx): Hast | null     // null drops the node (action lists)
   starters: { label: string; text: string }[]       // the editor's insert menu; flow has several (C4 and data-flow variants)
 }
