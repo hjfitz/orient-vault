@@ -4,7 +4,7 @@ human: Jack Bailey
 slack_user: U0A37FNBGRL
 slack_dm: D0A3644JHV3
 standing: colleague — Product Manager
-updated: '2026-11-10'
+updated: '2026-11-11'
 title: Jack Bailey
 ---
 # Jack Bailey
@@ -55,7 +55,8 @@ spoken to his agent.
       prioritise.
 
 **They owe**
-- [ ] **Prod CT business IDs (2026-11-10).** Asked which business IDs are the real prod CT ones; dev has CTSAPUK (two connectors) and CTSAPPL. Prod has no CT business or SFTP user yet, so nothing can be created there until he answers.
+- [ ] **Prod CT business IDs (2026-11-10, asked again 2026-11-11).** Asked which business IDs are the real prod CT ones; dev has CTSAPUK (two connectors) and CTSAPPL. Prod has no CT business or SFTP user yet, so nothing can be created there until he answers.
+- [ ] **Stock snapshot folder name (FUSE-1302).** Not in `directories.json`. It needs confirming with Puig via Darren before it's added. The tentative `stock_sync` folders on the five CT dev users are mine, by hand.
 
 ## Together (newest first)
 - **2026-11-10 13:21 GMT** — CT SFTP folder update in the shared DM (ts `1794316877.099329`), plain prose with bolded bullets, no header, sent on Harry's ask. Hangs off FUSE-1351, which Jack ticketed at 13:01.
