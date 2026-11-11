@@ -8,7 +8,7 @@ from: laptop
 to: hjf.shell.platform.ilg.software
 session_id: 0fb571d0-d903-483b-9e8b-1198b51d571f
 resumed_by: 8584435d-36a9-464d-bc60-e21c842cfe59
-updated: 2026-11-11T12:39Z
+updated: 2026-11-11T12:51Z
 ---
 # Handover: orient Svelte UI
 
@@ -36,7 +36,8 @@ No laptop agents are running any more. Every remaining item below is yours.
 
 | Work | State | To close it |
 | --- | --- | --- |
-| W-G review fixes | **review done; fixes not started, yours** | 1. **[high]** `src/core/modules/usage/index.ts:82-100`: the usage watcher runs for any open tab, and its fingerprint includes `cpuPct`/`memMb`. So a live session republishes `usage:live` every 5 s and reruns the eager `spendOp` with nobody on /usage. Drop cpu/mem from the fingerprint and gate the watcher on a /usage read in the last ~2 min. 2. **[med]** `focus-watch.ts:59-89`: the phase-end timer is a monotonic `setTimeout`, so after a suspend the block is logged ~20 min late. In `look()`, settle when `endsAt() <= now()`. 3. **[med]** `src/ops/history.ts:78-82` + `domain/history.ts:173-178`: every 60-turn page re-parses and redacts the whole transcript on the event loop. Cache parsed turns per file mtime (bounded, e.g. 4 files), or slice before redacting. Clip giant turn text in the DTO. 4. **[med]** `routes/focus/+page.svelte:38-41`: Space starts the timer on `?tab=breathe`; in Next it did nothing there. Enter the scope only when `tab === 'timer'`. 5. **[low]** `focus-watch.ts:69-77`: a persistent settle error makes a once-a-second publish loop (back off, cap at 60 s). A watcher closed by an error or a missing dir at boot is never reopened (reopen it on the next poll). Security review: clean. |
+| W-G review fixes | **12:50Z: 3 sonnet builders running on disjoint files** (usage watcher+focus page; focus-watch; history cache); I verified finding 1 against the code and added one requirement: the usage page re-reads `/live` every 60 s so the 2-min read gate doesn't leave a quiet page stale. Finding 3's redaction claim is imprecise (`redactDeep` runs on the 60-turn slice only; the cost is the whole-file parse). Original brief: | 1. **[high]** `src/core/modules/usage/index.ts:82-100`: the usage watcher runs for any open tab, and its fingerprint includes `cpuPct`/`memMb`. So a live session republishes `usage:live` every 5 s and reruns the eager `spendOp` with nobody on /usage. Drop cpu/mem from the fingerprint and gate the watcher on a /usage read in the last ~2 min. 2. **[med]** `focus-watch.ts:59-89`: the phase-end timer is a monotonic `setTimeout`, so after a suspend the block is logged ~20 min late. In `look()`, settle when `endsAt() <= now()`. 3. **[med]** `src/ops/history.ts:78-82` + `domain/history.ts:173-178`: every 60-turn page re-parses and redacts the whole transcript on the event loop. Cache parsed turns per file mtime (bounded, e.g. 4 files), or slice before redacting. Clip giant turn text in the DTO. 4. **[med]** `routes/focus/+page.svelte:38-41`: Space starts the timer on `?tab=breathe`; in Next it did nothing there. Enter the scope only when `tab === 'timer'`. 5. **[low]** `focus-watch.ts:69-77`: a persistent settle error makes a once-a-second publish loop (back off, cap at 60 s). A watcher closed by an error or a missing dir at boot is never reopened (reopen it on the next poll). Security review: clean. |
+| Rail unit review (47b5412) | **12:50Z: review-panel running** (frontend + security; I read the 45-line core module myself: clean) | on its findings: fix, run `pnpm test`/`ui:check`, commit |
 
 ## Waiting on Harry
 - **A write-enabled GitHub deploy key for hjfitz/orient on the VM.** The VM pushes with
