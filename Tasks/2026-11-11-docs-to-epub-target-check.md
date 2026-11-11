@@ -1,7 +1,7 @@
 ---
 tags: [adhoc-task]
 date: 2026-11-11
-tldr: "Resumed the docs-to-epub skill on rc-hjf: installed and tested the build tooling, verified the copied folder, rebuilt and validated the example, and fixed two defects found in the previews. SKILL.md and the references are still to write."
+tldr: "Finished the docs-to-epub skill on rc-hjf: set up and tested the build tooling, fixed four tooling defects, wrote SKILL.md and seven references, and linked the skill. Uncommitted; the workflow has not yet run on a real document set."
 session_id: 9e1daa5f-c28e-44cb-b0dd-e5b4bfb5878c
 status: open
 ---
