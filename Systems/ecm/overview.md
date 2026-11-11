@@ -50,6 +50,9 @@ All pages are in the MPK space, at `https://globalfreight.atlassian.net/wiki/spa
 | ECM Pub/Sub Topics: Shapes, Producers and Consumers | 356155424 | Published draft, unverified (10 Nov 2026). 70 Terraform topics from code and manifests at the shas listed; Datadog counters for 41 |
 | Chasing a Parcel: How GFS Decides What to Track and When | 356614148 | Published draft, unverified (10 Nov 2026). `tracking-core` code read at `c081108`; prod etcd polling values unread |
 | What a Tracking Update Means: Events, Statuses and Delivery Outcomes | 356614184 | Published draft, unverified (10 Nov 2026). Code read at the shas on the page; the group spreadsheet is unread |
+| Selector at a Site: What Runs Locally and What the Site Database Holds | 357171228 | Published draft, unverified (11 Nov 2026). Selector source read at the clone shas on the page (`V4` `73cfd69`, `CSS` `414569b`); no live site was read |
+| Central Firebird: What the Hub Does and Who Reads It | 357531678 | Published draft, unverified (11 Nov 2026). Source read at the clone shas on the page; the central schema source stops at `update_417` and the live schema has moved on |
+| Between a Site and the Centre: Uploads, Downloads and What Crosses | 357367820 | Published draft, unverified (11 Nov 2026). Source read at the clone shas on the page; the live `CUST_SCRIPTS` rows and the upload server's production settings are unread |
 
 Harry declined a verification run for the five drafts. Do not run one unless he asks. One Sonnet reader built page 4 from the Billing space and the Selector docs. It did not read CCDIS or the `REG_WILKO_*` procedures [1].
 
@@ -60,7 +63,7 @@ The tools cannot delete pages, so Harry deletes three by hand [3]:
 
 ## Structure of the research space
 
-Four group pages were created on 2026-11-11 under the research root (351502339). Each is an overview of its children, with a table, the settled facts, a reading order and the open questions. Their source copies are `Handovers/2026-11-09-merak-replacement-pages.group-<slug>.md`. No existing page has been moved yet: the children below are the planned filing. Legacy Selector (351764483) stays a parent of its own pages, and From Label to Invoice (354353232) is due to move under it.
+Four group pages were created on 2026-11-11 under the research root (351502339). Each is an overview of its children, with a table, the settled facts, a reading order and the open questions. Their source copies are `Handovers/2026-11-09-merak-replacement-pages.group-<slug>.md`. No existing page has been moved yet: the children below are the planned filing. Legacy Selector (351764483) stays a parent of its own pages, and From Label to Invoice (354353232) is due to move under it. The three Selector site and central pages were published as its children on 2026-11-11.
 
 | Group page | Id | Children (ids) |
 | --- | --- | --- |
@@ -68,6 +71,7 @@ Four group pages were created on 2026-11-11 under the research root (351502339).
 | Tracking: How GFS Follows a Parcel | 357597186 | Chasing a Parcel 356614148; What a Tracking Update Means 356614184; Polling Connectors 353697880; Tracking Webhook Services 353533985; Carrier Tracking and Proof of Delivery 353206337; Tracking Events and Webhooks: What v1 Needs 355074077 |
 | Proof of Delivery | 357236740 | Proof of Delivery Service 353861642; How Each Carrier's POD Is Retrieved 354877489 |
 | ECM Platform: How a Shipment Moves Through It | 357662721 | Shipment Journey Through ECM 354975746; Shipment Identity 355631312; ECM Pub/Sub Topics 356155424; Selector and ECM Coupling 354418743 |
+| Legacy Selector (index, a page of its own, not a group page) | 351764483 | Published 2026-11-11: Selector at a Site 357171228; Central Firebird 357531678; Between a Site and the Centre 357367820. The page's hand-written list of eight pages does not yet name these three |
 
 ## Diagrams
 
@@ -101,6 +105,7 @@ The vault copies are the source for edits. Change the live page first, then the 
 - Topic research copies, 2026-11-10: [[Handovers/2026-11-09-merak-replacement-pages.topic-usage-map]] (the 70-topic map) and [[Handovers/2026-11-09-merak-replacement-pages.topic-datadog-usage]] (Datadog counters)
 - Tracking research copies, 2026-11-10: [[Handovers/2026-11-09-merak-replacement-pages.tracking-core-findings]], [[Handovers/2026-11-09-merak-replacement-pages.tracking-topic-catalogue]] and [[Handovers/2026-11-09-merak-replacement-pages.tracking-model-findings]]
 - Firebird research copies, 2026-11-11: [[Handovers/2026-11-09-merak-replacement-pages.firebird-triggers-findings]] (trigger catalogue, feeds, queries) and [[Handovers/2026-11-09-merak-replacement-pages.firebird-feeds-datadog]] (Datadog evidence)
+- Selector site and central pages, 2026-11-11: [[Handovers/2026-11-09-merak-replacement-pages.page10-selector-local]], [[Handovers/2026-11-09-merak-replacement-pages.page11-selector-central]] and [[Handovers/2026-11-09-merak-replacement-pages.page12-selector-interaction]]. Their research copies are [[Handovers/2026-11-09-merak-replacement-pages.selector-local-findings]] and [[Handovers/2026-11-09-merak-replacement-pages.selector-central-findings]]
 
 ## Neighbours
 - [[selector]] owns the label, the upload and central Firebird's set-up. ECM and Selector meet at Firebird (see [[Systems/ecm/architecture]]). Selector's `V4-Server-Database` source (`82dde6b`, October 2023) was read for triggers on 2026-11-11: [[Systems/ecm/firebird-change-feed]].
