@@ -5,6 +5,35 @@ title: Fuse/Bifrost Weekly Sync
 ---
 # Fuse/Bifrost Weekly Sync
 
+## 2026-11-11
+_13:00–13:45 GMT · calendar title "Weekly Bi-Frost/FUSE Update" · [[Darren Cobby]] (organizer), [[Jack Bailey]], [[Lee Simmons]], [[Tom Dunn]], [[James Godsell]], [[Ryan Ellis]], [[Denis Tomolea]], Danny Williams, you · Teams_
+_Agenda on the invite: Fuse update and roadmap (Jack), customer update (Darren Cobby), QA update (Tom), integrations update (James), AOB. You have no named item_
+
+### Context
+
+**Open loops to raise**
+- [[James Godsell]]'s ask for `identifiers.solLineId` in the pick and pack confirmation line mappings is unanswered, and no ticket exists
+- [[Tom Dunn]]'s work-order and finished-good-receipt QA gaps are FUSE-1352 and FUSE-1353
+- FUSE-1352 and FUSE-1353 are unassigned Sev 3 bugs in Ready for Development
+- Indu go-live is Monday 16 Nov at 10:00 (JBMQ to Fuse middleware migration, rollback to JBMQ possible)
+- CT PRICAT SFTP folders: [[Jack Bailey]] advised [[Darren Cobby]] that CT should log in and create its own
+- CT EDIFACT stress-test action from the 9 Nov leadership catch-up: the team quietly tests CT's EDIFACT and Edicom sample files
+- [[Jack Bailey]]'s 9 Nov Fuse Product Update (Purdy & Figg peak ramp-up runs clean)
+- BAT SAP migration early notice, forwarded by [[Jack Bailey]]: a top-3 customer moving onto Fuse
+
+### To raise
+- [ ] Reply to [[James Godsell]] on `solLineId` and agree the ticket
+- [ ] Confirm FUSE-1352 and FUSE-1353 owners and sizing with [[Tom Dunn]]
+- [ ] Confirm engineering watches the Indu go-live on Monday 16 Nov at 10:00
+- [ ] Tell [[Darren Cobby]] and [[Jack Bailey]] how the CT SFTP folders get created
+- [ ] Ask [[Jack Bailey]] for the BAT SAP migration timeline
+
+### Carried from last time
+- [ ] [[SPS Commerce]]↔[[Manucurist]] `/to_ilg` subfolder (open with Ashley / [[Lee Simmons]]) — no update logged since 08-19
+
+### Notes
+- ✍️ 
+
 ## 2026-10-21
 _13:00–13:45 BST · calendar title "Weekly Bi-Frost/FUSE Update" · [[Darren Cobby]] (organizer), [[Jack Bailey]], [[Lee Simmons]], [[Tom Dunn]], [[James Godsell]], [[Ryan Ellis]], [[Denis Tomolea]], [[Hayley Prior]], Danny Williams, Alexander Saunders, you · Teams_
 _Agenda on the invite: Fuse update and roadmap (Jack), Bi-Frost customer update (Darren), QA update (Tom), integrations update (James), AOB. You have no named item and only you have responded. Jack is away today_
