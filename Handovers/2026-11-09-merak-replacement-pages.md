@@ -1,7 +1,7 @@
 ---
 tags: [handover]
 status: resumed
-workstream: ECM and Selector research, now feeding Merak (Harry frames it as a new despatch and shipping platform that replaces both). The MPK research space is published and grouped; what remains is owed corrections, access-gated answers and Harry's feedback
+workstream: ECM and Selector research, now feeding Merak (Harry frames it as a new despatch and shipping platform that replaces both). The MPK research space is published and grouped; the owed corrections were applied on 2026-11-11 and Harry has no feedback, so what remains is two optional rewordings and access-gated answers
 programme: none
 repo: none (vault + Confluence MPK; read-only GitHub and Azure DevOps)
 from: rc-hjf
