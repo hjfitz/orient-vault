@@ -132,7 +132,7 @@ Each stack is merged **in one sitting**, with the version bump on its last PR. #
       - This also gives fapi and shopify a later opt-in against the types 10.4.0 rollout hazard (org `CLAUDE.md`, "backlink refresh isn't type-filtered").
       — verify: "acks a backlink for an unlisted connector type", "does not cache an unlisted connector type", "validates a listed type with the supplied schema", "caches a non-SFTP connector when backlinkTypes is unset".
 
-- [ ] 6. Username lookup and settled dispatch, then **release 2.7.0** (AC 1,6,7,8). Stack B, PR 5.
+- [x] 6. Username lookup and settled dispatch, then **release 2.7.0** (AC 1,6,7,8). Stack B, PR 5. — pkg-node#306 merged; 2.7.0 published (npm view ok); dev proof 70/70; fapi 529, shopify 902, egress 634 — done: c3c89b4
       - (b) An optional `IConfigApiClient.getConnectorSummariesByUsername?` (`URLSearchParams`); under `lookup: "server-filtered"`, take the first summary (warn if there's more than one), one `getConnector`, then `cacheConnectorWithIndices`. Zero matches throws the same `No connector found for username` error, and a client without the method falls back to the scan.
       - (e) `processRevisionSettled(record)` → `{ outcomes[], failed }`, in order, never throwing for a handler error; `ConfigRevisionDispatchException.fromResult` (an `AggregateError` subclass). `processRevision` is untouched.
       - Release: version 2.7.0; changelog; `CLAUDE.md` row; README "Connector handling" and "sftp-connector migration" (INC-40 init/fallback under cache 0.4.0, `serialiseError` for outcomes, the release-age exclusion); Fuse MCP `config-domain.json` and `shared-packages.json` (straight to fuse-mcp `master`).
