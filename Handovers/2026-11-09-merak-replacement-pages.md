@@ -180,6 +180,8 @@ Checked on `rc-hjf` (`uname -n`) at 2026-11-09T11:57Z:
 ## Closed since handover
 | When (UTC) | Work | Result |
 | --- | --- | --- |
+| 2026-11-11 12:46 | Two rewordings held back on Tracking Events and Webhooks row 1 ("six definitions", "throws its own mapping away") | Applied on Harry's yes: 355074077 v5, re-fetched. Vault copy updated |
+| 2026-11-11 12:46 | Stale owed-correction notes on the Tracking group page | Trimmed: 357597186 v3. Only the ConfigMap note on Polling Connectors stays. Vault copy `group-tracking` updated |
 | 2026-11-11 12:38 | Corrections owed on Polling Connectors and Tracking Events and Webhooks | Applied on Harry's approval: 353697880 v12 and 355074077 v4. Re-fetched, Lucid macro intact |
 | 2026-11-11 12:38 | Line on ECM Platform pointing at Central Firebird | Applied: 357662721 v3. Vault copy updated |
 | 2026-11-11 12:38 | Harry's feedback on the published pages | None to apply: "pages are fine" |
