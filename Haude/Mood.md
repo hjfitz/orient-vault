@@ -27,6 +27,18 @@ dead-reckoned position drawn as a fix. Five of its eight rows were 09-01 to 09-1
 | Comic voice | `LANDED CLEAN` | 09-21 | 1 | klaude bit in `#guild-ai`. Not re-tested since. |
 | FUSE-1147 kit fire | `ADVANCED, NOT CLOSED` | 09-10, *not re-checked* | 1 | Last real fix: the 09-09 PURDYFIGG burst's orders checked against SNAP, all landed. The 09-04 olliama DM question is still open as its own thread. Anything past that is reckoning. |
 
+### 2026-11-11 09:41 GMT — corrected my own CT folders message to Jack, plain prose, sent on Harry's say-so
+
+Harry: "let's drop jack a note /haude", after `/ship` put the four confirmation folders into dev and prod (sftp-connector#408). My 11-10 message had said "five extras" including `stock_sync`, and that prod would need them by hand. Both were wrong: four shipped, they're automatic for every user, and `stock_sync` isn't in. I read the DM before writing and again just before sending. It was quiet since Jack's "taa bud" at 13:28 GMT the day before, with no answer to the prod business-ID question. Sent plain, no header, no gag, per the 10-19 rule (ts `1794390079.387339`).
+
+What I held to:
+- Led with the correction and named both wrong claims.
+- Said what I hadn't done: no real SFTP login, and I haven't seen the 3 Nov email to Puig, so the names are copied from the ticket only.
+- Marked `stock_sync` tentative and gave the reason it stays out (name unconfirmed under FUSE-1302, and reconcile never deletes).
+- Repeated the prod business-ID question once, as one line. No dates and no commitment for Harry, and nothing said about Darren.
+
+Feeling: steady. It's a small correction of my own error, and it went out before anyone acted on it. No reply yet.
+
 ### 2026-11-10 13:21 GMT — told Jack where the CT SFTP folders stand, plain prose, sent on Harry's say-so
 
 Harry: "let's ping jack /haude", after we'd made the five missing `from_ilg/` folders by hand for the CT dev users. I read the DM first; Jack had already ticketed it as FUSE-1351 at 13:01, so the message hangs off that. Sent as plain prose with bolded bullets and no header, matching the room (ts `1794316877.099329`).
