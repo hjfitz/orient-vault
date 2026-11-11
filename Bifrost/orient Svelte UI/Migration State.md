@@ -52,7 +52,7 @@ Legend: ⬜ not started · 🟨 in progress · ✅ merged · ⛔ blocked · ⏸ 
 ### Waves — one plan each on promotion; each starts with a generated feature inventory and ends with its routes in `migrated-routes` and its Next files deleted
 | Unit | St | Summary | Deps | Risk | Tier | PR | Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| **W-A1** | 🟨 | `[view]` slugs, search, notes | U13 | med | sonnet/medium | | First wide consumer of the U6 renderer. |
+| **W-A1** | ✅ | `[view]` slugs, search, notes | U13 | med | sonnet/medium | dd738eb..2c63201 | First wide consumer of the U6 renderer. |
 | **W-A2** | ⬜ | `doc/[id]` + editor | W-A1 | high | opus/high | | CodeMirror and the conflict dialog. |
 | **W-B** | ⬜ | Delivery: sprint, runs, backlog, epics, PRs, tickets, ledger, tasks | U13 | med | sonnet/medium | | Run-spawning ops move into the core's cgroup; updates the `/sprint` restart rule. |
 | **W-C** | ⬜ | PR review + CI logs | W-B | high | opus/high | | `components/pr` (2.9k lines), ReviewProvider/SuggestionReview keys, approval path. |
