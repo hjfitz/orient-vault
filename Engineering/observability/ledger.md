@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-11 — Let the tracking-service hold-mode monitor resolve when the hold ends
+
+Let the tracking-service hold-mode monitor resolve when the hold ends
+
+The hold-mode monitor (332917928) stayed in Alert on no data after the 2026-11-11 prod cut, because fuse.tracking.push.held stops reporting when the hold ends, and it renotified hourly. Its query is now wrapped in default_zero, and the message gives the real 7-day retention. Applied to prod; the monitor read OK at 19:03Z.
+
+PR: gfs-bifrost/observability#90
+
 ## 2026-11-11 — Say the Snap Adapter circuit breaker monitor also opens on a 429
 
 Say the Snap Adapter circuit breaker monitor also opens on a 429
