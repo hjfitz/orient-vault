@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-11 — Add the Firestore to MongoDB parity check
+
+Add the Firestore to MongoDB parity check
+
+cmd/parity compares every record (hidden fields, events, notes) and the served stats, insights, businesses and full counter history between Firestore and MongoDB; a duplicates difference or any record difference fails it, so the flip waits on a faithful copy. Stacked on #36.
+
+PR: gfs-bifrost/tracking-service#37
+
 ## 2026-11-11 — Freeze notes under the hold and add the Firestore to MongoDB import
 
 Freeze notes under the hold and add the Firestore to MongoDB import
