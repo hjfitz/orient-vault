@@ -8,7 +8,7 @@ from: laptop
 to: hjf.shell.platform.ilg.software
 session_id: 0fb571d0-d903-483b-9e8b-1198b51d571f
 resumed_by: 8584435d-36a9-464d-bc60-e21c842cfe59
-updated: 2026-11-11T12:58Z
+updated: 2026-11-11T13:03Z
 ---
 # Handover: orient Svelte UI
 
@@ -36,7 +36,7 @@ No laptop agents are running any more. Every remaining item below is yours.
 
 | Work | State | To close it |
 | --- | --- | --- |
-| Rail review fixes (47b5412) | **12:58Z: 1 sonnet builder running.** review-panel (frontend + security): security found one hardening gap (recording id unencoded in stop/pause/ignore paths; I fixed it in `ui/src/lib/recordings/actions.ts`, uncommitted, the builder commits it with a test); frontend found a double-send window (pending clears before the rail's read-back), focus loss on disabled buttons, an error with no `role=alert`, no test that the 250 ms tick is released. All verified by reading. | when the builder reports: check its sha, then run the full gates (Next up 3) |
+| Deploy of C, D1, D2, F, G and the rail at **fa069be** | **13:0xZ: started.** All gates green on fa069be (typecheck, ui:check, ui:build, `pnpm test` 382 files pass / 1 skipped, lint at baseline). Next check build passed in `.next-check`; `gate_no_runs` OK for orient-web and orient-core under bash. Live before: 0cab68a. | `pnpm deploy:all` from `~/projects/orient`; if `deploy:web` fails restore `.next-prod.bak` (Gotchas). Then drive the pages (Next up 4), tick (5), Retire-prep (6) |
 
 ## Waiting on Harry
 - **Unpushed commits.** Pushes need the write-enabled key (below). Local-only so far: d6457ee 082af34 d486509 806a824 (plus the rail fixes and everything after, see the final list).
@@ -135,6 +135,8 @@ Checked 2026-11-11T12:2xZ:
 | --- | --- | --- |
 | 2026-11-11T12:30Z | Rail unit (SPA sidebar statuses and controls) | built and pushed, 47b5412; review owed (Next up 2b) |
 | 2026-11-11T12:2xZ | W-G backend/frontend review | 5 findings, written into In flight; security review clean |
+| 2026-11-11T13:00Z | Rail review (frontend + security) and its fixes | **done**, local only: e47f4c9. security: recording id now `encodeURIComponent`'d in stop/pause/ignore paths; frontend: a write waits for the rail's read-back, `aria-disabled` instead of `disabled`, focus moves to Pause after rec/start, errors are `role=alert` and clear on a state change, the 250 ms tick has release tests. Residual: `Query.refetch()` coalesces with an in-flight fetch, so the read-back await can resolve one request early (a one-request window; fixing needs `refetch()` to return the follow-up's promise) |
+| 2026-11-11T13:01Z | Gate cleanup | **done**, fa069be: five manifest/adopt tests assumed the machine is the laptop (the vault config names `laptop` as the only manifest writer and this host id is `vm`), so they now start from an empty `XDG_CONFIG_HOME`; `diagram-presets.test.ts` imported `orient-writers/skills/explain/diagram-rules.mjs`, which is not tracked there, and now skips when it is absent |
 | 2026-11-11T12:57Z | W-G review fixes (5 findings) | **done**, local only, not pushed: d6457ee (history parse cache + giant-turn clip), 082af34 (focus-watch: overdue settle on look, backoff, reopen watchers), d486509 (usage watcher gated on a /usage read, mem/cpu out of the fingerprint; Space on the focus page only on the timer tab), 806a824 (stale doc comment). Deviation from the brief, correct: the usage page needs no 60 s interval of its own, because `Query.start()` already polls every 60 s while the tab is visible. Consequence: cpu/mem in the session list refresh every 60 s, not 5 s |
 | 2026-11-11T12:39Z | Resume on the VM | session 8584435d took over; master ff'd to af51670 (clean tree, deployed is still 0cab68a); `gh` on the VM is logged out (token invalid), so no `gh pr`/`gh api` here; pushes go by the deploy key |
 | 2026-11-11T12:33Z | W-F review fixes (6 items) | pushed: ed2fa5a, 2f83b90, af51670; full suite flaky only under load |
