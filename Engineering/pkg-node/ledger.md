@@ -7,6 +7,20 @@ title: pkg-node — work ledger
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-11 — Close the evictOnDelete connector-cache gaps in remote-config (2.8.0)
+
+Close the evictOnDelete connector-cache gaps in remote-config (2.8.0)
+
+Plan remote-config-close-the-connector-cache-gaps-lef. Opt-in under evictOnDelete, stacked on 2.7.0 (stack #307):
+- eviction deletes indexes and their empty markers instead of rewriting a stale in-memory copy;
+- a connector-deleted:{id} tombstone is written first;
+- every cache write re-checks it (closes the refresh/delete race);
+- a lookup missing only tombstoned primaries serves the rest from cache.
+
+Two-instance spec harness reproduces the lost update. Dev proof HJF 12 -> 11 with 0 config-service requests. fapi/shopify suites green on the tarball. Draft, waiting on 2.7.0.
+
+PR: gfs-bifrost/pkg-node#309
+
 ## 2026-11-09 — Add opt-in connector handling and settled dispatch to remote-config (2.7.0)
 
 Add opt-in connector handling and settled dispatch to remote-config (2.7.0)

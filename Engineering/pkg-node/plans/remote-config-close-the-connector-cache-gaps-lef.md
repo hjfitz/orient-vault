@@ -139,9 +139,22 @@ Close the connector-cache gaps that `@gfs-bifrost/remote-config` 2.7.0 documents
 ### Evidence
 <!-- Newest first, dated. One bullet per check actually run, opening with what it discharges.
      "Suite green" alone is not evidence. Sign-off requires at least one dated bullet here. -->
+- 2026-11-11 [incs 1–4, AC 1–6 except publish] **Draft pkg-node#309** (`3ebd33f`), stacked on #306 as stack #307.
+  - **Lost update (AC 1):** the two-instance harness (a real `CacheService` + `LruCache` per instance over one shared network cache) made 2.7.0 drop a connector another instance added. That spec failed on 2.7.0 and passes after inc 1.
+  - **Races (AC 2):** the two-instance race specs (fetch held, `-1` on another instance, fetch released) cover refresh (acks), by-id (404-shaped), scan and server-filtered username, business, storefront and by-type. Nothing deleted is left cached, listed or aliased.
+  - **Expired copy (AC 3), dev proof against dev config-service (read-only):** business HJF, 12 SFTP connectors. One connector's primary key was removed and a synthetic `-1` sent: 0 requests. The next `resolveWithUnresolved(HJF, sftp)` returned 11 connectors without the target, 0 unresolved, 0 requests. Run on `2fa6010` and again on the final build.
+  - **Defaults (AC 4):** the packed 2.8.0 passes fapi `007ad5c` (529), shopify-connector `84714fc` (902) and shopify-egress-service (634). `build:check` everywhere, plus `build:check:tests` in egress. The 2.5.1 type test compiles. The default-mode specs pin no tombstone write and no tombstone read.
+  - **Tests:** 354 (46 new). 25 mutations, all caught.
+  - **Review panel** (backend, data, tests) found real issues, fixed in `6e45546`:
+    - empty markers are now cleared with a dropped index; a stale one would hide a live connector;
+    - a failed eviction warns on a lookup instead of failing it;
+    - a failed index drop warns;
+    - added: the storefront and by-type races, the refresh-ack spec, and the failure-path specs;
+    - fixed: two vacuous default-mode specs.
 
 ### Not verified
 <!-- Stated, not papered over. "(none)" is a deliberate claim, and a fine one. -->
+- **AC 6, not published:** 2.8.0 publishes only when #309 merges, and that waits on 2.7.0 (#304–#306) merging first. The fuse-mcp `config-domain.json` update follows publish.
 - **Races and in-memory windows can't be reproduced on dev.** The two-instance harness specs are the only race evidence.
 
 ## Rollout & rollback
@@ -191,6 +204,7 @@ Close the connector-cache gaps that `@gfs-bifrost/remote-config` 2.7.0 documents
      or refuted hypothesis. Not restated doc content. Sign-off promotes each confirmed one into
      the matching durable doc, then clears it from here; a refuted one moves to ## Handback
      rather than being deleted. Legitimately empty. -->
+- **Dropping an index unmasks the 2.2.0 empty markers.** `*-connectors-empty:{id}:{type|all}` is read only while the index is empty, and joins never clear it. So anything that deletes an index must delete its markers too, or a typed lookup returns `[]` for a live connector until the marker expires.
 - **`CacheService.tryGetAsync` serves the in-memory copy first.** So every index read-modify-write in the connector handler works from a copy up to `memTtl` (60 s) old, not a fresh one. A lost update can silently drop a live connector from a fully cached index. In default mode this happens for two new connectors within `memTtl` on different instances.
 - **`rc:` isn't applied:** `CacheService` stores `keyPrefix` and never applies it, so remote-config's Redis keys are unprefixed.
 - **Storefront and business deletes publish no `config_revision`** (config-service `business.controller.ts:181` TODO). Every consumer cache keeps their connectors until TTL. Candidate config-service follow-up.
