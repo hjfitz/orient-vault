@@ -330,3 +330,11 @@
 {"ts": 1794347719, "kind": "programme_tick", "session_id": "0fb571d0-d903-483b-9e8b-1198b51d571f", "programme": "orient Svelte UI", "unit": "U13", "status": "doing"}
 {"ts": 1794388173, "kind": "programme_tick", "session_id": "0fb571d0-d903-483b-9e8b-1198b51d571f", "programme": "orient Svelte UI", "unit": "U13", "status": "done"}
 {"ts": 1794388643, "kind": "programme_tick", "session_id": "0fb571d0-d903-483b-9e8b-1198b51d571f", "programme": "orient Svelte UI", "unit": "W-A1", "status": "doing"}
+{"ts": 1794391480, "kind": "programme_tick", "session_id": "0fb571d0-d903-483b-9e8b-1198b51d571f", "programme": "orient Svelte UI", "unit": "W-A1", "status": "done"}
+{"ts": 1794391483, "kind": "programme_tick", "session_id": "0fb571d0-d903-483b-9e8b-1198b51d571f", "programme": "orient Svelte UI", "unit": "W-A2", "status": "doing"}
+{"ts": 1794391488, "kind": "programme_tick", "session_id": "0fb571d0-d903-483b-9e8b-1198b51d571f", "programme": "orient Svelte UI", "unit": "W-B", "status": "doing"}
+{"ts": 1794391491, "kind": "programme_tick", "session_id": "0fb571d0-d903-483b-9e8b-1198b51d571f", "programme": "orient Svelte UI", "unit": "W-E", "status": "doing"}
+{"ts": 1794392337, "kind": "ledger", "session_id": "396b7315-aa79-43a2-af2d-63d6eb3aac55", "service": "carrier-playground", "ticket": null, "programme": "Selector2", "heading": "## 2026-11-11 \u2014 Expose mock proxy URIs and invoker grants for selector2", "prs": ["ilg-merak/carrier-playground#15"]}
+{"ts": 1794392343, "kind": "programme_tick", "session_id": "396b7315-aa79-43a2-af2d-63d6eb3aac55", "programme": "Selector2", "unit": "A3", "status": "done"}
+{"ts": 1794392732, "kind": "programme_tick", "session_id": "396b7315-aa79-43a2-af2d-63d6eb3aac55", "programme": "Selector2", "unit": "E2", "status": "doing"}
+{"ts": 1794393123, "kind": "ledger", "session_id": "a1c66d35-5bf7-4f34-9d21-dac5ddb5fabe", "service": "parcel-portal", "ticket": null, "programme": "Parcel Portal", "heading": "## 2026-11-11 \u2014 Send the shipment cost so Selector can book a FedEx shipment", "prs": ["ilg-merak/parcel-portal#126"]}
