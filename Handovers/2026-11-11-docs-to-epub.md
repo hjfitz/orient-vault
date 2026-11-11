@@ -25,7 +25,7 @@ The skill must do all of this. Anything missing from `SKILL.md` when you finish 
 7. **Produce and check the EPUB.** Reflowable, custom cover, linked table of contents, consistent chapter and figure formatting, readable code blocks, source notes. Validate it. Preview representative pages at e-reader size. Check the cover, navigation, diagrams and long code blocks in the rendered book.
 
 ## Where things stand
-The tooling exists and works end to end on a fictional example. The prose half of the skill (the workflow in `SKILL.md` and the reference documents) is not written. Nothing is committed and the skill is not yet linked into `~/.claude/skills`.
+The tooling exists and works end to end on a fictional example. The prose half is now written too: `SKILL.md` and seven reference documents, and the skill is linked into `~/.claude/skills` on rc-hjf. Nothing is committed. The tooling and the documents are tested. The workflow in `SKILL.md` has not been run by an agent on a real document set yet.
 
 All paths below are under `~/projects/orient-writers/skills/docs-to-epub/`.
 
