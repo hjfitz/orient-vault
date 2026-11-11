@@ -89,6 +89,7 @@ Checked on the laptop at 2026-11-11T12:26Z, not on the workstation. The laptop h
 - Nothing was installed or copied. The vault itself is in step: this record reached rc-hjf by the vault sync.
 
 ## Gotchas
+- **The skill folder is not in git or the vault.** It is untracked in the laptop's clone of `hjfitz/orient-writers`, and the vault sync carries notes only. A session on another machine finds this record and none of the code. Copy the folder across, or commit it to a branch on Harry's go-ahead, before handing over to another machine. (Found from rc-hjf at 2026-11-11T12:32Z.)
 - **Validators miss layout.** EPUBCheck passed while the images were wrong. Three defects were only visible by opening the PNGs: literal `\n` in Graphviz labels (an escaping bug, fixed with `dlab()`), note text sitting on the box edge in the sequence renderer, and a forced left-to-right layout that shrank the text to 7.7 px. Always read the figure images.
 - **YAML flow mappings need quotes.** A string containing a colon or a comma, such as `{text: returns, no error}`, silently splits or fails. Quote it.
 - **EPUBCheck rules that bit:** `<figcaption>` must be the first or last child of `<figure>`, so the text description (`<details>`) goes after the figure. A source cited twice in one chapter needs unique back-reference ids.
