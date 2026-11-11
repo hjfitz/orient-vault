@@ -8,5 +8,5 @@ status: open
 # Check the docs-to-epub handover on the workstation
 
 ## Outcome
-Ran `session-handover` for the "epub skill" on rc-hjf. The record [[Handovers/2026-11-11-docs-to-epub]] was written on the laptop. The skill folder (`skills/docs-to-epub/`) is untracked there, so it never reached rc-hjf, and rc-hjf also lacks Chrome, Graphviz, Java and the Python libraries the build needs. Updated the record in place (`to:`, Waiting on Harry, On the target, Gotchas) and left it `open`, not `resumed`.
-Owed: Harry's yes on continuing at the laptop (recommended), or on copying the folder to rc-hjf and installing the tooling there.
+Ran `session-handover` for the "epub skill" on rc-hjf. The record [[Handovers/2026-11-11-docs-to-epub]] was written on the laptop. The skill folder (`skills/docs-to-epub/`) is untracked there, so it never reached rc-hjf. Harry chose to continue on rc-hjf and approved the installs. Installed 139 packages by `pacman -U` (Chromium, Graphviz, a JRE, rsync and their dependencies) and four Python libraries by `pip`, and tested each. The system pacman database is stale, so the sync database was left alone. rsync 3.5.2 needed OpenSSL 4 and failed, so rsync is the 3.5.1-3 build from the Arch archive. Record updated in place and left `open`.
+Owed: Harry runs the `rsync` from the laptop (command in the record) to copy the skill folder across. Then a session on rc-hjf resumes the record, creates the `~/.claude/skills/docs-to-epub` symlink and re-runs the example build.
