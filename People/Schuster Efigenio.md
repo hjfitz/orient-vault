@@ -65,6 +65,9 @@ title: Schuster Efigenio
 - ✍️ 
 
 ## Together (newest first)
+- 2026-11-11 — Holds Distraction Duty (FUSE-1314) and five of the sprint's twelve in-progress tickets → [[Digests/2026-11/2026-11-11]]
+- 2026-11-11 — He merged secrets-hub#25, fuse-ui#401 and fapi#186 by hand on 10 Nov at about 13:08 UTC
+- 2026-11-11 — The fuse-ui prod deploy of #401 waits on a terraform-prod gate
 - 2026-11-10 — now holds Distraction Duty (FUSE-1314) after Matt Shaw's reassignment, with five of its PRs still in Matt's name → [[Digests/2026-11/2026-11-10]]
 - 2026-11-03 — merged snap-adapter#311, #313 and #315 yesterday; pkg-node#293 has merge conflicts and FUSE-1302, 1327 and 1328 are all Ready for QA
 - 2026-10-29 — 1:1 at 10:30; FUSE-1302 has two PRs awaiting review (sftp-connector#345, core-infra#16) and FUSE-1328 a fresh Sev 3 draft; new holiday requests for 24 Dec and 29–31 Dec → [[Meetings/1-1 Schuster Efigenio]]

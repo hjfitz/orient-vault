@@ -58,6 +58,8 @@ title: Oli Denton
 - ✍️ 
 
 ## Together (newest first)
+- 2026-11-11 — DM thread settled offsite scheduling and a Thursday catch-up → [[Digests/2026-11/2026-11-11]]
+- 2026-11-11 — The formal strategy conversation is still outstanding, as no source shows it happened
 - 2026-11-06 — DM: wants to go over the formal strategy on Monday and run it past Mulder on Tuesday → [[Digests/2026-11/2026-11-09]]
 - 2026-11-04 — Merak and TCA huddle notes posted in #merak-tech-twats; the 5 Nov 1:1 moves to Thursdays → [[Meetings/1-1 Oli Denton]]
 - 2026-11-02 — Quick catch-up on Mon 2 Nov: backed your SFTP and Ionic handling on condition the data is deleted, agreed a coaching approach with the Bifrost team and to restart regular 1:1s

@@ -17,6 +17,7 @@ comms: "Plain-language, reassurance-first; short, one idea at a time; no jargon 
 
 ## Open loops
 **I owe**
+- [ ] Reply to him and raise the ticket: he wants `identifiers.solLineId` selectable in the pick and pack confirmation line mappings, as on the dispatch confirmation (10 Nov 10:55 UTC, answering my 5 Nov question, with [[Matt Shaw]], [[Tom Dunn]] and Liam Andrews on the thread) — [email](https://outlook.office365.com/owa/?ItemID=AAMkADVhYjUxODIyLWM5NTktNGJmOC1hN2FjLWFjMjllNWUzYmY4MwBGAAAAAAAEXHdKGOMeRLfpaU7ff8ChBwABLsgQpFdPTayXOZTVrraLAAAAAAEMAAABLsgQpFdPTayXOZTVrraLAAHc35JzAAA%3D&exvsurl=1&viewmodel=ReadMessageItem)
 - [ ] Confirm the multi-stores change is in prod — [thread](https://gfsdeliver-eng.slack.com/archives/C0C8Q398DC4/p1793099765390759)
 - [ ] Follow up on the Engraving meta-fields once the ticket exists; I told him I'd update him — [RE: Engraving email](https://outlook.office365.com/owa/?ItemID=AAMkADVhYjUxODIyLWM5NTktNGJmOC1hN2FjLWFjMjllNWUzYmY4MwBGAAAAAAAEXHdKGOMeRLfpaU7ff8ChBwABLsgQpFdPTayXOZTVrraLAAAAAAEMAAABLsgQpFdPTayXOZTVrraLAAHHiU5sAAA%3D&exvsurl=1&viewmodel=ReadMessageItem)
 - [ ] Tell him whether it is ok to replay the fixed Byoma mapping records (carried since 2026-09-22) — [digest](../Digests/2026-10/2026-10-09.md)
@@ -47,6 +48,8 @@ comms: "Plain-language, reassurance-first; short, one idea at a time; no jargon 
   - 2026-09-15 — goods-out Transaction History thread: Harry directed a gentler, no-fault, simpler rewrite. Keep replies short and reassuring, and take extra care with clarity.
 
 ## Together (newest first)
+- 2026-11-11 — Answered my 5 Nov question on 10 Nov: he wants `identifiers.solLineId` in the pick and pack line mappings
+- 2026-11-11 — I have not replied yet, and it is on today's 13:00 sync → [[Meetings/Fuse-Bifrost Weekly Sync]]
 - 2026-11-02 — Asked for a ticket or mapping expression to drop Sistaco's 0-fulfillable virtual-SKU lines; Jack suggested the SKU blacklist on 30 Oct
 - 2026-10-29 — Asked on 27 Oct whether the multi-stores change is deployed to prod; the thread has no reply
 - 2026-10-16 — I answered him on Escentric: one connector per store, now tracked as FUSE-1312

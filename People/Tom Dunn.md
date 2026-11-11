@@ -16,6 +16,7 @@ title: Tom Dunn
 
 ## Open loops
 **I owe**
+- [ ] Watch the Indu go-live on Monday 16 Nov at about 10:00 (ingest schedules off, one order end to end, rollback to JBMQ possible); he forwarded the plan as FYI, no ask of me — [email](https://outlook.office365.com/owa/?ItemID=AAMkADVhYjUxODIyLWM5NTktNGJmOC1hN2FjLWFjMjllNWUzYmY4MwBGAAAAAAAEXHdKGOMeRLfpaU7ff8ChBwABLsgQpFdPTayXOZTVrraLAAAAAAEMAAABLsgQpFdPTayXOZTVrraLAAHc35J5AAA%3D&exvsurl=1&viewmodel=ReadMessageItem)
 - [ ] Reply to his "Works Orders SFTP QA Issues" email (to you and [[Matt Shaw]], 14:51 UTC on 9 Nov, unread): work-order confirmations lack line-level production and expiry dates, and FGR line numbers map to a backend value where he wants the `identifiers.solineId` equivalent. [FUSE-1329](https://globalfreight.atlassian.net/browse/FUSE-1329) (Ready for QA) may cover the first gap and [FUSE-866](https://globalfreight.atlassian.net/browse/FUSE-866) is the same thread — [email](https://outlook.office365.com/owa/?ItemID=AAMkADVhYjUxODIyLWM5NTktNGJmOC1hN2FjLWFjMjllNWUzYmY4MwBGAAAAAAAEXHdKGOMeRLfpaU7ff8ChBwABLsgQpFdPTayXOZTVrraLAAAAAAEMAAABLsgQpFdPTayXOZTVrraLAAHc35JoAAA%3D&exvsurl=1&viewmodel=ReadMessageItem)
 - [x] Reply to his 5 Nov DM: Indu wants to go live next week or the week after pending testing, a channel is being set up, and he is picking up from [[Lee Simmons]]; his "Morning bud" of 6 Nov is also unanswered — replied on Indu on 9 Nov, with no objection to a Monday or Tuesday go-live if testing signs off by Wednesday — [DM](https://gfsdeliver-eng.slack.com/archives/D0AM9957WTS/p1793896444420819)
 - [ ] Review his works-order test (he asks for 2 minutes): his POST to the dev Works Order Ingest API returns 204 and shows in the SNAP host interface but not the Works Orders GUI. He also asks what CT's behaviour has to do with Fuse's API (DM `D0AM9957WTS`) — [Tom's email](https://outlook.office365.com/owa/?ItemID=AAMkADVhYjUxODIyLWM5NTktNGJmOC1hN2FjLWFjMjllNWUzYmY4MwBGAAAAAAAEXHdKGOMeRLfpaU7ff8ChBwABLsgQpFdPTayXOZTVrraLAAAAAAFcAAABLsgQpFdPTayXOZTVrraLAAHMCW1PAAA%3D&exvsurl=1&viewmodel=ReadMessageItem)
@@ -70,6 +71,9 @@ title: Tom Dunn
 - ✍️ 
 
 ## Together (newest first)
+- 2026-11-11 — Indu go-live set for Mon 16 Nov at 10:00, and I said "looks good" in #indu-go-live-2026-11-16 → [[Digests/2026-11/2026-11-11]]
+- 2026-11-11 — He signed testing off on 10 Nov at 13:21 UTC
+- 2026-11-11 — [[Matt Shaw]] raised FUSE-1352 and FUSE-1353 from his work-order QA, both unassigned Sev 3
 - 2026-11-10 — new "Works Orders SFTP QA Issues" email to you and [[Matt Shaw]] with CSVs attached → [[Meetings/1-1 Matt Shaw]]
 - 2026-11-06 — heads-up that Indu wants to go live next week or the week after → [[Digests/2026-11/2026-11-06]]
 - 2026-11-02 — Forwarded Darren Cobby's Q1 Fuse migration timeline to you alone at 09:17 ("FYI mate"); he and Jack are asked to write up the customer-facing technical changes

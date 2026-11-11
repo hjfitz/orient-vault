@@ -25,6 +25,7 @@ title: Oliver Wilders
 - [x] Run the tech-services IaC walkthrough he asked for — held 10:48–11:07 Mon 27 Jul, no canvas, notes typed in the thread
 
 **Owed to me**
+- [ ] FedEx test account is still on sandbox: test runs on Thursday 12 Nov and a live test order next week (his DM, to which I replied on 10 Nov at 16:43 that this is my focus for the week) — [[Digests/2026-11/2026-11-11]]
 - [ ] Real automated SRE guardrails and protected branches — one of the four conditions the teams' looser deploy permissions are contingent on
 - [ ] Step 2 of the agreed sequence: merge #9 and #10, tag the module branch, pin all ten module refs
 - [ ] The link to the PR he flagged for review on 07-13 — I asked for it and it never came
@@ -39,6 +40,9 @@ title: Oliver Wilders
 - ✍️ 
 
 ## Together (newest first)
+- 2026-11-11 — 09:30 Merak Tech Catchup today → [[Digests/2026-11/2026-11-11]]
+- 2026-11-11 — He proposes FedEx test runs on Thursday 12 Nov and a live test order next week
+- 2026-11-11 — He also proposes a CarrierService XML change and a configurable route list
 - 2026-11-04 — Merak and TCA huddle (notes posted by Oli in #merak-tech-twats): Wilders owes me the replacement for Alex's manual database mapping and the redone Google rollout plan → [notes](https://gfsdeliver-eng.slack.com/archives/C0CASK7S4M9/p1793797801500129)
 - 2026-11-02 — 09:30 Merak Tech Catchup today; you still owe him the portal plan, design docs and epic (due 29 Oct)
 - 2026-10-29 — Asked you to take G6–G9 (logins, manifest, printing, view) and a call today; 28 Oct recordings: you owe the plan, design docs and the Jira epic for the US customer UI
