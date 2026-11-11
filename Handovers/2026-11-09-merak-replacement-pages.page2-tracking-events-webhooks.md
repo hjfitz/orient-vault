@@ -25,7 +25,7 @@ These are requirements drawn from ECM's failures. The product decisions stay wit
 
 ## What ECM does well
 
-- **It keeps the carrier's raw code and text beside the derived status.** Every event carries both.
+- **It keeps the carrier's raw code and text on every event.** `raw_tracking.v1` carries them to every consumer. It does not carry the mapped result. Each consumer maps again through its own sidecar and keeps its own result.
 - **It separates exceptions from status.** The deriver rates each shipment RED, AMBER or GREEN, and splits customer-visible events from all events.
 - **It ranks "delivered" first** and reports part-delivered when only some parcels are delivered.
 - **It orders status messages by shipment** on `shipment_tracking_status.v2`.
