@@ -262,6 +262,7 @@ Every merge rolls prod, so never merge while a Deploy run is in flight (Scar tis
 ### Evidence
 <!-- Newest first, dated. One bullet per check actually run, opening with what it discharges.
      "Suite green" alone is not evidence. Sign-off requires at least one dated bullet here. -->
+- 2026-11-11 [deploy] **`2387f18` deployed to dev and prod.** Deploy run 42612553911. The prod plan was image-only (0/1/0, `a97baca` → `2387f18`), so I approved it after checking dev returned 200. Prod revision `00017-47p` serves `2387f18`, the API reads return 200, and neither service has `STORE`/`MONGODB_*` env, so both are still on Firestore. Ingest since the rollout: 1,792 2xx and 0 5xx in 20 min. The superseded `e967e19` run was cancelled.
 - 2026-11-09 [all] **D5 merged to `main` (`2387f18`):** #24 `e967e19`, #25 `42ef319`, #26 `ec51508`, #27 `7945324`, #31 `c9677e8`, #32 `842536a`, #29 `729d15d`, #30 `2387f18`. Each was 14/14 green in CI (`api-mongo` runs the store suite on compose) and reviewed by review-panel before merge.
   - **Review fixes before merge:**
     - #27: the event-doc fallback is pinned by a test that fails with the fallback removed; the concurrent tests start behind a barrier.
