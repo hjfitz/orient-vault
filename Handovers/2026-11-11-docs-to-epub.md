@@ -47,11 +47,10 @@ Nothing is running. No agents or workflows were started for this workstream.
 
 | Work | Where | State | To close it |
 | --- | --- | --- | --- |
-| Re-run the example after three fixes | `scripts/preview.py` (metrics box now hidden; each tile starts at the feature, not a fixed 800 px boundary), `scripts/book.py` (Sources table gets column widths) | The edits are on disk. Whether the rebuild that followed them ran is unknown: Harry interrupted that command | `cd ~/code && B=~/projects/orient-writers/skills/docs-to-epub/scripts/book.py; E=<scratch>/lantern.epub; python3 $B build ~/projects/orient-writers/skills/docs-to-epub/examples/lantern-queue -o $E && python3 $B validate $E && python3 $B preview $E --out <scratch>/lantern-preview` |
-| Judge the preview images one by one | `<scratch>/lantern-preview/` | Only the contact sheet has been read. It showed the cover, contents, callouts, a table and wrapped code all behaving. Still to read at full size: the figure pages (is the sequence diagram's 12 px text legible?), the long code page, the cover thumbnail, the Sources table | Open each PNG with Read. The checks cannot judge legibility or taste |
+| Uncommitted edits to the skill: `scripts/figures.py`, `scripts/book.py`, `assets/book.css` | `~/projects/orient-writers/skills/docs-to-epub/` on rc-hjf, untracked | Made at about 12:48Z and tested (see Closed since handover). The laptop's copy does not have them | Commit only when Harry asks, with explicit paths (see Next up 6) |
 
 ## Next up
-1. **Re-run the example** (command above) and read the page images at full size. Fix anything real.
+1. ~~Re-run the example and read the page images at full size.~~ Done on rc-hjf, see Closed since handover.
 2. **Write `SKILL.md`.** Frontmatter `name: docs-to-epub`, with a `description` that triggers on turning technical documentation (Confluence, orient, a repo, files) into an EPUB or book. Follow the conventions of the `plainly` and `c4-diagrams` skills. The workflow, in order:
    - Intake. Ask for the reader and goal only if they cannot be inferred. Read first.
    - Inventory the sources into `sources.yaml` with versions and dates. Note disagreements.
