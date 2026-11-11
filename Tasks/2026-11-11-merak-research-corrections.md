@@ -1,9 +1,9 @@
 ---
 tags: [adhoc-task]
 date: 2026-11-11
-tldr: "Resumed the Merak replacement-pages handover on rc-hjf and, on Harry's approval, applied three edits to MPK pages: Polling Connectors v12, Tracking Events and Webhooks v4, ECM Platform v3. No feedback was owed. Two optional rewordings wait on a yes or no."
+tldr: "Resumed the Merak replacement-pages handover on rc-hjf and, on Harry's approval, applied four edits to MPK pages: Polling Connectors v12, Tracking Events and Webhooks v5, ECM Platform v3 and the Tracking group page v3. No feedback was owed. Only access-gated answers remain."
 session_id: d94837dd-a7bc-4aac-99e6-6a3f03c9f046
-status: open
+status: done
 ---
 # Apply the owed Merak research corrections
 
