@@ -34,7 +34,7 @@ This block supersedes the older summary below it. The older sections are kept as
 - Vault copies (`page2-tracking-events-webhooks`, `group-ecm-platform`) and [[Systems/ecm/known-context]] match the live pages. Polling Connectors has no vault source copy: the live page is the copy.
 
 **Waiting on Harry (nothing is blocked).**
-- **Two rewordings on Tracking Events and Webhooks, row 1, not applied** because he approved the raw-code fix only. (a) "'Delivered' has at least six definitions": the research counts four in code plus CCIS's own re-derivation, with ICIS unread. Recommended wording: "several definitions: four in code, and CCIS re-derives its own. ICIS is unread". (b) "`tracking-core` ... throws its own mapping away": it stores the mapped result on the parcel and does not publish it. Recommended wording: "keeps its own mapping to itself". One yes or no covers both.
+- Nothing from the 2026-11-11 corrections is outstanding.
 - **Still not applied, and owned by other skills:** the `Engineering/tracking-core` Waypoint docs (90-day expiry, "no retries or dead letters", "up to 100 parcels", the ConfigMap, `agents.md`) and `Engineering/client4/architecture.md` line 106 ("upsert-only").
 - Offered and still unanswered: a draft of the ask to the Selector team for the read-only trigger queries and access to the two unread repos (not drafted, nothing sent); restoring the `REG_WILKO_*` and `JABIL_` procedure names on the Central Firebird page (left out under the no-customer-names rule, though earlier pages name `REG_WILKO_*`).
 - **The Atlassian API token.** On 2026-11-11 Harry allowed the environment's token (`JIRA_API_TOKEN` and `JIRA_API_EMAIL`) for Confluence page moves only, because the MCP update tool needs a whole body to change a parent. It was used for the 18 moves and nothing else. This is not a standing permission: ask again. The 2026-11-11 corrections did not need it, because `updateConfluencePage` accepts `contentFormat: adf`. The two variables are not set in the `rc-hjf` shell.
@@ -139,9 +139,8 @@ In my 2026-11-09 view, two things are not worth writing. More per-service ECM pa
 
 ## Next up
 1. Apply any further feedback on the published pages: live page first, then the vault copy. No verification run was wanted.
-2. Get Harry's yes or no on the two Tracking Events and Webhooks rewordings under "Waiting on Harry", then apply them the same way: ADF through the MCP, then the vault copy `Handovers/2026-11-09-merak-replacement-pages.page2-tracking-events-webhooks.md`.
-3. When any access-gated answer arrives (etcd values, Pub/Sub backlogs, the production trigger list, the Transfer Service `sql/` folder), update [[Systems/ecm/known-context]] and [[Systems/ecm/firebird-change-feed]] first, then the affected pages.
-4. Nothing else is queued. Harry has said no further pages are wanted unless he asks.
+2. When any access-gated answer arrives (etcd values, Pub/Sub backlogs, the production trigger list, the Transfer Service `sql/` folder), update [[Systems/ecm/known-context]] and [[Systems/ecm/firebird-change-feed]] first, then the affected pages.
+3. Nothing else is queued. Harry has said no further pages are wanted unless he asks.
 
 ## How work is done here
 - **Confluence pages:** use the `plainly` skill. British English, no em dashes, sentences of 25 words or fewer, tables for state, security findings at class level only. Publish only when asked.
