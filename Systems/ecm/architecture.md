@@ -2,7 +2,7 @@
 tags:
 - system
 - ecm
-verified: '2026-11-10'
+verified: '2026-11-11'
 title: ecm — architecture
 thesis: "Selector and ECM meet at central Firebird. Either can be replaced on its own if the successor honours Firebird's contract on its side, but the contract is leaky: about 30 procedures write STATUS and nothing in it is versioned. Six seams carry the traffic, and three cut points are options for the Merak team."
 confidence: moderate
@@ -13,10 +13,10 @@ confidence: moderate
 { "v": 1, "bluf": "Selector and ECM meet at central Firebird. Either can be replaced on its own if the successor honours Firebird's contract on its side, but the contract is leaky: about 30 procedures write STATUS and nothing in it is versioned. Six seams carry the traffic, and three cut points are options for the Merak team.", "confidence": "moderate", "action": "A Selector successor must write central SHIPMENTS and publish the create message. An ECM successor must publish raw carrier scans to scanners.consignments.V1." }
 ```
 
-Source: MPK *Selector and ECM Coupling* (354418743), a published draft that no verification run has checked, and its challenge findings [1][2]. Production Firebird triggers were never read. Treat every claim here as `moderate` until they are. G6 and G9 to G14 come from the tracking research of 2026-11-10, with the full account in [[Systems/ecm/tracking]] [4].
+Source: MPK *Selector and ECM Coupling* (354418743), a published draft that no verification run has checked, and its challenge findings [1][2]. Selector's own trigger source was read on 2026-11-11 (`V4-Server-Database` at `82dde6b`, an October 2023 snapshot). The `TRANSFER_QUEUE` triggers and the roughly nine extra production triggers on `SHIPMENTS` were not, and no production trigger text has been read. Treat every claim here as `moderate` until it is. G6 and G9 to G14 come from the tracking research of 2026-11-10, with the full account in [[Systems/ecm/tracking]] [4]. G15 to G18 come from the trigger research of 2026-11-11, in [[Systems/ecm/firebird-change-feed]] [5].
 
 ## Guardrails
-- [contract:G1] Firebird is the seam. A successor honours its side. A Selector successor writes central `SHIPMENTS` for billing and publishes the create message for ECM. An ECM successor publishes raw carrier scans to `scanners.consignments.V1`. - paths: Firebird Transfer Service sql, node-modernizer src/translators/shipment-translator.js, patina-service-2 ReadMe.md, gfs-pipelines FIREBIRD_DDL/procedures.sql
+- [contract:G1] Firebird is the seam. A successor honours its side. A Selector successor writes central `SHIPMENTS` for billing and publishes the create message for ECM. An ECM successor publishes raw carrier scans to `scanners.consignments.V1`. Selector's trigger source is readable, but the queue triggers behind the Transfer Service are not (G15 to G18). - paths: Firebird Transfer Service sql, node-modernizer src/translators/shipment-translator.js, patina-service-2 ReadMe.md, gfs-pipelines FIREBIRD_DDL/procedures.sql
 - [contract:G2] ECM forwards the carrier's raw code, and Firebird derives the status. `GET_SCAN_CODE` maps the code. An unknown code becomes status 207 (202 for DPD and Interlink code 17). Never send ECM's own derived status. - paths: gfs-pipelines FIREBIRD_DDL/procedures.sql, patina-service-2 ReadMe.md
 - [technical:G3] `gfs-modernizer` rejects a shipment whose carrier is not in the almanac. It nacks, Pub/Sub redelivers, and nothing dead-letters it. A new carrier needs an almanac entry first. - paths: node-modernizer src/message-handlers/helpers.js, src/window-processor.js
 - [technical:G4] A tracking source must set `id`, `parcel.shipmentId`, `parcel.parcelNumber` and `parcel.company`. Each publisher mints its own event ID and consumers dedupe on it alone, so one scan from two sources lands twice. No `raw_tracking.v1` publisher sets an ordering key. - paths: tracking-core ConnectorResponseHandler.cs, tracking-webhooks packages/tracking-webhook-core
@@ -30,6 +30,10 @@ Source: MPK *Selector and ECM Coupling* (354418743), a published draft that no v
 - [technical:G12] `shipment-update-service` publishes a synthetic `GFS_DELIVERED_EVENT` to `raw_tracking.v1` with no `id` and no `parcel.company`. `connect-hooks` drops it for the missing company. The vault states that the customer and internal consignment information services (CCIS and ICIS) skip an event with no id, and no report read that. Any manual delivered route needs an event those consumers accept. - paths: shipment-update-service src/api/routes/mark-as-delivered.js, connect apps/connect-hooks/src/tracking-handler.js
 - [contract:G13] The customer webhook re-maps the raw event and never carries the derived status. It folds `ATTEMPTED`, `HELD_AT_BRANCH` and `PARTIALLY_DELIVERED` into `IN TRANSIT`, and `carrierEventTime` holds the received time. Firebird sees only the raw carrier code. The group-to-display mapping and the raw-code write-back are both contracts. - paths: connect apps/connect-hooks/src/derive-status.js, apps/connect-hooks/src/tracking-handler.js, tracking-patina-service src/patina.js
 - [operational:G14] Polling is per carrier and state, with one `TargetPollingMinutes` scalar and no age term. The lease is a Mongo `FindOneAndUpdate` in batch-creator, oldest `lastRequestedAt` first. A carrier error gets no retry, and only a credentials error pauses a contract. Prod values sit in etcd and are unread. - paths: tracking-core Shared/DataAccess/ActiveParcelRepository.cs, ResponsePublisher/Services/V1/ErrorResponseHandler/ErrorResponseHandler.cs, Frameworks.Connector/Tracking/Batch/BatchRequestManager.cs
+- [contract:G15] Central `SHIPMENTS` and `SHIP_PIECES` inserts and updates are the source of ECM's first event. A Selector successor must produce them the way `REG_SHIPMENTS` and `REG_SHIP_ITEMS` do: a plain `INSERT` for a new consignment, and a repeat that differs on key fields goes to `RECYCLE_SHIPS`. The change feed reacts to row writes, so a different write path changes what ECM sees. CONFIRMED in source at `82dde6b` and `5773b8e`; production triggers unread. - paths: V4-Server-Database Updates/update_284.sql (REG_SHIPMENTS), Updates/update_285.sql (SHIPMENTS_AI2), V4-Server-UploadServer uplConst.pas
+- [technical:G16] Two change feeds may leave central Firebird. One is the Firebird Transfer Service, which polls `TRANSFER_QUEUE` and publishes `fb.<table>.v1`. The other is the `UPLOAD_2_GCP` event that `SHIPMENTS_AI2` posts on every shipment insert, read by a publisher named `GFSPublisher`. Only the first is evidenced live: Datadog shows 3,022,807 rows in 15 days, and no data at all for the second. The `TRANSFER_QUEUE` trigger text and the `GFSPublisher` source are unread (STATED by Confluence 206274620 and the Tech Services vault). - paths: V4-Server-Database Updates/update_285.sql, Firebird Transfer Service sql (unread), V6 GFSPublisher (unread)
+- [operational:G17] Scripts switch triggers on and off in production (`ALTER TRIGGER ... INACTIVE` and `ACTIVE`), so the October 2023 source snapshot may not match production. The Test replica showed about 25 triggers on `SHIPMENTS` against 16 in source (STATED, vault). Read `RDB$TRIGGERS` before treating any trigger as live. - paths: V4-Server-Database Updates/update_210.sql, update_386.sql, update_388.sql
+- [technical:G18] The roughly 1.8 updates per new shipment on `fb.shipments.v1` come from later status writes, not from upload. An upload inserts once and does not update `SHIPMENTS` in the branch read. Scan procedures, the Scan Injector and `CHECK_SHIP_STATUS` write status afterwards, and some unread filter passes them. The 1.8 figure is STATED by an earlier session and not re-read. The source is ASSESSED. - paths: V4-Server-Database Updates/update_284.sql, Firebird Transfer Service sql/4_fts_doppelganger_updates_3.sql (unread this session)
 
 ## Firebird as the seam
 
@@ -59,7 +63,7 @@ The seams form a loop. ECM scans change Firebird rows, and those changes flow ba
 
 | Seam | Runs from and to | What crosses |
 | --- | --- | --- |
-| 1. Shipments | Selector to Firebird to ECM | `fb.shipments.v1`, then `shipments.v2`, then `shipments.v2.identified` |
+| 1. Shipments | Selector to Firebird to ECM | `fb.shipments.v1`, then `shipments.v2`, then `shipments.v2.identified`. Two candidate change feeds, see G16 |
 | 2. Scans and status | ECM to Firebird | `scanners.consignments.V1`, then the status procedures. Selector's IE service is a second writer |
 | 3. Manual changes | Portals and agents to Firebird | Mark as deleted or delivered (100, 1003), status changes, tickets, comments, collections |
 | 4. Reference data | Firebird to ECM | Customers, contracts, carriers and products as `fb.*` feeds. Manager writes the tables behind them. Carrier credentials cover six carriers |
@@ -71,7 +75,7 @@ The seams form a loop. ECM scans change Firebird rows, and those changes flow ba
 **Why it is a weak seam:**
 - About 30 procedures write `STATUS`, from commit and legacy scanners to the portals.
 - Some columns carry more than one meaning, so `node-modernizer` hard-codes carrier rules.
-- The December 2025 dump holds no triggers, and nobody has read the production ones.
+- The December 2025 dump holds no triggers. Selector's source triggers are readable (Oct 2023), and nobody has read the production ones or the queue triggers.
 - Nothing in the feeds or the procedures is versioned.
 - No team owns `patina-service-2` or the Scan Injector.
 
@@ -108,6 +112,7 @@ The first three come from a December 2025 dump of the central procedures. The li
   { "id": 1, "kind": "doc", "ref": "Confluence MPK 354418743 Selector and ECM Coupling (draft, unverified); Handovers/2026-11-09-merak-replacement-pages.page1-selector-ecm-coupling.md" },
   { "id": 2, "kind": "doc", "ref": "Handovers/2026-11-09-merak-replacement-pages.md (cleanup pass) and page1-challenge-findings.md: Slipway shipment.mapper.ts and usv2export.service.ts at f604bdd, Selector V4-Server-IE/Source/uSQL.pas, node-modernizer shipment-translator.js, patina-service-2 ReadMe.md, gfs-pipelines FIREBIRD_DDL/procedures.sql" },
   { "id": 3, "kind": "doc", "ref": "ADO GFS POD master d1f0ada src/config.js, src/pod-service/ukmail-service.js, src/pod-service/dpdlocal-service.js; prod-uk1-primary-cluster deploy/k8s/pod-server/pod-service.yaml (read 2026-11-09)" },
-  { "id": 4, "kind": "doc", "ref": "Systems/ecm/tracking.md and its three research copies in Handovers/ (tracking-core c0811087, deriver a3dc446, connect 6c6d527, shipment-update-service ccec388, prod cluster a317dc0; read 2026-11-10)" }
+  { "id": 4, "kind": "doc", "ref": "Systems/ecm/tracking.md and its three research copies in Handovers/ (tracking-core c0811087, deriver a3dc446, connect 6c6d527, shipment-update-service ccec388, prod cluster a317dc0; read 2026-11-10)" },
+  { "id": 5, "kind": "doc", "ref": "Systems/ecm/firebird-change-feed.md and its two research copies in Handovers/ (Selector V4-Server-Database 82dde6b, V4-Server-UploadServer 5773b8e; Datadog 2026-10-23 to 2026-11-07; read 2026-11-11)" }
 ] }
 ```

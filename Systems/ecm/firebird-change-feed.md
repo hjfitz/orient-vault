@@ -13,16 +13,16 @@ confidence: moderate
 { "v": 1, "bluf": "Two change feeds may leave central Firebird for GCP, and only one is evidenced live. The Firebird Transfer Service moved 3.0M rows in 15 days, but the triggers that fill its queue are in no source we can read. The other feed, an UPLOAD_2_GCP event on every shipment insert, has a confirmed trigger and an unread publisher.", "confidence": "moderate", "action": "Get the trigger text from a Firebird admin or from the Transfer Service repo before a replacement relies on any trigger. Harry decides who is asked." }
 ```
 
-Source: read-only research of 2026-11-11 [13][14]. Code was read in Selector's `V4-Server-Database` at `82dde6b` (an October 2023 snapshot, so production may differ) and `V4-Server-UploadServer` at `5773b8e` [1][5]. Descriptions of the Transfer Service come from Confluence 206274620 and the Tech Services knowledge vault [8][9]. No database or host was contacted. Confidence is `moderate` because no production trigger text has been read. Harry asked for orient first. A Confluence page may follow, and none exists.
+Source: read-only research of 2026-11-11 [13][14]. Code was read in Selector's `V4-Server-Database` at `82dde6b` (an October 2023 snapshot, so production may differ) and `V4-Server-UploadServer` at `5773b8e` [1][5]. Descriptions of the Transfer Service come from Confluence 206274620 and the Tech Services knowledge vault [8][9]. The research contacted no database or host. Confidence is `moderate` because no production trigger text has been read. Harry asked for orient first. A Confluence page may follow, and none exists.
 
 Terms: a trigger is SQL that Firebird runs when a row changes. DDL is the SQL that defines an object, here a trigger. `POST_EVENT` signals clients that listen to Firebird. DBA is database administrator. `fb.*` are the Pub/Sub topics of the form `fb.<table>.v1`.
 
 ## Short answers
-- **CONFIRMED** Selector's source holds 16 triggers on `SHIPMENTS` and 10 on `SHIP_PIECES`. None is dropped later, and none writes a queue row for the `fb.*` feed [1][2].
+- **CONFIRMED** Selector's source holds 16 triggers on `SHIPMENTS` and 10 on `SHIP_PIECES`. No later script drops one, and none writes a queue row for the `fb.*` feed [1][2].
 - **CONFIRMED** `SHIPMENTS_AI2` posts the event `UPLOAD_2_GCP` after every shipment insert [1].
 - **UNKNOWN** The text of every `TRANSFER_QUEUE` trigger. The word appears nowhere in the Selector source [1]. The Tech Services vault named the queue and its triggers from a metadata read of the Test replica [9].
 - **CONFIRMED** The Firebird Transfer Service is live in production and busy: 3,022,807 rows in the window [10].
-- **UNKNOWN** Whether the second feed runs. Datadog holds no data under its names. That does not prove it is stopped [10].
+- **UNKNOWN** Whether the second feed runs. Datadog holds no data under its names, which does not prove the service has stopped [10].
 - **CONFIRMED** An upload inserts a new consignment with a plain `INSERT`, so every after-insert trigger fires [3][5].
 
 ## What you can read and what you cannot
@@ -36,6 +36,7 @@ Terms: a trigger is SQL that Firebird runs when a row changes. DDL is the SQL th
 | The Transfer Service polls `TRANSFER_QUEUE` and publishes `fb.<table>.v1` | STATED (Confluence, vault). Live in Datadog | [8][9][10] |
 | The push to Pub/Sub starts from the main Firebird, not from Client4, CSS or a site database | STATED (a Selector team member, 4 Nov 2026, paraphrased) | [12] |
 | `GFSPublisher` listens for `UPLOAD_2_GCP` and walks `SHIP_PUBLISHED` through 0, 1, 2 | STATED (vault). Its source is unread | [9] |
+| Trigger DDL on any Confluence page found by search | CONFIRMED absent | [14] |
 | Text of the `TRANSFER_QUEUE` triggers | UNKNOWN | [1][9] |
 | About 9 extra production triggers on `SHIPMENTS`, and any extra on `SHIP_PIECES` | UNKNOWN | [1][9] |
 | Whether `SHIPMENTS_AI2` and the queue triggers are active in production | UNKNOWN | [1] |
@@ -69,28 +70,28 @@ Terms: a trigger is SQL that Firebird runs when a row changes. DDL is the SQL th
   ] }
 ```
 
-**Feed A: the Firebird Transfer Service.**
+### Feed A: the Firebird Transfer Service
 - **CONFIRMED** The service is live. Datadog shows its metrics and logs on one production host, with the latest log line at 2026-11-11T11:04Z [10].
 - **ASSESSED** It polls a queue, reads each row's table data, publishes, then deletes the queue row. The metric names say so, and select and delete counts match (100,435 and 100,079) [10].
-- **CONFIRMED** Confluence 206274620 states the output. The envelope is `{published_timestamp, event_type, event_timestamp, data, meta}`. `event_type` is INSERT, UPDATE or DELETE [8].
-- **CONFIRMED** `SHIPMENTS` carries `SHIPMENT_EXTRA` as a joined object. One message goes out per table row [8].
+- **ASSESSED** Confluence 206274620 states the output (**STATED**, and its author read the repo config). The envelope is `{published_timestamp, event_type, event_timestamp, data, meta}`. `event_type` is INSERT, UPDATE or DELETE [8].
+- **ASSESSED** The same page states that `SHIPMENTS` carries `SHIPMENT_EXTRA` as a joined object, and that one message goes out per table row [8].
 - **UNKNOWN** Which triggers fill `TRANSFER_QUEUE`. The vault names `CUSTOMERS_AI1` and says the triggers write `(ROW_IDS, TABLE_NAME, EVENT_TYPE)` [9].
 
-**Feed B: the `UPLOAD_2_GCP` event.**
+### Feed B: the `UPLOAD_2_GCP` event
 - **CONFIRMED** `SHIPMENTS_AI2` posts `UPLOAD_2_GCP` after every shipment insert. `update_285` also adds `SHIP_PUBLISHED`, `PUBLISH_OBJ` and `PUBLISH_DATE`, and sets every existing row to 2 [1].
 - **UNKNOWN** Who reads the event. The vault names `GFSPublisher`, a .NET Framework service in the ADO repo `V6`. Nobody has read that source this year [9].
 - **UNKNOWN** Whether Feed B runs beside Feed A, replaced by it, or never ran in this form. The 0, 1, 2 state machine lives in the publisher, because nothing in the source writes those values [1].
 
 ## How an upload reaches the feed
-- **STATED** A Selector team member says uploads consolidate site data into the main Firebird, and the push starts there [12].
+- **ASSESSED** A Selector team member says (**STATED**) that uploads consolidate site data into the main Firebird, and that the push starts there [12].
 - **CONFIRMED** The upload server calls `REG_SHIPMENTS` per shipment and `REG_SHIP_ITEMS` per parcel. It issues no direct `UPDATE shipments` [5].
 - **CONFIRMED** `REG_SHIPMENTS` does a plain `INSERT` when the consignment is absent. Every after-insert trigger fires, `SHIPMENTS_AI2` included [3].
 - **CONFIRMED** A repeat upload does not update `SHIPMENTS` in the branch read. The procedure copies the old row to `RECYCLE_SHIPS` only when key fields differ [3].
 - **UNKNOWN** The recycle, swap and carrier branches were not read line by line. `delete from shipments` appears only in the swap-consignment branch of `REG_SHIP_ITEMS` [4].
 - **UNKNOWN** Whether a delete, replace or rename reaches `fb.shipments.v1` as a DELETE. That depends on trigger text we cannot read.
-- **STATED** An earlier session read about 1.8 updates per new shipment on the topic from `sql/4_fts_doppelganger_updates_3.sql` in the Transfer Service repo. This session could not re-read it, so the figure stays stated.
+- **ASSESSED** An earlier session reported (**STATED**, not re-read) about 1.8 updates per new shipment, from `sql/4_fts_doppelganger_updates_3.sql` in the Transfer Service repo. This session could not re-read that file.
 - **ASSESSED** Upload alone makes one insert per shipment and one per parcel, so those updates come from later status writes. Scan procedures, the Scan Injector and `CHECK_SHIP_STATUS` write status. Some filter then lets them through, and that filter is the unread part [3].
-- **ASSESSED** Feed A moved 1,715,298 `SHIPMENTS` rows against 674,672 new shipment IDs, which is 2.5 rows per new shipment [10]. That is near one insert plus 1.8 updates, but the two counts come from different stages.
+- **ASSESSED** Feed A moved 1,715,298 `SHIPMENTS` rows against 674,672 new shipment IDs, which is 2.5 rows per new shipment [10][15]. That is near one insert plus 1.8 updates, but the two counts come from different stages.
 
 ## Triggers in the Selector source
 Full catalogue with files: research copy [[Handovers/2026-11-09-merak-replacement-pages.firebird-triggers-findings]], section 4. The rows below are the ones that matter to a change feed.
@@ -124,23 +125,23 @@ Window: 2026-10-23 to 2026-11-07 UTC (15 days), production. Source: [[Handovers/
 - **CONFIRMED** Feed A is live. Its rows include `shipments` and `ship_pieces`, which are 79.6% of the total [10].
 - **UNKNOWN** The mix of insert, update and delete. No metric carries an event type or a topic tag [10].
 - **ASSESSED** Feed A produces the `fb.*` topics. Five small tables match the modernizer's input counts exactly: carriers 36, customers 36, contracts 420, contract services 458 and products 43 [10].
-- **UNKNOWN** The modernizer received 1,906,654 shipment messages, 11.2% more than Feed A's 1,715,298. Parcels show 14.2% more. Slipway also publishes to `fb.shipments.v1`, so that may explain part of it. **ASSESSED** is the most this supports [10].
+- **UNKNOWN** Why the modernizer received 1,906,654 shipment messages, 11.2% more than Feed A's 1,715,298. Parcels show 14.2% more. INFERRED, not shown: existing notes say Slipway also publishes to `fb.shipments.v1`, which may explain part of it [10].
 - **UNKNOWN** The `fb.shipments.v1` volume itself. No Pub/Sub topic metric exists for `fb.*` [10].
 - **UNKNOWN** Whether Feed B runs. No `gfs.legacy-publisher.*` metric exists and no indexed log carries `GFSPublisher` or `UPLOAD_2_GCP`. The service may report nowhere [10].
 - **CONFIRMED** Five Datadog monitors cover Feed A, all in state OK (one muted). None covers a legacy publisher [10].
 
 ## Gaps
-1. The text of every `TRANSFER_QUEUE` trigger. It is in no readable repo. The likeliest home is the `sql/` folder of the Firebird Transfer Service repo (ADO project GFS Legacy Migration, commit `8569227`). The ADO tools could not reach it.
-2. The 9 or so extra production triggers on `SHIPMENTS`, and any extra on `SHIP_PIECES`.
-3. The live Transfer Service config: tables, topic names, project, poll interval, batch size.
-4. The `GFSPublisher` code in ADO repo `V6`, and whether it runs.
-5. Whether `SHIPMENTS_AI2` and the queue triggers are active in production.
-6. Delete capture, ordering, batching and resume in the Transfer Service.
-7. The topic naming gap: config says `fb.<x>.v1.prod` in project `gfs-ecm`, and Terraform says `fb.<x>.v1` in `gfs-ecm-prod-uk1`.
-8. Repo SQL is not proof of what runs. Only a read of `RDB$TRIGGERS` settles that.
+1. **UNKNOWN** The text of every `TRANSFER_QUEUE` trigger. It is in no readable repo. The likeliest home is the `sql/` folder of the Firebird Transfer Service repo (ADO project GFS Legacy Migration, commit `8569227`). The ADO tools could not reach it.
+2. **UNKNOWN** The 9 or so extra production triggers on `SHIPMENTS`, and any extra on `SHIP_PIECES`.
+3. **UNKNOWN** The live Transfer Service config: tables, topic names, project, poll interval, batch size.
+4. **UNKNOWN** The `GFSPublisher` code in ADO repo `V6`, and whether it runs.
+5. **UNKNOWN** Whether `SHIPMENTS_AI2` and the queue triggers are active in production.
+6. **UNKNOWN** Delete capture, ordering, batching and resume in the Transfer Service.
+7. **UNKNOWN** The topic naming gap: config says `fb.<x>.v1.prod` in project `gfs-ecm`, and Terraform says `fb.<x>.v1` in `gfs-ecm-prod-uk1`.
+8. **CONFIRMED** Repo SQL is not proof of what runs. Only a read of `RDB$TRIGGERS` settles that.
 
 ## DBA ask list
-**Harry decides who is asked. Nothing has been sent.** The queries below are read-only. Copied from the findings file, section 7.
+**Harry decides whom to ask. This research sent nothing to anyone.** The queries below are read-only. Copied from the findings file, section 7.
 
 ```sql
 -- 1. Every user trigger, with type and active flag
@@ -187,13 +188,13 @@ Questions for the DBA and the service owners:
 
 ## What a replacement must keep
 These are facts the evidence shows, not a recommendation. The guardrails are G15 to G18 in [[Systems/ecm/architecture]].
-- The central `SHIPMENTS` and `SHIP_PIECES` writes are ECM's first event. A successor writes them the way the registration procedures do.
-- The 1.8 updates per new shipment come from status writes after upload. A successor that changes status behaviour changes what the topic carries.
-- Triggers may be switched on and off by scripts, so the source snapshot is a lead, not a record.
+- **ASSESSED** The central `SHIPMENTS` and `SHIP_PIECES` writes are ECM's first event. A successor writes them the way the registration procedures do [3][5].
+- **ASSESSED** The 1.8 updates per new shipment come from status writes after upload. A successor that changes status behaviour changes what the topic carries.
+- **ASSESSED** Scripts switch triggers on and off, so the source snapshot is a lead, not a record [7].
 
 ## Research copies
-- [[Handovers/2026-11-09-merak-replacement-pages.firebird-triggers-findings]]: artifacts, the trigger catalogue, the two feeds, consolidation, gaps, queries.
-- [[Handovers/2026-11-09-merak-replacement-pages.firebird-feeds-datadog]]: metric discovery, Feed A totals, Feed B no-data, cross-check, monitors, re-run snippet.
+- **CONFIRMED** [[Handovers/2026-11-09-merak-replacement-pages.firebird-triggers-findings]] holds: artifacts, the trigger catalogue, the two feeds, consolidation, gaps, queries.
+- **CONFIRMED** [[Handovers/2026-11-09-merak-replacement-pages.firebird-feeds-datadog]] holds: metric discovery, Feed A totals, Feed B no-data, cross-check, monitors, re-run snippet.
 
 ## Evidence
 ```orient-evidence
@@ -211,6 +212,7 @@ These are facts the evidence shows, not a recommendation. The guardrails are G15
   { "id": 11, "kind": "doc", "ref": "Handovers/2026-11-09-merak-replacement-pages.firebird-feeds-datadog.md (research copy, 2026-11-11)" },
   { "id": 12, "kind": "doc", "ref": "Slack direct message from a Selector team member, 2026-11-04 (paraphrased, text not reproduced)" },
   { "id": 13, "kind": "doc", "ref": "Handovers/2026-11-09-merak-replacement-pages.firebird-triggers-findings.md (research copy, 2026-11-11)" },
-  { "id": 14, "kind": "doc", "ref": "Confluence 67633184 Firebird - Incremental Extraction Analysis (Data Solutions, 2025-12-08): extraction by query, no trigger DDL" }
+  { "id": 14, "kind": "doc", "ref": "Confluence search across spaces for TRANSFER_QUEUE, POST_EVENT, CREATE TRIGGER and GFSPublisher found no trigger DDL. Closest: 67633184 Firebird - Incremental Extraction Analysis (Data Solutions, 2025-12-08), extraction by query" },
+  { "id": 15, "kind": "doc", "ref": "Systems/ecm/known-context.md, canonical figures: 674,672 new shipment IDs, gfs.shipment_identity_service.ids_created, same window" }
 ] }
 ```
