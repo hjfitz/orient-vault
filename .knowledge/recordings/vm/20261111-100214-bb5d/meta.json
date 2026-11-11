@@ -1,0 +1,25 @@
+{
+  "id": "20261111-100214-bb5d",
+  "title": "Bifrost Team Standup",
+  "status": "transcribing",
+  "startedAt": "2026-11-11T10:02:14.709402607Z",
+  "endedAt": "2026-11-11T10:17:19.009893496Z",
+  "sources": {
+    "me": [
+      "JLAB TALK MICROPHONE Analog Stereo"
+    ],
+    "them": [
+      "Nightly",
+      "Slack",
+      "speech-dispatcher-dummy"
+    ]
+  },
+  "call": false,
+  "host": "vm",
+  "capturedOn": "laptop",
+  "received": {
+    "sha256": "eb7cfab1df6a7a7249a90284cd7fe763d86afb9449c16d1e12eef4f4a05fafcf",
+    "bytes": 24656296,
+    "at": "2026-11-11T10:17:24.185993498Z"
+  }
+}
