@@ -131,8 +131,8 @@ Seven PRs, stacked in this order: 1a → 1b → 2+3 → 4a → 4b → 5a → 5b.
 
 ### Not verified
 <!-- Stated, not papered over. "(none)" is a deliberate claim, and a fine one. -->
-- AC 8, the booking half for orders with more than one parcel: a two-parcel FedEx booking fails inside Selector (0030, index out of range) for every service on the TCA test endpoint, even with the cost block. Single-parcel booking is verified (see Evidence, 11 Nov). A real FedEx shipment cannot be made on that endpoint, which only reaches a mock.
-- Which package codes are valid for TCA's FedEx account (`YP` is the sandbox login's). Oliver Wilders.
+- AC 8, the booking half for orders with more than one parcel: a two-parcel FedEx booking fails inside Selector (0030, index out of range) for every service on the TCA test endpoint, even with the cost block. Single-parcel booking is verified (see Evidence, 11 Nov). A real FedEx shipment cannot be made on that endpoint, which only reaches a mock. Oliver Wilders (11 Nov): no live TCA FedEx booking has more than one parcel yet, and he expects TCA to test multi-parcel soon. He was sent a minimal repro and asked for a stack trace; no reply as of 11 Nov. The fallback, undecided, is one shipment per parcel, which makes an order hold several shipments.
+- FIP, FPON and FSON booking through the portal. Oliver's live TCA responses carry `YOUR` on all six services (see Evidence, 11 Nov) and dev uses it, but those three booked only in replays on the mock.
 - That the test carrier staying ungated is what Harry wants. Gate on PR #118.
 - The unconfirmed FedEx built-in guesses read "unlisted" on a restricted account: stated, not exercised against a real FedEx account.
 
