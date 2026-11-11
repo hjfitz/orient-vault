@@ -61,7 +61,7 @@ Legend: ⬜ not started · 🟨 in progress · ✅ merged · ⛔ blocked · ⏸ 
 | **W-E** | ✅ | Prod: health, incidents, support, maintenance, soaks, monitors, availability | W-A1 | low | sonnet/low | 6436f67, 8a4585f | |
 | **W-F** | ✅ | Meetings, recordings, Slack, haude | W-A1 | med | sonnet/medium | f2a58f2..af51670 | Recordings: 14 actions, audio player, relay. |
 | **W-G** | ✅ | History, usage, analytics, focus, puzzles | W-A1 | med | sonnet/medium | 6ea2c81..d486509 | History access gate and redaction; chessground. |
-| **Retire** | ⬜ | Remove Next, React, `src/components` | W-A2, W-B, W-C, W-D1, W-D2, W-E, W-F, W-G | med | sonnet/medium | | Drop deps, `renderDocument.tsx`, `orient-web` from install-units; rewrite CLAUDE.md invariants. |
+| **Retire** | ✅ | Remove Next, React, `src/components` | W-A2, W-B, W-C, W-D1, W-D2, W-E, W-F, W-G | med | sonnet/medium | 29b560e..6445727 | Drop deps, `renderDocument.tsx`, `orient-web` from install-units; rewrite CLAUDE.md invariants. |
 
 ## Spike budgets
 U5 filled the Svelte and Pass? columns on 2026-11-10; **re-run after 8d3fc67** (`bench/results/svelte-today-8d3fc67.json`, two runs; the first pass, `svelte-today.json`, failed DOM, 1× LoAF and 4× keypress). All must hold for G1. Baseline measured by U0 on 2026-11-10 (two runs, medians within 10%; `bench/baseline.json`, ecc94c7). Note: Next's interaction **p75 already meets the budget** — the lag is navigation (845 ms), data (732 ms) and long frames (max 192 ms, LoAF 144 ms), so for G1 the max/LoAF and navigation rows carry the weight. Event Timing floors at 16 ms.
