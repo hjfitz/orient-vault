@@ -1,7 +1,7 @@
 ---
 tags: [handover]
 status: resumed
-workstream: Parcel Portal programme — per-account Selector services shipped; FedEx booking fixed on dev (single parcel); debug MCP (#128) to land; multi-parcel booking open with Selector (Oliver Wilders)
+workstream: Parcel Portal programme — per-account Selector services shipped; FedEx booking fixed on dev (single parcel); debug MCP (#128) merged; multi-parcel booking open with Selector (Oliver Wilders)
 programme: Parcel Portal
 repo: ilg-merak/parcel-portal
 from: laptop
@@ -13,14 +13,14 @@ updated: 2026-11-11T12:57Z
 # Handover: Parcel Portal (laptop → workstation)
 
 ## Where things stand
-Dev runs main at `7628c78` (#127) for svc, ui and gateway, in project `ilg-merak-dev-b5e3`, us-central1, checked 12:20Z and again from the VM at 12:21Z. **Prod is held at D1.** Every parked deploy run is for a sha on main and none is approved or ever to be. Migrations are at **018** and the portal contract is **5.12.0**. Earlier history is in [[Handovers/2026-11-03-parcel-portal]]. Confluence write-up of the Selector work: Merak Project page 357007366.
+Dev runs svc and gateway at `2938b41` (#128) and ui at `7628c78` (#127), all Ready, in project `ilg-merak-dev-b5e3`, us-central1, checked 12:56Z from the VM. **Prod is held at D1.** The newest parked run, 43024078471, is for `2938b41` and waits at `docker-push-prod`. Older parked runs show cancelled once a newer run arrives. None is approved or ever to be. Migrations are at **018** and the portal contract is **5.12.0**. Earlier history is in [[Handovers/2026-11-03-parcel-portal]]. Confluence write-up of the Selector work: Merak Project page 357007366.
 
 | Unit | What it delivered | PRs | State |
 | --- | --- | --- | --- |
 | Per-account Selector services list | Table, API, enforcement, save-time check, status fields, UI card, methods editor | #116 #118–#123 | ✅ On dev |
 | Booking fixes found driving dev | Shipment goods description; Selector's own fault text in logs; the shipment-level `Cost` Selector's FedEx booking needs | #124 #125 #126 | ✅ On dev. Single-parcel FedEx books on FGR, FGHD and FIGR (mock; no real FedEx shipment) |
 | Debug MCP, dev access | `debug_invokers` grants `roles/run.invoker` on svc in dev only (prod ignores it) | #127 | ✅ Merged 7628c78 |
-| Debug MCP | `apps/svc/cmd/debug-mcp`, 20 tools, dev only | #128 | 🔶 Open at `23bae6e`. One red check, a false positive in the secret scan, waits on Harry: see In flight |
+| Debug MCP | `apps/svc/cmd/debug-mcp`, 20 tools, dev only | #128 | ✅ Merged `2938b41` (12:52Z). A local tool, not part of the deployed images |
 | C22 incs 1–4, C23–C25, scans, SHIP-1110 | Label preview, panel and batch-result fixes, runtime-image ignores, test-carrier switch | #106–#115 | ✅ On dev. C22 inc 5 waits on Harry; SHIP-1110 inc 6 still owed |
 
 ## In flight
@@ -40,7 +40,7 @@ Dev runs main at `7628c78` (#127) for svc, ui and gateway, in project `ilg-merak
 - **Prod D1** is unchanged: held until G7 (Oli Denton), the customer's SFTP key and the customer gates.
 
 ## Next up
-1. Land #128 and the owed records (In flight).
+1. *(Done at 12:52Z, see Closed: #128 landed and the owed records written.)*
 2. **Rebuild the platform runtime images** `go-runtime` and `node24-runtime` (ilg-platform, with a patched `datadog-init` and `zlib1g` `+deb13u1`) **before 16 Nov**. Otherwise `.trivyignore.yaml`'s entries expire and every container scan goes red again. Needs Harry's go (another repo).
 3. **C26–C33**, the small fixes found in the C23–C25 sweeps. `wp programme status "Parcel Portal"` says next: C26, C27, C28, C29. Each row in `Bifrost/Parcel Portal/Migration State.md` carries its cause and file:line.
 4. **C20** acting-as clearer Settings: plan `acting-as-clearer-settings`, active, not started. It's meant to follow C19.
@@ -103,7 +103,10 @@ Checked 12:20Z over SSH, names only:
 ## Closed since handover
 | When (UTC) | Work | Result |
 | --- | --- | --- |
-| 2026-11-11 12:43 | Owed records after #128 | Confluence 357007366 at version 5 (the #127 row, the one-parcel FGHD booking, Oliver's answers). The plan's Not verified section brought up to date; its evidence already had the re-pack. The ledger already had #127 and #128. PR #128's body Evidence rewritten, with a CI section. `wp signoff` not run. The #128 Confluence row is still owed, after merge |
+| 2026-11-11 12:56 | svc deploy run 43024078471 for `2938b41` | `terraform-apply-dev` succeeded. Dev serves `dev-2938b411` on svc and gateway, both Ready; ui stays on `7628c78` (#128 touched no ui files; inferred, path filter not read). `smoke-dev` failed, which matches the known smoke-login gap (this run's log not opened). `docker-push-prod` is **waiting** at its gate: parked, not approved, not touched. The earlier parked run for `7628c78` now shows cancelled; I cancelled nothing, and the runs for `b9fa8b5` and `ccdc34f` show the same, so a newer run appears to supersede an older parked one |
+| 2026-11-11 12:53 | Confluence 357007366, the #128 row | Version 6: the #128 row, and the closing line no longer says #128 runs on dev |
+| 2026-11-11 12:52 | #128 debug MCP | Merged as a merge commit, `2938b41`, 12:52:13Z, after Harry said yes ("yes, happy to merge up") to the `.gitleaks.toml` allowlist. `aa6cea4` was pushed 12:46:20Z. All 32 checks passed on it, `secret_scan / gitleaks` included. PR body Evidence has the live-tested and not-tested lists, a CI section and the scoped review note. Worktree and local branch removed; the remote branch is kept. Ledger entry already existed |
+| 2026-11-11 12:43 | Other owed records after #128 | Confluence 357007366 at version 5 (the #127 row, the one-parcel FGHD booking, Oliver's answers). The plan's Not verified section brought up to date; its evidence already had the re-pack. The ledger already had #127 and #128. `wp signoff` not run, as two-parcel FedEx is still open |
 | 2026-11-11 12:20 | Oliver's thread read | Two replies, no answer yet to the 12:00Z repro. Nothing sent from the VM |
 | 2026-11-11 11:55 | #127 let a named developer call svc directly in dev | Merged 7628c78. The dev apply added one IAM member; confirmed with `gcloud run services get-iam-policy`. Prod run parked, not approved. |
 | 2026-11-11 10:50 | #126 send the shipment cost | Merged b9fa8b5, on dev. Fixes the 0030 null reference. mdlb-1 (FGR) and mdlb-3 (FIGR) booked with tracking numbers; mdlb-2 re-packed as one parcel booked. |
