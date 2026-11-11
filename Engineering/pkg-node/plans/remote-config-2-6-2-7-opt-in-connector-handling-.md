@@ -127,7 +127,7 @@ Each stack is merged **in one sitting**, with the version bump on its last PR. #
       - Every refresh compares the old username and drops a stale alias under the same guard. Mapping keys are left to their handler.
       — verify: "evicts the primary key on a version -1 backlink", "removes the connector from the business index on deletion", "deletes an emptied index key", "keeps an alias that points at another connector", "removes the old alias when the username changes", "throws on a deletion backlink without evictOnDelete", "keeps the old alias on a username change without evictOnDelete".
 
-- [ ] 5. `backlinkTypes` (AC 1,5). Stack B, PR 4.
+- [x] 5. `backlinkTypes` (AC 1,5). Stack B, PR 4. — pkg-node#305 merged; published in 2.7.0 — done: 5dc9130
       - `withConnectorHandling({ backlinkTypes: [ConnectorType.SFTP] })`: `refresh` reads the raw connector through a new optional `IConfigApiClient.getConnectorRaw?` and checks `config.type`. On a mismatch it logs at debug and returns without caching or validating. Otherwise it validates with the (custom) schema.
       - This also gives fapi and shopify a later opt-in against the types 10.4.0 rollout hazard (org `CLAUDE.md`, "backlink refresh isn't type-filtered").
       — verify: "acks a backlink for an unlisted connector type", "does not cache an unlisted connector type", "validates a listed type with the supplied schema", "caches a non-SFTP connector when backlinkTypes is unset".
