@@ -94,6 +94,7 @@ Legend: ⬜ not started · 🟨 in progress · ✅ merged · ⛔ blocked · ⏸ 
 - **R6 Platform module naming** — `cloud-sql-iam` and `cloud-sql` may be merged, with naming being agreed with SRE. Pin the module tag and re-check at A2 — standing.
 
 ## Decision log
+- **2026-11-11** — **Build go-ahead:** Harry: "happy to go ahead and build this e2e". Read as clearing G1 (repo `ilg-merak/selector2` created, private) and G4 (idempotent on tenant + reference). G2 and G3 stay open; neither is needed until C3 and E2/E3. Merges and dev applies follow the dev-mock-infra rule in the carrier-playground handover; anything touching prod, or a Terraform plan with a destroy, still stops for Harry.
 - **2026-11-11** — **Confluence:** a new MPK subsection covering similarities, differences, and an overview of the mock proxies and selector2. Pages are written with `plainly`. Nothing is published before G3.
 - **2026-11-11** — **Planning model:** Harry chose to proceed on Sonnet rather than switch to Opus, although model routing sizes the design at opus/high. Units that need opus/high say so in `Tier`.
 - **2026-11-11** — **UI v1:** shipment playground with call trace and label preview, CSV export and read-only admin. No admin CRUD.
