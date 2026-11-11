@@ -48,6 +48,17 @@ All pages are in the MPK space, at `https://globalfreight.atlassian.net/wiki/spa
 | Chasing a Parcel: How GFS Decides What to Track and When | 356614148 | Published draft, unverified (10 Nov 2026). `tracking-core` code read at `c081108`; prod etcd polling values unread |
 | What a Tracking Update Means: Events, Statuses and Delivery Outcomes | 356614184 | Published draft, unverified (10 Nov 2026). Code read at the shas on the page; the group spreadsheet is unread |
 
+## Structure of the research space
+
+Four group pages were created on 2026-11-11 under the research root (351502339). Each is an overview of its children, with a table, the settled facts, a reading order and the open questions. Their source copies are `Handovers/2026-11-09-merak-replacement-pages.group-<slug>.md`. No existing page has been moved yet: the children below are the planned filing. Legacy Selector (351764483) stays a parent of its own pages, and From Label to Invoice (354353232) is due to move under it.
+
+| Group page | Id | Children (ids) |
+| --- | --- | --- |
+| Carriers and How We Integrate With Them | 357629953 | Carriers and Volumes 353566754; Carrier Integration Uses 353206310; Carrier Integration Methods 353697842; Carrier Proxies and Labelling 353697822; How Carriers Feed ECM 355074111 |
+| Tracking: How GFS Follows a Parcel | 357597186 | Chasing a Parcel 356614148; What a Tracking Update Means 356614184; Polling Connectors 353697880; Tracking Webhook Services 353533985; Carrier Tracking and Proof of Delivery 353206337; Tracking Events and Webhooks: What v1 Needs 355074077 |
+| Proof of Delivery | 357236740 | Proof of Delivery Service 353861642; How Each Carrier's POD Is Retrieved 354877489 |
+| ECM Platform: How a Shipment Moves Through It | 357662721 | Shipment Journey Through ECM 354975746; Shipment Identity 355631312; ECM Pub/Sub Topics 356155424; Selector and ECM Coupling 354418743 |
+
 Harry declined a verification run for the five drafts. Do not run one unless he asks. One Sonnet reader built page 4 from the Billing space and the Selector docs. It did not read CCDIS or the `REG_WILKO_*` procedures [1].
 
 The tools cannot delete pages, so Harry deletes three by hand [3]:
