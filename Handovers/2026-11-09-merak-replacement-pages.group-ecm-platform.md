@@ -29,7 +29,7 @@ Tags appear where the source research gives one.
 3. Shipment Identity, for the ID that every later service joins on.
 4. ECM Pub/Sub Topics, for the topic-by-topic detail.
 
-Selector's own side is covered by [Legacy Selector](https://globalfreight.atlassian.net/wiki/spaces/MPK/pages/351764483).
+Selector's own side is covered by [Legacy Selector](https://globalfreight.atlassian.net/wiki/spaces/MPK/pages/351764483). The central database, and the feeds that carry its changes into ECM, are covered by [Central Firebird: What the Hub Does and Who Reads It](https://globalfreight.atlassian.net/wiki/spaces/MPK/pages/357531678).
 
 ## Not confirmed yet
 
