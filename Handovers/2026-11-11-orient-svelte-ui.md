@@ -8,7 +8,7 @@ from: laptop
 to: hjf.shell.platform.ilg.software
 session_id: 0fb571d0-d903-483b-9e8b-1198b51d571f
 resumed_by: ""
-updated: 2026-11-11T12:55Z
+updated: 2026-11-11T12:33Z
 ---
 # Handover: orient Svelte UI
 
@@ -125,6 +125,6 @@ Checked 2026-11-11T12:2xZ:
 ## Closed since handover
 | When (UTC) | Work | Result |
 | --- | --- | --- |
-| 2026-11-11T12:4xZ | Rail unit (SPA sidebar statuses and controls) | built and pushed, 47b5412; review owed (Next up 2b) |
+| 2026-11-11T12:30Z | Rail unit (SPA sidebar statuses and controls) | built and pushed, 47b5412; review owed (Next up 2b) |
 | 2026-11-11T12:2xZ | W-G backend/frontend review | 5 findings, written into In flight; security review clean |
-| 2026-11-11T12:5xZ | W-F review fixes (6 items) | pushed: ed2fa5a, 2f83b90, af51670; full suite flaky only under load |
+| 2026-11-11T12:33Z | W-F review fixes (6 items) | pushed: ed2fa5a, 2f83b90, af51670; full suite flaky only under load |
