@@ -6,6 +6,15 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-11 — Say the Snap Adapter circuit breaker monitor also opens on a 429
+
+Say the Snap Adapter circuit breaker monitor also opens on a 429
+
+Message text only on monitor 337501612 (no query, threshold or handle change), shipped with snap-adapter#336. The apply also reset the [FUSE][Snap Adapter] Overview dashboard to the code: it had been hand-edited on 2026-11-06 12:56Z (a p95 poll-latency tile in place of the poll failure by host chart in SNAP API Health, a formula tweak in Record Creation, and group order). Harry agreed to the merge knowing that. The pre-reset live JSON is kept in the SNAP Resilience Normalisation programme folder.
+
+Ship: SHIP-1111-adapter-429-trip
+PR: gfs-bifrost/observability#88
+
 ## 2026-11-05 — Give Snap Maintainers ownership of the SNAP integration monitors and dashboard
 
 Give Snap Maintainers ownership of the SNAP integration monitors and dashboard
