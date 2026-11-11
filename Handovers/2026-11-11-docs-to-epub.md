@@ -5,7 +5,7 @@ workstream: Build the reusable `docs-to-epub` skill (technical documentation to 
 programme: none
 repo: hjfitz/orient-writers (local clone ~/projects/orient-writers, path skills/docs-to-epub, untracked)
 from: laptop (freightops)
-to: a new session on the laptop (freightops), where the untracked skill folder lives. rc-hjf has no copy of it yet
+to: rc-hjf (the workstation, harry@hjf.shell.platform.ilg.software). Harry chose this on 2026-11-11. The tooling is installed there. The skill folder still has to be copied across from the laptop
 session_id: 4ff6c302-4da3-4b14-bf3c-fc976c0ec75b
 resumed_by: ""
 updated: 2026-11-11T12:33Z
