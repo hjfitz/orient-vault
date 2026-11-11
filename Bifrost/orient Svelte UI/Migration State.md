@@ -6,7 +6,7 @@ owner: hjf
 services:
 - orient
 created: '2026-11-10'
-updated: '2026-11-10'
+updated: '2026-11-11'
 tags:
 - bifrost
 - migration-state
@@ -47,7 +47,7 @@ Legend: ⬜ not started · 🟨 in progress · ✅ merged · ⛔ blocked · ⏸ 
 ### Cutover
 | Unit | St | Summary | Deps | Risk | Tier | PR | Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| **U13** | 🟨 | Core takes :3000, Next to :3001 | U9, U12 | high | opus/high | 631c6a3, de8562b..44c16ee (prep; not deployed) | `orient-core.service`, `orient-web` on :3001, `deploy:core`/`deploy:ui`, `install-units.sh` (peer branch stops orient-core too), `/` and `/today` served by Svelte, stop and disable `orient-pty`; tunnel drops 3011 (keeps 3000/3014). Updates CLAUDE.md (ports, redeploy rules) and docs/INSTALL.md. Verified by desk, scribe, terminal and a Next server action working through :3000, and the guard matrix. |
+| **U13** | ✅ | Core takes :3000, Next to :3001 | U9, U12 | high | opus/high | 631c6a3, de8562b..44c16ee (prep; not deployed) | `orient-core.service`, `orient-web` on :3001, `deploy:core`/`deploy:ui`, `install-units.sh` (peer branch stops orient-core too), `/` and `/today` served by Svelte, stop and disable `orient-pty`; tunnel drops 3011 (keeps 3000/3014). Updates CLAUDE.md (ports, redeploy rules) and docs/INSTALL.md. Verified by desk, scribe, terminal and a Next server action working through :3000, and the guard matrix. |
 
 ### Waves — one plan each on promotion; each starts with a generated feature inventory and ends with its routes in `migrated-routes` and its Next files deleted
 | Unit | St | Summary | Deps | Risk | Tier | PR | Notes |
