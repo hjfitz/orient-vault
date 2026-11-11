@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-11 — Wire the Mongo connection into the API service
+
+Wire the Mongo connection into the API service
+
+Adds var.store (firestore|mongodb, explicit in both envs, firestore) and passes STORE, MONGODB_URI and MONGODB_DATABASE to the API Cloud Run service so a tfvars flip can move it to Mongo. No behaviour change.
+
+PR: gfs-bifrost/tracking-service#35
+
 ## 2026-11-09 — Write and serve returns from the MongoDB store
 
 Write and serve returns from the MongoDB store
