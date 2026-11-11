@@ -1,7 +1,7 @@
 ---
 tags: [adhoc-task]
 date: 2026-11-11
-tldr: "Checked the docs-to-epub handover from rc-hjf: the skill folder and its build tooling exist only on the laptop, so the record now says to continue there. Not taken over."
+tldr: "Prepared rc-hjf to take over the docs-to-epub skill: installed and tested Chromium, Graphviz, a JRE, rsync and the four Python libraries. The skill folder still has to be rsynced across from the laptop."
 session_id: 9e1daa5f-c28e-44cb-b0dd-e5b4bfb5878c
 status: open
 ---
