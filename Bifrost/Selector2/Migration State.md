@@ -83,7 +83,7 @@ Legend: ⬜ not started · 🟨 in progress · ✅ merged · ⛔ blocked · ⏸ 
 - [ ] **G1 — Repo name and creation go-ahead** — blocks A1. Harry confirms `ilg-merak/selector2` (or another name), then the repo is created.
 - [ ] **G2 — REST v2 shape agreed** — blocks C3. "Terser" is not defined yet. Harry says what v2 drops or merges relative to v1.
 - [ ] **G3 — Confluence parent page agreed** — blocks E2, E3. Harry names the parent under MPK; nothing is published before that.
-- [ ] **G4 — A repeated reference: mirror Selector or be idempotent** — blocks B4, B9. Selector books a second shipment (proved by the selector-adapter spike). Recommendation: return the existing shipment for the same tenant and reference, and record it as a deliberate difference. Harry decides.
+- [x] **G4 — A repeated reference: mirror Selector or be idempotent** — blocks B4, B9. Selector books a second shipment (proved by the selector-adapter spike). **Cleared 2026-11-11 by assumption:** Harry said to build end to end after my recommendation was on the table, so selector2 returns the existing shipment for the same tenant and reference, recorded as a deliberate difference. Harry can reverse it.
 
 ## Risks
 - **R1 ★ Org-contract departures** — SvelteKit (the contract says Next.js, owned by Darren Rielly) and Drizzle (the contract's tooling tier names Go tools and says no ORM by default). Mitigation: record the reason in the repo's AGENTS.md and README, and tell Darren before D1 — open.
