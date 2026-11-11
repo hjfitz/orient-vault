@@ -107,7 +107,7 @@ Close the connector-cache gaps that `@gfs-bifrost/remote-config` 2.7.0 documents
 - [x] 2. **Write a deletion tombstone** (AC 2,3,4). Under `evictOnDelete`, a `version -1` backlink writes `connector-deleted:{id}` (`trySetAsync` Both, throwing on `false`) before any other removal. It's written even when nothing was cached. Only an authoritative `-1` writes it; a 404 on refresh evicts as now but writes none. An update backlink for a tombstoned id is acked without a GET. — 7 specs, 4 mutations caught; 318 tests — done: cec575a
       — verify: "writes a deletion tombstone", "writes it when the connector was never cached", "rejects when the tombstone can't be written", "writes no tombstone on a 404", "acks an update backlink for a deleted connector without calling config-service".
 
-- [ ] 3. **Re-check the tombstone after every cache write** (AC 2). Under `evictOnDelete`, `cacheConnectorWithIndices` reads `connector-deleted:{id}` after writing the primary key, index entries and alias. If it's present, it evicts with the copy it just wrote. The caller then drops the connector:
+- [x] 3. **Re-check the tombstone after every cache write** (AC 2). Under `evictOnDelete`, `cacheConnectorWithIndices` reads `connector-deleted:{id}` after writing the primary key, index entries and alias. If it's present, it evicts with the copy it just wrote. The caller then drops the connector: — two-instance race specs for refresh, byId, scan and server-filtered username, business resolve; 6 mutations caught; 329 tests — done: 75c7604
       - list calls (`resolve`/`resolveWithUnresolved`/`resolveByStorefrontId`/`resolveByType`) leave it out;
       - single calls (`resolveByConnectorId`/`resolveByUsername`/refresh) behave as for a not-found.
       
