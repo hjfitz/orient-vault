@@ -1,6 +1,6 @@
 ---
 tags: [handover]
-status: closed
+status: resumed
 workstream: orient Svelte UI — finish the page waves, deploy them, then Retire (remove Next/React)
 programme: orient Svelte UI
 repo: hjfitz/orient
@@ -8,10 +8,10 @@ from: laptop
 to: hjf.shell.platform.ilg.software
 session_id: 0fb571d0-d903-483b-9e8b-1198b51d571f
 resumed_by: 8584435d-36a9-464d-bc60-e21c842cfe59
-updated: 2026-11-11T14:04Z
+updated: 2026-11-11T14:11Z
 ---
 # Handover: orient Svelte UI
-**Closed 14:03Z (parked, not abandoned):** the VM session did everything up to gate G8 and stops there by instruction; Retire waits for Harry to tick G8, and the 13 unpushed commits wait for a write-enabled deploy key (Waiting on Harry 1).
+**Reopened 14:11Z: Harry waived G8 ("let's tag and delete") and the write key is sorted. Retire is in progress (see In flight). Earlier text below describes the state at the G8 stop.**
 
 
 ## Where things stand
@@ -34,12 +34,14 @@ updated: 2026-11-11T14:04Z
 | Retire | remove Next, React, orient-web | | **blocked by G8** (a week on the full Svelte UI; Harry ticks it) |
 
 ## In flight
-Nothing. Every row is closed (see Closed since handover). No agent of this session is running.
+| Work | State | To close it |
+| --- | --- | --- |
+| **Retire (Next, React, orient-web removed)** | **14:11Z: 3 sonnet builders running** on disjoint files: A = delete `app/`, `src/components`, React tests, deps/config (moving `app/globals.css` to `ui/src/globals.css` first: the SPA's stylesheet imports it); B = core proxy and `ORIENT_NEXT_URL` out, unserved paths answer the SPA's 404 or 404 JSON under `/api`, SPA routing helpers and their tests; C = deploy scripts, `install-units.sh` (stops, disables, removes `orient-web`), units, README/INSTALL/Retire.md. I write the `CLAUDE.md` rewrite myself. Tag `next-ui-final` (ef8d2c8) is pushed. | integrate → `pnpm install --frozen-lockfile` (prunes node_modules) → full gates on a quiet host → review-panel on the non-deletion diff → `pnpm deploy:all` at one named sha → `install-units.sh` stops orient-web → drive pages → `rm -rf .next-prod .next-prod.bak .next-bench` a day later |
 
 ## Waiting on Harry
 In order of importance, each with my recommendation.
-1. **A write-enabled deploy key for hjfitz/orient on the VM, then push.** The VM pushes with `~/.ssh/orient-deploy/orient` (`core.sshCommand`), which GitHub marks read-only ("The key you are authenticating with has been marked as read only", retried at 14:0xZ). Add its public key in GitHub (hjfitz/orient → Settings → Deploy keys) with "Allow write access", or add a new write key and point `core.sshCommand` at it. Then, from `~/projects/orient` on the VM: `git fetch -q && git status -sb | head -1` and, if it shows only "ahead 13", `git push`. If the laptop pushed in the meantime, rebase onto `origin/master` (no force push). The 13 commits, oldest first: d6457ee 082af34 806a824 d486509 e47f4c9 fa069be 6564455 b61d565 a8c1ec5 e5edcff e656208 64d7ef9 ef8d2c8. Until then the laptop does not have them: **do not deploy from the laptop's `master`, it lacks the deployed work.**
-2. **Gate G8** (a week on the full Svelte UI; Retire starts when you tick it). The full UI has been live since 2026-11-11 13:01Z, so the earliest sensible tick is 2026-11-18. Nothing was deleted: Next, React and `orient-web` are intact.
+1. ~~A write-enabled deploy key~~ **Done 14:11Z** (Harry re-added it with write access): `origin/master` is `ef8d2c8` and the tag `next-ui-final` is pushed. Pushes from the VM work now; push Retire after it is deployed.
+2. ~~Gate G8~~ **Waived by Harry on 2026-11-11 ("trusting my gut")**, recorded in Migration State. Retire is running.
 3. **Run one real PR review draft** (open any PR in orient and use its draft review) and confirm it completes. The new spawn path was exercised through the real `systemd-run` scope with a fake claude and by unit tests, but not with the real `claude` (it costs a sonnet run). If it fails, the draft shows the cause now (`claude not found at …` or `Could not start Claude: …`); the binary is `ORIENT_CLAUDE_BIN ?? ~/.local/bin/claude`, which exists on the VM.
 4. **Deploy mid-draft (decision; recommendation: accept).** Since b61d565 a PR review draft runs in its own systemd scope, so `deploy:all` no longer refuses while one runs, as intended. The cost: a deploy or restart mid-draft loses that draft (its record shows "interrupted"), the `claude` process runs on unattended until it ends (nothing times it out), a Retry starts a second billed run, and the run dir (it holds the PR's diff, 0700 under `~/.local/state/orient/review-runs/`) stays until the next draft's one-hour sweep. A fuller fix is a pid file beside the run dir so the next draft adopts or stops the orphan. Not built.
 5. **Scribe Go source changed, not built or deployed** (a8c1ec5, the withheld-credentials list gains `DATADOG_API_KEY` and `DATADOG_APP_KEY`). `make install` in `scribe/` applies it; the running scribe binary is unchanged. Recommendation: build it at the next scribe change, no hurry (the list is a second line of defence).
