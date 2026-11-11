@@ -98,7 +98,7 @@ Close the connector-cache gaps that `@gfs-bifrost/remote-config` 2.7.0 documents
                gate: FUSE-1052 AND FUSE-1053 confirmed in prod
                      [ ] confirmed
 -->
-- [x] 1. **Clear, don't rewrite, an index on delete** (AC 1,4,5). Opt-in under `evictOnDelete`. `removeFromIndex` deletes the business and storefront index keys outright instead of writing back a copy with one id removed. Deleting a key isn't a read-modify-write, so a stale in-memory copy can't drop another instance's addition. — two-instance harness reproduces the lost add on 2.7.0 and passes after; 311 tests — done: a26ceba — done: f730dc0
+- [x] 1. **Clear, don't rewrite, an index on delete** (AC 1,4,5). Opt-in under `evictOnDelete`. `removeFromIndex` deletes the business and storefront index keys outright instead of writing back a copy with one id removed. Deleting a key isn't a read-modify-write, so a stale in-memory copy can't drop another instance's addition. — two-instance harness reproduces the lost add on 2.7.0 and passes after; 311 tests — done: a26ceba
       - **Cost:** one full fetch of that business or storefront (list plus one GET per connector) per delete per consuming service. Deletes are an admin action.
       - **Tests:** first add the two-instance harness: two real `CacheService` + `LruCache` over one Map-backed `INetworkCache`, both `init()`-ed. The existing single-Map mocks can't model memory copies.
       - **README Limits:** remove the "two instances changing one index" sentence.
@@ -139,6 +139,11 @@ Close the connector-cache gaps that `@gfs-bifrost/remote-config` 2.7.0 documents
 ### Evidence
 <!-- Newest first, dated. One bullet per check actually run, opening with what it discharges.
      "Suite green" alone is not evidence. Sign-off requires at least one dated bullet here. -->
+- 2026-11-11 [AC 6] **2.8.0 published.**
+  - pkg-node#309 was squash-merged as `f730dc0`, after 2.7.0 (`c3c89b4`).
+  - The publish run succeeded, and `npm view @gfs-bifrost/remote-config@2.8.0` resolves.
+  - Fuse MCP `config-domain.json` CONNECTOR entry rewritten, and `shared-packages.json` updated (fuse-mcp `30b38bd`, `go test ./internal/...` green after `make parity-accept`).
+  - The branch commits stamped on incs 1–4 were squashed into `f730dc0`.
 - 2026-11-11 [incs 1–4, AC 1–6 except publish] **Draft pkg-node#309** (`3ebd33f`), stacked on #306 as stack #307.
   - **Lost update (AC 1):** the two-instance harness (a real `CacheService` + `LruCache` per instance over one shared network cache) made 2.7.0 drop a connector another instance added. That spec failed on 2.7.0 and passes after inc 1.
   - **Races (AC 2):** the two-instance race specs (fetch held, `-1` on another instance, fetch released) cover refresh (acks), by-id (404-shaped), scan and server-filtered username, business, storefront and by-type. Nothing deleted is left cached, listed or aliased.
@@ -154,7 +159,6 @@ Close the connector-cache gaps that `@gfs-bifrost/remote-config` 2.7.0 documents
 
 ### Not verified
 <!-- Stated, not papered over. "(none)" is a deliberate claim, and a fine one. -->
-- **AC 6, not published:** 2.8.0 publishes only when #309 merges, and that waits on 2.7.0 (#304–#306) merging first. The fuse-mcp `config-domain.json` update follows publish.
 - **Races and in-memory windows can't be reproduced on dev.** The two-instance harness specs are the only race evidence.
 
 ## Rollout & rollback

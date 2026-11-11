@@ -157,6 +157,11 @@ Each stack is merged **in one sitting**, with the version bump on its last PR. #
      Check-selection order lives in verification-menu.md — do not restate it here. -->
 
 ### Evidence
+- **2026-11-11: stack B released as 2.7.0.**
+  - **Merge:** pkg-node#304–#306 were merged atomically as `c3c89b4` (Harry: "merge it all up and get it deployed").
+  - **Publish:** the run succeeded, and `npm view @gfs-bifrost/remote-config@2.7.0` resolves, with cache `0.4.0`.
+  - **Follow-on:** 2.8.0 (#309, `f730dc0`) followed straight away.
+  - **Fuse MCP (AC 8):** `shared-packages.json` and `config-domain.json` were updated on fuse-mcp `master` (`30b38bd`, parity baseline refreshed).
 - **2026-11-09: stack B built and opened** (pkg-node#304 `92580f7`, #305 `434fa17`, #306 `1f86463`; native stack #307). Not merged: merging publishes 2.7.0.
   - **Dev proof (AC 6):** the built package against dev config-service, `server-filtered` against `scan` for every SFTP username: **70/70 equal**, 0 diffs, 0 shared usernames (73 connectors). 2 requests per filtered lookup (140 in total) against 2,973 for the scan. Run before and after the review fixes, with the same result.
   - **Release gate,** on the post-review tarball: fapi `007ad5c` `build:check` clean, 529 passed; shopify-connector `84714fc` 902 passed (`shopify-token-management` built first, as its CI does); shopify-egress-service 634 passed, `build:check:tests` clean; the 2.5.1 type test compiles. Manifest: cache `0.4.0` exact, peers `types >=10.15.0`, `zod ^4.4.3`.
