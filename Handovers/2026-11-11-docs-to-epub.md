@@ -79,7 +79,14 @@ Nothing is running. No agents or workflows were started for this workstream.
 - Global rules in `~/.claude/CLAUDE.md` apply (British English, no em dashes, `Tasks/` record, no Slack or Jira posting by agents).
 
 ## On the target
-Checked on the laptop at 2026-11-11T12:26Z, not on the workstation. The laptop has Google Chrome 156 (headless works for screenshots), Graphviz 2.43, Java 21, ImageMagick 6, Python 3.12 with markdown-it-py, lxml, PyYAML and Pillow. It has no pandoc, calibre or EPUBCheck: `book.py validate` downloads EPUBCheck 5.4.0 to `~/.cache/docs-to-epub/` on first use and needs network and Java. `mdit_py_plugins`, `cairosvg` and `ebooklib` are not installed and are not needed. The workstation was not checked: confirm Chrome, Graphviz and Java there before moving the work, and note that `~/.claude/skills/docs-to-epub` is a symlink into `~/projects/orient-writers`, which only exists where that repo is cloned.
+Checked on the laptop at 2026-11-11T12:26Z, not on the workstation. The laptop has Google Chrome 156 (headless works for screenshots), Graphviz 2.43, Java 21, ImageMagick 6, Python 3.12 with markdown-it-py, lxml, PyYAML and Pillow. It has no pandoc, calibre or EPUBCheck: `book.py validate` downloads EPUBCheck 5.4.0 to `~/.cache/docs-to-epub/` on first use and needs network and Java. `mdit_py_plugins`, `cairosvg` and `ebooklib` are not installed and are not needed. `~/.claude/skills/docs-to-epub` is meant to be a symlink into `~/projects/orient-writers`, which only exists where that repo is cloned.
+
+**Checked on rc-hjf (the workstation) at 2026-11-11T12:32Z, from session `9e1daa5f-c28e-44cb-b0dd-e5b4bfb5878c`. The work cannot be carried on there yet.**
+- **The skill folder is not on rc-hjf.** `~/projects/orient-writers` is cloned there (branch `main`, level with `origin/main`) but has no `skills/docs-to-epub/`. A search of the filesystem for `docs-to-epub` found only this record. `~/.claude/skills/docs-to-epub` does not exist either.
+- **Missing on rc-hjf:** Google Chrome (no `google-chrome`, `google-chrome-stable` or `chromium`), Graphviz (`dot`), Java, ImageMagick (`convert`), and the Python modules `markdown_it`, `lxml`, `yaml` and `PIL`. Also absent: `uv`.
+- **Present on rc-hjf:** Python 3, Node, `pacman`, `mise`, `pip`, `npm`. `sudo -n true` printed no error. `https://github.com` answered 200, so the EPUBCheck download would work once Java is installed.
+- **Skills the record points at:** `plainly` is present on rc-hjf. `c4-diagrams` is not.
+- Nothing was installed or copied. The vault itself is in step: this record reached rc-hjf by the vault sync.
 
 ## Gotchas
 - **Validators miss layout.** EPUBCheck passed while the images were wrong. Three defects were only visible by opening the PNGs: literal `\n` in Graphviz labels (an escaping bug, fixed with `dlab()`), note text sitting on the box edge in the sequence renderer, and a forced left-to-right layout that shrank the text to 7.7 px. Always read the figure images.
