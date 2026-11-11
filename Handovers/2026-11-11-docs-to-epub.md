@@ -83,10 +83,16 @@ Checked on the laptop at 2026-11-11T12:26Z, not on the workstation. The laptop h
 
 **Checked on rc-hjf (the workstation) at 2026-11-11T12:32Z, from session `9e1daa5f-c28e-44cb-b0dd-e5b4bfb5878c`. The tooling was installed at 2026-11-11T12:40Z. The skill folder is still to be copied across (see Waiting on Harry).**
 - **The skill folder is not on rc-hjf.** `~/projects/orient-writers` is cloned there (branch `main`, level with `origin/main`) but has no `skills/docs-to-epub/`. A search of the filesystem for `docs-to-epub` found only this record. `~/.claude/skills/docs-to-epub` does not exist either.
-- **Missing on rc-hjf:** Google Chrome (no `google-chrome`, `google-chrome-stable` or `chromium`), Graphviz (`dot`), Java, ImageMagick (`convert`), and the Python modules `markdown_it`, `lxml`, `yaml` and `PIL`. Also absent: `uv`.
+- **Installed on rc-hjf at 2026-11-11T12:40Z, with Harry's go-ahead (all were missing).** Each was tested, not just installed:
+  - Chromium 156.0.8078.79, by pacman. Google Chrome is AUR-only, and this is the same major version as the laptop's Chrome 156. `chromium --headless=new --screenshot` rendered a page with real fonts, no `--no-sandbox` needed. **Check which binary name `preview.py` looks for**: if it hardcodes `google-chrome`, point it at `chromium`.
+  - Graphviz 16.1.1 (`dot` rendered a labelled graph). The laptop has 2.43, so layouts and label metrics may differ: re-read every figure image after the first build here.
+  - OpenJDK JRE 27 headless (`java` is on `PATH` at `/usr/bin/java`). The laptop has Java 21. EPUBCheck 5.4.0 under Java 27 is untested.
+  - rsync 3.5.1-3 (see the pacman gotcha below). Your laptop's `rsync` flags with `--exclude` were tested locally and work.
+  - Python: markdown-it-py 4.3.0, lxml 6.1.3, PyYAML 6.0.3 and Pillow 13.0.0, installed with `pip --only-binary=:all:` into mise's Python 3.15.2, in the user site `~/.local/lib/python3.15/site-packages`. Plain `python3` sees them. `python3 -I` does not, because isolated mode skips the user site.
+  - Not installed: ImageMagick (`convert`), because it is not known whether the scripts need it. `uv` is absent too.
 - **Present on rc-hjf:** Python 3, Node, `pacman`, `mise`, `pip`, `npm`. `sudo -n true` printed no error. `https://github.com` answered 200, so the EPUBCheck download would work once Java is installed.
 - **Skills the record points at:** `plainly` is present on rc-hjf. `c4-diagrams` is not.
-- Nothing was installed or copied. The vault itself is in step: this record reached rc-hjf by the vault sync.
+- Still not on rc-hjf: the skill folder, and so the `~/.claude/skills/docs-to-epub` symlink. The vault itself is in step: this record reached rc-hjf by the vault sync.
 
 ## Gotchas
 - **The skill folder is not in git or the vault.** It is untracked in the laptop's clone of `hjfitz/orient-writers`, and the vault sync carries notes only. A session on another machine finds this record and none of the code. Copy the folder across, or commit it to a branch on Harry's go-ahead, before handing over to another machine. (Found from rc-hjf at 2026-11-11T12:32Z.)
