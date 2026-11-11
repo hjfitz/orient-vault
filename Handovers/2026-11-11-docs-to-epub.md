@@ -1,14 +1,14 @@
 ---
 tags: [handover]
-status: open
+status: resumed
 workstream: Build the reusable `docs-to-epub` skill (technical documentation to an illustrated EPUB with a custom cover). Tooling is built and tested; SKILL.md and the references are not written yet
 programme: none
 repo: hjfitz/orient-writers (local clone ~/projects/orient-writers, path skills/docs-to-epub, untracked)
 from: laptop (freightops)
 to: rc-hjf (the workstation, harry@hjf.shell.platform.ilg.software). Harry chose this on 2026-11-11. The tooling is installed there. The skill folder still has to be copied across from the laptop
 session_id: 4ff6c302-4da3-4b14-bf3c-fc976c0ec75b
-resumed_by: ""
-updated: 2026-11-11T12:42Z
+resumed_by: 9e1daa5f-c28e-44cb-b0dd-e5b4bfb5878c
+updated: 2026-11-11T12:46Z
 ---
 # Handover: the docs-to-epub skill
 
