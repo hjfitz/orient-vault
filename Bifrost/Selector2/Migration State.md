@@ -80,7 +80,7 @@ Legend: ⬜ not started · 🟨 in progress · ✅ merged · ⛔ blocked · ⏸ 
 | **E3** | ⬜ | Confluence: selector2 overview, similarities and differences | C2 | low | sonnet/medium | | **Gated on G3.** Written with `plainly`. Differences come from B1's mapping and the decision log. |
 
 ## Gates
-- [ ] **G1 — Repo name and creation go-ahead** — blocks A1. Harry confirms `ilg-merak/selector2` (or another name), then the repo is created.
+- [x] **G1 — Repo name and creation go-ahead** — blocks A1. **Cleared 2026-11-11:** Harry said "go ahead and build this e2e" after `ilg-merak/selector2` was proposed. Created private, `main`, from an initial README.
 - [ ] **G2 — REST v2 shape agreed** — blocks C3. "Terser" is not defined yet. Harry says what v2 drops or merges relative to v1.
 - [ ] **G3 — Confluence parent page agreed** — blocks E2, E3. Harry names the parent under MPK; nothing is published before that.
 - [x] **G4 — A repeated reference: mirror Selector or be idempotent** — blocks B4, B9. Selector books a second shipment (proved by the selector-adapter spike). **Cleared 2026-11-11 by assumption:** Harry said to build end to end after my recommendation was on the table, so selector2 returns the existing shipment for the same tenant and reference, recorded as a deliberate difference. Harry can reverse it.
