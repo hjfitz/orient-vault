@@ -40,8 +40,7 @@ Tags appear where the source research gives one. Volumes cover 23 Oct to 7 Nov 2
 - **Status 1003.** The Firebird procedures read it as delivered. Legacy UPS loss reporting reads it as lost. The two are unreconciled.
 - **Royal Mail "about a third never matches".** The metrics show 21k of 343k unmatched and 146k held for retry. The claim is not reconciled with them.
 - **Evri "keeps held events up to 90 days".** It is a read cutoff, and the TTL indexes are not confirmed. The recommended wording is "reads them for up to 90 days". It is not yet decided.
-- **Owed correction, Polling Connectors.** It attributes the lease query to the connector. It is in `tracking-core`'s batch-creator. It also says the `fenghuang-tracking-core-config` ConfigMap is not in the cluster repo. Terraform defines it.
-- **Owed correction, Tracking Events and Webhooks: What v1 Needs.** It says every event carries the raw code and the derived status. The raw topic carries the raw code only, and the mapped result stays in each store. Its "at least six definitions" of delivered is partly counted: four in code plus CCIS's own re-derivation, with ICIS unread.
+- **Owed correction, Polling Connectors.** It says the `fenghuang-tracking-core-config` ConfigMap is not in the cluster repo. Terraform defines it.
 - **Owed correction, retry wording.** "No retry or dead-letter handling" holds for polling only.
 - **Owed correction, Connect webhook docs.** They list `carrier`, and the code sends `carrierName`. The docs omit `carrierEventTime`, which holds the received time.
 - **Owed check.** No located page says polling slows with age or that tracking is orchestrated centrally. Whether any wording implies it is still to be checked.
