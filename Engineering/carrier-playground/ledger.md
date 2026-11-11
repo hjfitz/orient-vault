@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-11 — Expose mock proxy URIs and invoker grants for selector2
+
+Expose mock proxy URIs and invoker grants for selector2
+
+mock-edge now outputs service_uris and service_account_emails for all 12 proxies and takes invoker_members (default empty) to grant roles/run.invoker. The proxies stay public (allUsers). Applied to dev with 0 resources changed, outputs only. Cloud Run's run.app frontend swallows /healthz with an HTML 404, so call a proxy's own health route (Veho: /health/liveness) on direct URLs.
+
+PR: ilg-merak/carrier-playground#15
+
 ## 2026-11-09 — Add a mock Veho proxy at veho.mocks.merak.freightops.dev, built from the agreed contract
 
 Add a mock Veho proxy at veho.mocks.merak.freightops.dev, built from the agreed contract
