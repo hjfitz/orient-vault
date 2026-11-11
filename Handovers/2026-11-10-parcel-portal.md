@@ -1,6 +1,6 @@
 ---
 tags: [handover]
-status: open
+status: resumed
 workstream: Parcel Portal programme — per-account Selector services shipped; FedEx booking fixed on dev (single parcel); debug MCP (#128) to land; multi-parcel booking open with Selector (Oliver Wilders)
 programme: Parcel Portal
 repo: ilg-merak/parcel-portal
