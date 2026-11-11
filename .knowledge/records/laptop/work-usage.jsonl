@@ -347,3 +347,11 @@
 {"ts": 1794396475, "kind": "programme_tick", "session_id": "0fb571d0-d903-483b-9e8b-1198b51d571f", "programme": "orient Svelte UI", "unit": "W-F", "status": "doing"}
 {"ts": 1794396946, "kind": "programme_tick", "session_id": "396b7315-aa79-43a2-af2d-63d6eb3aac55", "programme": "Selector2", "unit": "A1", "status": "doing"}
 {"ts": 1794397218, "kind": "programme_tick", "session_id": "0fb571d0-d903-483b-9e8b-1198b51d571f", "programme": "orient Svelte UI", "unit": "W-G", "status": "doing"}
+{"ts": 1794397731, "kind": "ledger", "session_id": "a1c66d35-5bf7-4f34-9d21-dac5ddb5fabe", "service": "parcel-portal", "ticket": null, "programme": "Parcel Portal", "heading": "## 2026-11-11 \u2014 Let a named developer call svc directly in dev", "prs": ["ilg-merak/parcel-portal#127"]}
+{"ts": 1794397731, "kind": "ledger", "session_id": "a1c66d35-5bf7-4f34-9d21-dac5ddb5fabe", "service": "parcel-portal", "ticket": null, "programme": "Parcel Portal", "heading": "## 2026-11-11 \u2014 Add a dev-only debug MCP server", "prs": ["ilg-merak/parcel-portal#128"]}
+{"ts": 1794397748, "kind": "programme_tick", "session_id": "396b7315-aa79-43a2-af2d-63d6eb3aac55", "programme": "Selector2", "unit": "A1", "status": "done"}
+{"ts": 1794397748, "kind": "ledger", "session_id": "396b7315-aa79-43a2-af2d-63d6eb3aac55", "service": "selector2", "ticket": null, "programme": "Selector2", "heading": "## 2026-11-11 \u2014 Scaffold selector2-api and selector2-ui, IaC and CI", "prs": ["ilg-merak/selector2#1"]}
+{"ts": 1794399773, "kind": "programme_tick", "session_id": "0fb571d0-d903-483b-9e8b-1198b51d571f", "programme": "orient Svelte UI", "unit": "W-C", "status": "doing"}
+{"ts": 1794399781, "kind": "programme_tick", "session_id": "0fb571d0-d903-483b-9e8b-1198b51d571f", "programme": "orient Svelte UI", "unit": "W-D1", "status": "doing"}
+{"ts": 1794399784, "kind": "programme_tick", "session_id": "0fb571d0-d903-483b-9e8b-1198b51d571f", "programme": "orient Svelte UI", "unit": "W-D2", "status": "doing"}
+{"ts": 1794400857, "kind": "programme_tick", "session_id": "396b7315-aa79-43a2-af2d-63d6eb3aac55", "programme": "Selector2", "unit": "A2", "status": "doing"}
