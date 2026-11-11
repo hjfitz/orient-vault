@@ -13,14 +13,14 @@ updated: 2026-11-11T12:46Z
 # Handover: Parcel Portal (laptop → workstation)
 
 ## Where things stand
-Dev runs main at `7628c78` (#127) for svc, ui and gateway, in project `ilg-merak-dev-b5e3`, us-central1, checked 12:20Z. **Prod is held at D1.** Every parked deploy run is for a sha on main and none is approved or ever to be. Migrations are at **018** and the portal contract is **5.12.0**. Earlier history is in [[Handovers/2026-11-03-parcel-portal]]. Confluence write-up of the Selector work: Merak Project page 357007366.
+Dev runs main at `7628c78` (#127) for svc, ui and gateway, in project `ilg-merak-dev-b5e3`, us-central1, checked 12:20Z and again from the VM at 12:21Z. **Prod is held at D1.** Every parked deploy run is for a sha on main and none is approved or ever to be. Migrations are at **018** and the portal contract is **5.12.0**. Earlier history is in [[Handovers/2026-11-03-parcel-portal]]. Confluence write-up of the Selector work: Merak Project page 357007366.
 
 | Unit | What it delivered | PRs | State |
 | --- | --- | --- | --- |
 | Per-account Selector services list | Table, API, enforcement, save-time check, status fields, UI card, methods editor | #116 #118–#123 | ✅ On dev |
 | Booking fixes found driving dev | Shipment goods description; Selector's own fault text in logs; the shipment-level `Cost` Selector's FedEx booking needs | #124 #125 #126 | ✅ On dev. Single-parcel FedEx books on FGR, FGHD and FIGR (mock; no real FedEx shipment) |
 | Debug MCP, dev access | `debug_invokers` grants `roles/run.invoker` on svc in dev only (prod ignores it) | #127 | ✅ Merged 7628c78 |
-| Debug MCP | `apps/svc/cmd/debug-mcp`, 20 tools, dev only | #128 | 🔶 Open, see In flight |
+| Debug MCP | `apps/svc/cmd/debug-mcp`, 20 tools, dev only | #128 | 🔶 Open at `23bae6e`. One red check, a false positive in the secret scan, waits on Harry: see In flight |
 | C22 incs 1–4, C23–C25, scans, SHIP-1110 | Label preview, panel and batch-result fixes, runtime-image ignores, test-carrier switch | #106–#115 | ✅ On dev. C22 inc 5 waits on Harry; SHIP-1110 inc 6 still owed |
 
 ## In flight
