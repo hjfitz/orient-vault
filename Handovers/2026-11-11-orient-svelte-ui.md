@@ -8,7 +8,7 @@ from: laptop
 to: hjf.shell.platform.ilg.software
 session_id: 0fb571d0-d903-483b-9e8b-1198b51d571f
 resumed_by: 8584435d-36a9-464d-bc60-e21c842cfe59
-updated: 2026-11-11T13:45Z
+updated: 2026-11-11T13:55Z
 ---
 # Handover: orient Svelte UI
 
@@ -32,7 +32,7 @@ Live on the VM at **`fa069be`** (deployed 2026-11-11 13:01Z from the VM's local 
 ## In flight
 | Work | State | To close it |
 | --- | --- | --- |
-| **Core `/api/reindex` freezes the core while it runs: fix in progress** | **Live right now at 64d7ef9.** The Retire-prep route runs the ~35 s rebuild inside the core. I first judged that acceptable from a bare-script measurement (worst stall 1.7 s); that measurement was misleading. Live (13:38Z) and on a side-port core with scratch data (twice): requests to the core time out at 20 s while the rebuild runs (CPU profile: loop never idle for 33 s; micromark parse + synchronous SQLite writes in `writeDocument`). The refusals (403/403/403/421), the 200 result, and the 30 s throttle all behave correctly. Until the fix is deployed, **pressing Reindex in the palette freezes every page for ~35 s** (it recovers by itself). 1 sonnet builder running: the core's route will rebuild in a child process (`scripts/reindex-run.ts`, `src/core/reindex-child.ts`; Next's route stays in-process) | builder sha → review (backend + security) → gates (quiet host) → `deploy:all` at one sha → re-run `side-core-reindex.sh`-style poll on live: every poll must stay under ~0.3 s |
+| **Core `/api/reindex`: child-process fix built, not yet deployed** | **ef8d2c8** (`scripts/reindex-run.ts`, `src/core/reindex-child.ts`; Next's route stays in-process). Validated on a side-port core with scratch data using the production launch (`tsx src/core/main.ts`): **129 polls during a 34 s rebuild, slowest 0.13 s, none over 1 s** (was 4 polls and a 20 s timeout). review-panel (backend + security): security no findings; backend one medium (an orphan child can race a new core's rebuild on `index.sqlite.rebuild.tmp`, but only when a core is signalled by pid outside systemd; the unit's cgroup stop kills the child; left, noted in Gotchas). Gates: typecheck clean, lint at baseline; `ui:check`, `ui:build` and a quiet-host `pnpm test` running (13:55Z). **Until deployed, live (64d7ef9) still freezes the core ~35 s on a palette Reindex.** | gates green → `deploy:all` at one sha (Next-side files changed? `scripts/` and `src/core` only: deploy:web may be skipped; read its output) → live poll while one rebuild runs (every poll under ~0.3 s) |
 
 ## Waiting on Harry
 - **Deploy mid-draft (decision, recommendation: accept).** Since b61d565 a PR review draft runs in its own systemd scope, so `deploy:all` no longer refuses while one runs, as intended. The cost: a deploy or restart mid-draft loses that draft (its record shows "interrupted"), the `claude` process runs on unattended until it ends (nothing times it out), a Retry starts a second billed run, and the run dir (holding the PR's diff, 0700 under `~/.local/state/orient/review-runs/`) stays until the next draft's hour-old sweep. A fuller fix is a pid file beside the run dir so the next `startDraft` adopts or stops the orphan. I did not build it.
@@ -111,6 +111,7 @@ Checked 2026-11-11T12:2xZ:
 - Agents testing on the VM must use side ports (3031–3044) and scratch state, exactly as on the laptop.
 
 ## Gotchas
+- **Stopping a side-port core mid-reindex:** the rebuild child is not tied to the core's lifetime. Under systemd the cgroup stop kills it; for a `pnpm core` side port, stop it with Ctrl-C (the child shares the process group) or check `pgrep -f reindex-run`; otherwise an orphan can race the next rebuild on `index.sqlite.rebuild.tmp`.
 - **Run `pnpm test` on a quiet host.** At host load above ~15 (22 cores; a full run itself drives load to ~28) 4–8 timing-sensitive UI tests fail (`focus-page`, `slack`, `today`, `usage`, `sprint`, `meetings`) and pass in isolation and on a re-run at load ~2. Do not run gates back to back with builds; wait for `cat /proc/loadavg` to fall below ~3.
 - **Measure a freeze in the real process, not a bare script.** `monitorEventLoopDelay` in a bare tsx script said 1.7 s; the real core, polled over HTTP, froze for ~34 s. The recipe is in the scratchpad (`side-core-reindex.sh`: the real core on side port 3037 against a scratch vault clone, `git clone --no-hardlinks ~/Documents/obsidian <dir>` because /tmp is another filesystem, a poll loop on `/api/v1/usage/live`, `--cpu-prof` via `node --import tsx`).
 - **Browser tests on the VM:** playwright-core 1.65 wants `chromium_headless_shell-1254`, this host has 1148 and no download was made. `ui/tests/{keymap,overlays,routing}.test.ts` ran with `PLAYWRIGHT_BROWSERS_PATH=$HOME/.cache/orient-pw` (a symlinked `chromium_headless_shell-1254/chrome-headless-shell-linux64/chrome-headless-shell` → `/usr/bin/chromium`). Without it they fail with "Executable doesn't exist". The permanent fix is `pnpm exec playwright-core install chromium-headless-shell` (a download: Harry's call).
