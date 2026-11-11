@@ -78,6 +78,16 @@ Read in Selector's `V4-Server-Database` at `82dde6b` (an October 2023 snapshot, 
 - **CONFIRMED** The Firebird Transfer Service is live in production: 3,022,807 rows in 15 days, 1,715,298 of them `shipments`. Datadog gives no insert, update or delete split.
 - **STATED** The push to Pub/Sub starts from the main Firebird, not from Client4, CSS or a site database (a Selector team member, 2026-11-04, paraphrased).
 
+## Settled facts: Selector site and central (2026-11-11)
+Read in the Selector clones at the shas on MPK pages 357171228, 357531678 and 357367820 (published drafts, unverified). Copies: [[Handovers/2026-11-09-merak-replacement-pages.selector-local-findings]] and [[Handovers/2026-11-09-merak-replacement-pages.selector-central-findings]] [6].
+- **CONFIRMED** The central schema source is stale against the April 2026 upload server. The server calls `REG_SHIPMENTS` with `:special_service`, and no script defines it.
+- **CONFIRMED** `update_417` is the last numbered script (28 May 2022). Earlier notes that say `update_411` are wrong.
+- **CONFIRMED** In the repo, central is about 295 procedures and 236 triggers. The local site database script defines about 189 tables, 114 procedures and 44 triggers. Neither count comes from a live database.
+- **CONFIRMED** The upload address is held in the site table `CUST_UPL_SERVERS`, ordered by `UPL_ORDER`. The executable may supply defaults (not checked).
+- **CONFIRMED** A site upload is one base64 ZIP of binary datasets from six tables in one SOAP call. This answers the owed question on whether it carries a file or shipment records. How a `.gup` export file reaches GFS is open.
+- **CONFIRMED** The central upload transaction commits even when a row failed, and a retry takes the duplicate path for the rows already kept.
+- **CONFIRMED** The repo's site-update script deletes site rows missing from the package for six types. Earlier notes that deletions never propagate are wrong if the live script matches. The live script was not checked.
+
 ## Unconfirmed
 Each item has a source that says one thing and a source that says another, or no source at all.
 
@@ -120,6 +130,22 @@ Each item has a source that says one thing and a source that says another, or no
 - **The 1.8 updates per new shipment.** STATED by an earlier session from `sql/4_fts_doppelganger_updates_3.sql`, not re-read. Upload alone does not update `SHIPMENTS`, so the updates are ASSESSED as later status writes that pass an unread filter.
 - **Delete handling.** Whether a delete, replace or rename reaches `fb.shipments.v1` as a DELETE. `delete from shipments` appears only in the swap-consignment branch of `REG_SHIP_ITEMS`.
 
+**Selector site and central (2026-11-11)**
+- **Live `CUST_SCRIPTS` rows.** Which registration and site-update scripts are current, and whether the live site-update script matches repo script 1. Also the schedule rows that drive IE and WR.
+- **Whether site upload credentials differ per site.** Central does not check that a shipment's site matches the login.
+- **How a `.gup` export file reaches GFS.** No repo reads one.
+- **The upload host.** Which host order production uses, whether Client4 ships a built-in default address, and whether any site uses dial-up. Also the upload server's configuration files, and whether updates are blocked or the server-side backup copy is on in production.
+- **Local status 2 and 100.** What staff mean by 2, and what writes 100 at a site.
+- **Firebird versions.** Which version each site runs, and the engine version on central (the installer says 1.5, the scripts need later).
+- **Whether `<Reconnect>` update scripts are safe to re-run** after a failure.
+- **How GFS learns that a site's number range is nearly used.**
+- **The standard site install** (IB Manager, Ghostscript, Zebra driver) beyond one Selector team statement.
+- **Central status on arrival,** other than 106 for temporary numbers, and the business meaning of 106.
+- **Central schedules and owners.** The Backup schedule, the HDNL schedule and whether archive (`REMOVE_OLD_DATA`) is on.
+- **Unread central source.** The Royal Mail sync, billing, Seeker, the web scanner, the Scan Injector, most of the IE carrier code, parts of Manager, and four of the five `REG_SHIPMENTS` carrier branches. Also listeners for the alert events (`RECYCLE_*`, `*_ALERT`, `P2P_ADD`) and `CLIPPER_ROUTES`, the callers of about 225 procedures, and grants (the export holds four roles and no `GRANT` statements).
+- **Where the feed's `v_tickets`, `v_ships_comments` and `v_collections` are defined.** The repo has no views.
+- **Whether both site version tables are live** (`CUST_VER_INFO`, `CUST_CARRIER_VER_INFO`), and whether `SHIPMENTS_AI2` is active in production.
+
 **Tracking (2026-11-10)**
 - **Prod etcd values.** `targetPollingMinutes`, `batchLimit`, `intervalSeconds` and `expiryDays` per carrier and state, and whether `DELIVERED` differs from `IN_TRANSIT`. `etcdctl get --prefix connectors:` settles it.
 - **Whether prod runs master.** The prod image `tracking-core:prod-44693` and the deriver sidecar `prod-53270` map to no git sha. Three prod env vars have no binding at `c081108`: `GetNewTrackingV2Enabled`, `UseGetNewTrackingV2` and `TrackingStatusV2Enabled`.
@@ -157,6 +183,7 @@ Each item has a source that says one thing and a source that says another, or no
 - Retest the Lucid macro on Confluence once the admin installs the app.
 - Someone with GCP access lists subscriptions and backlogs for `gfs-ecm-prod-uk1` (`gcloud pubsub subscriptions list`; Cloud Monitoring).
 - Someone with Firebird admin access runs the read-only trigger queries in [[Systems/ecm/firebird-change-feed]]. Harry decides who is asked. Nothing has been sent.
+- Access to the live central schema, the live `CUST_SCRIPTS` rows and the central trigger list. The DBA queries are in [[Systems/ecm/firebird-change-feed]]. Harry decides who is asked.
 - Access to the ADO repos GFS Legacy Migration (Firebird Transfer Service, `sql/`) and `V6` (`GFSPublisher`). The ADO tools could not reach either on 2026-11-11.
 - **Owed corrections to MPK pages, for Harry (Confluence not edited).** These findings contradict or soften:
   - *Polling Connectors* (353697880) attributes the `FindOneAndUpdate` to the connector. It runs in batch-creator.
@@ -176,6 +203,7 @@ Each item has a source that says one thing and a source that says another, or no
   { "id": 2, "kind": "doc", "ref": "Session scratchpad numbers-canonical.md, 2026-11-09 (Datadog metrics via execute_code; not in the vault)" },
   { "id": 3, "kind": "doc", "ref": "Systems/ecm/tracking.md and Handovers/2026-11-09-merak-replacement-pages.tracking-core-findings.md, ...tracking-topic-catalogue.md, ...tracking-model-findings.md (2026-11-10)" },
   { "id": 4, "kind": "doc", "ref": "Handovers/2026-11-09-merak-replacement-pages.topic-usage-map.md and ...topic-datadog-usage.md (research copies, 2026-11-10); Confluence MPK 356155424 ECM Pub/Sub Topics (draft, unverified)" },
-  { "id": 5, "kind": "doc", "ref": "Systems/ecm/firebird-change-feed.md; Handovers/2026-11-09-merak-replacement-pages.firebird-triggers-findings.md and ...firebird-feeds-datadog.md (research copies, 2026-11-11)" }
+  { "id": 5, "kind": "doc", "ref": "Systems/ecm/firebird-change-feed.md; Handovers/2026-11-09-merak-replacement-pages.firebird-triggers-findings.md and ...firebird-feeds-datadog.md (research copies, 2026-11-11)" },
+  { "id": 6, "kind": "doc", "ref": "Handovers/2026-11-09-merak-replacement-pages.selector-local-findings.md and ...selector-central-findings.md (research copies, 2026-11-11); MPK 357171228, 357531678, 357367820 (drafts, unverified)" }
 ] }
 ```

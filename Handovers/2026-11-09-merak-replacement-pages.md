@@ -187,6 +187,17 @@ Checked on `rc-hjf` (`uname -n`) at 2026-11-09T11:57Z:
 - [[Systems/ecm/architecture]] gained guardrails G15 to G18. [[Systems/ecm/known-context]] has the settled facts and the narrowed unconfirmed items. It also has two new owed lines: the DBA queries, and ADO access to the Transfer Service and `V6` repos.
 - Research copies: [[Handovers/2026-11-09-merak-replacement-pages.firebird-triggers-findings]] and [[Handovers/2026-11-09-merak-replacement-pages.firebird-feeds-datadog]].
 
+## Selector site and central pages (2026-11-11)
+Harry asked for three pages from a read of the Selector clones and authorised publishing. They are children of Legacy Selector (351764483), unverified drafts, cross-linked to each other.
+
+| Page | Id | Source copy |
+| --- | --- | --- |
+| Selector at a Site: What Runs Locally and What the Site Database Holds | 357171228 | [[Handovers/2026-11-09-merak-replacement-pages.page10-selector-local]] |
+| Central Firebird: What the Hub Does and Who Reads It | 357531678 | [[Handovers/2026-11-09-merak-replacement-pages.page11-selector-central]] |
+| Between a Site and the Centre: Uploads, Downloads and What Crosses | 357367820 | [[Handovers/2026-11-09-merak-replacement-pages.page12-selector-interaction]] |
+
+Research copies: [[Handovers/2026-11-09-merak-replacement-pages.selector-local-findings]] and [[Handovers/2026-11-09-merak-replacement-pages.selector-central-findings]]. Three corrections went into the vault: the last central script is `update_417`, not `update_411`; the upload address is read from the site table `CUST_UPL_SERVERS`; and the repo's site-update script deletes rows missing from the package, so "deletions never propagate" is wrong if the live script matches. The Legacy Selector index page does not yet list the three pages.
+
 ## Where this now lives
 The durable, indexed copy of these findings is the system [[Systems/ecm/overview|ecm]]. This record stays the transient handover.
 - [[Systems/ecm/overview]]: the MPK page index and states, the nine Lucid document ids and their text twins.
