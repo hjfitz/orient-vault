@@ -1,72 +1,49 @@
 ---
 tags: [handover]
-status: resumed
-workstream: orient Svelte UI — finish the page waves, deploy them, then Retire (remove Next/React)
+status: closed
+workstream: orient Svelte UI — finish the page waves, deploy them, then Retire (remove Next/React): done
 programme: orient Svelte UI
 repo: hjfitz/orient
 from: laptop
 to: hjf.shell.platform.ilg.software
 session_id: 0fb571d0-d903-483b-9e8b-1198b51d571f
 resumed_by: 8584435d-36a9-464d-bc60-e21c842cfe59
-updated: 2026-11-11T15:00Z
+updated: 2026-11-11T15:07Z
 ---
 # Handover: orient Svelte UI
-**Reopened 14:11Z: Harry waived G8 ("let's tag and delete") and the write key is sorted. Retire is in progress (see In flight). Earlier text below describes the state at the G8 stop.**
+**Closed 15:07Z: the workstream is done.** The page waves, the rail, both Retire-prep changes and Retire itself are deployed (live at `6445727`) and pushed; the programme is complete (23 of 24 units done, the terminal dropped). What is left is Harry's, below.
 
 
 ## Where things stand
-**Parked at gate G8.** Live on the VM at **`ef8d2c8`** (core, ui and the index watcher, deployed 2026-11-11 13:57Z from the VM's local checkout; Next, `orient-web`, is still the `64d7ef9` build because nothing it is built from changed since). The core on `:3000` serves every page from the Svelte SPA; Next on `:3001` serves no pages at all, only `/api/*` and its own dead `/` and `/today`. W-C, W-D1, W-D2, W-F, W-G, the rail and both Retire-prep changes are live, reviewed with review-panel, and ticked in the programme ledger (22 of 24 units done; Retire is the only open unit, blocked by G8).
-**`origin/master` is still `af51670`: 13 commits (d6457ee..ef8d2c8) exist only on the VM** because the deploy key is read-only. Programme state: `wp programme status "orient Svelte UI"` and the newest decision-log entry in `Bifrost/orient Svelte UI/Migration State.md`.
+**Done.** Live on the VM at **`6445727`** (core, ui and the index watcher, deployed 2026-11-11 15:04Z) and `origin/master` is the same commit. The core on `:3000` is the only web process: it serves the Svelte SPA, `/api/v1/*` and desk's and scribe's routes. **Next, React and `orient-web` are gone** (the unit stopped, disabled and removed at 15:05Z; `:3001` is closed). The last commit that has them is the tag **`next-ui-final`** (`ef8d2c8`, pushed): `git checkout next-ui-final` brings the Next UI back. `.next-prod`, `.next-prod.bak` and `.next-bench` are still on the VM's disk until the cleanup below.
+Programme: `wp programme status "orient Svelte UI"` (23 done, U10 dropped) and the newest decision-log entry in `Bifrost/orient Svelte UI/Migration State.md`.
 
 | Unit | Delivered | Commits | State |
 | --- | --- | --- | --- |
-| U13 cutover | core on :3000, Next on :3001, terminal retired | 44c16ee | live |
-| W-A1, W-A2, W-B, W-E | reading, doc and editor, delivery, prod pages | up to 0cab68a | live |
-| W-C | PR review + CI logs | 288513d..9ed53e3 | live, done |
-| W-D1 | work, plans, programmes | 1db80dc..c5ddeb7 | live, done |
-| W-D2 | systems, people, customers, skills, diagrams | 585d9e9..71b5013 | live, done |
-| W-F | meetings, recordings, Slack, haude | f2a58f2..af51670 | live, done |
-| W-G | history, usage, analytics, focus, puzzles | 6ea2c81..d486509 (+ 806a824) | live, done; its 5 review findings fixed |
-| Rail unit | SPA sidebar statuses + record/pause/stop + focus controls | 47b5412, fixes e47f4c9 | live, reviewed |
-| Retire prep (a) | `POST /api/reindex` served by the core, rebuild in a child process | 6564455, e656208, ef8d2c8 | live, reviewed, verified live |
-| Retire prep (b) | PR review draft starts through `headless.ts` in its own scope | b61d565, e5edcff, a8c1ec5 | live, reviewed; a real `claude` draft not yet run |
-| Test and gate fixes | manifest/adopt tests machine-independent, diagram parity skip | fa069be, 64d7ef9 | live |
-| Retire | remove Next, React, orient-web | | **blocked by G8** (a week on the full Svelte UI; Harry ticks it) |
+| U13 cutover | core on :3000, terminal retired | 44c16ee | live |
+| W-A1 … W-G | every page moved to the SPA | up to d486509 | live, done |
+| Rail unit | SPA sidebar statuses and controls | 47b5412, e47f4c9 | live, reviewed |
+| Retire prep | core `/api/reindex` (rebuild in a child process); review draft through `headless.ts` | 6564455 … ef8d2c8 | live, reviewed |
+| **Retire** | Next, React, `orient-web`, the proxy and the terminal glue removed; CLAUDE.md rewritten | 29b560e … 6445727 | **live, done, pushed** |
 
 ## In flight
-| Work | State | To close it |
-| --- | --- | --- |
-| **Retire (Next, React, orient-web removed)** | **15:00Z: built, reviewed, final gates running; not deployed.** 19 commits since `ef8d2c8` (the tag `next-ui-final`, pushed): 29b560e (SPA stylesheet moved to `ui/src/globals.css`), 421cd6b + 322b7d8 (deletions, deps, configs; 245 files, +837/−18,550), 529e643 + aeb2eb5 + 8bb454a (core without the proxy; SPA without Next origin/`leave.ts`; tests), 4a9ba76 + 7cac8fc + ccf644c (scripts, units, docs, bench), 656dccd (CLAUDE.md rewrite), b9d38f8 + 5474c22 + e0ffb52 + 7d4ab9d (coverage ported, dead code, stale text), then the review fixes c637e8d, c040a5f, 3069dee, 8ec671e, 23d6fbe, 6445727. review-panel (backend, frontend, ops-script, security; tests lens dropped, builders mutation-checked): security none; fixed: `//api/…` answered the shell with 200 (c637e8d), the editor's unsaved-changes guard could stop firing after a cancelled unload prompt (3069dee), `install-units.sh` had no post-condition after stopping orient-web (8ec671e), a stale `next-env.d.ts` would break tsc on other checkouts (c040a5f). | gates green → `bash -c '. scripts/deploy-lib.sh; gate_no_runs orient-core.service'` → `pnpm deploy:all` at one named sha → verify → `SCRIBE=server HEADLESS=1 scripts/install-units.sh` (stops, disables, removes orient-web) → browser tour → `git push` → remove the stale `pty-secret` → a day later `rm -rf .next-prod .next-prod.bak .next-bench` |
+Nothing. No agent of this session is running.
 
 ## Waiting on Harry
 In order of importance, each with my recommendation.
-1. ~~A write-enabled deploy key~~ **Done 14:11Z** (Harry re-added it with write access): `origin/master` is `ef8d2c8` and the tag `next-ui-final` is pushed. Pushes from the VM work now; push Retire after it is deployed.
-2. ~~Gate G8~~ **Waived by Harry on 2026-11-11 ("trusting my gut")**, recorded in Migration State. Retire is running.
-3. **Run one real PR review draft** (open any PR in orient and use its draft review) and confirm it completes. The new spawn path was exercised through the real `systemd-run` scope with a fake claude and by unit tests, but not with the real `claude` (it costs a sonnet run). If it fails, the draft shows the cause now (`claude not found at …` or `Could not start Claude: …`); the binary is `ORIENT_CLAUDE_BIN ?? ~/.local/bin/claude`, which exists on the VM.
-4. **Deploy mid-draft (decision; recommendation: accept).** Since b61d565 a PR review draft runs in its own systemd scope, so `deploy:all` no longer refuses while one runs, as intended. The cost: a deploy or restart mid-draft loses that draft (its record shows "interrupted"), the `claude` process runs on unattended until it ends (nothing times it out), a Retry starts a second billed run, and the run dir (it holds the PR's diff, 0700 under `~/.local/state/orient/review-runs/`) stays until the next draft's one-hour sweep. A fuller fix is a pid file beside the run dir so the next draft adopts or stops the orphan. Not built.
-5. **Scribe Go source changed, not built or deployed** (a8c1ec5, the withheld-credentials list gains `DATADOG_API_KEY` and `DATADOG_APP_KEY`). `make install` in `scribe/` applies it; the running scribe binary is unchanged. Recommendation: build it at the next scribe change, no hurry (the list is a second line of defence).
-6. **`orient-writers/skills/explain/diagram-rules.mjs` is not tracked in orient-writers** (the laptop copy is probably untracked there), so `tests/unit/diagram-presets.test.ts` now skips on the VM instead of failing. Recommendation: commit the file in orient-writers if it belongs there. I did not touch that repo (it holds your uncommitted work).
-7. **Optional: the VM's Playwright browser.** playwright-core 1.65 wants `chromium_headless_shell-1254`; this host has 1148. The three browser UI test files ran through a symlink shim to `/usr/bin/chromium` (see Gotchas). `pnpm exec playwright-core install chromium-headless-shell` would make them work unaided (a download, so your call).
-8. **Low priority, leave unless you disagree:** (a) the rail offers pause/stop for any row reading `status: recording`, including a read-only one (another machine's, not adopted), where scribe answers 409 and the error shows; that state needs a third un-adopted machine and the old Next rail behaved the same. (b) The Systems tab links each system (`ecm`, `fuse`, `ilg-platform`, `carrier-integrations`) to `/service/<name>`, which answers "No service called …" for a system with no service entity; the old Next page did the same through the same `serviceOverview()`. (c) The rebuild child is not tied to the core's lifetime: under systemd the cgroup stop kills it; a side-port core killed by pid can leave an orphan (Gotchas).
-9. **`gh` on the VM is logged out** (its token is invalid). Nothing here needed it (orient has no PRs).
+1. **Send the note to Darren.** It is saved as a draft in your Slack DM with him (the answer to his "LoC before and after?"; voice skill, terse register; I can only draft). Frontend only: 39.4k non-blank lines of React/Next before, 33k of Svelte now, about 16% less, for about the same pages and components. If he pushes back: the whole UI-serving stack is about 18% bigger (41.6k to 49.1k) because the SPA needs the core service, ops and API shapes behind it.
+2. **Tomorrow (about 15:05 UTC, a day after the deploy): delete the old Next build.** On the VM: `rm -rf ~/projects/orient/.next-prod ~/projects/orient/.next-prod.bak ~/projects/orient/.next-bench`. That removes the quick rollback (`.next-prod.bak`); after it, the way back is the tag `next-ui-final`. On any other checkout that ever ran Next (the laptop): `rm -f next-env.d.ts`, and `git pull` there first: **the laptop's `master` is behind `origin/master` by everything in this handover**, so pull before deploying or editing anything.
+3. **Run one real PR review draft** (open a PR in orient and use its draft review) and confirm it completes. The new spawn path (own systemd scope) was exercised with a fake claude through the real `systemd-run`, and by tests, but not with the real `claude` (it costs a sonnet run). If it fails, the draft now says why (`claude not found at …` or `Could not start Claude: …`).
+4. **Decision (recommendation: accept):** a deploy mid-draft now loses that draft, the `claude` process runs on unattended until it ends, a Retry starts a second billed run, and the run dir (it holds the PR's diff, 0700 under `~/.local/state/orient/review-runs/`) stays until the next draft's one-hour sweep. A fuller fix is a pid file beside the run dir. Not built.
+5. **Delete the stale terminal secret** (I was blocked from doing it): `rm ~/.local/state/orient/pty-secret` (64 bytes, 0600, written 2026-11-03 for the retired terminal; nothing reads it; the bench setup script mints its own).
+6. **Dead code I left because it needs your call** (recommendation: delete it all in one cleanup; it is the prompt-tool feature you dropped on 2026-11-10): `src/domain/tools.ts` (about 500 lines; only `toContextDoc` is used, by `meeting.ts`) with `src/prompt/fields.ts` and `src/edit/templates/**/*.mdx`, `src/adapters/cust.ts` (never imported), `Skill.invocation` in `src/domain/skills.ts` (set, never read), and `knownPages()` in `src/domain/page-use-view.ts`, which still scans a gone `app/` directory.
+7. **Scribe Go source changed, not built or deployed** (a8c1ec5: the withheld-credentials list gains `DATADOG_API_KEY` and `DATADOG_APP_KEY`). `make install` in `scribe/` applies it; the running binary is unchanged. Recommendation: build it at the next scribe change.
+8. **`orient-writers/skills/explain/diagram-rules.mjs` is not tracked in orient-writers**, so `tests/unit/diagram-presets.test.ts` skips on the VM. Recommendation: commit it there if it belongs. I did not touch that repo (it has your uncommitted work).
+9. **Optional:** the VM's Playwright browser (playwright-core wants `chromium_headless_shell-1254`, the host has 1148; the browser UI tests ran through a symlink shim to `/usr/bin/chromium`, see Gotchas). `pnpm exec playwright-core install chromium-headless-shell` fixes it properly (a download, your call).
+10. **Low priority, leave unless you disagree:** (a) the rail offers pause/stop for a read-only `recording` row (needs a third un-adopted machine; the old rail did the same). (b) The Systems tab links each system (`ecm`, `fuse`, `ilg-platform`, `carrier-integrations`) to `/service/<name>`, which answers "No service called …"; the old page did the same. (c) A rebuild child can be orphaned if a side-port core is killed by pid (under systemd it dies with the unit). (d) `/today/x` and the bare parents of `[param]` routes (`/doc`, `/jira`, `/pr`) answer 200 with the SPA's not-found page instead of a 404 status. (e) SvelteKit leaves its navigating flag stuck when a cross-origin link's unload prompt is cancelled (its own behaviour; the same-origin case in the editor is fixed). (f) `tests/integration/ticket-run-cycle.test.ts` failed once on a quiet host and passed alone and on a rerun: a timing flake (stubbed claude must still be running when the second start is tried). (g) `gh` on the VM is logged out; nothing here needed it.
 
 ## Next up
-Items 1 to 6 of the laptop's list are done (see Closed since handover). What is left:
-
-7. **Stop at gate G8: a week on the full Svelte UI. G8 blocks Retire** (Migration State `## Gates`). Do not delete
-   Next, React or `orient-web` until Harry ticks G8. When he does, Retire works from `docs/waves/Retire.md`:
-   - delete Next, React and `orient-web`;
-   - drop the proxy;
-   - rewrite the CLAUDE.md invariants;
-   - review with review-panel and deploy;
-   - stop `orient-web` (install-units).
-   Remove `.next-prod*` and `.next-bench` only a day after that.
-
-What Retire should know from this session (add to `docs/waves/Retire.md` when it starts):
-- `POST /api/reindex` is the core's (`legacy.ts`, over `src/ops/reindex.ts` and `src/core/reindex-child.ts`, `scripts/reindex-run.ts`). `app/api/reindex/route.ts` and the React palette's `fetch` (`src/components/CommandPalette.tsx`) die with Next; `src/ops/reindex.ts` stays (the child script calls it).
-- `tests/unit/core-proxy.test.ts` uses `/api/tmux/paste` as its stand-in for a Next-only route; deleting `app/api/tmux` means it needs another, or the proxy tests go with the proxy.
-- The review draft's run dir logic lives in `src/adapters/claude-review.ts`; `runToolLess` (focus suggest and ideate, meeting prep, recording ask) still spawns a piped child in the service's cgroup: short runs, same fix if wanted.
-- The browser tour driver and its notes are in the Gotchas below; rerun it (with Next gone, every non-SPA path must be the SPA's 404 or 404 JSON under `/api`).
+Nothing is queued for the programme: it is complete. Owed follow-ups are in Waiting on Harry (the day-later cleanup, the real review draft, the dead-code cleanup). If the Svelte UI grows a new page: `docs/waves/README.md`'s "Mistakes … caught" list still applies, and `CLAUDE.md` describes the guard rails.
 
 ## How work is done here
 - **Rules:** repo rules are in `CLAUDE.md`. The wave playbook is `docs/waves/README.md`; follow its "Mistakes …
@@ -78,9 +55,8 @@ What Retire should know from this session (add to `docs/waves/Retire.md` when it
   builders at once in the shared checkout. No worktrees in orient.
 - **Git:** stage explicit paths only (`git add <paths>`, then `git commit -m … -- <paths>`). Never `git add -A`,
   stash or reset others' files. Push after `git fetch -q && git status -sb | head -1` shows only "ahead". Commits
-  end with `Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>`.
-- **Deploying:** you are on the production host. `pnpm deploy:all` deploys whatever is checked out, so deploy a
-  named sha (`git merge --ff-only <sha>`), never a half-landed wave.
+  end with the model's own `Co-Authored-By` line (the VM session used `Claude Sonnet 5.5`).
+- **Deploying:** you are on the production host. `pnpm deploy:all` (install if the lockfile changed, `deploy:ui`, `deploy:core`, restart orient-index) deploys whatever is checked out, so deploy a named sha, never a half-landed change. Run `bash -c '. scripts/deploy-lib.sh; gate_no_runs orient-core.service'` first (the scripts are bash; sourced in zsh the gate prints a harmless error line).
 - **Never:**
   - write to the real vault in tests (scratch vaults come from `git clone ~/Documents/obsidian <dir>`);
   - call scribe `:3013` from tests;
@@ -93,9 +69,9 @@ Checked 2026-11-11T12:2xZ:
 - **Tools:** gh, git, node, jq, python3, tmux and mise. pnpm is **only via `mise exec -- pnpm`**.
 - **Skills:** session-handover, waypoint-programme, review-panel; `wp.py` is present.
 - **Vault:** `~/Documents/obsidian` is present.
-- **orient checkout:** `~/projects/orient` at `0cab68a`; its push key is read-only, so see Waiting on Harry.
+- **orient checkout:** `~/projects/orient` at `6445727`, equal to `origin/master`; its deploy key now has write access.
 - **tmux:** session `main`.
-- **Services:** orient-core, orient-web, orient-index, orient-scribe and orient-vault-sync run here as user units.
+- **Services:** orient-core, orient-index, orient-scribe (role server) and orient-vault-sync (+ timer) run here as user units. `orient-web` was removed on 2026-11-11. `install-units.sh` here is run as `SCRIBE=server HEADLESS=1 scripts/install-units.sh` (no desk on the VM).
 - Agents testing on the VM must use side ports (3031–3044) and scratch state, exactly as on the laptop.
 
 ## Gotchas
@@ -107,13 +83,7 @@ Checked 2026-11-11T12:2xZ:
 - **Driving live pages:** `chromium.launch({executablePath:'/usr/bin/chromium', args:['--no-sandbox']})` works with playwright-core; abort every non-GET (`page.route`) so the page-view beacon and writes cannot fire; allow only `POST /api/v1/diagrams/preview` and `/api/v1/puzzles/next` (pure loads) or `/diagrams` and `/puzzles` show errors. The first load of `/usage` and `/pr/...` right after a restart is thin (cold scans): wait and reload.
 - **zsh on this host:** `set -- $var` does not word-split and `PIPESTATUS` is `pipestatus`; run scripts that need bash with `bash -c`. `gate_no_runs` sourced in zsh prints a `runs_in` noise line; run it under bash.
 - **`gh` on the VM is logged out** (token invalid): no `gh pr`/`gh api` here. Not needed: orient has no PRs, and pushes use the deploy key.
-- **Typed routes:** Next's `typedRoutes` broke the build once pages moved. It's off now.
-- **Stale generated types:** `.next*/types` validators and `link.d.ts` go stale. `pnpm typecheck` clears and
-  regenerates them, and on the VM `rm -rf .next-prod/types` goes before a check build.
-- **The check build edits tsconfig:** `ORIENT_DIST_DIR=.next-check next build` adds includes to `tsconfig.json`.
-  Run `git checkout -- tsconfig.json` afterwards.
-- **A failed `deploy:web` leaves Next down:** restore with `systemctl --user stop orient-web; rm -rf .next-prod;
-  cp -a .next-prod.bak .next-prod; systemctl --user start orient-web`. `.next-prod.bak` is the pre-cutover build.
+- **Next gotchas are history.** Typed routes, stale `.next*/types`, the check build's tsconfig edit and a failed `deploy:web` left Next down: all went with Next (read them at the tag `next-ui-final` if it ever returns).
 - **javascript: links:** Svelte renders `javascript:` hrefs, and React refused them. Every data link goes through
   `appHref`/`safeHref`, and the layout click guard is only a backstop.
 - **Detail pages:** a `[param]` page reuses its component, so wrap its body in `{#key param}`. Otherwise an open edit
@@ -127,6 +97,14 @@ Checked 2026-11-11T12:2xZ:
 ## Closed since handover
 | When (UTC) | Work | Result |
 | --- | --- | --- |
+| 2026-11-11T15:07Z | Handover and programme closed | `wp programme tick … Retire done` (29b560e..6445727), decision-log entry added, this record closed. A `pty-secret` removal was blocked by the permission classifier and is left to Harry (Waiting on Harry 5) |
+| 2026-11-11T15:06Z | Final tour on 6445727 and push | 60 page loads, non-GET aborted: same as before (every page from the SPA; the known `/service/<system>` 404; `/usage` and the PR page show their cold state right after a restart and are full within ~1 s). `git push`: `origin/master` is 6445727; the tag `next-ui-final` is on GitHub |
+| 2026-11-11T15:05Z | **orient-web removed** | `SCRIBE=server HEADLESS=1 scripts/install-units.sh`, exit 0 in under a second: "removing orient-web", "orient-web removed". Afterwards orient-web inactive, not-found, unit file gone, listeners only :3000 and :3013; core, index, scribe and the vault-sync timer kept their start times (scribe since 11-09, not restarted) |
+| 2026-11-11T15:04Z | **Deploy of Retire at 6445727** | `pnpm deploy:all` 15:04:30–15:04:46Z; core, ui, index record 6445727 (the `web` record stays 64d7ef9: nothing writes it now). Pre-checks: tree clean, both run gates OK. Live: pages 200 from the SPA, `/nope` 404 (shell), `/api/nope` and `/_app/…` 404 JSON, `//api/desk` 404, legacy `/api/desk` 200, bad Host 421, an unserved write 403 without the page's headers and 404 JSON with them; the core's log line no longer says "Next behind it" |
+| 2026-11-11T15:03Z | Final gates on 6445727 | typecheck (plain `tsc`), `ui:check` 0/0, `ui:build` clean, lint 47 errors (baseline: `bench/*`, `scribe/eval`), `pnpm test` 352 files passed / 1 skipped on a quiet host (one earlier run had a single timing flake in `ticket-run-cycle`, green alone and on rerun) |
+| 2026-11-11T14:55Z | review-panel on Retire, fixes | backend, frontend, ops-script, security (tests lens dropped: builders mutation-checked). Security: none. Fixed: c637e8d (`//api/…` served the shell with 200), 3069dee (a dirty editor leaving for a non-SPA path cancels first: SvelteKit left its navigating flag stuck after a cancelled unload prompt, silencing the guard), 8ec671e (`install-units.sh` fails if orient-web is still active after the stop, before any `rm`), c040a5f (tsconfig excludes a stale `next-env.d.ts`), 23d6fbe + 6445727 (the history refusal text and 32 files of stale comments) |
+| 2026-11-11T14:40Z | **Retire built** | 3 sonnet builders on disjoint files (A: deletions, deps, configs; B: core proxy, SPA routing, tests; C: scripts, units, docs), CLAUDE.md by me, then a cleanup builder (66 renderer tests ported from the deleted React tests, the deleted route tests' guards re-pinned on the core, dead modules removed). My brief was wrong once: `/doc/resolve` is the core's redirect, not an unserved path; builder B caught it. 20 commits 29b560e..6445727; 245 files changed (+837 / −18,550) before the review fixes |
+| 2026-11-11T14:11Z | Write key sorted; tag pushed | Harry re-added the deploy key with write access; pushed exactly `ef8d2c8` (a fast-forward from af51670) and the tag `next-ui-final` while the Retire builders were committing locally. G8 waived by Harry ("trusting my gut") and recorded in Migration State |
 | 2026-11-11T14:04Z | DM to Harry | sent through the slack-bot skill (Bifrost Support Bot; `auth.test` ok on this host; Harry's user id from his own Slack profile; DM channel already open): what is live, what is left, what waits on him |
 | 2026-11-11T14:02Z | Final browser tour and palette Reindex on ef8d2c8 | 60 page loads, non-GET aborted: all pages 200 from the SPA with data; the only fails are `/service/<system>` (known) and `/usage` and `/pr/...` showing their cold-load state right after the restart, both full within ~1 s on a recheck. The SPA palette's "Reindex the vault" clicked in a real browser: "Indexed 1388 documents." after 38 s, one POST with `origin`, `x-orient`, `content-type`, no console errors |
 | 2026-11-11T13:57Z | **Deploy of the reindex fix at ef8d2c8** | live (13:57:11–13:57:26Z; core, ui, index record ef8d2c8; `deploy:all` skipped the Next rebuild because nothing Next is built from changed, so `web` stays 64d7ef9). Gates: typecheck clean, `ui:check` 0/0, `ui:build` clean, lint at baseline, `pnpm test` 386 files passed / 1 skipped on a quiet host. **Live proof:** during one real 37 s rebuild, 131 polls of the core, slowest 0.34 s, none over 1 s (the freeze had been 4 polls and a 20 s timeout); 403/403/403/421 refusals as before; a second call inside 30 s answered from the throttle in 0.5 s |
