@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-12 — Add the shipment playground, shipment list and label preview, and the CSV export to the UI
+
+Add the shipment playground, shipment list and label preview, and the CSV export to the UI
+
+Units D2 and D4. The playground composes a v2 shipment and validates, processes, commits and deletes it through the basic-auth admin routes, showing item outcomes, the carrier call trace and the labels (PNG in an img, PDF in an unsandboxed iframe because Chromium's PDF viewer refuses a sandboxed frame, ZPL as server-read text). Shipment list with filters and detail; CSV export streamed through the UI server. A four-lens review panel found and the PR fixes: the PDF preview never rendering, a failed label read turning a successful booking into a 500, the compose form blanking after commit, a god's stale tab writing to another tenant (now 409), a UI timeout shorter than the API's worst carrier call, vacuous tests. Also fixes the synthetic seed's Royal Mail service code (RMT24, not the product code TPN24). Verified locally end to end against the public mocks in headless Chromium.
+
+PR: ilg-merak/selector2#19
+
 ## 2026-11-12 — Add the basic-auth routes the UI uses: shipments, labels, carrier accounts, CSV export
 
 Add the basic-auth routes the UI uses: shipments, labels, carrier accounts, CSV export
