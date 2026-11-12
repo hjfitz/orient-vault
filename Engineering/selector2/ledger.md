@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-12 — Add the account and API-key use-cases and the admin routes
+
+Add the account and API-key use-cases and the admin routes
+
+Unit B10: admin OpenAPI first, account and API-key use-cases, basic-auth guard over the B2 resolver, JSON-only POST (CSRF), trusted-proxy source address. Two-lens review fixed.
+
+Ship: SELECTOR2-1112-ship. PR: ilg-merak/selector2#10
+
 ## 2026-11-12 — Add accounts, API keys, the principal resolver and the god account
 
 Add accounts, API keys, the principal resolver and the god account
