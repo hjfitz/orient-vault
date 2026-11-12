@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-12 — Add the InPost, OCS, Exelot and Veho carrier adapters
+
+Add the InPost, OCS, Exelot and Veho carrier adapters
+
+Unit B8: InPost, OCS, Exelot (create) and Veho (create, cancel, commit); BookingRequest.shipDate; all 12 proxy carriers now registered. Two-lens review fixed.
+
+Ship: SELECTOR2-1112-ship. PR: ilg-merak/selector2#8
+
 ## 2026-11-12 — Add the DPD Europe, Amazon and BJS carrier adapters
 
 Add the DPD Europe, Amazon and BJS carrier adapters
