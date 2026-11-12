@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-12 — Add the UPS, Coll8 and FedEx carrier adapters
+
+Add the UPS, Coll8 and FedEx carrier adapters
+
+Unit B6: UPS (two XML calls, partial-failure handle), Coll8 (cancel and end-of-day manifest), FedEx. Two-lens review fixed; fast-xml-parser 5.11.2 with DOCTYPE refusal.
+
+Ship: SELECTOR2-1112-ship. PR: ilg-merak/selector2#6
+
 ## 2026-11-12 — Add the shipment request model and the validation chain
 
 Add the shipment request model and the validation chain
