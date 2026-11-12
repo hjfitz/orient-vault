@@ -31,11 +31,11 @@ verified_paths:
 - **UI:** `selector2-ui` sits behind HTTP basic auth and validates every sign-in against the api. It manages accounts and API keys, and the basic-auth `/admin/shipments` routes exist for its playground and CSV export. The playground and export screens are not built yet (units D2, D4) [5].
 
 ## Why it exists separately
-Harry asked for a clean replacement rather than a port: the wire contracts stay, so a caller changes its URL and credentials and nothing else, while the inside is a Drizzle/Postgres model with no Firebird and no C#. It lives in `ilg-merak` because it is Merak's build, outside Fuse. It uploads nothing to GFS: CSV export from the UI is the only way data leaves [6].
+Harry asked for a clean replacement, not a port. The wire contracts stay, so a caller changes its URL and credentials and nothing else. The inside is a Drizzle/Postgres model with no Firebird and no C#. It lives in `ilg-merak` because it is Merak's build, outside Fuse. It uploads nothing to GFS: CSV export from the UI is the only way data leaves [6].
 
 ## Neighbours
 ```orient-flow
-{ "v": 1, "title": "selector2 in context",
+{ "v": 1, "preset": "c4-container", "title": "selector2 in context",
   "nodes": [
     { "id": "soap", "label": "SOAP clients", "sub": "Parcel Portal, selector-adapter", "kind": "external" },
     { "id": "rest", "label": "REST callers", "sub": "x-api-key, v1 and v2", "kind": "external" },
@@ -49,7 +49,7 @@ Harry asked for a clean replacement rather than a port: the wire contracts stay,
   "edges": [
     { "from": "soap", "to": "api", "label": "AuthenticationDetails body" },
     { "from": "rest", "to": "api", "label": "x-api-key" },
-    { "from": "person", "to": "ui" },
+    { "from": "person", "to": "ui", "label": "basic auth" },
     { "from": "ui", "to": "api", "label": "caller's own Basic header" },
     { "from": "api", "to": "db", "label": "tenant-scoped" },
     { "from": "api", "to": "mocks", "label": "ID token + x-api-key" },
@@ -61,14 +61,14 @@ The ui holds no account store and no database access. The api is the only servic
 ## Where the reference lives
 - `docs/` in the repo is the deep reference: `data-model`, `auth`, `admin-api`, `ui`, `soap`, `rest-v1`, `rest-v2`, `shipment-use-cases`, `carrier-egress` and `validation-scope`. `AGENTS.md` carries the programme invariants and the recorded departures from the org contract.
 - The programme record is `Bifrost/Selector2/` in the vault: `Migration State.md` (decision log, gates, risks) and the carrier and SOAP evidence digests.
-- Structure and guardrails: [[architecture]]. History, decisions and open questions: [[known-context]]. Running it: [[operations]]. How it is tested: [[testing]].
+- Structure and guardrails: [[architecture]]. History, decisions and open questions: [[known-context]]. Running it: [[operations]]. The test strategy: [[testing]].
 
 ## What deliberately isn't here
 - **Firebird events, upload to GFS and billing.** Commit marks a shipment committed and goes no further.
 - **Real data.** Every tenant, address, key and label is synthetic.
 - **A prod environment.** There is no prod tfvars and no cutover; nothing in production moves to it.
 - **Carriers beyond the twelve proxy carriers.** No template-drawn labels and no direct-API carriers.
-- **Number-range allocation.** Selector takes consignment numbers from the proxy; the `number_range` table exists but no code allocates from it (unit B4 was dropped).
+- **Number-range allocation.** Selector takes consignment numbers from the proxy; the `number_range` table exists but no code allocates from it (Harry's programme dropped unit B4).
 
 ## Evidence
 ```orient-evidence

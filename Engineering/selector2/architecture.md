@@ -42,7 +42,7 @@ verified_paths:
 `apps/selector2-api/src` follows the org layer contract: `bootstrap` wires everything, `http` calls one use-case per route, `use-cases` hold what the service does, `core` has the rules with no framework or driver, and `adapters` and `repositories` hold the carrier client and Postgres access. Nest modules live only in `bootstrap/containers/`, and every injection is an explicit `@Inject(token)` from `models/tokens.ts` [1].
 
 ```orient-flow
-{ "v": 1, "title": "Inbound request path in selector2-api",
+{ "v": 1, "preset": "c4-container", "title": "Inbound request path in selector2-api",
   "nodes": [
     { "id": "soap", "label": "SOAP controller", "sub": "ClientShipService.asmx", "kind": "service" },
     { "id": "v1", "label": "REST v1 controller", "sub": "x-api-key", "kind": "service" },
@@ -54,19 +54,19 @@ verified_paths:
     { "id": "db", "label": "Postgres", "sub": "repositories via TenantScope", "kind": "store" }
   ],
   "edges": [
-    { "from": "soap", "to": "res" },
-    { "from": "v1", "to": "res" },
-    { "from": "v2", "to": "res" },
-    { "from": "adm", "to": "res" },
+    { "from": "soap", "to": "res", "label": "AuthenticationDetails" },
+    { "from": "v1", "to": "res", "label": "x-api-key" },
+    { "from": "v2", "to": "res", "label": "x-api-key" },
+    { "from": "adm", "to": "res", "label": "Basic header" },
     { "from": "res", "to": "uc", "label": "Principal then TenantScope" },
-    { "from": "uc", "to": "core" },
-    { "from": "uc", "to": "db" }
+    { "from": "uc", "to": "core", "label": "validate, plan" },
+    { "from": "uc", "to": "db", "label": "claim, record" }
   ] }
 ```
 SOAP, REST v1, REST v2 and the admin shipment routes all call the same use-cases and share the status mapping in `core/shipments/outcomes.ts`, so the transports cannot drift. REST v2 and `/admin/shipments` share one set of operation functions, so they answer byte for byte alike [2].
 
 ```orient-flow
-{ "v": 1, "title": "Egress to a carrier proxy",
+{ "v": 1, "preset": "c4-container", "title": "Egress to a carrier proxy",
   "nodes": [
     { "id": "uc", "label": "processShipments", "sub": "claim, book, record", "kind": "service", "tone": "accent" },
     { "id": "reg", "label": "CarrierRegistry", "sub": "checkBookable first", "kind": "service" },
@@ -76,9 +76,9 @@ SOAP, REST v1, REST v2 and the admin shipment routes all call the same use-cases
     { "id": "trace", "label": "carrier_call", "sub": "identifiers and timings only", "kind": "store" }
   ],
   "edges": [
-    { "from": "uc", "to": "reg" },
-    { "from": "reg", "to": "ad" },
-    { "from": "ad", "to": "http" },
+    { "from": "uc", "to": "reg", "label": "BookingRequest" },
+    { "from": "reg", "to": "ad", "label": "resolve by carrier" },
+    { "from": "ad", "to": "http", "label": "proxy request" },
     { "from": "http", "to": "mock", "label": "x-api-key + X-Serverless-Authorization" },
     { "from": "http", "to": "trace", "label": "one row per attempt" }
   ] }
