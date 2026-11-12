@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-12 — Add the scenarios page: preset shipments for the twelve mock carriers
+
+Add the scenarios page: preset shipments for the twelve mock carriers
+
+Unit D5. /scenarios books preset shipments against the twelve mock carrier proxies and compares the outcome with what each preset expects: 74 presets (12 happy, 62 failure presets using the mocks' magic values), run one or run all happy paths (3 at a time, at most 12 per click, one run per account, no new call after 150 s so the worst case stays inside Cloud Run's 300 s). The local synthetic seed now gives the Acme tenant a contract, service and route for every carrier, and Bramble's service codes are corrected to ones its mocks accept. Three-lens review panel, all verified findings fixed. Local end to end against the real mocks: 12 of 12 happy paths ok in the browser, 74 of 74 presets matched.
+
+PR: ilg-merak/selector2#20
+
 ## 2026-11-12 — Add the shipment playground, shipment list and label preview, and the CSV export to the UI
 
 Add the shipment playground, shipment list and label preview, and the CSV export to the UI
