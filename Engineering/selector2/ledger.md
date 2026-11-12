@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-12 — Add the shipment request model and the validation chain
+
+Add the shipment request model and the validation chain
+
+Unit B3: canonical shipment request (CSS in camelCase), pure validation chain for the 12 proxy carriers with rule slugs, validation-scope doc. Three-lens review fixed.
+
+Ship: SELECTOR2-1112-ship. PR: ilg-merak/selector2#5
+
 ## 2026-11-12 — Add the carrier egress port, ID-token client and Royal Mail adapter
 
 Add the carrier egress port, ID-token client and Royal Mail adapter
