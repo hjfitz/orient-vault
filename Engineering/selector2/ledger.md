@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-12 — Add the SvelteKit shell and the basic-auth gate
+
+Add the SvelteKit shell and the basic-auth gate
+
+Unit D1: basic-auth gate over GET /admin/me, success cache, per-visitor limiter, shell with CSP, god tenant picker, terraform_remote_state for the API URL. Two-lens review fixed. Follow-up: API trusts a verified UI-forwarded visitor address.
+
+Ship: SELECTOR2-1112-ship. PR: ilg-merak/selector2#12
+
 ## 2026-11-12 — Add the account and API-key use-cases and the admin routes
 
 Add the account and API-key use-cases and the admin routes
