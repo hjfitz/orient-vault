@@ -358,3 +358,6 @@
 {"ts": 1794415218, "kind": "programme_tick", "session_id": "396b7315-aa79-43a2-af2d-63d6eb3aac55", "programme": "Selector2", "unit": "A2", "status": "done"}
 {"ts": 1794415218, "kind": "ledger", "session_id": "396b7315-aa79-43a2-af2d-63d6eb3aac55", "service": "selector2", "ticket": null, "programme": "Selector2", "heading": "## 2026-11-11 \u2014 Cloud SQL, migrations, readiness and public access", "prs": ["ilg-merak/selector2#2"]}
 {"ts": 1794478922, "kind": "programme_tick", "session_id": "396b7315-aa79-43a2-af2d-63d6eb3aac55", "programme": "Selector2", "unit": "B1", "status": "doing"}
+{"ts": 1794481647, "kind": "ledger", "session_id": "396b7315-aa79-43a2-af2d-63d6eb3aac55", "service": "selector2", "ticket": null, "programme": "Selector2", "heading": "## 2026-11-12 \u2014 Add the multi-tenant domain schema, its Selector mapping and a synthetic seed", "prs": ["ilg-merak/selector2#3"]}
+{"ts": 1794482152, "kind": "programme_tick", "session_id": "396b7315-aa79-43a2-af2d-63d6eb3aac55", "programme": "Selector2", "unit": "B1", "status": "done"}
+{"ts": 1794482154, "kind": "programme_tick", "session_id": "396b7315-aa79-43a2-af2d-63d6eb3aac55", "programme": "Selector2", "unit": "B4", "status": "deferred"}
