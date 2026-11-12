@@ -32,3 +32,6 @@ commands:
   gate: ["lint", "build:check", "build:check:tests", "test", "build"]
   missing: []        # all five exist; test/ci need a Postgres (compose postgres-test on 5433, CI on 5432)
 onboarded: 2026-11-11
+commands_verified: 2026-11-12
+commands_verified_sha: 6442634
+commands_verified_paths: [package.json, mise.toml, apps/selector2-api/package.json]
