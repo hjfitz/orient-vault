@@ -78,7 +78,7 @@ Legend: ⬜ not started · 🟨 in progress · ✅ merged · ⛔ blocked · ⏸ 
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | **E1** | ✅ | Onboard selector2 into Waypoint | B9 | low | sonnet/medium | | `waypoint-onboard`, then explainers once the contract is real. |
 | **E2** | 🟨 | Confluence: mock carrier proxies overview | | low | sonnet/medium | | **Gated on G3.** Written with `plainly`. Sources: the carrier-playground handover and ledger. Can start now. |
-| **E3** | ⬜ | Confluence: selector2 overview, similarities and differences | C2 | low | sonnet/medium | | **Gated on G3.** Written with `plainly`. Differences come from B1's mapping and the decision log. |
+| **E3** | 🟨 | Confluence: selector2 overview, similarities and differences | C2 | low | sonnet/medium | | **Gated on G3.** Written with `plainly`. Differences come from B1's mapping and the decision log. |
 
 ## Gates
 - [x] **G1 — Repo name and creation go-ahead** — blocks A1. **Cleared 2026-11-11:** Harry said "go ahead and build this e2e" after `ilg-merak/selector2` was proposed. Created private, `main`, from an initial README.
