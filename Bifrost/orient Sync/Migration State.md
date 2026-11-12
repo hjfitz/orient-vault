@@ -1,12 +1,15 @@
 ---
-title: "orient Sync — Migration State"
-programme: "orient-sync"
+title: orient Sync — Migration State
+programme: orient-sync
 status: active
-owner: "hjf"
-services: ["orient"]
-created: "2026-11-12"
-updated: "2026-11-12"
-tags: [bifrost, migration-state]
+owner: hjf
+services:
+- orient
+created: '2026-11-12'
+updated: '2026-11-12'
+tags:
+- bifrost
+- migration-state
 ---
 # orient Sync — Migration State
 
@@ -24,7 +27,7 @@ Sequencing: S0 → S1 → S2 → S3 → S4 → S5 in series (they share the kern
 ### Runner and cache
 | Unit | St | Summary | Deps | Risk | Tier | PR | Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| **S0** | ⬜ | Job runner in the kernel | | med | sonnet/high | | `src/core/kernel/jobs.ts`: a named job with an interval, jitter, a busy guard (no overlapping runs), exponential back-off with a cap on failure, a clean stop on shutdown (`core/main.ts:43-48` today abandons in-flight work), and a status record (lastRun, lastOk, lastError, nextRun, runs, failures). Intervals from `ORIENT_*` env with a `num()` fallback. Port onto it: the boot-only PR warm (`delivery/prs.ts:48`), the two 5-minute timers (`delivery/sprint.ts:312-325`, `today.ts:848`), and the four copy-pasted `look/tick` loops (`runs.ts:116`, `slack.ts:389`, `recordings.ts:246`, `usage/index.ts:119`; they poll only while an SSE page is open, so keep that rule as a job option). `GET /api/v1/health` gains the job list. Behaviour-preserving apart from back-off and visibility; no interval changes yet. Tests with fake timers: no overlap, back-off, stop, status. |
+| **S0** | 🟨 | Job runner in the kernel | | med | sonnet/high | | `src/core/kernel/jobs.ts`: a named job with an interval, jitter, a busy guard (no overlapping runs), exponential back-off with a cap on failure, a clean stop on shutdown (`core/main.ts:43-48` today abandons in-flight work), and a status record (lastRun, lastOk, lastError, nextRun, runs, failures). Intervals from `ORIENT_*` env with a `num()` fallback. Port onto it: the boot-only PR warm (`delivery/prs.ts:48`), the two 5-minute timers (`delivery/sprint.ts:312-325`, `today.ts:848`), and the four copy-pasted `look/tick` loops (`runs.ts:116`, `slack.ts:389`, `recordings.ts:246`, `usage/index.ts:119`; they poll only while an SSE page is open, so keep that rule as a job option). `GET /api/v1/health` gains the job list. Behaviour-preserving apart from back-off and visibility; no interval changes yet. Tests with fake timers: no overlap, back-off, stop, status. |
 | **S1** | ⬜ | One cache | S0 | med | sonnet/high | | The kernel `SwrCache` is the only cache for PR and Jira data. Remove the duplicates (`delivery/jira.ts:22` slots, `pr/slots.ts:4`, `delivery/prs.ts:20` re-implementing `ops/last-good.ts`) and the adapter Maps that sit beneath the kernel TTL (`adapters/github.ts:167`, `jira-board.ts`, `jira.ts:93`), so `asOf` is truthful. Route every PR reader through `prs:open` (`domain/one-to-one.ts:103`, `focus-context.ts:114`, `ticket-prs.ts:73`). In-flight dedupe in the adapters (`github.ts:195`, `jira-board.ts:380`). Stop caching failures for the full TTL (`github.ts:246,467`). Keep SWR semantics and tag invalidation by orient's own writes (`prs` after a review write, `jira` after a Jira write). One `STORY_POINTS_FIELD`. |
 | **S2** | ⬜ | Cheaper, rate-limit-aware GitHub | S1 | **high** | sonnet/high | | Replace about 143 REST calls per refresh with one GraphQL query per org (pull requests, review state, check rollup), or ETag conditional requests if GraphQL cannot give the fields; the builder measures both against the live account before choosing and records the call count. Read `x-ratelimit-remaining`, `x-ratelimit-reset` and `Retry-After`; on 403 or 429 stop calling until the reset, serve the last good value flagged rate-limited, never retry in a loop; keep a rolling budget so the job runner can lengthen an interval when the remaining budget is low. `adapters/github-actions.ts:227` uses `GITHUB_API`, not a literal host. The token is never logged. Verification: call count per refresh before and after, from a counting fetch wrapper in the tests. |
 | **S3** | ⬜ | Disk snapshots | S1 | med | sonnet/medium | | Snapshot the kernel cache's PR and Jira keys to `~/.local/state/orient/cache/` (not the vault, not `index.sqlite`), restored on boot with their original `asOf` so a deploy shows data at its true age instead of empty. A schema version and the orient version in the file; an unreadable, old or mismatched file is ignored, never fatal. Written atomically, mode 0600, on a job interval and at shutdown; no tokens, no headers, nothing from `~/.secrets`. Size cap. Tests: restore keeps `asOf`, corrupt file ignored, version mismatch ignored, atomic write. |
