@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-12 — Add REST v2, the terse API
+
+Add REST v2, the terse API
+
+Unit C3: /v2/shipments create, validate, delete, commit plus GET /v2/services over B9 use-cases; flat request, per-item results, idempotent create, envelope-only strict validation, response bodies validated against the spec. Two-lens review fixed.
+
+Ship: SELECTOR2-1112-ship. PR: ilg-merak/selector2#15
+
 ## 2026-11-12 — Add REST v1 at parity with selector-rest-proxy
 
 Add REST v1 at parity with selector-rest-proxy
