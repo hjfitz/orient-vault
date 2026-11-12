@@ -1,9 +1,16 @@
 ---
-tags: [waypoint, selector2]
+tags:
+- waypoint
+- selector2
 title: selector2 — operations
-verified: 2026-11-12
-verified_sha: 6442634
-verified_paths: [.github/workflows, iac/projects, iac/env, README.md, docs/admin-api.md]
+verified: '2026-11-12'
+verified_sha: '6442634'
+verified_paths:
+- .github/workflows
+- iac/projects
+- iac/env
+- README.md
+- docs/admin-api.md
 ---
 # selector2 — operations
 
