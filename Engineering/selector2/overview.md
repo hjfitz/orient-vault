@@ -10,7 +10,7 @@ thesis: 'selector2 is a multi-tenant TypeScript replacement for Selector''s labe
   and no cutover.'
 confidence: high
 verified: '2026-11-12'
-verified_sha: '6442634'
+verified_sha: unknown
 verified_paths:
 - README.md
 - AGENTS.md
