@@ -15,6 +15,7 @@ Progress is in [[orient Notes/Migration State|Migration State]]; the why is in [
 
 **Goal.** Turn Notes into a Confluence-style workspace over the vault: a page tree with breadcrumbs and child lists, templates, labels and page properties, page history with diff and restore, image attachments, and two registries that make it extensible: a **block registry** (renderer) and a **page-type registry** (soaks, incidents and the rest). The Diagrams page is deleted: its builder goes, the renderer's diagram blocks stay, because they are the embed format a future C4 whiteboard writes.
 
+> SUPERSEDED 2026-11-12 — "WYSIWYG" is no longer a non-goal: Harry asked for a Notion or Confluence writer. See units N13 and W1 to W3 in §6 and the Migration State decision log. Comments, per-page permissions and the rest of this list stand.
 **Non-goals (v1).** Comments, WYSIWYG, per-page permissions, non-image attachments (PDF, SVG, office files), moving any existing vault file, the whiteboard itself, and folding the other page kinds (decisions, plans, systems…) into the workspace. The registry is the vehicle for that later.
 
 ## 2. What exists (the facts the design stands on)
@@ -127,6 +128,14 @@ Core (loopback, write guard unchanged), one module file per unit under `src/core
 
 **N12 Records.** CLAUDE.md (the registries, history, the Notes/ boundary; attachments were done in N9c), `docs/notes/README.md` ("how to add a block", "how to add a page type"), the programme's close-out.
 
+**N13 Create from the tree (added 2026-11-12).** A `+` on each folder row and the space root, always visible at 36 px on touch and on hover or focus on desktop. The menu is read from a `creatable` list on the page-type registry (`src/domain/page-types.ts`), so a later page type adds itself: **Page** (one entry per template from `GET /api/v1/notes/templates`), **Folder**, **Whiteboard** (listed, disabled, "coming", until the whiteboard programme registers it) and **Upload** (disabled until N9c). Page calls `createNote` with a unique `Untitled` name in that folder and opens `/notes/edit` with the title focused: no form. Folder asks for a name inline and creates `<name>/Untitled.md`: git does not track an empty folder, so a folder with no page would vanish on the next machine. `NewPageMenu`'s disclosure on the folder view is removed and its template list moves into the menu. Notes space only until N10. Runs after N8 because both edit `ui/src/lib/workspace/url.ts`.
+
+**W1 In-place live preview (proposed).** CodeMirror 6 stays the editor and the markdown file stays the only source: no document model, no markdown round trip. A `ViewPlugin` builds `Decoration.replace`, `Decoration.mark` and `WidgetType` ranges for the viewport only: heading, emphasis, strikethrough, inline code, link and wikilink markers are hidden off the lines the selection touches and styled; lists, task checkboxes, quotes, rules and callouts are drawn. Reading and editing become one surface: `/notes?path=` gains Edit and Done, the side preview pane goes, and `/notes/edit` redirects to it. Frontmatter stays the properties strip (N6) and opens as raw text. The N7 toolbar, slash menu and block checks carry over. Risks: IME composition and selection across replaced ranges, mobile selection, long pages, and the unsaved-changes guard. Tier opus/high.
+
+**W2 Blocks and tables in place (proposed).** An `orient-*` fence is drawn where it stands (`renderHtmlWithBlocks` over the one fence) and a click opens its source with the block's lint findings beside it. Pipe tables are drawn and edited by cell, and written back as the same pipe table, with a source fallback for anything the grid cannot round-trip. Images join after N9c.
+
+**W3 Bubble toolbar, turn-into, title (proposed).** A toolbar over a selection (bold, italic, code, link, heading), a handle on each line with "turn into" (paragraph, headings, list, task, quote, callout, a block), the title as an editable first line (a rename on save goes through the existing path rules and `[[link]]` handling), and a draft kept in the browser until the note is saved.
+
 ## 7. Sequencing and the shared checkout
 
 The research found units that collide on hot files (`notes/+page.svelte`, `core/modules/notes.ts`, `ops/notes.ts`, `api/types/notes.ts`, `edit/notes.ts`, `tests/unit/core-*`), and `git commit -- <paths>` only protects whole files. So: N0 → N1 → (N2, N3 in either order, **not** together) → N4a → N4b → N5 → N6 → N7, strictly in series; N8 needs only N4b and may run beside N7 if the lead has checked the file lists are disjoint (it lives under `core/modules/pages/versions.ts` and its own components); N9a → N9b → N9c in series; N10 and N12 last. At most 3 builders at once, and normally 1 to 2.
@@ -154,6 +163,7 @@ Each unit: `pnpm typecheck`, `pnpm ui:check`, `pnpm ui:build`, lint at baseline,
 6. Attachments: 5 MB per file, png/jpeg/gif/webp only (no svg, html or pdf), 64-hex hash names under `Notes/_attachments/`, a 200 MB total quota, no auto-delete (G1).
 7. Uploads are JSON + base64.
 8. In-body live macros wait (N11); v1 shows children, labels, properties and backlinks as page sections.
+> SUPERSEDED 2026-11-12 — vetoed by Harry. N7 (insert menu, toolbar, preview lint) is kept as the base the writer builds on; W1 to W3 add the in-place live preview.
 9. An insert menu and preview lint, not WYSIWYG.
 10. `/notes?path=` keeps working.
 11. The vault's `.knowledge/config.yaml` is not edited. Images already in the vault (three `Pasted image*.png` at its root, from Obsidian's default attachment folder) stay as they are and will not render; pointing Obsidian's attachment folder at `Notes/_attachments` is Harry's config.
