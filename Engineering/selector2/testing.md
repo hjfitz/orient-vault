@@ -1,9 +1,17 @@
 ---
-tags: [waypoint, selector2]
+tags:
+- waypoint
+- selector2
 title: selector2 — testing
-verified: 2026-11-12
-verified_sha: 6442634
-verified_paths: [apps/selector2-api/vitest.config.ts, apps/selector2-api/package.json, compose.yaml, .github/workflows/ci.yaml, apps/selector2-api/src/adapters/carriers/__tests__/support, apps/selector2-api/src/http/soap/__tests__, apps/selector2-api/src/http/controllers/__tests__/support]
+verified: '2026-11-12'
+verified_sha: '6442634'
+verified_paths:
+- apps/selector2-api/vitest.config.ts
+- compose.yaml
+- .github/workflows/ci.yaml
+- apps/selector2-api/src/adapters/carriers/__tests__/support
+- apps/selector2-api/src/http/soap/__tests__
+- apps/selector2-api/src/http/controllers/__tests__/support
 ---
 # selector2 — testing
 
