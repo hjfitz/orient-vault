@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-12 — Add the DPD Europe, Amazon and BJS carrier adapters
+
+Add the DPD Europe, Amazon and BJS carrier adapters
+
+Unit B7: DPD EU (create), Amazon SFP (create, validate) and Logistics (create, validate, cancel), BJS (create, cancel). Two-lens review fixed.
+
+Ship: SELECTOR2-1112-ship. PR: ilg-merak/selector2#7
+
 ## 2026-11-12 — Add the UPS, Coll8 and FedEx carrier adapters
 
 Add the UPS, Coll8 and FedEx carrier adapters
