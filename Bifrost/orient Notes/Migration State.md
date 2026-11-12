@@ -95,6 +95,61 @@ Revision 4 (2026-11-12, Harry): the writer is the priority ("renders as you type
 
 ## Decision log
 <!-- Dated, newest first. -->
+- **2026-11-12** — **W3 done and live at 0b141e8** (e8fdf91..0b141e8, 12 commits: 9 build, 2 fix, 1 test wait). **Formatting and blocks feel like Confluence.**
+  - **What was built:**
+    - a bubble toolbar over a selection (Text style menu, Bold, Italic, Strike, Code, Link; toggling off unwraps the whole run even with the marks hidden);
+    - a turn-into handle on the caret or hovered line (13 kinds, every selected line, never the title, code, tables or frontmatter);
+    - the first top-level H1 drawn as the title, with an "Untitled" placeholder;
+    - line markers that read as blocks: a marker shows only while the caret is in it or a selection covers it, and Backspace at the text start removes the innermost marker in one step;
+    - Ctrl-Enter ticks a task or makes a bullet a task;
+    - a `/` menu grouped Text, Lists, Blocks, Insert, with a glyph and a line per entry;
+    - on a phone, the edit bar is one row and the insert toolbar a strip under it that scrolls inside itself.
+  - **Keys:** Link is **Ctrl-Shift-K**, because Ctrl-K is the app's command palette. Turn-into from the keyboard is Ctrl-Alt-/. Ctrl-Alt-0 to 3 set the text style.
+  - **inv-5** (every formatting command is one plain text edit and one history step) runs every command over 97 fixtures plus 16 hostile notes, CRLF included.
+  - **Review** (four sonnet lenses, read-only: format commands, marks and title, toolbar and handle, edit bar) found 20 issues, fixed in one round, each with a test that fails without it (A1, B1 and C2 mutation-checked). The real bugs:
+    - **Backspace at the title's line start joined it to the frontmatter's closing `---` and lost both.** Present in W1 too; the live W1 build showed it in a dry run. Now Backspace and Delete never join a line into or out of the closing fence.
+    - a mark crossing a line break was duplicated when a multi-line selection was formatted;
+    - Turn into paragraph left a list item or quote line as a lazy continuation;
+    - nested numbering continued the parent's count;
+    - Link nested links and broke on `]`;
+    - Ctrl-B just after a bold run wrote `****`;
+    - a quoted or listed H1 was taken as the title;
+    - the handle's Turn into scrolled the page to the caret;
+    - Text style could not be used from the keyboard;
+    - pressing between toolbar buttons hid the bubble;
+    - the phone strip clipped focus rings, and its tab order ran row 2 before row 1;
+    - "Untitled" was 3.1:1.
+  - **Decided without Harry** (the editor standard covers them):
+    - Turn into paragraph adds blank lines so the line really leaves its list or quote;
+    - `[` and `]` in link text are escaped, and Link does nothing inside a `[[wikilink]]`;
+    - Ctrl-B just after a run steps the caret inside it, with no text change;
+    - the title follows the reading view: the first top-level H1 is the title only when there is no frontmatter `title` or it matches;
+    - a marker stays drawn while its block has no text, so a typed `#` shows;
+    - on touch, the bubble waits 400 ms for the selection to settle and sits clear of the native handle (above when there is no room below);
+    - the scroll strip is phone-only.
+  - **Gates** on a quiet host (load 1.5): typecheck clean, lint 44, `ui:check` 0, build clean, 11,887 passed in 156 s. One reveal test failed only amid the suite; it read the line before the redraw, and now polls like its neighbours (`0b141e8`).
+  - **Live check** on the deployed build, every write aborted (none attempted):
+    - select, Bold gives `**Plain**`, and undo restores it;
+    - the handle shows on the caret line with 13 items, Quote gives `> The last line.`, and undo restores it;
+    - Ctrl-Enter on `- one` gives `- [ ] one`;
+    - Backspace at the title's line start and at its text start changes nothing (W1's build lost the frontmatter here);
+    - the `/` menu shows Text, Lists, Blocks, Insert;
+    - a typed `#` stays visible;
+    - an empty title shows "Untitled";
+    - a 5,000-line page answers a keystroke within a frame, and select-all takes two frames;
+    - at 390 px: one row for status, Save and ✕, the toolbar strip scrolls, and the page does not overflow;
+    - the touch bubble is absent at 0 and 200 ms after a selection, then appears above it.
+  - **For the `/ux-review` (not W3's):** at 390 px the app rail (176 px, `Sidebar.svelte` `w-44`) and the workspace tree above the editor leave a text column about 166 px wide that starts 686 px down the page. The rail's focus and recording controls and the tree's folder buttons are under 36 px.
+  - **Still not Confluence-like** (the builder's list):
+    - no partial unbold;
+    - no link dialog;
+    - no block dragging or `+` on empty lines;
+    - Enter in the middle of the title splits it;
+    - Tab does not reach the bubble (its keys do);
+    - markers show under a multi-line selection;
+    - text is indented 16 px on touch to fit the handle;
+    - tables and blocks are W2's.
+  - **Process:** heavy lane; the builder took about 80 minutes and the fix round about 19.
 - **2026-11-12** — **Order changed, and the programmes run autonomously.** Harry, after asking for a drag-and-drop whiteboard: "yes - makes sense. happy for you to just run with this autonomously". The Whiteboard canvas (B2, B3) moves ahead of NV1, NV2 and Confluence. One builder at a time: **W3 (in flight) → W4 → `/ux-review` of the editor → Whiteboard B2 → B3 → NV1 → NV2 → Confluence C0 to C3 → W2 → NV3 → C4 → Sync S1 to S5 (and S6) → N10, N12**; Whiteboard B4 and B6 when there is room after B3 (B6 needs Harry's topic-shape call). Units run build, review by lane, gates, deploy, live check, tick, push without a check-in; only the decisions the ledgers mark as Harry's (G1 attachments, Confluence G2, B6 topics, Lucid) stop for him.
 - **2026-11-12** — **W1 done and live at e8fdf91** (59e8a3c..e8fdf91, 10 commits: 4 build, 6 fix). **In-place live preview.** The note editor is one surface at `/notes?path=…&mode=edit`: Edit and the `e` key enter it, Close leaves through the existing `leave-guard`, `/notes/edit` is a 307 that leaves no history entry, `noteEditHref` returns the new address so N13 creation lands in it, the side preview is gone and the preview route is called only for Block checks. CodeMirror 6 stays the editor and the markdown the only source: Lezer-tree decorations for the visible viewport only, `Decoration.replace` for hidden marks, `atomicRanges` deliberately **not** used (the caret never rests inside a hidden range, so arrows, Backspace and undo act on the source as in a plain editor), a focus-change field so nothing is revealed while the editor is unfocused, reveals wait for the mouse button, decorations are mapped and not rebuilt during composition. Tables and `orient-*` blocks stay source in a labelled panel (W2 draws them); frontmatter is a Properties strip (a plain summary, not the N6 chips); both editors parse GFM; `/doc/[id]/edit` stays the plain editor; there is one dark theme, so no light theme was checked. **Review** (two sonnet lenses, frontend and editor-correctness, read-only) found seven real bugs, fixed in one round, each mutation-checked: a link or `[[link]]` running onto the next line threw at mount so the note could not open (`hide()` now never spans a break, plus a safety net); text inserted into a CRLF or lone-CR note (slash table, blocks, paste, "take theirs") landed as one line with mixed endings (one filter carries the note's separator); a dirty editor was destroyed if the page query answered 404 mid-edit (kept open with a notice, because Save refuses a vanished file); on a narrow screen create and Close left the page below the tree; the sticky edit bar could cover the line scrolled to (`scrollMargins`); a right or middle click toggled a task; GFM autolinks (`www.`, emails) followed a wrong in-app path. Logged, not fixed: a note beginning with a BOM does not fold its frontmatter (text untouched). **Gates** on a quiet host: typecheck clean, lint 44, `ui:check` 0, build clean, 11,675 tests in 166 s (61 s five units ago). **Live check** on the deployed build with every write aborted (none attempted): one editor and no preview pane on a real page with 89 live-preview nodes; `/notes/edit` redirects; `e` and Close; on a synthetic page marks hide away from the caret and show under it (the DOM catches up within a frame of the click); the task box toggles and one Ctrl-Z undoes it; typing marks the page unsaved and Close asks "Leave the editor?" and stays when dismissed; a table and an `orient-chart` block stay source in labelled panels; a 5,000-line page renders 48 lines with 95 decorations and answers a keystroke within one frame (builder's number: median 3.1 ms, max 11.5 ms). **Seen, not W1's:** at 390 px the app's nav rail is a fixed 176 px (`Sidebar.svelte` `w-44`, no narrow-screen behaviour), leaving the content about 215 px; the edit bar wraps to about five rows (W3 item 7). Both go to the `/ux-review`. **Handed to W3** (the builder's honest gaps): the line being typed shows its `#`, `-`, `>`; Backspace removes `# ` one character at a time; no bubble toolbar or title field; no keyboard toggle for a task; pasted HTML arrives as plain text (a later unit); `~x~` is struck when reading but not in the editor; properties are edited as YAML; blank lines make it slightly looser than reading.
 - **2026-11-12** — **Standing instruction for the writer: "get this going e2e", and the standard.** Harry: "the main editor should be as close to confluence as makes sense with an easy ux - whilst matching our overall ui. we can run /ux-review when we're done." Applied: the W-series copies Confluence's behaviour and affordances and draws them in orient's design language (`Bifrost/orient Svelte UI/Design.md`); where a Confluence feature needs a second source of truth (a document model) it is left out and said so. The briefs carry this line. **A `/ux-review` of the whole editor runs when W4 is done** (not per unit), with W3's controls built to be reviewable: a label, a focus ring, a 36 px touch target and a keyboard path each. Order unchanged: W1 (live at the end of its fix round) → W3 → W4 → ux-review → NV1 → NV2 → Confluence C0 to C3 → Whiteboard B2, B3 → W2 → NV3 → C4 → Sync S1 to S5. The W1 review found two data-integrity bugs worth remembering as a class: a decoration that replaces a line break throws at mount (any `Decoration.replace` from a plugin must stay inside one line), and `EditorState.lineSeparator` does not normalise inserted text (every insert path must carry the note's separator).
