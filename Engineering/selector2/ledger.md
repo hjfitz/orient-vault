@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-12 — Add the carrier egress port, ID-token client and Royal Mail adapter
+
+Add the carrier egress port, ID-token client and Royal Mail adapter
+
+Unit B5: carrier port with optional capabilities, Cloud Run ID-token HTTP client, carrier_call tracing, Royal Mail adapter. Three-lens review fixed. Finding: no number ranges for the 12 proxy carriers, so B4 dropped.
+
+Ship: SELECTOR2-1112-ship. PR: ilg-merak/selector2#4
+
 ## 2026-11-12 — Add the multi-tenant domain schema, its Selector mapping and a synthetic seed
 
 Add the multi-tenant domain schema, its Selector mapping and a synthetic seed
