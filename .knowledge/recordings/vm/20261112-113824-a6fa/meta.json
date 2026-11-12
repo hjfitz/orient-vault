@@ -1,0 +1,138 @@
+{
+  "id": "20261112-113824-a6fa",
+  "title": "Catch-up on Native Dispatch",
+  "status": "done",
+  "startedAt": "2026-11-12T11:38:24.217684761Z",
+  "endedAt": "2026-11-12T12:07:03.332538647Z",
+  "sources": {
+    "me": [
+      "Built-in Audio Analog Stereo"
+    ],
+    "them": [
+      "Google Chrome",
+      "Nightly",
+      "speech-dispatcher-dummy"
+    ]
+  },
+  "call": true,
+  "speakers": {
+    "Room 2": "Harry",
+    "Speaker 1": "Ollie",
+    "Speaker 2": "Phil",
+    "Speaker 3": "Pete"
+  },
+  "merged": {
+    "Room 1": "Room 2"
+  },
+  "summary": {
+    "tldr": [
+      "Team reviewed how to respond to a customer (Manhattan WMS user) whose SFTP automation was quoted at four-plus weeks of discovery. The in-house Selector-based replacement for Dispatch Cloud may remove the need for it.",
+      "Harry demoed the platform: drag-and-drop CSV import, bulk pack and dispatch, Dispatch Cloud-style file layout, shipping-method mapping, a Manhattan export, browser printing with no QZ Tray, and an SFTP/API upload endpoint.",
+      "Gaps raised: per-order package count in the CSV, SKU-level commodity data for later cross-border, and how benches and users link to printers. Testing so far is light.",
+      "Whether to demo to the customer today was left open. The plan is to run live tests first, then decide between a demo and booking a smaller session."
+    ],
+    "decisions": [
+      "Hide the API key setup from the customer for now, but keep the API running in the background.",
+      "Use the drag-and-drop CSV import as the answer to the customer's SFTP automation ask, subject to testing.",
+      "Do a proper end-to-end test against the live Selector account before deciding whether to demo on the customer call.",
+      "Weights will be importable in pounds, with units in centimetres and pounds, so the customer no longer converts them."
+    ],
+    "actions": [
+      {
+        "owner": "Harry",
+        "text": "Get the requested changes through and drop a note to Speaker 1 when they are ready.",
+        "due": "after lunch today"
+      },
+      {
+        "owner": "Harry",
+        "text": "Send Phil credits for the platform so they can test the flow, and check the bench/user printer workflow is the intended one.",
+        "due": "after the meeting"
+      },
+      {
+        "owner": "Speaker 1",
+        "text": "Run end-to-end tests against the live Selector account (deleting test orders afterwards) once Harry's changes are in, ideally before the customer call.",
+        "due": "today, before the customer call"
+      },
+      {
+        "owner": "Speaker 1",
+        "text": "Confirm whether shipping methods pass route codes to Selector so contracts can be configured per mapping.",
+        "due": ""
+      },
+      {
+        "owner": "Speaker 3",
+        "text": "Email Geeta asking for a 30-minute demo slot, only once the team agrees to demo.",
+        "due": "today"
+      },
+      {
+        "owner": "Speaker 2",
+        "text": "Run a real label print test from home on their printer.",
+        "due": ""
+      },
+      {
+        "owner": "Speaker 2",
+        "text": "Ask John about the FedEx tracking scan-time and time zone handling.",
+        "due": ""
+      },
+      {
+        "owner": "Speaker 1",
+        "text": "Set up an hour-long session with Phil, Chris and the team to run a pseudo customer process and find where to streamline.",
+        "due": ""
+      },
+      {
+        "owner": "Harry",
+        "text": "Check the CSV export file type used for the Manhattan export.",
+        "due": ""
+      }
+    ],
+    "questions": [
+      "Should the team demo to the customer on today's call, or book a smaller session? Geeta wants a large audience.",
+      "Should the CSV support a declared package count per order, instead of one row per product? That is a fundamental format change, so the team plans to ask the customer.",
+      "How will SKU-level commodity data be kept for future cross-border (Canada) shipping?",
+      "Are printers tied to a packing bench or a user, and when does a user pick a bench?",
+      "Can the platform manifest as Dispatch Cloud does, or does it only auto-commit to Selector?",
+      "Can an order hold two references (reference and consignment reference), so the container ID can be imported?",
+      "Do FedEx tracking scan times need the time zone ignored and the local time treated as a string?",
+      "Does printing from the browser work on the customer's real label printers? It has not been tested."
+    ],
+    "speakers": [
+      {
+        "label": "Room 2",
+        "name": "Harry",
+        "basis": "Gave the demo; Speaker 3 addresses 'Harry' as the one who showed the ship methods."
+      },
+      {
+        "label": "Speaker 3",
+        "name": "Pete",
+        "basis": "Addressed as Pete by others; leads the customer relationship and manages the demo decision."
+      },
+      {
+        "label": "Speaker 2",
+        "name": "Chris",
+        "basis": "Addressed as Chris by Speaker 3 and Speaker 1; also called Phil in places. Customer-facing, knows the customer's process."
+      },
+      {
+        "label": "Speaker 1",
+        "name": "Ollie",
+        "basis": "Addressed as Ollie; built and tests the Selector-based interface and asked for the separate demo."
+      }
+    ],
+    "model": "sonnet",
+    "usd": 0.09328,
+    "durationMs": 11520,
+    "at": "2026-11-12T12:12:33.386393676Z"
+  },
+  "enhancement": {
+    "model": "sonnet",
+    "usd": 0.2998932,
+    "durationMs": 24873,
+    "at": "2026-11-12T12:12:58.260640339Z",
+    "parts": 4
+  },
+  "host": "vm",
+  "capturedOn": "laptop",
+  "received": {
+    "sha256": "ddf72ba44d1c0a68b88f05cd8d963386d4e468b71db498f96b96a3e02bdaa986",
+    "bytes": 57133747,
+    "at": "2026-11-12T12:07:11.130316448Z"
+  }
+}

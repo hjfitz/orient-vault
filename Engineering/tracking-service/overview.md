@@ -4,7 +4,7 @@ tags:
 - tracking-service
 title: tracking-service — overview
 thesis: tracking-service follows every Fuse shipment and return end to end. It folds
-  every create, acknowledge, failure and confirmation event into one Firestore record
+  every create, acknowledge, failure and confirmation event into one MongoDB record
   per order, kept forever, and serves that record to fuse-ui's order tracker and fuse-mcp's
   tracking-* tools. It is separate because nothing else in Fuse joins an order's whole
   journey.
@@ -18,7 +18,7 @@ verified_paths:
 # tracking-service — overview
 
 ```orient-bluf
-{ "v": 1, "bluf": "tracking-service follows every Fuse shipment and return end to end. It folds every create, acknowledge, failure and confirmation event into one Firestore record per order, kept forever, and serves that record to fuse-ui's order tracker and fuse-mcp's tracking-* tools. It is separate because nothing else in Fuse joins an order's whole journey.", "confidence": "high", "action": "none" }
+{ "v": 1, "bluf": "tracking-service follows every Fuse shipment and return end to end. It folds every create, acknowledge, failure and confirmation event into one MongoDB record per order, kept forever, and serves that record to fuse-ui's order tracker and fuse-mcp's tracking-* tools. It is separate because nothing else in Fuse joins an order's whole journey.", "confidence": "high", "action": "none" }
 ```
 
 ## Responsibility
@@ -41,7 +41,7 @@ it can't change the pipeline it watches [1][4].
   "nodes": [
     { "id": "bus", "label": "Fuse topics", "sub": "create_*, confirmation_*, *_failure", "kind": "topic", "ev": [4] },
     { "id": "svc", "label": "tracking-service", "sub": "private Cloud Run, Go", "kind": "service", "service": "tracking-service", "tone": "accent", "ev": [3] },
-    { "id": "fs", "label": "Firestore", "sub": "database tracking-service, no TTL", "kind": "store", "ev": [5] },
+    { "id": "fs", "label": "MongoDB Atlas", "sub": "cluster tracking-service-{env}, kept forever", "kind": "store", "ev": [5] },
     { "id": "dlt", "label": "Dead-letter hold", "sub": "7 days, cmd/redrive", "kind": "topic", "ev": [4] },
     { "id": "ui", "label": "fuse-ui", "sub": "/order-tracker", "kind": "service", "service": "fuse-ui", "ev": [6] },
     { "id": "mcp", "label": "fuse-mcp", "sub": "tracking-* tools", "kind": "service", "service": "fuse-mcp-server", "ev": [6] }
@@ -80,7 +80,7 @@ through `api_extra_invokers` [6].
   { "id": 2, "kind": "code", "ref": "apps/api/internal/core/reduce.go@9f01957" },
   { "id": 3, "kind": "code", "ref": "apps/api/internal/http/router.go@9f01957" },
   { "id": 4, "kind": "code", "ref": "iac/projects/tracking-service/pubsub.tf@9f01957" },
-  { "id": 5, "kind": "code", "ref": "iac/projects/tracking-service/firestore.tf@9f01957" },
+  { "id": 5, "kind": "code", "ref": "iac/projects/tracking-service/mongo.tf@e34d821" },
   { "id": 6, "kind": "code", "ref": "iac/projects/tracking-service/iam.tf@9f01957" }
 ] }
 ```

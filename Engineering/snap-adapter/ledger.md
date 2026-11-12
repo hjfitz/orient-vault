@@ -7,6 +7,14 @@ title: snap-adapter — work ledger
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-12 — Cap the SNAP poller at 5 requests per host and 3 instances (Q3b)
+
+Cap the SNAP poller at 5 requests per host and 3 instances (Q3b)
+
+Terraform: new snap_max_concurrent_requests (default 5) and max_instance_count (default 3) for snap-queue-polling-service; prod was on Cloud Run's default max of 100. Sized from a week of prod data (one instance 99% of the time, peak three). Applied to prod 2026-11-12: revision 00112, SNAP_MAX_CONCURRENT_REQUESTS=5, max 3, plan 0 add/1 change/0 destroy.
+
+PR: gfs-bifrost/snap-adapter#338
+
 ## 2026-11-11 — Turn on SNAP_NORMALISE_HOST_KEY for the poller (X1 step 4)
 
 Turn on SNAP_NORMALISE_HOST_KEY for the poller (X1 step 4)

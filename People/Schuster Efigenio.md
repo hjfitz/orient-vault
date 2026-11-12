@@ -18,7 +18,7 @@ title: Schuster Efigenio
 
 ## Open loops
 **I owe**
-- [ ] Approve his holiday requests for 24 Dec and 29–31 Dec (Selima) — [email](https://outlook.office365.com/owa/?ItemID=AAMkADVhYjUxODIyLWM5NTktNGJmOC1hN2FjLWFjMjllNWUzYmY4MwBGAAAAAAAEXHdKGOMeRLfpaU7ff8ChBwABLsgQpFdPTayXOZTVrraLAAAAAAEMAAABLsgQpFdPTayXOZTVrraLAAHUCm4UAAA%3D&exvsurl=1&viewmodel=ReadMessageItem)
+- [x] Approve his holiday requests for 24 Dec and 29–31 Dec (Selima) — [email](https://outlook.office365.com/owa/?ItemID=AAMkADVhYjUxODIyLWM5NTktNGJmOC1hN2FjLWFjMjllNWUzYmY4MwBGAAAAAAAEXHdKGOMeRLfpaU7ff8ChBwABLsgQpFdPTayXOZTVrraLAAAAAAEMAAABLsgQpFdPTayXOZTVrraLAAHUCm4UAAA%3D&exvsurl=1&viewmodel=ReadMessageItem)
 - [ ] Approve his leave request for 30 Oct (1 day) — [Schuster's request](https://outlook.office365.com/owa/?ItemID=AAMkADVhYjUxODIyLWM5NTktNGJmOC1hN2FjLWFjMjllNWUzYmY4MwBGAAAAAAAEXHdKGOMeRLfpaU7ff8ChBwABLsgQpFdPTayXOZTVrraLAAAAAAFcAAABLsgQpFdPTayXOZTVrraLAAHMCW1YAAA%3D&exvsurl=1&viewmodel=ReadMessageItem)
 - [ ] Review his [fapi#169](https://github.com/gfs-bifrost/fapi/pull/169) (stacked 1/2), [fapi#170](https://github.com/gfs-bifrost/fapi/pull/170) (2/2) and [wms-gateway#37](https://github.com/gfs-bifrost/wms-gateway/pull/37) ([FUSE-1210](https://globalfreight.atlassian.net/browse/FUSE-1210), [FUSE-1035](https://globalfreight.atlassian.net/browse/FUSE-1035)): awaiting review, CI green — [fapi#169](https://github.com/gfs-bifrost/fapi/pull/169)
 - [ ] Order FUSE-1273 (assigned to him, Ready for Refinement) with [[Matt Shaw]] and [[Tom Dunn]] at the 10:00 standup — [group DM](https://gfsdeliver-eng.slack.com/archives/C0BC33H8QMT/p1790783612714759)

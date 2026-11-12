@@ -1,0 +1,141 @@
+{
+  "id": "20261112-103138-0051",
+  "title": "Catch up on TCA + Native Dispatch",
+  "status": "done",
+  "startedAt": "2026-11-12T10:31:38.745512949Z",
+  "endedAt": "2026-11-12T10:58:09.219669814Z",
+  "sources": {
+    "me": [
+      "C505 HD Webcam Mono"
+    ],
+    "them": [
+      "Nightly",
+      "speech-dispatcher-dummy"
+    ]
+  },
+  "call": true,
+  "speakers": {
+    "Room 3": "Harry",
+    "Speaker 1": "Wilders"
+  },
+  "merged": {
+    "Room 1": "Room 3",
+    "Room 2": "Room 3",
+    "Room 4": "Room 3",
+    "Speaker 2": "Speaker 1"
+  },
+  "summary": {
+    "tldr": [
+      "The FedEx account work is split into MVP1 (CSV upload from Dispatch Cloud format) and MVP2 (API). The team wants to prove the CSV route works with a swap-out of the new system before the 11:30 call with Pete.",
+      "The new system was demoed: CSV upload with configurable column mapping, drag and drop, label preview and save, bulk print, packaging presets and unit conversion, and a spec test customer.",
+      "The plan is to test against the live TCA FedEx endpoint with a smoke-test order, which Speaker 1 will delete immediately because it is bill on scan.",
+      "The open issue for Pete is how to position the API: as a stopgap, not Merrick, while the Americans expect an API in about two weeks.",
+      "A mock of every carrier proxy was shown as a possible test playground, along with a side topic on the mezzanine PDA rebuild."
+    ],
+    "decisions": [
+      "Treat SFTP as out of scope for now and use drag and drop CSV upload for the first test.",
+      "Run a test of the CSV flow against the live TCA endpoint this morning, before the 11:30 call with Pete.",
+      "Position the new system to the Americans and Pete as a stopgap or stepping stone, not Merrick, with the API to follow later.",
+      "Keep the carriers team out of this work, since too many people are getting involved."
+    ],
+    "actions": [
+      {
+        "owner": "Speaker 1",
+        "text": "Send the TCA FedEx account info and the endpoint with user and password to the room so a test order can be sent.",
+        "due": "Before 11:30 today"
+      },
+      {
+        "owner": "Room 3",
+        "text": "Get the agent to run a smoke test pushing a fake order through the CSV format they use, and confirm the selector user and config are set up.",
+        "due": "Before 11:30 today"
+      },
+      {
+        "owner": "Speaker 1",
+        "text": "Delete each test order straight after it is sent to the live TCA endpoint.",
+        "due": ""
+      },
+      {
+        "owner": "Speaker 1",
+        "text": "Call Pete at 11:30 with the room to show the working CSV flow and agree how to position the API.",
+        "due": "11:30 today"
+      },
+      {
+        "owner": "Speaker 1",
+        "text": "Pull the packaging presets from Dispatch Cloud so they can be loaded into the Beachhead demo customer.",
+        "due": ""
+      },
+      {
+        "owner": "Room 3",
+        "text": "Mirror the live templates and packaging presets under the Beachhead demo customer.",
+        "due": ""
+      },
+      {
+        "owner": "Room 3",
+        "text": "Pull together some docs on the carrier proxy mocks so Speaker 1 can plug them in for testing.",
+        "due": ""
+      },
+      {
+        "owner": "Room 2",
+        "text": "Send Speaker 1 a link to the remote dev machine setup, to help with the laptop RAM limits.",
+        "due": ""
+      },
+      {
+        "owner": "Room 3",
+        "text": "Set up automatic SFTP key generation.",
+        "due": ""
+      },
+      {
+        "owner": "Speaker 1",
+        "text": "Find out whether FedEx needs a commodity block per package for multi-pack shipments, and test multi-packs.",
+        "due": ""
+      }
+    ],
+    "questions": [
+      "Should Speaker 1 steer the Americans towards the API, or push back hard and say the API is a future solution?",
+      "Does FedEx need a commodity block for each package in a multi-pack shipment? Nobody has tested it, including the carrier team.",
+      "There is no FedEx test account. The earlier live US account is now with a customer, and the current one is TCA's live account, so how much testing can be done on it?",
+      "When will the new OpenAPI spec arrive, and who in the carriers team is designing the API? Chris Cummings is handing it over, and Speaker 1 does not know the details.",
+      "How should the mezzanine PDA requirement be handled, given the conflict with offline capability and a Friday deadline?"
+    ],
+    "speakers": [
+      {
+        "label": "Speaker 1",
+        "name": "",
+        "basis": "Other side of the call. Leads the FedEx account conversation and calls Pete at 11:30."
+      },
+      {
+        "label": "Room 3",
+        "name": "",
+        "basis": "Gave the screen-share demo and kicked off an agent for the selector setup. Has a chat with Mr Denton at 11."
+      },
+      {
+        "label": "Room 2",
+        "name": "",
+        "basis": "Room voice who helps with the demo and explains SFTP and the API. Possibly Harry."
+      },
+      {
+        "label": "Speaker 2",
+        "name": "",
+        "basis": "Other voice on the call, handling the endpoint and secrets. Weak placement."
+      }
+    ],
+    "model": "sonnet",
+    "usd": 0.10249,
+    "durationMs": 15526,
+    "at": "2026-11-12T11:03:11.371852085Z"
+  },
+  "enhancement": {
+    "model": "sonnet",
+    "usd": 0.277134,
+    "durationMs": 20907,
+    "at": "2026-11-12T11:03:32.279482646Z",
+    "parts": 3
+  },
+  "host": "vm",
+  "capturedOn": "laptop",
+  "received": {
+    "sha256": "84737575a816c8da49c66708d5cce75544ab644a49516f6696a3f5d06793c416",
+    "bytes": 28665167,
+    "at": "2026-11-12T10:58:12.810132193Z"
+  }
+}

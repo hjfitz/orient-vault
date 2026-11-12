@@ -2,9 +2,9 @@
 ticket: none
 title: Stop republished copies contending on the shared stats docs
 service: tracking-service
-status: active
+status: complete
 created: '2026-10-19'
-updated: '2026-11-06'
+updated: '2026-11-12'
 repo: /home/hjf/code/fuse/tracking-service
 worktree: /home/hjf/code/fuse/tracking-service/.claude/worktrees/skip-identical-republishes
 branch: hjf/skip-identical-republishes
@@ -16,6 +16,10 @@ tags:
 - plan
 impl_model: sonnet
 impl_effort: medium
+reason: 'Increments 1-3 shipped (PR #16 and the dev load test). Increment 4 and AC
+  7 were conditional fixes to Firestore''s shared _all_ stats docs; the MongoDB store
+  (D5, live 2026-11-11) has no shared docs, and Firestore was deleted on 2026-11-12,
+  so they no longer apply.'
 ---
 # none — Stop republished copies contending on the shared stats docs
 

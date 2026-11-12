@@ -37,3 +37,8 @@
 {"game":"queens","difficulty":"medium","seed":1363282082,"ms":78247,"day":"2026-11-11","at":"2026-11-11T13:15:34.732Z","daily":false}
 {"game":"tango","difficulty":"hard","seed":483717541,"ms":72600,"day":"2026-11-11","at":"2026-11-11T13:16:53.648Z","daily":true}
 {"game":"tango","difficulty":"hard","seed":3604757208,"ms":40200,"day":"2026-11-11","at":"2026-11-11T13:17:54.842Z","daily":false}
+{"game":"queens","difficulty":"medium","seed":556761270,"ms":76389,"day":"2026-11-12","at":"2026-11-12T11:35:34.884Z","daily":true}
+{"game":"queens","difficulty":"easy","seed":1712797029,"ms":15279,"day":"2026-11-12","at":"2026-11-12T11:37:51.796Z","daily":true}
+{"game":"queens","difficulty":"hard","seed":2943017956,"ms":46456,"day":"2026-11-12","at":"2026-11-12T14:32:42.595Z","daily":true}
+{"game":"tango","difficulty":"easy","seed":63303181,"ms":44852,"day":"2026-11-12","at":"2026-11-12T14:34:58.812Z","daily":true}
+{"game":"tango","difficulty":"easy","seed":1868977056,"ms":41392,"day":"2026-11-12","at":"2026-11-12T16:40:44.892Z","daily":false}

@@ -1,11 +1,11 @@
 ---
 title: "Tracking Service — Overview"
-status: active
-verdict: go, with the cutover held for sign-off
+status: complete
+verdict: shipped
 owner: "Harry Fitzgerald"
 services: ["tracking-service", "fuse-ui", "observability"]
 created: "2026-10-05"
-updated: "2026-10-07"
+updated: "2026-11-12"
 tags: [bifrost]
 ---
 # Tracking Service — Overview
@@ -13,7 +13,11 @@ tags: [bifrost]
 > Backfilled 2026-10-07, three days after the work began. Progress lives in the Migration State doc;
 > this one holds the why.
 
+## Outcome (2026-11-12)
+**Shipped and closed.** tracking-service runs in prod as its own stack and stores everything in MongoDB Atlas. That was a hard cut from Firestore on 2026-11-11; Firestore was deleted on 2026-11-12 after a final export. The order tracker in fuse-ui is the L2 support work queue on top of it. Dashboards and 12 monitors are live in the observability repo. 37 of 39 units are done. D7 was dropped, and B12 moved to snap-adapter's backlog. The leftovers are Waypoint idea stubs in tracking-service, observability and snap-adapter (see the Migration State decision log, 2026-11-12).
+
 ## Deliverables
+> SUPERSEDED 2026-11-12 — the observability PRs merged after the cutover, the standalone UI is gone (tracking-service#1), and the tracker is served only from fuse-ui. See Outcome above.
 - [[Bifrost/Tracking Service/Migration State|Migration State]] — the live source of truth for progress
 - Repo: `gfs-bifrost/tracking-service` (renamed from `fuse-tracker`); plan `docs/productionisation.md`, runbook `docs/cutover.md`
 - The order tracker page in fuse-ui: PRs #287, #289, #290, #291, #292
@@ -21,6 +25,7 @@ tags: [bifrost]
 - Live today: https://fuse.ilg.software/order-tracker (flagged), and the standalone UI at https://esm.fuse.ilg.software (prod) and https://esm.fuse.freightops.dev (dev)
 
 ## Verdict
+> SUPERSEDED 2026-11-12 — shipped; see Outcome. Kept as the verdict at backfill time.
 **Go.** The service is already running in prod on its first-build stack and support are using the tracker
 (the first feedback round came from Jack on day three). The remaining one-way door is the database
 cutover, which waits for Harry's sign-off on the review pack (gate G1).
@@ -48,6 +53,7 @@ Identity is businessId + customer reference, and a record is counted once on its
 Migration State for the rest.
 
 ## Next
+> SUPERSEDED 2026-11-12 — nothing next; the programme is closed. Follow-ups live as idea stubs in each service's Waypoint folder.
 **G1:** share the review pack with Harry (new-stack plans, legacy unchanged, observability plan, runbook).
 Then **B2**, the dev cutover, driven by `waypoint-programme`. In parallel, **C6** (per-connector confirmation
 status) waits on a ship decision and **C7** (the UX-review fixes) is approved and unstarted.

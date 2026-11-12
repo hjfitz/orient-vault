@@ -55,7 +55,9 @@ programme record is `Bifrost/Tracking Service/` (Overview, Migration State with 
   `configuration_name`. Metrics use `environment:`.
 
 - **2026-11-06 burst errors were Firestore index-write throttling.** 536 commits (and 486 more at 11:20Z) failed `RESOURCE_EXHAUSTED` during PURDYFIGG reap bursts, surfacing as `InvalidArgument: transaction has expired` because the gapic Commit retry reuses the dead transaction id and `RunTransaction` retries only `Aborted`. Exempting the 9 unqueried, copy-rewritten fields from indexing (D1, #18) fixed it: 0 in 48 h of heavier bursts (peak 2,859 pushes/min).
+> SUPERSEDED 2026-11-12 — on MongoDB every applied delivery, copies included, writes a `seen` row (8-day TTL) in its transaction, so a redelivery within Pub/Sub's 7-day retention is a no-op; the 64-id list no longer sets the horizon.
 - A record remembers only its last 64 counted copy ids (`dedupe.go:22`, ~1.5–2 h of PURDYFIGG resends); an older redelivered copy counts again.
+> SUPERSEDED 2026-11-12 — storage is MongoDB Atlas since the 2026-11-11 cut (backup and point-in-time recovery on, termination protection in prod). Both Firestore databases were deleted on 2026-11-12 after a final export to `gs://bifrost-{dev,prod}-global1-tracking-service-migration/final-2026-11-11` (30-day lifecycle, gone about 2026-12-11).
 - Prod Firestore has point-in-time recovery off (`firestore.tf:9`); nothing backs up the `tracking-service` database.
 - `api-emulator` is one of the required checks on `main`.
 

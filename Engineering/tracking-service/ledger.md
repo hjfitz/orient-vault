@@ -6,6 +6,23 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-12 — Drop removed.tf and close the Tracking Service programme
+
+Drop removed.tf and close the Tracking Service programme
+
+Deleted iac/projects/tracking-service/removed.tf: both envs applied #45, so its removed blocks do nothing; both Firestore databases were deleted on 2026-11-12. iac notes and CLAUDE.md now say Firestore is gone and productionisation is done. Programme closed in the vault the same day: B13 found already done (#1), B12 moved to snap-adapter, leftovers filed as idea stubs (migration buckets off after ~12-11, stats/insights latency on Mongo, apps/api -> code/). Plan stop-republished-copies-contending-on-the-shared marked complete.
+
+PR: gfs-bifrost/tracking-service#47
+
+## 2026-11-12 — Retire Firestore from tracking-service
+
+Retire Firestore from tracking-service
+
+D13. The API's only store is MongoDB: the Firestore store, the cutover tools (cmd/import-mongo, cmd/parity) and the emulator are gone, and STORE defaults to mongodb (#44). Terraform drops the database, its 40 indexes and 25 field overrides from state with destroy = false, removes roles/datastore.user and the STORE/FIRESTORE_DATABASE env (#45). Applied to dev and prod on 2026-11-12 after a clean overnight soak; both Firestore databases were then deleted with gcloud, after final exports kept in the migration buckets until about 2026-12-11. fuse-mcp c5896ba and the Waypoint explainers updated to match. Follow-up: delete removed.tf.
+
+PR: gfs-bifrost/tracking-service#44
+PR: gfs-bifrost/tracking-service#45
+
 ## 2026-11-11 — Retire Firestore from tracking-service
 
 Retire Firestore from tracking-service

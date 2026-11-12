@@ -18,7 +18,7 @@ title: Harry Humby
 
 ## Open loops
 **I owe**
-- [ ] Answer his "priority?" on [FUSE-1325](https://globalfreight.atlassian.net/browse/FUSE-1325), the GitHub Actions usage spike; Jack called it "high if it blocks actions" and left the call to me — [Slack](https://gfsdeliver-eng.slack.com/archives/C098LD5PS95/p1792576768095089?thread_ts=1792576768.095089&cid=C098LD5PS95)
+- [x] Answer his "priority?" on [FUSE-1325](https://globalfreight.atlassian.net/browse/FUSE-1325), the GitHub Actions usage spike; Jack called it "high if it blocks actions" and left the call to me — [Slack](https://gfsdeliver-eng.slack.com/archives/C098LD5PS95/p1792576768095089?thread_ts=1792576768.095089&cid=C098LD5PS95)
 - [ ] Approve his leave requests: 15–16 Oct (he is off today), 21–24 Dec and 29–31 Dec — [digest](../Digests/2026-10/2026-10-16.md)
 - [x] Answer his FUSE-1308 question: bring it into Sprint 15? It blocks FUSE-1302 — [thread](https://gfsdeliver-eng.slack.com/archives/C09PBES3MHT/p1791800961371469?thread_ts=1791796644.750509&cid=C09PBES3MHT) — resolved 10-16: FUSE-1308 is In Code Review with snap-adapter#299 open, so the sprint question is moot
 - [ ] Confirm who covers Sprint 15 Distraction Duty and hand over the 3 red nightlies: fuse-mocker, tracking-service and snap-mcp, no fix PR exists. Jira has [FUSE-1238](https://globalfreight.atlassian.net/browse/FUSE-1238) on [[Nylah Klasson]], who has resigned, not on him as yesterday's note said — [snap-mcp run](https://github.com/gfs-bifrost/snap-mcp/actions/runs/38356564636)

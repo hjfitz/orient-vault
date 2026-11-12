@@ -4,7 +4,7 @@ tags:
 - tracking-service
 title: tracking-service — architecture
 thesis: One Go binary takes Pub/Sub pushes on /events/v1/{topic}/{recordType}, folds
-  each event into a per-order ledger in one Firestore transaction with an order-independent
+  each event into a per-order ledger in one MongoDB transaction with an order-independent
   reducer, and serves derived records from /api/v1. Identity is business + customer
   reference; every served field is recomputed from the ledger.
 confidence: high
@@ -13,25 +13,24 @@ verified_sha: 9f01957
 verified_paths:
 - apps/api/internal
 - apps/api/cmd
-- apps/api/firestore.indexes.json
 - iac/projects/tracking-service
 ---
 # tracking-service — architecture
 
 ```orient-bluf
-{ "v": 1, "bluf": "One Go binary takes Pub/Sub pushes on /events/v1/{topic}/{recordType}, folds each event into a per-order ledger in one Firestore transaction with an order-independent reducer, and serves derived records from /api/v1. Identity is business + customer reference; every served field is recomputed from the ledger.", "confidence": "high", "action": "Never join on the Snap ShipmentId, and never count a flip of a derived flag: identity is business + customer reference, and a failure counts once (G1, G2)." }
+{ "v": 1, "bluf": "One Go binary takes Pub/Sub pushes on /events/v1/{topic}/{recordType}, folds each event into a per-order ledger in one MongoDB transaction with an order-independent reducer, and serves derived records from /api/v1. Identity is business + customer reference; every served field is recomputed from the ledger.", "confidence": "high", "action": "Never join on the Snap ShipmentId, and never count a flip of a derived flag: identity is business + customer reference, and a failure counts once (G1, G2)." }
 ```
 
 ## Guardrails
 - [contract:G1] A shipment's identity is business + normalised customer reference (then `~SO:`, then `~SNAP:`); a return's is business + RGA number. The Snap ShipmentId is display and search only, never a join key.
   — paths: apps/api/internal/core/extract.go, apps/api/internal/core/snapid.go
-- [technical:G2] Count a record once, on its first failure of each kind, through `Ledger.FirstFailures`. Never count a flip of a derived flag; stats are signed increments in the same transaction.
-  — paths: apps/api/internal/core/failures.go, apps/api/internal/store/counters.go
+- [technical:G2] Count a record once, on its first failure of each kind, through `Ledger.FirstFailures` and `FailureMarks`. Never count a flip of a derived flag. Stats are summed on read from each record's marks, plus `keptCounters`/`returnKeptCounters` for history no record holds; nothing increments a shared counter.
+  — paths: apps/api/internal/core/failures.go, apps/api/internal/store/marks.go, apps/api/internal/store/mongo_marks.go
 - [technical:G3] The reducer must not depend on arrival order: every derived field is a min, max, set union or `FactKey` max in the ledger, ordered by Pub/Sub `publishTime`. The shuffle tests in `core` are the contract.
   — paths: apps/api/internal/core/reduce.go, apps/api/internal/core/returns_reduce.go
-- [technical:G4] A query change needs its composite index in `apps/api/firestore.indexes.json` (Terraform builds from it; `indexes_test.go` fails the build otherwise). The emulator does not enforce indexes.
-  — paths: apps/api/firestore.indexes.json, apps/api/internal/store
-- [policy:G5] Backfills and `recompute-stats` run against prod by a human, dry-run first, with ingest held. Gate stored-state remaps on `ledgerVersion`, never on field presence.
+- [technical:G4] A query change needs its index in `mongo_indexes.go` (`EnsureIndexes` creates them on start). `mongo_explain_test.go` fails when a query shape plans to a COLLSCAN or a blocking sort, or a declared index serves no shape.
+  — paths: apps/api/internal/store/mongo_indexes.go, apps/api/internal/store/mongo_explain_test.go
+- [policy:G5] Backfills and `recompute-stats` run against prod by a human, dry-run first; `recompute-stats` with ingest held. Gate stored-state remaps on `ledgerVersion`, never on field presence.
   — paths: apps/api/cmd, apps/api/internal/core/upgrade.go
 - [contract:G6] Cross-entity topics are subscribed one recordType per subscription with a Terraform `filter`; goods-out is `goods_out_confirmation` on both ready and made. Never discriminate in code.
   — paths: iac/projects/tracking-service/pubsub.tf
@@ -44,7 +43,7 @@ verified_paths:
     { "id": "decode", "label": "Decode envelope", "sub": "core/decode.go, extract.go", "kind": "service", "ev": [2] },
     { "id": "dedupe", "label": "Republish check", "sub": "content hash per dedupe group", "kind": "service", "ev": [3] },
     { "id": "reduce", "label": "Reducer + rules", "sub": "ledger → derive, attention", "kind": "service", "tone": "accent", "ev": [4] },
-    { "id": "fs", "label": "Firestore txn", "sub": "record + event doc + counters", "kind": "store", "ev": [5] }
+    { "id": "fs", "label": "MongoDB txn", "sub": "record + event doc + marks + seen row", "kind": "store", "ev": [5] }
   ],
   "edges": [
     { "from": "push", "to": "decode" },
@@ -62,7 +61,7 @@ package that reads env [6].
 | `cmd/redrive`, `cmd/backfill-*`, `cmd/recompute-stats` | One-off tools over the same core |
 | `internal/http` | Handlers, DTOs, metrics emission, the minute gauges |
 | `internal/core` | All logic: decode, items, reducer, rules (preexisting, deadlines, attention), summary, insights, queries, returns |
-| `internal/store` | `Store` interface; Firestore and in-memory implementations |
+| `internal/store` | `Store` interface; MongoDB and in-memory implementations |
 | `internal/model` | Types only |
 
 ## Interfaces
@@ -85,14 +84,20 @@ contract is `apps/api/openapi.yaml`; fuse-ui vendors a copy [1].
 **Out.** None. It publishes nothing and calls no other service.
 
 ## Persistence
-Firestore, named database `tracking-service`, Native mode, no TTL, delete-protected in prod [8].
-Top-level collections `shipments`, `returns`, `businesses`, `stats`, `insights`, `returnStats` and
-`returnInsights` (prefixable with `COLLECTION_PREFIX`), with `events` and `notes` sub-collections. Large
-blobs (`ledgerJson`, `recordJson`, `timelineJson` …) are opaque JSON strings with indexing turned off
-through hand-chained `google_firestore_field` overrides.
+MongoDB Atlas: an M10 cluster `tracking-service-{env}` (autoscaling to M20, backup and point-in-time
+recovery, termination protection in prod), database `tracking-service-{env}`, reached through
+`MONGODB_URI`/`MONGODB_DATABASE` [8]. Each record type keeps its records, events, marks and notes in
+collections of its own (`shipments`, `shipmentEvents`, `shipmentMarks`, `shipmentNotes`, and the
+`return*` twins), plus `keptCounters`/`returnKeptCounters` for imported history such as the frozen
+`duplicates`, and `seen`. Large blobs (`ledgerJson`, `recordJson`, `timelineJson` …) are opaque JSON
+strings. Only `seen` has a TTL (8 days, past Pub/Sub's retention); everything else is kept forever.
+Stats, insights and the businesses list are aggregated on read [5].
 
-Idempotency: an event doc's id is the `messageId` (`messageId-i` for bulk), and `Apply` is a no-op when
-it exists. A republished copy (same content hash in its dedupe group) writes no event and is counted
+Firestore served until the 2026-11-11 cut. Both databases were deleted on 2026-11-12, after a final
+export to the tracking-service migration bucket (30-day lifecycle).
+
+Idempotency: an event doc's id is the `messageId` (`messageId-i` for bulk), and every applied delivery
+also writes a `seen` row in the same transaction; `Apply` is a no-op when either exists. A republished copy (same content hash in its dedupe group) writes no event and is counted
 on the record [3]. `core.Upgrade` runs on every read, so a `ledgerVersion` bump re-derives lazily, and
 `backfill-upgrade` makes it eager.
 
@@ -108,10 +113,10 @@ IAM-private, with a Datadog serverless-init sidecar when `DATADOG_ENABLED=true` 
   { "id": 2, "kind": "code", "ref": "apps/api/internal/core/decode.go@9f01957" },
   { "id": 3, "kind": "code", "ref": "apps/api/internal/core/dedupe.go@9f01957" },
   { "id": 4, "kind": "code", "ref": "apps/api/internal/core/reduce.go@9f01957" },
-  { "id": 5, "kind": "code", "ref": "apps/api/internal/store/firestore.go@9f01957" },
+  { "id": 5, "kind": "code", "ref": "apps/api/internal/store/mongo.go@e34d821" },
   { "id": 6, "kind": "code", "ref": "apps/api/CLAUDE.md@9f01957" },
   { "id": 7, "kind": "code", "ref": "iac/projects/tracking-service/pubsub.tf@9f01957" },
-  { "id": 8, "kind": "code", "ref": "iac/projects/tracking-service/firestore.tf@9f01957" },
+  { "id": 8, "kind": "code", "ref": "iac/projects/tracking-service/mongo.tf@e34d821" },
   { "id": 9, "kind": "code", "ref": "iac/projects/tracking-service/cloud-run-api.tf@9f01957" }
 ] }
 ```

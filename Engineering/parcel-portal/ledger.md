@@ -6,6 +6,51 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-12 — Generate an SFTP key pair in the admin's browser
+
+Generate an SFTP key pair in the admin's browser
+
+The Access tab can now make an SFTP key pair in the admin's browser (RSA 4096, WebCrypto only, via packages/ssh-keygen). The admin downloads the private key once as a PEM and only the public line is registered, as source generated, so svc never sees a private key. Pasting a public key is unchanged and sends nothing new. Proven locally: no key material in any request or log, the registered line matches the downloaded file, a heap snapshot after close is clean, and ssh -i authenticates against a local host. Reviewed with review-panel (security, frontend, platform, contract). Third of three changes after svc source on keys (#133) and the package (#132); customer self-serve is not decided.
+
+Ship: SHIP-1112-tca-portal-setup (orchestrated session, no ticket)
+PR: ilg-merak/parcel-portal#135
+
+## 2026-11-12 — Submit the packaging preset's size and weight units
+
+Submit the packaging preset's size and weight units
+
+The Add preset form on Settings > Packaging could never save: the toolkit's select doesn't pass its name to the form, so the unit fields were never submitted and every save answered Choose a unit. The units now travel in hidden inputs, and the form submits from onSubmit with startTransition so React's post-action form reset no longer snaps the selects back to inches and pounds. UI only. Found by Harry adding a preset on dev; weight 0 is still rejected by svc (a decision for later).
+
+Ship: SHIP-1112-tca-portal-setup (orchestrated session, no ticket)
+PR: ilg-merak/parcel-portal#134
+
+## 2026-11-12 — Record whether an SFTP key was supplied or generated
+
+Record whether an SFTP key was supplied or generated
+
+svc half of browser-side SFTP key generation: sftp_user_key.source (supplied or generated, migration 019), OpenAPI 5.13.0 additive, a same-key retry that returns the existing key and republishes the SFTP snapshot, audit fields keyId, keyType and keySource, and a debug MCP redactor that also catches clipped and base64-wrapped private keys. svc only ever receives the public line. Reviewed with review-panel; mutation-checked.
+
+Ship: SHIP-1112-tca-portal-setup (orchestrated session, no ticket)
+PR: ilg-merak/parcel-portal#133
+
+## 2026-11-12 — Add a package that generates an SSH key pair in the browser
+
+Add a package that generates an SSH key pair in the browser
+
+New packages/ssh-keygen: generateSshKeyPair() makes an RSA 4096 pair with crypto.subtle only and returns a PKCS#1 PEM, an ssh-rsa public line and a SHA256 fingerprint. First of three changes so an admin's browser generates the SFTP key and the portal's server never sees a private key. Nothing consumes it yet. Reviewed with review-panel; tests added for provenance, encoding branches and DER failure paths; cross-checked against ssh-keygen and the portal's Go key validator.
+
+Ship: SHIP-1112-tca-portal-setup (orchestrated session, no ticket)
+PR: ilg-merak/parcel-portal#132
+
+## 2026-11-12 — Hide the API key section of the customer admin UI
+
+Hide the API key section of the customer admin UI
+
+Removes the API card from a customer's Access tab and the API keys step from the Overview setup list, plus the listApiKeys calls behind them. UI only: the svc API, key tables and existing keys are untouched, so re-enabling is a plain revert. The business isn't ready to use the API yet.
+
+Ship: SHIP-1112-tca-portal-setup (orchestrated session, no ticket)
+PR: ilg-merak/parcel-portal#131
+
 ## 2026-11-11 — Add a dev-only debug MCP server
 
 Add a dev-only debug MCP server

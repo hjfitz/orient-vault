@@ -6,6 +6,22 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-12 — Add snap.breaker.state monitors and dashboard widgets for adapter and poller (O1)
+
+Add snap.breaker.state monitors and dashboard widgets for adapter and poller (O1)
+
+Four Datadog monitors on the shared snap.breaker.state gauge (prod adapter, prod poller, silent dev copies of each) and three widgets in the Safety controls group of the SNAP Adapter overview dashboard. Applied 2026-11-12, plan 4 add/1 change/0 destroy. Dev adapter copy proven OK->Alert->OK against a simulator 503 fault.
+
+PR: gfs-bifrost/observability#89
+
+## 2026-11-12 — Let the tracking-service ingest-lag monitor resolve on a quiet topic
+
+Let the tracking-service ingest-lag monitor resolve on a quiet topic
+
+ingest_lag_p99_high gets timeout_h = 1: ingest.lag is only emitted on applied events, so a quiet topic's group stayed in Alert and renotified (confirmation_data_failure after the 2026-11-11 cut). default_zero can't fill a grouped series with no points, so not the #90 fix. The push 5xx page now says MongoDB, not Firestore. Left as an idea stub: the push 5xx composite flapping at hold edges.
+
+PR: gfs-bifrost/observability#91
+
 ## 2026-11-11 — Let the tracking-service hold-mode monitor resolve when the hold ends
 
 Let the tracking-service hold-mode monitor resolve when the hold ends
