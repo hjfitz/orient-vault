@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-12 — Add the multi-tenant domain schema, its Selector mapping and a synthetic seed
+
+Add the multi-tenant domain schema, its Selector mapping and a synthetic seed
+
+Unit B1: Drizzle schema (12 tables, composite tenant FKs), migration 0001, docs/data-model.md (CSS mapping), dev-only fail-closed synthetic seed, integration tests against Postgres 17. Review panel (data, seed/security, tests) findings fixed. Draft; merge waits on Harry.
+
+PR: ilg-merak/selector2#3
+
 ## 2026-11-11 — Cloud SQL, migrations, readiness and public access
 
 Cloud SQL, migrations, readiness and public access
