@@ -144,7 +144,15 @@ Other behaviours that differ:
 - Contract numbers are matched as sent. CSS reads the last three characters of a Royal Mail or InPost contract number as B2B or B2C.
 - Customs and commodities are sent to the carrier and not kept.
 
-Left out of the schema: departments, `ALLOW_ROUTES`, consolidation, the address book, print settings, credit, site locking and update state, range recycling, check digits, Royal Mail manifest storage, `TMP` numbers for failed shipments, Firebird events, upload and billing, per-site proxy URLs, and the global reference tables (`CARRIERS`, `COUNTRIES`, `PRODUCTS` as a catalogue).
+Left out of the schema:
+
+- Departments, `ALLOW_ROUTES`, consolidation, the address book and print settings.
+- Credit, site locking and update state.
+- Range recycling, check digits and `TMP` numbers for failed shipments.
+- Royal Mail manifest storage.
+- Firebird events, upload and billing.
+- Per-site proxy URLs.
+- The global reference tables (`CARRIERS`, `COUNTRIES`, `PRODUCTS` as a catalogue).
 
 ## Not included
 
