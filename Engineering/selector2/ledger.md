@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-12 — Add the shipment use-cases: process, validate, delete and commit
+
+Add the shipment use-cases: process, validate, delete and commit
+
+Unit B9: five label operations as use-cases with a typed batch result; idempotent reference claim, cancel hold (migration 0003), ambiguous-create handling, CSS mapping fixes, tenant-scoped writes tested directly. Three-lens review fixed.
+
+Ship: SELECTOR2-1112-ship. PR: ilg-merak/selector2#13
+
 ## 2026-11-12 — Add the SvelteKit shell and the basic-auth gate
 
 Add the SvelteKit shell and the basic-auth gate
