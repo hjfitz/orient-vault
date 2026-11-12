@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-12 — Add the SOAP ClientShipService, wire-compatible with CSS
+
+Add the SOAP ClientShipService, wire-compatible with CSS
+
+Unit C2: SOAP 1.1 service for eight operations, 46 golden replies, XML safety budgets, Parcel Portal's own Selector client booked against a local selector2 with only the endpoint and credentials changed. Security review fixed.
+
+Ship: SELECTOR2-1112-ship. PR: ilg-merak/selector2#16
+
 ## 2026-11-12 — Add REST v2, the terse API
 
 Add REST v2, the terse API
