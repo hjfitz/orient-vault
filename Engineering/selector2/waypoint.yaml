@@ -1,6 +1,5 @@
 # selector2 — Waypoint index. Cheap orientation only, never documentation.
 service: selector2
-system: selector
 type: backend            # NestJS api + SvelteKit ui in one pnpm workspace
 owner: bifrost
 language: "TypeScript, Node 24.7.0"
