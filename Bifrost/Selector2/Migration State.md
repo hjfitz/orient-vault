@@ -61,7 +61,7 @@ Legend: ⬜ not started · 🟨 in progress · ✅ merged · ⛔ blocked · ⏸ 
 | Unit | St | Summary | Deps | Risk | Tier | PR | Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | **C1** | ✅ | REST v1 (selector-rest-proxy parity) | B9 | med | sonnet/high | #14 | OpenAPI first, published. Five operations, `application/problem+json`, 200/207/400, and the ZPLII 4x6 default print spec. **Done when** selector-rest-proxy's own contract tests pass against selector2 with only the URL and key changed. |
-| **C2** | ⬜ | SOAP `ClientShipService` for the five operations | B9 | high | opus/high | | Wire-compatible with CSS: `AuthenticationDetails`, `ResponseDetails` and the status codes. Built against recorded real requests, taken from selector-adapter and Parcel Portal's Selector client. **Done when** Parcel Portal's Selector client books against selector2 dev with only its URL changed (R2). |
+| **C2** | ✅ | SOAP `ClientShipService` for the five operations | B9 | high | opus/high | #16 | Wire-compatible with CSS: `AuthenticationDetails`, `ResponseDetails` and the status codes. Built against recorded real requests, taken from selector-adapter and Parcel Portal's Selector client. **Done when** Parcel Portal's Selector client books against selector2 dev with only its URL changed (R2). |
 | **C3** | ✅ | REST v2 (terser) | C1 | med | sonnet/high | #15 | **Gated on G2.** |
 
 ### D — UI
