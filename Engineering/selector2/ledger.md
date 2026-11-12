@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-12 — Add REST v1 at parity with selector-rest-proxy
+
+Add REST v1 at parity with selector-rest-proxy
+
+Unit C1: five routes over B9 use-cases, Ajv-validated against rest-v1.yaml, proxy error shapes, ApiKeyGuard. Proxy smoke suite: 20 of 28 pass unchanged, the 6 failures assert Selector sandbox data, ported copy 26 of 26. Two-lens review fixed.
+
+Ship: SELECTOR2-1112-ship. PR: ilg-merak/selector2#14
+
 ## 2026-11-12 — Add the shipment use-cases: process, validate, delete and commit
 
 Add the shipment use-cases: process, validate, delete and commit
