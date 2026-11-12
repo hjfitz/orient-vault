@@ -69,7 +69,7 @@ Legend: ⬜ not started · 🟨 in progress · ✅ merged · ⛔ blocked · ⏸ 
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | **D1** | ✅ | SvelteKit shell and basic-auth gate | A1, B2 | med | sonnet/medium | #12 | **The UI sits behind HTTP basic auth** (Harry, 2026-11-11): the server hook checks the credentials against the account store through selector2-api and challenges with `WWW-Authenticate` otherwise. Never log or echo credentials. Tenant-scoped after login. SvelteKit departs from the org contract's Next.js (R1). |
 | **D2** | ⬜ | Shipment playground with call trace and label preview | D1, C1 | med | sonnet/high | | Compose a shipment, then validate, process, commit and delete it. Show each carrier call's trace and the label. |
-| **D3** | ⬜ | Accounts and API keys admin | D1, B10 | med | sonnet/high | | **Create accounts when logged in** as `god` (Harry, 2026-11-11), list accounts, create and revoke API keys (the key is shown once). Tenants' contracts, services, number ranges and the mock proxies' URLs stay read-only. |
+| **D3** | ✅ | Accounts and API keys admin | D1, B10 | med | sonnet/high | #17 | **Create accounts when logged in** as `god` (Harry, 2026-11-11), list accounts, create and revoke API keys (the key is shown once). Tenants' contracts, services, number ranges and the mock proxies' URLs stay read-only. |
 | **D4** | ⬜ | CSV export | D2 | low | sonnet/low | | Export a tenant's shipments and parcels to CSV. |
 | **D5** | ⬜ | End-to-end mock scenarios | D2 | med | sonnet/high | | Preset shipments per carrier, including the magic values that trigger each mock's failures, and a run-all across the twelve with a result grid. |
 
