@@ -4,7 +4,7 @@ tags:
 - selector2
 title: selector2 — testing
 verified: '2026-11-12'
-verified_sha: unknown
+verified_sha: ee122ca
 verified_paths:
 - apps/selector2-api/vitest.config.ts
 - compose.yaml
