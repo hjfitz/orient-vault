@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-12 — Add the accounts and API keys admin UI
+
+Add the accounts and API keys admin UI
+
+Unit D3: /accounts and /accounts/[id] over the admin routes; one-time key shown once with no-store, uncertain-create handling, guarded submit, accessible revoke confirmation. Review fixed.
+
+Ship: SELECTOR2-1112-ship. PR: ilg-merak/selector2#17
+
 ## 2026-11-12 — Add the SOAP ClientShipService, wire-compatible with CSS
 
 Add the SOAP ClientShipService, wire-compatible with CSS
