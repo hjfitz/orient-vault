@@ -28,7 +28,7 @@ verified_paths:
 - **The five label operations:** ProcessShipments, ValidateShipments, DeleteShipments, CommitShipGroup and CommitShipments, over SOAP (`/ClientShipService.asmx`), REST v1 (selector-rest-proxy's routes) and REST v2 (`/v2/shipments`) [1][2].
 - **Tenancy and callers:** accounts, hashed API keys and a seeded `god` account. One Postgres holds every tenant, and every row carries `tenant_id` [3].
 - **Egress:** one adapter per carrier proxy, each reached with a Cloud Run ID token and an `x-api-key`. The proxies are the mocks in `ilg-merak/carrier-playground` [4].
-- **UI:** `selector2-ui` sits behind HTTP basic auth and validates every sign-in against the api. It manages accounts and API keys, and the basic-auth `/admin/shipments` routes exist for its playground and CSV export. The playground and export screens are not built yet (units D2, D4) [5].
+- **UI:** `selector2-ui` sits behind HTTP basic auth and validates every sign-in against the api, and calls only the basic-auth `/admin` routes. It manages accounts and API keys; its playground composes a v2 shipment and validates, processes, commits and deletes it with the carrier call trace and the label (PNG, PDF, ZPL) streamed through the UI server; `/shipments` lists and shows them; `/export` streams a CSV; `/scenarios` runs 74 preset shipments (one happy path and the mocks' failure values per carrier) and compares each with what it expects [5]. On dev no tenant has carrier contracts yet, so nothing books there until contracts can be provisioned.
 
 ## Why it exists separately
 Harry asked for a clean replacement, not a port. The wire contracts stay, so a caller changes its URL and credentials and nothing else. The inside is a Drizzle/Postgres model with no Firebird and no C#. It lives in `ilg-merak` because it is Merak's build, outside Fuse. It uploads nothing to GFS: CSV export from the UI is the only way data leaves [6].
@@ -77,7 +77,7 @@ The ui holds no account store and no database access. The api is the only servic
   { "id": 2, "kind": "code", "ref": "apps/selector2-api/openapi@6442634" },
   { "id": 3, "kind": "code", "ref": "docs/data-model.md@6442634" },
   { "id": 4, "kind": "code", "ref": "docs/carrier-egress.md@6442634" },
-  { "id": 5, "kind": "code", "ref": "docs/ui.md@6442634" },
+  { "id": 5, "kind": "code", "ref": "docs/ui.md@ee122ca" },
   { "id": 6, "kind": "doc", "ref": "Bifrost/Selector2/Overview.md" }
 ] }
 ```
