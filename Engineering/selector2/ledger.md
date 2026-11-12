@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-12 — Add the basic-auth routes the UI uses: shipments, labels, carrier accounts, CSV export
+
+Add the basic-auth routes the UI uses: shipments, labels, carrier accounts, CSV export
+
+Unit B11 (added mid-run): /admin/shipments operations sharing the REST v2 functions, list and detail with the carrier call trace, label bytes, carrier accounts, CSV export with a cap, concurrency limit and injection-safe cells, tenantId on every route. Two-lens review fixed.
+
+Ship: SELECTOR2-1112-ship. PR: ilg-merak/selector2#18
+
 ## 2026-11-12 — Add the accounts and API keys admin UI
 
 Add the accounts and API keys admin UI
