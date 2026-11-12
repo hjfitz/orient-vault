@@ -1,11 +1,22 @@
 ---
-tags: [waypoint, selector2]
+tags:
+- waypoint
+- selector2
 title: selector2 — overview
-thesis: "selector2 is a multi-tenant TypeScript replacement for Selector's label-getting: a NestJS api that keeps CSS's SOAP and selector-rest-proxy's REST wire contracts, adds a terse REST v2, books labels through carrier-playground's twelve mock proxies, and a SvelteKit UI over it. It is a dev-only, synthetic-data build with no prod and no cutover."
+thesis: 'selector2 is a multi-tenant TypeScript replacement for Selector''s label-getting:
+  a NestJS api that keeps CSS''s SOAP and selector-rest-proxy''s REST wire contracts,
+  adds a terse REST v2, books labels through carrier-playground''s twelve mock proxies,
+  and a SvelteKit UI over it. It is a dev-only, synthetic-data build with no prod
+  and no cutover.'
 confidence: high
-verified: 2026-11-12
-verified_sha: 6442634
-verified_paths: [README.md, AGENTS.md, apps/selector2-api/openapi, apps/selector2-ui/src/hooks.server.ts, iac/projects]
+verified: '2026-11-12'
+verified_sha: '6442634'
+verified_paths:
+- README.md
+- AGENTS.md
+- apps/selector2-api/openapi
+- apps/selector2-ui/src/hooks.server.ts
+- iac/projects
 ---
 # selector2 — overview
 
