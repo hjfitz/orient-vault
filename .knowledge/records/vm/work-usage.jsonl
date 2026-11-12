@@ -215,3 +215,7 @@
 {"ts": 1794503920, "kind": "programme_tick", "session_id": "ab8a7343-ea32-4942-aedf-5701fc105c86", "programme": "Selector2", "unit": "D2", "status": "done"}
 {"ts": 1794503925, "kind": "programme_tick", "session_id": "ab8a7343-ea32-4942-aedf-5701fc105c86", "programme": "Selector2", "unit": "D4", "status": "done"}
 {"ts": 1794503929, "kind": "programme_tick", "session_id": "ab8a7343-ea32-4942-aedf-5701fc105c86", "programme": "Selector2", "unit": "D5", "status": "doing"}
+{"ts": 1794506111, "kind": "ledger", "session_id": "ab8a7343-ea32-4942-aedf-5701fc105c86", "service": "selector2", "ticket": null, "programme": "Selector2", "heading": "## 2026-11-12 \u2014 Add the scenarios page: preset shipments for the twelve mock carriers", "prs": ["ilg-merak/selector2#20"]}
+{"ts": 1794506588, "kind": "programme_tick", "session_id": "ab8a7343-ea32-4942-aedf-5701fc105c86", "programme": "Selector2", "unit": "D5", "status": "done"}
+{"ts": 1794508767, "kind": "programme_tick", "session_id": "8584435d-36a9-464d-bc60-e21c842cfe59", "programme": "orient Notes", "unit": "W3", "status": "done"}
+{"ts": 1794508769, "kind": "programme_tick", "session_id": "8584435d-36a9-464d-bc60-e21c842cfe59", "programme": "orient Notes", "unit": "W4", "status": "doing"}
