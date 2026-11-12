@@ -10,7 +10,7 @@ thesis: One pnpm workspace with a layered NestJS api (http to use-cases to core,
   once the proxy may have received it.
 confidence: moderate
 verified: '2026-11-12'
-verified_sha: unknown
+verified_sha: ee122ca
 verified_paths:
 - apps/selector2-api/src
 - apps/selector2-api/openapi
