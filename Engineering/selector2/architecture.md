@@ -102,7 +102,7 @@ Postgres 17 on Cloud SQL, IAM logins only, with 12 tables and four migrations (`
 ## Runtime
 Two Cloud Run services on the platform's golden `node24-runtime` image (`selector2-api-dev`, `selector2-ui-dev`), min instances 0. The platform module exposes no max-instance cap, so the pool (default 2 connections) is the only bound on a 25-connection `db-f1-micro`. **ASSESSED:** Cloud Run probes only liveness, so a service that never reaches its database stays "ready" and returns 503 from `/health/readiness` [6].
 
-The ui is reached by the browser directly and gates every route except `GET /health/liveness` through `hooks.server.ts`. It remembers a successful sign-in for 60 seconds, so a revoked account can still pass in the ui for up to a minute on an instance that has seen it [7].
+The ui is reached by the browser directly and gates every route except `GET /health/liveness` through `hooks.server.ts`. It remembers a successful sign-in for 60 seconds, so a revoked account can still pass in the ui for up to a minute on an instance that has seen it [7]. Labels and the CSV export reach the browser only through the ui server, streamed under a type the ui chose (`no-store`, `nosniff`); a PDF label shows in an iframe without `sandbox`, because Chromium's PDF viewer refuses a sandboxed frame [7].
 
 ## Evidence
 ```orient-evidence
@@ -113,6 +113,6 @@ The ui is reached by the browser directly and gates every route except `GET /hea
   { "id": 4, "kind": "code", "ref": "apps/selector2-api/src/http/controllers/admin-shipments.controller.ts@6442634" },
   { "id": 5, "kind": "code", "ref": "docs/data-model.md@6442634" },
   { "id": 6, "kind": "code", "ref": "iac/projects/selector2-api/cloud-run.tf@6442634" },
-  { "id": 7, "kind": "code", "ref": "docs/ui.md@6442634" }
+  { "id": 7, "kind": "code", "ref": "docs/ui.md@ee122ca" }
 ] }
 ```

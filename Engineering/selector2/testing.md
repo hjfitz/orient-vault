@@ -39,6 +39,7 @@ The api's tests run as two Vitest projects: `unit` (everything under `__tests__/
 ## Conventions
 - Tests sit in `__tests__/` beside the code, one behaviour per test, with hand-written fakes over mocks. Shared setup is in `support/` next to the tests.
 - Test names state the one behaviour checked.
+- **Live end to end against the real mocks:** the ui's `/scenarios` page books one happy path per carrier and the mocks' failure values, and compares each with what it expects. Locally it needs the synthetic seed (Acme has a route for all twelve carriers); reset the database before re-seeding after the fixtures change, because the seed never rewrites a row. On dev no tenant has carrier contracts yet.
 - Never put a real credential, customer or label in a fixture. Fixture keys are published mock keys (`rm-key-acme`, `seedacme01_...`).
 
 ## Gaps
