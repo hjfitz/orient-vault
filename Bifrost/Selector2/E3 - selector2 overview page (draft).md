@@ -171,7 +171,7 @@ Left out of the schema:
 
 ## Status and limits
 
-**State on 12 Nov 2026** (`main` at `6442634`). Merged: the API (SOAP, REST v1, REST v2, admin routes, the twelve carrier adapters, validation, accounts and API keys) and the UI's sign-in and accounts pages. In review: the playground, shipment list and detail, label preview and CSV export. In build: the scenarios page.
+**State on 12 Nov 2026** (`main` at `6442634`). Merged: the whole API and the UI's sign-in and accounts pages. The API covers SOAP, REST v1, REST v2, the admin routes, the twelve carrier adapters, validation, accounts and API keys. In review: the playground, shipment list and detail, label preview and CSV export. In build: the scenarios page.
 
 **Dev only, synthetic data only.**
 
@@ -216,7 +216,7 @@ Gaps marked `[??]` in the page:
 
 Unsure of:
 
-- **The audience sentence in the summary.** "Engineers use it to test callers such as Parcel Portal and selector-adapter, and people drive it through its web UI" is read from the C2 and D-unit done-when lines and the Migration State summary. No source names an audience.
+- **The audience sentence in the summary.** It is read from the C2 done-when line and the Migration State summary. No source names an audience.
 - **The UI section is written as it will be after D2 and D4 land.** At drafting (`origin/main` `6442634`) only the sign-in and accounts pages are merged. The playground, list, label preview and export are in `docs/ui.md` on `origin/hjf/d2-playground` (`f73d8be`, unreviewed). The `/scenarios` row comes from the D5 line in Migration State and your brief. No code or doc for it exists yet, and `docs/ui.md` on the branch says it is "not in the navigation yet". Re-check the table before publishing.
 - **The dev hostnames** come from `Engineering/selector2/operations.md` (snapshot 12 Nov 2026). The README gives only the project and service names.
 - **The four **Assumption** labels** (account = tenant, a repeated reference, REST v2's shape, the dropped numbering unit). Say whether to keep them, soften them or drop them before publishing. The REST v2 row names Claude. Decide whether the page should.
@@ -227,13 +227,16 @@ Unsure of:
 Source contradictions (the page follows the source named first):
 
 1. **REST v1 size limits.** `docs/rest-v1.md`: a body is at most 1 MiB and each list at most 100 entries. `docs/rest-v2.md`, side-by-side table: "Size limits: none" for selector2 REST v1.
-2. **DPD phone numbers.** `docs/carrier-egress.md` (DPD Europe): selector2 "does not pre-check or rewrite" them and passes on the proxy's refusal. `docs/validation-scope.md` (rules added from the proxy contracts): the validation chain refuses a phone number that does not start `+` or contains spaces, with a note to drop the rule "if the adapter rewrites them instead". The page states neither.
+2. **DPD phone numbers.** `docs/carrier-egress.md` (DPD Europe): selector2 "does not pre-check or rewrite" them and passes on the proxy's refusal. `docs/validation-scope.md` (rules added from the proxy contracts): the validation chain refuses a phone number that lacks `+` or contains spaces. It adds a note to drop the rule "if the adapter rewrites them instead". The page states neither.
 3. **Where SOAP credentials sit.** The page follows `docs/soap.md`, `docs/auth.md`, the Waypoint architecture note (G3) and C2 evidence finding 1: the body element `AuthenticationDetails`. Migration State's Scar tissue still says "CSS's `AuthConnDetails` header carries a password", and `Engineering/css/architecture.md` guardrail G5 says the same. The SUPERSEDED note in Migration State sits under R1 but describes R2.
 4. **The numbering unit.** The Migration State table marks B4 dropped (❌) with no decision-log entry for the drop. The ship-mode entry says "B4 deferred". The B1 entry says "Harry decides whether B4 is dropped". `known-context.md` and the ledger say dropped. `docs/data-model.md` says the table "is kept because the numbering work was planned against it, and that plan should be checked against this finding". The page says no code allocates numbers and marks the drop an assumption.
-5. **What a `god` account sees.** Migration State B2 and `docs/ui.md` say a `god` account "sees every tenant". `docs/admin-api.md` and the Waypoint architecture note say it names one tenant per admin request, never gets an every-tenant scope, and acts on its own (empty) tenant over REST and SOAP. The page follows the second.
+5. **What a `god` account sees.** Migration State B2 and `docs/ui.md` say a `god` account "sees every tenant". `docs/admin-api.md` and the Waypoint architecture note say something narrower. A `god` account names one tenant per admin request and never gets an every-tenant scope. Over REST and SOAP it acts on its own empty tenant. The page follows the second.
 6. **Done-when versus evidence.** Migration State marks C2 merged with done-when "books against selector2 dev". `docs/soap.md` records the client runs as local. Migration State C1 done-when is "selector-rest-proxy's own contract tests pass … with only the URL and key changed". `docs/rest-v1.md` records 20 of 28 passing unchanged, with the six failures asserting Selector sandbox data. The page reports the recorded evidence.
 7. **`ShipmentID`.** `docs/rest-v1.md` says selector2's id is returned. `docs/soap.md` says SOAP echoes the request's own. Both are on the page as a difference between transports. It is not a contradiction, but a reader may expect one rule.
-8. **Smaller items, not on the page.** `known-context.md` counts 25 units with B11 added mid-run, but the Migration State table has 24 rows and no B11 (it appears in the ledger and the Waypoint notes). The README's opening paragraph on `origin/main` still says the SOAP and REST APIs, adapters and UI "arrive in later units". The E2 draft's last section, "How selector2 will use them (planned)", is out of date now that the adapters and egress are built. Update it before both pages publish.
+8. **Smaller items, not on the page.**
+   - `known-context.md` counts 25 units with B11 added mid-run. The Migration State table has 24 rows and no B11. B11 appears only in the ledger and the Waypoint notes.
+   - The README's opening paragraph on `origin/main` still says the SOAP and REST APIs, adapters and UI "arrive in later units".
+   - The E2 draft's last section, "How selector2 will use them (planned)", is out of date now that the adapters and egress are built. Update it before both pages publish.
 
 What a reader would expect that the sources do not say:
 
