@@ -1,11 +1,22 @@
 ---
-tags: [waypoint, selector2]
+tags:
+- waypoint
+- selector2
 title: selector2 — architecture
-thesis: "One pnpm workspace with a layered NestJS api (http to use-cases to core, adapters and repositories behind small interfaces) and a SvelteKit ui that only calls the api. Every query takes a TenantScope, both services are public at the Cloud Run layer so each route carries its own guard, and a carrier create is never retried once the proxy may have received it."
+thesis: One pnpm workspace with a layered NestJS api (http to use-cases to core, adapters
+  and repositories behind small interfaces) and a SvelteKit ui that only calls the
+  api. Every query takes a TenantScope, both services are public at the Cloud Run
+  layer so each route carries its own guard, and a carrier create is never retried
+  once the proxy may have received it.
 confidence: moderate
-verified: 2026-11-12
-verified_sha: 6442634
-verified_paths: [apps/selector2-api/src, apps/selector2-api/openapi, apps/selector2-api/drizzle, apps/selector2-ui/src, iac/projects]
+verified: '2026-11-12'
+verified_sha: '6442634'
+verified_paths:
+- apps/selector2-api/src
+- apps/selector2-api/openapi
+- apps/selector2-api/drizzle
+- apps/selector2-ui/src
+- iac/projects
 ---
 # selector2 — architecture
 
