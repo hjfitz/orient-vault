@@ -2,6 +2,7 @@
 service: selector2
 type: backend            # NestJS api + SvelteKit ui in one pnpm workspace
 owner: bifrost
+repo: /home/hjf/code/merak/selector2
 language: "TypeScript, Node 24.7.0"
 framework: "NestJS 11 (api), SvelteKit adapter-node (ui), Drizzle + Postgres 17"
 deploy: cloud-run         # dev only (ilg-merak-dev-b5e3, us-central1); there is no prod
