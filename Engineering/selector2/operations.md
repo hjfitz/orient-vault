@@ -4,7 +4,7 @@ tags:
 - selector2
 title: selector2 — operations
 verified: '2026-11-12'
-verified_sha: '6442634'
+verified_sha: ee122ca
 verified_paths:
 - .github/workflows
 - iac/projects
