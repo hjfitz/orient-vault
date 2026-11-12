@@ -55,7 +55,7 @@ Legend: ⬜ not started · 🟨 in progress · ✅ merged · ⛔ blocked · ⏸ 
 | **B7** | ✅ | Adapters: DPD EU, Amazon (SFP and Logistics), BJS | B5 | med | sonnet/high | #7 | Amazon Logistics refuses PDF labels, and DPD EU's validator probably rejects Selector's call (handover, 11 Nov). Decide how selector2 reproduces each. |
 | **B8** | ✅ | Adapters: InPost, OCS, Exelot, Veho | B5 | med | sonnet/high | #8 | OCS and Exelot multiply GRAM weights by 1000. Veho has no production proxy, so its adapter follows the agreed contract. |
 | **B9** | ⬜ | Shipment use-cases | B2, B3, B4, B5 | high | opus/high | | `ProcessShipment(s)`, `ValidateShipments`, `DeleteShipments`, `CommitShipGroup`, `CommitShipments`, one use-case each. Per-shipment results aggregate to 200, 207 or 400, as selector-rest-proxy does. Commit marks a shipment committed and goes no further (no upload). **Depends on G4.** |
-| **B10** | ⬜ | Account and API-key use-cases | B2 | med | sonnet/high | | Create account, list accounts, create and revoke an API key, as use-cases behind the admin routes (basic auth, `god` may create accounts). Keys shown once, stored hashed. OpenAPI first. **AC:** a `standard` account cannot create accounts or see another tenant's keys. |
+| **B10** | ✅ | Account and API-key use-cases | B2 | med | sonnet/high | #10 | Create account, list accounts, create and revoke an API key, as use-cases behind the admin routes (basic auth, `god` may create accounts). Keys shown once, stored hashed. OpenAPI first. **AC:** a `standard` account cannot create accounts or see another tenant's keys. |
 
 ### C — APIs
 | Unit | St | Summary | Deps | Risk | Tier | PR | Notes |
