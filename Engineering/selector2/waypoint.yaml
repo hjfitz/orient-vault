@@ -1,24 +1,34 @@
 # selector2 — Waypoint index. Cheap orientation only, never documentation.
-# Every value is a fact, a path, or a command — never a sentence. Anything needing a sentence
-# belongs in a doc. (No line cap: the old ~25-line one was exceeded by 22 of 26 files.)
 service: selector2
-type: backend            # backend | frontend | library | infra
+system: selector
+type: backend            # NestJS api + SvelteKit ui in one pnpm workspace
 owner: bifrost
-language:
-framework:
-deploy:                  # cloud-run | vercel | vm | n/a
-observability:           # datadog | none
+language: "TypeScript, Node 24.7.0"
+framework: "NestJS 11 (api), SvelteKit adapter-node (ui), Drizzle + Postgres 17"
+deploy: cloud-run         # dev only (ilg-merak-dev-b5e3, us-central1); there is no prod
+observability: datadog    # in-container agent; JSON logs, request id on every line
 
 interfaces:
-  inbound: []            # http, pubsub, cron, sftp, webhook, cli
-  outbound: []           # service/system names
+  inbound: [http-soap, http-rest-v1, http-rest-v2, http-admin, ui-basic-auth]
+  outbound: [postgres-cloud-sql-iam, carrier-playground-mock-proxies, secret-manager-god-password]
 
-key_paths: []            # 3-6 entrypoints worth knowing: src/http, iac/, apps/api/cmd
+key_paths:
+  - apps/selector2-api/src/bootstrap/containers   # the only place Nest modules and wiring live
+  - apps/selector2-api/src/models/tenant-scope.ts  # TenantScope: no scope, no query
+  - apps/selector2-api/src/use-cases               # the five label operations, one function each
+  - apps/selector2-api/src/adapters/carriers       # egress port client and 12 proxy adapters
+  - apps/selector2-api/openapi                     # admin, rest-v1, rest-v2 specs, written first
+  - iac/projects                                   # one Terragrunt project per app
 
-# note: >          # optional. Durable orientation only — the thing that surprises someone
-#                  # arriving cold. NEVER machine state (branch, commits behind, dirty files)
-#                  # and never a dated snapshot: nothing here is staleness-checked, so an
-#                  # expiring claim rots invisibly. Point at the Bifrost/ vault for a
-#                  # programme rather than restating it.
+note: >
+  Built by the Selector2 programme (Bifrost/Selector2/ in the vault); read its Migration State
+  decision log and gates first. Docs live in docs/ in the repo and win over the vault on behaviour.
 
+runtime:
+  toolchain: "mise: node 24.7.0, pnpm 10.34.7, terraform 1.14.9, terragrunt 0.50.8"
+  test_runner: "vitest (unit + integration projects); integration needs Postgres via PGHOST/PGPORT/PGUSER/PGPASSWORD"
+commands:
+  root: "."          # repo root, not code/: mise x node@24.7.0 pnpm@10.34.7 -- pnpm run <script>
+  gate: ["lint", "build:check", "build:check:tests", "test", "build"]
+  missing: []        # all five exist; test/ci need a Postgres (compose postgres-test on 5433, CI on 5432)
 onboarded: 2026-11-11
