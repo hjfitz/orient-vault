@@ -38,7 +38,7 @@ SOAP serves three more operations because Parcel Portal and selector-adapter cal
 
 **The mock proxies.** selector2 gets every label from carrier-playground's twelve mock carrier proxies: `royalmail`, `ups`, `coll8`, `fedex`, `dpdeu`, `amazon-sfp`, `amazon`, `bjs`, `inpost`, `ocs`, `exelot` and `veho`. Each copies a production proxy's contract and holds only fake data. Veho has no production proxy. For the proxies themselves, see *Mock carrier proxies (carrier-playground)*.
 
-**The UI.** `selector2-ui` sits behind HTTP basic auth. Contracts, services and routes have no UI page and are read-only.
+**The UI.** `selector2-ui` sits behind HTTP basic auth. Contracts, services, number ranges and the mock proxies' URLs have no UI page and are read-only.
 
 | Page | Does |
 | --- | --- |
