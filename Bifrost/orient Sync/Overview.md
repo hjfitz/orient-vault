@@ -33,6 +33,7 @@ Paths are under `src/`. Builders verify every citation before relying on it.
 
 ## Strategy
 - **In-process jobs.** The PR and Jira data live only in the core's memory, so a separate process cannot warm them; the one cross-process bridge is `index.sqlite`, which is disposable. A `CoreModule.start()` hook is the existing no-plumbing route. A separate `orient-sync` unit would survive core restarts, but the snapshot gives the same benefit.
+> SUPERSEDED 2026-11-12 — no worktree. `CLAUDE.md:22` forbids git worktrees on this machine (a second `node_modules` is too heavy), and the Notes programme's own ledger says the same. Sync units run one at a time in the main checkout on `master`, staged by explicit path, and only while no Notes builder is running: the full-suite gates run on the working tree, so it has to be clean. S0 to S5 therefore wait for the Notes unit in flight to deploy.
 - **Series, in a separate worktree.** S0 to S5 run one at a time on a branch in its own worktree (the Notes programme holds the shared checkout), rebased and fast-forwarded onto `master` by the lead, then deployed by sha as before: `gate_no_runs`, `pnpm deploy:all`, a live check, a tick. Full-suite gates run only on a quiet host.
 - **Review.** Each unit gets a `review-panel` (backend, tests, plus security on S2 and S3 where tokens and files are involved, plus frontend on S5) before it is deployed.
 
