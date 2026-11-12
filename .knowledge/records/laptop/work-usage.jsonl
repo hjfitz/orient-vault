@@ -361,3 +361,8 @@
 {"ts": 1794481647, "kind": "ledger", "session_id": "396b7315-aa79-43a2-af2d-63d6eb3aac55", "service": "selector2", "ticket": null, "programme": "Selector2", "heading": "## 2026-11-12 \u2014 Add the multi-tenant domain schema, its Selector mapping and a synthetic seed", "prs": ["ilg-merak/selector2#3"]}
 {"ts": 1794482152, "kind": "programme_tick", "session_id": "396b7315-aa79-43a2-af2d-63d6eb3aac55", "programme": "Selector2", "unit": "B1", "status": "done"}
 {"ts": 1794482154, "kind": "programme_tick", "session_id": "396b7315-aa79-43a2-af2d-63d6eb3aac55", "programme": "Selector2", "unit": "B4", "status": "deferred"}
+{"ts": 1794484907, "kind": "programme_tick", "session_id": "396b7315-aa79-43a2-af2d-63d6eb3aac55", "programme": "Selector2", "unit": "B5", "status": "done"}
+{"ts": 1794484911, "kind": "programme_tick", "session_id": "396b7315-aa79-43a2-af2d-63d6eb3aac55", "programme": "Selector2", "unit": "B4", "status": "dropped"}
+{"ts": 1794484911, "kind": "ledger", "session_id": "396b7315-aa79-43a2-af2d-63d6eb3aac55", "service": "selector2", "ticket": null, "programme": "Selector2", "heading": "## 2026-11-12 \u2014 Add the carrier egress port, ID-token client and Royal Mail adapter", "prs": ["ilg-merak/selector2#4"]}
+{"ts": 1794485948, "kind": "programme_tick", "session_id": "396b7315-aa79-43a2-af2d-63d6eb3aac55", "programme": "Selector2", "unit": "B3", "status": "done"}
+{"ts": 1794485948, "kind": "ledger", "session_id": "396b7315-aa79-43a2-af2d-63d6eb3aac55", "service": "selector2", "ticket": null, "programme": "Selector2", "heading": "## 2026-11-12 \u2014 Add the shipment request model and the validation chain", "prs": ["ilg-merak/selector2#5"]}
