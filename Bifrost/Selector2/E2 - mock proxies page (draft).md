@@ -84,7 +84,7 @@ For a request body, copy the example in `apps/<proxy>/api/` (the production Open
 
 ## How to trigger a failure
 
-Failures come from magic values in the request. There are no hidden switches. Postcode and ZIP values ignore spaces and case on every mock except `royalmail`, where every magic value (postcode, id and service code) must match exactly, spaces and capitals included. `veho` reads the first five digits of the ZIP. An id prefix ignores case. Any other id behaves as a real one.
+Failures come from magic values in the request. There are no hidden switches. Postcode and ZIP values ignore spaces and case on every mock except `royalmail`. On `royalmail`, every magic value (postcode, id and service code) must match exactly, spaces and capitals included. `veho` reads the first five digits of the ZIP. An id prefix ignores case. Any other id behaves as a real one.
 
 | Mock | Where | Value | Caller gets |
 | --- | --- | --- | --- |
