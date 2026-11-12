@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-12 — Add accounts, API keys, the principal resolver and the god account
+
+Add accounts, API keys, the principal resolver and the god account
+
+Unit B2: hashed revocable API keys, argon2id passwords, principal resolver (REST key, SOAP, basic), TenantScope with no unscoped query, throttling (migration 0002), god account synced by the migrate job from Secret Manager. Three-lens review fixed.
+
+Ship: SELECTOR2-1112-ship. PR: ilg-merak/selector2#9
+
 ## 2026-11-12 — Add the InPost, OCS, Exelot and Veho carrier adapters
 
 Add the InPost, OCS, Exelot and Veho carrier adapters
