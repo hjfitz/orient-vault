@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-13 — Remove the Trivy ignores the rebuilt runtime images no longer need
+
+Remove the Trivy ignores the rebuilt runtime images no longer need
+
+Native Dispatch unit T14. The three Trivy ignores (CVE-2026-78661, CVE-2026-76844, CVE-2026-85091) expired on 2026-11-16. Harry asked to renew them; the platform has since rebuilt go-runtime and node24-runtime under the same rolling tag, and a scan of the current images finds none of them, so they are removed and the file keeps an empty list. Proven by the PR's own container scans (svc, gateway, sftp, ui all green with the empty list). The svc scan first failed on a Go proxy download error and passed on re-run.
+
+PR: ilg-merak/parcel-portal#138
+
 ## 2026-11-13 — Show plain text when a packaging preset fails svc's request check
 
 Show plain text when a packaging preset fails svc's request check
