@@ -32,7 +32,7 @@ Legend: ⬜ not started · 🟨 in progress · ✅ merged · ⛔ blocked · ⏸ 
 ### L — Dispatch lifecycle
 | Unit | St | Summary | Deps | Risk | Tier | PR | Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| **L1** | ⬜ | Void a dispatched label from the order page | | med | sonnet/high | | **R01.** Void exists only on the shipment page: `DeleteShipments`, then the order returns to Ready. Add it to a dispatched order's page, and say plainly when a manifested shipment can't be voided. Verify on dev with the test carrier; the live endpoint only with Harry's go-ahead. |
+| **L1** | ✅ | Void a dispatched label from the order page | | med | sonnet/high | ilg-merak/parcel-portal#142 | **R01.** Void exists only on the shipment page: `DeleteShipments`, then the order returns to Ready. Add it to a dispatched order's page, and say plainly when a manifested shipment can't be voided. Verify on dev with the test carrier; the live endpoint only with Harry's go-ahead. |
 | **L2** | ⬜ | Remove an order from the list (delete, not just cancel) | L1 | med | sonnet/medium | | **R01.** Cancel only voids orders that were never booked, and a voided order stays dead; there is no delete route. Oliver decides what he means first (G6). |
 
 ### O — Order page and editing
