@@ -55,6 +55,41 @@ Sequencing: B0 → B1 → B2 → B3 in series is the minimum Harry asked for. B4
 
 ## Decision log
 <!-- Dated, newest first. -->
+- **2026-11-13** — **B2 done and live at e850831** (d97d804..e850831: 7 commits, opus builder). **The board is drag and drop now.**
+  - **What was built:**
+    - Edit on a whiteboard page opens a canvas (`ui/src/lib/board/`: `model.ts`, `snap.ts`, `fence.ts`, `hit.ts`, `draw.ts`, `BoardCanvas.svelte`, `BoardEditor.svelte`).
+    - **Editing:** add, drag, resize, connect (Shift-click two boxes, then Connect), relabel (double-click), delete, duplicate, Esc, and undo and redo with the board before and after each command. Tab moves through boxes, and a live region announces each change.
+    - **Snapping:** a 20-unit grid, on by default and remembered per browser, with Alt to bypass it, and alignment guides.
+    - **Drawing:** the static render's own drawing functions (only the `noteBox` export changed). The golden is identical over 1,441 documents.
+    - **Publishing:** a browser draft until Publish, which rewrites only the fence. A board that won't parse, has lint errors or has an unclosed fence opens as text, with the reason. "Edit as text" (`?as=text`) takes the draft with it.
+    - **Speed:** a drag on a 300-element board takes 2.8 ms median per frame.
+    - **Sensitive boards** open as text, because the core withholds their `pageType`.
+  - **Review (write-back, model, canvas) found 10 issues, all fixed with 23 tests failing first.** The board editor's copy of the draft and Publish logic is patched to match `Editor.svelte`'s guards; extracting it to share is left for later. The serious ones:
+    - switching editors after a Publish opened stale text, and Reload theirs then lost work;
+    - Reload theirs with an unparseable board kept yours against their hash (an inv-7 breach);
+    - a late Publish reply on a closed editor;
+    - Esc or Ctrl-Z mid-drag committed the drag on top of an undone state;
+    - per-box snapping broke group and selection offsets (two reviewers found it);
+    - duplicating a group copied only its frame.
+  - **Gates:** typecheck, lint 44 (the builder found and fixed a 45th error from its own 777c1e7), `ui:check` 0, the build, 592 board tests and 264 note-editor route tests. The full suite was not run.
+  - **Live check** (`:3000`, real `test whiteboard`, writes aborted):
+    - Edit opens the canvas;
+    - Add box places `n1` at (320, 0);
+    - a 73×41 px drag lands on (400, 40), on the grid, and Alt gives (407, 43);
+    - double-click relabels;
+    - Connect adds `n1→customer`;
+    - undo and redo take the edges 3 → 2 → 3;
+    - Publish was tried, aborted, and the draft kept;
+    - Close shows the banner, and the reading view keeps the vault's board;
+    - Edit as text carries the draft.
+  - **Still not like Confluence, for B3:**
+    - Add box can land on top of another box;
+    - there is no connector dragged from a handle, and no keyboard connect;
+    - only plain boxes, with no palette;
+    - the label edits above the box, not in place;
+    - repeated nudges are separate undo steps;
+    - there is no copy and paste.
+  - **Next:** B3.
 - **2026-11-13** — **B5 done and live at 033c00c** (43d8561..033c00c: 9 commits, opus builder; a login error stopped it once mid-build, and it was resumed with its work intact).
   - **What was built:**
     - **Reading:** an embed of a Notes page, alone on its line or on lines ended by a hard break, renders as a `data-page-embed` placeholder with a fallback link. Every other embed, images included, is byte-identical. `RENDERER_VERSION` is `html-7`.
