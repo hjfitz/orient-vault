@@ -260,3 +260,8 @@
 {"ts": 1794595179, "kind": "programme_tick", "session_id": "ab8a7343-ea32-4942-aedf-5701fc105c86", "programme": "Selector2", "unit": "F1", "status": "done"}
 {"ts": 1794595879, "kind": "programme_tick", "session_id": "ab8a7343-ea32-4942-aedf-5701fc105c86", "programme": "Selector2", "unit": "F2", "status": "done"}
 {"ts": 1794595931, "kind": "ledger", "session_id": "ab8a7343-ea32-4942-aedf-5701fc105c86", "service": "selector2", "ticket": null, "programme": "Selector2", "heading": "## 2026-11-13 \u2014 Record which sign-in throttle checks passed on dev", "prs": ["ilg-merak/selector2#24"]}
+{"ts": 1794597069, "kind": "ledger", "session_id": "3daf16d6-87bb-438d-944f-828764dcae71", "service": "parcel-portal", "ticket": null, "programme": "Native Dispatch", "heading": "## 2026-11-13 \u2014 Order page: a dropdown for the carrier service and the order's total weight", "prs": ["ilg-merak/parcel-portal#145"]}
+{"ts": 1794597072, "kind": "programme_tick", "session_id": "3daf16d6-87bb-438d-944f-828764dcae71", "programme": "Native Dispatch", "unit": "O3", "status": "done"}
+{"ts": 1794597075, "kind": "programme_tick", "session_id": "3daf16d6-87bb-438d-944f-828764dcae71", "programme": "Native Dispatch", "unit": "O2", "status": "done"}
+{"ts": 1794598743, "kind": "programme_tick", "session_id": "8584435d-36a9-464d-bc60-e21c842cfe59", "programme": "orient Whiteboard", "unit": "B3", "status": "done"}
+{"ts": 1794598819, "kind": "programme_tick", "session_id": "8584435d-36a9-464d-bc60-e21c842cfe59", "programme": "orient Whiteboard", "unit": "B9", "status": "doing"}
