@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-13 — Record which sign-in throttle checks passed on dev
+
+Record which sign-in throttle checks passed on dev
+
+Docs only, after F2 deployed: the API's forged X-Forwarded-For and forged visitor-header checks, the trusted UI token, and the one-network UI lockout check all passed on dev on 13 Nov; the second-network checks and the UI forged-entry check are still to do.
+
+PR: ilg-merak/selector2#24
+
 ## 2026-11-13 — Count UI sign-in failures against the visitor, not the UI, when the UI proves who it is
 
 Count UI sign-in failures against the visitor, not the UI, when the UI proves who it is
