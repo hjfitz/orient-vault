@@ -101,6 +101,44 @@ Revision 4 (2026-11-12, Harry): the writer is the priority ("renders as you type
 
 ## Decision log
 <!-- Dated, newest first. -->
+- **2026-11-13** — **NV2 done and live at 2b9f104** (5b65902..2b9f104: 9 commits, opus builder). **Harry's ask: "the sidebar - this should mirror confluence's ux. placeholder name, three-dot menu to add a page, rename or delete the current page. Creating a page still feels lightly clunky".**
+  - **What was built:**
+    - **Row actions:** every tree row shows `+` and `⋯` on hover or focus, at 24 px, over the end of the row so the title does not move.
+      - A page's `⋯` offers New page here, Rename… and Delete…, which open the header's own dialogs, now shared as `PageDialogs`.
+      - A folder's `+` opens the create menu.
+    - **One-click create:**
+      - New page opens the editor at once on a browser draft (`orient:draft:new:<folder>/<id>`, at `/notes?new=<id>&in=<folder>&mode=edit`), with "Untitled" as a grey placeholder.
+      - "Start from: Meeting notes · Decision · Runbook · How to" sits inside the empty page, and the tree shows `Untitled · draft`.
+      - **Nothing is written until Publish.** Publish creates `<folder>/<title>.md` with the text byte for byte and never overwrites. An empty title takes the first free name from Untitled to Untitled 100; a typed title that is taken is refused.
+      - Folder and Whiteboard names come prefilled and selected.
+  - **Review (core write path, new-page drafts and tree rows) found 12 issues, all fixed with tests failing first.** The serious ones:
+    - a new page could be created twice: on a retry after a lost reply, from a second tab, or after a cancelled leave. The core now answers `created` for byte-identical text, and the draft remembers its page;
+    - case and NFC variants of an existing name were not refused;
+    - a template's `title:` could disagree with the H1;
+    - "Start from" could replace a plain first line;
+    - deleting the last page of the folder on show landed on a 404;
+    - the `⋯` buttons hid the `draft` chip;
+    - focus was lost after a row action.
+
+    The builder also found and fixed a `mkdir` race when two creates make the same folder.
+  - **Decided without Harry:**
+    - a page's `+` adds a page beside it, not a child, because a child would move the page into its own folder and restart its history;
+    - an untouched new page is dropped on Close, leave or reload;
+    - a draft whose folder is gone asks before publishing into the nearest folder that still exists;
+    - R15, two `Untitled.md` from two machines before a sync, is accepted.
+  - **Gates:**
+    - typecheck clean, lint 44, `ui:check` 0;
+    - core 447 tests, plus the builder's UI batches of 298 and 273;
+    - the lead's editor batch could not finish: the host reached load 54 under other sessions' work (a TypeScript check, a Next dev server). The only `Editor.svelte` change after the builder's last green editor batch (359) is a new exported `publishNow()` that calls the existing `save()`, so it shipped on that.
+  - **Live check** (`:3000`, writes aborted):
+    - the title does not move on hover;
+    - Rename and Delete from a row name that row's page, and the page on show stays;
+    - one click opens an Untitled draft in 1.1 s, with 0 writes;
+    - Decision fills the page, and one undo empties it;
+    - Close then reload restores it;
+    - a failed Publish keeps it and says why (the only write tried, aborted);
+    - New folder is prefilled and selected.
+  - **Next:** Whiteboard B2, the drag-and-drop canvas.
 - **2026-11-13** — **Editor ux-review done, fixes live at 6c134aa** (9c20a30..6c134aa: 3 commits, sonnet builder).
   - **Method:** shot at 1440 and 3440, dark only, on the real `ups-proxy` C4 page, with writes aborted.
   - **The phone is out of scope:** the Svelte UI programme's gate G7 (2026-11-10) made orient desktop-only. The design doc is corrected, and W4's "390 px chip" note no longer applies.
