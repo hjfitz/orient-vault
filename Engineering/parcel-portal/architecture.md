@@ -3,10 +3,11 @@ tags:
 - waypoint
 - parcel-portal
 title: parcel-portal — architecture
-thesis: One Go module with three binaries (svc on Cloud Run, sftp on a MIG, a canary
-  job) plus a Next.js UI and a browser print package. svc is contract-first and layered
-  (http → core → adapters/repositories), every customer table is tenant-scoped through
-  the request context, and dispatch is at-most-once per order.
+thesis: One Go module with five binaries (svc and the customer-API gateway on Cloud
+  Run, sftp on a MIG, a canary job, a dev-only debug MCP) plus a Next.js UI and two
+  browser packages. svc is contract-first and layered (http → core → adapters/repositories),
+  every customer table is tenant-scoped through the request context, and dispatch
+  is at-most-once per order.
 confidence: high
 verified: '2026-10-29'
 verified_sha: 696cbd4
