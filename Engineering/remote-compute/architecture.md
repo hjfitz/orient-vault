@@ -1,8 +1,20 @@
 ---
-tags: [waypoint, remote-compute]
+tags:
+- waypoint
+- remote-compute
 title: remote-compute — architecture
-thesis: "One Terragrunt project calls a local workstation module once per prod.tfvars entry. Each VM's home disk, IPs and host identity outlive the instance, guest behaviour is driven only by rc-* instance metadata, and a merge to main applies behind the terraform-prod Environment."
+thesis: One Terragrunt project calls a local workstation module once per prod.tfvars
+  entry. Each VM's home disk, IPs and host identity outlive the instance, guest behaviour
+  is driven only by rc-* instance metadata, and a merge to main applies behind the
+  terraform-prod Environment.
 confidence: high
+verified_paths:
+- README.md
+- iac
+- .github/workflows
+- scripts/sync-claude-config
+verified: '2026-11-13'
+verified_sha: 8498e18
 ---
 # remote-compute — architecture
 
