@@ -70,8 +70,7 @@ Only the UI's, the gateway's and the import push service accounts may invoke svc
 ## What deliberately isn't here
 - **Canonical Fuse records and the event bus.** The portal publishes nothing to Fuse topics; orders live only in its Postgres.
 - **Carrier integrations.** Selector does the carrier work; the portal only calls it.
-- **Admin screens** for tenants, users, mapping and carrier. They're API only (snapshot 2026-10-29).
-- **Self-signup.** GFS creates every tenant and user.
+- **Self-signup and self-serve.** GFS creates every tenant and user, and only a `gfs_admin` manages users, SFTP users, layouts and carrier accounts.
 
 ## Evidence
 ```orient-evidence
