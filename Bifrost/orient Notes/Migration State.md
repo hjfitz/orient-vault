@@ -95,6 +95,23 @@ Revision 4 (2026-11-12, Harry): the writer is the priority ("renders as you type
 
 ## Decision log
 <!-- Dated, newest first. -->
+- **2026-11-13** — **Editor ux-review done, fixes live at 6c134aa** (9c20a30..6c134aa: 3 commits, sonnet builder).
+  - **Method:** shot at 1440 and 3440, dark only, on the real `ups-proxy` C4 page, with writes aborted.
+  - **The phone is out of scope:** the Svelte UI programme's gate G7 (2026-11-10) made orient desktop-only. The design doc is corrected, and W4's "390 px chip" note no longer applies.
+  - **Fixed:**
+    - On 3440 the controls end where the text ends (`68rem`), instead of about 2,300 px away.
+    - The edit-bar status is text, not a chip that looks like a button.
+    - Publish alone carries the signal: amber only when there is something to publish, otherwise disabled, and ctrl+s does nothing then.
+    - The `/` menu offers bullet, numbered, quote and code, as turn-into does.
+    - The banner says "saved just now".
+    - The title has room under the properties.
+  - **Review (one frontend reviewer) found 2 issues, both fixed, tests failing first:**
+    - `/quote` on the line Enter, Enter leaves under a callout deleted that callout's `[!note]`;
+    - under a table, or on an indented line, the new `/` turns did nothing.
+
+    The new `/` turns now start a block of their own, and fall back to the plain marker.
+  - **Gates:** typecheck, lint 44, `ui:check` 0, build; the editor test files pass. The full suite was stopped by Claude Code for low memory (the 512 MB swap file is always full). Harry: "I'm happy with how testing has been so far", so it shipped without it.
+  - **The biggest gap left:** diagrams show as JSON in the editor. Harry then moved the work to embeds, so Whiteboard B5 goes next (Whiteboard decision log); W2 keeps tables.
 - **2026-11-13** — **W4 done and live at 9c20a30** (0b141e8..9c20a30, 3 commits: build, review fixes, a late-reply fix). **Edits are drafts until Publish, and no work is lost.**
   - **What was built:** a draft per page in this browser (`orient:draft:<path>`: path, base hash, text, time; at most 256K characters), saved about a second after typing stops and again on tab hide, page hide and unmount. Publish goes through the existing save route with the base hash. The reading page shows "You have unpublished changes from …" with Continue editing and Discard, and the tree marks the page `draft`. A draft over a page that changed opens the conflict view and is kept. A sensitive page keeps no draft and keeps the leave guard.
   - **Review (heavy lane, data-loss lens) found 3 issues, all fixed:**
