@@ -102,6 +102,30 @@ Revision 4 (2026-11-12, Harry): the writer is the priority ("renders as you type
 
 ## Decision log
 <!-- Dated, newest first. -->
+- **2026-11-13** — **NV2b done and live at 0579006** (c20321c..0579006: 6 commits, opus builder). **Pages move by drag and drop.**
+  - **What was built:**
+    - **Drag and drop:** drag a page row onto a folder and it highlights. Refused targets show as not allowed: outside `Notes/`, structural, the folder it is already in, or itself. A shut folder opens after 600 ms.
+    - **The drop opens the existing rename/move dialog**, filled in with the folder and showing the plan of links it rewrites. One Apply moves it; a drop alone writes nothing.
+    - **New-page drafts** dragged onto a folder just change folder, with no request sent.
+    - **Move to…** in a row's `⋯` opens a folder combobox, then takes the same path.
+    - **A page that would become a folder's own page** is told so in the dialog and the drop tooltip.
+    - **The sidebar** hides to a rail (the toggle, or `[`) and resizes by dragging its edge. Both are remembered per browser.
+    - **`+ Create`** in the Notes header opens the create menu for the folder on show.
+  - **Not built:** folders can't be dragged. The core only moves a single file, so a folder move needs a new core route. It is not built and not needed yet.
+  - **Review (one reviewer, with a data-safety eye) found 2 issues, fixed with tests failing first (13):**
+    - a held or repeated Enter ran Move to…, the picker and Apply, writing a move unseen;
+    - a late link plan could be applied under a different destination.
+
+    The lead's calls: the picker's Enter acts only on a highlighted row, and the folder's-own-page message.
+  - **Gates:** typecheck 0, lint 44, `ui:check` 0, 727 workspace and notes tests, then 232 after the fixes.
+  - **Live check** (`:3000`, writes aborted; only the read-only `plan-rename` let through, after checking `planRename` writes nothing):
+    - dragging `tmp` onto C4 opens the dialog filled in with `Architecture/C4/tmp.md`, "No other page needs changing";
+    - Esc closes it, with nothing written;
+    - a drop on its own folder is refused;
+    - Move to… lists the folders and marks "it is already in…";
+    - `[` collapses the tree to a rail, and it is remembered;
+    - `+ Create` opens the create menu.
+  - **Next, in the agreed order:** NV1 (the page header, byline and `⋯` menu), then Confluence C0–C3, then W2 (tables in place).
 - **2026-11-13** — **Untitled pages carry the time; drag to reorganise is queued.** Harry: "New nav looks good! Let's update the name to append the current time so that we have some uniqueness. drag and drop would be a nice-to-have for re-organising things as well".
   - **Done by the lead at 2f3aaa3:** `untitledName` in `src/edit/notes.ts` names an empty-titled page `Untitled YYYY-MM-DD HH.mm` in Europe/London. The host runs in UTC; London is the app's zone for times people read (`maintenance-time.ts`, `slack-stats.ts`). It uses `.` because a colon is not allowed in vault file names, and " 2" and on within one minute.
   - **What does not change:** the text is still written byte for byte, so the H1 stays empty and the title falls back to the file name. The draft row and editor placeholder still say "Untitled" before Publish.
