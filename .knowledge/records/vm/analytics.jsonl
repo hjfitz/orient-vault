@@ -601,3 +601,8 @@
 {"t":"leave","at":"2026-11-13T15:28:36.667Z","visit":"ff7fe129-d4ec-4fe5-bfc1-2eab8fda40d6","activeMs":138000}
 {"t":"leave","at":"2026-11-13T15:29:05.092Z","visit":"ff7fe129-d4ec-4fe5-bfc1-2eab8fda40d6","activeMs":139000}
 {"t":"leave","at":"2026-11-13T15:30:46.843Z","visit":"ff7fe129-d4ec-4fe5-bfc1-2eab8fda40d6","activeMs":140000}
+{"t":"view","at":"2026-11-13T16:52:54.642Z","visit":"1aa5e403-120a-47ec-9dce-30fd838eaead","route":"/today"}
+{"t":"view","at":"2026-11-13T16:52:57.953Z","visit":"855382bd-a33b-4419-b06a-21827ccc66b3","route":"/notes"}
+{"t":"leave","at":"2026-11-13T16:52:57.957Z","visit":"1aa5e403-120a-47ec-9dce-30fd838eaead","activeMs":3000}
+{"t":"leave","at":"2026-11-13T16:53:25.577Z","visit":"855382bd-a33b-4419-b06a-21827ccc66b3","activeMs":24000}
+{"t":"leave","at":"2026-11-13T16:54:09.620Z","visit":"855382bd-a33b-4419-b06a-21827ccc66b3","activeMs":32000}
