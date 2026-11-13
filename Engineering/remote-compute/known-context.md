@@ -33,7 +33,7 @@ including vault and orient work, handed over from the laptop with the `session-h
   Removing their owner entry or keys does. A scheduled active-account check was considered and left out
   because it needs Admin SDK access.
 - **Idle and nightly shutdown are opt-in** (2026-11-02). Owners often leave work running overnight.
-- **A standalone module is being rejected.** PR #15 (Wolf, SRE) adds `iac/modules/standalone-workstation`
+- **A standalone module is being rejected.** PR #15 (Wolf, Lead SRE) adds `iac/modules/standalone-workstation`
   so another repo's Terraform could create a workstation for an always-on agent VM. Harry said on
   2026-11-13 it will be rejected. Every workstation stays an entry in `prod.tfvars`, where the stack's
   uniqueness checks on subdomain, keys and uids hold. (snapshot 2026-11-13: PR still open)
