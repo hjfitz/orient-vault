@@ -6,6 +6,15 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-12 — Round a shipment's customs value and total weight before sending to Selector
+
+Round a shipment's customs value and total weight before sending to Selector
+
+Found by Check with carrier on TCA's sample orders: the FIP order (3 x 0.95) was rejected with commodity missing Wrong customs amount because the customs value went out as 2.8499999999999996, an unrounded float product, while the Cost block was already rounded to cents. The customs value is now rounded to cents and the total weight to grams, as package weights already are. UnitPrice is left unrounded. svc only; any international order whose price times quantity isn't exactly representable was affected.
+
+Ship: SHIP-1112-tca-portal-setup (orchestrated session, no ticket)
+PR: ilg-merak/parcel-portal#136
+
 ## 2026-11-12 — Generate an SFTP key pair in the admin's browser
 
 Generate an SFTP key pair in the admin's browser

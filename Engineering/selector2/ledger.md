@@ -6,6 +6,22 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-12 — Add the scenarios page: preset shipments for the twelve mock carriers
+
+Add the scenarios page: preset shipments for the twelve mock carriers
+
+Unit D5. /scenarios books preset shipments against the twelve mock carrier proxies and compares the outcome with what each preset expects: 74 presets (12 happy, 62 failure presets using the mocks' magic values), run one or run all happy paths (3 at a time, at most 12 per click, one run per account, no new call after 150 s so the worst case stays inside Cloud Run's 300 s). The local synthetic seed now gives the Acme tenant a contract, service and route for every carrier, and Bramble's service codes are corrected to ones its mocks accept. Three-lens review panel, all verified findings fixed. Local end to end against the real mocks: 12 of 12 happy paths ok in the browser, 74 of 74 presets matched.
+
+PR: ilg-merak/selector2#20
+
+## 2026-11-12 — Add the shipment playground, shipment list and label preview, and the CSV export to the UI
+
+Add the shipment playground, shipment list and label preview, and the CSV export to the UI
+
+Units D2 and D4. The playground composes a v2 shipment and validates, processes, commits and deletes it through the basic-auth admin routes, showing item outcomes, the carrier call trace and the labels (PNG in an img, PDF in an unsandboxed iframe because Chromium's PDF viewer refuses a sandboxed frame, ZPL as server-read text). Shipment list with filters and detail; CSV export streamed through the UI server. A four-lens review panel found and the PR fixes: the PDF preview never rendering, a failed label read turning a successful booking into a 500, the compose form blanking after commit, a god's stale tab writing to another tenant (now 409), a UI timeout shorter than the API's worst carrier call, vacuous tests. Also fixes the synthetic seed's Royal Mail service code (RMT24, not the product code TPN24). Verified locally end to end against the public mocks in headless Chromium.
+
+PR: ilg-merak/selector2#19
+
 ## 2026-11-12 — Add the basic-auth routes the UI uses: shipments, labels, carrier accounts, CSV export
 
 Add the basic-auth routes the UI uses: shipments, labels, carrier accounts, CSV export

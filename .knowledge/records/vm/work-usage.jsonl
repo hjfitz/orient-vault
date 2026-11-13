@@ -207,3 +207,16 @@
 {"ts": 1794501670, "kind": "programme_tick", "session_id": "8584435d-36a9-464d-bc60-e21c842cfe59", "programme": "orient Notes", "unit": "W1", "status": "done"}
 {"ts": 1794501749, "kind": "programme_tick", "session_id": "8584435d-36a9-464d-bc60-e21c842cfe59", "programme": "orient Notes", "unit": "W3", "status": "doing"}
 {"ts": 1794501857, "kind": "ledger", "session_id": "3daf16d6-87bb-438d-944f-828764dcae71", "service": "parcel-portal", "ticket": null, "programme": "Parcel Portal", "heading": "## 2026-11-12 \u2014 Generate an SFTP key pair in the admin's browser", "prs": ["ilg-merak/parcel-portal#135"]}
+{"ts": 1794503310, "kind": "programme_tick", "session_id": "ab8a7343-ea32-4942-aedf-5701fc105c86", "programme": "Selector2", "unit": "D2", "status": "doing"}
+{"ts": 1794503313, "kind": "programme_tick", "session_id": "ab8a7343-ea32-4942-aedf-5701fc105c86", "programme": "Selector2", "unit": "D4", "status": "doing"}
+{"ts": 1794503441, "kind": "ledger", "session_id": "ab8a7343-ea32-4942-aedf-5701fc105c86", "service": "selector2", "ticket": null, "programme": "Selector2", "heading": "## 2026-11-12 \u2014 Add the shipment playground, shipment list and label preview, and the CSV export to the UI", "prs": ["ilg-merak/selector2#19"]}
+{"ts": 1794503715, "kind": "ledger", "session_id": "3daf16d6-87bb-438d-944f-828764dcae71", "service": "parcel-portal", "ticket": null, "programme": "Parcel Portal", "heading": "## 2026-11-12 \u2014 Round a shipment's customs value and total weight before sending to Selector", "prs": ["ilg-merak/parcel-portal#136"]}
+{"ts": 1794503738, "kind": "programme_tick", "session_id": "ab8a7343-ea32-4942-aedf-5701fc105c86", "programme": "Selector2", "unit": "E3", "status": "doing"}
+{"ts": 1794503920, "kind": "programme_tick", "session_id": "ab8a7343-ea32-4942-aedf-5701fc105c86", "programme": "Selector2", "unit": "D2", "status": "done"}
+{"ts": 1794503925, "kind": "programme_tick", "session_id": "ab8a7343-ea32-4942-aedf-5701fc105c86", "programme": "Selector2", "unit": "D4", "status": "done"}
+{"ts": 1794503929, "kind": "programme_tick", "session_id": "ab8a7343-ea32-4942-aedf-5701fc105c86", "programme": "Selector2", "unit": "D5", "status": "doing"}
+{"ts": 1794506111, "kind": "ledger", "session_id": "ab8a7343-ea32-4942-aedf-5701fc105c86", "service": "selector2", "ticket": null, "programme": "Selector2", "heading": "## 2026-11-12 \u2014 Add the scenarios page: preset shipments for the twelve mock carriers", "prs": ["ilg-merak/selector2#20"]}
+{"ts": 1794506588, "kind": "programme_tick", "session_id": "ab8a7343-ea32-4942-aedf-5701fc105c86", "programme": "Selector2", "unit": "D5", "status": "done"}
+{"ts": 1794508767, "kind": "programme_tick", "session_id": "8584435d-36a9-464d-bc60-e21c842cfe59", "programme": "orient Notes", "unit": "W3", "status": "done"}
+{"ts": 1794508769, "kind": "programme_tick", "session_id": "8584435d-36a9-464d-bc60-e21c842cfe59", "programme": "orient Notes", "unit": "W4", "status": "doing"}
+{"ts": 1794556291, "kind": "programme_tick", "session_id": "8584435d-36a9-464d-bc60-e21c842cfe59", "programme": "orient Notes", "unit": "W4", "status": "done"}
