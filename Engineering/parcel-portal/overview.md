@@ -28,7 +28,7 @@ verified_paths:
 - **Customer setup:** GFS admins set each customer up in the ui (Settings → Customers): users, SFTP users and keys, file layout, shipping methods, the Selector account and its services, packaging, bench printers, export settings, and soft-delete. A `gfs_admin` can act for a customer [1][3].
 
 ## Why it exists separately
-Harry's agents built it for one US customer (TCA, at a Yusen US site), as a parallel route to Despatch Cloud. Fuse is the platform's ingestion point. It has no labelling, packing or bench UI. So the portal **copies** Fuse's building blocks instead of depending on them: the rules-engine DSL ported to Go, the CONNECTOR_MAPPING shape, sftp-connector's Go SFTP host and selector-adapter's Selector client. Whether intake should move back into Fuse is an open question (see [[known-context]]).
+Harry's agents built it for one US customer (TCA, at a Yusen US site), as a parallel route to Despatch Cloud. Fuse is the platform's ingestion point. It has no labelling, packing or bench UI. So the portal **copies** Fuse's building blocks instead of depending on them. These are the rules-engine DSL ported to Go, the CONNECTOR_MAPPING shape, sftp-connector's Go SFTP host and selector-adapter's Selector client. Whether intake should move back into Fuse is an open question (see [[known-context]]).
 
 ## Neighbours
 ```orient-flow
