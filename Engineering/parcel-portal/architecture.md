@@ -73,10 +73,10 @@ verified_paths:
 ## Interfaces out
 | Target | How |
 | --- | --- |
-| Selector | SOAP `ClientShipService.asmx`: ValidateShipment, ProcessShipment, DeleteShipments, CommitShipments, DailyShipQuery [1] |
+| Selector | SOAP `ClientShipService.asmx`: ValidateShipment, ProcessShipment, DeleteShipments, CommitShipments, DailyShipQuery [1]. In dev, a customer with `test_carrier` set books with the in-process fake carrier instead (`CARRIER_MODE=fake`; svc won't start with it elsewhere) |
 | Cloud SQL Postgres 17 | IAM auth only; migrations run at startup under tern [1] |
-| GCS | inbound bucket (read by generation), labels bucket (`<tenant>/labels/<shipment>/<parcel>`) [1] |
-| Secret Manager | the carrier key, one pinned version read once at startup (passwords themselves are encrypted on `carrier_connection`); bootstrap admin password via secret env [1] |
+| GCS | inbound bucket (read by generation; svc also writes browser and API uploads), labels bucket (`<tenant>/labels/<shipment>/<parcel>`), SFTP users bucket (svc is its only writer; the SFTP host reads it) [1] |
+| Secret Manager | the carrier key, one pinned version read once at startup (passwords themselves are encrypted on `carrier_connection`); bootstrap admin password via secret env; the SFTP host's host keys [1] |
 
 ## Persistence
 Migrations `001`–`007` in `apps/svc/internal/repositories/postgres/migrations`. Every table but `tenant` carries `tenant_id`, and children reference parents by `(id, tenant_id)`, so no row can point into another tenant. Main tables: `app_user`, `session`, `import_file`, `import_mapping`, `orders` (+ `order_line`, `parcel`, `parcel_item`), `carrier_connection`, `dispatch_attempt`, `shipment` (+ `shipment_parcel`), `packaging_preset`, `bench_printer` [1].
