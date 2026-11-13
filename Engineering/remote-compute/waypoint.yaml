@@ -1,24 +1,39 @@
 # remote-compute — Waypoint index. Cheap orientation only, never documentation.
 # Every value is a fact, a path, or a command — never a sentence. Anything needing a sentence
-# belongs in a doc. (No line cap: the old ~25-line one was exceeded by 22 of 26 files.)
+# belongs in a doc.
 service: remote-compute
-type: backend            # backend | frontend | library | infra
-owner: bifrost
-language:
-framework:
-deploy:                  # cloud-run | vercel | vm | n/a
-observability:           # datadog | none
+system: ilg-platform
+type: infra              # backend | frontend | library | infra
+owner: ilg-platform      # platform engineering; Harry built and maintains it
+language: HCL
+framework: Terragrunt 0.50.8 + Terraform 1.9.0, one prod-only project
+deploy: vm               # terragrunt apply of GCE workstations, behind the terraform-prod Environment
+observability: none      # GCP audit logs only; sshd login lines stay in each VM's journal
 
 interfaces:
-  inbound: []            # http, pubsub, cron, sftp, webhook, cli
-  outbound: []           # service/system names
+  inbound: [pr-to-tfvars, ssh-public-22, ssh-iap]   # Claude Code skills open the PRs
+  outbound: [gcp-config, ilg-platform-core-infra, images, github-actions]
 
-key_paths: []            # 3-6 entrypoints worth knowing: src/http, iac/, apps/api/cmd
+key_paths:
+  - iac/env/prod.tfvars              # the workstations, one entry each
+  - iac/modules/workstation          # one VM: instance, /home disk, IPs, A record, owner IAM
+  - iac/projects/remote-compute      # subnet, firewall, custom roles, input validation
+  - .claude/skills                   # create-workstation, add-laptop, sync-claude-to-workstation
+  - scripts/sync-claude-config       # engine behind the sync skill
 
-# note: >          # optional. Durable orientation only — the thing that surprises someone
-#                  # arriving cold. NEVER machine state (branch, commits behind, dirty files)
-#                  # and never a dated snapshot: nothing here is staleness-checked, so an
-#                  # expiring claim rots invisibly. Point at the Bifrost/ vault for a
-#                  # programme rather than restating it.
+note: >
+  Everything inside the guest (accounts, sshd, boot order, idle/nightly stop,
+  toolchain) lives in images/packer/remote-compute. The only contract between
+  the two repos is the rc-* instance metadata keys. User how-to is on
+  Confluence (PLTE 348356619), not in the repo.
 
+runtime:
+  terraform: "1.9.0"
+  terragrunt: "0.50.8"
+commands:
+  root: "iac/projects/remote-compute"
+  gate:
+    - "terraform fmt -check -recursive iac"
+    - "TF_VAR_env=prod terragrunt plan   # needs terraform-runner impersonation; CI posts it on every PR"
+  missing: [test, lint, build:check, build:check:tests]   # Terraform only, no npm
 onboarded: 2026-10-29
