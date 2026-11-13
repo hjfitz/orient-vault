@@ -25,7 +25,7 @@ verified_paths:
 - **Booking:** at-most-once dispatch through the tenant's Selector account, labels stored in GCS, void and manifest at Selector. In dev a customer can book with a fake carrier instead [1].
 - **Printing:** print-to-screen everywhere, with a preview first, and silent WebUSB printing from a paired bench browser (`packages/label-print`) [2].
 - **Export:** the day-end CSV in Despatch Cloud's 17-column layout, for the customer's WMS, for one day or up to 31 [1].
-- **Customer setup:** GFS admins set each customer up in the ui, under Settings → Customers. A tab each covers users and SFTP users, file layout, shipping methods, the Selector account and its services, packaging, bench printers and export settings; a customer can be soft-deleted. A `gfs_admin` can also act for a customer [1][3].
+- **Customer setup:** GFS admins set each customer up in the ui, under Settings → Customers. A tab each covers users and SFTP users, file layout, shipping methods, the Selector account and its services, packaging, bench printers and export settings. A customer can be soft-deleted. A `gfs_admin` can also act for a customer [1][3].
 
 ## Why it exists separately
 Harry's agents built it for one US customer (TCA, at a Yusen US site), as a parallel route to Despatch Cloud. Fuse is the platform's ingestion point. It has no labelling, packing or bench UI. So the portal **copies** Fuse's building blocks instead of depending on them. These are the rules-engine DSL ported to Go, the CONNECTOR_MAPPING shape, sftp-connector's Go SFTP host and selector-adapter's Selector client. Whether intake should move back into Fuse is an open question (see [[known-context]]).
@@ -63,7 +63,7 @@ Only the UI's, the gateway's and the import push service accounts may invoke svc
 ## Where the reference lives
 - `apps/svc/README.md` is the deep reference for svc: routes, tenancy, import, the customer API and gateway, dispatch, shipments, printing, SFTP users. `docs/runbook.md` is the ops path. `docs/printing.md` covers bench printers.
 - **Don't trust the root `README.md` and `AGENTS.md`'s *This repo* section:** they still describe svc-template.
-- **Stale lines in the reference (checked against the code).** `docs/runbook.md` says the SFTP host has one account, one tenant has a carrier account, and there is no list-tenants call and no void. All four are untrue. `apps/svc/README.md`'s `carrier-services` row says nothing enforces the list, but dispatch refuses a blocked or unlisted service.
+- **Stale lines in the reference (checked against the code).** `docs/runbook.md` says the SFTP host has one account and one tenant has a carrier account. It also says there is no list-tenants call and no void. All four are untrue. `apps/svc/README.md`'s `carrier-services` row says nothing enforces the list, but dispatch refuses a blocked or unlisted service.
 - Structure and guardrails: [[architecture]]. History, fragility and open questions: [[known-context]]. Running it, and what has reached prod: [[operations]].
 - Programme state, gates and decisions are in two places. `Bifrost/Parcel Portal/Migration State.md` holds the foundations, the customer screens and the held prod launch D1. `Bifrost/Native Dispatch/` is in planning: the 13 Nov customer feedback as 30 units, 4 shipped on 12 Nov. System framing: `Systems/parcel-portal/`.
 
