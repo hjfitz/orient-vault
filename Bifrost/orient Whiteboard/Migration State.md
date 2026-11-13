@@ -55,6 +55,35 @@ Sequencing: B0 → B1 → B2 → B3 in series is the minimum Harry asked for. B4
 
 ## Decision log
 <!-- Dated, newest first. -->
+- **2026-11-13** — **B5 done and live at 033c00c** (43d8561..033c00c: 9 commits, opus builder; a login error stopped it once mid-build, and it was resumed with its work intact).
+  - **What was built:**
+    - **Reading:** an embed of a Notes page, alone on its line or on lines ended by a hard break, renders as a `data-page-embed` placeholder with a fallback link. Every other embed, images included, is byte-identical. `RENDERER_VERSION` is `html-7`.
+    - **Hydration:** the SPA fills the placeholder with the board's current SVG, cloned from the page route and scrubbed. There are designed states for loading, a missing page, another kind of page, and a failure with Retry.
+    - **Editing:** the live editor draws the same embed, and shows the `![[…]]` source on the caret line.
+    - **Picker:** Insert and `/whiteboard` open a picker that writes `![[path]]` in one undo step.
+    - **Supporting changes:** the tree's page and folder nodes carry `pageType`, so a folder's own board is listed and drawn.
+  - **Golden:** all 1,441 vault documents render identically to before B5.
+  - **Review (backend, frontend and security lenses) found 9 issues, all fixed with tests failing first:**
+    - a failed background reload replaced a drawn board;
+    - every embed fetched and listened on its own (now one load and one subscription per path, at most 50 drawn per page, and a bounded memory);
+    - the cloned SVG was not scrubbed (now script, foreignObject, iframe, object, embed, animate and set are dropped, along with `on*` and unsafe hrefs; today's renderer cannot emit any of them anyway);
+    - widget teardown leaked when CodeMirror reused the DOM;
+    - a board collapsed to source mid-drag;
+    - the picker could apply a stale range after Tab-away;
+    - board paths with `#|[]` broke the link (now listed but disabled);
+    - an ambiguous `![[Name]]` drew an arbitrary candidate (now it stays a link, and the editor says "N pages are called …");
+    - the editor and the reader disagreed on hard breaks.
+  - **Security found no live exploit:** traversal and sensitive paths are refused by `isPagePath`, and attributes are escaped by `el()`.
+  - **Gates:** typecheck, lint 44, `ui:check` 0, and the touched files (234 browser tests). The full suite was not run (Harry, after two reaps for low memory).
+  - **Live check** (`:3000`, writes aborted; the reading view was served the core's own preview rendering of a page embedding the real `test whiteboard`):
+    - the placeholder sits outside any `<p>` and carries none of the board's content;
+    - reading and editing draw the board the same way;
+    - Open goes to the board, and a 404 shows "No page at";
+    - opening the editor stays Published;
+    - the caret reveals the source;
+    - the picker lists the board and inserts the link, and one undo removes it.
+  - **Polish left:** the picker opens under the sticky bar, not at the caret.
+  - **Next:** Notes NV2 (Harry's sidebar ask), then B9, then B2.
 - **2026-11-13** — **Embeds come first: B5 is un-deferred and goes ahead of B2; B4 loses "Copy to a page"; B9 is proposed.**
   - **Harry, after the editor ux-review:** "Let's focus on the gap with diagrams. if we have our whiteboards, we should also be able to embed one. ideally in edit mode we'd be able to link an existing one rather than mash everything together".
   - **Why B5 can go now:** it was deferred for one reason, the render-cache key. N11's plan (placeholder blocks hydrated by the SPA) settles that.
