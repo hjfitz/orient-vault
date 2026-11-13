@@ -71,6 +71,9 @@ Legend: ⬜ not started · 🟨 in progress · ✅ merged · ⛔ blocked · ⏸ 
 | **T10** | ⏸ | Re-enable the API key UI | | low | sonnet/low | | A revert of S1. Harry's call (G5). |
 | **T11** | ⏸ | DDP on FIP | | med | sonnet/high | | The portal hardcodes DDU and sends customs only for Canada. Waits on Oliver: DDP for which countries (G7). |
 | **T12** | ⏸ | Customer self-serve for SFTP keys | | med | sonnet/high | | Undecided. Today only a GFS admin generates or adds a key (S2). |
+| **T13** | ⏸ | Say "Native Dispatch" in user-facing text | | med | sonnet/low | | "Parcel Portal" is still hardcoded in UI titles, the sign-in card and the gateway docs title. The export's `salesChannel` is the literal "Parcel Portal" (`core/exports/csv.go:20`) and goes into customers' files, so confirm with Oliver and Yusen before changing that one. Harry's call (G8). |
+| **T14** | ⬜ | Renew or fix the three Trivy ignores that expire on 16 Nov | | low | sonnet/low | | `.trivyignore.yaml` entries for CVE-2026-78661, CVE-2026-76844 and CVE-2026-85091 stop applying on 2026-11-16, so the scan goes red that day. Fix them if the runtime images now carry the patch; otherwise renew with a new expiry and the reason. |
+| **T15** | ⬜ | Correct `docs/runbook.md` and `apps/svc/README.md` | | low | sonnet/low | | Found by the 13 Nov doc refresh; re-check each claim when the unit starts. The runbook says one SFTP account, one carrier tenant, no list-tenants call and no void. The README says nothing enforces the carrier-services list (dispatch does) and that the ui sends `X-Expected-Tenant` (it doesn't; the stale-tab guard is svc-only), and its package listing omits directories. |
 
 ## Gates
 <!-- A precondition that is NOT a unit — another programme reaching prod, a monitor reading real
