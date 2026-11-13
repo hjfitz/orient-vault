@@ -37,3 +37,6 @@ commands:
     - "TF_VAR_env=prod terragrunt plan   # needs terraform-runner impersonation; CI posts it on every PR"
   missing: [test, lint, build:check, build:check:tests]   # Terraform only, no npm
 onboarded: 2026-10-29
+commands_verified: 2026-11-13
+commands_verified_sha: 8498e18
+commands_verified_paths: [mise.toml]
