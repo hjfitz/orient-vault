@@ -95,6 +95,27 @@ Revision 4 (2026-11-12, Harry): the writer is the priority ("renders as you type
 
 ## Decision log
 <!-- Dated, newest first. -->
+- **2026-11-13** — **W4 done and live at 9c20a30** (0b141e8..9c20a30, 3 commits: build, review fixes, a late-reply fix). **Edits are drafts until Publish, and no work is lost.**
+  - **What was built:** a draft per page in this browser (`orient:draft:<path>`: path, base hash, text, time; at most 256K characters), saved about a second after typing stops and again on tab hide, page hide and unmount. Publish goes through the existing save route with the base hash. The reading page shows "You have unpublished changes from …" with Continue editing and Discard, and the tree marks the page `draft`. A draft over a page that changed opens the conflict view and is kept. A sensitive page keeps no draft and keeps the leave guard.
+  - **Review (heavy lane, data-loss lens) found 3 issues, all fixed:**
+    - a Publish reply that arrives after Close no longer deletes text typed since (`settleDraft` clears only a draft that matches what was published, and rebases one typed after it);
+    - a rename moves the draft, Delete warns about one, and the "No page at" view offers Copy text and Discard while keeping the guard;
+    - a refused storage write is known before leaving, and the older draft is kept.
+  - **Gates:**
+    - typecheck clean, lint 44 (baseline), `ui:check` 0, build ok.
+    - The first full test run was stopped by Claude Code for low memory (swap full, load 38). Harry approved a re-run, at 4 workers. 17 failed at load 62; the box was in I/O wait on btrfs, mostly from the suite's own I/O.
+    - Alone, 16 of the 17 pass.
+    - The 17th is W3's "select all on a 5,000-line note within 16 ms". It measured 16.8, 17.2 and then passed, and W4 changed nothing it runs. It is a marginal budget on a busy host, not a regression.
+  - **Live check (writes aborted, :3000):**
+    - typing keeps a draft and sends nothing;
+    - Close asks nothing and shows the banner and tree chip;
+    - Continue editing and a reload restore the exact text, with CRLF kept;
+    - a failed Publish keeps the draft;
+    - a forged stale base opens the conflict view;
+    - Discard asks once and clears it;
+    - a sensitive page shows its notice, writes no draft key and still guards Close.
+  - **Found, for the ux-review:** at 390 px the app rail (176 px) leaves the edit bar 166 px wide. The status chip then gets 45 px for "Published" (needs 74) or "Unpublished" (needs 87) and is clipped with no ellipsis. Fixing the rail on phones fixes it.
+  - **Process:** the tour's first run had two errors of its own. It set `sensitive` on the editor-note answer, but the page answer carries it. It also forged the base while the editor was open, and the flush on leave correctly wrote the real hash back. Both were re-checked after the fix.
 - **2026-11-12** — **W3 done and live at 0b141e8** (e8fdf91..0b141e8, 12 commits: 9 build, 2 fix, 1 test wait). **Formatting and blocks feel like Confluence.**
   - **What was built:**
     - a bubble toolbar over a selection (Text style menu, Bold, Italic, Strike, Code, Link; toggling off unwraps the whole run even with the marks hidden);
