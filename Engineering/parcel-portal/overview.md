@@ -20,11 +20,12 @@ verified_paths:
 ```
 
 ## Responsibility
-- **Intake:** a customer's WMS drops order CSVs on the portal's own SFTP host. svc imports each file into the tenant whose slug names its folder [1].
+- **Intake:** a customer's WMS drops order CSVs on the portal's own SFTP host; staff can also upload a CSV in the browser, and the customer's systems can send CSV or JSON through the customer API (`/v1`, via the gateway). svc imports each into the tenant whose slug names its folder, or whose API key sent it [1].
 - **Validation and fix-up:** a bad row never sinks the file. svc keeps invalid orders with plain reasons, and staff fix them on the Orders screen [1].
-- **Booking:** at-most-once dispatch through the tenant's Selector account, labels stored in GCS, void and manifest at Selector [1].
-- **Printing:** print-to-screen everywhere, and silent WebUSB printing from a paired bench browser (`packages/label-print`) [2].
-- **Export:** the day-end CSV in Despatch Cloud's 17-column layout, for the customer's WMS [1].
+- **Booking:** at-most-once dispatch through the tenant's Selector account, labels stored in GCS, void and manifest at Selector. In dev a customer can book with a fake carrier instead [1].
+- **Printing:** print-to-screen everywhere, with a preview first, and silent WebUSB printing from a paired bench browser (`packages/label-print`) [2].
+- **Export:** the day-end CSV in Despatch Cloud's 17-column layout, for the customer's WMS, for one day or up to 31 [1].
+- **Customer setup:** GFS admins set each customer up in the ui (Settings → Customers): users, SFTP users and keys, file layout, shipping methods, the Selector account and its services, packaging, bench printers, export settings, and soft-delete. A `gfs_admin` can act for a customer [1][3].
 
 ## Why it exists separately
 Harry's agents built it for one US customer (TCA, at a Yusen US site), as a parallel route to Despatch Cloud. Fuse is the platform's ingestion point. It has no labelling, packing or bench UI. So the portal **copies** Fuse's building blocks instead of depending on them: the rules-engine DSL ported to Go, the CONNECTOR_MAPPING shape, sftp-connector's Go SFTP host and selector-adapter's Selector client. Whether intake should move back into Fuse is an open question (see [[known-context]]).
