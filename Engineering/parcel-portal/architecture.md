@@ -82,9 +82,10 @@ verified_paths:
 Migrations `001`–`019` in `apps/svc/internal/repositories/postgres/migrations`. Every table but `tenant` carries `tenant_id` (a test fails any table without one), and a child's foreign key to its parent names the tenant too, so no row can point into another tenant. Main tables: `app_user`, `session`, `import_file`, `import_mapping`, `orders` (+ `order_line`, `parcel`, `parcel_item`), `carrier_connection` (+ `carrier_service`), `dispatch_attempt`, `shipment` (+ `shipment_parcel`), `packaging_preset`, `bench_printer`, `sftp_user` (+ `sftp_user_key`), `api_key` [1].
 
 ## Runtime
-- `us-central1`, projects `ilg-merak-dev-b5e3` and `ilg-merak-prod-1be0`. Cloud Run services `svc-parcel-<env>` and `ui-parcel-<env>` on the ilg-platform golden images and `terraform-modules` `compute/cloud-run` [4].
-- The SFTP host runs on a MIG behind a TCP load balancer with a static IP; its health check is the container's HTTP `/healthz` on 8080 [4].
-- Each app deploys from `<app>-on-push.yaml`: dev automatically, prod after the `terraform-prod` approval [4].
+- `us-central1`, projects `ilg-merak-dev-b5e3` and `ilg-merak-prod-1be0`. Cloud Run services `svc-parcel-<env>`, `ui-parcel-<env>` and `gateway-parcel-<env>` on the ilg-platform golden images and `terraform-modules` `compute/cloud-run` [4].
+- The ui and the gateway each sit behind their own global HTTPS load balancer (`parcel.delivery.<domain>`, `api.parcel.delivery.<domain>`), and their Cloud Run ingress admits only that load balancer [4].
+- The SFTP host runs on a MIG behind a TCP load balancer with a static IP; its health check is the container's HTTP `/healthz` on 8080. It is off in prod (`sftp_host_enabled = false` in `iac/env/prod.tfvars`) [4].
+- Each of svc, ui, sftp and gateway deploys from `<app>-on-push.yaml`: dev automatically, prod after a `terraform-prod` approval. See [[operations]] for what has reached prod [4].
 
 ## Evidence
 ```orient-evidence
