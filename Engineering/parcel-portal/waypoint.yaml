@@ -3,7 +3,7 @@
 # belongs in a doc. (No line cap: the old ~25-line one was exceeded by 22 of 26 files.)
 service: parcel-portal
 system: parcel-portal
-repo: /home/hjf/code/merak/parcel-portal
+repo: ~/code/merak/parcel-portal
 github: ilg-merak/parcel-portal
 type: backend            # backend | frontend | library | infra
 owner: hjf
