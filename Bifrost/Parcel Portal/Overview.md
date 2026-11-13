@@ -33,6 +33,8 @@ There are four tabs: **Import queue**, **Labelled**, **Manifested** and **Export
 
 **Handling:** internal only. Per Wilders' plan, nothing goes to TCA, Yusen US, DC or wider teams until Oliver says so.
 
+> SUPERSEDED 2026-11-13 — the snapshot below is from 28 Oct. The portal, now called Native Dispatch, has since gained admin screens for customers, users, mapping and the carrier account, three ways in (SFTP, browser upload, API) and per-user SFTP keys; a carrier-service picker is still not built. Present-tense state is in [[Engineering/parcel-portal/overview]] and [[Systems/parcel-portal/overview]], and progress is in the [[Parcel Portal/Migration State|Migration State]] and [[Native Dispatch/Migration State|Native Dispatch]].
+
 ## As built (28 Oct, evening)
 > Present-tense state of `ilg-merak/parcel-portal` `main`. Progress is in the [[Parcel Portal/Migration State|Migration State]]; the dev test path is in [[Parcel Portal/Dev test checklist|Dev test checklist]].
 
