@@ -83,7 +83,8 @@ Sequencing: B0 → B1 → B2 → B3 in series is the minimum Harry asked for. B4
     - the caret reveals the source;
     - the picker lists the board and inserts the link, and one undo removes it.
   - **Polish left:** the picker opens under the sticky bar, not at the caret.
-  - **Next:** Notes NV2 (Harry's sidebar ask), then B9, then B2.
+  - **Next:** Notes NV2 (Harry's sidebar ask), then **B2**, then B3, then B9.
+    > Reordered the same day after Harry asked where the drag-and-drop board was ("All I see is the JSON one"). B2 goes straight after NV2. B9 (turning inline JSON diagrams into boards) follows B2 and B3, because a converted board is only worth having once it can be dragged.
 - **2026-11-13** — **Embeds come first: B5 is un-deferred and goes ahead of B2; B4 loses "Copy to a page"; B9 is proposed.**
   - **Harry, after the editor ux-review:** "Let's focus on the gap with diagrams. if we have our whiteboards, we should also be able to embed one. ideally in edit mode we'd be able to link an existing one rather than mash everything together".
   - **Why B5 can go now:** it was deferred for one reason, the render-cache key. N11's plan (placeholder blocks hydrated by the SPA) settles that.
