@@ -37,7 +37,7 @@ confidence: moderate
 | Selector (GFS's carrier layer) | external | no — it is a dependency |
 
 ## Relationship to the work
-- **To [[fuse]]:** it copies Fuse's pieces (the rules-engine DSL, the mapping shape, sftp-connector's SFTP host, selector-adapter's client) but doesn't depend on Fuse at runtime. Oli Denton holds that CSV ingestion belongs in Fuse; that's gate G7 and an open direction question. The customer API is the clearest overlap with Fuse's fapi.
+- **To [[fuse]]:** it copies Fuse's pieces (the rules-engine DSL, the mapping shape, sftp-connector's SFTP host, selector-adapter's client). It doesn't depend on Fuse at runtime. Oli Denton holds that CSV ingestion belongs in Fuse; that's gate G7 and an open direction question. The customer API is the clearest overlap with Fuse's fapi.
 - **To [[ilg-platform]]:** it runs on the platform's golden images, terraform-modules and reusable workflows, in the `ilg-merak` GCP projects.
 - **Programme:** `Bifrost/Parcel Portal/` holds the ledger, gates and decisions for the foundations and prod. `Bifrost/Native Dispatch/` holds the 13 Nov feedback and trial units. The multi-customer thinking is in `Bifrost/Parcel Portal/Multi-customer.md`.
 
