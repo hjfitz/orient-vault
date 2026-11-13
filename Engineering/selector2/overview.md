@@ -9,8 +9,8 @@ thesis: 'selector2 is a multi-tenant TypeScript replacement for Selector''s labe
   and a SvelteKit UI over it. It is a dev-only, synthetic-data build with no prod
   and no cutover.'
 confidence: high
-verified: '2026-11-12'
-verified_sha: ee122ca
+verified: '2026-11-13'
+verified_sha: 1ce53d4
 verified_paths:
 - README.md
 - AGENTS.md
