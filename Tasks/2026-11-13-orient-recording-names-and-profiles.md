@@ -11,3 +11,4 @@ status: open
 - Summary tl;dr, decisions, open questions and action text now name labelled and merged voices on the page, the list, save-to-notes, Copy for Slack, Ask and the orient MCP (`91820a1`).
 - Speaker rows link to the matching People note, or suggest the profiles a short name could be; one click renames the voice to the full name. Person pages gain a Recordings section with each meeting's tl;dr and their actions (`3439c3a`, `1fa4636`). All deployed.
 - Nothing is written to People notes. Names with no profile (Phil, Ollie, Ingrid, Steve, Zirak) still need notes made by hand.
+- review-panel fixes in `1ae83da`. Open: suggesting names from Slack huddles is possible (`huddle_thread` carries participants and times; the token has no `search:read`, so it means scanning 233 conversations) and waits on Harry's go-ahead. Teams calls have no data source in orient.
