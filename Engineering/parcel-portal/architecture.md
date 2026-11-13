@@ -56,17 +56,19 @@ verified_paths:
     { "from": "boot", "to": "http", "style": "dashed" }
   ] }
 ```
-- `apps/svc/cmd/svc` is the API, `cmd/sftp` the SFTP host and `cmd/canary` the SFTP canary job, all in one Go module [1].
+- `apps/svc/cmd/svc` is the API, `cmd/sftp` the SFTP host, `cmd/canary` the SFTP canary job, `cmd/gateway` the customer API's public front door and `cmd/debug-mcp` a local MCP for dev, all in one Go module [1].
+- The gateway forwards only the routes in `internal/gateway/gateway.go` to svc, signing each with an ID token, and serves Swagger UI over the embedded `public-openapi.yaml`. A test fails when its routes and the spec's operations differ [1][5].
 - `apps/ui` is Next.js on `@ilg-platform/ui-toolkit`. Server components and actions call svc from the server with the session as a bearer token and a Google ID token for Cloud Run; the browser never calls svc [2].
-- `packages/label-print` (`@ilg-merak/label-print`, private) rasterises PDF labels to ZPL `^GFA` or EPL `GW` and sends them over WebUSB. The ui installs it from `file:` as TypeScript source, so **the ui image builds from the repo root** [2][3].
+- `packages/label-print` (`@ilg-merak/label-print`, private) rasterises PDF labels to ZPL `^GFA` or EPL `GW` and sends them over WebUSB. `packages/ssh-keygen` (`@ilg-merak/ssh-keygen`, private) makes an RSA 4096 key pair with WebCrypto, so svc only ever receives the public line. The ui installs both from `file:` as TypeScript source, so **the ui image builds from the repo root** [2][3][7].
 
 ## Interfaces in
 | Surface | Who | Notes |
 | --- | --- | --- |
-| HTTP (svc) | ui's runtime SA only | `security`: public, `session`, `adminSession` (`gfs_admin`) per operation; `Authorize` middleware enforces it [1] |
+| HTTP (svc) | the ui's, the gateway's and the push runtime SAs | `security`: public, `session`, `adminSession` (`gfs_admin`) or `pubsubPush` per operation; `Authorize` middleware enforces it. In dev, `debug_invokers` may also call it [1][4] |
 | `POST /events/inbound-files` | `svc-parcel-<env>-push` SA | GCS `OBJECT_FINALIZE` via Pub/Sub push; 10 attempts then dead letter [1] |
-| SFTP :22 | the customer's key | single user, public-key only, static IP, writes to GCS on close [1] |
-| Browser | customer and GFS staff | sign-in sets the `pp_session` cookie (HTTP-only, 12h) [2] |
+| Customer API `/v1`, at `api.parcel.delivery.<domain>` | the customer's systems, through the gateway | `POST /v1/order-files` (CSV), `POST /v1/orders` (JSON, up to 100), `GET /v1/order-files/{id}`; `apiKey` (`Bearer ppk_…`), checked by `middleware.APIKey` before path binding. The gateway is public (`allUsers`) behind its own HTTPS load balancer, and svc checks the key [1][5] |
+| SFTP :22 | each SFTP user's own key | public-key only, against svc's users snapshot (`sftp-users.json`, polled every 30 s); each user sees only its business's `/inbound`; static IP; writes to GCS on close [1] |
+| Browser | customer and GFS staff | sign-in sets the `pp_session` cookie (HTTP-only, 12h); a `gfs_admin` acting for a customer also carries `pp_acting_tenant` [2] |
 
 ## Interfaces out
 | Target | How |
