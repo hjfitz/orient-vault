@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-13 — Correct the runbook and the svc README
+
+Correct the runbook and the svc README
+
+Native Dispatch unit T15. A 13 Nov doc refresh found claims that were no longer true: the runbook's one SFTP account, one carrier tenant, no list-tenants call and no void (with break-glass SQL), and the README's carrier-services and X-Expected-Tenant claims and its package listing. Each was re-checked against the code and corrected. Docs only. Found, not changed: openapi.yaml lines 28-30 repeat the X-Expected-Tenant claim and need a version bump.
+
+PR: ilg-merak/parcel-portal#141
+
 ## 2026-11-13 — Say Native Dispatch in what users and customers see
 
 Say Native Dispatch in what users and customers see
