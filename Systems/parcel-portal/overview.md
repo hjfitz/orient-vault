@@ -17,13 +17,15 @@ confidence: moderate
 
 **Who it serves.** Pack-station staff at a 3PL warehouse, working for one shipper, and GFS staff who set each customer up. Staff are under time pressure at a bench, so the screens favour plain reasons and one-click dispatch over density.
 
-**Why it exists.** Despatch Cloud (DC) was due to go live for TCA on 9 Nov 2026, and its CSV import fails a whole file on one bad line. The portal is the parallel route: strict partial import, a fix-it loop, and an export the WMS can read. Whether TCA switches is a business call outside engineering. UNRESOLVED: whether DC went live on 9 Nov is not recorded in the vault.
+**Why it exists.** Despatch Cloud (DC) was due to go live for TCA on 9 Nov 2026. Its CSV import fails a whole file on one bad line. The portal is the parallel route: strict partial import, a fix-it loop, and an export the WMS can read. Whether TCA switches is a business call outside engineering. UNRESOLVED: whether DC went live on 9 Nov is not recorded in the vault.
 
 ## Where it stands (13 Nov 2026)
-- **Dev only.** No portal build has been applied to prod: every prod run since the first push is cancelled or waiting at the `terraform-prod` approval, and prod is held at unit D1 [1][2].
-- **TCA** saw a demo on 12 Nov. Per the 13 Nov catch-up, the next step is one proof against TCA's own Selector endpoint, then an account for TCA, who will start by dispatching one order at a time by hand [3].
-- **The customer API** is deployed to dev behind a public gateway, but its key screen has been hidden since 12 Nov: the business isn't ready for it. TCA wants an API test from 30 Nov, so bringing it back is an open call [3][4].
-- **Programmes.** `Bifrost/Parcel Portal/` holds the foundations, the customer screens and the prod launch: 44 units, 30 merged, 5 in progress (customer API, two acting-as units, label preview, prod launch D1), 8 small UI defects not started. `Bifrost/Native Dispatch/` (planning, created 13 Nov) holds the customer feedback: 17 requirements and 30 units, of which 4 shipped on 12 Nov, 1 is in progress and 6 wait on an answer [3][4].
+- **Dev only.** No portal build has reached prod. Every prod run since the first push is cancelled or waiting at the `terraform-prod` approval, and the prod launch waits at unit D1 [1][2].
+- **TCA** saw a demo on 12 Nov. The 13 Nov catch-up set the next step: one proof against TCA's own Selector endpoint, then an account for TCA. TCA will start by dispatching one order at a time by hand [3].
+- **The customer API** runs on dev behind a public gateway. Its key screen has been hidden since 12 Nov, because the business isn't ready for it. TCA wants an API test from 30 Nov, so bringing the screen back is an open call [3][4].
+- **Programmes.**
+  - `Bifrost/Parcel Portal/`: foundations, customer screens and the prod launch. 44 units, 30 merged. 5 are in progress: customer API, two acting-as units, label preview and prod launch D1. 8 small UI defects are not started [2].
+  - `Bifrost/Native Dispatch/`: the customer feedback, in planning since 13 Nov. 17 requirements, 30 units. 4 shipped on 12 Nov, 1 is in progress and 6 wait on an answer [3][4].
 
 ## Components
 
