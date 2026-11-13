@@ -38,7 +38,7 @@ Legend: ⬜ not started · 🟨 in progress · ✅ merged · ⛔ blocked · ⏸ 
 ### O — Order page and editing
 | Unit | St | Summary | Deps | Risk | Tier | PR | Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| **O1** | ⬜ | Show recipient email and phone beside the address | | low | sonnet/low | | **R05.** Read-only: Phil accepted that. Stored and sent already; only the page is missing. Editable would need `OrderEdit` fields and a re-validation, and isn't asked for now. |
+| **O1** | ✅ | Show recipient email and phone beside the address | | low | sonnet/low | ilg-merak/parcel-portal#142 | **R05.** Read-only: Phil accepted that. Stored and sent already; only the page is missing. Editable would need `OrderEdit` fields and a re-validation, and isn't asked for now. |
 | **O2** | ⬜ | Show total weight on the order, as the sum of its parcels | | med | sonnet/high | | **R04.** Show the sum, and stop the export preferring the file's stated total once parcels exist (`core/exports/csv.go:82-85`). Whether it is ever editable is Q5; the proposal is no. |
 | **O3** | ⬜ | Carrier service as a dropdown | | med | sonnet/high | | **R06.** A customer-readable list of the account's services (the list route is admin-only), a select on the order form, and a check on save rather than only at dispatch. Contract bump. |
 | **O4** | ⬜ | Add and remove product lines on an order | | med | sonnet/high | | **R02.** Lines are edit-only today. Re-validate after each change, keep the customs fields for Canada, keep a re-import replacing the order, and keep dispatched orders read-only. |
