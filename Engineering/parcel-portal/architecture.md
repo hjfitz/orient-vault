@@ -79,7 +79,7 @@ verified_paths:
 | Secret Manager | the carrier key, one pinned version read once at startup (passwords themselves are encrypted on `carrier_connection`); bootstrap admin password via secret env; the SFTP host's host keys [1] |
 
 ## Persistence
-Migrations `001`–`007` in `apps/svc/internal/repositories/postgres/migrations`. Every table but `tenant` carries `tenant_id`, and children reference parents by `(id, tenant_id)`, so no row can point into another tenant. Main tables: `app_user`, `session`, `import_file`, `import_mapping`, `orders` (+ `order_line`, `parcel`, `parcel_item`), `carrier_connection`, `dispatch_attempt`, `shipment` (+ `shipment_parcel`), `packaging_preset`, `bench_printer` [1].
+Migrations `001`–`019` in `apps/svc/internal/repositories/postgres/migrations`. Every table but `tenant` carries `tenant_id` (a test fails any table without one), and a child's foreign key to its parent names the tenant too, so no row can point into another tenant. Main tables: `app_user`, `session`, `import_file`, `import_mapping`, `orders` (+ `order_line`, `parcel`, `parcel_item`), `carrier_connection` (+ `carrier_service`), `dispatch_attempt`, `shipment` (+ `shipment_parcel`), `packaging_preset`, `bench_printer`, `sftp_user` (+ `sftp_user_key`), `api_key` [1].
 
 ## Runtime
 - `us-central1`, projects `ilg-merak-dev-b5e3` and `ilg-merak-prod-1be0`. Cloud Run services `svc-parcel-<env>` and `ui-parcel-<env>` on the ilg-platform golden images and `terraform-modules` `compute/cloud-run` [4].
