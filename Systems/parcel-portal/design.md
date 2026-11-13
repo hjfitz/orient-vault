@@ -2,7 +2,7 @@
 tags:
 - system
 - parcel-portal
-verified: '2026-11-03'
+verified: '2026-11-13'
 title: parcel-portal — design language
 ---
 # parcel-portal — design language

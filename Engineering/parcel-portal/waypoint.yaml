@@ -18,6 +18,8 @@ interfaces:
 
 key_paths:
   - apps/svc/openapi.yaml
+  - apps/svc/public-openapi.yaml
+  - apps/svc/cmd/gateway
   - apps/svc/internal/core
   - apps/svc/cmd/sftp
   - apps/ui/src/app/(app)

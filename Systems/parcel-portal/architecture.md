@@ -2,7 +2,7 @@
 tags:
 - system
 - parcel-portal
-verified: '2026-10-29'
+verified: '2026-11-13'
 title: parcel-portal — architecture
 thesis: "One repo, five runtimes: a Go API on Cloud Run that owns a tenant-scoped Postgres, a Go SFTP host on a MIG that writes to GCS, a Next.js UI and a public customer-API gateway that are svc's only callers, and browser packages that print over WebUSB and make SSH keys. Selector does every carrier call."
 confidence: high

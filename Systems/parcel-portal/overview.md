@@ -2,7 +2,7 @@
 tags:
 - system
 - parcel-portal
-verified: '2026-10-29'
+verified: '2026-11-13'
 title: parcel-portal — overview
 thesis: "Native Dispatch, formerly the Parcel Portal (the repo, service and system ids stay parcel-portal), is GFS's own dispatch portal for a shipper whose WMS drops order CSVs: it imports them with row-level validation, books and labels them through Selector, prints at the pack bench and exports the day back to the WMS. Prod is held and nothing is deployed there, so no customer uses it yet: TCA at Yusen US, the first customer, has seen a demo and is being set up on dev. It is built to become multi-customer."
 confidence: moderate
