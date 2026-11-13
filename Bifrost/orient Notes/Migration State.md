@@ -102,6 +102,11 @@ Revision 4 (2026-11-12, Harry): the writer is the priority ("renders as you type
 
 ## Decision log
 <!-- Dated, newest first. -->
+- **2026-11-13** — **Untitled pages carry the time; drag to reorganise is queued.** Harry: "New nav looks good! Let's update the name to append the current time so that we have some uniqueness. drag and drop would be a nice-to-have for re-organising things as well".
+  - **Done by the lead at 2f3aaa3:** `untitledName` in `src/edit/notes.ts` names an empty-titled page `Untitled YYYY-MM-DD HH.mm` in Europe/London. The host runs in UTC; London is the app's zone for times people read (`maintenance-time.ts`, `slack-stats.ts`). It uses `.` because a colon is not allowed in vault file names, and " 2" and on within one minute.
+  - **What does not change:** the text is still written byte for byte, so the H1 stays empty and the title falls back to the file name. The draft row and editor placeholder still say "Untitled" before Publish.
+  - **Tests:** the core notes tests (142, including a summer-time case: 09:05 UTC on 1 July names "10.05"), typecheck, lint 44. R15 is marked mitigated.
+  - **Drag to reorganise:** that is **NV2b**, which is already scoped (drag a page or folder onto a folder; the existing move with link rewriting; a keyboard path through Move to…). Harry called it a nice-to-have, so it is queued after Whiteboard B2 and B3.
 - **2026-11-13** — **NV2 done and live at 2b9f104** (5b65902..2b9f104: 9 commits, opus builder). **Harry's ask: "the sidebar - this should mirror confluence's ux. placeholder name, three-dot menu to add a page, rename or delete the current page. Creating a page still feels lightly clunky".**
   - **What was built:**
     - **Row actions:** every tree row shows `+` and `⋯` on hover or focus, at 24 px, over the end of the row so the title does not move.
