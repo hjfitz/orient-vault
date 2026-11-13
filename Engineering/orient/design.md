@@ -1006,6 +1006,42 @@ dense panels and are deliberately **not** `prose-reader`.
   token mid-word.
 - **`Callout` `superseded`** dims the body (`opacity-60`), never the label.
 
+## Notes editor (`/notes?path=…&mode=edit`, `ui/src/lib/editor/`)
+
+The one place orient edits prose, and it should feel like Confluence's editor while still looking like orient.
+The page *becomes* the editor: Edit turns the reading view into a live preview in place, and Close turns it back.
+
+- **One track for text and controls.** The note's text is capped at `68rem` (`.cm-content` in `live/theme.ts`,
+  `max-w-[68rem]` on the reading view's prose), and so are the note's header, its labels and properties, the draft
+  banner and the edit bar (`NoteEdit`, `NoteView`; folder views and whiteboards are uncapped). On 3440 the controls
+  end where the text ends, not 2,300 px away. The empty space beside the track is where the "On this page" outline
+  goes (NV3), as in the document reader.
+- **The edit bar** is sticky and has formatting buttons on the left (Insert, Heading, Table, Callout, Task, Link,
+  Block), then the status, Publish and Close on the right. The **status is text, never a chip**:
+  `font-mono text-[11px] text-fg-2` (Conflict in `text-alert`). A bordered status the height of a button reads as
+  one. **Publish alone carries the signal:**
+  - filled `accent` when there is something to publish (unpublished text, a conflict, a publish in flight);
+  - otherwise the quiet bar style, disabled, titled "Nothing to publish".
+
+  The status words (Published, Unpublished changes, Draft saved in this browser) never change colour, so they do
+  not flicker at each typing pause.
+- **Drafts:** a draft is kept in the browser until Publish. The reading page shows a banner ("You have unpublished
+  changes, saved just now"), with Continue editing and Discard, and the tree marks the page `draft`. This is the
+  one amber box on the page, and it is earned: there is work outside the vault.
+- **Floating controls** are CodeMirror tooltips in `bg-1` with a `line` border, 13px mono and no shadow beyond the
+  existing one:
+  - the bubble toolbar on a selection: Text ▾, B, I, S, `</>`, Link;
+  - the turn-into handle `⋮⋮` beside the caret line, with its menu of glyph tiles;
+  - the `/` menu: grouped Text, Lists, Blocks, Insert, each item a glyph tile plus a label plus a one-line detail.
+
+  **The `/` menu offers everything turn-into does** (bullet, numbered, quote and code included), and the Insert
+  menu on the bar keeps to inserts.
+- **Keys:** ctrl+s Publish, ctrl+shift+k Link (ctrl+k stays the palette), ctrl+alt+/ Turn into, ctrl+alt+0…3 text
+  style.
+- **Still source in the editor:** `orient-*` blocks (a diagram is its JSON under "orient-flow · drawn when
+  reading") and pipe tables. W2 of the Notes programme draws them in place. Until then, a C4 page opens in the
+  editor as a wall of JSON, which is the editor's biggest gap from Confluence.
+
 ## Explainer blocks (`ExplainerReader`)
 
 Explainers are written for orient, not Obsidian, so they are markdown plus typed fenced blocks orient draws
