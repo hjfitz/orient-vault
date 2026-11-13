@@ -9,7 +9,7 @@ relationship: external
 
 ## Open loops
 **I owe**
-- [ ] Reply to his Fri 6 Nov note that the Snap software release is on STAGING: give a window for the performance testing, and raise the weekend production latency — [email](https://outlook.office365.com/owa/?ItemID=AAMkADVhYjUxODIyLWM5NTktNGJmOC1hN2FjLWFjMjllNWUzYmY4MwBGAAAAAAAEXHdKGOMeRLfpaU7ff8ChBwABLsgQpFdPTayXOZTVrraLAAAAAAEMAAABLsgQpFdPTayXOZTVrraLAAHaYrD0AAA%3D&exvsurl=1&viewmodel=ReadMessageItem)
+- [ ] Reply to his Fri 6 Nov note that the Snap software release is on STAGING: give a window for the performance testing, and raise the weekend production latency — [email](https://outlook.office365.com/owa/?ItemID=AAMkADVhYjUxODIyLWM5NTktNGJmOC1hN2FjLWFjMjllNWUzYmY4MwBGAAAAAAAEXHdKGOMeRLfpaU7ff8ChBwABLsgQpFdPTayXOZTVrraLAAAAAAEMAAABLsgQpFdPTayXOZTVrraLAAHaYrD0AAA%3D&exvsurl=1&viewmodel=ReadMessageItem) (13 Nov: email unreadable, so any reply since 11 Nov is unchecked)
 - [ ] Give him a date and time for the Purdy & Figg load test on ILGSTG (ILG Pre-Production) so Snap can staff monitoring — [email](https://outlook.office365.com/owa/?ItemID=AAMkADVhYjUxODIyLWM5NTktNGJmOC1hN2FjLWFjMjllNWUzYmY4MwBGAAAAAAAEXHdKGOMeRLfpaU7ff8ChBwABLsgQpFdPTayXOZTVrraLAAAAAAEMAAABLsgQpFdPTayXOZTVrraLAAHMCWFvAAA%3D&exvsurl=1&viewmodel=ReadMessageItem)
 
 ## Standing context

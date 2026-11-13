@@ -34,6 +34,7 @@ title: Nylah Klasson
 - [x] Book the Teams slot [[Oli Denton]] asked me to set up — booked; she accepted the "Return-to-work catch-up" invite, cc'd Oli
 
 **Owed to me**
+- [ ] Say where [FUSE-1163](https://globalfreight.atlassian.net/browse/FUSE-1163) stands: In Progress with no open PR, in the same collector area as FUSE-1154 and FUSE-1158 — [[Digests/2026-11/2026-11-13]]
 - [ ] Land [FUSE-1203](https://globalfreight.atlassian.net/browse/FUSE-1203) (collector stock sync runs marked failed): [shopify-connector#326](https://github.com/gfs-bifrost/shopify-connector/pull/326) is approved, mergeable and CI green, and [collector#123](https://github.com/gfs-bifrost/collector/pull/123) has changes requested — [collector#123](https://github.com/gfs-bifrost/collector/pull/123)
 - [ ] Land her FUSE-1076 stack in wms-gateway: #26 is approved and mergeable; #18 has merge conflicts against `nk/fuse-1076-cache-package`; #23, #24 and #11 are awaiting review with CI green (10-07)
 
@@ -45,6 +46,7 @@ title: Nylah Klasson
 - ✍️ 
 
 ## Together (newest first)
+- 2026-11-13 — FUSE-1157 went Done on 12 Nov; FUSE-1163 is her only open ticket and has no PR → [[Digests/2026-11/2026-11-13]]
 - 2026-11-10 — 1:1 at 11:30; FUSE-1151 went Done yesterday and her FUSE-1157 draft replay-service#134 has a red image scan → [[Meetings/1-1 Nylah Klasson]]
 - 2026-11-03 — 1:1 at 11:30 clashes with the Northstar all-hands; 15 open PRs, 14 with no ticket key, four fuse-ui PRs awaiting review with CI green → [[Meetings/1-1 Nylah Klasson]]
 - 2026-10-29 — 22 open PRs (21 with no ticket key), including a stacked fuse-ui chain; 4 overdue training modules chased by ILG L&D

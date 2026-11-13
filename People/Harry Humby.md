@@ -18,6 +18,7 @@ title: Harry Humby
 
 ## Open loops
 **I owe**
+- [ ] Review his FUSE-1352 PRs ([snap-adapter#340](https://github.com/gfs-bifrost/snap-adapter/pull/340) and [fuse-ui#409](https://github.com/gfs-bifrost/fuse-ui/pull/409)), Sev 3, awaiting review with CI green — [[Digests/2026-11/2026-11-13]]
 - [x] Answer his "priority?" on [FUSE-1325](https://globalfreight.atlassian.net/browse/FUSE-1325), the GitHub Actions usage spike; Jack called it "high if it blocks actions" and left the call to me — [Slack](https://gfsdeliver-eng.slack.com/archives/C098LD5PS95/p1792576768095089?thread_ts=1792576768.095089&cid=C098LD5PS95)
 - [ ] Approve his leave requests: 15–16 Oct (he is off today), 21–24 Dec and 29–31 Dec — [digest](../Digests/2026-10/2026-10-16.md)
 - [x] Answer his FUSE-1308 question: bring it into Sprint 15? It blocks FUSE-1302 — [thread](https://gfsdeliver-eng.slack.com/archives/C09PBES3MHT/p1791800961371469?thread_ts=1791796644.750509&cid=C09PBES3MHT) — resolved 10-16: FUSE-1308 is In Code Review with snap-adapter#299 open, so the sprint question is moot
@@ -42,6 +43,9 @@ title: Harry Humby
 - [x] Review [fuse-ui#158](https://github.com/gfs-bifrost/fuse-ui/pull/158) ([[FUSE-988]]) — Test Mapping tab; merged 09/07
 
 **Owed to me**
+- [ ] Rebase [collector#142](https://github.com/gfs-bifrost/collector/pull/142) ([FUSE-1154](https://globalfreight.atlassian.net/browse/FUSE-1154), Code Review): merge conflicts, so nobody can review it
+- [ ] Say where [FUSE-1168](https://globalfreight.atlassian.net/browse/FUSE-1168) stands: In Progress with no open PR
+- [ ] Say what [FUSE-1325](https://globalfreight.atlassian.net/browse/FUSE-1325) will produce: a spike In Progress with no PR, held 11 days
 - [ ] Merge or hand off [dedupe-service#160](https://github.com/gfs-bifrost/dedupe-service/pull/160) (FUSE-1311): approved, mergeable and CI green, but it will not move until he is back from leave
 - [ ] Clear the merge conflicts on [shopify-connector#318](https://github.com/gfs-bifrost/shopify-connector/pull/318) (FUSE-1202 stack 1/3), conflicted after Renovate #324 merged — [#318](https://github.com/gfs-bifrost/shopify-connector/pull/318)
 - [ ] Triage the nightly `dependency_audit` / `image_scan` break across 11 repos (Distraction Duty cover to be confirmed, see I owe); his own [replay-service#108](https://github.com/gfs-bifrost/replay-service/pull/108) draft is red on the same checks
@@ -69,6 +73,7 @@ title: Harry Humby
 - ✍️ 
 
 ## Together (newest first)
+- 2026-11-13 — Placed on FUSE-1352 (Tom Dunn's WOC dates bug): snap-adapter#340 and fuse-ui#409 are in Code Review → [[Digests/2026-11/2026-11-13]]
 - 2026-11-03 — shopify-connector#346 (FUSE-1305) is approved, green and mergeable; FUSE-1205 is In QA and Alex Pickard confirmed the failed-run error shows in the UI
 - 2026-10-29 — 1:1 at 11:30 after he was off sick on 28 Oct; three FUSE-1325 PRs approved and green and still waiting on your "priority?" → [[Meetings/1-1 Harry Humby]]
 - 2026-10-27 — Messaged at 00:55 that he has a cold and may not be in; his FUSE-1325 skip-draft-CI PRs are still awaiting review

@@ -7,6 +7,24 @@ title: 1-1 Harry Humby
 # 1-1 Harry Humby
 
 
+## 2026-11-13
+_prep only: today's calendar was unavailable, so the meeting date is unconfirmed_
+
+### To raise
+- [ ] config-service#206 (FUSE-1078): merge conflicts and CI failing, open 64d, idle 59d: rebase and fix, or close? (carried ×4)
+- [ ] snap-adapter#170 and pkg-node#201 (FUSE-1078) are drafts idle 95d, and FUSE-1078 has no row in the sprint: relaunch it or close it? (carried ×4)
+- [ ] collector#142 (FUSE-1154, Code Review) has merge conflicts and needs a rebase before anyone can review it
+- [ ] FUSE-1168 is In Progress with no open PR: where is it?
+- [ ] FUSE-1325 (infra spike) is In Progress, held 11d, with no PR: what will it produce?
+- [ ] FUSE-1352 (Sev 3) has two PRs awaiting review with CI green (fuse-ui#409, snap-adapter#340): he has 4 tickets building and 6 PRs open, so is the load right?
+- [ ] How is he after being off sick on 28 Oct? (carried ×2)
+- [ ] dedupe-service#160 has been approved and green for 8 days: why unmerged? (carried ×2)
+- [ ] FUSE-1314 is Matt's Distraction Duty ticket, but he opened two PRs on it: should they sit under their own tickets? (carried ×2)
+- [ ] His PDR meeting is owed (carried ×4)
+
+### Notes
+- ✍️ 
+
 ## 2026-11-05
 _11:30–12:00 GMT · Teams · no agenda_
 

@@ -8,6 +8,17 @@ title: 1-1 Nylah Klasson
 
 
 
+## 2026-11-13
+_prep only: today's calendar was unavailable, so the meeting date is unconfirmed_
+
+### To raise
+- [ ] FUSE-1163 (collector record-receipt time) is In Progress with no open PR and is her only item: is she blocked, and does it clash with Matt's FUSE-1158 and Humby's FUSE-1154 in the same area?
+- [ ] What is her last working day, and what is left to hand over? (carried ×6)
+- [ ] Her two overdue Yusen Advance items: the PDR conversation (due 10 Oct) and Manual Handling (carried ×5)
+
+### Notes
+- ✍️ 
+
 ## 2026-11-10
 _11:30–12:00 GMT · Epsilon House Office and a Slack huddle · no agenda, no body_
 

@@ -52,9 +52,9 @@ title: Matt Shaw
 - [x] fuse-mcp#8 conflict — dropped out of the open sweep 07-15, presumed resolved/merged; confirm
 
 **Owed to me**
-- [ ] Clear the red CI on [shopify-connector#368](https://github.com/gfs-bifrost/shopify-connector/pull/368) (FUSE-1314, idle 3d)
+- [ ] Clear the red CI on [shopify-connector#368](https://github.com/gfs-bifrost/shopify-connector/pull/368) (FUSE-1314): still red on `dependency_audit` on 13 Nov, idle 6d
 - [ ] Confirm the second work-order QA ticket is FUSE-1353, not a second FUSE-1352, and that it is real and sized (his email names both as FUSE-1352)
-- [ ] Rebase or close the four Distraction Duty drafts idle 14 days ([fuse-mocker#35](https://github.com/gfs-bifrost/fuse-mocker/pull/35), [collector#131](https://github.com/gfs-bifrost/collector/pull/131), [dedupe-service#166](https://github.com/gfs-bifrost/dedupe-service/pull/166), [fapi#182](https://github.com/gfs-bifrost/fapi/pull/182)) and fix CI on [shopify-connector#368](https://github.com/gfs-bifrost/shopify-connector/pull/368). He reassigned FUSE-1314 to Schuster on 9 Nov at 14:06 UTC but the five PRs stay in his name — [digest](../Digests/2026-11/2026-11-10.md)
+- [ ] Rebase or close the four Distraction Duty drafts idle 17 days ([fuse-mocker#35](https://github.com/gfs-bifrost/fuse-mocker/pull/35), [collector#131](https://github.com/gfs-bifrost/collector/pull/131), [dedupe-service#166](https://github.com/gfs-bifrost/dedupe-service/pull/166), [fapi#182](https://github.com/gfs-bifrost/fapi/pull/182)) and fix CI on [shopify-connector#368](https://github.com/gfs-bifrost/shopify-connector/pull/368). He reassigned FUSE-1314 to Schuster on 9 Nov at 14:06 UTC but the five PRs stay in his name — [digest](../Digests/2026-11/2026-11-10.md)
 - [ ] Close out the [FUSE-1198](https://globalfreight.atlassian.net/browse/FUSE-1198) stack: 8 drafts ([shopify-connector#305](https://github.com/gfs-bifrost/shopify-connector/pull/305), [#311](https://github.com/gfs-bifrost/shopify-connector/pull/311), [#312](https://github.com/gfs-bifrost/shopify-connector/pull/312), [#314](https://github.com/gfs-bifrost/shopify-connector/pull/314), [#315](https://github.com/gfs-bifrost/shopify-connector/pull/315), [#316](https://github.com/gfs-bifrost/shopify-connector/pull/316), [#317](https://github.com/gfs-bifrost/shopify-connector/pull/317), [observability#62](https://github.com/gfs-bifrost/observability/pull/62)). He hopes to finish it today — [DM](https://gfsdeliver-eng.slack.com/archives/D09A702MDQF/p1791389372503489)
 - [x] Land FUSE-1283 (Shopify Admin API 2026-04, [shopify-connector#309](https://github.com/gfs-bifrost/shopify-connector/pull/309)) before Shopify's 16 Oct cutover — merged 10-05, ticket Done 10-06
 - [ ] Resolve the new merge conflict on [shopify-connector#242](https://github.com/gfs-bifrost/shopify-connector/pull/242)
@@ -84,6 +84,7 @@ title: Matt Shaw
 - ✍️ 
 
 ## Together (newest first)
+- 2026-11-13 — Five PRs sit under FUSE-1314 (Schuster's ticket), and shopify-connector#368 is red → [[Digests/2026-11/2026-11-13]]
 - 2026-11-11 — Raised FUSE-1352 from Tom Dunn's work-order QA and pulled it into the sprint; his email also calls the second ticket FUSE-1352, but it is FUSE-1353 → [[Digests/2026-11/2026-11-11]]
 - 2026-11-11 — Runs the first-round interviews: Darren Taylor Wed 14:00 and Edward Savage Fri 13:30
 - 2026-11-11 — shopify-connector#368 is red
