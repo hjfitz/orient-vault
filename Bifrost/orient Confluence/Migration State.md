@@ -51,6 +51,39 @@ Sequencing: C0 → C1 → C2 → C3 → C4 in series. C3 reuses the sidebar and 
 
 ## Decision log
 <!-- Dated, newest first. -->
+- **2026-11-13** — **C0 done and live at 512155a** (85e2d50..512155a: 6 commits, sonnet builder). **orient reads Confluence, read-only.**
+  - **What was built:**
+    - **The adapter** (`src/adapters/confluence.ts`) makes GETs only, to the Jira site's own origin.
+      - Every redirect is refused. A `next` link must keep its endpoint's path exactly.
+      - An 8 MiB body cap (an oversize body is cancelled through its reader).
+      - 15 s per request and 20 s per list, across retries. `Retry-After` is honoured in its seconds and date forms, capped.
+      - Failures carry a kind and a fixed message, and never content.
+    - **Config:** `confluence.spaces` in the vault config, defaulting to Fuse (Bifrost) and Merak (MP), with ids and keys validated. Invalid or repeated entries are dropped.
+    - **Routes** under `/api/v1/confluence` return DTOs: spaces, space pages, space search (CQL escaped), page, children and attachments.
+      - Everything is held in the kernel's memory cache (tree 5 min, page and search 60 s), with LRU-capped keys. A test pins that the three files import no fs, sqlite or child process.
+      - A refusal never replaces good data. A first refusal is held 30 s.
+      - A cold read answers "unavailable" at 15 s.
+      - `/spaces` answers from config without waiting on Confluence.
+    - **`webUrl`** is built from the site, the configured key and the numeric id, never from `webui`.
+  - **Review (backend and security) found 8 issues, all fixed with tests failing first** (synthetic only; 41, 13 and 18 failed before, plus 9 foreign-page route tests):
+    - **the page, children and attachments routes served any page id in the org** (Harry's token reaches every space), so a loopback caller or a same-origin script could sweep HR, legal or finance pages. They now answer not-found outside the configured spaces, after a body-less read of the page's space, and nothing of a foreign page is fetched or held;
+    - **one bad config section reset the whole vault config** (`loadVaultConfig` fell back to `parse({})`), which drops the `sensitive` globs and `contextExcluded`, so sensitive documents could reach Today and prompt context. This existed for every section before C0; C0's strict section made it easier to trigger. **Each section now falls back on its own**;
+    - a 401 or 403 overwrote good cached data for the full TTL;
+    - there was no overall deadline (up to 176 s), and `/spaces` waited on Confluence;
+    - the `Retry-After` date and negative forms were ignored;
+    - a locked stream was never cancelled;
+    - a `next` link could steer to another `/wiki/` endpoint;
+    - `webUrl` was taken from the response.
+  - **Gates:** typecheck 0, lint 44, 358 tests across the touched files. The live vault config loads every section as before (checked by section shape, values not printed).
+  - **Live check** (`:3000`, counts and shapes only, nothing of content printed, per R2):
+    - `/spaces` gives 2 spaces;
+    - each tree has 1 top-level page;
+    - each home page loads with `author`, `updatedBy`, `createdAt`, `version` and an ADF body (about 9.6 KB and 8.1 KB);
+    - children: 11 and 5;
+    - attachments answer;
+    - search for a common word gives 25 hits;
+    - an unknown page is not-found, and a traversal-shaped id gives 404.
+  - **Next:** C1, the ADF renderer (R1 starred, opus).
 - **2026-11-12** — **C0 to C3 move back by two units.** Harry asked for a drag-and-drop whiteboard and agreed to put the Whiteboard canvas (B2, B3) first: Notes W3 → W4 → editor `/ux-review` → Whiteboard B2 → B3 → Notes NV1 → NV2 → **Confluence C0 to C3** → Notes W2 → NV3 → Confluence C4 → Sync S1 to S5. The programmes now run autonomously (Harry: "happy for you to just run with this autonomously"); G2 still stops for him.
 - **2026-11-12** — **Order agreed (Harry: "yeah - we can get the editing experience nailed prior to rendering confluence").** One builder at a time: Whiteboard B1 (in flight) → Notes W1 → W3 → W4 → NV1 → NV2 → **Confluence C0 to C3** → Whiteboard B2, B3 → Notes W2 → NV3 → Confluence C4 → Sync S1 to S5.
 - **2026-11-12** — **Programme opened.** Harry: \"something to plan on - tabs for confluence spaces (ideally fuse + merak at a minimum)\". Checked before planning: \"Fuse\" is the **Bifrost** space (the `create-pr` skill writes the Fuse changelog pages under spaceId 4587524; the space named \"Fuse (Bifrost)\", key `Fuse`, is archived), Merak is `MP` (alias `MPK`); orient has no Confluence client; the credential orient already uses for Jira reaches Confluence (probe: 200 on v2 spaces and pages and on CQL search), so G1 is cleared and no new token is needed. Read-only first; writing is G2. Proposed order across programmes, one builder at a time: Whiteboard B1 (in flight) → Notes W1 → W3 → W4 → NV1 → NV2 → **Confluence C0 to C3** → Whiteboard B2, B3 → Notes W2 → NV3 → Confluence C4 → Sync S1 to S5, waiting for Harry's yes. Why after NV2: C3 reuses its sidebar and tree, so building it first would be done twice.
