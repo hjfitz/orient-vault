@@ -63,9 +63,9 @@ Only the UI's, the gateway's and the import push service accounts may invoke svc
 ## Where the reference lives
 - `apps/svc/README.md` is the deep reference for svc: routes, tenancy, import, the customer API and gateway, dispatch, shipments, printing, SFTP users. `docs/runbook.md` is the ops path. `docs/printing.md` covers bench printers.
 - **Don't trust the root `README.md` and `AGENTS.md`'s *This repo* section:** they still describe svc-template.
-- **Stale lines in the reference (checked against the code):** `docs/runbook.md` says the SFTP host has one account, one tenant has a carrier account, there is no list-tenants call and no void; all four are untrue. `apps/svc/README.md`'s `carrier-services` row says nothing enforces the list, but dispatch refuses a blocked or unlisted service.
+- **Stale lines in the reference (checked against the code).** `docs/runbook.md` says the SFTP host has one account, one tenant has a carrier account, and there is no list-tenants call and no void. All four are untrue. `apps/svc/README.md`'s `carrier-services` row says nothing enforces the list, but dispatch refuses a blocked or unlisted service.
 - Structure and guardrails: [[architecture]]. History, fragility and open questions: [[known-context]]. Running it, and what has reached prod: [[operations]].
-- Programme state, gates and decisions: `Bifrost/Parcel Portal/Migration State.md` (foundations, the customer screens and the held prod launch D1) and `Bifrost/Native Dispatch/` (planning: the 13 Nov customer feedback as 30 units, 4 shipped on 12 Nov). System framing: `Systems/parcel-portal/`.
+- Programme state, gates and decisions are in two places. `Bifrost/Parcel Portal/Migration State.md` holds the foundations, the customer screens and the held prod launch D1. `Bifrost/Native Dispatch/` is in planning: the 13 Nov customer feedback as 30 units, 4 shipped on 12 Nov. System framing: `Systems/parcel-portal/`.
 
 ## What deliberately isn't here
 - **Canonical Fuse records and the event bus.** The portal publishes nothing to Fuse topics; orders live only in its Postgres.
