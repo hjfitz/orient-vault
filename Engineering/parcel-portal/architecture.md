@@ -90,9 +90,12 @@ Migrations `001`–`019` in `apps/svc/internal/repositories/postgres/migrations`
 ## Evidence
 ```orient-evidence
 { "v": 1, "items": [
-  { "id": 1, "kind": "code", "ref": "apps/svc/README.md@696cbd4" },
-  { "id": 2, "kind": "code", "ref": "apps/ui/README.md@696cbd4" },
-  { "id": 3, "kind": "code", "ref": "apps/ui/next.config.ts@696cbd4" },
-  { "id": 4, "kind": "code", "ref": "iac/projects@696cbd4" }
+  { "id": 1, "kind": "code", "ref": "apps/svc/README.md@621357e" },
+  { "id": 2, "kind": "code", "ref": "apps/ui/README.md@621357e" },
+  { "id": 3, "kind": "code", "ref": "apps/ui/next.config.ts@621357e" },
+  { "id": 4, "kind": "code", "ref": "iac/projects@621357e" },
+  { "id": 5, "kind": "code", "ref": "apps/svc/public-openapi.yaml@621357e" },
+  { "id": 6, "kind": "code", "ref": "apps/svc/internal/repositories/postgres/tenancy_test.go@621357e" },
+  { "id": 7, "kind": "code", "ref": "packages/ssh-keygen/README.md@621357e" }
 ] }
 ```
