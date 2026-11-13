@@ -46,6 +46,8 @@ Legend: ⬜ not started · 🟨 in progress · ✅ merged · ⛔ blocked · ⏸ 
 | **O6** | ⬜ | A Despatch button at the foot of the order page | | low | sonnet/low | | **R09.** One dispatch panel with a second trigger in a bottom bar. Don't render a second panel under the same key: that is the C23 bug class in the Parcel Portal programme. |
 | **O7** | ⬜ | One view for a shipment and its order | O1, O2, L1 | med | sonnet/high | | **R08.** Shipments rows open the order page, and the order page carries the labels, tracking, void, booking summary, contact details and weights. |
 | **O8** | ⬜ | Say why an order needs packing | | low | sonnet/low | | **R07.** Needs packing means the order is valid but the file gave no parcel size, weight or preset. Say that on the badge or the order page. |
+| **O9** | ⬜ | Warn about unsaved products and parcels before dispatching | | low | sonnet/medium | | Found by the review of the order-page PR. The address form now warns when it has unsaved changes; the Products and Packing panels keep their own state, so editing them and clicking Dispatch books the saved values. Needs that state lifted, or each panel reporting dirty. |
+| **O10** | ⬜ | Keep what a shipment booked, so a voided export row keeps its weight | | low | sonnet/medium | | Found by the review of O2. The export reads the order's current parcels, so a voided shipment shows the new weight after a repack. Store the booked weight on the shipment at booking (a migration). |
 
 ### I — CSV import
 | Unit | St | Summary | Deps | Risk | Tier | PR | Notes |
@@ -72,11 +74,12 @@ Legend: ⬜ not started · 🟨 in progress · ✅ merged · ⛔ blocked · ⏸ 
 | **T8** | ⬜ | Fix the red dev smoke test | | low | sonnet/low | | Red since at least 6 Nov: dev refuses the `smoke-test@` account. Re-provision it with the dev admin and set `DEV_SMOKE_ADMIN_PASSWORD`. It changes dev state, so Harry first. |
 | **T9** | ✅ | Plain error text when a packaging save fails | | low | sonnet/low | ilg-merak/parcel-portal#140 | The raw OpenAPI error is shown (`settings/packaging/actions.ts`). |
 | **T10** | ❌ | Re-enable the API key UI | | low | sonnet/low | | **Dropped (Harry, 13 Nov: "api key - won't come back").** The UI stays hidden (S1). The API and the keys stay up, so TCA's API test needs no UI. |
-| **T11** | ⏸ | DDP on FIP | | med | sonnet/high | | The portal hardcodes DDU and sends customs only for Canada. Waits on Oliver: DDP for which countries (G7). |
+| **T11** | ⏸ | DDP on FIP | | med | sonnet/high | | The portal hardcodes DDU and sends customs only for Canada. **Answered 12 Nov:** Oliver, passing on Chris's advice, says to test with DDP for everything, and Canada is the only country noted so far; his TCA server config also shows FIP with Terms Of Sale DDP and Shipment Content "Stationary Products". Send DDP for every shipment in test, and settle where Shipment Content comes from. |
 | **T12** | ⏸ | Customer self-serve for SFTP keys | | med | sonnet/high | | Undecided. Today only a GFS admin generates or adds a key (S2). |
 | **T13** | ✅ | Say "Native Dispatch" in user-facing text | | med | sonnet/low | ilg-merak/parcel-portal#139 | "Parcel Portal" is still hardcoded in UI titles, the sign-in card and the gateway docs title. The export's `salesChannel` is the literal "Parcel Portal" (`core/exports/csv.go:20`) and goes into customers' files, so tell Oliver when it merges. **Approved (Harry, 13 Nov: "rename to native dispatch").** No customer is on prod yet, so no live file carries the old value. |
 | **T14** | ✅ | Renew or fix the three Trivy ignores that expire on 16 Nov | | low | sonnet/low | ilg-merak/parcel-portal#138 | `.trivyignore.yaml` entries for CVE-2026-78661, CVE-2026-76844 and CVE-2026-85091 stop applying on 2026-11-16, so the scan goes red that day. **Approved to renew (Harry, 13 Nov).** First check whether the runtime images now carry the patch; renew only what is still needed, with a new expiry and the reason. |
 | **T15** | ✅ | Correct `docs/runbook.md` and `apps/svc/README.md` | | low | sonnet/low | ilg-merak/parcel-portal#141 | Found by the 13 Nov doc refresh; re-check each claim when the unit starts. The runbook says one SFTP account, one carrier tenant, no list-tenants call and no void. The README says nothing enforces the carrier-services list (dispatch does) and that the ui sends `X-Expected-Tenant` (it doesn't; the stale-tab guard is svc-only), and its package listing omits directories. |
+| **T16** | ⬜ | Round package dimensions down to whole cm | | low | sonnet/medium | | **R18 (Oliver, 12 Nov).** `wholeCM` rounds up; Despatch Cloud rounds down (0 of 116 live bookings had decimals), so dim weight would move. Floor each side, keep weight decimals, and settle a side under 1 cm (it would floor to 0). Test through the real request builder. |
 
 ## Gates
 <!-- A precondition that is NOT a unit — another programme reaching prod, a monitor reading real
@@ -88,8 +91,9 @@ Legend: ⬜ not started · 🟨 in progress · ✅ merged · ⛔ blocked · ⏸ 
 - [ ] **G4 — Harry's yes or no on the QZ Tray pilot** — blocks T7. It accepts the LGPL dependency and the `transport` field.
 - [x] **G5 — Harry decides whether the API key UI comes back** — blocks T10. Cleared 13 Nov: Harry, "api key - won't come back". T10 is dropped.
 - [ ] **G6 — Oliver says what is missing for cancelling a dispatched label** — blocks L2. Void from the order page, deleting the order, or voiding after manifest (Q1).
-- [ ] **G7 — Oliver says which countries need DDP on FIP** — blocks T11.
+- [x] **G7 — Oliver says which countries need DDP on FIP** — blocks T11. Cleared 12 Nov: test with DDP for everything; Canada is the only country noted (R19).
 - [x] **G8 — Harry decides whether user-facing text and the export say Native Dispatch** — blocks T13. Cleared 13 Nov: Harry, "rename to native dispatch". T13 is approved.
+- [ ] **G9 — Oliver or Phil confirms Manhattan reads the export's weight in kilograms** — blocks O2. The column was the file's own unit, and O2 makes it kilograms always. Dev is unaffected; this must be settled before any prod launch (Q9).
 
 ## Risks
 <!-- ★ marks the load-bearing ones. Each: the risk, the mitigation, and its current status. -->
@@ -104,6 +108,7 @@ Legend: ⬜ not started · 🟨 in progress · ✅ merged · ⛔ blocked · ⏸ 
 ## Decision log
 <!-- Dated, newest first. Written as decisions are taken; a decision worth defending in six months
      is a durable record instead (`wp decide --record`). -->
+- **2026-11-13** — **Wave 1 is merging.** Merged: T9 (#140), T14 (#138), T3 (#137), T13 (#139), T15 (#141). T14 removed the Trivy ignores instead of renewing them, because the platform has rebuilt both runtime images and every container scan passes with an empty list; Harry had said to renew, and the PR says so. Found while checking the DM: Oliver asked on 12 Nov for dimensions to be rounded down (R18, T16) and relayed Chris's advice to test with DDP for everything (R19, T11). Oliver also planned a TCA trial account for the afternoon of 13 Nov.
 - **2026-11-13** — **The export and user-facing text will say Native Dispatch** (Harry: "rename to native dispatch"). Unit T13. The export's `salesChannel` changes with it; Oliver is told when it merges.
 - **2026-11-13** — **The expiring Trivy ignores are renewed** (Harry: "trigy ignore - renew them"). Unit T14, due before 16 Nov.
 - **2026-11-13** — **The API key UI stays hidden** (Harry: "api key - won't come back"). T10 is dropped and R6 closed. The API and keys stay up.

@@ -139,6 +139,7 @@ The 13 Nov feedback, broken into numbered requirements. Each one says who asked,
 | Q6 | Chris | Which spec is going to Yusen US: Selector2's REST API or Native Dispatch's `public-openapi.yaml`? The two named fields live only in Selector2's. |
 | Q7 | Harry | **Answered 13 Nov: no, it stays hidden (T10 dropped).** The API key UI has been hidden since 12 Nov (#131). The catch-up says TCA wants the API as MVP2 with a first test on 30 Nov, and that Oliver set up a connection on it on 12 Nov. Re-enable it? (Re-enabling is a revert.) |
 | Q8 | Oliver | Still open: DDP on FIP and for which countries; printer models and Yusen IT's policy on swapping a printer driver; what "VT changes for native dispatch" means in the catch-up. |
+| Q9 | Oliver, Phil | The export's Shipping Weight is about to become kilograms always (O2); it was the file's own unit, usually pounds for a US order. Does Manhattan read kilograms? Has the export layout gate (MKP-6) closed? Needed before prod. |
 
 ## Carried findings with no new requirement
 
