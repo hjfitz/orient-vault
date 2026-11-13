@@ -1,13 +1,15 @@
 ---
 title: Shopify Connector Re-architecture — Migration State
-status: re-scoped-2026-08-21
+status: retired
 owner: Harry Fitzgerald
 created: '2026-07-24'
-updated: '2026-09-18'
+updated: '2026-11-13'
 tags: [bifrost, shopify-connector, rearchitecture, migration-state]
 ---
 
 # Shopify Connector Re-architecture — Migration State
+
+> SUPERSEDED 2026-11-13 — **Retired.** Replaced by [[Shopify Connector Untangle/Overview|Shopify Connector Untangle]] (3am-debuggability framing; see → stop → pin → fix → move → retire). Its scar tissue and live bugs were carried into the new programme's State doc; this ledger is no longer worked. Kept for history, not deleted.
 
 > **Single source of truth for progress.** Read and updated by the `shopify-connector-rearchitect` skill on re-entry. Update Status as units land; keep artifact links current. Move superseded notes to the Decision Log, don't delete.
 

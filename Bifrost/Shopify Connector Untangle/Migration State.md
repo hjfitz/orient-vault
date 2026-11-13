@@ -124,7 +124,7 @@ Legend: ⬜ not started · 🟨 in progress · ✅ merged · ⛔ blocked · ⏸ 
 
 ## Risks
 - **R1 ★ Silent, permanent order loss on the metered path.** The poll window keeps no state (no watermark), and no zero-ingest monitor covers SAIRA, ESCENTRIC or ESCENTRICPL. Windows are 4–5h. Mitigations: A1, A6, B1 and B3 before E9. — open.
-- **R2 ★ Canonical drift doubles orders through dedupe.** dedupe holds a re-poll only when the record is deep-equal (`isEqual`). Each order is polled about 48–60 times inside its window. Mitigation: C3 goldens are a hard gate on every `[move]`. — open.
+- **R2 ★ Canonical drift doubles orders through dedupe.** dedupe holds a re-poll only when the record is deep-equal (`isEqual`). A matching order is re-polled up to 48–60 times inside a 4–5h window. Mitigation: C3 goldens are a hard gate on every `[move]`. — open.
 - **R3 ★ Shared-shop config leak held by a fail-unsafe flag.** ESCENTRIC UK and PL share one shop, and the cache flag defaults to shop keying when the reader has no snapshot. Mitigation: D1. — open.
 - **R4 ★ The app boots by import order.** There are two runtime cycles, `@Inject()` arguments are `undefined` under other load orders, and Biome reorders imports. Mitigations: C1/C2, then factory wiring in E. — open.
 - **R5 Stock adjustments lost silently.** They are acked on failure, and the monitor text claims they are redelivered. Mitigations: A3 now (visible), D3 after G3. — open.

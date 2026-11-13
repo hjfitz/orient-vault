@@ -83,7 +83,7 @@ Do not trust three sources:
 - The root `CLAUDE.md` still describes a `ReapConcurrencyGate`, a dual-published `confirmation_made` and a failure for lines with no Shopify reference. The code has none of these.
 - The local checkout. It is routinely well behind `origin/main` [[known-context#stale-checkout]].
 
-**The rearchitecture programme** lives in the vault at `Bifrost/Shopify Connector Rearchitecture/`, not in this folder. It moves the connector onto the org layering contract with no external-contract change. Its Migration State was last updated 2026-09-18.
+**The refactor programme** lives in the vault at `Bifrost/Shopify Connector Untangle/`, not in this folder (created 2026-11-13). Its north star is 3am debuggability: each flow made visible, monitored, pinned by wire-level tests and switchable by runtime flag before it moves into its own slice. It replaced the retired `Bifrost/Shopify Connector Rearchitecture/`.
 
 - **Finished, verified in code.** `S0` (tsconfig and depcruise baseline) and `S1` (the characterization harness plus a boot smoke test) [8][9].
 - **Finished by ordinary feature work.** `D`, `F2`, `BUGFIX(a)` and `PREVIEW-ISO(a)`, per Migration State. Not re-verified here.

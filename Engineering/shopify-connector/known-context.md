@@ -12,9 +12,9 @@ truth, not a claim about current source. Re-verify against code before trusting 
 specific implementation detail below.
 
 **The deepest, most current source for this service's fragility is not this file —
-it's the internal re-architecture programme's `Migration State.md`** (Obsidian vault,
-`Bifrost/Shopify Connector Rearchitecture/Migration State.md`, owned by Harry
-Fitzgerald, updated same-day as this onboarding). It is a live risk register, bug
+it's the internal refactor programme's `Migration State.md`** (Obsidian vault,
+`Bifrost/Shopify Connector Untangle/Migration State.md`, owned by Harry Fitzgerald,
+created 2026-11-13; it replaced the retired `Bifrost/Shopify Connector Rearchitecture/`). It is a live risk register, bug
 list, and architecture review re-derived directly against `origin/main` — treat it as
 more current than this doc for anything it covers, and read it before touching
 ingest, confirmation, or the token-lock code. What follows summarizes its

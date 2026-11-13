@@ -24,9 +24,10 @@ key_paths:
 note: >
   The ~/code/fuse/shopify-connector checkout is routinely well behind origin/main — read
   origin/main via `git show`/`git log`, don't trust the working tree. An internal
-  re-architecture programme (owned by Harry) is tracked separately in the Obsidian vault at
-  Bifrost/Shopify Connector Rearchitecture/ — read its Migration State.md for the current
-  risk register and live bugs, don't duplicate it here.
+  refactor programme (owned by Harry) is tracked separately in the Obsidian vault at
+  Bifrost/Shopify Connector Untangle/ — read its Migration State.md for the safeties,
+  risk register and live bugs, don't duplicate it here. (Bifrost/Shopify Connector
+  Rearchitecture/ is retired as of 2026-11-13.)
 
 runtime:
   test_runner: "jest"

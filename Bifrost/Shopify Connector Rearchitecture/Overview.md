@@ -1,13 +1,15 @@
 ---
 title: Shopify Connector Re-architecture — Overview
-status: re-scoped-2026-08-21
+status: retired
 owner: Harry Fitzgerald
 created: '2026-07-24'
-updated: '2026-08-24'
+updated: '2026-11-13'
 tags: [bifrost, shopify-connector, rearchitecture]
 ---
 
 # Shopify Connector Re-architecture — Overview
+
+> SUPERSEDED 2026-11-13 — **Retired.** Replaced by [[Shopify Connector Untangle/Overview|Shopify Connector Untangle]] (3am-debuggability framing; see → stop → pin → fix → move → retire). Its scar tissue and live bugs were carried into the new programme's State doc; this ledger is no longer worked. Kept for history, not deleted.
 
 Internal re-architecture of the `shopify-connector` NestJS service onto the org layering contract, plus a class-level rebalance. **Zero external-contract change** — routes, Pub/Sub subscriptions, topics, filters and envelope semantics identical throughout. That is *this programme's* constraint on itself, not a claim about the service: other people's work has changed the contract twice since the programme began (a subscription renamed + re-topiced + re-filtered, and Cloud Run scaling set fleet-wide), and the characterization net is structurally blind to both — hence the `CONTRACT-GOLDEN` unit.
 
