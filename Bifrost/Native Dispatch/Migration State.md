@@ -74,8 +74,8 @@ Legend: ⬜ not started · 🟨 in progress · ✅ merged · ⛔ blocked · ⏸ 
 | **T10** | ❌ | Re-enable the API key UI | | low | sonnet/low | | **Dropped (Harry, 13 Nov: "api key - won't come back").** The UI stays hidden (S1). The API and the keys stay up, so TCA's API test needs no UI. |
 | **T11** | ⏸ | DDP on FIP | | med | sonnet/high | | The portal hardcodes DDU and sends customs only for Canada. Waits on Oliver: DDP for which countries (G7). |
 | **T12** | ⏸ | Customer self-serve for SFTP keys | | med | sonnet/high | | Undecided. Today only a GFS admin generates or adds a key (S2). |
-| **T13** | ⏸ | Say "Native Dispatch" in user-facing text | | med | sonnet/low | | "Parcel Portal" is still hardcoded in UI titles, the sign-in card and the gateway docs title. The export's `salesChannel` is the literal "Parcel Portal" (`core/exports/csv.go:20`) and goes into customers' files, so confirm with Oliver and Yusen before changing that one. Harry's call (G8). |
-| **T14** | ⬜ | Renew or fix the three Trivy ignores that expire on 16 Nov | | low | sonnet/low | | `.trivyignore.yaml` entries for CVE-2026-78661, CVE-2026-76844 and CVE-2026-85091 stop applying on 2026-11-16, so the scan goes red that day. Fix them if the runtime images now carry the patch; otherwise renew with a new expiry and the reason. |
+| **T13** | ⏸ | Say "Native Dispatch" in user-facing text | | med | sonnet/low | | "Parcel Portal" is still hardcoded in UI titles, the sign-in card and the gateway docs title. The export's `salesChannel` is the literal "Parcel Portal" (`core/exports/csv.go:20`) and goes into customers' files, so tell Oliver when it merges. **Approved (Harry, 13 Nov: "rename to native dispatch").** No customer is on prod yet, so no live file carries the old value. |
+| **T14** | ⬜ | Renew or fix the three Trivy ignores that expire on 16 Nov | | low | sonnet/low | | `.trivyignore.yaml` entries for CVE-2026-78661, CVE-2026-76844 and CVE-2026-85091 stop applying on 2026-11-16, so the scan goes red that day. **Approved to renew (Harry, 13 Nov).** First check whether the runtime images now carry the patch; renew only what is still needed, with a new expiry and the reason. |
 | **T15** | ⬜ | Correct `docs/runbook.md` and `apps/svc/README.md` | | low | sonnet/low | | Found by the 13 Nov doc refresh; re-check each claim when the unit starts. The runbook says one SFTP account, one carrier tenant, no list-tenants call and no void. The README says nothing enforces the carrier-services list (dispatch does) and that the ui sends `X-Expected-Tenant` (it doesn't; the stale-tab guard is svc-only), and its package listing omits directories. |
 
 ## Gates
@@ -86,10 +86,10 @@ Legend: ⬜ not started · 🟨 in progress · ✅ merged · ⛔ blocked · ⏸ 
 - [ ] **G2 — Chris says which spec goes to Yusen US** — blocks X1. Selector2's REST API or `public-openapi.yaml` (Q6).
 - [ ] **G3 — Printer models and Yusen IT's driver-swap policy** — blocks T6. Oliver has not answered.
 - [ ] **G4 — Harry's yes or no on the QZ Tray pilot** — blocks T7. It accepts the LGPL dependency and the `transport` field.
-- [ ] **G5 — Harry decides whether the API key UI comes back** — blocks T10. The catch-up says TCA wants the API as MVP2 with a first test on 30 Nov (Q7).
+- [x] **G5 — Harry decides whether the API key UI comes back** — blocks T10. Cleared 13 Nov: Harry, "api key - won't come back". T10 is dropped.
 - [ ] **G6 — Oliver says what is missing for cancelling a dispatched label** — blocks L2. Void from the order page, deleting the order, or voiding after manifest (Q1).
 - [ ] **G7 — Oliver says which countries need DDP on FIP** — blocks T11.
-- [ ] **G8 — Harry decides whether user-facing text and the export say Native Dispatch** — blocks T13. The export value is in customers' files.
+- [x] **G8 — Harry decides whether user-facing text and the export say Native Dispatch** — blocks T13. Cleared 13 Nov: Harry, "rename to native dispatch". T13 is approved.
 
 ## Risks
 <!-- ★ marks the load-bearing ones. Each: the risk, the mitigation, and its current status. -->
@@ -98,12 +98,15 @@ Legend: ⬜ not started · 🟨 in progress · ✅ merged · ⛔ blocked · ⏸ 
 - **R3 ★ Additive feedback grows while TCA wants an account now** — Mitigation: wave 1 is only what blocks TCA's first manual order; the rest follows — open.
 - **R4 The export total can differ from what Selector booked** — after a parcel weight is edited, Selector gets the new sum and the export to Manhattan can keep the file's stated total. Mitigation: O2 — open.
 - **R5 No named decision-maker on Yusen's side** — the 13 Nov catch-up wants one, and an org chart, to raise on Monday 16 Nov at 11:00 — open.
-- **R6 The API key UI is hidden while TCA plans an API test** — Mitigation: Harry's call on G5; re-enabling is a revert — open.
+- **R6 The API key UI is hidden while TCA plans an API test** — Harry decided on 13 Nov that it stays hidden. The API and the keys stay up, so the test needs no UI — closed.
 - **R7 Two programmes share one repo** — new ledger entries use `--programme "Native Dispatch"`; units A–D and the prod gate D1 stay in Parcel Portal — standing.
 
 ## Decision log
 <!-- Dated, newest first. Written as decisions are taken; a decision worth defending in six months
      is a durable record instead (`wp decide --record`). -->
+- **2026-11-13** — **The export and user-facing text will say Native Dispatch** (Harry: "rename to native dispatch"). Unit T13. The export's `salesChannel` changes with it; Oliver is told when it merges.
+- **2026-11-13** — **The expiring Trivy ignores are renewed** (Harry: "trigy ignore - renew them"). Unit T14, due before 16 Nov.
+- **2026-11-13** — **The API key UI stays hidden** (Harry: "api key - won't come back"). T10 is dropped and R6 closed. The API and keys stay up.
 - **2026-11-13** — **Programme created.** Harry asked for the Teams feedback from Phil, Pete and Chris to be broken into requirements and fed into a new programme, with the portal's orient docs brought up to date. The 17 requirements and their sources are in [[Native Dispatch/Requirements|Requirements]], each checked against `origin/main` at `621357e`. Findings that changed the plan: the preset-dimensions complaint is a real bug (R11); "cancel label / set live again" mostly exists on the shipment page (R01); ShipperId 0 needs a migration (R14); Chris's legacy fields are Selector2's, not ours (R13).
 - **2026-11-13** — **Weight 0 on a packing template is approved** (Harry: "allow weight 0 and make the templates"). Units T3 and T4. It was paused for this work and is next.
 - **2026-11-13** — **The name is Native Dispatch**, chosen in the team catch-up. The repo, service and system ids stay `parcel-portal`; the old programme folder keeps its name.

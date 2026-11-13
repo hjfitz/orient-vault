@@ -127,7 +127,7 @@ The 13 Nov feedback, broken into numbered requirements. Each one says who asked,
 | Q4 | Phil, on the call | What is the package-count column called, how does it combine with Parcel Number, and can an order be imported with no product lines? |
 | Q5 | Phil | Should the total weight be editable, or always the sum of the packages? Proposed: the sum, read-only. |
 | Q6 | Chris | Which spec is going to Yusen US: Selector2's REST API or Native Dispatch's `public-openapi.yaml`? The two named fields live only in Selector2's. |
-| Q7 | Harry | The API key UI has been hidden since 12 Nov (#131). The catch-up says TCA wants the API as MVP2 with a first test on 30 Nov, and that Oliver set up a connection on it on 12 Nov. Re-enable it? (Re-enabling is a revert.) |
+| Q7 | Harry | **Answered 13 Nov: no, it stays hidden (T10 dropped).** The API key UI has been hidden since 12 Nov (#131). The catch-up says TCA wants the API as MVP2 with a first test on 30 Nov, and that Oliver set up a connection on it on 12 Nov. Re-enable it? (Re-enabling is a revert.) |
 | Q8 | Oliver | Still open: DDP on FIP and for which countries; whether whole-cm rounding of dimensions is acceptable; printer models and Yusen IT's policy on swapping a printer driver; what "VT changes for native dispatch" means in the catch-up. |
 
 ## Carried findings with no new requirement

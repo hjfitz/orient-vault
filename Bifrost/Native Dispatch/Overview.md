@@ -39,13 +39,13 @@ One unit is one PR. Each goes through `review-panel`, then merges once CI is gre
 - **Wave 1, what blocks TCA's first manual order:** T3 then T4 (weight 0 and the five templates, approved), I1 (the preset bug), T2 (ShipperId 0), L1 (void from the order page, so test labels on the live box can be cancelled), O1 (contact details).
 - **Wave 2, the order page:** O3, O6, O2, O8, and I2.
 - **Wave 3, larger changes:** O4 and O7.
-- **Waiting on an answer:** I3 and O5 (G1), X1 (G2), T6 (G3), T7 (G4), T10 (G5), L2 (G6), T11 (G7).
+- **Waiting on an answer:** I3 and O5 (G1), X1 (G2), T6 (G3), T7 (G4), L2 (G6), T11 (G7).
 
 ## Scar tissue
 Kept in the [[Native Dispatch/Migration State|Migration State]]: no commit or manifest calls by an agent, no prod gate approved, nothing sent to TCA's live endpoint without Harry, nothing about an order defaulted.
 
 ## Context from the catch-up (not units)
-- TCA is testing Manhattan against the Selector server directly, and wants an API as MVP2, with a first test planned for 30 Nov. Phil leads that conversation. The API key UI is hidden at the moment (S1); see Q7 and G5.
+- TCA is testing Manhattan against the Selector server directly, and wants an API as MVP2, with a first test planned for 30 Nov. Phil leads that conversation. The API key UI stays hidden (S1; Harry, 13 Nov), and the API and keys stay up for that test.
 - The team wants a named decision-maker on Yusen's side and an org chart, to raise at the in-person session on Monday 16 Nov at 11:00.
 - The recording is auto-transcribed, so names and terms are approximate. "VT changes for native dispatch" is unclear and is in Q8.
 
