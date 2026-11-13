@@ -52,6 +52,27 @@ Sequencing: C0 → C1 → C2 → C3 → C4 in series. C3 reuses the sidebar and 
 
 ## Decision log
 <!-- Dated, newest first. -->
+- **2026-11-13** — **C1 done and live at 223e075** (fa8ee78..223e075: 12 commits, opus builder). **Confluence pages render as safe HTML.**
+  - **What was built:** an allowlist renderer, ADF → hast → HTML, in `src/render/adf/`.
+    - **Links:** hrefs limited to `https`, `mailto` (the address only) and the site, all `rel="noopener noreferrer"`.
+    - **Enforcement:** an element, attribute and id allowlist is enforced on the final tree.
+    - **Input handling:** only an object's own keys are read; control and bidi characters are stripped.
+    - **Coverage:** text and marks (known colours become tokens), lists, code blocks (no copy button), tables (head and row headers, spans, up to 200 columns, row numbers), panels as Notes callouts, expands as `<details>`, layouts, status, date, emoji and mention as text, the three card kinds, Jira issue macros as orient ticket links, Lucid as a card, the table of contents. Anything else is a visible "Unsupported: <type>" placeholder; a bodied macro's body still renders.
+    - **Media:** placeholders carrying checked file and collection ids, for C2.
+    - **Where it renders:** `html` is rendered once per load in the core and held in the memory cache only. **`body` is no longer sent.**
+  - **Review (security, R1; correctness and capacity) — the security lens found no script, `javascript:` navigation, CSS or URL load** across about 45 href-smuggling variants and hostile strings in every attribute position, run through jsdom.
+  - **It did find denial of service in the core,** with working PoCs. Rendering is synchronous in orient-core, which serves `:3000`, PR-approve and Slack-post:
+    - 1000 TOC × 1000 headings: 62 MB, 6.5 s, 1.6 GB; at 2000 × 2000 **orient-core died out of memory**;
+    - 12k identical headings: about 11 s of quadratic id de-duplication;
+    - a crafted table: a million `<col>`s, or a RangeError that blanked the page.
+  - **Fixed with one page-wide output budget**: every emitted element, attribute and text node counts, with caps of 30k units and 1.5 MB, and the page ends with "too large to show here". Also: the TOC built once and capped at 500; an id counter per base; 200 columns per table; no spreads of data-sized arrays (a parser test bans them; there were 33); spacing inside containers; row headers styled; row numbers kept.
+  - **After the fixes:** every PoC renders in 12–85 ms, and any page at the caps in under 100 ms. 33 tests failed first; 26 of 28 mutants are killed.
+  - **Not built here:** a worker with `resourceLimits`, now **C1b**.
+  - **Gates:** typecheck 0, lint 44, 676 tests across 7 files.
+  - **Live check** (counts and type names only, per R2):
+    - 10 real pages answer in 0.11–0.25 s cold, with HTML of 2.7–56 KB, no `body` and no `<script`;
+    - across 50 pages in both spaces, the only placeholder is `extension:recently-updated`, once.
+  - **Next:** C2, the media proxy, which maps ADF file ids to attachments through the page's attachments list.
 - **2026-11-13** — **C0 done and live at 512155a** (85e2d50..512155a: 6 commits, sonnet builder). **orient reads Confluence, read-only.**
   - **What was built:**
     - **The adapter** (`src/adapters/confluence.ts`) makes GETs only, to the Jira site's own origin.
