@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-13 — Show plain text when a packaging preset fails svc's request check
+
+Show plain text when a packaging preset fails svc's request check
+
+Native Dispatch unit T9. Saving a packaging preset showed svc's raw OpenAPI request-check text, for example 'request body has an error: ... Error at "/name": minimum string length is 1'. The action now maps the field path to the form's own label: 'Name is required.', 'Length can be at most 20 characters.'; anything unrecognised keeps the generic line. Verified through the real form on a local stack, before and after. UI only.
+
+PR: ilg-merak/parcel-portal#140
+
 ## 2026-11-12 — Round a shipment's customs value and total weight before sending to Selector
 
 Round a shipment's customs value and total weight before sending to Selector
