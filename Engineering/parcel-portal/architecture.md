@@ -22,20 +22,20 @@ verified_paths:
 # parcel-portal — architecture
 
 ```orient-bluf
-{ "v": 1, "bluf": "One Go module with three binaries (svc on Cloud Run, sftp on a MIG, a canary job) plus a Next.js UI and a browser print package. svc is contract-first and layered (http → core → adapters/repositories), every customer table is tenant-scoped through the request context, and dispatch is at-most-once per order.", "confidence": "high", "action": "Never add a query that doesn't name tenant_id outside queries/auth.sql and the tenant register; the static test will fail it, and it should." }
+{ "v": 1, "bluf": "One Go module with five binaries (svc and the customer-API gateway on Cloud Run, sftp on a MIG, a canary job, a dev-only debug MCP) plus a Next.js UI and two browser packages. svc is contract-first and layered (http → core → adapters/repositories), every customer table is tenant-scoped through the request context, and dispatch is at-most-once per order.", "confidence": "high", "action": "Never add a query that doesn't name tenant_id outside the four exempt files (auth.sql, tenant.sql, sftp_auth.sql, api_key_auth.sql); the static test will fail it, and it should." }
 ```
 
 ## Guardrails
-- [contract:G1] Every customer-data query is tenant-scoped from the request context, never from a parameter; only `queries/auth.sql` and the tenant register are exempt, and a static test enforces it.
-  — paths: apps/svc/internal/repositories/postgres
+- [contract:G1] Every customer-data query is tenant-scoped from the request context, never from a parameter. Only `queries/auth.sql`, `tenant.sql`, `sftp_auth.sql` (the SFTP users snapshot) and `api_key_auth.sql` are exempt, and a static test enforces it. The context's tenant is the user's own, an admin route's `{tenantId}`, or the customer a `gfs_admin` acts for (`X-Acting-Tenant`, session routes only) [6].
+  — paths: apps/svc/internal/repositories/postgres, apps/svc/internal/http/middleware
 - [technical:G2] Dispatch is at-most-once: claim with a lease, reconcile with `DailyShipQuery`, then book. Never retry `ProcessShipment` blindly or adopt a lost booking; void it.
   — paths: apps/svc/internal/core/dispatch
-- [contract:G3] `openapi.yaml` is the contract. Edit it first, bump `info.version`, run `make gen`; never hand-edit `internal/http/api`, `client/` or `repositories/postgres/db`.
-  — paths: apps/svc/openapi.yaml, apps/svc/internal/http/api
+- [contract:G3] `openapi.yaml` (the ui's contract) and `public-openapi.yaml` (the customer API, versioned separately) are the contracts. Edit the spec first, bump its `info.version`, run `make gen`; never hand-edit `internal/http/api`, `internal/http/publicapi`, `client/` or `repositories/postgres/db`.
+  — paths: apps/svc/openapi.yaml, apps/svc/public-openapi.yaml, apps/svc/internal/http/api, apps/svc/internal/http/publicapi
 - [operational:G4] Never call CommitShipments, PrintManifest or ProcessCarrierDispatch against the shared Selector sandbox; it closes out everyone's TEST account. Tests use the fake Selector.
   — paths: apps/svc/internal/adapters/selector, apps/svc/internal/core/shipments
-- [operational:G5] Never regenerate or destroy the SFTP host keys; customers pin their fingerprints. They carry `prevent_destroy`.
-  — paths: iac/projects/sftp
+- [operational:G5] Never regenerate or destroy the SFTP host keys (customers pin their fingerprints) or the carrier key `svc-parcel-carrier-key` (it seals every stored carrier password). Both carry `prevent_destroy`.
+  — paths: iac/projects/parcel-portal-sftp, iac/projects/parcel-portal-svc/secrets.tf
 - [technical:G6] Nothing about an order is defaulted: dims, weight and a mapped carrier service must be present before dispatch.
   — paths: apps/svc/internal/core/imports, apps/svc/internal/core/dispatch
 
