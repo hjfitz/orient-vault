@@ -1,8 +1,20 @@
 ---
-tags: [waypoint, remote-compute]
+tags:
+- waypoint
+- remote-compute
 title: remote-compute — overview
-thesis: "remote-compute is the prod-only Terragrunt stack that gives an ILG engineer a persistent Arch Linux VM in GCP for running Claude Code. One prod.tfvars entry per workstation; it owns the VM's infrastructure and access, and the images repo owns everything inside the guest."
+thesis: remote-compute is the prod-only Terragrunt stack that gives an ILG engineer
+  a persistent Arch Linux VM in GCP for running Claude Code. One prod.tfvars entry
+  per workstation; it owns the VM's infrastructure and access, and the images repo
+  owns everything inside the guest.
 confidence: high
+verified_paths:
+- README.md
+- iac/env
+- iac/projects/remote-compute
+- iac/modules/workstation
+verified: '2026-11-13'
+verified_sha: 8498e18
 ---
 # remote-compute — overview
 
