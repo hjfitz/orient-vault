@@ -3,8 +3,8 @@ tags:
 - waypoint
 - selector2
 title: selector2 — operations
-verified: '2026-11-12'
-verified_sha: ee122ca
+verified: '2026-11-13'
+verified_sha: 1ce53d4
 verified_paths:
 - .github/workflows
 - iac/projects
