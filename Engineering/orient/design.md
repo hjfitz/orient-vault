@@ -74,11 +74,21 @@ title: orient — design language
 Its own `CLAUDE.md` governs; the Fuse org contract does **not** apply here. Part of the
 [[orient]] system.
 
+> **Paths moved, 2026-11-13.** The UI is now the Svelte SPA in `ui/` (the Next app was removed on 2026-11-11; the
+> last tree with it is the git tag `next-ui-final`). The tokens are in `ui/src/globals.css`, unchanged value for
+> value (checked 2026-11-13), and the rail is `ui/src/lib/components/Sidebar.svelte`. Paths below that start
+> `app/` or `src/components/` name the retired Next files. Only *Identity*, *Theme*, *Tokens*, *Type* and *Notes
+> editor* were checked against the Svelte UI; treat the rest as true of the Next app until re-checked.
+
 ## Identity
 
 An **engineering console**, read at 07:00 and after hours by one expert user who already
 knows the domain. Every pixel carries information or an affordance. It is the calibration
 reference *for itself*: if a change would make orient feel less like orient, it is wrong.
+
+> SUPERSEDED 2026-11-10: orient is **desktop only** (gate G7 of the Svelte UI programme, Harry's call: seldom
+> used from a phone). The Svelte UI has no phone drawer, and the rail stays at 176 px at every width. Judge at
+> 1440 and 3440; a phone shot is not a finding.
 
 **Read on an ultrawide.** The reader's display is 21:9 (3440×1440), so a layout is judged there
 as well as at 1440 and on a phone. See *Wide displays* below.
