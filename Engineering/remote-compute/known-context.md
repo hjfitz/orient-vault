@@ -16,8 +16,9 @@ Open to any ILG engineer (Harry, 2026-11-13). The self-serve route is the `creat
 plus the Confluence how-to (PLTE 348356619). Platform engineering owns it, and Harry built it. The
 `terraform-prod` reviewers are Harry and Kyle Chandler, mirroring core-infra.
 
-Adoption so far: one workstation, `rc-hjf` (Harry, tier `s`). Harry runs his primary Claude Code
-sessions on it, including vault and orient work. (snapshot 2026-11-13)
+Adoption so far: one workstation, `rc-hjf` (Harry, tier `s`). Harry runs Claude Code sessions on it,
+including vault and orient work, handed over from the laptop with the `session-handover` skill.
+(snapshot 2026-11-13)
 
 ## Decisions that would surprise someone reading only the source
 
