@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-13 — Give every dev tenant the mock carrier contracts, on creation and by backfill
+
+Give every dev tenant the mock carrier contracts, on creation and by backfill
+
+Unit F1: with SELECTOR2_MOCK_CONTRACTS=true (dev only, via Terraform), a new tenant gets one contract, service and route per mock proxy with its published test key, and the migration job fills in existing tenants (never a second contract for a carrier name already held; a failure is logged per tenant and never blocks the deploy). The seed's Acme rows derive from the same definition, unchanged.
+
+PR: ilg-merak/selector2#22
+
 ## 2026-11-13 — Admit the route announcer's style in the UI's CSP, add a favicon, use RMT24 in REST v1 examples
 
 Admit the route announcer's style in the UI's CSP, add a favicon, use RMT24 in REST v1 examples
