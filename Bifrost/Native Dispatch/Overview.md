@@ -41,6 +41,18 @@ One unit is one PR. Each goes through `review-panel`, then merges once CI is gre
 - **Wave 3, larger changes:** O4 and O7.
 - **Waiting on an answer:** I3 and O5 (G1), X1 (G2), T6 (G3), T7 (G4), L2 (G6), T11 (G7).
 
+### Parallel plan (13 Nov, for the orchestrated run)
+Five builder lanes, each its own worktree under `~/code/merak/parcel-portal/.claude/worktrees/`, each running its own throwaway Postgres on a lane-specific port and container name (never port 3000, never another lane's container, kill only exact PIDs). Builders commit locally, run the repo's gates, gather evidence and stop; the conductor pushes, opens the PR, runs `review-panel`, merges once CI is green, ticks the ledger and writes the `wp ledger` entry (`--programme "Native Dispatch"`).
+- **Lane 1, chores:** T14 (Trivy renew, due before 16 Nov), then T13 (the rename, including the export's `salesChannel`), T9, T15. No contract or migration.
+- **Lane 2, svc carrier:** T3 (Go only: the preset table only checks `weight <> ''`), then T2 (migration 020, `connection.go`, request XML test).
+- **Lane 3, svc import:** I1 (no migration, no contract), then I2 (migration 021 and a contract bump, rebased after T2 merges).
+- **Lane 4, UI order page:** O1, O8, O6, then L1, strictly in series, because they share `orders/[id]/order-form.tsx`.
+- **Lane 5, svc order API:** the svc halves of O3 (a customer-readable services list) and O2 (total weight and the export).
+- **Conductor, foreground:** T4 (the five templates, after T3 is on dev), T5, and dev checks through the debug MCP after each deploy.
+- **Contract and migration order:** migrations 020 (T2) and 021 (I2) are reserved. Contract PRs merge one at a time, in the order T2, O3, I2, then O4. Each regenerates and takes the next minor `info.version` just before its merge.
+- **Held back:** O3 and O2 UI halves, O4 and O7 (they need lanes 4 and 5 merged first), I3 and O5 (G1), L2 (G6), X1 (G2), T6 (G3), T7 (G4), T11 (G7), T12. T1 is human-led and T8 changes dev state.
+- **No agent** calls CommitShipments, PrintManifest or ProcessCarrierDispatch, sends anything to TCA's live endpoint, or approves a prod gate.
+
 ## Scar tissue
 Kept in the [[Native Dispatch/Migration State|Migration State]]: no commit or manifest calls by an agent, no prod gate approved, nothing sent to TCA's live endpoint without Harry, nothing about an order defaulted.
 
