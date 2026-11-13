@@ -223,3 +223,7 @@
 {"ts": 1794561157, "kind": "programme_tick", "session_id": "8584435d-36a9-464d-bc60-e21c842cfe59", "programme": "orient Whiteboard", "unit": "B5", "status": "doing"}
 {"ts": 1794581353, "kind": "programme_tick", "session_id": "8584435d-36a9-464d-bc60-e21c842cfe59", "programme": "orient Whiteboard", "unit": "B5", "status": "done"}
 {"ts": 1794581380, "kind": "programme_tick", "session_id": "8584435d-36a9-464d-bc60-e21c842cfe59", "programme": "orient Notes", "unit": "NV2", "status": "doing"}
+{"ts": 1794584130, "kind": "programme_tick", "session_id": "3daf16d6-87bb-438d-944f-828764dcae71", "programme": "Native Dispatch", "unit": "T10", "status": "dropped"}
+{"ts": 1794584166, "kind": "programme_tick", "session_id": "3daf16d6-87bb-438d-944f-828764dcae71", "programme": "Native Dispatch", "unit": "T13", "status": "todo"}
+{"ts": 1794584430, "kind": "programme_tick", "session_id": "3daf16d6-87bb-438d-944f-828764dcae71", "programme": "Native Dispatch", "unit": "T14", "status": "todo"}
+{"ts": 1794584469, "kind": "programme_tick", "session_id": "3daf16d6-87bb-438d-944f-828764dcae71", "programme": "Native Dispatch", "unit": "T13", "status": "todo"}
