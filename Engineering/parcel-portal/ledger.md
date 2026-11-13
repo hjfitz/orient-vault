@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-13 — Offer a customer the carrier services on its account, and check a service code on edit
+
+Offer a customer the carrier services on its account, and check a service code on edit
+
+Native Dispatch unit O3, svc half (R06). New GET /carrier/services returns the services the acting customer's account offers (code and label; blocked ones left out; a restricted flag tells 'no list' from 'every service blocked'), readable by any signed-in user and tenant-scoped. An order edit that changes the service code is refused if the account doesn't offer it; the code is trimmed and stored in the listed spelling, and a save that leaves the code alone never fails because the list changed. Contract 5.15.0. Known gaps: the edit check and the picker don't follow dispatch's test-carrier exemption (dev only), and a carrier-only edit isn't judged. The UI dropdown is the next half.
+
+PR: ilg-merak/parcel-portal#143
+
 ## 2026-11-13 — Order page: contact details, why it needs packing, a foot Dispatch button and void
 
 Order page: contact details, why it needs packing, a foot Dispatch button and void
