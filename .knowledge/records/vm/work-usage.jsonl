@@ -265,3 +265,7 @@
 {"ts": 1794597075, "kind": "programme_tick", "session_id": "3daf16d6-87bb-438d-944f-828764dcae71", "programme": "Native Dispatch", "unit": "O2", "status": "done"}
 {"ts": 1794598743, "kind": "programme_tick", "session_id": "8584435d-36a9-464d-bc60-e21c842cfe59", "programme": "orient Whiteboard", "unit": "B3", "status": "done"}
 {"ts": 1794598819, "kind": "programme_tick", "session_id": "8584435d-36a9-464d-bc60-e21c842cfe59", "programme": "orient Whiteboard", "unit": "B9", "status": "doing"}
+{"ts": 1794603790, "kind": "programme_tick", "session_id": "8584435d-36a9-464d-bc60-e21c842cfe59", "programme": "orient Whiteboard", "unit": "B9", "status": "done"}
+{"ts": 1794603845, "kind": "programme_tick", "session_id": "8584435d-36a9-464d-bc60-e21c842cfe59", "programme": "orient Notes", "unit": "NV2b", "status": "doing"}
+{"ts": 1794606437, "kind": "programme_tick", "session_id": "8584435d-36a9-464d-bc60-e21c842cfe59", "programme": "orient Notes", "unit": "NV2b", "status": "done"}
+{"ts": 1794606488, "kind": "programme_tick", "session_id": "8584435d-36a9-464d-bc60-e21c842cfe59", "programme": "orient Notes", "unit": "NV1", "status": "doing"}
