@@ -37,7 +37,7 @@ Monitor 324087068 (Terraform-managed, `managed-by:terraform`): `logs("service:sf
 
 ## Not established
 - Why `order.customerRef` is empty for order 15316: the CSV was not read (customer data) and ESCENTRIC's live mapping was not read, so a blank source column versus a mapping gap is open.
-- Whether ESCENTRIC or support already know, or whether a corrected file is on its way (no ESCENTRIC log after 08:13:53Z as of about 08:17Z; email and tickets not checked).
+- Whether ESCENTRIC or support already know, or whether a corrected file is on its way (no new ESCENTRIC file processed after 08:13:53Z as of 08:19Z; email and tickets not checked).
 - Whether order 15316 exists in Snap by another route (no pipeline log for it in 14 days; Snap not queried).
 - Whether WILDSMITH SO-29733 was corrected under a different order reference; only a search by that reference was run.
 - What shopify-connector does with the failure event beyond the two log lines.
