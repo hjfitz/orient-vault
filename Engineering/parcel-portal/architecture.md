@@ -43,9 +43,9 @@ verified_paths:
 ```orient-flow
 { "v": 1, "title": "Inside svc",
   "nodes": [
-    { "id": "http", "label": "http", "sub": "generated api, controllers, middleware, respond", "kind": "service" },
-    { "id": "core", "label": "core/<capability>", "sub": "auth, tenants, users, mapping, imports, orders, dispatch, shipments, printers, exports, carriers", "kind": "service", "tone": "accent" },
-    { "id": "adapters", "label": "adapters", "sub": "selector, gcs, secretmanager, pdf, password, pushauth", "kind": "service" },
+    { "id": "http", "label": "http", "sub": "generated api and publicapi, controllers, middleware, respond", "kind": "service" },
+    { "id": "core", "label": "core/<capability>", "sub": "auth, tenants, users, mapping, imports, orders, dispatch, shipments, printers, packaging, exports, carriers, sftpusers, apikeys, demo, readiness", "kind": "service", "tone": "accent" },
+    { "id": "adapters", "label": "adapters", "sub": "selector, fakecarrier, gcs, secretmanager, carriersecret, pdf, password, pushauth, idtoken, sshkey", "kind": "service" },
     { "id": "repos", "label": "repositories", "sub": "postgres (sqlc + tern), memory", "kind": "store" },
     { "id": "boot", "label": "bootstrap", "sub": "the only wiring", "kind": "service" }
   ],
