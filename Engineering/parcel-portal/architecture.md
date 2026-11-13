@@ -9,15 +9,18 @@ thesis: One Go module with five binaries (svc and the customer-API gateway on Cl
   every customer table is tenant-scoped through the request context, and dispatch
   is at-most-once per order.
 confidence: high
-verified: '2026-10-29'
-verified_sha: 696cbd4
+verified: '2026-11-13'
+verified_sha: 621357e
 verified_paths:
 - apps/svc/internal
 - apps/svc/cmd
 - apps/svc/openapi.yaml
+- apps/svc/public-openapi.yaml
 - apps/ui/src
 - packages/label-print/src
+- packages/ssh-keygen/src
 - iac/projects
+- iac/env
 ---
 # parcel-portal — architecture
 
