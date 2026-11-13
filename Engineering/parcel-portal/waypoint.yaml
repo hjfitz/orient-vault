@@ -24,6 +24,7 @@ key_paths:
   - apps/svc/cmd/sftp
   - apps/ui/src/app/(app)
   - packages/label-print
+  - packages/ssh-keygen
   - iac/projects
 
 runtime:
@@ -40,7 +41,9 @@ commands:
   missing: [build:check:tests]                      # Go + Next; the Node gate pair doesn't apply
 
 note: >
-  Programme state, gates and decisions live in Bifrost/Parcel Portal/, not here.
+  Known as Native Dispatch since 2026-11-13; the ids stay parcel-portal.
+  Programme state, gates and decisions live in Bifrost/Parcel Portal/ (units A-D, prod gate D1)
+  and Bifrost/Native Dispatch/ (customer feedback and trial units), not here.
   README.md and AGENTS.md at the repo root still describe svc-template; apps/svc/README.md
   and docs/runbook.md are the real reference.
 
