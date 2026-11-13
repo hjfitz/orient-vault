@@ -42,3 +42,4 @@
 {"game":"queens","difficulty":"hard","seed":2943017956,"ms":46456,"day":"2026-11-12","at":"2026-11-12T14:32:42.595Z","daily":true}
 {"game":"tango","difficulty":"easy","seed":63303181,"ms":44852,"day":"2026-11-12","at":"2026-11-12T14:34:58.812Z","daily":true}
 {"game":"tango","difficulty":"easy","seed":1868977056,"ms":41392,"day":"2026-11-12","at":"2026-11-12T16:40:44.892Z","daily":false}
+{"game":"queens","difficulty":"medium","seed":573538889,"ms":57729,"day":"2026-11-13","at":"2026-11-13T09:53:03.538Z","daily":true}
