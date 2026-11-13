@@ -1,0 +1,8 @@
+businessId: FORMAPL
+friendlyName: Forma Brands (PL)
+environment: production
+connectors: []
+wms: []
+created: '2026-11-13'
+last_synced: null
+kind: customer

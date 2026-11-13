@@ -1,6 +1,6 @@
 ---
 tags: [customer, ACADEMIC]
-verified: '2026-11-11'
+verified: '2026-11-13'
 verified_against: cust sync (config-service)
 generated: config-snapshot
 title: Academically Gifted — overview
@@ -36,5 +36,5 @@ confidence: high
 ## Evidence
 
 ```orient-evidence
-{"v": 1, "items": [{"id": 1, "kind": "log", "ref": "cust sync -> config-service (prod), 2026-11-11", "note": "connectors, use cases, confirmation flags and backend type, read live"}]}
+{"v": 1, "items": [{"id": 1, "kind": "log", "ref": "cust sync -> config-service (prod), 2026-11-13", "note": "connectors, use cases, confirmation flags and backend type, read live"}]}
 ```

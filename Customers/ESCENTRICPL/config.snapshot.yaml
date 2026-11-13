@@ -2,7 +2,7 @@
 # Secret-free by construction: allowlisted fields only.
 businessId: ESCENTRICPL
 friendlyName: Escentric Molecules PL
-synced: 2026-11-11T07:58Z
+synced: 2026-11-13T13:19Z
 environments:
   prod:
     storefronts:
