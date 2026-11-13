@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-13 — Count UI sign-in failures against the visitor, not the UI, when the UI proves who it is
+
+Count UI sign-in failures against the visitor, not the UI, when the UI proves who it is
+
+Unit F2: selector2-ui sends a Google ID token for its own service account (from the metadata server) and the visitor's address; selector2-api throttles on that address only when the token verifies (RS256, Google's keys, issuer, audience, expiry, the UI's email, email_verified), else on the last X-Forwarded-For entry as before. Ends the lockout where ten wrong guesses through the UI blocked every UI visitor. Terraform: env vars only.
+
+PR: ilg-merak/selector2#23
+
 ## 2026-11-13 — Give every dev tenant the mock carrier contracts, on creation and by backfill
 
 Give every dev tenant the mock carrier contracts, on creation and by backfill
