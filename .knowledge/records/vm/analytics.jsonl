@@ -567,3 +567,8 @@
 {"t":"leave","at":"2026-11-13T11:24:44.022Z","visit":"53a02a56-9424-4c3a-84e8-cb7760df110e","activeMs":9000}
 {"t":"view","at":"2026-11-13T11:24:44.023Z","visit":"b2e980f2-fc8c-4f65-a874-a316eef76a08","route":"/focus"}
 {"t":"leave","at":"2026-11-13T11:24:48.369Z","visit":"b2e980f2-fc8c-4f65-a874-a316eef76a08","activeMs":4000}
+{"t":"view","at":"2026-11-13T13:10:53.510Z","visit":"df18a805-280c-4f05-9097-07883312dbb6","route":"/today"}
+{"t":"leave","at":"2026-11-13T13:10:56.298Z","visit":"df18a805-280c-4f05-9097-07883312dbb6","activeMs":2000}
+{"t":"view","at":"2026-11-13T13:10:56.479Z","visit":"fa208a53-694a-4fef-b27d-46721ed9d870","route":"/focus"}
+{"t":"leave","at":"2026-11-13T13:11:01.991Z","visit":"fa208a53-694a-4fef-b27d-46721ed9d870","activeMs":3000}
+{"t":"leave","at":"2026-11-13T13:15:18.960Z","visit":"fa208a53-694a-4fef-b27d-46721ed9d870","activeMs":4000}
