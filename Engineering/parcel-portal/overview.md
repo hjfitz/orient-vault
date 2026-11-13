@@ -34,9 +34,10 @@ Harry's agents built it for one US customer (TCA, at a Yusen US site), as a para
 ```orient-flow
 { "v": 1, "title": "parcel-portal in context",
   "nodes": [
-    { "id": "wms", "label": "Customer WMS", "sub": "Manhattan SCALE", "kind": "external" },
+    { "id": "wms", "label": "Customer systems", "sub": "WMS (Manhattan SCALE for TCA)", "kind": "external" },
     { "id": "sftp", "label": "sftp (Go)", "sub": "MIG + TCP LB, static IP", "kind": "service" },
     { "id": "gcs", "label": "Inbound bucket", "sub": "<slug>/inbound/", "kind": "store" },
+    { "id": "gw", "label": "gateway (Go)", "sub": "Cloud Run, public, API key", "kind": "service" },
     { "id": "svc", "label": "svc (Go)", "sub": "Cloud Run", "kind": "service", "tone": "accent" },
     { "id": "db", "label": "Cloud SQL Postgres", "sub": "IAM auth only", "kind": "store" },
     { "id": "labels", "label": "Labels bucket", "kind": "store" },
@@ -46,8 +47,10 @@ Harry's agents built it for one US customer (TCA, at a Yusen US site), as a para
   ],
   "edges": [
     { "from": "wms", "to": "sftp", "label": "CSV over SFTP" },
+    { "from": "wms", "to": "gw", "label": "customer API" },
     { "from": "sftp", "to": "gcs", "label": "write on close" },
     { "from": "gcs", "to": "svc", "label": "Pub/Sub push" },
+    { "from": "gw", "to": "svc", "label": "declared /v1 routes, ID token" },
     { "from": "svc", "to": "db" },
     { "from": "svc", "to": "labels" },
     { "from": "svc", "to": "sel", "label": "validate, book, void, commit, query" },
