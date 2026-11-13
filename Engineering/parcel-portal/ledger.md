@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-13 — Order page: a dropdown for the carrier service and the order's total weight
+
+Order page: a dropdown for the carrier service and the order's total weight
+
+Native Dispatch units O3 and O2, UI halves (R06, R04). On an editable order the carrier service is a native, labelled select of the services the account offers (from GET /carrier/services); an order's own unoffered code stays as a marked option so a save never changes it unseen; svc's refusal shows under the field; no list, or an unreadable one, keeps the text box. The edit form now submits through onSubmit, because a form action made React reset the form and the select reverted to its first value after every save. The Packing panel and a dispatched order's Parcels card show the order's total weight, read-only, 'unit not stated' when svc returns none. Verified against the production build and a local svc with the fake carrier, driven by Playwright. UI only.
+
+PR: ilg-merak/parcel-portal#145
+
 ## 2026-11-13 — Make an order's total weight follow its parcels
 
 Make an order's total weight follow its parcels
