@@ -3,15 +3,27 @@ tags:
 - waypoint
 - parcel-portal
 title: parcel-portal — overview
-thesis: "parcel-portal is Native Dispatch, known as the Parcel Portal until 13 Nov 2026 (the repo, service and system ids stay parcel-portal): a Go service, a Next.js UI, an SFTP host, a customer-API gateway and two browser packages. It takes a customer's order CSVs by SFTP, browser upload or API, validates them row by row, books them with the carrier through Selector, prints labels at the pack bench and exports a day-end CSV. It is deliberately outside Fuse, and as of 13 Nov 2026 runs in dev only: prod is held."
+thesis: 'parcel-portal is Native Dispatch, known as the Parcel Portal until 13 Nov
+  2026 (the repo, service and system ids stay parcel-portal): a Go service, a Next.js
+  UI, an SFTP host, a customer-API gateway and two browser packages. It takes a customer''s
+  order CSVs by SFTP, browser upload or API, validates them row by row, books them
+  with the carrier through Selector, prints labels at the pack bench and exports a
+  day-end CSV. It is deliberately outside Fuse, and as of 13 Nov 2026 runs in dev
+  only: prod is held.'
 confidence: high
-verified: '2026-10-29'
-verified_sha: 696cbd4
+verified: '2026-11-13'
+verified_sha: 621357e
 verified_paths:
 - apps/svc/README.md
 - apps/svc/openapi.yaml
+- apps/svc/public-openapi.yaml
 - apps/ui/README.md
+- packages/label-print/README.md
+- packages/ssh-keygen/README.md
+- docs/runbook.md
+- .github/workflows
 - iac/projects
+- iac/env
 ---
 # parcel-portal — overview
 
