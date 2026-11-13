@@ -1,6 +1,6 @@
 {
   "id": "20261113-141804-a4a0",
-  "title": "Recording Fri 13 Nov 14:18",
+  "title": "Debrief - Ed Interview",
   "status": "done",
   "startedAt": "2026-11-13T14:18:04.416977537Z",
   "endedAt": "2026-11-13T14:37:46.021257289Z",
@@ -14,6 +14,13 @@
     ]
   },
   "call": true,
+  "speakers": {
+    "Room 1": "Harry",
+    "Speaker 1": "Matt Shaw"
+  },
+  "merged": {
+    "Room 2": "Room 1"
+  },
   "summary": {
     "tldr": [
       "Speaker 1 debriefed a first-round interview with candidate Ed (senior engineer): strong communicator with fast career progression, good AWS/Azure and OpenTofu exposure, and WMS domain knowledge.",

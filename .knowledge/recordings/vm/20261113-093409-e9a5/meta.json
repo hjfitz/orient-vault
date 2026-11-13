@@ -15,7 +15,85 @@
     ]
   },
   "call": true,
-  "summaryError": "claude reported an error: Failed to authenticate. API Error: 403 Attention Required! | Cloudflare",
+  "summary": {
+    "tldr": [
+      "Native dispatch demo to TCA went well: small additive feedback only, and it cuts their dispatch process from about 40 clicks to three.",
+      "Next step is a test against the TCA endpoint to prove it works, then give TCA an account so they can run single manual orders.",
+      "TCA is separately testing their API against the selector server from Manhattan, with a first test targeted for 30 November and a push to move to MVP2 (API). Conversations with them are slow, so the CSV route may stay for a while.",
+      "Monday's in-person session is about how to engage the American counterparts: who has authority on their side, plus an org chart. No further prep is planned.",
+      "Carrier proxy mocks exist and the selector test environment may get access to them."
+    ],
+    "decisions": [
+      "Do a test against the TCA endpoint first, then give TCA an account to run manual orders.",
+      "No further prep for Monday beyond what has been done; nobody will research US carriers beforehand.",
+      "Meet in person on Monday at 11, with arrival around 8.30 and a half-hour travel buffer."
+    ],
+    "actions": [
+      {
+        "owner": "Speaker 2",
+        "text": "Chase Phil for his written feedback on the native dispatch demo if it has not been sent.",
+        "due": ""
+      },
+      {
+        "owner": "Speaker 2",
+        "text": "Run the test of native dispatch against the TCA endpoint, then set TCA up with an account.",
+        "due": "next week"
+      },
+      {
+        "owner": "Speaker 1",
+        "text": "Raise on Monday how to interact with, plan with and onboard the first US customers, and who on their side has decision authority (possibly Adam).",
+        "due": "Monday 16 Nov"
+      },
+      {
+        "owner": "Speaker 1",
+        "text": "Make the VT changes for native dispatch and get testing going.",
+        "due": "next week"
+      },
+      {
+        "owner": "Speaker 1",
+        "text": "Check travel times for Monday and plan a buffer of at least half an hour.",
+        "due": "Monday 16 Nov"
+      },
+      {
+        "owner": "Room 1",
+        "text": "Give the team access to the mocked carrier proxies so Jake can add them to the selector testing environment.",
+        "due": ""
+      }
+    ],
+    "questions": [
+      "Who on the US side has authority to make decisions and is on board (Adam?).",
+      "What is the org chart or responsibility map (RACI-style) for the American counterparts?",
+      "Has Phil sent his feedback, and has Chris's feedback been collected anywhere?",
+      "How long will the CSV approach last, given how slow the API discussions with TCA are?",
+      "Will TCA's 30 November first test with the API go ahead, and will it move to MVP2?"
+    ],
+    "speakers": [
+      {
+        "label": "Speaker 1",
+        "name": "",
+        "basis": "Leads the meeting, plans Monday and the travel"
+      },
+      {
+        "label": "Speaker 2",
+        "name": "Wilders",
+        "basis": "Ran the TCA demo and is the TCA contact; Room 1 refers to Wilders when asking"
+      },
+      {
+        "label": "Speaker 3",
+        "name": "Darren",
+        "basis": "Addressed as Darren about the banner; handles the outage requests"
+      },
+      {
+        "label": "Room 1",
+        "name": "",
+        "basis": "On Harry's mic and built the carrier proxy mocks and the AppyKee UI; could be Harry, not certain"
+      }
+    ],
+    "model": "sonnet",
+    "usd": 0.0589949,
+    "durationMs": 8938,
+    "at": "2026-11-13T14:58:44.103716253Z"
+  },
   "enhanceError": "part 1 of 2: claude reported an error: Failed to authenticate. API Error: 403 Attention Required! | Cloudflare",
   "host": "vm",
   "capturedOn": "laptop",
