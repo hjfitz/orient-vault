@@ -1,7 +1,7 @@
 {
   "id": "20261113-141804-a4a0",
   "title": "Recording Fri 13 Nov 14:18",
-  "status": "transcribing",
+  "status": "done",
   "startedAt": "2026-11-13T14:18:04.416977537Z",
   "endedAt": "2026-11-13T14:37:46.021257289Z",
   "sources": {
@@ -13,7 +13,77 @@
       "speech-dispatcher-dummy"
     ]
   },
-  "call": false,
+  "call": true,
+  "summary": {
+    "tldr": [
+      "Speaker 1 debriefed a first-round interview with candidate Ed (senior engineer): strong communicator with fast career progression, good AWS/Azure and OpenTofu exposure, and WMS domain knowledge.",
+      "Concerns: weak TypeScript/Node (sees it as front-end), little SRE/DevOps, and only about five years' experience going into a senior role. No hard no and no red flags.",
+      "Agreed to move Ed to a second round with a code review and systems design challenge, watching whether he is pragmatic or tries to control the room.",
+      "Salary: Ed asked for 75k. Harry's side wants to bank the TypeScript gap and could offer lower with room to grow; no figures were set. Feedback to Ruby should stay light.",
+      "Also discussed Jack: three overflow Shopify stock sync tickets in sprint 15 critical to Charlotte Tilbury, and a good catch-up with Jack on being too technical."
+    ],
+    "decisions": [
+      "Progress Ed to a second round, with a code review and systems design challenge.",
+      "Do not give Ruby pejorative feedback about Ed's TypeScript maturity; bank it as a factor for any offer or salary discussion.",
+      "Decide on the day of the second round whether to bring the team in for the design or keep it between the interviewers with a team Q\u0026A, depending on the teamwork seen.",
+      "Tentatively schedule Ed's second round for Thursday 26 November."
+    ],
+    "actions": [
+      {
+        "owner": "Speaker 1",
+        "text": "Send feedback on Ed to Ruby and request a second round.",
+        "due": "Today (Fri 13 Nov)"
+      },
+      {
+        "owner": "Speaker 1",
+        "text": "Review the other candidates on the portal to see if any appeal.",
+        "due": ""
+      },
+      {
+        "owner": "Speaker 1",
+        "text": "Look at where the three sprint 15 Shopify stock sync overflow tickets for Charlotte Tilbury could fit.",
+        "due": ""
+      },
+      {
+        "owner": "Harry",
+        "text": "Sit down with Speaker 1 to work out the personality gaps in the team, to inform hiring.",
+        "due": "Next week"
+      },
+      {
+        "owner": "Speaker 1",
+        "text": "Schedule Ed's second round for Thursday 26 November.",
+        "due": "2026-11-26"
+      }
+    ],
+    "questions": [
+      "Can the Shopify stock sync work for Charlotte Tilbury be cut to an MVP, given they are testing interfaces in stages, and does it come before customer transaction history?",
+      "How much should be said to Ruby about concerns over Ed's TypeScript depth?",
+      "What salary would Ed accept, given the 75k ask and the idea of a lower start with progression?",
+      "Will Ed be a pragmatic senior or try to dominate the room? Is five years' experience too little for a senior role? The second round should show this.",
+      "Should the whole team see Ed's system design presentation, or only a Q\u0026A?"
+    ],
+    "speakers": [
+      {
+        "label": "Speaker 1",
+        "name": "",
+        "basis": "Interviewer on the call who ran Ed's first round, talks to Ruby (recruiter), caught up with Jack; likely Harry's peer or manager"
+      },
+      {
+        "label": "Room 1",
+        "name": "Harry",
+        "basis": "One of the room voices; most likely Harry, who discusses hiring and Jack as a manager, but not certain"
+      },
+      {
+        "label": "Room 2",
+        "name": "",
+        "basis": "Another voice in the room with Harry's mic; unnamed"
+      }
+    ],
+    "model": "sonnet",
+    "usd": 0.07704,
+    "durationMs": 9344,
+    "at": "2026-11-13T14:41:27.111137091Z"
+  },
   "host": "vm",
   "capturedOn": "laptop",
   "received": {
