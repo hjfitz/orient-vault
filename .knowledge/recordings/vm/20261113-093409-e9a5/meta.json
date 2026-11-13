@@ -1,0 +1,25 @@
+{
+  "id": "20261113-093409-e9a5",
+  "title": "Recording Fri 13 Nov 09:34",
+  "status": "transcribing",
+  "startedAt": "2026-11-13T09:34:09.103196619Z",
+  "endedAt": "2026-11-13T09:49:20.13447278Z",
+  "sources": {
+    "me": [
+      "JLAB TALK MICROPHONE Analog Stereo"
+    ],
+    "them": [
+      "Nightly",
+      "Slack",
+      "speech-dispatcher-dummy"
+    ]
+  },
+  "call": false,
+  "host": "vm",
+  "capturedOn": "laptop",
+  "received": {
+    "sha256": "431875609f33373adb2539cf06ccdb41738333dcbd9168dd5d9ea4749041a31e",
+    "bytes": 24364506,
+    "at": "2026-11-13T09:49:24.990961959Z"
+  }
+}
