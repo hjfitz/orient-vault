@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-13 — Admit the route announcer's style in the UI's CSP, add a favicon, use RMT24 in REST v1 examples
+
+Admit the route announcer's style in the UI's CSP, add a favicon, use RMT24 in REST v1 examples
+
+Unit F3: style-src-attr admits SvelteKit's announcer style by hash (no unsafe-inline), a favicon with /favicon.ico redirecting to it, and the GFS code RMT24 in rest-v1.yaml examples. Every UI page is now free of console errors in Chromium.
+
+PR: ilg-merak/selector2#21
+
 ## 2026-11-12 — Add the scenarios page: preset shipments for the twelve mock carriers
 
 Add the scenarios page: preset shipments for the twelve mock carriers
