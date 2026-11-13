@@ -58,7 +58,7 @@ Harry's agents built it for one US customer (TCA, at a Yusen US site), as a para
     { "from": "bench", "to": "ui", "label": "browser" }
   ] }
 ```
-Only the UI's service account and the import push account may invoke svc. The browser never talks to svc directly [1][3].
+Only the UI's, the gateway's and the import push service accounts may invoke svc. The browser never talks to svc directly, and a customer's systems reach it only through the gateway, with an API key [1][3].
 
 ## Where the reference lives
 - `apps/svc/README.md` is the deep reference for svc: routes, tenancy, import, dispatch, shipments, printing. `docs/runbook.md` is the ops path. `docs/printing.md` covers bench printers.
