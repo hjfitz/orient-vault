@@ -14,22 +14,40 @@ tags: [bifrost]
      never duplicate its ledger. This doc changes rarely; the state doc changes every session. -->
 
 ## Deliverables
-<!-- The live state doc, any external artifacts (a plan-of-record, an architecture review, a test
-     plan), and the named tranches/deliverables if the work splits into separately-shippable phases. -->
 - [[Native Dispatch/Migration State|Migration State]] — the live source of truth for progress
-- <artifact URL / named deliverable>
+- [[Native Dispatch/Requirements|Requirements]] — the 13 Nov feedback as 17 numbered requirements, each traced to who asked and checked against the code
+- History: the [[Parcel Portal/Overview|Parcel Portal Overview]] and its [[Parcel Portal/Migration State|Migration State]] (units A to D, and the held prod gate D1)
+- Sources: Teams messages from Phil, Pete and Chris (13 Nov); Oliver Wilders' Slack DM (12 to 13 Nov); the 13 Nov team catch-up, recording `20261113-093409-e9a5`
+
+## What it is
+Native Dispatch is GFS's own dispatch portal for shippers whose warehouse system drops order CSVs. It was called Parcel Portal until the 13 Nov catch-up, where the new name was chosen because "it describes what it does". Staff import orders by CSV (SFTP or a browser upload), fix the bad rows, pack, dispatch and print through Selector, and export the day back to the customer's system. TCA (Yusen US, FedEx) is the first customer. The repo is `ilg-merak/parcel-portal`, and the service and system ids keep that name.
+
+## Where it stands (13 Nov)
+- TCA saw a demo on 12 Nov. Oliver reports the feedback was "additive", and estimates the process drops from about 40 clicks in Despatch Cloud to three.
+- Prod is held at D1 in the Parcel Portal programme. Work and testing go on in dev.
+- On dev, TCA's customer validates all six FedEx services on version-test. On 13 Nov Oliver asked to test-print against TCA's live endpoint, Harry agreed, and Oliver reports a label was generated.
+- Per the catch-up, the next step is one proof against TCA's endpoint, then an account for TCA, who will start by dispatching one order at a time by hand. Oliver expects the proof to pass because nothing changes "beyond where it's pointing".
 
 ## Verdict
-<the go / no-go call, and the conditions it rides on>
+Undecided on prod, as in the Parcel Portal programme: that call waits on D1 and on G7 there (building outside Fuse, agreed with Oli Denton). Building and testing in dev goes on. The conditions that matter here are two: TCA's first manual order has to dispatch cleanly, and nothing about a live carrier account may be sent or committed without a person deciding it.
 
 ## Why this needs a programme
-<what makes it risky enough to plan rather than just do, in 2-4 sentences>
+Feedback now arrives in batches from several people (Phil, Pete, Chris, Oliver), some of it overlapping or changing an earlier call (Phil first wanted contact details editable, then accepted read-only), and a live carrier account sits behind the dispatch path. Numbering each ask, tracing it to who said it and checking it against the code stops items being dropped or argued twice. Three of the 17 turned out different from how they were put: the preset-dimensions complaint is a real bug, "cancel label" mostly exists already, and Chris's legacy fields belong to Selector2.
 
 ## Strategy
-<the shape of it in a few lines: how it is sequenced, and the cutover mechanism that flips it live>
+One unit is one PR. Each goes through `review-panel`, then merges once CI is green. No agent approves a prod gate. Units are taken in waves:
+- **Wave 1, what blocks TCA's first manual order:** T3 then T4 (weight 0 and the five templates, approved), I1 (the preset bug), T2 (ShipperId 0), L1 (void from the order page, so test labels on the live box can be cancelled), O1 (contact details).
+- **Wave 2, the order page:** O3, O6, O2, O8, and I2.
+- **Wave 3, larger changes:** O4 and O7.
+- **Waiting on an answer:** I3 and O5 (G1), X1 (G2), T6 (G3), T7 (G4), T10 (G5), L2 (G6), T11 (G7).
 
 ## Scar tissue
-<deliberate, permanent divergences and do-not-change facts worth stating up front>
+Kept in the [[Native Dispatch/Migration State|Migration State]]: no commit or manifest calls by an agent, no prod gate approved, nothing sent to TCA's live endpoint without Harry, nothing about an order defaulted.
+
+## Context from the catch-up (not units)
+- TCA is testing Manhattan against the Selector server directly, and wants an API as MVP2, with a first test planned for 30 Nov. Phil leads that conversation. The API key UI is hidden at the moment (S1); see Q7 and G5.
+- The team wants a named decision-maker on Yusen's side and an org chart, to raise at the in-person session on Monday 16 Nov at 11:00.
+- The recording is auto-transcribed, so names and terms are approximate. "VT changes for native dispatch" is unclear and is in Q8.
 
 ## Next
-<the immediate next unblocked unit, and the skill that drives it (`waypoint-programme`)>
+Wave 1, starting with T3, the weight 0 change Harry approved. Driven by `waypoint-programme`. Phil's call (G1) and Oliver's answer on cancelling (G6) are the two people-dependencies worth chasing first.
