@@ -48,6 +48,8 @@ That is the whole architecture, and it dictates the posture.
 
 secops-reporting is the fifth member. It ships no pinned contract: it is a deployed API that the `secops-*` workflows call [5].
 
+remote-compute is the sixth, and it doesn't pin a contract either. It is a prod-only Terragrunt stack that gives each engineer a Claude Code VM. Its users are people, who change it by a PR to `prod.tfvars`. The contract that needs care is internal: the `rc-*` instance metadata its module writes and the `images` repo's VM image reads. Change both together [7].
+
 **Rolling tags and semver behave differently and that is deliberate.** A workflow fix should
 reach every caller without a PR in each one, so the tag force-moves. A package's consumers pin
 explicitly, so a fix needs a bump and a republish — and will not reach a consumer that reads
@@ -107,6 +109,7 @@ breaking, and will be discovered by someone else's red pipeline.
   { "id": 3, "kind": "code", "ref": ".github/workflows/release.yml@db43671", "note": "ui-toolkit: bump derived from release:* labels" },
   { "id": 4, "kind": "doc", "ref": "Engineering/observability-sdk/overview.md" },
   { "id": 5, "kind": "doc", "ref": "Engineering/secops-reporting/overview.md" },
-  { "id": 6, "kind": "doc", "ref": "~/code/CLAUDE.md", "note": "Security Scanning section" }
+  { "id": 6, "kind": "doc", "ref": "~/code/CLAUDE.md", "note": "Security Scanning section" },
+  { "id": 7, "kind": "doc", "ref": "Engineering/remote-compute/architecture.md", "note": "G3: rc-* metadata contract with images" }
 ] }
 ```

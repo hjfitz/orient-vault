@@ -36,7 +36,9 @@ different from a Fuse service, which is exactly why the `platform-hat` skill exi
     { "id": "dd", "label": "distraction-dashboard", "kind": "service", "service": "distraction-dashboard", "ev": [4] },
     { "id": "ecm", "label": "ecm-next", "sub": "gfs-ecm/ui-core app", "kind": "external", "ev": [7] },
     { "id": "svc", "label": "Fuse services", "kind": "external", "ev": [5] },
-    { "id": "tmpl", "label": "repo-template-ilg", "sub": "scaffold for new services", "kind": "external", "ev": [2] }
+    { "id": "tmpl", "label": "repo-template-ilg", "sub": "scaffold for new services", "kind": "external", "ev": [2] },
+    { "id": "rc", "label": "remote-compute", "sub": "Claude Code workstations", "kind": "service", "service": "remote-compute", "tone": "accent", "ev": [8] },
+    { "id": "eng", "label": "ILG engineers", "sub": "one VM each, by PR", "kind": "external", "ev": [8] }
   ],
   "edges": [
     { "from": "tk", "to": "fu" },
@@ -45,11 +47,14 @@ different from a Fuse service, which is exactly why the `platform-hat` skill exi
     { "from": "ga", "to": "svc", "label": "uses: at a rolling tag" },
     { "from": "ga", "to": "sec", "label": "secops-* workflows POST reports" },
     { "from": "tf", "to": "tmpl", "label": "module source" },
-    { "from": "sdk", "to": "svc", "label": "npm, nine repos" }
+    { "from": "sdk", "to": "svc", "label": "npm, nine repos" },
+    { "from": "rc", "to": "eng", "label": "prod.tfvars entry → GCP VM" }
   ] }
 ```
 
-Run `wp system status ilg-platform` for the live list: 2 infra, 2 library, 1 backend.
+Run `wp system status ilg-platform` for the live list: 3 infra, 2 library, 1 backend.
+
+remote-compute is the one member consumed by people, not repos. Each engineer gets a GCP VM for Claude Code from one entry in its `prod.tfvars`. It pins no contract for other repos. Its one internal contract is the `rc-*` instance metadata that the `images` repo's VM image reads [8].
 
 No running Fuse service sources a Terraform module. The only consumer found is the new-service scaffold [2]. **ASSESSED** Nine repos use the SDK, and fapi is the pilot. That comes from a manifest scan of local checkouts, not the registry [5].
 
@@ -88,6 +93,7 @@ Bumping the number is effectively a major release.
   { "id": 4, "kind": "code", "ref": ".github/workflows/release.yml@db43671", "note": "ui-toolkit: label-driven release bump on main" },
   { "id": 5, "kind": "doc", "ref": "Engineering/observability-sdk/overview.md", "note": "nine consumer repos, scanned 2026-10-13" },
   { "id": 6, "kind": "doc", "ref": "Engineering/secops-reporting/overview.md", "note": "every secops-* reusable reports here" },
-  { "id": 7, "kind": "doc", "ref": "Engineering/ui-toolkit/overview.md", "note": "ecm-next is the primary consumer and reference" }
+  { "id": 7, "kind": "doc", "ref": "Engineering/ui-toolkit/overview.md", "note": "ecm-next is the primary consumer and reference" },
+  { "id": 8, "kind": "doc", "ref": "Engineering/remote-compute/overview.md", "note": "joined the system 2026-11-13" }
 ] }
 ```
