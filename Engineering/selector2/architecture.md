@@ -96,8 +96,10 @@ SOAP, REST v1, REST v2 and the admin shipment routes all call the same use-cases
 
 A `god` account acts on its own tenant for REST and SOAP. On the admin routes it names a tenant with `?tenantId=`, and no route gives it an all-tenants scope [4].
 
+The sign-in throttle counts failures per source: the last `X-Forwarded-For` entry or, on a call from selector2-ui whose `X-Selector2-Caller-Token` verifies as a Google ID token for the UI's service account (RS256, Google's keys, a fixed audience), the address in `X-Selector2-Visitor-Address`. Anything else ignores both headers and never fails the call.
+
 ## Persistence
-Postgres 17 on Cloud SQL, IAM logins only, with 12 tables and four migrations (`apps/selector2-api/drizzle/`). Migrations run as a Cloud Run job inside the Terraform apply, as the migrator service account; the app login (`app_rw`) cannot change the schema. A repeated `(tenant, reference)` is claimed with one `INSERT ... ON CONFLICT DO UPDATE ... RETURNING`, and a booked or committed holder is returned without calling the carrier. Labels are stored as `bytea` [5].
+Postgres 17 on Cloud SQL, IAM logins only, with 12 tables and four migrations (`apps/selector2-api/drizzle/`). Migrations run as a Cloud Run job inside the Terraform apply, as the migrator service account (on dev it then gives every tenant lacking them the 12 mock contracts, logging a failed tenant without failing the job); the app login (`app_rw`) cannot change the schema. A repeated `(tenant, reference)` is claimed with one `INSERT ... ON CONFLICT DO UPDATE ... RETURNING`, and a booked or committed holder is returned without calling the carrier. Labels are stored as `bytea` [5].
 
 ## Runtime
 Two Cloud Run services on the platform's golden `node24-runtime` image (`selector2-api-dev`, `selector2-ui-dev`), min instances 0. The platform module exposes no max-instance cap, so the pool (default 2 connections) is the only bound on a 25-connection `db-f1-micro`. **ASSESSED:** Cloud Run probes only liveness, so a service that never reaches its database stays "ready" and returns 503 from `/health/readiness` [6].

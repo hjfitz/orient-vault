@@ -45,13 +45,14 @@ The throttle keys on the last `X-Forwarded-For` entry (one trusted hop), and a w
 2. From a different network send one request for the same username. Expect `401`. A `429` means every caller shares one bucket (too far right).
 3. The `429` carries `Retry-After` of at most 900 seconds.
 
-On 2026-11-12 the api passed step 1 on dev (twelve bad logins gave ten 401s then 429s). The ui's check (`XFF_DEPTH=1`) is described in `docs/ui.md` and was not recorded as run.
+On 2026-11-12 the api passed step 1 on dev (twelve bad logins gave ten 401s then 429s). On 2026-11-13, after the UI started forwarding its visitors (#23), the api passed steps 1 and 3 again plus the forwarded-visitor checks 4 to 6 in `docs/admin-api.md` (6 from one network only): ten wrong sign-ins through the ui, then the same username straight to the api from the same machine, gave 429. Step 2 and the ui's forged-entry check (`XFF_DEPTH=1`, `docs/ui.md`) are still to run.
 
 ## Carrier egress: where the mocks come from
 - Each carrier's proxy is a service in `ilg-merak/carrier-playground`. selector2 calls its run.app URI, not its public name.
 - `iac/projects/selector2-api/carrier-egress.tf` reads carrier-playground's `mock-edge` output `service_uris` with `terraform_remote_state` (state prefix `carrier-playground/mock-edge`, the same bucket) and sets `CARRIER_PROXY_URIS` and `CARRIER_ID_TOKEN=metadata`. `mock-edge` calls Amazon SFP `amazonsfp`; the Terraform renames it to `amazon-sfp`.
 - With the output missing, the map is empty and the api falls back to the public names, `https://<carrier>.mocks.merak.freightops.dev`. selector2 picks up a change to `mock-edge` only on its own next apply.
 - The mocks stay public, so the api's service account needs no invoker grant today. If they are made private, add `selector2-api-dev-cloudrun@ilg-merak-dev-b5e3.iam.gserviceaccount.com` to `mock-edge`'s `invoker_members`.
+- On dev, `mock_contracts = true` in `iac/env/dev.tfvars` sets `SELECTOR2_MOCK_CONTRACTS` on the api and the migrate job. The job logs `mock contracts backfilled` with `tenants`, `tenantsFilled` and `tenantsFailed`, and `mock contracts provisioned` per tenant filled; a tenant that fails is logged with its id and never fails the job or the deploy. The first run (2026-11-13) filled god's tenant.
 - Each contract's proxy key is a `fixture:<key>` reference in `carrier_account.credential_ref` (a published mock key). `secret:<name>` is refused with `credential_unavailable`, because Secret Manager is never read for carriers.
 - A carrier call that fails shows as a `carrier_call` row (operation, correlation id, attempt, status, outcome, error code) and, in the UI's routes, as the call trace on a shipment.
 
@@ -68,4 +69,4 @@ On 2026-11-12 the api passed step 1 on dev (twelve bad logins gave ten 401s then
 - **A booking the carrier made but selector2 did not record** comes back as `unrecorded` with the handle, consignment and parcel numbers. Cancel it with those.
 - **A repeated create inside the stale limit** returns `in_progress` after an ambiguous failure. Check with the carrier before the limit passes.
 - **A local plan with a developer account** gets 403 on the state object. Only `terraform-runner@ilg-merak-dev-b5e3` reads it, so read the plan from the PR comment.
-- **Rate-limited sign-ins** return 429 with `Retry-After`. Through the ui, one visitor's failures also spend the shared per-source budget on the api (see [[known-context]]).
+- **Rate-limited sign-ins** return 429 with `Retry-After`. Through the ui the api counts each visitor's own address, but only while the ui's token verifies. A `forwarded visitor address ignored` warning (at most one a minute per reason) means it has fallen back to the ui's shared address: `other_caller` is a service-account mismatch, `wrong_audience` an audience mismatch, `keys_unavailable` (with a `cause`) Google's keys unreadable. The ui logs `api_caller_token_unavailable` when the metadata server fails.
