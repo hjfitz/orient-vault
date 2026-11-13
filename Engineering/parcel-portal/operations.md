@@ -24,7 +24,7 @@ verified_paths:
 - svc publishes `openapi.yaml` after a prod deploy as the release `svc-openapi-v<info.version>`. `public-openapi.yaml` isn't released; the gateway serves it at `/openapi.json`.
 - GCP grants for the deploy runner live in `ilg-merak/gcp-config`, not here.
 - **Red today (snapshot 2026-11-13):**
-  - `dev-smoke.yaml` has failed every nightly run since at least 5 Nov: dev refuses the smoke account's sign-in. It is report-only, so no deploy is held.
+  - `dev-smoke.yaml` has failed every nightly run since 5 Nov, its first: dev refuses the smoke account's sign-in. It is report-only, so no deploy is held.
   - Container scans pass only through `.trivyignore.yaml`: three entries for the platform runtime images' copies of `golang.org/x/net` and `zlib1g`, expiring 2026-11-16. The scans fail again then unless those images are rebuilt.
 
 ## Access
