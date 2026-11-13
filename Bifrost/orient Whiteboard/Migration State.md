@@ -51,10 +51,43 @@ Sequencing: B0 → B1 → B2 → B3 in series is the minimum Harry asked for. B4
 - **R3 Save format and merge noise** — Mitigation: one element per line, stable key order and ids, byte-identical write-back of an untouched board, base-hash conflicts as for notes, history diff already works on text — open.
 - **R4 Size and cost** — a board with thousands of elements. Mitigation: caps in the lint and the parser (300 elements), coordinates and strings bounded, the page stays under the editor's 1 MiB text cap, viewport-only drawing if a view needs it — open.
 - **R5 Untrusted text in SVG** — labels and notes are text nodes, never HTML or attributes; glyphs come from the fixed `ICON_KEYS`; no URL fields. Mitigation: tests with markup, bidi and control characters in every field — open.
+> SUPERSEDED 2026-11-13: orient is desktop only (gate G7 of the Svelte UI programme), so B2 and B3 built for the mouse, the keyboard and the trackpad. The List view (B3) is the accessible path.
 - **R6 Touch and mobile** — editing on a phone is possible but cramped. Mitigation: 36 px targets, pan and pinch first, a list view of the elements as the accessible and small-screen path — open.
+- **R7 `layoutFlow` blows up on interleaved groups** — found by the B9 builder fuzzing the conversion.
+  - **What happens:** in 112 of 200 random flows whose groups interleave, `src/render/md/flow-layout.ts` `layoutFlow` produces widths around 1e22. The reading view draws such a flow the same way. B9 refuses to convert it, with the reason, because the board would pass 10,000 units.
+  - **Who is affected:** no vault flow does this today. `ups-proxy`, `connectors-dpd` and 8 other real flows lay out and convert cleanly.
+  - **Status:** open, not fixed, as a renderer change of its own. The golden harness will show which documents move.
 
 ## Decision log
 <!-- Dated, newest first. -->
+- **2026-11-13** — **B9 done and live at 130c298** (b12f868..130c298: 10 commits, opus builder, plus one copy fix by the lead). **The JSON wall is gone.**
+  - **In the live editor:** an inline `orient-flow` or `orient-board` (not on a whiteboard page) is drawn as its diagram, under a caption with its title, and shows its source when the caret is in it. One that does not parse, or has lint errors, stays text.
+  - **Make it a whiteboard** is a quiet button on the caption. It opens a confirm, then makes **one** vault write: a whiteboard page beside the note, named from the flow title up to its first " (" (`ups-proxy`'s is "Component diagram: ups-proxy"), at the next free name if taken, never overwriting.
+    - Only then is the fence swapped for `![[…]]`, as one undo step, an unpublished edit.
+    - Byte-identical text links the existing board and says "Linked the existing …"; the core's create now answers `reused`.
+    - No answer says "the board may have been made in … Check there".
+  - **The conversion** (`ui/src/lib/board/from-flow.ts`) uses `layoutFlow` positions, rounded to the 20-unit grid and never under the board minimum. Every field is kept, and a group that shares a node's id is renamed. `ups-proxy` gives 20 boxes, 27 arrows and 1 group, with no lint findings at all.
+    - Boards now draw `service` (the colour swatch and the name) and `ev` (evidence references) as the flow does (`board-layout.ts`).
+    - The flow's own edge routes are not stored; boards draw straight or one-bend arrows, and the confirm says so.
+  - **Review (create and swap; conversion and widget) found 10 issues, all fixed with tests failing first:**
+    - stale offsets across the dynamic import could replace unrelated text, or orphan a board;
+    - the "Made" notice outlived Publish;
+    - "Nothing was made" was said when the page may exist;
+    - a silent reuse of an identical board;
+    - boxes under the board minimum, so a fresh board warned;
+    - a valid flow with a shared group and node id was refused;
+    - converted boards dropped the service colours and evidence;
+    - a FIFO drawing cache and an unbounded heights map;
+    - a raw caption title.
+  - **Lead's fix:** the no-answer message said "orient-core did not answer (orient-core did not answer)", and now says it once (130c298).
+  - **Gates:** typecheck 0, lint 44, `ui:check` 0, the touched files (about 3,400 tests). The golden is identical over 1,459 documents through the renderer change (no existing board uses `service` or `ev`).
+  - **Live check** (`:3000`, the real `ups-proxy`, writes aborted):
+    - the diagram is drawn (1 SVG, 0 JSON lines), with the caption and the action;
+    - opening stays Published with 0 writes;
+    - the confirm names the board and the folder, and says what is written when;
+    - the create, aborted, says the board may have been made, and the page text is unchanged.
+  - **Not converted:** nothing was converted. Harry chooses which diagrams to move.
+  - **Next:** Notes NV2b (drag to reorganise the tree).
 - **2026-11-13** — **B3 done and live at d959794** (6a9e048..d959794: 8 commits, opus builder). **The canvas is a C4 tool.**
   - **What was built:**
     - **Palette:** Context (Person, System, External system), Deeper (Container, Component, Store, Topic, Step) and Frame (Group, Note). Each is placed by a click at a free spot in view, or dropped where it is dragged, snapped; this replaces B2's Add box.
