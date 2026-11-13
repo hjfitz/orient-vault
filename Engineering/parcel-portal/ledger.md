@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-13 — Say Native Dispatch in what users and customers see
+
+Say Native Dispatch in what users and customers see
+
+Native Dispatch unit T13 (Harry: rename to native dispatch). Page titles, sign-in card, nav heading, bench test-print title, the gateway docs title, the customer API title (public spec 1.2.1) and the export file's Sales Channel column now read Native Dispatch. Identifiers, Terraform, Datadog names and code comments are unchanged. The export value goes into customers' files, so Oliver is told.
+
+PR: ilg-merak/parcel-portal#139
+
 ## 2026-11-13 — Allow a packaging preset's weight to be zero
 
 Allow a packaging preset's weight to be zero
