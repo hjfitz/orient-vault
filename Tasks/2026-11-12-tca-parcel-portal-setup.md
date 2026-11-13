@@ -1,7 +1,7 @@
 ---
 tags: [adhoc-task]
 date: 2026-11-12
-tldr: "TCA test setup in the dev Parcel Portal still blocked on dev admin sign-in (creds file rejected on dev). Meanwhile shipped to main: browser-side SFTP key generation (#132, #133, #135), packaging unit-select fix (#134), API key UI hidden (#131). Prod held at D1 throughout"
+tldr: "TCA is set up and validating on dev (version-test); Oliver reports a live test print worked on 13 Nov. Shipped #131-#136 (API key UI hidden, browser SFTP keygen, packaging units, customs rounding). 13 Nov: Phil, Pete, Chris and Oliver's feedback broken into 17 requirements and a new programme, Native Dispatch (the portal's new name). Weight 0 and TCA's templates approved, not started. Prod held at D1"
 session_id: 3daf16d6-87bb-438d-944f-828764dcae71
 status: open
 ---
