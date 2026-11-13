@@ -9,8 +9,8 @@ thesis: One pnpm workspace with a layered NestJS api (http to use-cases to core,
   layer so each route carries its own guard, and a carrier create is never retried
   once the proxy may have received it.
 confidence: moderate
-verified: '2026-11-12'
-verified_sha: ee122ca
+verified: '2026-11-13'
+verified_sha: 1ce53d4
 verified_paths:
 - apps/selector2-api/src
 - apps/selector2-api/openapi
