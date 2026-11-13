@@ -86,6 +86,7 @@ Legend: ⬜ not started · 🟨 in progress · ✅ merged · ⛔ blocked · ⏸ 
 - [ ] **G5 — Harry decides whether the API key UI comes back** — blocks T10. The catch-up says TCA wants the API as MVP2 with a first test on 30 Nov (Q7).
 - [ ] **G6 — Oliver says what is missing for cancelling a dispatched label** — blocks L2. Void from the order page, deleting the order, or voiding after manifest (Q1).
 - [ ] **G7 — Oliver says which countries need DDP on FIP** — blocks T11.
+- [ ] **G8 — Harry decides whether user-facing text and the export say Native Dispatch** — blocks T13. The export value is in customers' files.
 
 ## Risks
 <!-- ★ marks the load-bearing ones. Each: the risk, the mitigation, and its current status. -->
