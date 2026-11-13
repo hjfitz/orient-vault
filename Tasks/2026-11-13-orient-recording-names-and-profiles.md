@@ -3,7 +3,7 @@ tags: [adhoc-task]
 date: 2026-11-13
 tldr: "orient recordings: summary prose now uses the speaker names Harry set (not 'Speaker 1'/'Room 3'), speakers suggest their People profile, and person pages list the recordings they were in"
 session_id: c028ee4f-09ab-4b35-9e1b-f46ac22ef6c1
-status: done
+status: open
 ---
 # Fix recording summary names and link recordings to People profiles
 
