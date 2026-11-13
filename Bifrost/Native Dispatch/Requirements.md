@@ -46,7 +46,7 @@ The 13 Nov feedback, broken into numbered requirements. Each one says who asked,
 
 ### R05 — Show recipient email and phone beside the address
 - **From:** Phil: "Recipient Email and Phone Number need to be displayed with the Shipping Address within an order and editable." Pete asked why they'd ever change. Phil then accepted "displayed and read only", as in Despatch Cloud.
-- **Today:** Both are stored (`models/order.go:40-44`), mapped from the Email and Phone One columns, returned by the API and sent to Selector (`core/dispatch/request.go:129`). The order form has no contact fields (`ui orders/[id]/order-form.tsx:16-27`), and `OrderEdit` has none. A missing phone already blocks dispatch: Check with carrier rejected it on 12 Nov.
+- **Today:** Both are stored (`models/order.go:40-44`), mapped from the Email and Phone One columns, returned by the API and sent to Selector (`core/dispatch/request.go:129`). The order form has no contact fields (`ui orders/[id]/order-form.tsx:16-27`), and `OrderEdit` has none. svc has no phone check: only the carrier refuses a missing one (Check with carrier rejected it on 12 Nov), so an order without a phone can show Ready.
 - **Verdict:** partial (stored and sent, not shown). **Unit:** O1, read-only. Editable stays off the list unless Phil asks again.
 
 ### R06 — Carrier service as a dropdown of the services available
@@ -117,6 +117,16 @@ The 13 Nov feedback, broken into numbered requirements. Each one says who asked,
 - **Today:** At 14:06 UTC Oliver wrote that "connection generates a label and test worked with live account". That is his report; nothing in this repo or session confirms what was created at the carrier.
 - **Verdict:** in progress. **Unit:** T1.
 
+### R18 — Round package dimensions down, not up
+- **From:** Oliver, 12 Nov 15:01 UTC: Despatch Cloud only ever sends whole numbers for dimensions (0 of 116 live bookings had decimals) and it rounds down: TCA's real orders went as 22x20x10, 27x20x20 and 22x22x10, the 9x8x4, 11x8x8 and 9x9x4 inch boxes with the decimals dropped. "Can you round down to match? Then the portal sends exactly what DispatchCloud does now and dim weight doesn't move." Weights keep their decimals.
+- **Today:** the Selector request sends whole centimetres rounded **up** (`wholeCM`, a ceiling, in `adapters/selector/client.go`), so a 22.9 x 20.3 x 10.2 cm box goes out as 23 x 21 x 11.
+- **Verdict:** gap. **Unit:** T16. An edge to settle in the unit: a side under 1 cm would floor to 0.
+
+### R19 — Test with DDP for everything
+- **From:** Oliver, 12 Nov, passing on Chris's advice: "chris advised test using ddp for everything. canada is the only country noted so far." Oliver's TCA server config also shows FIP with Terms Of Sale DDP and Shipment Content "Stationary Products".
+- **Today:** the portal hardcodes DDU, and sends customs details only for Canada.
+- **Verdict:** gap. **Unit:** T11 (no longer waiting on an answer).
+
 ## Open questions
 
 | # | Who | Question |
@@ -128,7 +138,7 @@ The 13 Nov feedback, broken into numbered requirements. Each one says who asked,
 | Q5 | Phil | Should the total weight be editable, or always the sum of the packages? Proposed: the sum, read-only. |
 | Q6 | Chris | Which spec is going to Yusen US: Selector2's REST API or Native Dispatch's `public-openapi.yaml`? The two named fields live only in Selector2's. |
 | Q7 | Harry | **Answered 13 Nov: no, it stays hidden (T10 dropped).** The API key UI has been hidden since 12 Nov (#131). The catch-up says TCA wants the API as MVP2 with a first test on 30 Nov, and that Oliver set up a connection on it on 12 Nov. Re-enable it? (Re-enabling is a revert.) |
-| Q8 | Oliver | Still open: DDP on FIP and for which countries; whether whole-cm rounding of dimensions is acceptable; printer models and Yusen IT's policy on swapping a printer driver; what "VT changes for native dispatch" means in the catch-up. |
+| Q8 | Oliver | Still open: DDP on FIP and for which countries; printer models and Yusen IT's policy on swapping a printer driver; what "VT changes for native dispatch" means in the catch-up. |
 
 ## Carried findings with no new requirement
 
