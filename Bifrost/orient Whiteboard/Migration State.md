@@ -55,6 +55,39 @@ Sequencing: B0 → B1 → B2 → B3 in series is the minimum Harry asked for. B4
 
 ## Decision log
 <!-- Dated, newest first. -->
+- **2026-11-13** — **B3 done and live at d959794** (6a9e048..d959794: 8 commits, opus builder). **The canvas is a C4 tool.**
+  - **What was built:**
+    - **Palette:** Context (Person, System, External system), Deeper (Container, Component, Store, Topic, Step) and Frame (Group, Note). Each is placed by a click at a free spot in view, or dropped where it is dragged, snapped; this replaces B2's Add box.
+      - It maps onto the existing kinds, with no new node kinds: Person→person, System and Container→service, External→external, Component and Step→step, Store→store, Topic→topic with the pubsub glyph. `tech` tells the pairs apart.
+      - Topics are still drawn as pills, which is B6's call.
+    - **Glyph picker** (Glyph or `i`) with 21 glyphs. The ten new generic marks (dataflow, firestore, loadbalancing, dns, logging, monitoring, persistentdisk, vpc, kms, iam) are in `diagram-presets.ts`, so `orient-flow` draws them too.
+    - **Connecting:** connectors drag from a box's side handles, with the target marked and the label opening for typing. Keyboard connect is `c`.
+    - **Groups and notes:** Group (or `g`) wraps the selection and opens its name; Note opens a note for typing.
+    - **Labels:** name, type and description are edited in place on the box.
+    - **Panels:** the Board checks panel (lint and preset warnings; a click selects); the List view (every box, group, note and arrow, with Edit, Join and Delete and a checkbox for choosing by key).
+    - **Keys:** Alt-arrow resizes; a run of arrow nudges is one undo step; Ctrl-C and Ctrl-V paste.
+  - **Mirror:** `orient-writers` `diagram-rules.mjs` lives only on its `origin/main`. Local `main` has diverged (2 ahead, 2 behind) and has another session's uncommitted edits, so the builder committed the mirror update as 927a359 on a **local, unpushed** branch, `hjf/diagram-rules-icons`, off `origin/main`. It is left for Harry.
+  - **Review (model and renderer; canvas interaction) found 7 issues, all fixed with tests failing first:**
+    - a new group could land under a bigger group on a hand-ordered board;
+    - pasted or duplicated groups covered smaller ones;
+    - the board lint went quadratic (3,086 ms against 576 ms on a 100k board; `note-block-checks` runs it in the core's event loop on every preview);
+    - connect-by-key stayed armed after other actions and hijacked the next Enter;
+    - an Esc'd palette drag could still place a box on a late release;
+    - the List and Checks panels lost focus to the canvas;
+    - the glyph menu's Esc went to the toolbar.
+  - **Gates:** typecheck 0, lint 44, `ui:check` 0, 1,521 board, lint and diagram tests (74 mirror tests skip locally). The golden is identical over 1,459 documents, and `rendererSourceHash` moved (the cache misses once).
+  - **Live check** (`:3000`, real `test whiteboard`, writes aborted):
+    - all 10 palette entries are there;
+    - a Container lands at (320, −100), overlapping nothing;
+    - a connector dragged from a handle (8 shown) to Customer makes `n1→customer:calls`;
+    - `g` wraps Orders and Payments as "Payments platform";
+    - typing `g` in a label does not group;
+    - Ctrl-C then Ctrl-V adds a copy;
+    - the checks panel shows a real warning;
+    - the List shows 5 boxes, 1 group, 0 notes and 3 arrows;
+    - Publish was tried, aborted, and the draft kept.
+  - **Polish noted:** the glyph menu has no type-to-filter, and opens on "None" rather than the box's current glyph.
+  - **Next:** B9 (turn the C4 notes' inline `orient-flow` JSON into boards plus embeds), then Notes NV2b (drag to reorganise the tree). B4 export and B6 (Harry's topic-shape call) when there is room.
 - **2026-11-13** — **B2 done and live at e850831** (d97d804..e850831: 7 commits, opus builder). **The board is drag and drop now.**
   - **What was built:**
     - Edit on a whiteboard page opens a canvas (`ui/src/lib/board/`: `model.ts`, `snap.ts`, `fence.ts`, `hit.ts`, `draw.ts`, `BoardCanvas.svelte`, `BoardEditor.svelte`).
