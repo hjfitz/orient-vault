@@ -20,7 +20,7 @@ confidence: moderate
 **Why it exists.** Despatch Cloud (DC) was due to go live for TCA on 9 Nov 2026. Its CSV import fails a whole file on one bad line. The portal is the parallel route: strict partial import, a fix-it loop, and an export the WMS can read. Whether TCA switches is a business call outside engineering. UNRESOLVED: whether DC went live on 9 Nov is not recorded in the vault.
 
 ## Where it stands (13 Nov 2026)
-- **Dev only.** No portal build has reached prod. Every prod run since the first push is cancelled or waiting at the `terraform-prod` approval, and the prod launch waits at unit D1 [1][2].
+- **Dev only.** No portal build has reached prod. Each prod run since the first push either gets cancelled by a newer run or waits at the `terraform-prod` approval. The prod launch waits at unit D1 [1][2].
 - **TCA** saw a demo on 12 Nov. The 13 Nov catch-up set the next step: one proof against TCA's own Selector endpoint, then an account for TCA. TCA will start by dispatching one order at a time by hand [3].
 - **The customer API** runs on dev behind a public gateway. Its key screen has been hidden since 12 Nov, because the business isn't ready for it. TCA wants an API test from 30 Nov, so bringing the screen back is an open call [3][4].
 - **Programmes.**
