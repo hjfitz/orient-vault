@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-13 — Make an order's total weight follow its parcels
+
+Make an order's total weight follow its parcels
+
+Native Dispatch unit O2, svc half (R04). One function now gives an order's total weight from its parcels (each converted to kg, rounded to the gram as dispatch does, summed); the export's Shipping Weight and GET /orders/{id} totalWeight use it, so an edited parcel weight reaches the export as well as Selector. When the parcels can't give a total, the file's stated total is used. Dispatch now calls the same conversion. The layout preview still shows the mapped total. No contract change. The export weight is now always kilograms (it used to be the file's unit): not confirmed with Yusen, so it is a gate before prod (G9). The export still reads the order's current parcels, not what a voided shipment booked (O10). The UI display is the next half.
+
+PR: ilg-merak/parcel-portal#144
+
 ## 2026-11-13 — Offer a customer the carrier services on its account, and check a service code on edit
 
 Offer a customer the carrier services on its account, and check a service code on edit
