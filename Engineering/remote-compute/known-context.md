@@ -73,6 +73,8 @@ Harry confirmed these three are the only ones so far (2026-11-13):
 - **Owners are root on their VM.** Removing someone from a shared VM doesn't remove what they left in
   `/home`. A leaver on a shared VM means a replace plus an audit of `/home`.
 - **Prices are unverified.** The Billing Catalog API returned 403 from every available quota project.
+  The plan's on-demand estimates are about $0.9/h (s), $1.6/h (m) and $3.2/h (l). A stopped tier-s VM
+  still costs about $70 a month, mostly the 500 GB home disk and the static IP.
 
 ## In flight (snapshot 2026-11-13)
 

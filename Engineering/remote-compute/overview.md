@@ -25,14 +25,14 @@ verified_sha: 8498e18
 ## Responsibility
 
 - **One workstation per entry** in `iac/env/prod.tfvars`, keyed by subdomain. Each entry gets a VM at `<key>.shell.platform.ilg.software` [1][2].
-- **The infrastructure around each VM:** instance, a separate `/home` disk, a static external IP, a reserved internal IP, an A record and owner IAM [3].
+- **The infrastructure around each VM:** the instance, a `/home` disk, two reserved IPs, an A record and owner IAM [3].
 - **The shared network edge:** the `remote-compute` subnet on the `ilg-platform` VPC, public tcp/22, and a deny on egress to private ranges [4].
 - **Who may log in:** owners and their SSH public keys, written to the `rc-users` metadata key [3].
 - **The self-serve path:** three Claude Code skills that open the PRs for an engineer [1].
 
 ## Why it exists separately
 
-Workstations are long-lived, stateful and personal, unlike anything else in `ilg-platform-ec02`. The stack is built around keeping state: home disks and IPs survive every rebuild, and removal fails the plan on purpose [3].
+Workstations are long-lived, stateful and personal, unlike anything else in `ilg-platform-ec02`. The stack's design centres on keeping state: home disks and IPs survive every rebuild, and removal fails the plan on purpose [3].
 
 It sits in `ilg-platform` because it is a shared engineering surface, open to any ILG engineer. It is not a contract other repos consume. Its consumers are people, through PRs and SSH.
 
@@ -76,7 +76,7 @@ The arrow that matters is `rc → vm`. Every change to a running workstation is 
 - **Anything inside the VM.** Accounts, sshd, shutdown timers and packages are the image's job [5].
 - **The VPC, state bucket and terraform-runner.** gcp-config owns them [4].
 - **The DNS zone.** ilg-platform/core-infra owns it; this stack only writes A records [3].
-- **Workstations defined in other repos.** A standalone module for that (PR #15) is being rejected [8].
+- **Workstations defined in other repos.** Harry is rejecting a standalone module for that (PR #15) [8].
 - **Non-prod environments.** `env` must be `prod` [2].
 
 ## Evidence
