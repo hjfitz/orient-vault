@@ -7,6 +7,20 @@ title: 1-1 Schuster Efigenio
 # 1-1 Schuster Efigenio
 
 
+## 2026-11-13
+_prep only: today's calendar was unavailable, so the meeting date is unconfirmed_
+
+### To raise
+- [ ] snap-adapter#203 (FUSE-1050) is a 76-day-old draft and the ticket has been held 44 days; the RGA fix needs re-verifying against rules-engine 2.0.2: ready, or close it? (carried ×4)
+- [ ] pkg-node#278 (FUSE-1277) is a 29-day-old draft idle 20d: ready, or park it? (carried ×1)
+- [ ] FUSE-1314 is his Distraction Duty ticket and he has no PR on it, while Matt Shaw holds five: is the rota or Matt's ticketing what's off? (carried ×2)
+- [ ] FUSE-1302 is merged and has waited 10 days in Ready for QA: who moves it? (carried ×2)
+- [ ] FUSE-1329 is a Sev 3 with no PR yet: where is it? (carried ×1)
+- [ ] FUSE-1328's draft is red only on the audit legs, which is the fleet advisory wave rather than his change? (carried ×2)
+
+### Notes
+- ✍️ 
+
 ## 2026-11-05
 _10:30–11:00 GMT · Regus Southampton (in person) · no agenda_
 

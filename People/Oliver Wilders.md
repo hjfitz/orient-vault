@@ -16,6 +16,7 @@ title: Oliver Wilders
 
 ## Open loops
 **I owe**
+- [ ] Think about asking him to rotate the TCA dev test-endpoint login: he typed it in plain text in the 12 Nov DM, and it is in a 10 Nov channel message too — [DM](https://gfsdeliver-eng.slack.com/archives/D0ALESDKC86/p1794479377999889)
 - [ ] Reply on the five Merak portal gaps against TCA's DespatchCloud process (his 4 Nov DM), and get the ingestion UI to a decent state, then ping him to hand it over — [DM](https://gfsdeliver-eng.slack.com/archives/D0ALESDKC86/p1793815377255709)
 - [ ] Take G6–G9 of the Merak portal and have the call today; send the plan, design docs and the US customer Jira epic (due 29 Oct) — [DM](https://gfsdeliver-eng.slack.com/archives/D0ALESDKC86/p1793205004687309)
 - [ ] Hold the informal system design session on Fuse's database-per-service setup and what happens if a single database dies; it was due on 22 Oct and nothing shows it happened — [recording](http://localhost:3000/recordings/20261022-091411-e0eb)
@@ -25,6 +26,7 @@ title: Oliver Wilders
 - [x] Run the tech-services IaC walkthrough he asked for — held 10:48–11:07 Mon 27 Jul, no canvas, notes typed in the thread
 
 **Owed to me**
+- [ ] His answers to the two questions Claude sent from my account on 12 Nov about the FedEx/Selector TCA test-print: live or bill-on-scan, and http or https — [DM](https://gfsdeliver-eng.slack.com/archives/D0ALESDKC86/p1794568054498179)
 - [ ] FedEx test account is still on sandbox: test runs on Thursday 12 Nov and a live test order next week (his DM, to which I replied on 10 Nov at 16:43 that this is my focus for the week) — [[Digests/2026-11/2026-11-11]]
 - [ ] Real automated SRE guardrails and protected branches — one of the four conditions the teams' looser deploy permissions are contingent on
 - [ ] Step 2 of the agreed sequence: merge #9 and #10, tag the module branch, pin all ten module refs
@@ -40,6 +42,7 @@ title: Oliver Wilders
 - ✍️ 
 
 ## Together (newest first)
+- 2026-11-13 — He asked at 11:07 UTC to test-print against the TCA endpoint (FedEx/Selector Native Dispatch) and I said yes ("it's dev") → [DM](https://gfsdeliver-eng.slack.com/archives/D0ALESDKC86/p1794568054498179)
 - 2026-11-11 — 09:30 Merak Tech Catchup today → [[Digests/2026-11/2026-11-11]]
 - 2026-11-11 — He proposes FedEx test runs on Thursday 12 Nov and a live test order next week
 - 2026-11-11 — He also proposes a CarrierService XML change and a configurable route list

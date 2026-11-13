@@ -38,6 +38,9 @@ title: Schuster Efigenio
 - [ ] Review [renovate-runner#6](https://github.com/gfs-bifrost/renovate-runner/pull/6) (no ticket) — 🔵 awaiting review, CI green, still untouched since 07-21
 
 **Owed to me**
+- [ ] Say whether the rota or Matt's ticketing is what's off on [FUSE-1314](https://globalfreight.atlassian.net/browse/FUSE-1314): it is his Distraction Duty ticket, he has no PR on it, and [[Matt Shaw]] holds five of its PRs — [[Digests/2026-11/2026-11-13]]
+- [ ] Take [fuse-ui#407](https://github.com/gfs-bifrost/fuse-ui/pull/407) and [snap-adapter#339](https://github.com/gfs-bifrost/snap-adapter/pull/339) ([FUSE-1353](https://globalfreight.atlassian.net/browse/FUSE-1353), Sev 3, placed on him by [[Tom Dunn]]'s FGR line-number bug) out of draft
+- [ ] Move [FUSE-1302](https://globalfreight.atlassian.net/browse/FUSE-1302) through QA: merged, Ready for QA, held 10 days
 - [ ] Own Sprint 16 Distraction Duty ([FUSE-1314](https://globalfreight.atlassian.net/browse/FUSE-1314), reassigned to him by Matt Shaw on 9 Nov at 14:06 UTC) and the red nightlies: the Node golden image cannot publish because its own scan finds two zlib1g HIGH advisories — [digest](../Digests/2026-11/2026-11-10.md)
 - [x] Say where [FUSE-1210](https://globalfreight.atlassian.net/browse/FUSE-1210) stands — now Code Review with [wms-gateway#37](https://github.com/gfs-bifrost/wms-gateway/pull/37) and [fapi#169](https://github.com/gfs-bifrost/fapi/pull/169) open
 - [x] Say where [FUSE-1035](https://globalfreight.atlassian.net/browse/FUSE-1035) stands — now Code Review with [fapi#170](https://github.com/gfs-bifrost/fapi/pull/170) open
@@ -65,6 +68,7 @@ title: Schuster Efigenio
 - ✍️ 
 
 ## Together (newest first)
+- 2026-11-13 — He merged the three `@gfs-bifrost/types` v11 majors on 12 Nov (pkg-node#282, dedupe-service#163 and snap-adapter#302) → [[Digests/2026-11/2026-11-13]]
 - 2026-11-11 — Holds Distraction Duty (FUSE-1314) and five of the sprint's twelve in-progress tickets → [[Digests/2026-11/2026-11-11]]
 - 2026-11-11 — He merged secrets-hub#25, fuse-ui#401 and fapi#186 by hand on 10 Nov at about 13:08 UTC
 - 2026-11-11 — The fuse-ui prod deploy of #401 waits on a terraform-prod gate

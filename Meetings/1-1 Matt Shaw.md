@@ -8,6 +8,26 @@ title: 1-1 Matt Shaw
 
 
 
+## 2026-11-13
+_prep only: today's calendar was unavailable, so the meeting date is unconfirmed_
+
+### To raise
+- [ ] shopify-connector#368 (FUSE-1314) is still red on `dependency_audit`, idle 6 days, and the ticket is no longer his: who finishes it? (carried ×2)
+- [ ] FUSE-1314 is Schuster's, but five of its PRs are in his name: what is the stack for, and which should move to their own ticket? (carried ×2)
+- [ ] The four Distraction Duty drafts (fuse-mocker#35, collector#131, dedupe-service#166, fapi#182) have been idle 17 days: which should merge now, given fuse-mocker#35 clears the red nightly and unblocks fuse-mocker#34 and #37? (carried ×2)
+- [ ] The dedupe zod and `GHSA-q7qp-rjg7-q26m` allowlist entries were due to expire on 11 Nov and ride on dedupe-service#166: were they renewed? (carried ×2)
+- [ ] observability#92 (FUSE-1158, Code Review) is awaiting review with CI green: who reviews it?
+- [ ] Can the six Dock and Bay go-live watch monitors go? They show Alert while muted since 28 Sep (carried ×2)
+- [ ] Is the FUSE-792 Get Stock API ready for Thomas Dunn to test? (carried ×4)
+- [ ] pkg-node#282, snap-adapter#302 and dedupe-service#163 are merged: what does he want to do about fuse-mocker#34 and sftp-connector#315 (probably superseded)? (carried ×4)
+- [ ] Where do the draft advisory-fix PRs stand, and which red repos have no fix PR yet? (carried ×4)
+- [ ] FUSE-1296 (stock sync QA, unassigned): who runs it? (carried ×5)
+- [ ] I will refine and estimate the webhook epic and the status webhook so he can lead it. Does he want to? (carried ×5)
+- [ ] Is his start-of-year PDR form ready to sign? (carried ×6)
+
+### Notes
+- ✍️ 
+
 ## 2026-11-10
 _10:30–11:00 GMT · Teams, Epsilon House and Slack huddle · no agenda (Teams boilerplate only)_
 
