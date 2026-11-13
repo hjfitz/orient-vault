@@ -20,7 +20,7 @@ verified_paths:
 ```
 
 ## Responsibility
-- **Intake:** three ways in. A customer's WMS drops order CSVs on the portal's own SFTP host, staff upload a CSV in the browser, and the customer's systems send CSV or JSON through the customer API (`/v1`, via the gateway). svc imports each into the tenant whose slug names its folder, or whose API key sent it [1].
+- **Intake:** three ways in. A customer's WMS drops order CSVs on the portal's own SFTP host. Staff upload a CSV in the browser. The customer's systems send CSV or JSON through the customer API (`/v1`, via the gateway). svc imports each into the tenant whose slug names its folder, or whose API key sent it [1].
 - **Validation and fix-up:** a bad row never sinks the file. svc keeps invalid orders with plain reasons, and staff fix them on the Orders screen [1].
 - **Booking:** at-most-once dispatch through the tenant's Selector account, labels stored in GCS, void and manifest at Selector. In dev a customer can book with a fake carrier instead [1].
 - **Printing:** print-to-screen everywhere, with a preview first, and silent WebUSB printing from a paired bench browser (`packages/label-print`) [2].
