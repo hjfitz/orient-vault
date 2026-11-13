@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-13 — Allow a packaging preset's weight to be zero
+
+Allow a packaging preset's weight to be zero
+
+Native Dispatch unit T3 (R16, approved by Harry). A preset is a box; TCA's five boxes weigh 0.000, which the service refused. A preset's weight is now zero or more; size stays above zero; negatives, -0 and non-numbers still fail. No migration (the table only checks weight <> ''). A parcel with a weight of 0 or none is still refused at dispatch, now pinned by tests. Contract 5.14.0.
+
+PR: ilg-merak/parcel-portal#137
+
 ## 2026-11-13 — Remove the Trivy ignores the rebuilt runtime images no longer need
 
 Remove the Trivy ignores the rebuilt runtime images no longer need
