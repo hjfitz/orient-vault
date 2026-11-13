@@ -72,11 +72,11 @@ it is now. Regenerate this page with `wp index`; check health with `wp doctor`.
 | [[Engineering/images/overview\|images]] | backend | 0 | 0 | 1 | 2026-11-02 |
 | [[Engineering/inpost-proxy/overview\|inpost-proxy]] | backend | 1 | 0 | 0 | — |
 | [[Engineering/merak-portal/overview\|merak-portal]] | backend | 0 | 0 | 0 | 2026-10-28 |
-| [[Engineering/observability/overview\|observability]] | backend | 0 | 0 | 0 | 2026-11-11 |
+| [[Engineering/observability/overview\|observability]] | backend | 0 | 0 | 1 | 2026-11-12 |
 | [[Engineering/observability-sdk/overview\|observability-sdk]] | library | 3 | 0 | 0 | — |
 | [[Engineering/ocs-proxy/overview\|ocs-proxy]] | backend | 1 | 0 | 0 | — |
 | [[Engineering/orient/overview\|orient]] | frontend | 1 | 0 | 2 | 2026-11-10 |
-| [[Engineering/parcel-portal/overview\|parcel-portal]] | backend | 4 | 0 | 5 | 2026-11-11 |
+| [[Engineering/parcel-portal/overview\|parcel-portal]] | backend | 4 | 0 | 5 | 2026-11-12 |
 | [[Engineering/pkg-go/overview\|pkg-go]] | backend | 0 | 0 | 0 | 2026-11-06 |
 | [[Engineering/pkg-node/overview\|pkg-node]] | library | 3 | 0 | 3 | 2026-11-11 |
 | [[Engineering/remote-compute/overview\|remote-compute]] | backend | 0 | 0 | 2 | 2026-11-03 |
@@ -91,7 +91,7 @@ it is now. Regenerate this page with `wp index`; check health with `wp doctor`.
 | [[Engineering/selector2/overview\|selector2]] | backend | 5 | 0 | 0 | 2026-11-12 |
 | [[Engineering/sftp-connector/overview\|sftp-connector]] | backend | 5 | 1 | 3 | 2026-11-10 |
 | [[Engineering/shopify-connector/overview\|shopify-connector]] | backend | 4 | 0 | 1 | 2026-11-05 |
-| [[Engineering/snap-adapter/overview\|snap-adapter]] | backend | 4 | 2 | 1 | 2026-11-11 |
+| [[Engineering/snap-adapter/overview\|snap-adapter]] | backend | 4 | 2 | 2 | 2026-11-12 |
 | [[Engineering/snap-mcp/overview\|snap-mcp]] | backend | 4 | 0 | 0 | 2026-11-05 |
 | [[Engineering/snap-queue-polling-service/overview\|snap-queue-polling-service]] | backend | 4 | 0 | 9 | 2026-11-06 |
 | [[Engineering/svc-template/overview\|svc-template]] | backend | 0 | 0 | 0 | 2026-10-28 |
@@ -99,7 +99,7 @@ it is now. Regenerate this page with `wp index`; check health with `wp doctor`.
 | [[Engineering/terraform-modules/overview\|terraform-modules]] | infra | 3 | 0 | 0 | 2026-11-04 |
 | [[Engineering/tracking-core/overview\|tracking-core]] | backend | 3 | 0 | 0 | — |
 | [[Engineering/tracking-file-processor/overview\|tracking-file-processor]] | backend | 1 | 0 | 0 | — |
-| [[Engineering/tracking-service/overview\|tracking-service]] | backend | 4 | 0 | 1 | 2026-11-11 |
+| [[Engineering/tracking-service/overview\|tracking-service]] | backend | 4 | 0 | 3 | 2026-11-12 |
 | [[Engineering/tracking-webhook-royal-mail-sapient/overview\|tracking-webhook-royal-mail-sapient]] | backend | 1 | 0 | 0 | — |
 | [[Engineering/tracking-webhooks/overview\|tracking-webhooks]] | backend | 3 | 0 | 0 | — |
 | [[Engineering/ui-toolkit/overview\|ui-toolkit]] | library | 4 | 0 | 0 | — |
