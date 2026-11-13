@@ -102,6 +102,22 @@ Revision 4 (2026-11-12, Harry): the writer is the priority ("renders as you type
 
 ## Decision log
 <!-- Dated, newest first. -->
+- **2026-11-13** — **NV1 done and live at 7209026** (b22f5b7..7209026: 2 commits, sonnet builder). **The page header reads like Confluence's.**
+  - **The byline:** "Updated 4 days ago · 7 min read". Words ÷ 220 over the rendered body, with the full time in a tooltip and no author.
+  - **Edit** stays the one prominent action.
+  - **A `⋯` menu:** Copy link (the canonical address; a folder's own page copies the folder's), Move to… (NV2b's picker, then the move dialog), Rename… and Delete… (`PageDialogs`), Export (the raw source, byte for byte), and Page information (path, size, words, id, updated, first recorded at this path, a link to History).
+  - **Review (one reviewer) found 3 issues, all fixed with tests failing first (23 of 58):**
+    - "Created" and "Updated" restarted on every move or rename, because history does not follow moves (N8, on purpose);
+    - "Updated" raced the vault-sync commit after a save, and never refreshed;
+    - Copy link on a folder's own page copied the file's address.
+  - **The lead's call:** "Updated" comes from the page, not git: frontmatter `updated:` if declared, else the file's modification time. A save sets it, a move keeps it, and a laptop edit pulled in sets it within the 90 s sync. The page answer gains `modifiedAt` (ISO, from `mtime_ms`). Page information calls the git date "First recorded at this path", with a note that history restarts on a move.
+  - **Gates:** typecheck 0, lint 44, `ui:check` 0, the touched files (12 UI, 7 core).
+  - **Live check** (`:3000`, real `ups-proxy`, writes aborted):
+    - the byline "Updated 4 days ago · 7 min read";
+    - the menu's six items;
+    - Copy link gave the page's address;
+    - Page information: 14.1 kB, 1,370 words, id, updated, first recorded, with the history note.
+  - **Next:** Confluence C0 (the read-only client), then C1, C2 and C3; then W2 (tables in place).
 - **2026-11-13** — **NV2b done and live at 0579006** (c20321c..0579006: 6 commits, opus builder). **Pages move by drag and drop.**
   - **What was built:**
     - **Drag and drop:** drag a page row onto a folder and it highlights. Refused targets show as not allowed: outside `Notes/`, structural, the folder it is already in, or itself. A shut folder opens after 600 ms.
