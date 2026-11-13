@@ -1,7 +1,7 @@
 {
   "id": "20261113-093409-e9a5",
   "title": "Recording Fri 13 Nov 09:34",
-  "status": "transcribing",
+  "status": "done",
   "startedAt": "2026-11-13T09:34:09.103196619Z",
   "endedAt": "2026-11-13T09:49:20.13447278Z",
   "sources": {
@@ -14,7 +14,9 @@
       "speech-dispatcher-dummy"
     ]
   },
-  "call": false,
+  "call": true,
+  "summaryError": "claude reported an error: Failed to authenticate. API Error: 403 Attention Required! | Cloudflare",
+  "enhanceError": "part 1 of 2: claude reported an error: Failed to authenticate. API Error: 403 Attention Required! | Cloudflare",
   "host": "vm",
   "capturedOn": "laptop",
   "received": {

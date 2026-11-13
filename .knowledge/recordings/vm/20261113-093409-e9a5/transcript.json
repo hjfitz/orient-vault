@@ -1,0 +1,5616 @@
+{
+  "audio": "/home/harry/Documents/obsidian/.knowledge/recordings/vm/20261113-093409-e9a5/audio.wav",
+  "seconds": 910.9635,
+  "config": {
+    "ModelDir": "/home/harry/.local/share/orient-scribe/models",
+    "ASR": "parakeet",
+    "Embedding": "nemo_en_titanet_small.onnx",
+    "Threshold": 1,
+    "Speakers": 0,
+    "WindowShift": 0.1,
+    "VAD": 0.35,
+    "Threads": 8
+  },
+  "loadNs": 3921260484,
+  "call": true,
+  "echo": [
+    {
+      "channel": "me",
+      "speaker": 3,
+      "start": 35.11,
+      "end": 35.792,
+      "text": "Yeah."
+    },
+    {
+      "channel": "me",
+      "speaker": 3,
+      "start": 261.958,
+      "end": 262.352,
+      "text": "Take it."
+    },
+    {
+      "channel": "me",
+      "speaker": 4,
+      "start": 830.406,
+      "end": 830.992,
+      "text": "Yeah."
+    }
+  ],
+  "channels": {
+    "me": {
+      "gain": 1.3107199999999999,
+      "regions": [
+        {
+          "start": 35.11,
+          "end": 35.792
+        },
+        {
+          "start": 40.006,
+          "end": 40.432
+        },
+        {
+          "start": 41.638,
+          "end": 42.128
+        },
+        {
+          "start": 42.758,
+          "end": 46.288
+        },
+        {
+          "start": 47.046,
+          "end": 49.616
+        },
+        {
+          "start": 55.11,
+          "end": 55.504
+        },
+        {
+          "start": 98.63,
+          "end": 98.992
+        },
+        {
+          "start": 105.446,
+          "end": 107.088
+        },
+        {
+          "start": 107.686,
+          "end": 111.536
+        },
+        {
+          "start": 153.382,
+          "end": 153.808
+        },
+        {
+          "start": 158.118,
+          "end": 158.544
+        },
+        {
+          "start": 188.742,
+          "end": 189.136
+        },
+        {
+          "start": 190.054,
+          "end": 200.944
+        },
+        {
+          "start": 201.894,
+          "end": 202.576
+        },
+        {
+          "start": 203.238,
+          "end": 204.432
+        },
+        {
+          "start": 207.846,
+          "end": 210
+        },
+        {
+          "start": 212.518,
+          "end": 215.472
+        },
+        {
+          "start": 252.774,
+          "end": 254.832
+        },
+        {
+          "start": 255.206,
+          "end": 257.552
+        },
+        {
+          "start": 258.022,
+          "end": 260.368
+        },
+        {
+          "start": 261.958,
+          "end": 262.352
+        },
+        {
+          "start": 268.838,
+          "end": 271.408
+        },
+        {
+          "start": 273.19,
+          "end": 274.576
+        },
+        {
+          "start": 287.974,
+          "end": 290.992
+        },
+        {
+          "start": 292.966,
+          "end": 295.312
+        },
+        {
+          "start": 319.27,
+          "end": 321.072
+        },
+        {
+          "start": 370.022,
+          "end": 370.672
+        },
+        {
+          "start": 371.078,
+          "end": 372.816
+        },
+        {
+          "start": 373.446,
+          "end": 374.192
+        },
+        {
+          "start": 374.918,
+          "end": 376.4
+        },
+        {
+          "start": 460.486,
+          "end": 460.912
+        },
+        {
+          "start": 461.382,
+          "end": 462.352
+        },
+        {
+          "start": 466.79,
+          "end": 467.344
+        },
+        {
+          "start": 468.326,
+          "end": 470.928
+        },
+        {
+          "start": 472.742,
+          "end": 474.736
+        },
+        {
+          "start": 476.902,
+          "end": 479.568
+        },
+        {
+          "start": 484.166,
+          "end": 488.048
+        },
+        {
+          "start": 489.222,
+          "end": 490.48
+        },
+        {
+          "start": 491.206,
+          "end": 492.496
+        },
+        {
+          "start": 542.534,
+          "end": 542.928
+        },
+        {
+          "start": 552.742,
+          "end": 555.504
+        },
+        {
+          "start": 556.006,
+          "end": 557.104
+        },
+        {
+          "start": 557.606,
+          "end": 558.64
+        },
+        {
+          "start": 559.558,
+          "end": 560.688
+        },
+        {
+          "start": 564.55,
+          "end": 564.944
+        },
+        {
+          "start": 576.806,
+          "end": 577.424
+        },
+        {
+          "start": 589.446,
+          "end": 590.064
+        },
+        {
+          "start": 590.438,
+          "end": 591.024
+        },
+        {
+          "start": 666.886,
+          "end": 667.728
+        },
+        {
+          "start": 680.966,
+          "end": 684.016
+        },
+        {
+          "start": 705.126,
+          "end": 706.288
+        },
+        {
+          "start": 712.006,
+          "end": 712.72
+        },
+        {
+          "start": 714.054,
+          "end": 715.984
+        },
+        {
+          "start": 716.934,
+          "end": 719.344
+        },
+        {
+          "start": 720.966,
+          "end": 722.704
+        },
+        {
+          "start": 725.67,
+          "end": 727.568
+        },
+        {
+          "start": 729.958,
+          "end": 733.488
+        },
+        {
+          "start": 736.39,
+          "end": 736.816
+        },
+        {
+          "start": 746.854,
+          "end": 747.568
+        },
+        {
+          "start": 756.678,
+          "end": 757.552
+        },
+        {
+          "start": 784.646,
+          "end": 786.96
+        },
+        {
+          "start": 787.942,
+          "end": 791.728
+        },
+        {
+          "start": 792.134,
+          "end": 792.624
+        },
+        {
+          "start": 797.254,
+          "end": 797.712
+        },
+        {
+          "start": 803.302,
+          "end": 805.808
+        },
+        {
+          "start": 810.214,
+          "end": 814.64
+        },
+        {
+          "start": 815.11,
+          "end": 815.888
+        },
+        {
+          "start": 816.742,
+          "end": 818.896
+        },
+        {
+          "start": 830.406,
+          "end": 830.992
+        },
+        {
+          "start": 831.398,
+          "end": 834.704
+        },
+        {
+          "start": 845.798,
+          "end": 846.768
+        },
+        {
+          "start": 849.35,
+          "end": 854.992
+        },
+        {
+          "start": 856.166,
+          "end": 856.816
+        },
+        {
+          "start": 859.974,
+          "end": 860.624
+        },
+        {
+          "start": 867.558,
+          "end": 868.048
+        },
+        {
+          "start": 875.014,
+          "end": 877.904
+        },
+        {
+          "start": 879.238,
+          "end": 885.776
+        },
+        {
+          "start": 890.886,
+          "end": 897.104
+        },
+        {
+          "start": 897.574,
+          "end": 898.16
+        },
+        {
+          "start": 900.582,
+          "end": 903.152
+        }
+      ],
+      "turns": [
+        {
+          "start": 35.06346893310547,
+          "end": 35.772220611572266,
+          "speaker": 3
+        },
+        {
+          "start": 39.990970611572266,
+          "end": 49.609718322753906,
+          "speaker": 3
+        },
+        {
+          "start": 53.406593322753906,
+          "end": 55.49909591674805,
+          "speaker": 4
+        },
+        {
+          "start": 98.46284484863281,
+          "end": 98.98596954345703,
+          "speaker": 4
+        },
+        {
+          "start": 104.95972442626953,
+          "end": 111.54096984863281,
+          "speaker": 3
+        },
+        {
+          "start": 153.12098693847656,
+          "end": 153.77911376953125,
+          "speaker": 3
+        },
+        {
+          "start": 157.98098754882812,
+          "end": 158.52098083496094,
+          "speaker": 3
+        },
+        {
+          "start": 188.5922393798828,
+          "end": 189.08160400390625,
+          "speaker": 3
+        },
+        {
+          "start": 189.99285888671875,
+          "end": 200.97848510742188,
+          "speaker": 3
+        },
+        {
+          "start": 200.97848510742188,
+          "end": 204.42098999023438,
+          "speaker": 4
+        },
+        {
+          "start": 208.0322265625,
+          "end": 210.0234832763672,
+          "speaker": 3
+        },
+        {
+          "start": 212.4534912109375,
+          "end": 215.49098205566406,
+          "speaker": 3
+        },
+        {
+          "start": 252.75099182128906,
+          "end": 260.37847900390625,
+          "speaker": 3
+        },
+        {
+          "start": 261.91412353515625,
+          "end": 262.30224609375,
+          "speaker": 3
+        },
+        {
+          "start": 268.1578674316406,
+          "end": 271.3809814453125,
+          "speaker": 3
+        },
+        {
+          "start": 273.1191101074219,
+          "end": 274.9753723144531,
+          "speaker": 3
+        },
+        {
+          "start": 280.2234802246094,
+          "end": 280.9997253417969,
+          "speaker": 4
+        },
+        {
+          "start": 286.4503479003906,
+          "end": 286.9734802246094,
+          "speaker": 4
+        },
+        {
+          "start": 287.8172302246094,
+          "end": 295.24224853515625,
+          "speaker": 4
+        },
+        {
+          "start": 319.25537109375,
+          "end": 321.0778503417969,
+          "speaker": 4
+        },
+        {
+          "start": 370.0153503417969,
+          "end": 376.39410400390625,
+          "speaker": 3
+        },
+        {
+          "start": 460.3978576660156,
+          "end": 462.3216247558594,
+          "speaker": 4
+        },
+        {
+          "start": 466.7597351074219,
+          "end": 467.33349609375,
+          "speaker": 3
+        },
+        {
+          "start": 468.27850341796875,
+          "end": 470.9784851074219,
+          "speaker": 3
+        },
+        {
+          "start": 472.71661376953125,
+          "end": 474.6235046386719,
+          "speaker": 3
+        },
+        {
+          "start": 476.8509826660156,
+          "end": 479.5003662109375,
+          "speaker": 3
+        },
+        {
+          "start": 484.1409912109375,
+          "end": 492.47723388671875,
+          "speaker": 3
+        },
+        {
+          "start": 500.1891174316406,
+          "end": 500.62786865234375,
+          "speaker": 4
+        },
+        {
+          "start": 552.7041015625,
+          "end": 559.470947265625,
+          "speaker": 4
+        },
+        {
+          "start": 559.470947265625,
+          "end": 560.736572265625,
+          "speaker": 3
+        },
+        {
+          "start": 568.4147338867188,
+          "end": 568.7859497070312,
+          "speaker": 3
+        },
+        {
+          "start": 589.3734741210938,
+          "end": 590.9766235351562,
+          "speaker": 4
+        },
+        {
+          "start": 666.627197265625,
+          "end": 667.6903686523438,
+          "speaker": 3
+        },
+        {
+          "start": 680.6165771484375,
+          "end": 684.1097412109375,
+          "speaker": 3
+        },
+        {
+          "start": 690.0665893554688,
+          "end": 690.6572265625,
+          "speaker": 4
+        },
+        {
+          "start": 704.7984619140625,
+          "end": 706.3171997070312,
+          "speaker": 3
+        },
+        {
+          "start": 712.02099609375,
+          "end": 719.3784790039062,
+          "speaker": 4
+        },
+        {
+          "start": 720.9309692382812,
+          "end": 722.736572265625,
+          "speaker": 4
+        },
+        {
+          "start": 725.4703369140625,
+          "end": 727.5291137695312,
+          "speaker": 4
+        },
+        {
+          "start": 729.9421997070312,
+          "end": 733.2666015625,
+          "speaker": 4
+        },
+        {
+          "start": 736.354736328125,
+          "end": 736.7428588867188,
+          "speaker": 4
+        },
+        {
+          "start": 746.3784790039062,
+          "end": 747.5260009765625,
+          "speaker": 3
+        },
+        {
+          "start": 756.62158203125,
+          "end": 757.3472290039062,
+          "speaker": 3
+        },
+        {
+          "start": 766.0547485351562,
+          "end": 766.44287109375,
+          "speaker": 3
+        },
+        {
+          "start": 784.4990844726562,
+          "end": 792.615966796875,
+          "speaker": 3
+        },
+        {
+          "start": 803.281005859375,
+          "end": 805.7953491210938,
+          "speaker": 3
+        },
+        {
+          "start": 810.182861328125,
+          "end": 818.8566284179688,
+          "speaker": 3
+        },
+        {
+          "start": 830.3991088867188,
+          "end": 834.3984985351562,
+          "speaker": 4
+        },
+        {
+          "start": 845.772216796875,
+          "end": 846.734130859375,
+          "speaker": 4
+        },
+        {
+          "start": 849.2991333007812,
+          "end": 856.72412109375,
+          "speaker": 4
+        },
+        {
+          "start": 874.999755859375,
+          "end": 897.8991088867188,
+          "speaker": 4
+        },
+        {
+          "start": 900.5147094726562,
+          "end": 902.995361328125,
+          "speaker": 3
+        }
+      ],
+      "utterances": [
+        {
+          "channel": "me",
+          "speaker": 3,
+          "start": 40.006,
+          "end": 40.432,
+          "text": "Brilliant."
+        },
+        {
+          "channel": "me",
+          "speaker": 3,
+          "start": 41.638,
+          "end": 42.128,
+          "text": "Have we got"
+        },
+        {
+          "channel": "me",
+          "speaker": 3,
+          "start": 42.758,
+          "end": 46.288,
+          "text": "Have you got like a list,'cause I know um Phil and Chris both had some"
+        },
+        {
+          "channel": "me",
+          "speaker": 3,
+          "start": 47.046,
+          "end": 49.616,
+          "text": "feedback too. Like have we collected that anywhere."
+        },
+        {
+          "channel": "me",
+          "speaker": 4,
+          "start": 55.11,
+          "end": 55.504,
+          "text": "Sounds good."
+        },
+        {
+          "channel": "me",
+          "speaker": 4,
+          "start": 98.63,
+          "end": 98.992,
+          "text": "Excellent."
+        },
+        {
+          "channel": "me",
+          "speaker": 3,
+          "start": 105.446,
+          "end": 107.088,
+          "text": "Like literally every"
+        },
+        {
+          "channel": "me",
+          "speaker": 3,
+          "start": 107.686,
+          "end": 111.536,
+          "text": "Every user ever. Oh, it's in front of me, therefore it's not in test."
+        },
+        {
+          "channel": "me",
+          "speaker": 3,
+          "start": 153.382,
+          "end": 153.808,
+          "text": "Uh"
+        },
+        {
+          "channel": "me",
+          "speaker": 3,
+          "start": 158.118,
+          "end": 158.544,
+          "text": "Mm-hmm."
+        },
+        {
+          "channel": "me",
+          "speaker": 3,
+          "start": 188.742,
+          "end": 189.136,
+          "text": "Okay."
+        },
+        {
+          "channel": "me",
+          "speaker": 3,
+          "start": 190.054,
+          "end": 200.944,
+          "text": "Th that's the most fucking enterprisey thing ever. Here's our legacy software that we're trying to integrate with legacy software that's used an off the shelf data transformation piece of software like Del Boomi."
+        },
+        {
+          "channel": "me",
+          "speaker": 4,
+          "start": 201.894,
+          "end": 202.576,
+          "text": "Guess a bit."
+        },
+        {
+          "channel": "me",
+          "speaker": 4,
+          "start": 203.238,
+          "end": 204.432,
+          "text": "'Cause that's of the same genre."
+        },
+        {
+          "channel": "me",
+          "speaker": 3,
+          "start": 207.846,
+          "end": 210,
+          "text": "But yeah, okay, good to know. Um"
+        },
+        {
+          "channel": "me",
+          "speaker": 3,
+          "start": 212.518,
+          "end": 215.472,
+          "text": "That's gotta be like multi seconds in terms of network hops, right?"
+        },
+        {
+          "channel": "me",
+          "speaker": 3,
+          "start": 252.774,
+          "end": 254.832,
+          "text": "Is that API the um"
+        },
+        {
+          "channel": "me",
+          "speaker": 3,
+          "start": 255.206,
+          "end": 257.552,
+          "text": "Stepping Stone Selector API."
+        },
+        {
+          "channel": "me",
+          "speaker": 3,
+          "start": 258.022,
+          "end": 260.368,
+          "text": "Or is that the one that we've produced for this?"
+        },
+        {
+          "channel": "me",
+          "speaker": 3,
+          "start": 268.838,
+          "end": 271.408,
+          "text": "What'd you think what'd you think of the new UI for AppyKee?"
+        },
+        {
+          "channel": "me",
+          "speaker": 3,
+          "start": 273.19,
+          "end": 274.576,
+          "text": "T tell tell me you love it."
+        },
+        {
+          "channel": "me",
+          "speaker": 4,
+          "start": 287.974,
+          "end": 290.992,
+          "text": "That's good. I think Chris has like a couple of neglives he wants to fix."
+        },
+        {
+          "channel": "me",
+          "speaker": 4,
+          "start": 292.966,
+          "end": 295.312,
+          "text": "Yeah."
+        },
+        {
+          "channel": "me",
+          "speaker": 4,
+          "start": 319.27,
+          "end": 321.072,
+          "text": "Yeah. I don't miss that."
+        },
+        {
+          "channel": "me",
+          "speaker": 3,
+          "start": 370.022,
+          "end": 370.672,
+          "text": "Yeah, I think"
+        },
+        {
+          "channel": "me",
+          "speaker": 3,
+          "start": 371.078,
+          "end": 372.816,
+          "text": "I think we need a bit of an org chart as well."
+        },
+        {
+          "channel": "me",
+          "speaker": 3,
+          "start": 373.446,
+          "end": 374.192,
+          "text": "Like some kinda"
+        },
+        {
+          "channel": "me",
+          "speaker": 3,
+          "start": 374.918,
+          "end": 376.4,
+          "text": "racy-esque situation."
+        },
+        {
+          "channel": "me",
+          "speaker": 4,
+          "start": 460.486,
+          "end": 460.912,
+          "text": "Yeah."
+        },
+        {
+          "channel": "me",
+          "speaker": 4,
+          "start": 461.382,
+          "end": 462.352,
+          "text": "update at least."
+        },
+        {
+          "channel": "me",
+          "speaker": 3,
+          "start": 466.79,
+          "end": 467.344,
+          "text": "Did I"
+        },
+        {
+          "channel": "me",
+          "speaker": 3,
+          "start": 468.326,
+          "end": 470.928,
+          "text": "Wilders, did I tell you I'm mocked all of the carrier proxies?"
+        },
+        {
+          "channel": "me",
+          "speaker": 3,
+          "start": 472.742,
+          "end": 474.736,
+          "text": "Was that you were selling? Yeah, okay."
+        },
+        {
+          "channel": "me",
+          "speaker": 3,
+          "start": 476.902,
+          "end": 479.568,
+          "text": "Okay. I I wasn't sure who I told it to but it's um"
+        },
+        {
+          "channel": "me",
+          "speaker": 3,
+          "start": 484.166,
+          "end": 488.048,
+          "text": "Yeah. I think you've got access in the Meric space already, so it's just like"
+        },
+        {
+          "channel": "me",
+          "speaker": 3,
+          "start": 489.222,
+          "end": 490.48,
+          "text": "I am through Terraform."
+        },
+        {
+          "channel": "me",
+          "speaker": 3,
+          "start": 491.206,
+          "end": 492.496,
+          "text": "Um it should be good."
+        },
+        {
+          "channel": "me",
+          "speaker": 4,
+          "start": 542.534,
+          "end": 542.928,
+          "text": "Yeah."
+        },
+        {
+          "channel": "me",
+          "speaker": 4,
+          "start": 552.742,
+          "end": 555.504,
+          "text": "Anyone else get a text from ILG saying that Teams is down?"
+        },
+        {
+          "channel": "me",
+          "speaker": 4,
+          "start": 556.006,
+          "end": 557.104,
+          "text": "I feel this."
+        },
+        {
+          "channel": "me",
+          "speaker": 4,
+          "start": 557.606,
+          "end": 558.64,
+          "text": "That feels weird."
+        },
+        {
+          "channel": "me",
+          "speaker": 3,
+          "start": 559.558,
+          "end": 560.688,
+          "text": "I don't know how I feel about that."
+        },
+        {
+          "channel": "me",
+          "speaker": 3,
+          "start": 564.55,
+          "end": 564.944,
+          "text": "Mm."
+        },
+        {
+          "channel": "me",
+          "speaker": 3,
+          "start": 576.806,
+          "end": 577.424,
+          "text": "Ha ha ha."
+        },
+        {
+          "channel": "me",
+          "speaker": 4,
+          "start": 589.446,
+          "end": 590.064,
+          "text": "Yeah, but"
+        },
+        {
+          "channel": "me",
+          "speaker": 4,
+          "start": 590.438,
+          "end": 591.024,
+          "text": "Have a good day."
+        },
+        {
+          "channel": "me",
+          "speaker": 3,
+          "start": 666.886,
+          "end": 667.728,
+          "text": "Yeah, me too."
+        },
+        {
+          "channel": "me",
+          "speaker": 3,
+          "start": 680.966,
+          "end": 684.016,
+          "text": "You just made me realise that I don't own a own a coma or a hairbrush."
+        },
+        {
+          "channel": "me",
+          "speaker": 3,
+          "start": 705.126,
+          "end": 706.288,
+          "text": "in the wind."
+        },
+        {
+          "channel": "me",
+          "speaker": 4,
+          "start": 712.006,
+          "end": 712.72,
+          "text": "You're like"
+        },
+        {
+          "channel": "me",
+          "speaker": 4,
+          "start": 714.054,
+          "end": 715.984,
+          "text": "Hair like powder, styling powder."
+        },
+        {
+          "channel": "me",
+          "speaker": 4,
+          "start": 716.934,
+          "end": 719.344,
+          "text": "can't be like way better than anything else."
+        },
+        {
+          "channel": "me",
+          "speaker": 4,
+          "start": 720.966,
+          "end": 722.704,
+          "text": "Yeah, you just like salt and pepper on your head."
+        },
+        {
+          "channel": "me",
+          "speaker": 4,
+          "start": 725.67,
+          "end": 727.568,
+          "text": "Pow powder's like surprisingly good."
+        },
+        {
+          "channel": "me",
+          "speaker": 4,
+          "start": 729.958,
+          "end": 733.488,
+          "text": "'Cause this shit doesn't like to hold well, as you can tell."
+        },
+        {
+          "channel": "me",
+          "speaker": 4,
+          "start": 736.39,
+          "end": 736.816,
+          "text": "Yeah."
+        },
+        {
+          "channel": "me",
+          "speaker": 3,
+          "start": 746.854,
+          "end": 747.568,
+          "text": "Catch you then."
+        },
+        {
+          "channel": "me",
+          "speaker": 3,
+          "start": 756.678,
+          "end": 757.552,
+          "text": "Drive faster."
+        },
+        {
+          "channel": "me",
+          "speaker": 3,
+          "start": 784.646,
+          "end": 786.96,
+          "text": "Gen generally fine after nine, isn't it, on the road?"
+        },
+        {
+          "channel": "me",
+          "speaker": 3,
+          "start": 787.942,
+          "end": 791.728,
+          "text": "I've found at least go like drive into the office if I'm running a bit late is"
+        },
+        {
+          "channel": "me",
+          "speaker": 3,
+          "start": 792.134,
+          "end": 792.624,
+          "text": "Better."
+        },
+        {
+          "channel": "me",
+          "speaker": 3,
+          "start": 797.254,
+          "end": 797.712,
+          "text": "Good."
+        },
+        {
+          "channel": "me",
+          "speaker": 3,
+          "start": 803.302,
+          "end": 805.808,
+          "text": "Yeah. Learns your driving speed as well I found."
+        },
+        {
+          "channel": "me",
+          "speaker": 3,
+          "start": 810.214,
+          "end": 814.64,
+          "text": "Yeah, yeah, l learns how likely you are to break the speed limit and"
+        },
+        {
+          "channel": "me",
+          "speaker": 3,
+          "start": 815.11,
+          "end": 815.888,
+          "text": "By how much?"
+        },
+        {
+          "channel": "me",
+          "speaker": 3,
+          "start": 816.742,
+          "end": 818.896,
+          "text": "I get vastly different times to my wife."
+        },
+        {
+          "channel": "me",
+          "speaker": 4,
+          "start": 831.398,
+          "end": 834.704,
+          "text": "Yeah, a few weeks you'd just be like bashing the limby for your whole commute."
+        },
+        {
+          "channel": "me",
+          "speaker": 4,
+          "start": 845.798,
+          "end": 846.768,
+          "text": "I mean like the"
+        },
+        {
+          "channel": "me",
+          "speaker": 4,
+          "start": 849.35,
+          "end": 854.992,
+          "text": "I I was gonna say, so you you're you're suggesting it's more optimal to speed in a school zone than it is on the motorway."
+        },
+        {
+          "channel": "me",
+          "speaker": 4,
+          "start": 856.166,
+          "end": 856.816,
+          "text": "Yeah."
+        },
+        {
+          "channel": "me",
+          "speaker": 4,
+          "start": 859.974,
+          "end": 860.624,
+          "text": "Yeah."
+        },
+        {
+          "channel": "me",
+          "speaker": 4,
+          "start": 867.558,
+          "end": 868.048,
+          "text": "Okay."
+        },
+        {
+          "channel": "me",
+          "speaker": 4,
+          "start": 875.014,
+          "end": 877.904,
+          "text": "Yeah. Yeah, going through a century easily. Same."
+        },
+        {
+          "channel": "me",
+          "speaker": 4,
+          "start": 879.238,
+          "end": 885.776,
+          "text": "depending on when I go to the gym. Ten minutes or yeah, down the high street. The fucking like bumpiest road in all Hampshire."
+        },
+        {
+          "channel": "me",
+          "speaker": 4,
+          "start": 890.886,
+          "end": 897.104,
+          "text": "I'm gonna shift off for the bifurcand up. I'm getting Matt to run him now because I don't want to. And it's his team."
+        },
+        {
+          "channel": "me",
+          "speaker": 4,
+          "start": 897.574,
+          "end": 898.16,
+          "text": "Say"
+        },
+        {
+          "channel": "me",
+          "speaker": 3,
+          "start": 900.582,
+          "end": 903.152,
+          "text": "Catch you guys in a bit. Have a good week, 10 chaps."
+        }
+      ],
+      "timings": {
+        "vad": 4154165866,
+        "diarization": 33617990073,
+        "asr": 9927659605
+      }
+    },
+    "them": {
+      "gain": 0.7238119280530135,
+      "regions": [
+        {
+          "start": 1.894,
+          "end": 2.352
+        },
+        {
+          "start": 3.366,
+          "end": 5.072
+        },
+        {
+          "start": 5.734,
+          "end": 6.672
+        },
+        {
+          "start": 7.142,
+          "end": 9.616
+        },
+        {
+          "start": 10.47,
+          "end": 11.344
+        },
+        {
+          "start": 12.198,
+          "end": 16.368
+        },
+        {
+          "start": 16.838,
+          "end": 23.984
+        },
+        {
+          "start": 25.286,
+          "end": 25.776
+        },
+        {
+          "start": 27.334,
+          "end": 29.872
+        },
+        {
+          "start": 30.374,
+          "end": 31.024
+        },
+        {
+          "start": 31.75,
+          "end": 40.944
+        },
+        {
+          "start": 41.382,
+          "end": 42.32
+        },
+        {
+          "start": 50.63,
+          "end": 54.352
+        },
+        {
+          "start": 54.95,
+          "end": 55.472
+        },
+        {
+          "start": 55.878,
+          "end": 58.64
+        },
+        {
+          "start": 59.91,
+          "end": 69.776
+        },
+        {
+          "start": 70.182,
+          "end": 70.8
+        },
+        {
+          "start": 71.654,
+          "end": 77.328
+        },
+        {
+          "start": 77.702,
+          "end": 81.04
+        },
+        {
+          "start": 81.446,
+          "end": 81.872
+        },
+        {
+          "start": 82.246,
+          "end": 84.88
+        },
+        {
+          "start": 85.606,
+          "end": 87.312
+        },
+        {
+          "start": 88.038,
+          "end": 93.04
+        },
+        {
+          "start": 94.182,
+          "end": 95.856
+        },
+        {
+          "start": 96.23,
+          "end": 97.776
+        },
+        {
+          "start": 99.046,
+          "end": 100.56
+        },
+        {
+          "start": 101.254,
+          "end": 101.936
+        },
+        {
+          "start": 102.31,
+          "end": 105.744
+        },
+        {
+          "start": 106.246,
+          "end": 106.896
+        },
+        {
+          "start": 112.486,
+          "end": 113.584
+        },
+        {
+          "start": 114.214,
+          "end": 114.672
+        },
+        {
+          "start": 115.686,
+          "end": 120.048
+        },
+        {
+          "start": 120.966,
+          "end": 121.584
+        },
+        {
+          "start": 121.99,
+          "end": 122.992
+        },
+        {
+          "start": 123.654,
+          "end": 124.176
+        },
+        {
+          "start": 125.286,
+          "end": 128.848
+        },
+        {
+          "start": 129.35,
+          "end": 139.984
+        },
+        {
+          "start": 140.358,
+          "end": 141.36
+        },
+        {
+          "start": 141.894,
+          "end": 145.744
+        },
+        {
+          "start": 146.31,
+          "end": 148.144
+        },
+        {
+          "start": 148.678,
+          "end": 149.424
+        },
+        {
+          "start": 150.374,
+          "end": 151.12
+        },
+        {
+          "start": 151.558,
+          "end": 155.536
+        },
+        {
+          "start": 156.262,
+          "end": 157.296
+        },
+        {
+          "start": 158.374,
+          "end": 160.08
+        },
+        {
+          "start": 161.158,
+          "end": 162.32
+        },
+        {
+          "start": 163.878,
+          "end": 165.392
+        },
+        {
+          "start": 167.078,
+          "end": 168.176
+        },
+        {
+          "start": 169.606,
+          "end": 172.336
+        },
+        {
+          "start": 172.838,
+          "end": 173.424
+        },
+        {
+          "start": 175.078,
+          "end": 177.072
+        },
+        {
+          "start": 178.022,
+          "end": 179.76
+        },
+        {
+          "start": 180.55,
+          "end": 181.008
+        },
+        {
+          "start": 184.806,
+          "end": 189.488
+        },
+        {
+          "start": 190.342,
+          "end": 191.344
+        },
+        {
+          "start": 217.894,
+          "end": 218.288
+        },
+        {
+          "start": 223.014,
+          "end": 223.408
+        },
+        {
+          "start": 224.806,
+          "end": 226.928
+        },
+        {
+          "start": 227.654,
+          "end": 228.176
+        },
+        {
+          "start": 228.934,
+          "end": 233.744
+        },
+        {
+          "start": 234.246,
+          "end": 235.28
+        },
+        {
+          "start": 235.878,
+          "end": 236.624
+        },
+        {
+          "start": 237.862,
+          "end": 238.256
+        },
+        {
+          "start": 239.078,
+          "end": 241.872
+        },
+        {
+          "start": 242.95,
+          "end": 251.76
+        },
+        {
+          "start": 252.486,
+          "end": 253.136
+        },
+        {
+          "start": 254.342,
+          "end": 254.8
+        },
+        {
+          "start": 259.238,
+          "end": 261.584
+        },
+        {
+          "start": 262.022,
+          "end": 262.416
+        },
+        {
+          "start": 262.854,
+          "end": 263.248
+        },
+        {
+          "start": 264.102,
+          "end": 265.392
+        },
+        {
+          "start": 266.054,
+          "end": 269.104
+        },
+        {
+          "start": 272.326,
+          "end": 274.672
+        },
+        {
+          "start": 275.206,
+          "end": 278.032
+        },
+        {
+          "start": 278.534,
+          "end": 284.816
+        },
+        {
+          "start": 302.502,
+          "end": 306.288
+        },
+        {
+          "start": 306.918,
+          "end": 308.112
+        },
+        {
+          "start": 308.678,
+          "end": 309.744
+        },
+        {
+          "start": 311.43,
+          "end": 312.304
+        },
+        {
+          "start": 312.774,
+          "end": 319.568
+        },
+        {
+          "start": 320.422,
+          "end": 324.976
+        },
+        {
+          "start": 325.382,
+          "end": 326.864
+        },
+        {
+          "start": 327.654,
+          "end": 328.272
+        },
+        {
+          "start": 329.446,
+          "end": 331.28
+        },
+        {
+          "start": 333.19,
+          "end": 346.448
+        },
+        {
+          "start": 349.318,
+          "end": 349.744
+        },
+        {
+          "start": 350.182,
+          "end": 352.56
+        },
+        {
+          "start": 353.19,
+          "end": 353.968
+        },
+        {
+          "start": 355.302,
+          "end": 355.952
+        },
+        {
+          "start": 356.518,
+          "end": 364.688
+        },
+        {
+          "start": 365.318,
+          "end": 367.92
+        },
+        {
+          "start": 368.582,
+          "end": 369.648
+        },
+        {
+          "start": 378.918,
+          "end": 380.4
+        },
+        {
+          "start": 382.79,
+          "end": 383.152
+        },
+        {
+          "start": 383.622,
+          "end": 385.392
+        },
+        {
+          "start": 386.438,
+          "end": 388.688
+        },
+        {
+          "start": 389.126,
+          "end": 394.864
+        },
+        {
+          "start": 395.43,
+          "end": 399.952
+        },
+        {
+          "start": 400.326,
+          "end": 406.768
+        },
+        {
+          "start": 413.222,
+          "end": 413.712
+        },
+        {
+          "start": 415.398,
+          "end": 416.72
+        },
+        {
+          "start": 417.222,
+          "end": 418.448
+        },
+        {
+          "start": 419.142,
+          "end": 419.76
+        },
+        {
+          "start": 420.294,
+          "end": 422.544
+        },
+        {
+          "start": 423.206,
+          "end": 424.88
+        },
+        {
+          "start": 425.702,
+          "end": 426.768
+        },
+        {
+          "start": 427.206,
+          "end": 439.056
+        },
+        {
+          "start": 439.43,
+          "end": 440.624
+        },
+        {
+          "start": 441.382,
+          "end": 446.352
+        },
+        {
+          "start": 446.79,
+          "end": 447.536
+        },
+        {
+          "start": 448.102,
+          "end": 452.368
+        },
+        {
+          "start": 453.062,
+          "end": 455.056
+        },
+        {
+          "start": 456.326,
+          "end": 458.032
+        },
+        {
+          "start": 472.646,
+          "end": 477.104
+        },
+        {
+          "start": 477.99,
+          "end": 478.576
+        },
+        {
+          "start": 479.654,
+          "end": 483.696
+        },
+        {
+          "start": 485.094,
+          "end": 486.032
+        },
+        {
+          "start": 489.926,
+          "end": 490.608
+        },
+        {
+          "start": 493.83,
+          "end": 497.392
+        },
+        {
+          "start": 497.862,
+          "end": 498.288
+        },
+        {
+          "start": 499.014,
+          "end": 499.856
+        },
+        {
+          "start": 501.926,
+          "end": 502.768
+        },
+        {
+          "start": 505.478,
+          "end": 506.224
+        },
+        {
+          "start": 510.15,
+          "end": 510.512
+        },
+        {
+          "start": 510.918,
+          "end": 512.016
+        },
+        {
+          "start": 512.454,
+          "end": 521.104
+        },
+        {
+          "start": 521.83,
+          "end": 527.952
+        },
+        {
+          "start": 529.67,
+          "end": 530.896
+        },
+        {
+          "start": 531.558,
+          "end": 534.384
+        },
+        {
+          "start": 536.198,
+          "end": 536.624
+        },
+        {
+          "start": 538.31,
+          "end": 539.952
+        },
+        {
+          "start": 541.094,
+          "end": 542.32
+        },
+        {
+          "start": 548.518,
+          "end": 550.256
+        },
+        {
+          "start": 564.582,
+          "end": 567.888
+        },
+        {
+          "start": 568.39,
+          "end": 569.488
+        },
+        {
+          "start": 571.718,
+          "end": 579.28
+        },
+        {
+          "start": 579.974,
+          "end": 581.392
+        },
+        {
+          "start": 581.958,
+          "end": 582.896
+        },
+        {
+          "start": 584.55,
+          "end": 585.712
+        },
+        {
+          "start": 587.11,
+          "end": 589.168
+        },
+        {
+          "start": 590.246,
+          "end": 590.928
+        },
+        {
+          "start": 591.334,
+          "end": 592.688
+        },
+        {
+          "start": 595.046,
+          "end": 596.624
+        },
+        {
+          "start": 600.358,
+          "end": 600.816
+        },
+        {
+          "start": 602.054,
+          "end": 605.168
+        },
+        {
+          "start": 605.766,
+          "end": 606.224
+        },
+        {
+          "start": 606.726,
+          "end": 608.112
+        },
+        {
+          "start": 610.406,
+          "end": 612.304
+        },
+        {
+          "start": 612.838,
+          "end": 614.48
+        },
+        {
+          "start": 616.646,
+          "end": 617.584
+        },
+        {
+          "start": 618.438,
+          "end": 620.56
+        },
+        {
+          "start": 621.99,
+          "end": 626.128
+        },
+        {
+          "start": 626.534,
+          "end": 629.744
+        },
+        {
+          "start": 640.87,
+          "end": 642.768
+        },
+        {
+          "start": 643.238,
+          "end": 644.336
+        },
+        {
+          "start": 645.958,
+          "end": 649.264
+        },
+        {
+          "start": 650.694,
+          "end": 652.144
+        },
+        {
+          "start": 653.894,
+          "end": 656.24
+        },
+        {
+          "start": 657.574,
+          "end": 665.936
+        },
+        {
+          "start": 670.438,
+          "end": 673.136
+        },
+        {
+          "start": 673.734,
+          "end": 679.952
+        },
+        {
+          "start": 681.926,
+          "end": 682.96
+        },
+        {
+          "start": 686.886,
+          "end": 690.512
+        },
+        {
+          "start": 693.414,
+          "end": 699.088
+        },
+        {
+          "start": 700.902,
+          "end": 702.192
+        },
+        {
+          "start": 702.662,
+          "end": 703.6
+        },
+        {
+          "start": 704.198,
+          "end": 710.576
+        },
+        {
+          "start": 711.078,
+          "end": 711.536
+        },
+        {
+          "start": 712.134,
+          "end": 712.88
+        },
+        {
+          "start": 720.198,
+          "end": 720.624
+        },
+        {
+          "start": 721.862,
+          "end": 722.352
+        },
+        {
+          "start": 723.238,
+          "end": 724.208
+        },
+        {
+          "start": 728.39,
+          "end": 728.752
+        },
+        {
+          "start": 738.31,
+          "end": 738.736
+        },
+        {
+          "start": 740.134,
+          "end": 740.624
+        },
+        {
+          "start": 741.894,
+          "end": 743.472
+        },
+        {
+          "start": 744.358,
+          "end": 746.128
+        },
+        {
+          "start": 747.974,
+          "end": 755.12
+        },
+        {
+          "start": 756.838,
+          "end": 760.176
+        },
+        {
+          "start": 761.542,
+          "end": 762.704
+        },
+        {
+          "start": 763.334,
+          "end": 765.936
+        },
+        {
+          "start": 770.534,
+          "end": 770.896
+        },
+        {
+          "start": 771.718,
+          "end": 772.528
+        },
+        {
+          "start": 773.35,
+          "end": 778.416
+        },
+        {
+          "start": 778.918,
+          "end": 779.952
+        },
+        {
+          "start": 780.742,
+          "end": 784.272
+        },
+        {
+          "start": 785.254,
+          "end": 785.744
+        },
+        {
+          "start": 788.582,
+          "end": 789.2
+        },
+        {
+          "start": 793.734,
+          "end": 794.128
+        },
+        {
+          "start": 798.374,
+          "end": 804.496
+        },
+        {
+          "start": 808.486,
+          "end": 811.088
+        },
+        {
+          "start": 822.726,
+          "end": 830
+        },
+        {
+          "start": 834.502,
+          "end": 834.896
+        },
+        {
+          "start": 835.334,
+          "end": 838.32
+        },
+        {
+          "start": 838.79,
+          "end": 845.232
+        },
+        {
+          "start": 846.278,
+          "end": 846.704
+        },
+        {
+          "start": 847.078,
+          "end": 850.064
+        },
+        {
+          "start": 855.11,
+          "end": 855.92
+        },
+        {
+          "start": 856.358,
+          "end": 860.464
+        },
+        {
+          "start": 861.126,
+          "end": 861.584
+        },
+        {
+          "start": 863.686,
+          "end": 870.928
+        },
+        {
+          "start": 873.126,
+          "end": 874.992
+        },
+        {
+          "start": 879.59,
+          "end": 880.56
+        },
+        {
+          "start": 881.35,
+          "end": 881.776
+        },
+        {
+          "start": 899.782,
+          "end": 900.4
+        },
+        {
+          "start": 902.278,
+          "end": 903.76
+        },
+        {
+          "start": 904.23,
+          "end": 905.168
+        },
+        {
+          "start": 906.374,
+          "end": 906.8
+        },
+        {
+          "start": 907.334,
+          "end": 908.4
+        }
+      ],
+      "turns": [
+        {
+          "start": 1.870343804359436,
+          "end": 9.565343856811523,
+          "speaker": 0
+        },
+        {
+          "start": 10.07159423828125,
+          "end": 11.303468704223633,
+          "speaker": 2
+        },
+        {
+          "start": 12.147218704223633,
+          "end": 25.7822208404541,
+          "speaker": 0
+        },
+        {
+          "start": 13.210344314575195,
+          "end": 14.205968856811523,
+          "speaker": 2
+        },
+        {
+          "start": 15.471593856811523,
+          "end": 16.214096069335938,
+          "speaker": 2
+        },
+        {
+          "start": 17.850971221923828,
+          "end": 18.677845001220703,
+          "speaker": 2
+        },
+        {
+          "start": 22.626596450805664,
+          "end": 23.554719924926758,
+          "speaker": 2
+        },
+        {
+          "start": 26.25472068786621,
+          "end": 39.02909469604492,
+          "speaker": 2
+        },
+        {
+          "start": 39.687217712402344,
+          "end": 42.26909255981445,
+          "speaker": 2
+        },
+        {
+          "start": 39.73784255981445,
+          "end": 40.21034240722656,
+          "speaker": 2
+        },
+        {
+          "start": 50.62221908569336,
+          "end": 58.604095458984375,
+          "speaker": 2
+        },
+        {
+          "start": 57.40597152709961,
+          "end": 57.810970306396484,
+          "speaker": 0
+        },
+        {
+          "start": 59.83597183227539,
+          "end": 63.95347213745117,
+          "speaker": 0
+        },
+        {
+          "start": 64.037841796875,
+          "end": 70.82159423828125,
+          "speaker": 2
+        },
+        {
+          "start": 71.5472183227539,
+          "end": 97.75409698486328,
+          "speaker": 2
+        },
+        {
+          "start": 98.47972106933594,
+          "end": 100.50472259521484,
+          "speaker": 2
+        },
+        {
+          "start": 101.21347045898438,
+          "end": 105.70222473144531,
+          "speaker": 2
+        },
+        {
+          "start": 106.25909423828125,
+          "end": 106.84972381591797,
+          "speaker": 0
+        },
+        {
+          "start": 112.04722595214844,
+          "end": 124.1634750366211,
+          "speaker": 2
+        },
+        {
+          "start": 125.24346923828125,
+          "end": 129.49598693847656,
+          "speaker": 0
+        },
+        {
+          "start": 129.3272247314453,
+          "end": 139.6378631591797,
+          "speaker": 2
+        },
+        {
+          "start": 140.3466033935547,
+          "end": 145.7634735107422,
+          "speaker": 2
+        },
+        {
+          "start": 146.2697296142578,
+          "end": 162.3009796142578,
+          "speaker": 2
+        },
+        {
+          "start": 163.83660888671875,
+          "end": 165.43972778320312,
+          "speaker": 2
+        },
+        {
+          "start": 167.0597381591797,
+          "end": 168.15660095214844,
+          "speaker": 2
+        },
+        {
+          "start": 169.1016082763672,
+          "end": 173.4384765625,
+          "speaker": 2
+        },
+        {
+          "start": 174.02911376953125,
+          "end": 174.40036010742188,
+          "speaker": 2
+        },
+        {
+          "start": 175.0247344970703,
+          "end": 177.08348083496094,
+          "speaker": 2
+        },
+        {
+          "start": 177.9609832763672,
+          "end": 179.7159881591797,
+          "speaker": 2
+        },
+        {
+          "start": 180.52598571777344,
+          "end": 180.9984893798828,
+          "speaker": 2
+        },
+        {
+          "start": 182.7197265625,
+          "end": 183.0403594970703,
+          "speaker": 2
+        },
+        {
+          "start": 184.08660888671875,
+          "end": 189.50347900390625,
+          "speaker": 2
+        },
+        {
+          "start": 190.2628631591797,
+          "end": 191.37660217285156,
+          "speaker": 2
+        },
+        {
+          "start": 193.80661010742188,
+          "end": 194.29598999023438,
+          "speaker": 2
+        },
+        {
+          "start": 217.3134765625,
+          "end": 218.30911254882812,
+          "speaker": 2
+        },
+        {
+          "start": 219.57473754882812,
+          "end": 223.4222412109375,
+          "speaker": 2
+        },
+        {
+          "start": 224.77223205566406,
+          "end": 227.05035400390625,
+          "speaker": 2
+        },
+        {
+          "start": 227.62411499023438,
+          "end": 228.2316131591797,
+          "speaker": 2
+        },
+        {
+          "start": 228.9066162109375,
+          "end": 238.32286071777344,
+          "speaker": 2
+        },
+        {
+          "start": 239.04849243164062,
+          "end": 241.90036010742188,
+          "speaker": 2
+        },
+        {
+          "start": 242.62599182128906,
+          "end": 251.77223205566406,
+          "speaker": 2
+        },
+        {
+          "start": 252.41348266601562,
+          "end": 253.15599060058594,
+          "speaker": 2
+        },
+        {
+          "start": 253.9659881591797,
+          "end": 254.79286193847656,
+          "speaker": 2
+        },
+        {
+          "start": 259.2309875488281,
+          "end": 269.1365966796875,
+          "speaker": 2
+        },
+        {
+          "start": 272.32598876953125,
+          "end": 274.4184875488281,
+          "speaker": 2
+        },
+        {
+          "start": 275.1778564453125,
+          "end": 278.78912353515625,
+          "speaker": 2
+        },
+        {
+          "start": 278.5528564453125,
+          "end": 280.44287109375,
+          "speaker": 2
+        },
+        {
+          "start": 280.44287109375,
+          "end": 285.89349365234375,
+          "speaker": 2
+        },
+        {
+          "start": 287.2434997558594,
+          "end": 288.1716003417969,
+          "speaker": 2
+        },
+        {
+          "start": 291.7153625488281,
+          "end": 292.01910400390625,
+          "speaker": 2
+        },
+        {
+          "start": 298.0772399902344,
+          "end": 298.8534851074219,
+          "speaker": 2
+        },
+        {
+          "start": 299.8322448730469,
+          "end": 300.30474853515625,
+          "speaker": 2
+        },
+        {
+          "start": 301.85723876953125,
+          "end": 308.0672302246094,
+          "speaker": 2
+        },
+        {
+          "start": 308.6409912109375,
+          "end": 309.6872253417969,
+          "speaker": 2
+        },
+        {
+          "start": 311.3409729003906,
+          "end": 318.44537353515625,
+          "speaker": 2
+        },
+        {
+          "start": 319.0697326660156,
+          "end": 319.5253601074219,
+          "speaker": 2
+        },
+        {
+          "start": 320.4028625488281,
+          "end": 326.8322448730469,
+          "speaker": 2
+        },
+        {
+          "start": 327.6253662109375,
+          "end": 328.2666015625,
+          "speaker": 2
+        },
+        {
+          "start": 329.3634948730469,
+          "end": 331.2703552246094,
+          "speaker": 2
+        },
+        {
+          "start": 332.3503723144531,
+          "end": 332.65411376953125,
+          "speaker": 0
+        },
+        {
+          "start": 333.1941223144531,
+          "end": 346.4578552246094,
+          "speaker": 0
+        },
+        {
+          "start": 349.30975341796875,
+          "end": 353.9166259765625,
+          "speaker": 0
+        },
+        {
+          "start": 355.21600341796875,
+          "end": 364.64910888671875,
+          "speaker": 0
+        },
+        {
+          "start": 365.2903747558594,
+          "end": 367.9734802246094,
+          "speaker": 0
+        },
+        {
+          "start": 368.5472412109375,
+          "end": 369.6103515625,
+          "speaker": 0
+        },
+        {
+          "start": 370.4203796386719,
+          "end": 370.7916259765625,
+          "speaker": 2
+        },
+        {
+          "start": 378.9084777832031,
+          "end": 380.3766174316406,
+          "speaker": 0
+        },
+        {
+          "start": 378.92535400390625,
+          "end": 379.2966003417969,
+          "speaker": 0
+        },
+        {
+          "start": 382.78973388671875,
+          "end": 385.38848876953125,
+          "speaker": 0
+        },
+        {
+          "start": 386.16473388671875,
+          "end": 394.8553771972656,
+          "speaker": 0
+        },
+        {
+          "start": 395.4122314453125,
+          "end": 406.97161865234375,
+          "speaker": 0
+        },
+        {
+          "start": 413.23223876953125,
+          "end": 413.7047424316406,
+          "speaker": 0
+        },
+        {
+          "start": 415.2909851074219,
+          "end": 428.97662353515625,
+          "speaker": 0
+        },
+        {
+          "start": 428.97662353515625,
+          "end": 432.452880859375,
+          "speaker": 2
+        },
+        {
+          "start": 431.86224365234375,
+          "end": 440.65411376953125,
+          "speaker": 2
+        },
+        {
+          "start": 433.870361328125,
+          "end": 434.74786376953125,
+          "speaker": 2
+        },
+        {
+          "start": 441.3459777832031,
+          "end": 452.3653564453125,
+          "speaker": 2
+        },
+        {
+          "start": 453.02349853515625,
+          "end": 455.06536865234375,
+          "speaker": 2
+        },
+        {
+          "start": 455.7234802246094,
+          "end": 458.01849365234375,
+          "speaker": 2
+        },
+        {
+          "start": 466.91162109375,
+          "end": 467.4010009765625,
+          "speaker": 2
+        },
+        {
+          "start": 472.6322326660156,
+          "end": 477.1210021972656,
+          "speaker": 2
+        },
+        {
+          "start": 477.9478759765625,
+          "end": 478.6566162109375,
+          "speaker": 2
+        },
+        {
+          "start": 479.6184997558594,
+          "end": 483.68536376953125,
+          "speaker": 2
+        },
+        {
+          "start": 485.08599853515625,
+          "end": 485.9803771972656,
+          "speaker": 2
+        },
+        {
+          "start": 488.95037841796875,
+          "end": 490.63787841796875,
+          "speaker": 2
+        },
+        {
+          "start": 491.5997314453125,
+          "end": 492.0216064453125,
+          "speaker": 2
+        },
+        {
+          "start": 493.38848876953125,
+          "end": 499.85162353515625,
+          "speaker": 2
+        },
+        {
+          "start": 501.89349365234375,
+          "end": 502.77099609375,
+          "speaker": 2
+        },
+        {
+          "start": 505.3191223144531,
+          "end": 507.1922607421875,
+          "speaker": 2
+        },
+        {
+          "start": 510.1622314453125,
+          "end": 521.0972290039062,
+          "speaker": 0
+        },
+        {
+          "start": 519.10595703125,
+          "end": 519.8822021484375,
+          "speaker": 5
+        },
+        {
+          "start": 521.8397216796875,
+          "end": 527.9315795898438,
+          "speaker": 5
+        },
+        {
+          "start": 529.5347290039062,
+          "end": 534.0234375,
+          "speaker": 5
+        },
+        {
+          "start": 531.5259399414062,
+          "end": 533.1965942382812,
+          "speaker": 2
+        },
+        {
+          "start": 536.1665649414062,
+          "end": 536.5884399414062,
+          "speaker": 2
+        },
+        {
+          "start": 538.3096923828125,
+          "end": 539.89599609375,
+          "speaker": 2
+        },
+        {
+          "start": 540.8240966796875,
+          "end": 542.2753295898438,
+          "speaker": 2
+        },
+        {
+          "start": 543.3384399414062,
+          "end": 543.6591186523438,
+          "speaker": 2
+        },
+        {
+          "start": 548.5191040039062,
+          "end": 550.9996948242188,
+          "speaker": 5
+        },
+        {
+          "start": 564.3478393554688,
+          "end": 567.8071899414062,
+          "speaker": 5
+        },
+        {
+          "start": 568.3809814453125,
+          "end": 569.4609375,
+          "speaker": 0
+        },
+        {
+          "start": 571.6715698242188,
+          "end": 573.1228637695312,
+          "speaker": 0
+        },
+        {
+          "start": 571.7728271484375,
+          "end": 579.2315673828125,
+          "speaker": 5
+        },
+        {
+          "start": 579.9066162109375,
+          "end": 581.3409423828125,
+          "speaker": 5
+        },
+        {
+          "start": 584.5472412109375,
+          "end": 585.6947021484375,
+          "speaker": 5
+        },
+        {
+          "start": 587.0784912109375,
+          "end": 589.13720703125,
+          "speaker": 5
+        },
+        {
+          "start": 590.267822265625,
+          "end": 592.7822265625,
+          "speaker": 5
+        },
+        {
+          "start": 595.026611328125,
+          "end": 596.5791015625,
+          "speaker": 5
+        },
+        {
+          "start": 600.3422241210938,
+          "end": 600.7640991210938,
+          "speaker": 0
+        },
+        {
+          "start": 602.0465698242188,
+          "end": 603.345947265625,
+          "speaker": 5
+        },
+        {
+          "start": 603.5822143554688,
+          "end": 604.6790771484375,
+          "speaker": 0
+        },
+        {
+          "start": 604.6790771484375,
+          "end": 605.1178588867188,
+          "speaker": 5
+        },
+        {
+          "start": 605.725341796875,
+          "end": 606.1641235351562,
+          "speaker": 5
+        },
+        {
+          "start": 606.6703491210938,
+          "end": 608.104736328125,
+          "speaker": 0
+        },
+        {
+          "start": 610.34912109375,
+          "end": 610.8047485351562,
+          "speaker": 0
+        },
+        {
+          "start": 610.9228515625,
+          "end": 615.5297241210938,
+          "speaker": 5
+        },
+        {
+          "start": 616.5759887695312,
+          "end": 617.4872436523438,
+          "speaker": 0
+        },
+        {
+          "start": 618.4321899414062,
+          "end": 620.5078735351562,
+          "speaker": 5
+        },
+        {
+          "start": 621.9759521484375,
+          "end": 629.7047119140625,
+          "speaker": 5
+        },
+        {
+          "start": 622.2290649414062,
+          "end": 622.7353515625,
+          "speaker": 0
+        },
+        {
+          "start": 625.1653442382812,
+          "end": 625.53662109375,
+          "speaker": 0
+        },
+        {
+          "start": 626.4984741210938,
+          "end": 626.970947265625,
+          "speaker": 5
+        },
+        {
+          "start": 626.970947265625,
+          "end": 627.3084716796875,
+          "speaker": 0
+        },
+        {
+          "start": 638.1422119140625,
+          "end": 638.4459838867188,
+          "speaker": 0
+        },
+        {
+          "start": 640.589111328125,
+          "end": 644.3015747070312,
+          "speaker": 0
+        },
+        {
+          "start": 645.8878173828125,
+          "end": 649.2459716796875,
+          "speaker": 5
+        },
+        {
+          "start": 650.6803588867188,
+          "end": 652.0809936523438,
+          "speaker": 5
+        },
+        {
+          "start": 653.8865966796875,
+          "end": 656.198486328125,
+          "speaker": 5
+        },
+        {
+          "start": 657.5822143554688,
+          "end": 658.0715942382812,
+          "speaker": 5
+        },
+        {
+          "start": 658.2066040039062,
+          "end": 660.5859985351562,
+          "speaker": 0
+        },
+        {
+          "start": 660.6534423828125,
+          "end": 664.0284423828125,
+          "speaker": 5
+        },
+        {
+          "start": 663.8934936523438,
+          "end": 664.365966796875,
+          "speaker": 0
+        },
+        {
+          "start": 665.1759643554688,
+          "end": 665.8847045898438,
+          "speaker": 5
+        },
+        {
+          "start": 669.9684448242188,
+          "end": 672.24658203125,
+          "speaker": 5
+        },
+        {
+          "start": 672.4828491210938,
+          "end": 673.09033203125,
+          "speaker": 0
+        },
+        {
+          "start": 673.7653198242188,
+          "end": 676.4990844726562,
+          "speaker": 0
+        },
+        {
+          "start": 676.7353515625,
+          "end": 678.3385009765625,
+          "speaker": 5
+        },
+        {
+          "start": 678.3385009765625,
+          "end": 678.8109741210938,
+          "speaker": 0
+        },
+        {
+          "start": 679.3003540039062,
+          "end": 679.8909912109375,
+          "speaker": 5
+        },
+        {
+          "start": 681.9159545898438,
+          "end": 682.8947143554688,
+          "speaker": 5
+        },
+        {
+          "start": 686.8941040039062,
+          "end": 690.38720703125,
+          "speaker": 0
+        },
+        {
+          "start": 693.4078369140625,
+          "end": 699.0272216796875,
+          "speaker": 0
+        },
+        {
+          "start": 700.8665771484375,
+          "end": 702.1322021484375,
+          "speaker": 5
+        },
+        {
+          "start": 702.6384887695312,
+          "end": 703.5497436523438,
+          "speaker": 5
+        },
+        {
+          "start": 704.1572265625,
+          "end": 704.9503173828125,
+          "speaker": 0
+        },
+        {
+          "start": 704.6128540039062,
+          "end": 710.5191040039062,
+          "speaker": 5
+        },
+        {
+          "start": 708.64599609375,
+          "end": 710.5359497070312,
+          "speaker": 5
+        },
+        {
+          "start": 709.5403442382812,
+          "end": 710.0297241210938,
+          "speaker": 5
+        },
+        {
+          "start": 711.1603393554688,
+          "end": 711.464111328125,
+          "speaker": 5
+        },
+        {
+          "start": 712.1053466796875,
+          "end": 712.7634887695312,
+          "speaker": 0
+        },
+        {
+          "start": 720.1715698242188,
+          "end": 720.6103515625,
+          "speaker": 0
+        },
+        {
+          "start": 721.6228637695312,
+          "end": 722.3316040039062,
+          "speaker": 0
+        },
+        {
+          "start": 723.2091064453125,
+          "end": 724.1709594726562,
+          "speaker": 0
+        },
+        {
+          "start": 728.35595703125,
+          "end": 728.7947387695312,
+          "speaker": 0
+        },
+        {
+          "start": 737.4853515625,
+          "end": 738.767822265625,
+          "speaker": 0
+        },
+        {
+          "start": 740.0671997070312,
+          "end": 746.07470703125,
+          "speaker": 0
+        },
+        {
+          "start": 747.5934448242188,
+          "end": 747.9309692382812,
+          "speaker": 0
+        },
+        {
+          "start": 747.9478759765625,
+          "end": 749.5172119140625,
+          "speaker": 5
+        },
+        {
+          "start": 749.6016235351562,
+          "end": 755.1028442382812,
+          "speaker": 0
+        },
+        {
+          "start": 756.8410034179688,
+          "end": 758.1909790039062,
+          "speaker": 0
+        },
+        {
+          "start": 758.1909790039062,
+          "end": 760.131591796875,
+          "speaker": 5
+        },
+        {
+          "start": 761.4816284179688,
+          "end": 765.9197387695312,
+          "speaker": 0
+        },
+        {
+          "start": 769.564697265625,
+          "end": 770.8640747070312,
+          "speaker": 0
+        },
+        {
+          "start": 770.54345703125,
+          "end": 770.8809814453125,
+          "speaker": 5
+        },
+        {
+          "start": 771.6909790039062,
+          "end": 772.5347290039062,
+          "speaker": 5
+        },
+        {
+          "start": 773.2772216796875,
+          "end": 778.3228759765625,
+          "speaker": 5
+        },
+        {
+          "start": 778.8966064453125,
+          "end": 779.8922119140625,
+          "speaker": 5
+        },
+        {
+          "start": 780.7022094726562,
+          "end": 784.1953735351562,
+          "speaker": 5
+        },
+        {
+          "start": 785.2247314453125,
+          "end": 785.714111328125,
+          "speaker": 5
+        },
+        {
+          "start": 788.5659790039062,
+          "end": 789.1397094726562,
+          "speaker": 5
+        },
+        {
+          "start": 793.74658203125,
+          "end": 794.1009521484375,
+          "speaker": 0
+        },
+        {
+          "start": 793.7634887695312,
+          "end": 794.0671997070312,
+          "speaker": 0
+        },
+        {
+          "start": 794.8603515625,
+          "end": 795.2484741210938,
+          "speaker": 0
+        },
+        {
+          "start": 796.0247192382812,
+          "end": 796.5816040039062,
+          "speaker": 0
+        },
+        {
+          "start": 798.3366088867188,
+          "end": 804.4959716796875,
+          "speaker": 0
+        },
+        {
+          "start": 808.4784545898438,
+          "end": 810.3684692382812,
+          "speaker": 0
+        },
+        {
+          "start": 810.7228393554688,
+          "end": 811.3134765625,
+          "speaker": 0
+        },
+        {
+          "start": 821.9447021484375,
+          "end": 823.7334594726562,
+          "speaker": 0
+        },
+        {
+          "start": 822.7378540039062,
+          "end": 830.1965942382812,
+          "speaker": 0
+        },
+        {
+          "start": 834.499755859375,
+          "end": 834.8372192382812,
+          "speaker": 0
+        },
+        {
+          "start": 835.2928466796875,
+          "end": 845.21533203125,
+          "speaker": 0
+        },
+        {
+          "start": 846.2953491210938,
+          "end": 849.8897094726562,
+          "speaker": 0
+        },
+        {
+          "start": 855.1041259765625,
+          "end": 855.897216796875,
+          "speaker": 0
+        },
+        {
+          "start": 856.3528442382812,
+          "end": 857.584716796875,
+          "speaker": 0
+        },
+        {
+          "start": 857.584716796875,
+          "end": 860.234130859375,
+          "speaker": 0
+        },
+        {
+          "start": 858.3103637695312,
+          "end": 858.83349609375,
+          "speaker": 0
+        },
+        {
+          "start": 860.9934692382812,
+          "end": 861.5671997070312,
+          "speaker": 0
+        },
+        {
+          "start": 863.0859985351562,
+          "end": 870.8991088867188,
+          "speaker": 0
+        },
+        {
+          "start": 872.9915771484375,
+          "end": 874.1390991210938,
+          "speaker": 0
+        },
+        {
+          "start": 879.5559692382812,
+          "end": 880.6022338867188,
+          "speaker": 0
+        },
+        {
+          "start": 881.327880859375,
+          "end": 881.749755859375,
+          "speaker": 0
+        },
+        {
+          "start": 885.1585083007812,
+          "end": 886.1878662109375,
+          "speaker": 0
+        },
+        {
+          "start": 896.1947021484375,
+          "end": 896.5491333007812,
+          "speaker": 0
+        },
+        {
+          "start": 898.1859741210938,
+          "end": 900.3628540039062,
+          "speaker": 0
+        },
+        {
+          "start": 902.2697143554688,
+          "end": 905.1384887695312,
+          "speaker": 0
+        },
+        {
+          "start": 904.2272338867188,
+          "end": 905.0540771484375,
+          "speaker": 5
+        },
+        {
+          "start": 906.1678466796875,
+          "end": 906.7078857421875,
+          "speaker": 5
+        },
+        {
+          "start": 907.1803588867188,
+          "end": 907.8215942382812,
+          "speaker": 0
+        }
+      ],
+      "utterances": [
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 1.894,
+          "end": 2.352,
+          "text": "Taba now."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 3.366,
+          "end": 5.072,
+          "text": "That's is this better? So"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 5.734,
+          "end": 6.672,
+          "text": "Had our demo."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 7.142,
+          "end": 9.616,
+          "text": "to TCA, was it yesterday for what we've been working on?"
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 10.47,
+          "end": 11.344,
+          "text": ""
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 12.198,
+          "end": 16.368,
+          "text": "What do we call it then? Do we call it pass or something? Native dispatch."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 16.838,
+          "end": 23.984,
+          "text": "Data dispatch. Okay, cool. Yeah, the length thing ever. It is, but it describes what it does."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 25.286,
+          "end": 25.776,
+          "text": "There we go."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 27.334,
+          "end": 29.872,
+          "text": "They had a couple of feedback points."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 30.374,
+          "end": 31.024,
+          "text": "Nothing major."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 31.75,
+          "end": 40.944,
+          "text": "Um, just like additive stuff, but yeah, it's a big improvement on dispatch card for them. From like, I think it takes their process down from like 40 clicks to three. So they're they're happy."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 41.382,
+          "end": 42.32,
+          "text": "Okay, cool."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 50.63,
+          "end": 54.352,
+          "text": "Uh I think Phil was going to and then send it across. If he hasn't I'll chase him on it."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 54.95,
+          "end": 55.472,
+          "text": "Um"
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 55.878,
+          "end": 58.64,
+          "text": "And and find out from it. So, yeah, he said he was gonna."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 59.91,
+          "end": 64.037841796875,
+          "text": "do another iteration demo again and then plan uh migration."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 64.037841796875,
+          "end": 69.776,
+          "text": "Uh I don't think there's another demo requirement at this point. It's all additive stuff. Um"
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 70.182,
+          "end": 70.8,
+          "text": "And then"
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 71.654,
+          "end": 77.328,
+          "text": "They kind of just want an account to build. Cause they're doing like the tests they're doing with dispatch are like one order, they just do one order manually."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 77.702,
+          "end": 81.04,
+          "text": "So we just need to give them this to do one order manually, essentially."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 81.446,
+          "end": 81.872,
+          "text": "Okay."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 82.246,
+          "end": 84.88,
+          "text": "The only thing we probably need to do first is do like a"
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 85.606,
+          "end": 87.312,
+          "text": "Test against TCA endpoint just a"
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 88.038,
+          "end": 93.04,
+          "text": "Prove it works basically. And once we've done that, we give them an account and"
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 94.182,
+          "end": 95.856,
+          "text": "off to the races sort of thing."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 96.23,
+          "end": 97.776,
+          "text": "They'll haul up stuff pretty rapidly."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 99.046,
+          "end": 100.56,
+          "text": "It has been vocalized. It's"
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 101.254,
+          "end": 101.936,
+          "text": "Intest"
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 102.31,
+          "end": 105.744,
+          "text": "They will not view it as that, just as the heads up, because Giefer is crazy."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 106.246,
+          "end": 106.896,
+          "text": "They were not trained?"
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 112.486,
+          "end": 113.584,
+          "text": "Basically. Yeah."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 114.214,
+          "end": 114.672,
+          "text": "Um"
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 115.686,
+          "end": 120.048,
+          "text": "And they're they're now testing their API against the server."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 120.966,
+          "end": 121.584,
+          "text": "As well."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 121.99,
+          "end": 122.992,
+          "text": "Manhattan."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 123.654,
+          "end": 124.176,
+          "text": "Um"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 125.286,
+          "end": 128.848,
+          "text": "So what seeker sorry, um selector server? What they"
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 129.35,
+          "end": 139.984,
+          "text": "Yeah, so it's the the VM is selector like Billy Basic selector server. Um and they're they're currently testing from Manhattan directly to that."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 140.358,
+          "end": 141.36,
+          "text": "Make it do that."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 141.894,
+          "end": 145.744,
+          "text": "Apparently so. Apparently that's what they're trying to build. I think something called"
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 146.31,
+          "end": 148.144,
+          "text": "I want to say vantage core."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 148.678,
+          "end": 149.424,
+          "text": "anyone's head of that?"
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 150.374,
+          "end": 151.12,
+          "text": "Add on to it."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 151.558,
+          "end": 155.536,
+          "text": "that does the conversion of data into a call and then sends it."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 156.262,
+          "end": 157.296,
+          "text": "Something on their end."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 158.374,
+          "end": 160.08,
+          "text": "really vague and the guys"
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 161.158,
+          "end": 162.32,
+          "text": "Honestly, it's like"
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 163.878,
+          "end": 165.392,
+          "text": "It's painful. Um"
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 167.078,
+          "end": 168.176,
+          "text": "with the discussions."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 169.606,
+          "end": 172.336,
+          "text": "I mean we were talking about what six characters is for"
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 172.838,
+          "end": 173.424,
+          "text": "20 minutes."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 175.078,
+          "end": 177.072,
+          "text": "as in like a field that's six characters long."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 178.022,
+          "end": 179.76,
+          "text": "No, they couldn't grasp it."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 180.55,
+          "end": 181.008,
+          "text": "Um"
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 184.806,
+          "end": 189.488,
+          "text": "That yeah, it's slow. So I think the CSV aspect might be there for a while."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 190.342,
+          "end": 191.344,
+          "text": "I'm honest."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 217.894,
+          "end": 218.288,
+          "text": "is."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 223.014,
+          "end": 223.408,
+          "text": "Yeah."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 224.806,
+          "end": 226.928,
+          "text": "Yeah, we'll do the test, we'll get the big account done."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 227.654,
+          "end": 228.176,
+          "text": "We're okay."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 228.934,
+          "end": 233.744,
+          "text": "Um, from our point of view. And then it's down to Phil's ha Phil's handling the conversation about the API stuff."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 234.246,
+          "end": 235.28,
+          "text": "Um on this one."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 235.878,
+          "end": 236.624,
+          "text": "Okay."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 237.862,
+          "end": 238.256,
+          "text": "Mm-hmm."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 239.078,
+          "end": 241.872,
+          "text": "Yeah, they've got a deadline of like."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 242.95,
+          "end": 251.76,
+          "text": "30th of November is when they're planning to like run their first test with that. And I think they want it moved on to MVP2, which is API."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 252.486,
+          "end": 253.136,
+          "text": "By"
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 254.342,
+          "end": 254.8,
+          "text": "Good night."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 259.238,
+          "end": 261.584,
+          "text": "Yeah, it is, yeah, yeah. The up the rest up key."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 262.022,
+          "end": 262.416,
+          "text": "Um"
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 262.854,
+          "end": 263.248,
+          "text": "Yeah."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 264.102,
+          "end": 265.392,
+          "text": "Um I set up a"
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 266.054,
+          "end": 269.104,
+          "text": "connection on it yesterday and it was working for them."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 272.326,
+          "end": 274.672,
+          "text": "Yeah, it's really good. I said to Molda, I said, yeah,"
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 275.206,
+          "end": 278.032,
+          "text": "Yeah, he said he said it was a he said it was all your job."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 278.534,
+          "end": 284.816,
+          "text": "I'm ready to receive my praise. Yeah. Yeah. No, yeah, it's much better. Much better."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 302.502,
+          "end": 306.288,
+          "text": "Apart from that, I think it was okay. I was saying to"
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 306.918,
+          "end": 308.112,
+          "text": "Um dentin earlier."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 308.678,
+          "end": 309.744,
+          "text": "From the calls this week."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 311.43,
+          "end": 312.304,
+          "text": "How we approach"
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 312.774,
+          "end": 319.568,
+          "text": "American conversations is like going to be way more an important factor than I first considered."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 320.422,
+          "end": 324.976,
+          "text": "I knew there'd be differences to our counterparts over there, but holy shit."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 325.382,
+          "end": 326.864,
+          "text": "is wild."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 327.654,
+          "end": 328.272,
+          "text": "And"
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 329.446,
+          "end": 331.28,
+          "text": "So yeah, learning came from me."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 333.19,
+          "end": 346.448,
+          "text": "That can and that'll be something, yeah, we can raise on Monday of like how are we going to interact with them, how are we going to plan, like how are we going to onboard the first customers and help design for them, like who are we interacting with and yeah, keeping it not in that kind of here's corporate ninety people that they know what they're talking about."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 349.318,
+          "end": 349.744,
+          "text": "And"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 350.182,
+          "end": 352.56,
+          "text": "who we have on"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 353.19,
+          "end": 353.968,
+          "text": "their side."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 355.302,
+          "end": 355.952,
+          "text": "To"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 356.518,
+          "end": 364.688,
+          "text": "Have authority to leverage those decisions. Is it Adam and can we talk him in? Like, we need someone from their side who has authority who's on board to actually get this done."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 365.318,
+          "end": 367.92,
+          "text": "me to figure out who that is. Whether that's Adam, I don't know."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 368.582,
+          "end": 369.648,
+          "text": "Come in and cut this shit out."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 378.918,
+          "end": 380.4,
+          "text": "Mm-hmm. Yeah, we can definitely get that."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 382.79,
+          "end": 383.152,
+          "text": "Okay."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 383.622,
+          "end": 385.392,
+          "text": "Um and I think we've done kind of"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 386.438,
+          "end": 388.688,
+          "text": "the prep that is expected for Monday. We've all been"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 389.126,
+          "end": 394.864,
+          "text": "Investigating and thinking about this. I don't think there's anything else we can like actively do. I cannot say, like, our go investigate."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 395.43,
+          "end": 399.952,
+          "text": "these carriers in the US and how they work and bringing that's not going to be helpful. Um it's more just"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 400.326,
+          "end": 406.768,
+          "text": "Suffering a little bit before we go, and this kind of TCA stuff has been really good and enlightening and showing us some early problems. So, we'll go for it."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 413.222,
+          "end": 413.712,
+          "text": "Um"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 415.398,
+          "end": 416.72,
+          "text": "So yeah, that's it for the for"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 417.222,
+          "end": 418.448,
+          "text": "today I think really prepping for"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 419.142,
+          "end": 419.76,
+          "text": "Monday"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 420.294,
+          "end": 422.544,
+          "text": "will uh make these VT changes for"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 423.206,
+          "end": 424.88,
+          "text": "native dispatch and"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 425.702,
+          "end": 426.768,
+          "text": "Get some testing going."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 427.206,
+          "end": 428.97662353515625,
+          "text": "Like next week kind of or something like"
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 428.97662353515625,
+          "end": 439.056,
+          "text": "Testing against live TCA endpoints, you were saying, or I'm going to lose the slide today. Basically, yeah, it's, I mean, it's there, it's like ready to go. I don't, and I don't think it'll fail because."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 439.43,
+          "end": 440.624,
+          "text": "fits his test against."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 441.382,
+          "end": 446.352,
+          "text": "What we've done so far is the same thing. It's not, there's nothing, no like new variable beyond."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 446.79,
+          "end": 447.536,
+          "text": "Where it's pointing."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 448.102,
+          "end": 452.368,
+          "text": "And it's the same files that are on we actually use TCA's database on the test."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 453.062,
+          "end": 455.056,
+          "text": "Um and just like bricked the connections to it."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 456.326,
+          "end": 458.032,
+          "text": "It should in theory be the exact same thing."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 472.646,
+          "end": 477.104,
+          "text": "Yes, you did. You showed me yesterday. Yeah, it was only yeah, you only showed me uh briefly, but yes. Um"
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 477.99,
+          "end": 478.576,
+          "text": "And if you"
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 479.654,
+          "end": 483.696,
+          "text": "Yeah, yeah, if if yeah, that if we can get access to that, that would be very handy. Um"
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 485.094,
+          "end": 486.032,
+          "text": "This we can"
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 489.926,
+          "end": 490.608,
+          "text": "So no."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 493.83,
+          "end": 497.392,
+          "text": "Yeah,'cause Jake can put that into our testing um environment for the selector."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 497.862,
+          "end": 498.288,
+          "text": "Mm-hmm."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 499.014,
+          "end": 499.856,
+          "text": "be very handy."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 501.926,
+          "end": 502.768,
+          "text": "Yeah, yeah, be good."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 505.478,
+          "end": 506.224,
+          "text": "I think it's"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 510.15,
+          "end": 510.512,
+          "text": "Okay."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 510.918,
+          "end": 512.016,
+          "text": "Doesn't it anything else exciting?"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 512.454,
+          "end": 521.104,
+          "text": "Darren, from your side, you're just adding this lovely banner that was definitely around in Legacy Seeker. I 100% remember it. I think it was remembering wrong. And you made it and you deleted your code. Don't worry about it."
+        },
+        {
+          "channel": "them",
+          "speaker": 5,
+          "start": 521.83,
+          "end": 527.952,
+          "text": "Yeah, getting pinged by random people I've never heard of about this. They massive panic mode, it seems."
+        },
+        {
+          "channel": "them",
+          "speaker": 5,
+          "start": 529.67,
+          "end": 530.896,
+          "text": "uh fun times."
+        },
+        {
+          "channel": "them",
+          "speaker": 5,
+          "start": 531.558,
+          "end": 534.384,
+          "text": "We're gonna flood data when it opens up."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 536.198,
+          "end": 536.624,
+          "text": "Okay."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 538.31,
+          "end": 539.952,
+          "text": "It's gonna be a flood when it opens up."
+        },
+        {
+          "channel": "them",
+          "speaker": 2,
+          "start": 541.094,
+          "end": 542.32,
+          "text": "And it starts working again."
+        },
+        {
+          "channel": "them",
+          "speaker": 5,
+          "start": 548.518,
+          "end": 550.256,
+          "text": "Why are you coming to me with the"
+        },
+        {
+          "channel": "them",
+          "speaker": 5,
+          "start": 564.582,
+          "end": 567.888,
+          "text": "Don't you get tech from LG all the time? I I do."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 568.39,
+          "end": 569.488,
+          "text": "Um I've had three."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 571.718,
+          "end": 573.1228637695312,
+          "text": "Email it."
+        },
+        {
+          "channel": "them",
+          "speaker": 5,
+          "start": 573.1228637695312,
+          "end": 579.28,
+          "text": "All the alerts also come to my personal email as well, like the the new monthly news and that like"
+        },
+        {
+          "channel": "them",
+          "speaker": 5,
+          "start": 579.974,
+          "end": 581.392,
+          "text": "Basically they're spamming me."
+        },
+        {
+          "channel": "them",
+          "speaker": 5,
+          "start": 581.958,
+          "end": 582.896,
+          "text": "Yeah."
+        },
+        {
+          "channel": "them",
+          "speaker": 5,
+          "start": 584.55,
+          "end": 585.712,
+          "text": "I don't have a"
+        },
+        {
+          "channel": "them",
+          "speaker": 5,
+          "start": 587.11,
+          "end": 589.168,
+          "text": "I have to drop off shots. We'll uh catch you later."
+        },
+        {
+          "channel": "them",
+          "speaker": 5,
+          "start": 590.246,
+          "end": 590.928,
+          "text": "Nothing."
+        },
+        {
+          "channel": "them",
+          "speaker": 5,
+          "start": 591.334,
+          "end": 592.688,
+          "text": ""
+        },
+        {
+          "channel": "them",
+          "speaker": 5,
+          "start": 595.046,
+          "end": 596.624,
+          "text": "Oh, another request now."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 600.358,
+          "end": 600.816,
+          "text": "From hey?"
+        },
+        {
+          "channel": "them",
+          "speaker": 5,
+          "start": 602.054,
+          "end": 603.5822143554688,
+          "text": "Nina Stevens."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 603.5822143554688,
+          "end": 605.168,
+          "text": "Oh yeah, she's marketing."
+        },
+        {
+          "channel": "them",
+          "speaker": 5,
+          "start": 605.766,
+          "end": 606.224,
+          "text": "And I"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 606.726,
+          "end": 608.112,
+          "text": "I know her, she's quite nice, she's alright."
+        },
+        {
+          "channel": "them",
+          "speaker": 5,
+          "start": 610.406,
+          "end": 612.304,
+          "text": "The ones that are on the main"
+        },
+        {
+          "channel": "them",
+          "speaker": 5,
+          "start": 612.838,
+          "end": 614.48,
+          "text": "ECM page as well."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 616.646,
+          "end": 617.584,
+          "text": ""
+        },
+        {
+          "channel": "them",
+          "speaker": 5,
+          "start": 618.438,
+          "end": 620.56,
+          "text": "No, the the other ECM page."
+        },
+        {
+          "channel": "them",
+          "speaker": 5,
+          "start": 621.99,
+          "end": 626.128,
+          "text": "You know the the landing one when you hit ECM GFS?"
+        },
+        {
+          "channel": "them",
+          "speaker": 5,
+          "start": 626.534,
+          "end": 629.744,
+          "text": "Oh right now that one as well. So"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 640.87,
+          "end": 642.768,
+          "text": "I think everyone in yeah, I get it."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 643.238,
+          "end": 644.336,
+          "text": "Everyone knows how it looks down."
+        },
+        {
+          "channel": "them",
+          "speaker": 5,
+          "start": 645.958,
+          "end": 649.264,
+          "text": "Well yeah, it's it's not like it's not in the news or anything."
+        },
+        {
+          "channel": "them",
+          "speaker": 5,
+          "start": 650.694,
+          "end": 652.144,
+          "text": "Now NASA panic mode."
+        },
+        {
+          "channel": "them",
+          "speaker": 5,
+          "start": 653.894,
+          "end": 656.24,
+          "text": "This is Friday, this is not how it's meant to start."
+        },
+        {
+          "channel": "them",
+          "speaker": 5,
+          "start": 657.574,
+          "end": 658.2066040039062,
+          "text": "Not happy."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 658.2066040039062,
+          "end": 660.6534423828125,
+          "text": "Like I mean just look at Darren's hair if it's like look at him."
+        },
+        {
+          "channel": "them",
+          "speaker": 5,
+          "start": 660.6534423828125,
+          "end": 664.0284423828125,
+          "text": "It was right here. I didn't even get to do it."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 664.0284423828125,
+          "end": 665.1759643554688,
+          "text": "that time."
+        },
+        {
+          "channel": "them",
+          "speaker": 5,
+          "start": 665.1759643554688,
+          "end": 665.936,
+          "text": "Hand on the dark."
+        },
+        {
+          "channel": "them",
+          "speaker": 5,
+          "start": 670.438,
+          "end": 672.4828491210938,
+          "text": "It's starting to draw now but"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 672.4828491210938,
+          "end": 673.136,
+          "text": "Yeah, exactly."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 673.734,
+          "end": 676.7353515625,
+          "text": "It's not lightly damp. You have to start again. You have to shower again."
+        },
+        {
+          "channel": "them",
+          "speaker": 5,
+          "start": 676.7353515625,
+          "end": 678.3385009765625,
+          "text": "I'm gonna have to go over the show, mate. Yeah."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 678.3385009765625,
+          "end": 679.3003540039062,
+          "text": "Yeah."
+        },
+        {
+          "channel": "them",
+          "speaker": 5,
+          "start": 679.3003540039062,
+          "end": 679.952,
+          "text": "What can I do?"
+        },
+        {
+          "channel": "them",
+          "speaker": 5,
+          "start": 681.926,
+          "end": 682.96,
+          "text": "That's one of the other."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 686.886,
+          "end": 690.512,
+          "text": "You got I've got the Lord's comb. I got the Lord's comb right here."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 693.414,
+          "end": 699.088,
+          "text": "I used to h have a hairbrush, but I don't anymore'cause I used to have like an undercut and I would like hair dryer it back."
+        },
+        {
+          "channel": "them",
+          "speaker": 5,
+          "start": 700.902,
+          "end": 702.192,
+          "text": "I can just see you."
+        },
+        {
+          "channel": "them",
+          "speaker": 5,
+          "start": 702.662,
+          "end": 703.6,
+          "text": "With their head right."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 704.198,
+          "end": 704.9503173828125,
+          "text": "Oh yeah, yeah, yeah."
+        },
+        {
+          "channel": "them",
+          "speaker": 5,
+          "start": 704.9503173828125,
+          "end": 710.576,
+          "text": "Gently shaking gently shaking your head as you do it."
+        },
+        {
+          "channel": "them",
+          "speaker": 5,
+          "start": 711.078,
+          "end": 711.536,
+          "text": "Lovely."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 712.134,
+          "end": 712.88,
+          "text": "I'll find your pink."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 720.198,
+          "end": 720.624,
+          "text": "Yeah."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 721.862,
+          "end": 722.352,
+          "text": "Have a night."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 723.238,
+          "end": 724.208,
+          "text": "I'm a Matt Clay man."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 728.39,
+          "end": 728.752,
+          "text": "Yeah."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 738.31,
+          "end": 738.736,
+          "text": "Alright."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 740.134,
+          "end": 740.624,
+          "text": "Um"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 741.894,
+          "end": 743.472,
+          "text": "I don't think there's anything else exciting. And I'll"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 744.358,
+          "end": 746.128,
+          "text": "See you both in EGA on Monday at 11."
+        },
+        {
+          "channel": "them",
+          "speaker": 5,
+          "start": 747.974,
+          "end": 749.6016235351562,
+          "text": "Well now I'll see you at 8.30."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 749.6016235351562,
+          "end": 755.12,
+          "text": "Oh yeah, that's yeah. I'll um I'll look at travel times. I wanna I wanna give us a half hour buffer at least, so"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 756.838,
+          "end": 758.1909790039062,
+          "text": "It'd probably be a about"
+        },
+        {
+          "channel": "them",
+          "speaker": 5,
+          "start": 758.1909790039062,
+          "end": 760.176,
+          "text": "To take this further the loud pedal more."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 761.542,
+          "end": 762.704,
+          "text": "We can yeah."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 763.334,
+          "end": 765.936,
+          "text": "It's not the nicest loud pedal in my diesel, but"
+        },
+        {
+          "channel": "them",
+          "speaker": 5,
+          "start": 770.534,
+          "end": 770.896,
+          "text": "By all right."
+        },
+        {
+          "channel": "them",
+          "speaker": 5,
+          "start": 771.718,
+          "end": 772.528,
+          "text": "I mean, that's"
+        },
+        {
+          "channel": "them",
+          "speaker": 5,
+          "start": 773.35,
+          "end": 778.416,
+          "text": "From my house to Catwick is an hour and 45, in like best case scenario. So, yeah."
+        },
+        {
+          "channel": "them",
+          "speaker": 5,
+          "start": 778.918,
+          "end": 779.952,
+          "text": "I expect it to be"
+        },
+        {
+          "channel": "them",
+          "speaker": 5,
+          "start": 780.742,
+          "end": 784.272,
+          "text": "fucking diabolical on a Monday morning at that time."
+        },
+        {
+          "channel": "them",
+          "speaker": 5,
+          "start": 785.254,
+          "end": 785.744,
+          "text": "Yeah, bear right."
+        },
+        {
+          "channel": "them",
+          "speaker": 5,
+          "start": 788.582,
+          "end": 789.2,
+          "text": "Yeah."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 793.734,
+          "end": 794.128,
+          "text": "Mm."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 798.374,
+          "end": 804.496,
+          "text": "We'll see how it goes. I'll get the old the old ways'cause it'll estimate based on your time, right? So I'll have a look at it and then we'll give us a buffer. But yeah."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 808.486,
+          "end": 811.088,
+          "text": "Learns, sorry, learns your driving speed. Yeah. Yeah."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 822.726,
+          "end": 830,
+          "text": "Yeah, but you also need to you need to beat the estimated arrival time, right? So it just gets e ever faster and faster as it adjusts."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 834.502,
+          "end": 834.896,
+          "text": "Yeah."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 835.334,
+          "end": 838.32,
+          "text": "Oh, they're I told you about my speed awareness course, how the"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 838.79,
+          "end": 845.232,
+          "text": "Um if you drive like a hundred miles at eighty instead of seventy, you save like four minutes. So it's not really worth it."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 846.278,
+          "end": 846.704,
+          "text": "Doing."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 847.078,
+          "end": 850.064,
+          "text": "But doing fifteen or thirty, no, that's fucking worth it."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 855.11,
+          "end": 855.92,
+          "text": "Exactly what I'm saying."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 856.358,
+          "end": 860.464,
+          "text": "Doing 15 to 30 will save you like half a fucking hour. Worth it, bruv."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 861.126,
+          "end": 861.584,
+          "text": "send it."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 863.686,
+          "end": 870.928,
+          "text": "Yeah, going like from the bottom of the M3 to my house at like 10 p.m. and after when I can just do 60 down the avenue, it's like three minutes."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 873.126,
+          "end": 874.992,
+          "text": "Absolutely fucking send it."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 879.59,
+          "end": 880.56,
+          "text": "Yeah, down high speed, right?"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 881.35,
+          "end": 881.776,
+          "text": "Yeah."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 899.782,
+          "end": 900.4,
+          "text": "Um"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 902.278,
+          "end": 903.76,
+          "text": "Yeah, nothing else from my side."
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 904.23,
+          "end": 905.168,
+          "text": "Yeah, it's a good one."
+        },
+        {
+          "channel": "them",
+          "speaker": 5,
+          "start": 906.374,
+          "end": 906.8,
+          "text": "So"
+        },
+        {
+          "channel": "them",
+          "speaker": 0,
+          "start": 907.334,
+          "end": 908.4,
+          "text": "Yeah."
+        }
+      ],
+      "timings": {
+        "vad": 4394942801,
+        "diarization": 52390626773,
+        "asr": 31457070094
+      }
+    }
+  },
+  "lines": [
+    {
+      "who": "Speaker 1",
+      "start": 1.894,
+      "end": 9.616,
+      "text": "Taba now. That's is this better? So Had our demo. to TCA, was it yesterday for what we've been working on?"
+    },
+    {
+      "who": "Speaker 1",
+      "start": 12.198,
+      "end": 25.776,
+      "text": "What do we call it then? Do we call it pass or something? Native dispatch. Data dispatch. Okay, cool. Yeah, the length thing ever. It is, but it describes what it does. There we go."
+    },
+    {
+      "who": "Speaker 2",
+      "start": 27.334,
+      "end": 40.944,
+      "text": "They had a couple of feedback points. Nothing major. Um, just like additive stuff, but yeah, it's a big improvement on dispatch card for them. From like, I think it takes their process down from like 40 clicks to three. So they're they're happy."
+    },
+    {
+      "who": "Room 1",
+      "start": 40.006,
+      "end": 40.432,
+      "text": "Brilliant."
+    },
+    {
+      "who": "Speaker 2",
+      "start": 41.382,
+      "end": 42.32,
+      "text": "Okay, cool."
+    },
+    {
+      "who": "Room 1",
+      "start": 41.638,
+      "end": 49.616,
+      "text": "Have we got Have you got like a list,'cause I know um Phil and Chris both had some feedback too. Like have we collected that anywhere."
+    },
+    {
+      "who": "Speaker 2",
+      "start": 50.63,
+      "end": 55.472,
+      "text": "Uh I think Phil was going to and then send it across. If he hasn't I'll chase him on it. Um"
+    },
+    {
+      "who": "Room 2",
+      "start": 55.11,
+      "end": 55.504,
+      "text": "Sounds good."
+    },
+    {
+      "who": "Speaker 2",
+      "start": 55.878,
+      "end": 58.64,
+      "text": "And and find out from it. So, yeah, he said he was gonna."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 59.91,
+      "end": 64.037841796875,
+      "text": "do another iteration demo again and then plan uh migration."
+    },
+    {
+      "who": "Speaker 2",
+      "start": 64.037841796875,
+      "end": 97.776,
+      "text": "Uh I don't think there's another demo requirement at this point. It's all additive stuff. Um And then They kind of just want an account to build. Cause they're doing like the tests they're doing with dispatch are like one order, they just do one order manually. So we just need to give them this to do one order manually, essentially. Okay. The only thing we probably need to do first is do like a Test against TCA endpoint just a Prove it works basically. And once we've done that, we give them an account and off to the races sort of thing. They'll haul up stuff pretty rapidly."
+    },
+    {
+      "who": "Room 2",
+      "start": 98.63,
+      "end": 98.992,
+      "text": "Excellent."
+    },
+    {
+      "who": "Speaker 2",
+      "start": 99.046,
+      "end": 105.744,
+      "text": "It has been vocalized. It's Intest They will not view it as that, just as the heads up, because Giefer is crazy."
+    },
+    {
+      "who": "Room 1",
+      "start": 105.446,
+      "end": 107.088,
+      "text": "Like literally every"
+    },
+    {
+      "who": "Speaker 1",
+      "start": 106.246,
+      "end": 106.896,
+      "text": "They were not trained?"
+    },
+    {
+      "who": "Room 1",
+      "start": 107.686,
+      "end": 111.536,
+      "text": "Every user ever. Oh, it's in front of me, therefore it's not in test."
+    },
+    {
+      "who": "Speaker 2",
+      "start": 112.486,
+      "end": 124.176,
+      "text": "Basically. Yeah. Um And they're they're now testing their API against the server. As well. Manhattan. Um"
+    },
+    {
+      "who": "Speaker 1",
+      "start": 125.286,
+      "end": 128.848,
+      "text": "So what seeker sorry, um selector server? What they"
+    },
+    {
+      "who": "Speaker 2",
+      "start": 129.35,
+      "end": 155.536,
+      "text": "Yeah, so it's the the VM is selector like Billy Basic selector server. Um and they're they're currently testing from Manhattan directly to that. Make it do that. Apparently so. Apparently that's what they're trying to build. I think something called I want to say vantage core. anyone's head of that? Add on to it. that does the conversion of data into a call and then sends it."
+    },
+    {
+      "who": "Room 1",
+      "start": 153.382,
+      "end": 153.808,
+      "text": "Uh"
+    },
+    {
+      "who": "Speaker 2",
+      "start": 156.262,
+      "end": 157.296,
+      "text": "Something on their end."
+    },
+    {
+      "who": "Room 1",
+      "start": 158.118,
+      "end": 158.544,
+      "text": "Mm-hmm."
+    },
+    {
+      "who": "Speaker 2",
+      "start": 158.374,
+      "end": 162.32,
+      "text": "really vague and the guys Honestly, it's like"
+    },
+    {
+      "who": "Speaker 2",
+      "start": 163.878,
+      "end": 165.392,
+      "text": "It's painful. Um"
+    },
+    {
+      "who": "Speaker 2",
+      "start": 167.078,
+      "end": 173.424,
+      "text": "with the discussions. I mean we were talking about what six characters is for 20 minutes."
+    },
+    {
+      "who": "Speaker 2",
+      "start": 175.078,
+      "end": 181.008,
+      "text": "as in like a field that's six characters long. No, they couldn't grasp it. Um"
+    },
+    {
+      "who": "Speaker 2",
+      "start": 184.806,
+      "end": 189.488,
+      "text": "That yeah, it's slow. So I think the CSV aspect might be there for a while."
+    },
+    {
+      "who": "Room 1",
+      "start": 188.742,
+      "end": 200.944,
+      "text": "Okay. Th that's the most fucking enterprisey thing ever. Here's our legacy software that we're trying to integrate with legacy software that's used an off the shelf data transformation piece of software like Del Boomi."
+    },
+    {
+      "who": "Speaker 2",
+      "start": 190.342,
+      "end": 191.344,
+      "text": "I'm honest."
+    },
+    {
+      "who": "Room 2",
+      "start": 201.894,
+      "end": 204.432,
+      "text": "Guess a bit. 'Cause that's of the same genre."
+    },
+    {
+      "who": "Room 1",
+      "start": 207.846,
+      "end": 210,
+      "text": "But yeah, okay, good to know. Um"
+    },
+    {
+      "who": "Room 1",
+      "start": 212.518,
+      "end": 215.472,
+      "text": "That's gotta be like multi seconds in terms of network hops, right?"
+    },
+    {
+      "who": "Speaker 2",
+      "start": 217.894,
+      "end": 218.288,
+      "text": "is."
+    },
+    {
+      "who": "Speaker 2",
+      "start": 223.014,
+      "end": 253.136,
+      "text": "Yeah. Yeah, we'll do the test, we'll get the big account done. We're okay. Um, from our point of view. And then it's down to Phil's ha Phil's handling the conversation about the API stuff. Um on this one. Okay. Mm-hmm. Yeah, they've got a deadline of like. 30th of November is when they're planning to like run their first test with that. And I think they want it moved on to MVP2, which is API. By"
+    },
+    {
+      "who": "Room 1",
+      "start": 252.774,
+      "end": 254.832,
+      "text": "Is that API the um"
+    },
+    {
+      "who": "Speaker 2",
+      "start": 254.342,
+      "end": 254.8,
+      "text": "Good night."
+    },
+    {
+      "who": "Room 1",
+      "start": 255.206,
+      "end": 260.368,
+      "text": "Stepping Stone Selector API. Or is that the one that we've produced for this?"
+    },
+    {
+      "who": "Speaker 2",
+      "start": 259.238,
+      "end": 269.104,
+      "text": "Yeah, it is, yeah, yeah. The up the rest up key. Um Yeah. Um I set up a connection on it yesterday and it was working for them."
+    },
+    {
+      "who": "Room 1",
+      "start": 268.838,
+      "end": 271.408,
+      "text": "What'd you think what'd you think of the new UI for AppyKee?"
+    },
+    {
+      "who": "Speaker 2",
+      "start": 272.326,
+      "end": 274.672,
+      "text": "Yeah, it's really good. I said to Molda, I said, yeah,"
+    },
+    {
+      "who": "Room 1",
+      "start": 273.19,
+      "end": 274.576,
+      "text": "T tell tell me you love it."
+    },
+    {
+      "who": "Speaker 2",
+      "start": 275.206,
+      "end": 284.816,
+      "text": "Yeah, he said he said it was a he said it was all your job. I'm ready to receive my praise. Yeah. Yeah. No, yeah, it's much better. Much better."
+    },
+    {
+      "who": "Room 2",
+      "start": 287.974,
+      "end": 290.992,
+      "text": "That's good. I think Chris has like a couple of neglives he wants to fix."
+    },
+    {
+      "who": "Room 2",
+      "start": 292.966,
+      "end": 295.312,
+      "text": "Yeah."
+    },
+    {
+      "who": "Speaker 2",
+      "start": 302.502,
+      "end": 309.744,
+      "text": "Apart from that, I think it was okay. I was saying to Um dentin earlier. From the calls this week."
+    },
+    {
+      "who": "Speaker 2",
+      "start": 311.43,
+      "end": 319.568,
+      "text": "How we approach American conversations is like going to be way more an important factor than I first considered."
+    },
+    {
+      "who": "Room 2",
+      "start": 319.27,
+      "end": 321.072,
+      "text": "Yeah. I don't miss that."
+    },
+    {
+      "who": "Speaker 2",
+      "start": 320.422,
+      "end": 331.28,
+      "text": "I knew there'd be differences to our counterparts over there, but holy shit. is wild. And So yeah, learning came from me."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 333.19,
+      "end": 346.448,
+      "text": "That can and that'll be something, yeah, we can raise on Monday of like how are we going to interact with them, how are we going to plan, like how are we going to onboard the first customers and help design for them, like who are we interacting with and yeah, keeping it not in that kind of here's corporate ninety people that they know what they're talking about."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 349.318,
+      "end": 369.648,
+      "text": "And who we have on their side. To Have authority to leverage those decisions. Is it Adam and can we talk him in? Like, we need someone from their side who has authority who's on board to actually get this done. me to figure out who that is. Whether that's Adam, I don't know. Come in and cut this shit out."
+    },
+    {
+      "who": "Room 1",
+      "start": 370.022,
+      "end": 376.4,
+      "text": "Yeah, I think I think we need a bit of an org chart as well. Like some kinda racy-esque situation."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 378.918,
+      "end": 380.4,
+      "text": "Mm-hmm. Yeah, we can definitely get that."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 382.79,
+      "end": 406.768,
+      "text": "Okay. Um and I think we've done kind of the prep that is expected for Monday. We've all been Investigating and thinking about this. I don't think there's anything else we can like actively do. I cannot say, like, our go investigate. these carriers in the US and how they work and bringing that's not going to be helpful. Um it's more just Suffering a little bit before we go, and this kind of TCA stuff has been really good and enlightening and showing us some early problems. So, we'll go for it."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 413.222,
+      "end": 413.712,
+      "text": "Um"
+    },
+    {
+      "who": "Speaker 1",
+      "start": 415.398,
+      "end": 428.97662353515625,
+      "text": "So yeah, that's it for the for today I think really prepping for Monday will uh make these VT changes for native dispatch and Get some testing going. Like next week kind of or something like"
+    },
+    {
+      "who": "Speaker 2",
+      "start": 428.97662353515625,
+      "end": 458.032,
+      "text": "Testing against live TCA endpoints, you were saying, or I'm going to lose the slide today. Basically, yeah, it's, I mean, it's there, it's like ready to go. I don't, and I don't think it'll fail because. fits his test against. What we've done so far is the same thing. It's not, there's nothing, no like new variable beyond. Where it's pointing. And it's the same files that are on we actually use TCA's database on the test. Um and just like bricked the connections to it. It should in theory be the exact same thing."
+    },
+    {
+      "who": "Room 2",
+      "start": 460.486,
+      "end": 462.352,
+      "text": "Yeah. update at least."
+    },
+    {
+      "who": "Room 1",
+      "start": 466.79,
+      "end": 470.928,
+      "text": "Did I Wilders, did I tell you I'm mocked all of the carrier proxies?"
+    },
+    {
+      "who": "Speaker 2",
+      "start": 472.646,
+      "end": 477.104,
+      "text": "Yes, you did. You showed me yesterday. Yeah, it was only yeah, you only showed me uh briefly, but yes. Um"
+    },
+    {
+      "who": "Room 1",
+      "start": 472.742,
+      "end": 474.736,
+      "text": "Was that you were selling? Yeah, okay."
+    },
+    {
+      "who": "Room 1",
+      "start": 476.902,
+      "end": 479.568,
+      "text": "Okay. I I wasn't sure who I told it to but it's um"
+    },
+    {
+      "who": "Speaker 2",
+      "start": 477.99,
+      "end": 483.696,
+      "text": "And if you Yeah, yeah, if if yeah, that if we can get access to that, that would be very handy. Um"
+    },
+    {
+      "who": "Room 1",
+      "start": 484.166,
+      "end": 488.048,
+      "text": "Yeah. I think you've got access in the Meric space already, so it's just like"
+    },
+    {
+      "who": "Speaker 2",
+      "start": 485.094,
+      "end": 486.032,
+      "text": "This we can"
+    },
+    {
+      "who": "Room 1",
+      "start": 489.222,
+      "end": 490.48,
+      "text": "I am through Terraform."
+    },
+    {
+      "who": "Speaker 2",
+      "start": 489.926,
+      "end": 490.608,
+      "text": "So no."
+    },
+    {
+      "who": "Room 1",
+      "start": 491.206,
+      "end": 492.496,
+      "text": "Um it should be good."
+    },
+    {
+      "who": "Speaker 2",
+      "start": 493.83,
+      "end": 499.856,
+      "text": "Yeah,'cause Jake can put that into our testing um environment for the selector. Mm-hmm. be very handy."
+    },
+    {
+      "who": "Speaker 2",
+      "start": 501.926,
+      "end": 502.768,
+      "text": "Yeah, yeah, be good."
+    },
+    {
+      "who": "Speaker 2",
+      "start": 505.478,
+      "end": 506.224,
+      "text": "I think it's"
+    },
+    {
+      "who": "Speaker 1",
+      "start": 510.15,
+      "end": 521.104,
+      "text": "Okay. Doesn't it anything else exciting? Darren, from your side, you're just adding this lovely banner that was definitely around in Legacy Seeker. I 100% remember it. I think it was remembering wrong. And you made it and you deleted your code. Don't worry about it."
+    },
+    {
+      "who": "Speaker 3",
+      "start": 521.83,
+      "end": 527.952,
+      "text": "Yeah, getting pinged by random people I've never heard of about this. They massive panic mode, it seems."
+    },
+    {
+      "who": "Speaker 3",
+      "start": 529.67,
+      "end": 534.384,
+      "text": "uh fun times. We're gonna flood data when it opens up."
+    },
+    {
+      "who": "Speaker 2",
+      "start": 536.198,
+      "end": 536.624,
+      "text": "Okay."
+    },
+    {
+      "who": "Speaker 2",
+      "start": 538.31,
+      "end": 542.32,
+      "text": "It's gonna be a flood when it opens up. And it starts working again."
+    },
+    {
+      "who": "Room 2",
+      "start": 542.534,
+      "end": 542.928,
+      "text": "Yeah."
+    },
+    {
+      "who": "Speaker 3",
+      "start": 548.518,
+      "end": 550.256,
+      "text": "Why are you coming to me with the"
+    },
+    {
+      "who": "Room 2",
+      "start": 552.742,
+      "end": 558.64,
+      "text": "Anyone else get a text from ILG saying that Teams is down? I feel this. That feels weird."
+    },
+    {
+      "who": "Room 1",
+      "start": 559.558,
+      "end": 560.688,
+      "text": "I don't know how I feel about that."
+    },
+    {
+      "who": "Room 1",
+      "start": 564.55,
+      "end": 564.944,
+      "text": "Mm."
+    },
+    {
+      "who": "Speaker 3",
+      "start": 564.582,
+      "end": 567.888,
+      "text": "Don't you get tech from LG all the time? I I do."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 568.39,
+      "end": 569.488,
+      "text": "Um I've had three."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 571.718,
+      "end": 573.1228637695312,
+      "text": "Email it."
+    },
+    {
+      "who": "Speaker 3",
+      "start": 573.1228637695312,
+      "end": 579.28,
+      "text": "All the alerts also come to my personal email as well, like the the new monthly news and that like"
+    },
+    {
+      "who": "Room 1",
+      "start": 576.806,
+      "end": 577.424,
+      "text": "Ha ha ha."
+    },
+    {
+      "who": "Speaker 3",
+      "start": 579.974,
+      "end": 582.896,
+      "text": "Basically they're spamming me. Yeah."
+    },
+    {
+      "who": "Speaker 3",
+      "start": 584.55,
+      "end": 589.168,
+      "text": "I don't have a I have to drop off shots. We'll uh catch you later."
+    },
+    {
+      "who": "Room 2",
+      "start": 589.446,
+      "end": 590.064,
+      "text": "Yeah, but"
+    },
+    {
+      "who": "Speaker 3",
+      "start": 590.246,
+      "end": 590.928,
+      "text": "Nothing."
+    },
+    {
+      "who": "Room 2",
+      "start": 590.438,
+      "end": 591.024,
+      "text": "Have a good day."
+    },
+    {
+      "who": "Speaker 3",
+      "start": 595.046,
+      "end": 596.624,
+      "text": "Oh, another request now."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 600.358,
+      "end": 600.816,
+      "text": "From hey?"
+    },
+    {
+      "who": "Speaker 3",
+      "start": 602.054,
+      "end": 603.5822143554688,
+      "text": "Nina Stevens."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 603.5822143554688,
+      "end": 605.168,
+      "text": "Oh yeah, she's marketing."
+    },
+    {
+      "who": "Speaker 3",
+      "start": 605.766,
+      "end": 606.224,
+      "text": "And I"
+    },
+    {
+      "who": "Speaker 1",
+      "start": 606.726,
+      "end": 608.112,
+      "text": "I know her, she's quite nice, she's alright."
+    },
+    {
+      "who": "Speaker 3",
+      "start": 610.406,
+      "end": 614.48,
+      "text": "The ones that are on the main ECM page as well."
+    },
+    {
+      "who": "Speaker 3",
+      "start": 618.438,
+      "end": 629.744,
+      "text": "No, the the other ECM page. You know the the landing one when you hit ECM GFS? Oh right now that one as well. So"
+    },
+    {
+      "who": "Speaker 1",
+      "start": 640.87,
+      "end": 644.336,
+      "text": "I think everyone in yeah, I get it. Everyone knows how it looks down."
+    },
+    {
+      "who": "Speaker 3",
+      "start": 645.958,
+      "end": 652.144,
+      "text": "Well yeah, it's it's not like it's not in the news or anything. Now NASA panic mode."
+    },
+    {
+      "who": "Speaker 3",
+      "start": 653.894,
+      "end": 658.2066040039062,
+      "text": "This is Friday, this is not how it's meant to start. Not happy."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 658.2066040039062,
+      "end": 660.6534423828125,
+      "text": "Like I mean just look at Darren's hair if it's like look at him."
+    },
+    {
+      "who": "Speaker 3",
+      "start": 660.6534423828125,
+      "end": 664.0284423828125,
+      "text": "It was right here. I didn't even get to do it."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 664.0284423828125,
+      "end": 665.1759643554688,
+      "text": "that time."
+    },
+    {
+      "who": "Speaker 3",
+      "start": 665.1759643554688,
+      "end": 665.936,
+      "text": "Hand on the dark."
+    },
+    {
+      "who": "Room 1",
+      "start": 666.886,
+      "end": 667.728,
+      "text": "Yeah, me too."
+    },
+    {
+      "who": "Speaker 3",
+      "start": 670.438,
+      "end": 672.4828491210938,
+      "text": "It's starting to draw now but"
+    },
+    {
+      "who": "Speaker 1",
+      "start": 672.4828491210938,
+      "end": 676.7353515625,
+      "text": "Yeah, exactly. It's not lightly damp. You have to start again. You have to shower again."
+    },
+    {
+      "who": "Speaker 3",
+      "start": 676.7353515625,
+      "end": 678.3385009765625,
+      "text": "I'm gonna have to go over the show, mate. Yeah."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 678.3385009765625,
+      "end": 679.3003540039062,
+      "text": "Yeah."
+    },
+    {
+      "who": "Speaker 3",
+      "start": 679.3003540039062,
+      "end": 679.952,
+      "text": "What can I do?"
+    },
+    {
+      "who": "Room 1",
+      "start": 680.966,
+      "end": 684.016,
+      "text": "You just made me realise that I don't own a own a coma or a hairbrush."
+    },
+    {
+      "who": "Speaker 3",
+      "start": 681.926,
+      "end": 682.96,
+      "text": "That's one of the other."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 686.886,
+      "end": 690.512,
+      "text": "You got I've got the Lord's comb. I got the Lord's comb right here."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 693.414,
+      "end": 699.088,
+      "text": "I used to h have a hairbrush, but I don't anymore'cause I used to have like an undercut and I would like hair dryer it back."
+    },
+    {
+      "who": "Speaker 3",
+      "start": 700.902,
+      "end": 703.6,
+      "text": "I can just see you. With their head right."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 704.198,
+      "end": 704.9503173828125,
+      "text": "Oh yeah, yeah, yeah."
+    },
+    {
+      "who": "Speaker 3",
+      "start": 704.9503173828125,
+      "end": 710.576,
+      "text": "Gently shaking gently shaking your head as you do it."
+    },
+    {
+      "who": "Room 1",
+      "start": 705.126,
+      "end": 706.288,
+      "text": "in the wind."
+    },
+    {
+      "who": "Speaker 3",
+      "start": 711.078,
+      "end": 711.536,
+      "text": "Lovely."
+    },
+    {
+      "who": "Room 2",
+      "start": 712.006,
+      "end": 712.72,
+      "text": "You're like"
+    },
+    {
+      "who": "Speaker 1",
+      "start": 712.134,
+      "end": 712.88,
+      "text": "I'll find your pink."
+    },
+    {
+      "who": "Room 2",
+      "start": 714.054,
+      "end": 719.344,
+      "text": "Hair like powder, styling powder. can't be like way better than anything else."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 720.198,
+      "end": 720.624,
+      "text": "Yeah."
+    },
+    {
+      "who": "Room 2",
+      "start": 720.966,
+      "end": 722.704,
+      "text": "Yeah, you just like salt and pepper on your head."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 721.862,
+      "end": 724.208,
+      "text": "Have a night. I'm a Matt Clay man."
+    },
+    {
+      "who": "Room 2",
+      "start": 725.67,
+      "end": 727.568,
+      "text": "Pow powder's like surprisingly good."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 728.39,
+      "end": 728.752,
+      "text": "Yeah."
+    },
+    {
+      "who": "Room 2",
+      "start": 729.958,
+      "end": 733.488,
+      "text": "'Cause this shit doesn't like to hold well, as you can tell."
+    },
+    {
+      "who": "Room 2",
+      "start": 736.39,
+      "end": 736.816,
+      "text": "Yeah."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 738.31,
+      "end": 746.128,
+      "text": "Alright. Um I don't think there's anything else exciting. And I'll See you both in EGA on Monday at 11."
+    },
+    {
+      "who": "Room 1",
+      "start": 746.854,
+      "end": 747.568,
+      "text": "Catch you then."
+    },
+    {
+      "who": "Speaker 3",
+      "start": 747.974,
+      "end": 749.6016235351562,
+      "text": "Well now I'll see you at 8.30."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 749.6016235351562,
+      "end": 755.12,
+      "text": "Oh yeah, that's yeah. I'll um I'll look at travel times. I wanna I wanna give us a half hour buffer at least, so"
+    },
+    {
+      "who": "Room 1",
+      "start": 756.678,
+      "end": 757.552,
+      "text": "Drive faster."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 756.838,
+      "end": 758.1909790039062,
+      "text": "It'd probably be a about"
+    },
+    {
+      "who": "Speaker 3",
+      "start": 758.1909790039062,
+      "end": 760.176,
+      "text": "To take this further the loud pedal more."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 761.542,
+      "end": 765.936,
+      "text": "We can yeah. It's not the nicest loud pedal in my diesel, but"
+    },
+    {
+      "who": "Speaker 3",
+      "start": 770.534,
+      "end": 784.272,
+      "text": "By all right. I mean, that's From my house to Catwick is an hour and 45, in like best case scenario. So, yeah. I expect it to be fucking diabolical on a Monday morning at that time."
+    },
+    {
+      "who": "Room 1",
+      "start": 784.646,
+      "end": 786.96,
+      "text": "Gen generally fine after nine, isn't it, on the road?"
+    },
+    {
+      "who": "Speaker 3",
+      "start": 785.254,
+      "end": 785.744,
+      "text": "Yeah, bear right."
+    },
+    {
+      "who": "Room 1",
+      "start": 787.942,
+      "end": 791.728,
+      "text": "I've found at least go like drive into the office if I'm running a bit late is"
+    },
+    {
+      "who": "Speaker 3",
+      "start": 788.582,
+      "end": 789.2,
+      "text": "Yeah."
+    },
+    {
+      "who": "Room 1",
+      "start": 792.134,
+      "end": 792.624,
+      "text": "Better."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 793.734,
+      "end": 794.128,
+      "text": "Mm."
+    },
+    {
+      "who": "Room 1",
+      "start": 797.254,
+      "end": 797.712,
+      "text": "Good."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 798.374,
+      "end": 804.496,
+      "text": "We'll see how it goes. I'll get the old the old ways'cause it'll estimate based on your time, right? So I'll have a look at it and then we'll give us a buffer. But yeah."
+    },
+    {
+      "who": "Room 1",
+      "start": 803.302,
+      "end": 805.808,
+      "text": "Yeah. Learns your driving speed as well I found."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 808.486,
+      "end": 811.088,
+      "text": "Learns, sorry, learns your driving speed. Yeah. Yeah."
+    },
+    {
+      "who": "Room 1",
+      "start": 810.214,
+      "end": 818.896,
+      "text": "Yeah, yeah, l learns how likely you are to break the speed limit and By how much? I get vastly different times to my wife."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 822.726,
+      "end": 830,
+      "text": "Yeah, but you also need to you need to beat the estimated arrival time, right? So it just gets e ever faster and faster as it adjusts."
+    },
+    {
+      "who": "Room 2",
+      "start": 831.398,
+      "end": 834.704,
+      "text": "Yeah, a few weeks you'd just be like bashing the limby for your whole commute."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 834.502,
+      "end": 845.232,
+      "text": "Yeah. Oh, they're I told you about my speed awareness course, how the Um if you drive like a hundred miles at eighty instead of seventy, you save like four minutes. So it's not really worth it."
+    },
+    {
+      "who": "Room 2",
+      "start": 845.798,
+      "end": 846.768,
+      "text": "I mean like the"
+    },
+    {
+      "who": "Speaker 1",
+      "start": 846.278,
+      "end": 850.064,
+      "text": "Doing. But doing fifteen or thirty, no, that's fucking worth it."
+    },
+    {
+      "who": "Room 2",
+      "start": 849.35,
+      "end": 854.992,
+      "text": "I I was gonna say, so you you're you're suggesting it's more optimal to speed in a school zone than it is on the motorway."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 855.11,
+      "end": 855.92,
+      "text": "Exactly what I'm saying."
+    },
+    {
+      "who": "Room 2",
+      "start": 856.166,
+      "end": 856.816,
+      "text": "Yeah."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 856.358,
+      "end": 860.464,
+      "text": "Doing 15 to 30 will save you like half a fucking hour. Worth it, bruv."
+    },
+    {
+      "who": "Room 2",
+      "start": 859.974,
+      "end": 860.624,
+      "text": "Yeah."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 861.126,
+      "end": 861.584,
+      "text": "send it."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 863.686,
+      "end": 870.928,
+      "text": "Yeah, going like from the bottom of the M3 to my house at like 10 p.m. and after when I can just do 60 down the avenue, it's like three minutes."
+    },
+    {
+      "who": "Room 2",
+      "start": 867.558,
+      "end": 868.048,
+      "text": "Okay."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 873.126,
+      "end": 874.992,
+      "text": "Absolutely fucking send it."
+    },
+    {
+      "who": "Room 2",
+      "start": 875.014,
+      "end": 885.776,
+      "text": "Yeah. Yeah, going through a century easily. Same. depending on when I go to the gym. Ten minutes or yeah, down the high street. The fucking like bumpiest road in all Hampshire."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 879.59,
+      "end": 881.776,
+      "text": "Yeah, down high speed, right? Yeah."
+    },
+    {
+      "who": "Room 2",
+      "start": 890.886,
+      "end": 898.16,
+      "text": "I'm gonna shift off for the bifurcand up. I'm getting Matt to run him now because I don't want to. And it's his team. Say"
+    },
+    {
+      "who": "Speaker 1",
+      "start": 899.782,
+      "end": 900.4,
+      "text": "Um"
+    },
+    {
+      "who": "Room 1",
+      "start": 900.582,
+      "end": 903.152,
+      "text": "Catch you guys in a bit. Have a good week, 10 chaps."
+    },
+    {
+      "who": "Speaker 1",
+      "start": 902.278,
+      "end": 905.168,
+      "text": "Yeah, nothing else from my side. Yeah, it's a good one."
+    },
+    {
+      "who": "Speaker 3",
+      "start": 906.374,
+      "end": 906.8,
+      "text": "So"
+    },
+    {
+      "who": "Speaker 1",
+      "start": 907.334,
+      "end": 908.4,
+      "text": "Yeah."
+    }
+  ]
+}
