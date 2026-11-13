@@ -19,7 +19,7 @@ The system has one rendered surface, the [[parcel-portal]] ui (`apps/ui`), built
 - Toolkit components wherever one exists; frontend structure decisions wait for Darren Rielly's principles (`AGENTS.md`, *Frontend*).
 - Light theme only; dark mode isn't built (snapshot 2026-11-13).
 - Dates and the export day are the site's local day, shown as such, in the time zone from `/me`. A GFS admin acting for a customer sees the customer's zone.
-- A GFS admin picks a customer in the header switcher, and an "Acting as" banner stays on every page while they do. Anything the switch could leave behind (batch results, upload results, print state) is cleared on the switch.
+- A GFS admin picks a customer in the header switcher, and an "Acting as" banner stays on every page while they do. Batch results, upload results and print state are cleared on the switch. An error page is not (unit C33, open).
 
 ## From the UX review (2026-11-03)
 - **`GButton` defaults to `ghost`**, which reads as plain text. Every primary action sets `variant="default"`, and secondary ones `outline`.
