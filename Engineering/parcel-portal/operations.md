@@ -3,13 +3,15 @@ tags:
 - waypoint
 - parcel-portal
 title: parcel-portal — operations
-verified: '2026-10-29'
-verified_sha: 696cbd4
+verified: '2026-11-13'
+verified_sha: 621357e
 verified_paths:
 - docs/runbook.md
 - .github/workflows
-- iac/projects/svc/datadog.tf
-- iac/projects/sftp/datadog.tf
+- iac/projects/parcel-portal-svc/datadog.tf
+- iac/projects/parcel-portal-sftp/datadog.tf
+- iac/env
+- .trivyignore.yaml
 ---
 # parcel-portal — operations
 
