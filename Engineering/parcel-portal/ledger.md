@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-13 — Order page: contact details, why it needs packing, a foot Dispatch button and void
+
+Order page: contact details, why it needs packing, a foot Dispatch button and void
+
+Native Dispatch units O1, O8, O6 and L1 (R05, R07, R09, R01), one PR. The order page now shows the recipient's email and phone read-only beside the address; says beside the status why an order needs packing; has a second Dispatch button at the foot (one dispatch panel, two triggers, so no stale-panel bug); and a dispatched order with a booked shipment can be voided from its own page, which returns it to Ready. Review fixes: a dispatch error no longer survives a retry, focus moves to the booking summary after a foot dispatch, the address form warns (without blocking) when it has unsaved changes, and the voided notice only shows while the order is Ready. Verified against the production UI build and a local svc with the fake carrier, driven by Playwright, with one panel or one summary after every action. UI only. Known gaps: products and parcels have no unsaved-changes warning (O9), and the badge tooltip is hover-only in lists.
+
+PR: ilg-merak/parcel-portal#142
+
 ## 2026-11-13 — Correct the runbook and the svc README
 
 Correct the runbook and the svc README
