@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-14 — Expect a preset box rounded down to whole centimetres in the dispatch test
+
+Expect a preset box rounded down to whole centimetres in the dispatch test
+
+Test-only fix. TestAParcelWithOnlyAPackagingPresetIsBookedWithThePresetsSize (added by the preset-fill PR #146) expected the old round-up, so main's integration job went red after #148 (round down) merged: #148's branch was cut before #146, so no run had both. The test now expects 12x9x6 in as 30x22x15 cm. Process change: the conductor's merge gate now refuses a branch that is behind main, so CI always runs on the combined code. Also seen once on main (d820443, not reproduced in about 1,300 local runs): TestAUserOverTheirSessionLimitIsDisconnected in sftp/sshserver, which checks NewSession immediately after the handshake while the server drops the second connection asynchronously.
+
+PR: ilg-merak/parcel-portal#150
+
 ## 2026-11-14 — Open the order from a shipment, with per-parcel weights and tracking links
 
 Open the order from a shipment, with per-parcel weights and tracking links
