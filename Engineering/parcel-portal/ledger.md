@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-14 — Open the order from a shipment, with per-parcel weights and tracking links
+
+Open the order from a shipment, with per-parcel weights and tracking links
+
+Native Dispatch unit O7 (R08). A shipments row (and a batch-dispatch result) now opens the order page; a voided shipment still opens its own page, since its order's page no longer shows it, and /shipments/{id} stays for existing links. A dispatched order's Parcels card lists each parcel's weight read-only in the unit it was given in, and the consignment and tracking numbers link to the customer's tracking page (the order page reads GET /shipments/{id} as well, because only that read fills in the links; filling trackingUrl on GET /orders/{id}/shipment in svc would be the cleaner fix, no contract change). UI only. R08's 'Today' line was already partly out of date: the order page had the contact card and total weight; per-parcel weights were what was missing.
+
+PR: ilg-merak/parcel-portal#149
+
 ## 2026-11-14 — Round package dimensions down to whole centimetres
 
 Round package dimensions down to whole centimetres
