@@ -52,6 +52,27 @@ Sequencing: C0 → C1 → C2 → C3 → C4 in series. C3 reuses the sidebar and 
 
 ## Decision log
 <!-- Dated, newest first. -->
+- **2026-11-14** — **C2 done and live at 908bce7** (3715570..908bce7: 8 commits, opus builder, plus one fix by the lead). **Confluence images show in orient, safely.**
+  - **The route:** `GET /api/v1/confluence/media/<pageId>/<fileId>` (the page id numeric, the file id a lowercase UUID).
+    - The file id is found in the page's attachments (C0's read, which serves only configured spaces), so a foreign page is refused before any download.
+    - The credential goes to the site only. Confluence's download answers 302 straight to `api.media.atlassian.com/file/<fileId>/binary` with a signed token (seen live), followed for that file alone with no credential. At most one on-site hop is allowed, checked on decoded segments.
+    - **Served by the bytes alone:** png, jpeg, gif or webp by magic number; the container walked in one linear pass (PNG chunks to `IEND`, GIF blocks to the trailer, JPEG markers to `EOI`, the WebP RIFF size), with nothing allowed after the end; at most 10 MiB, cancelled mid-stream.
+    - **Headers:** `nosniff`, `sandbox; default-src 'none'; frame-ancestors 'self'`, same-origin CORP, a fixed name, `private, max-age=300`, and no cookie.
+    - **Kernel change:** `frameGuard` now **extends** a route's CSP instead of replacing it. Only the media route sets one, so nothing else changes.
+    - **Load:** downloads follow the client (an aborted `<img>` aborts the fetch), with 4 at a time and 429/Retry-After handled; one buffer per image; a 50 MiB, 5 min in-memory LRU (R2: memory only).
+    - **Refusals:** a refused or failed image gets an orient-made 640×360 placeholder PNG with the error status, never a broken icon.
+  - **The renderer** draws a page's images as `<img>`: the `src` is the exact proxy path (the only one the allowlist keeps); `alt`, width, height and `loading=lazy` always present (640×360 by default, at most 720 wide); at most 50 per page. Anything else is a file card with **Open in Confluence**, never a download link. Attachments are read only when the ADF names a file, refetched once if a named file is missing, and a render made without them never replaces a good one.
+  - **Review (security, R1; backend):**
+    - **Security found no path to execution:** the type is forced, with nosniff and sandbox; the frameGuard change was checked against every route; foreign and unknown ids are refused before download; the media hop held against host tricks.
+    - It did find that **the first markup scan was a bypassable blocklist** (`<details ontoggle>`, namespaced SVG, UTF-16 and more were served as 200), and **both reviewers found it froze the core for about 1 s** on a 10 MiB file of `<`. The lead replaced it with the linear structural walk: the PoCs now take 0.01 ms in the check and are 415.
+    - Also fixed: downloads ran on after the client left, with no concurrency cap and no 429 retry, and three copies of each image in memory; the redirect allowed extra on-site hops; stale or failed attachments lists were cached into the page; refusals showed broken icons; a declared-versus-sniffed mismatch was refused.
+  - **The lead's fix (908bce7):** live, every image answered 503. A hop-by-hop trace (statuses and hosts only) showed the site answers the download with **406** when sent an image-only `Accept`; without one it gives the 302. The site hop now sends `Accept: */*`, and the media hop keeps the image list. The test failed first.
+  - **Gates:** typecheck 0, lint 44, 1,086 tests across 10 files plus the adapter and media files (289).
+  - **Live check** (statuses, types, headers and sizes only):
+    - 44 pages scanned, 7 images found, about 3 file cards;
+    - 6 real images (PNG and JPEG, 45–477 KB) answer 200 with the right magic bytes and every security header;
+    - unknown and malformed ids give 404.
+  - **Next:** C3, the Fuse and Merak tabs (tree, page view, byline, search, recently updated).
 - **2026-11-13** — **C1 done and live at 223e075** (fa8ee78..223e075: 12 commits, opus builder). **Confluence pages render as safe HTML.**
   - **What was built:** an allowlist renderer, ADF → hast → HTML, in `src/render/adf/`.
     - **Links:** hrefs limited to `https`, `mailto` (the address only) and the site, all `rel="noopener noreferrer"`.
