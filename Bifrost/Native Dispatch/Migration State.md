@@ -6,7 +6,7 @@ owner: Harry
 services:
 - parcel-portal
 created: '2026-11-13'
-updated: '2026-11-13'
+updated: '2026-11-14'
 tags:
 - bifrost
 - migration-state
@@ -52,7 +52,7 @@ Legend: ⬜ not started · 🟨 in progress · ✅ merged · ⛔ blocked · ⏸ 
 ### I — CSV import
 | Unit | St | Summary | Deps | Risk | Tier | PR | Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| **I1** | ⬜ | Fill a parcel's size and weight from a preset named in the CSV | | med | sonnet/high | | **R11, a bug.** Import keeps the preset name as text and never reads the preset (`core/mapping/orders.go:202`, `core/imports/ingest.go:94-104`), so the order shows Ready and dispatch refuses it. Read the tenant's presets at import and fill the parcel; an unknown name becomes a row problem. Verify on the dev TCA customer: import a file naming a preset, then Check with carrier. Until it ships, saving the Packing panel fills the dimensions. |
+| **I1** | ✅ | Fill a parcel's size and weight from a preset named in the CSV | | med | sonnet/high | #146 | **R11, a bug.** Import keeps the preset name as text and never reads the preset (`core/mapping/orders.go:202`, `core/imports/ingest.go:94-104`), so the order shows Ready and dispatch refuses it. Read the tenant's presets at import and fill the parcel; an unknown name becomes a row problem. Verify on the dev TCA customer: import a file naming a preset, then Check with carrier. Until it ships, saving the Packing panel fills the dimensions. |
 | **I2** | ⬜ | ConsigneeReference: column, order field, order page, search, Selector | | med | sonnet/high | | **R10.** An optional column, a migration, a contract bump, and `ConsigneeReference` set on the Selector request (it is on the wire and never filled). Check with Phil that it isn't the Container ID (Q2). |
 | **I3** | ⬜ | A number of packages on a single CSV row | | med | sonnet/high | | **R12.** Needs the call with Phil (G1): the column, how it combines with Parcel Number, and whether an order may have no product lines. |
 
