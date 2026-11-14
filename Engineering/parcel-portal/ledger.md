@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-14 — Fill a parcel's size and weight from the packaging preset a file names
+
+Fill a parcel's size and weight from the packaging preset a file names
+
+Native Dispatch unit I1 (R14). Import now reads the tenant's own packaging presets and fills a named preset's size and weight, each taken whole with its unit, where the file left them blank; the file's own values win. An unknown preset name is an unknown_preset problem on parcel.packaging only when the parcel is still unmeasured, so a fully measured parcel may carry any free-text label. A parcel counts as measured only with all three dimensions and the weight above zero. One plan serves file import (browser, SFTP, POST /v1/order-files), POST /v1/orders and the layout preview. Fixes the TCA symptom: Ready with empty dimensions, then dispatch refused. No migration or contract change; orders imported before this stay as they were until re-imported or edited.
+
+PR: ilg-merak/parcel-portal#146
+
 ## 2026-11-13 — Order page: a dropdown for the carrier service and the order's total weight
 
 Order page: a dropdown for the carrier service and the order's total weight
