@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-14 — Add a consignee reference to orders
+
+Add a consignee reference to orders
+
+Native Dispatch unit I2 (R10). New optional order field consigneeRef, separate from Container ID (Q2 with Phil is still formally open; the PR says how to drop or repoint it). Read from an optional Consignee Reference CSV column and consigneeRef in a JSON order; shown and editable on the order page until dispatch (empty clears it); searchable in the orders list (tenant-scoped); shown in the layout editor and preview; set as ConsigneeReference on the Selector request. At most 35 characters, Selector's own limit (invalid_consignee_ref problem on import, maxLength on PATCH and the public API). Migration 021 (defaulted column), contract 6.1.0, public API 1.3.0, both additive. A tenant on a custom layout needs a consigneeRef rule added in the mapping editor. Reviewed by a three-agent panel; findings fixed: the suggester also offered a Consignee Reference column for the order reference, the missing length cap, a stale unsaved-changes warning, and weak tests.
+
+PR: ilg-merak/parcel-portal#151
+
 ## 2026-11-14 — Expect a preset box rounded down to whole centimetres in the dispatch test
 
 Expect a preset box rounded down to whole centimetres in the dispatch test
