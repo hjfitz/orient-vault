@@ -285,3 +285,8 @@
 {"ts": 1794642558, "kind": "programme_tick", "session_id": "3daf16d6-87bb-438d-944f-828764dcae71", "programme": "Native Dispatch", "unit": "I1", "status": "done"}
 {"ts": 1794642796, "kind": "programme_tick", "session_id": "3daf16d6-87bb-438d-944f-828764dcae71", "programme": "Native Dispatch", "unit": "T2", "status": "done"}
 {"ts": 1794642798, "kind": "programme_tick", "session_id": "3daf16d6-87bb-438d-944f-828764dcae71", "programme": "Native Dispatch", "unit": "T16", "status": "done"}
+{"ts": 1794644099, "kind": "ledger", "session_id": "3daf16d6-87bb-438d-944f-828764dcae71", "service": "parcel-portal", "ticket": null, "programme": "Native Dispatch", "heading": "## 2026-11-14 \u2014 Open the order from a shipment, with per-parcel weights and tracking links", "prs": ["ilg-merak/parcel-portal#149"]}
+{"ts": 1794644363, "kind": "programme_tick", "session_id": "3daf16d6-87bb-438d-944f-828764dcae71", "programme": "Native Dispatch", "unit": "O7", "status": "done"}
+{"ts": 1794645346, "kind": "ledger", "session_id": "3daf16d6-87bb-438d-944f-828764dcae71", "service": "parcel-portal", "ticket": null, "programme": "Native Dispatch", "heading": "## 2026-11-14 \u2014 Expect a preset box rounded down to whole centimetres in the dispatch test", "prs": ["ilg-merak/parcel-portal#150"]}
+{"ts": 1794645544, "kind": "ledger", "session_id": "3daf16d6-87bb-438d-944f-828764dcae71", "service": "parcel-portal", "ticket": null, "programme": "Native Dispatch", "heading": "## 2026-11-14 \u2014 Add a consignee reference to orders", "prs": ["ilg-merak/parcel-portal#151"]}
+{"ts": 1794646060, "kind": "programme_tick", "session_id": "3daf16d6-87bb-438d-944f-828764dcae71", "programme": "Native Dispatch", "unit": "I2", "status": "done"}
