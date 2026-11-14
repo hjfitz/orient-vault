@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-14 — Allow a carrier connection's shipper id to be 0
+
+Allow a carrier connection's shipper id to be 0
+
+Native Dispatch unit T2 (Oliver's answer: TCA's live Selector box books with ShipperId 0 on all 82 Despatch Cloud calls). The carrier connection check is now shipperId zero or above; migration 020 moves carrier_connection_shipper_id_check from > 0 to >= 0 (forward-only, older images still read a 0 row); the UI input is min 0. Contract 5.15.0 to 6.0.0, a major, because oasdiff counts a lowered response minimum as breaking; the contract is private and its release tag only publishes after prod. Holds at the prod gate with the rest.
+
+PR: ilg-merak/parcel-portal#147
+
 ## 2026-11-14 — Fill a parcel's size and weight from the packaging preset a file names
 
 Fill a parcel's size and weight from the packaging preset a file names
