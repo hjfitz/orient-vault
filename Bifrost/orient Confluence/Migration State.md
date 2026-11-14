@@ -52,6 +52,44 @@ Sequencing: C0 → C1 → C2 → C3 → C4 in series. C3 reuses the sidebar and 
 
 ## Decision log
 <!-- Dated, newest first. -->
+- **2026-11-14** — **C3 done and live at fc53153** (c4ee1a1..fc53153: 4 commits, sonnet builder). **Fuse and Merak are tabs in Notes.**
+  - **The tabs:** "Fuse↗" and "Merak↗" (labelled "a Confluence space, read-only") follow Notes, Incidents and Soaks.
+  - **The address:** `/notes?space=<key lower-cased>&page=<id>` (Fuse is `space=bifrost`, Merak `space=mp`), `&q=` for search, and a repeated `&open=<id>` for the tree. With no `page`, the space's home page shows. `confluenceHref` is in `entity-href.ts`.
+  - **The tree:** the workspace's own, in a read-only `remote` mode: lazy branches (at most 4 read at once, only those drawn), per-branch loading and "No access" or "Couldn't load" with a retry. No row actions, drag or drafts.
+  - **The page view:**
+    - breadcrumbs from the ancestors;
+    - a byline "Updated … by … · v…";
+    - label chips;
+    - C1's HTML through `Prose` with a new `plain` flag (no embeds or diagrams hydrate);
+    - Open in Confluence (`webUrl`) and Edit in Confluence (`/wiki/spaces/<key>/pages/edit-v2/<id>`, built from config and the numeric id), both in new tabs with `noopener noreferrer`;
+    - Refresh (`?refresh=1`, at most once per page in 5 s);
+    - Copy link;
+    - designed states for no access, not found, slow or unreachable (with Retry), a cached copy, and a skeleton.
+  - **Search** is scoped to the space, with excerpts as text. **Recently updated** on the home page comes from a new `GET /api/v1/confluence/spaces/:id/recent` (CQL `space = "<key>" AND type = page ORDER BY lastmodified DESC`, 20, confined and cached for 60 s).
+  - **The Notes workspace** moved, unchanged, into `NotesWorkspace.svelte`. The sidebar (`WorkspaceColumns`) and header (`PageHeader`) are shared. The tree's width and collapsed state are one setting across Notes and the Confluence tabs (the lead's call).
+  - **R2 in the browser:** Confluence reads live in component memory only. Tests spy on `localStorage`, `sessionStorage` and IndexedDB. Notes-only features (drafts, row actions, Create, History, the editor) never mount on a Confluence tab.
+  - **Review (Notes regressions; Confluence UI; security):**
+    - **security: no findings**;
+    - **Notes: no regression in the moved code**;
+    - **7 issues fixed with tests failing first** (25):
+      - unknown `?space=` values went to Confluence and lit the wrong chip (now only configured keys do, and keys colliding with notes, incidents or soaks are dropped);
+      - a page from the other space drew under the wrong tab with the wrong Edit link (now the URL is replaced with its own space);
+      - the previous page's breadcrumb and tab title lingered;
+      - "Ask again" left a permanent skeleton;
+      - search folded the tree;
+      - "Refreshed" showed on a stale answer;
+      - `[` registered only after the tree loaded.
+  - **Gates:** typecheck 0, `ui:check` 0, lint 44, 1,092 workspace, Notes and Confluence UI tests, and the touched core and adapter files.
+  - **Live check** (structure and UI labels only; no page screenshots kept, because viewing real pages would put titles into the session's transcript, which R2 counts as a log; synthetic-stub screenshots were the builder's):
+    - the tabs;
+    - the Fuse home with its byline, body, 20 recently-updated rows and "Fuse" in the tab title;
+    - 4 breadcrumb links on a page;
+    - the Edit link's shape, rel and target;
+    - search with 26 results, excerpts as text;
+    - an unknown page says "This page is not in Confluence, or is not in this space.";
+    - the only `More` is the header's "More for this page" (Copy link), with no row actions in the tree;
+    - no Confluence keys in storage, and no writes.
+  - **The minimum is in:** Fuse and Merak are readable in orient. Left: C4 (Confluence links open in orient) in the agreed order after Notes W2 and NV3, and C1b (render in a worker) when there is room. C5 (writing) stays behind G2, Harry's call.
 - **2026-11-14** — **C2 done and live at 908bce7** (3715570..908bce7: 8 commits, opus builder, plus one fix by the lead). **Confluence images show in orient, safely.**
   - **The route:** `GET /api/v1/confluence/media/<pageId>/<fileId>` (the page id numeric, the file id a lowercase UUID).
     - The file id is found in the page's attachments (C0's read, which serves only configured spaces), so a foreign page is refused before any download.
