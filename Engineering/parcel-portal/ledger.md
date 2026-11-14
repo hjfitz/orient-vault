@@ -6,6 +6,14 @@ tags: [waypoint, ledger]
 Agent-facing. Newest first. What meaningful work happened here, and the
 context a future agent needs. Not a diary, not release notes, not a diff.
 
+## 2026-11-14 — Round package dimensions down to whole centimetres
+
+Round package dimensions down to whole centimetres
+
+Native Dispatch unit T16 (R18). Selector request dimensions now floor to whole cm (with a 1e-9 tolerance for unit-conversion noise, and a side under 1 cm sent as 1) instead of ceiling, so the portal sends exactly what Despatch Cloud did for TCA's boxes (22x20x10, 27x20x20, 22x22x10 and the rest) and dim weight does not move. Weights keep their decimals. No contract or migration change.
+
+PR: ilg-merak/parcel-portal#148
+
 ## 2026-11-14 — Allow a carrier connection's shipper id to be 0
 
 Allow a carrier connection's shipper id to be 0
