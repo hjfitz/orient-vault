@@ -25,7 +25,7 @@ confidence: moderate
 - **The customer API** runs on dev behind a public gateway. Its key screen has been hidden since 12 Nov, because the business isn't ready for it. TCA wants an API test from 30 Nov, so bringing the screen back is an open call [3][4].
 - **Programmes.**
   - `Bifrost/Parcel Portal/`: foundations, customer screens and the prod launch. 44 units, 30 merged. 5 are in progress: customer API, two acting-as units, label preview and prod launch D1. 8 UI defects are not started [2].
-  - `Bifrost/Native Dispatch/`: the customer feedback, in planning since 13 Nov. 17 requirements, 33 units. 4 shipped on 12 Nov, 1 is in progress, 5 wait on an answer and Harry dropped 1 [3][4].
+  - `Bifrost/Native Dispatch/`: the customer feedback, being built since 13 Nov: 19 requirements as 36 units. Its ledger is the live count (`wp programme status "Native Dispatch"`); on 14 Nov 20 units were merged, and the rest wait on a call with Phil, a spec choice, printer answers or Oliver's reading of cancel [3][4].
 
 ## Components
 
